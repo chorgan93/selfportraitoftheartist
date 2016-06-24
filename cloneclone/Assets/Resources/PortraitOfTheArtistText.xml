@@ -1,0 +1,28 @@
+<data>
+  <Sheet1>
+    <test_me>
+      <Key>test_me</Key>
+      <EN>Hello</EN>
+      <ES>Hola</ES>
+      <FR>Bonjour</FR>
+      <DE>Hallo</DE>
+      <IT>Ciao</IT>
+      <RU>Здравствуйте</RU>
+      <JA>こんにちは</JA>
+      <ZH>你好</ZH>
+      <KO>여보세요</KO>
+    </test_me>
+    <test_me_too>
+      <Key>test_me_too</Key>
+      <EN>Goodbye</EN>
+      <ES>Yeah</ES>
+      <FR>Au Revoir</FR>
+      <DE>Auf Wiedersehen</DE>
+      <IT>Arrivederci</IT>
+      <RU>Прощай</RU>
+      <JA>さようなら</JA>
+      <ZH>再见</ZH>
+      <KO>안녕</KO>
+    </test_me_too>
+  </Sheet1>
+</data>
