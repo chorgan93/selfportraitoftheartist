@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody _myRigidbody;
 	private ControlManagerS controller;
 	private Camera mainCamera;
+	[Header ("Instance Objects")]
+	public SpriteRenderer myRenderer;
+	private Animator _myAnimator;
 
 	private float startDrag;
 
@@ -97,6 +100,7 @@ public class PlayerController : MonoBehaviour {
 	public bool isShooting		{get { return _isShooting; } }
 	public bool isStunned		{get { return _isStunned; } }
 	public Rigidbody myRigidbody	{ get { return _myRigidbody; } }
+	public Animator myAnimator		{ get { return _myAnimator; } }
 	public PlayerStatsS myStats		{ get { return _myStats; } }
 	public bool inCombat		{ get { return _inCombat; } }
 
@@ -132,6 +136,7 @@ public class PlayerController : MonoBehaviour {
 
 		_myRigidbody = GetComponent<Rigidbody>();
 		startDrag = _myRigidbody.drag;
+		_myAnimator = myRenderer.GetComponent<Animator>();
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
@@ -153,6 +158,7 @@ public class PlayerController : MonoBehaviour {
 
 		ButtonCheck();
 		StatusCheck();
+		AnimationCheck();
 
 		// Control Methods
 		if (!_myStats.PlayerIsDead()){
@@ -405,6 +411,14 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+
+	}
+
+	private void AnimationCheck(){
+
+		float speed = _myRigidbody.velocity.magnitude;
+		_myAnimator.SetFloat("Speed", speed);
+		Debug.Log(speed);
 
 	}
 
