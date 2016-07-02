@@ -16,6 +16,7 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Shot Stats")]
 	public float rateOfFire = 0.12f;
+	public float delayShotTime = 0.8f;
 
 	public float shotSpeed = 1000f;
 	public float spawnRange = 1f;

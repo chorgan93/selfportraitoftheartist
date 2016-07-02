@@ -28,7 +28,8 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		if (rigidReference.velocity.x < 0){
 			currentSize = mySize;
 			currentSize.x *= -1f;
-		}else{
+		}
+		if (rigidReference.velocity.x > 0){
 			currentSize = mySize;
 		}
 		transform.localScale = currentSize;

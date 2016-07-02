@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Status Properties
 	private bool _isStunned = false;
+	private bool attackTriggered;
 	private float stunTime;
 
 	// Weapon Properites
@@ -75,6 +76,8 @@ public class PlayerController : MonoBehaviour {
 	private bool attackDashInterrupt;
 	private float spawnRange;
 	private float staminaCost;
+	private float delayAttackTime;
+	private float delayAttackCountdown;
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
@@ -158,7 +161,6 @@ public class PlayerController : MonoBehaviour {
 
 		ButtonCheck();
 		StatusCheck();
-		AnimationCheck();
 
 		// Control Methods
 		if (!_myStats.PlayerIsDead()){
@@ -193,6 +195,7 @@ public class PlayerController : MonoBehaviour {
 		staminaCost = newProjectileStats.staminaCost;
 		numAttacksPerShot = newProjectileStats.numAttacks;
 		timeBetweenAttacks = newProjectileStats.numTimeBetweenAttacks;
+		delayAttackTime = newProjectileStats.delayShotTime;
 
 	}
 
@@ -207,18 +210,22 @@ public class PlayerController : MonoBehaviour {
 	private void MovementControl(){
 
 		if (CanInputMovement()){
-			float horizontalInput = controller.Horizontal();
-			float verticalInput = controller.Vertical();
+			Vector2 input2 = Vector2.zero;
+			input2.x = controller.Horizontal();
+			input2.y = controller.Vertical();
 
 	
 			Vector3 moveVelocity = _myRigidbody.velocity;
 	
-			if (horizontalInput != 0 || verticalInput != 0){
-				moveVelocity.x = inputDirection.x = horizontalInput;
-				moveVelocity.y = inputDirection.y = verticalInput;
+			if (input2.x != 0 || input2.y != 0){
+				moveVelocity.x = inputDirection.x = input2.x;
+				moveVelocity.y = inputDirection.y = input2.y;
 
 				if (_isBlocking){
 					moveVelocity *= walkSpeedBlockMult;
+					RunAnimationCheck(input2.magnitude*walkSpeedBlockMult);
+				}else{
+					RunAnimationCheck(input2.magnitude);
 				}
 		
 				if (moveVelocity.magnitude < walkThreshold){
@@ -234,6 +241,8 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 		
+			}else{
+				RunAnimationCheck(input2.magnitude);
 			}
 		}
 
@@ -291,7 +300,32 @@ public class PlayerController : MonoBehaviour {
 
 	private void ShootControl(){
 
-		if (attacksRemaining > 0){
+		delayAttackCountdown -= Time.deltaTime;
+		if (delayAttackCountdown <= 0 && attackTriggered){
+			for(int i = 0; i < numberShotsPerAmmo; i++){
+				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*spawnRange, Quaternion.identity);
+				if (i == 0){
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0));
+				}
+				else{
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0), false);
+				}
+			}
+			muzzleFlare.Fire(rateOfFireMax, ShootDirection(), equippedProjectile.transform.localScale.x);
+			rateOfFire = rateOfFireMax;
+			
+			if (_lastInClip){
+				_lastInClip = false;
+			}
+			
+			if (numAttacksPerShot > 1){
+				capturedShootDirection = ShootDirection();
+				attacksRemaining = numAttacksPerShot-1;
+				timeBetweenAttacksCountdown = timeBetweenAttacks;
+			}
+			attackTriggered = false;
+		}
+		else if (attacksRemaining > 0){
 			// for multi attacks
 			timeBetweenAttacksCountdown -= Time.deltaTime;
 			if (timeBetweenAttacksCountdown <= 0){
@@ -315,14 +349,16 @@ public class PlayerController : MonoBehaviour {
 		}
 		else{
 		rateOfFire -= Time.deltaTime;
-
 		// once roF is less than 0, allow shooting
-		if (CanInputShoot() && ShootInputPressed() && StaminaCheck(staminaCost)){
+		if (CanInputShoot()){
+				Debug.Log("can attack!!");
+				if (ShootInputPressed() && StaminaCheck(staminaCost)){
 
 			if (isAutomatic || (!isAutomatic && shootButtonUp)){
 
 
 				shootButtonUp = false;
+					/*
 				for(int i = 0; i < numberShotsPerAmmo; i++){
 					GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*spawnRange, Quaternion.identity);
 					if (i == 0){
@@ -343,18 +379,18 @@ public class PlayerController : MonoBehaviour {
 					capturedShootDirection = ShootDirection();
 					attacksRemaining = numAttacksPerShot-1;
 					timeBetweenAttacksCountdown = timeBetweenAttacks;
-				}
-
+				}*/
+					delayAttackCountdown = delayAttackTime;
+					attackTriggered = true;
+					_isShooting = true;
+					AttackAnimationTrigger();
 
 			}
-
-		}
-		if (!shootButtonUp){
-			_isShooting = true;
-		}
-		else{
-			_isShooting = false;
-		}
+				}
+			else{
+				_isShooting = false;
+				TurnOffAttackAnimation();
+				}}
 		}
 
 	}
@@ -414,17 +450,21 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void AnimationCheck(){
+	private void RunAnimationCheck(float inputMagnitude){
+		_myAnimator.SetFloat("Speed", inputMagnitude);
+	}
 
-		float speed = _myRigidbody.velocity.magnitude;
-		_myAnimator.SetFloat("Speed", speed);
-		Debug.Log(speed);
-
+	private void AttackAnimationTrigger(){
+		_myAnimator.SetTrigger("Attack2");
+		_myAnimator.SetBool("Attacking", true);
+	}
+	private void TurnOffAttackAnimation(){
+		_myAnimator.SetBool("Attacking", false);
 	}
 
 	private bool CanInputMovement(){
 
-		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0){
+		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered){
 			return true;
 		}
 		else{
@@ -449,7 +489,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (rateOfFire <= 0 && (!_isDashing || (_isDashing && attackDashInterrupt)) && !_isStunned && !_isBlocking){
+		if (rateOfFire <= 0 && (!_isDashing || (_isDashing && attackDashInterrupt)) && !_isStunned && !_isBlocking
+		    &&!attackTriggered){
 			return true;
 		}
 		else{
