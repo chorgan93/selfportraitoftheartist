@@ -455,7 +455,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AttackAnimationTrigger(){
-		_myAnimator.SetTrigger("Attack2");
+		_myAnimator.SetTrigger("Attack1");
 		_myAnimator.SetBool("Attacking", true);
 	}
 	private void TurnOffAttackAnimation(){
