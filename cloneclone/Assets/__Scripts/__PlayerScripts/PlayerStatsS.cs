@@ -21,11 +21,14 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
 
+
 	//________________________________RECOVERY
 	private float _recoveryCooldownBase = 0.3f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*_recoveryCooldownMultiplier);}}
 	private float _currentCooldownTimer;
+	
+	private float blockRecoverMult = 0.5f;
 
 	private float _recoverRateMin = 0.6f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
@@ -60,19 +63,26 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________________PUBLIC FUNCTIONS
 
-	public bool ManaCheck(float useAmount){
+	public bool ManaCheck(float useAmount, bool reduce = true){
 
 		if (_currentMana > 0){
+			if (reduce){
 			if (_currentMana >= useAmount){
 				_currentMana -= useAmount;
+				
 				_currentManaUsed += useAmount;
+
 			}else{
 				_currentManaUsed += _currentMana;
+
 				_currentMana = 0;
+
 			}
+
 			_currentCooldownTimer = recoveryCooldownMax;
 
 			currentRegenCountdown = GetRegenTime();
+			}
 
 			return true;
 		}
@@ -96,7 +106,12 @@ public class PlayerStatsS : MonoBehaviour {
 				_currentCooldownTimer -= Time.deltaTime;
 			}
 			else{
-				currentRegenCountdown -= recoverRate*Time.deltaTime;
+				if (myPlayerController.isBlocking){
+				currentRegenCountdown -= recoverRate*blockRecoverMult*Time.deltaTime;
+				}
+				else{
+					currentRegenCountdown -= recoverRate*Time.deltaTime;
+				}
 				if (currentRegenCountdown <= 0){
 					_currentMana++;
 					_currentManaUsed--;
@@ -116,7 +131,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
-				if (myPlayerController.isDashing || myPlayerController.isStunned || myPlayerController.isShooting){
+				if (myPlayerController.isDashing || myPlayerController.isStunned || myPlayerController.InAttack()){
 					canRecover = false;
 				}
 			}

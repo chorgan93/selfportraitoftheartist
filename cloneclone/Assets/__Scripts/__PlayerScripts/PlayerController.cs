@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
+	private static float ATTACK_CHAIN_TIMING = 0.1f;
 	
 	//_________________________________________CLASS PROPERTIES
 
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	[Header("Movement Variables")]
 	public float walkSpeed;
 	public float walkSpeedMax;
-	private float walkSpeedBlockMult = 0.36f;
+	private float walkSpeedBlockMult = 0.5f;
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
@@ -62,6 +63,10 @@ public class PlayerController : MonoBehaviour {
 	private bool attackTriggered;
 	private float stunTime;
 
+	// Animation Properties
+	private bool _facingDown = true;
+	private bool _facingUp = true;
+
 	// Weapon Properites
 	private GameObject equippedProjectile;
 	[Header("Equipment Properties")]
@@ -78,6 +83,8 @@ public class PlayerController : MonoBehaviour {
 	private float staminaCost;
 	private float delayAttackTime;
 	private float delayAttackCountdown;
+	private float attackDuration = 0;
+	private bool useAltAnim = false;
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
@@ -104,8 +111,12 @@ public class PlayerController : MonoBehaviour {
 	public bool isStunned		{get { return _isStunned; } }
 	public Rigidbody myRigidbody	{ get { return _myRigidbody; } }
 	public Animator myAnimator		{ get { return _myAnimator; } }
+	public EnemyDetectS myDetect	{ get { return enemyDetect; } }
 	public PlayerStatsS myStats		{ get { return _myStats; } }
 	public bool inCombat		{ get { return _inCombat; } }
+
+	public bool facingDown		{ get { return _facingDown; } }
+	public bool facingUp		{ get { return _facingUp; } }
 
 	
 	//_________________________________________UNITY METHODS
@@ -125,11 +136,16 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________PUBLIC METHODS
 
-	public void Knockback(Vector3 knockbackForce, float knockbackTime){
+	public void Knockback(Vector3 knockbackForce, float knockbackTime, bool attackTime = false){
 
 		myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 
-		Stun(knockbackTime);
+		if (!attackTime){
+			Stun(knockbackTime);
+		}
+		else{
+			AttackDuration(knockbackTime);
+		}
 
 	}
 
@@ -206,6 +222,10 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void AttackDuration(float aTime){
+		attackDuration = aTime;
+	}
+
 	//_________________________________________CONTROL METHODS
 	private void MovementControl(){
 
@@ -220,6 +240,14 @@ public class PlayerController : MonoBehaviour {
 			if (input2.x != 0 || input2.y != 0){
 				moveVelocity.x = inputDirection.x = input2.x;
 				moveVelocity.y = inputDirection.y = input2.y;
+
+				if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y < 0){
+					FaceDown();
+				}else if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y > 0){
+					FaceUp();
+				}else{
+					FaceLeftRight();
+				}
 
 				if (_isBlocking){
 					moveVelocity *= walkSpeedBlockMult;
@@ -250,8 +278,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void BlockControl(){
 
-		if (BlockInputPressed() && !_isDashing){
+		if (BlockInputPressed() && !_isDashing && _myStats.currentMana > 0){
 			_isBlocking = true;
+			PrepBlockAnimation();
 		}else{
 			_isBlocking = false;
 		}
@@ -263,7 +292,8 @@ public class PlayerController : MonoBehaviour {
 		if (CanInputDash() && (DashInputPressed() || _smashReset > 0) && StaminaCheck(1) && _isBlocking){
 
 			_isDashing = true;
-			
+			_myAnimator.SetTrigger("Dash");
+			_myAnimator.SetBool("Evading", true);
 			_myRigidbody.velocity = Vector3.zero;
 			
 			if (controller.Horizontal() != 0 || controller.Vertical() != 0){
@@ -291,6 +321,8 @@ public class PlayerController : MonoBehaviour {
 				if (!blockButtonUp){
 					// _isSprinting = true;
 				}
+				
+				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
 			}
@@ -309,6 +341,23 @@ public class PlayerController : MonoBehaviour {
 				}
 				else{
 					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0), false);
+				}
+
+				// subtract mana cost
+				_myStats.ManaCheck(staminaCost);
+
+				if (myRenderer.transform.localScale.x > 0){
+					if (!useAltAnim){
+						Vector3 flip = newProjectile.transform.localScale;
+						flip.y *= -1f;
+						newProjectile.transform.localScale = flip;
+					}
+				}else{
+					if (useAltAnim){
+						Vector3 flip = newProjectile.transform.localScale;
+						flip.y *= -1f;
+						newProjectile.transform.localScale = flip;
+					}
 				}
 			}
 			muzzleFlare.Fire(rateOfFireMax, ShootDirection(), equippedProjectile.transform.localScale.x);
@@ -348,60 +397,33 @@ public class PlayerController : MonoBehaviour {
 
 		}
 		else{
-		rateOfFire -= Time.deltaTime;
+			attackDuration -= Time.deltaTime;
 		// once roF is less than 0, allow shooting
 		if (CanInputShoot()){
-				Debug.Log("can attack!!");
-				if (ShootInputPressed() && StaminaCheck(staminaCost)){
-
-			if (isAutomatic || (!isAutomatic && shootButtonUp)){
+				if (ShootInputPressed() && StaminaCheck(staminaCost, false) && shootButtonUp){
 
 
 				shootButtonUp = false;
-					/*
-				for(int i = 0; i < numberShotsPerAmmo; i++){
-					GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*spawnRange, Quaternion.identity);
-					if (i == 0){
-							newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0));
-					}
-					else{
-							newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0), false);
-					}
-				}
-				muzzleFlare.Fire(rateOfFireMax, ShootDirection(), equippedProjectile.transform.localScale.x);
-				rateOfFire = rateOfFireMax;
-
-				if (_lastInClip){
-					_lastInClip = false;
-				}
-
-				if (numAttacksPerShot > 1){
-					capturedShootDirection = ShootDirection();
-					attacksRemaining = numAttacksPerShot-1;
-					timeBetweenAttacksCountdown = timeBetweenAttacks;
-				}*/
+					
 					delayAttackCountdown = delayAttackTime;
 					attackTriggered = true;
 					_isShooting = true;
+
 					AttackAnimationTrigger();
 
-			}
+			
 				}
 			else{
 				_isShooting = false;
-				TurnOffAttackAnimation();
+					TurnOffAttackAnimation();
 				}}
 		}
 
 	}
 
-			private void EndAdditionalAttacks(){
+	private bool StaminaCheck(float cost, bool takeAway = true){
 
-			}
-
-	private bool StaminaCheck(float cost){
-
-		return _myStats.ManaCheck(cost);
+		return _myStats.ManaCheck(cost, takeAway);
 
 	}
 
@@ -455,11 +477,56 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AttackAnimationTrigger(){
-		_myAnimator.SetTrigger("Attack1");
-		_myAnimator.SetBool("Attacking", true);
+		if (useAltAnim){
+			_myAnimator.SetTrigger("Attack2");
+		}else{
+			_myAnimator.SetTrigger("Attack1");
+		}
+		useAltAnim = !useAltAnim;
+		if (_myAnimator.GetBool("Attacking")){
+			_myAnimator.SetBool("Chaining", true);
+			delayAttackCountdown = 0f;
+		}else{
+			_myAnimator.SetBool("Attacking", true);
+			_myAnimator.SetBool("Chaining", false);
+		}
 	}
+
+	private void PrepBlockAnimation(){
+		
+		_myAnimator.SetBool("Attacking", false);
+		_myAnimator.SetBool("Chaining", false);
+		FaceLeftRight();
+	}
+
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
+		_myAnimator.SetBool("Chaining", false);
+		Debug.Log("End attack animation!");
+	}
+
+	private void FaceDown(){
+		if (!_isBlocking){
+		_myAnimator.SetLayerWeight(1, 1f);
+		_myAnimator.SetLayerWeight(2, 0f);
+		_facingDown = true;
+		_facingUp = false;
+		}
+
+	}
+	private void FaceUp(){
+		if (!_isBlocking){
+		_myAnimator.SetLayerWeight(2, 1f);
+		_facingUp = true;
+		_facingDown = false;
+		}
+		
+	}
+	private void FaceLeftRight(){
+		_myAnimator.SetLayerWeight(1, 0f);
+		_myAnimator.SetLayerWeight(2, 0f);
+		_facingDown = false;
+		_facingUp = false;
 	}
 
 	private bool CanInputMovement(){
@@ -475,22 +542,23 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputDash(){
 
-		bool dashAllow = true;
+		bool dashAllow = false;
 
+		/*
 		if (_isBlocking && !_isDashing && !_isStunned){
 			dashAllow = true;
 		}
 		else{
 			dashAllow = false;
-		}
+		}*/
 
 		return dashAllow;
 	}
 
 	private bool CanInputShoot(){
 
-		if (rateOfFire <= 0 && (!_isDashing || (_isDashing && attackDashInterrupt)) && !_isStunned && !_isBlocking
-		    &&!attackTriggered){
+		if ((!_isDashing || (_isDashing && attackDashInterrupt)) && !_isBlocking && !attackTriggered && !_isStunned
+		    && attackDuration <= ATTACK_CHAIN_TIMING){
 			return true;
 		}
 		else{
@@ -566,34 +634,42 @@ public class PlayerController : MonoBehaviour {
 			if (directionZ > 337.5f || directionZ <= 22.5f){
 				inputDirection.x = 1;
 				inputDirection.y = 0;
+				FaceLeftRight();
 			}
 			else if (directionZ > 22.5f && directionZ <= 67.5f){
 				inputDirection.x = 1;
 				inputDirection.y = 1;
+				FaceLeftRight();
 			}
 			else if (directionZ > 67.5f && directionZ <= 112.5f){
 				inputDirection.x = 0;
 				inputDirection.y = 1;
+				FaceLeftRight();
 			}
 			else if (directionZ > 112.5f && directionZ <= 157.5f){
 				inputDirection.x = -1;
 				inputDirection.y = 1;
+				FaceLeftRight();
 			}
 			else if (directionZ > 157.5f && directionZ <= 202.5f){
 				inputDirection.x = -1;
 				inputDirection.y = 0;
+				FaceLeftRight();
 			}
 			else if (directionZ > 202.5f && directionZ <= 247.5f){
 				inputDirection.x = -1;
 				inputDirection.y = -1;
+				FaceDown();
 			}
 			else if (directionZ > 247.5f && directionZ <= 292.5f){
 				inputDirection.x = 0;
 				inputDirection.y = -1;
+				FaceDown();
 			}
 			else {
 				inputDirection.x = 1;
 				inputDirection.y = -1;
+				FaceDown();
 			}
 
 		}
@@ -621,7 +697,7 @@ public class PlayerController : MonoBehaviour {
 		     && Mathf.Abs(_inputDirectionCurrent.magnitude-_inputDirectionLast.magnitude) > SMASH_MIN_SPEED)){
 
 			if (_smashReset <= 0){
-				_smashReset = SMASH_TIME_ALLOW;
+				//_smashReset = SMASH_TIME_ALLOW;
 			}
 
 			return true;
@@ -698,6 +774,15 @@ public class PlayerController : MonoBehaviour {
 
 		enemyDetect = newDetect;
 
+	}
+
+	public bool InAttack(){
+		if (attackTriggered || attackDuration > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	public Vector3 ShootPosition(){
