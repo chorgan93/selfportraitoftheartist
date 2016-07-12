@@ -100,6 +100,13 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
+	void OnEnable(){
+		if (_isDead){
+			_myAnimator.SetLayerWeight(2,1f);
+			myShadow.enabled = false;
+		}
+	}
+
 	//______________________________________PUBLIC METHODS
 
 	public void SetBehavior(EnemyBehaviorS newBehavior){
@@ -397,7 +404,7 @@ public class EnemyS : MonoBehaviour {
 			Stun (0);
 			EndAllBehaviors();
 			_myAnimator.SetLayerWeight(1, 0f);
-			_myAnimator.SetTrigger("Death");
+			_myAnimator.SetBool("Death", true);
 			//_myCollider.enabled = false;
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
