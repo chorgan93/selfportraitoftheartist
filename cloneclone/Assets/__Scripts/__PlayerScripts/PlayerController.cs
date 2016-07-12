@@ -593,7 +593,8 @@ public class PlayerController : MonoBehaviour {
 		bool dashAllow = false;
 
 		if (blockPrepMax-blockPrepCountdown < DASH_THRESHOLD && 
-		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing){
+		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
+		    && !_isStunned){
 			dashAllow = true;
 		}
 

@@ -196,6 +196,7 @@ public class PlayerStatsS : MonoBehaviour {
 				if (_currentHealth <= 0){
 						_currentHealth = 1;
 						CameraShakeS.C.TimeSleep(NEAR_DEATH_STOP_TIME);
+						myPlayerController.Stun(BIG_KNOCKBACK_TIME);
 						myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
 					}else{
 						myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
