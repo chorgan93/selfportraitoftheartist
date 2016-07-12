@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.65f;
+	private static float DASH_THRESHOLD = 0.14f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
@@ -27,7 +27,9 @@ public class PlayerController : MonoBehaviour {
 	public float dashSpeed;
 	private bool _isDashing;
 	public float dashDuration;
+	public float dashSlideTime;
 	public float dashDragMult;
+	public float dashDragSlideMult;
 	private float dashDurationTime;
 
 	private bool _isShooting;
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour {
 	// Animation Properties
 	private bool _facingDown = true;
 	private bool _facingUp = true;
+	private bool triggerBlockAnimation = true;
+	private bool doingBlockTrigger = false;
+	private float blockPrepCountdown = 0;
+	private float blockPrepMax = 0.25f;
 
 	// Weapon Properites
 	private GameObject equippedProjectile;
@@ -278,49 +284,69 @@ public class PlayerController : MonoBehaviour {
 
 	private void BlockControl(){
 
-		if (BlockInputPressed() && !_isDashing && _myStats.currentMana > 0){
-			_isBlocking = true;
-			PrepBlockAnimation();
+		if (BlockInputPressed()){
+			blockButtonUp = false;
+			if (!_isDashing && _myStats.currentMana > 0){
+			blockPrepCountdown -= Time.deltaTime;
+			if (blockPrepCountdown <= 0 && doingBlockTrigger){
+				_isBlocking = true;
+				doingBlockTrigger = false;
+				_myAnimator.SetBool("Blocking", false);
+				CameraShakeS.C.MicroShake();
+			}
+			if (triggerBlockAnimation){
+				PrepBlockAnimation();
+				triggerBlockAnimation = false;
+				doingBlockTrigger = true;
+			}
+			}
 		}else{
+			// check for dash tap
+			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1)){
+				TriggerDash();
+			}
+
+			TurnOffBlockAnimation();
+
+			blockButtonUp = true;
+			blockPrepCountdown = blockPrepMax;
+			triggerBlockAnimation = true;
+			doingBlockTrigger = false;
 			_isBlocking = false;
 		}
 
 	}
 
+	private void TriggerDash(){
+
+		_isDashing = true;
+		_myAnimator.SetBool("Evading", true);
+		TurnOffBlockAnimation();
+		_myRigidbody.velocity = Vector3.zero;
+
+		inputDirection = Vector3.zero;
+		inputDirection.x = controller.Horizontal();
+		inputDirection.y = controller.Vertical();
+
+		
+		dashDurationTime = 0;
+		
+		_myRigidbody.drag = startDrag*dashDragMult;
+		_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
+
+	}
+
 	private void DashControl(){
-
-		if (CanInputDash() && (DashInputPressed() || _smashReset > 0) && StaminaCheck(1) && _isBlocking){
-
-			_isDashing = true;
-			_myAnimator.SetTrigger("Dash");
-			_myAnimator.SetBool("Evading", true);
-			_myRigidbody.velocity = Vector3.zero;
-			
-			if (controller.Horizontal() != 0 || controller.Vertical() != 0){
-				inputDirection = Vector3.zero;
-				inputDirection.x = controller.Horizontal();
-				inputDirection.y = controller.Vertical();
-			}
-
-				dashDurationTime = 0;
-				
-				_myRigidbody.drag = startDrag*dashDragMult;
-				_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
-			
-			_smashReset =0;
-
-		}
 
 		if (_isDashing){
 
 			dashDurationTime += Time.deltaTime;
+			if (dashDurationTime >= dashDuration-dashSlideTime){
+				_myRigidbody.drag = startDrag*dashDragSlideMult;
+			}
 
 			//if (dashDurationTime >= dashDuration || (dashDurationTime >= triggerSprintMult*dashDuration && !blockButtonUp)){
 			if (dashDurationTime >= dashDuration){
-				// check if holding sprint, else end dash
-				if (!blockButtonUp){
-					// _isSprinting = true;
-				}
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -496,7 +522,14 @@ public class PlayerController : MonoBehaviour {
 		
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("Chaining", false);
+		_myAnimator.SetBool("Blocking", true);
+		_myAnimator.SetLayerWeight(3, 1f);
 		FaceLeftRight();
+	}
+	
+	private void TurnOffBlockAnimation(){
+		_myAnimator.SetLayerWeight(3, 0f);
+		_myAnimator.SetBool("Blocking", false);
 	}
 
 	private void TurnOffAttackAnimation(){
@@ -530,7 +563,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputMovement(){
 
-		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered){
+		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
+		    && !doingBlockTrigger){
 			return true;
 		}
 		else{
@@ -543,20 +577,17 @@ public class PlayerController : MonoBehaviour {
 
 		bool dashAllow = false;
 
-		/*
-		if (_isBlocking && !_isDashing && !_isStunned){
+		if (blockPrepMax-blockPrepCountdown < DASH_THRESHOLD && 
+		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing){
 			dashAllow = true;
 		}
-		else{
-			dashAllow = false;
-		}*/
 
 		return dashAllow;
 	}
 
 	private bool CanInputShoot(){
 
-		if ((!_isDashing || (_isDashing && attackDashInterrupt)) && !_isBlocking && !attackTriggered && !_isStunned
+		if ((!_isDashing || (_isDashing && attackDashInterrupt)) && !doingBlockTrigger && !_isBlocking && !attackTriggered && !_isStunned
 		    && attackDuration <= ATTACK_CHAIN_TIMING){
 			return true;
 		}

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyProjectileS : MonoBehaviour {
 
+
 	private Rigidbody _rigidbody;
 	private SpriteRenderer _myRenderer;
 	private EnemyS _myEnemy;

@@ -239,9 +239,9 @@ public class CameraShakeS : MonoBehaviour {
 
 
 
-	public void BigSleep(){
+	public void BigSleep(bool doPunch = false){
 		
-		TimeSleep(_bigSleepTime);
+		TimeSleep(_bigSleepTime, doPunch);
 		
 	}
 

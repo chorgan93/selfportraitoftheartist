@@ -3,6 +3,10 @@ using System.Collections;
 
 public class PlayerStatsS : MonoBehaviour {
 
+	private const float NO_MANA_STOP_TIME = 0.1f;
+	private const float NEAR_DEATH_STOP_TIME = 0.1f;
+	private const float DEATH_KNOCKBACK_MULT = 2.5f;
+
 	private PlayerController myPlayerController;
 
 	//________________________________HEALTH
@@ -47,6 +51,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________DEFENSE
 
 	private float _defenseKnockbackMult = 0.5f;
+	private float _extraKnockbackMult = 2f;
 
 	//_____________________________________UNITY FUNCTIONS
 
@@ -161,16 +166,44 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (!PlayerIsDead()){
 			if (myPlayerController.isBlocking && ManaCheck(dmg)){
-				myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
-				CameraShakeS.C.MicroShake();
+				if (_currentMana <= 0){
+					CameraShakeS.C.TimeSleep(NO_MANA_STOP_TIME);
+					CameraShakeS.C.SmallShake();
+					myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
+				}
+				else{
+					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
+					CameraShakeS.C.MicroShake();
+				}
 			}else{
+				
+				myPlayerController.Stun(knockbackTime);
+
+				if (_currentHealth > 1){
 				_currentHealth -= dmg;
+			
 				if (_currentHealth <= 0){
-					_currentHealth = 0;
+						_currentHealth = 1;
+						CameraShakeS.C.TimeSleep(NEAR_DEATH_STOP_TIME);
+						myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
+					}else{
+						myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
+					}
+
+				}
+				else{
+					
+					_currentHealth -= dmg;
+					if (_currentHealth <= 0){
+						_currentHealth = 0;
+						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
+						CameraShakeS.C.TimeSleep(NEAR_DEATH_STOP_TIME, true);
+					}
+					else{
+					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
+					}
 				}
 
-				myPlayerController.Stun(knockbackTime);
-				myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 
 				if (_currentHealth <= 1){
 					CameraShakeS.C.LargeShake();

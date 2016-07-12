@@ -413,7 +413,7 @@ public class EnemyS : MonoBehaviour {
 			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
 			
 			CameraShakeS.C.LargeShake();
-			CameraShakeS.C.BigSleep();
+			CameraShakeS.C.BigSleep(true);
 			
 			currentKnockbackCooldown = knockbackTime;
 		}
