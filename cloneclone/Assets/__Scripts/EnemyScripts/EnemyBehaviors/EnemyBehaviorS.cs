@@ -13,11 +13,23 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public bool behaviorActing { get {return _behaviorActing;}}
 
 	public string behaviorName; // mostly for editor legibility
+	public string animationKey = "";
+
+	[Header("Status Properties")]
+	public bool allowStun = false;
+	public bool facePlayer = false;
+	public bool dontAllowStateChange = false;
 
 	public virtual void StartAction(){
 
 		_behaviorActing = true;
 		myEnemy.SetActing(true);
+		myEnemy.SetBehavior(this);
+		myEnemy.SetStunStatus(allowStun);
+		myEnemy.SetFaceStatus(facePlayer);
+		if (animationKey != ""){
+		myEnemy.myAnimator.SetTrigger(animationKey);
+		}
 
 	}
 
@@ -26,7 +38,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 		_behaviorActing = false;
 		myEnemy.SetActing(false);
 
-		myEnemy.CheckBehaviorStateSwitch();
+		myEnemy.CheckBehaviorStateSwitch(dontAllowStateChange);
+		
 
 	}
 

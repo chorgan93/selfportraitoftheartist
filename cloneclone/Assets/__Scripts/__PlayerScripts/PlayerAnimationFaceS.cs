@@ -15,12 +15,16 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		mySize = transform.localScale;
 		myController = GetComponentInParent<PlayerController>();
 		rigidReference = myController.myRigidbody;
-		enemyDetect = myController.myDetect;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!enemyDetect){
+			
+			enemyDetect = myController.myDetect;
+		}
 
 		if (!rigidReference){
 			

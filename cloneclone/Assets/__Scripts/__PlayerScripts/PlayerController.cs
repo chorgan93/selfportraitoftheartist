@@ -502,7 +502,6 @@ public class PlayerController : MonoBehaviour {
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("Chaining", false);
-		Debug.Log("End attack animation!");
 	}
 
 	private void FaceDown(){

@@ -5,26 +5,40 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
+	private const int FLASH_FRAME_COUNT = 3;
+
+	private const float Z_POS_BEHIND_PLAYER = 2f;
+	private const float ENEMY_DEATH_Z = 2f;
+	private const float Z_POS_FRONT_PLAYER = -1f;
 	
 	//____________________________________ENEMY PROPERTIES
-	public bool debugState = false;
 
 	[Header("Enemy Properties")]
 	public float maxHealth;
 	public float knockbackTime;
 	private float _currentHealth;
 	private bool _isDead;
+	public Material flashMaterial;
+	private Material startMaterial;
 
 	private float startDrag;
 
 	//____________________________________INSTANCE PROPERTIES
 
 	private Rigidbody _myRigidbody;
-	private SpriteRenderer _myRenderer;
+	public SpriteRenderer myRenderer;
+	public SpriteRenderer myShadow;
+	private Animator _myAnimator;
 	private Collider _myCollider;
 
+	private Vector3 startSize;
+
+	private int flashFrames;
+
 	private float currentKnockbackCooldown;
+	private bool _canBeStunned;
 	private bool _hitStunned;
+	private bool _facePlayer;
 
 	//____________________________________ENEMY STATES
 
@@ -45,8 +59,8 @@ public class EnemyS : MonoBehaviour {
 	//_____________________________________________GETTERS AND SETTERS
 
 	public Rigidbody myRigidbody { get { return _myRigidbody;} }
-	public SpriteRenderer myRenderer { get { return _myRenderer;} }
 	public Collider myCollider { get { return _myCollider;} }
+	public Animator myAnimator { get { return _myAnimator;} }
 
 	public float currentHealth { get { return _currentHealth; } }
 
@@ -108,8 +122,10 @@ public class EnemyS : MonoBehaviour {
 	private void AliveUpdate(){
 
 		if (!_isDead){
-			
+			ManageFacing();
+			ManageZ();
 		}
+		FlashFrameManager();
 
 	}
 
@@ -163,8 +179,12 @@ public class EnemyS : MonoBehaviour {
 		_isDead = false;
 		_isActive = false;
 
+		startSize = transform.localScale;
+
 		_myRigidbody = GetComponent<Rigidbody>();
 		_myCollider = GetComponent<Collider>();
+		_myAnimator = myRenderer.GetComponent<Animator>();
+		startMaterial = myRenderer.material;
 
 		startDrag = _myRigidbody.drag;
 
@@ -179,7 +199,7 @@ public class EnemyS : MonoBehaviour {
 			activationDetect = transform.FindChild("PlayerDetect").GetComponent<PlayerDetectS>();
 		}
 		
-		CheckStates();
+		CheckStates(false);
 
 	}
 
@@ -192,16 +212,18 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 
+		if (_hitStunned){
 		if (currentKnockbackCooldown > 0){
-			_hitStunned = true;
 			currentKnockbackCooldown -= Time.deltaTime;
 		}
 		else{
+				_myAnimator.SetLayerWeight(1, 0f);
 			_hitStunned = false;
+		}
 		}
 
 		if (_currentState == null){
-			CheckStates();
+			CheckStates(false);
 		}
 
 	}
@@ -229,19 +251,20 @@ public class EnemyS : MonoBehaviour {
 			
 	}
 
-	private void CheckStates(){
+	private void CheckStates(bool allowStateChange){
 
 		if (!_isDead){
+
 			behaviorSet = false;
+
+			bool dontChange = allowStateChange;
+
+			if (!dontChange){
 	
 			foreach (EnemyBehaviorStateS bState in _behaviorStates){
 				if (bState.isActive() && !behaviorSet){
 					stateToChangeTo = bState;
 					behaviorSet = true;
-
-					if(debugState){
-						Debug.Log("Switch to " + bState.stateName);
-					}
 				}
 			}
 
@@ -257,7 +280,11 @@ public class EnemyS : MonoBehaviour {
 					_currentState.NextBehavior();
 				}
 			}
-		}
+				}}
+			else{
+				_currentState.NextBehavior();
+				Debug.Log("Skipped behavior");
+			}
 		}
 
 
@@ -267,11 +294,58 @@ public class EnemyS : MonoBehaviour {
 		_currentState.EndBehavior();
 	}
 
+	private void FlashFrameManager(){
+		if (myRenderer.material != startMaterial){
+		flashFrames--;
+		if (flashFrames <= 0){
+				myRenderer.material = startMaterial;
+		}
+		}
+	}
+
+	private void ManageFacing(){
+		if (!_hitStunned){
+		Vector3 newSize = startSize;
+		if (_facePlayer && GetPlayerReference() != null){
+			float playerX = GetPlayerReference().transform.position.x;
+			if (playerX < transform.position.x){
+				newSize.x *= -1f;
+				transform.localScale = newSize;
+			}
+			if (playerX > transform.position.x){
+				transform.localScale = newSize;
+			}
+		}else{
+			if (_myRigidbody.velocity.x < 0){
+				newSize.x *= -1f;
+				transform.localScale = newSize;
+			}
+			
+			if (_myRigidbody.velocity.x > 0){
+				transform.localScale = newSize;
+			}
+		}
+		}
+	}
+
+	private void ManageZ(){
+		if (GetPlayerReference() != null){
+			Vector3 fixPos = transform.position;
+			Vector3 playerPos = GetPlayerReference().transform.position;
+			if (playerPos.y < myShadow.transform.position.y){
+				fixPos.z = playerPos.z + Z_POS_BEHIND_PLAYER;
+			}else{
+				fixPos.z = playerPos.z + Z_POS_FRONT_PLAYER;
+			}
+			transform.position = fixPos;
+		}
+	}
+
 
 	//_______________________________________________PUBLIC METHODS
-	public void CheckBehaviorStateSwitch(){
+	public void CheckBehaviorStateSwitch(bool dont){
 
-		CheckStates();
+		CheckStates(dont);
 
 	}
 
@@ -281,7 +355,26 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg){
+	public void SetFaceStatus(bool setFace){
+		_facePlayer = setFace;
+	}
+
+	public void SetStunStatus(bool setStun){
+		_canBeStunned = setStun;
+	}
+
+	public void Stun(float sTime){
+		if (_canBeStunned && sTime > 0){
+			_hitStunned = true;
+			currentKnockbackCooldown = sTime;
+			_myAnimator.SetTrigger("Hit");
+			_myAnimator.SetLayerWeight(1,1f);
+		}
+		myRenderer.material = flashMaterial;
+		flashFrames = FLASH_FRAME_COUNT;
+	}
+
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float sTime = 0f){
 
 		_currentHealth -= dmg;
 		if (_currentHealth > 0){
@@ -289,16 +382,28 @@ public class EnemyS : MonoBehaviour {
 			
 			CameraShakeS.C.SmallShake();
 			CameraShakeS.C.SmallSleep();
-			
-			currentKnockbackCooldown = knockbackTime;
+
+
+			if (sTime != 0f){
+				currentKnockbackCooldown = sTime;
+				Stun(sTime);
+			}else{
+				currentKnockbackCooldown = knockbackTime;
+				Stun(knockbackTime);
+			}
 		}
 		else{
 			_isDead = true;
+			Stun (0);
 			EndAllBehaviors();
+			_myAnimator.SetLayerWeight(1, 0f);
+			_myAnimator.SetTrigger("Death");
 			//_myCollider.enabled = false;
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
 			_myRigidbody.AddForce(knockbackForce*1.5f, ForceMode.VelocityChange);
+			transform.position = new Vector3(transform.position.x, transform.position.y, 
+			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep();

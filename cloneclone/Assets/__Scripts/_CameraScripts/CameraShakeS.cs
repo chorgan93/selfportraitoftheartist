@@ -14,7 +14,7 @@ public class CameraShakeS : MonoBehaviour {
 	private float 				_delayShakeTime;
 
 	private float 				_smallSleepTime = 0.0333f;
-	private float 				_bigSleepTime = 0.066f;
+	private float 				_bigSleepTime = 0.0866f;
 
 	private int					_shakePriority = 0;
 	
