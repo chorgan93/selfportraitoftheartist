@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 	private bool triggerBlockAnimation = true;
 	private bool doingBlockTrigger = false;
 	private float blockPrepCountdown = 0;
-	private float blockPrepMax = 0.25f;
+	private float blockPrepMax = 0.22f;
 
 	// Weapon Properites
 	private GameObject equippedProjectile;

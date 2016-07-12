@@ -38,11 +38,9 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
-
-	private float _baseRecoverAdditive = 0.12f; // time added per mana used
-	private float _additiveRateMult = 1f; // lower = faster recovery/mana used (upgradeable)
 	
-	public float recoverBurden { get { return (_baseRecoverAdditive*_additiveRateMult);}}
+	private float recoverBurdenMin = 0.08f;
+	private float recoverBurdenMax = 0.4f;
 	private float currentRegenCountdown;
 	public float currentRegenCount { get { return currentRegenCountdown; } }
 
@@ -97,7 +95,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public float GetRegenTime(){
-		return Mathf.Ceil(_currentManaUsed)*recoverBurden;
+		return recoverBurdenMin+_currentManaUsed/(_baseMana+_addedMana)*recoverBurdenMax;
 	}
 
 	//________________________________________PRIVATE FUNCTIONS
@@ -164,7 +162,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(float dmg, Vector3 knockbackForce, float knockbackTime){
 
-		if (!PlayerIsDead()){
+		if (!PlayerIsDead() && !myPlayerController.isDashing){
 			if (myPlayerController.isBlocking && ManaCheck(dmg)){
 				if (_currentMana <= 0){
 					CameraShakeS.C.TimeSleep(NO_MANA_STOP_TIME);
