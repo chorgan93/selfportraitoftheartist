@@ -284,21 +284,35 @@ public class PlayerController : MonoBehaviour {
 
 	private void BlockControl(){
 
-		if (BlockInputPressed() && _myStats.ManaCheck(1, false)){
+		if (BlockInputPressed()){
 			blockButtonUp = false;
-			if (!_isDashing && _myStats.currentMana > 0){
-			blockPrepCountdown -= Time.deltaTime;
-			if (blockPrepCountdown <= 0 && doingBlockTrigger){
+			if (!_isDashing && _myStats.currentDefense > 0 && !_isStunned){
+				if (_myStats.ManaCheck(1, false)){
+					blockPrepCountdown -= Time.deltaTime;
+				}
+			if (blockPrepCountdown <= 0 && doingBlockTrigger && _myStats.ManaCheck(1)){
 				_isBlocking = true;
 				doingBlockTrigger = false;
 				_myAnimator.SetBool("Blocking", false);
 				CameraShakeS.C.MicroShake();
 			}
-			if (triggerBlockAnimation){
+			if (triggerBlockAnimation && _myStats.ManaCheck(1, false)){
 				PrepBlockAnimation();
 				triggerBlockAnimation = false;
 				doingBlockTrigger = true;
 			}
+			}
+
+			// shield break
+			if (_myStats.currentDefense <= 0){
+				TurnOffBlockAnimation();
+				
+				_myStats.ActivateDefense();
+				blockButtonUp = true;
+				blockPrepCountdown = blockPrepMax;
+				triggerBlockAnimation = true;
+				doingBlockTrigger = false;
+				_isBlocking = false;
 			}
 		}else{
 			// check for dash tap
@@ -307,7 +321,8 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			TurnOffBlockAnimation();
-
+			
+			_myStats.ActivateDefense();
 			blockButtonUp = true;
 			blockPrepCountdown = blockPrepMax;
 			triggerBlockAnimation = true;

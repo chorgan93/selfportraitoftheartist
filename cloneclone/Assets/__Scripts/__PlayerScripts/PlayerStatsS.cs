@@ -6,6 +6,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float NO_MANA_STOP_TIME = 0.1f;
 	private const float NEAR_DEATH_STOP_TIME = 0.1f;
 	private const float DEATH_KNOCKBACK_MULT = 2.5f;
+	private const float BIG_KNOCKBACK_TIME = 0.4f;
 
 	private PlayerController myPlayerController;
 
@@ -24,6 +25,14 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
+
+	//________________________________DEFENSE
+	private float _baseDefense = 3f;
+	private float _addedDefense = 0;
+	private float _currentDefense;
+
+	public float maxDefense { get { return (_baseDefense+_addedDefense);}}
+	public float currentDefense { get { return _currentDefense; } }
 
 
 	//________________________________RECOVERY
@@ -157,17 +166,21 @@ public class PlayerStatsS : MonoBehaviour {
 
 		_currentMana = maxMana;
 		_currentHealth = maxHealth;
+		_currentDefense = maxDefense;
 
 	}
 
 	public void TakeDamage(float dmg, Vector3 knockbackForce, float knockbackTime){
 
 		if (!PlayerIsDead() && !myPlayerController.isDashing){
-			if (myPlayerController.isBlocking && ManaCheck(dmg)){
-				if (_currentMana <= 0){
+			if (myPlayerController.isBlocking && _currentDefense > 0){
+				_currentDefense-=dmg;
+				if (_currentDefense <= 0){
+					_currentDefense = 0;
 					CameraShakeS.C.TimeSleep(NO_MANA_STOP_TIME);
 					CameraShakeS.C.SmallShake();
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
+					myPlayerController.Stun(BIG_KNOCKBACK_TIME);
 				}
 				else{
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
@@ -214,6 +227,10 @@ public class PlayerStatsS : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void ActivateDefense(){
+		_currentDefense = maxDefense;
 	}
 
 	public bool PlayerIsDead(){

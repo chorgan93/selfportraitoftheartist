@@ -17,7 +17,7 @@ public class BlockDisplayS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (myPlayer.isBlocking && myPlayer.myStats.currentMana > 0){
+		if (myPlayer.isBlocking){
 
 			myRenderer.enabled = true;
 		}
