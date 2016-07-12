@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.14f;
+	private static float DASH_THRESHOLD = 0.2f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
