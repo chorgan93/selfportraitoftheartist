@@ -284,7 +284,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void BlockControl(){
 
-		if (BlockInputPressed()){
+		if (BlockInputPressed() && _myStats.ManaCheck(1, false)){
 			blockButtonUp = false;
 			if (!_isDashing && _myStats.currentMana > 0){
 			blockPrepCountdown -= Time.deltaTime;
