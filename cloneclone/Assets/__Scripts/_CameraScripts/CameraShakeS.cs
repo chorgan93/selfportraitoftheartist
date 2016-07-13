@@ -16,6 +16,12 @@ public class CameraShakeS : MonoBehaviour {
 	private float 				_smallSleepTime = 0.0333f;
 	private float 				_bigSleepTime = 0.0866f;
 
+	private float 				_startDeathTimeScale = .3f;
+	private float 				_addDeathTimeScale = 0f;
+	private float 				_delayTimeIncreaseMax = 0.8f;
+	private float 				_delayTimeIncreaseCountdown;
+	private float 				_increaseTimeRate = 0.5f;
+
 	private int					_shakePriority = 0;
 	
 
@@ -36,6 +42,7 @@ public class CameraShakeS : MonoBehaviour {
 
 	private float 				_slowTimeAmount;
 	private bool				_sloMoOn;
+	private bool 				doDeathTime = false;
 
 	//_________________________________________________GETTERS AND SETTERS
 
@@ -98,6 +105,20 @@ public class CameraShakeS : MonoBehaviour {
 			if (_sleepTimeAmount <= 0){
 				_isSleeping = false;
 			}
+		}else if (doDeathTime){
+
+			Time.timeScale = _startDeathTimeScale+_addDeathTimeScale;
+
+			_delayTimeIncreaseCountdown -= Time.unscaledDeltaTime;
+			if (_delayTimeIncreaseCountdown <= 0){
+				_addDeathTimeScale += _increaseTimeRate*Time.unscaledDeltaTime;
+			}
+
+			if (Time.timeScale >= 1f){
+				Time.timeScale = 1f;
+				doDeathTime = false;
+			}
+
 		}
 		else{
 			if (_sloMoOn){
@@ -243,6 +264,14 @@ public class CameraShakeS : MonoBehaviour {
 		
 		TimeSleep(_bigSleepTime, doPunch);
 		
+	}
+
+	public void DeathTimeEffect(){
+
+		doDeathTime = true;
+		_delayTimeIncreaseCountdown = _delayTimeIncreaseMax;
+		_addDeathTimeScale = 0f;
+
 	}
 
 

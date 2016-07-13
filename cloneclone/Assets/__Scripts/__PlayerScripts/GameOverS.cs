@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameOverS : MonoBehaviour {
 
-	public float delayFadeTimeMax = 1f;
+	public float delayFadeTimeMax = 3f;
 	private float delayFadeTime;
 
 	private bool gameOver = false;

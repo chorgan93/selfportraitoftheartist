@@ -5,8 +5,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float NO_MANA_STOP_TIME = 0.1f;
 	private const float NEAR_DEATH_STOP_TIME = 0.1f;
-	private const float DEATH_KNOCKBACK_MULT = 2.5f;
+	private const float DEATH_KNOCKBACK_MULT = 2f;
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
+	private const float DEATH_DRAG = 3.4f;
 
 	private PlayerController myPlayerController;
 
@@ -208,18 +209,23 @@ public class PlayerStatsS : MonoBehaviour {
 					_currentHealth -= dmg;
 					if (_currentHealth <= 0){
 						_currentHealth = 0;
+						myPlayerController.myRigidbody.drag = DEATH_DRAG;
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
-						CameraShakeS.C.TimeSleep(NEAR_DEATH_STOP_TIME, true);
+						myPlayerController.myAnimator.SetTrigger("Dead");
 					}
 					else{
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 					}
 				}
 
-
-				if (_currentHealth <= 1){
+				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleep(0.12f);
+					CameraShakeS.C.TimeSleep(0.2f, true);
+					CameraShakeS.C.DeathTimeEffect();
+				}
+				else if (_currentHealth <= 1){
+					CameraShakeS.C.LargeShake();
+					CameraShakeS.C.TimeSleep(0.12f, true);
 				}else{
 					CameraShakeS.C.SmallShake();
 					CameraShakeS.C.TimeSleep(0.08f);
