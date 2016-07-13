@@ -212,6 +212,7 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
 						myPlayerController.myAnimator.SetTrigger("Dead");
+						myPlayerController.myAnimator.SetBool("IsDead", true);
 					}
 					else{
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
