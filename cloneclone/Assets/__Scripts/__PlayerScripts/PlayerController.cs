@@ -50,7 +50,12 @@ public class PlayerController : MonoBehaviour {
 	private Camera mainCamera;
 	[Header ("Instance Objects")]
 	public SpriteRenderer myRenderer;
+	public Material damageFlashMat;
+	public Material manaFlashMat;
+	private Material startMat;
 	private Animator _myAnimator;
+	private int flashManaFrames;
+	private int flashDamageFrames;
 
 	private float startDrag;
 
@@ -134,6 +139,10 @@ public class PlayerController : MonoBehaviour {
 	
 	}
 
+	void Update(){
+		ManageFlash();
+	}
+
 	void FixedUpdate () {
 
 		PlayerFixedUpdate();
@@ -162,6 +171,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody = GetComponent<Rigidbody>();
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
+		startMat = myRenderer.material;
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
@@ -200,6 +210,10 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void PlayerUpdate(){
+		ManageFlash();
+	}
+
 	private void SetWeapon(){
 
 		// for initializing projectile without changing main/alt
@@ -230,6 +244,16 @@ public class PlayerController : MonoBehaviour {
 
 	public void AttackDuration(float aTime){
 		attackDuration = aTime;
+	}
+
+	public void FlashDamage(){
+		flashDamageFrames = 5;
+		myRenderer.material = damageFlashMat;
+	}
+
+	public void FlashMana(){
+		flashManaFrames = 5;
+		myRenderer.material = manaFlashMat;
 	}
 
 	//_________________________________________CONTROL METHODS
@@ -510,6 +534,30 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+
+	}
+
+	private void ManageFlash(){
+
+		if (flashDamageFrames > 0){
+			if (myRenderer.material != damageFlashMat){
+				myRenderer.material = damageFlashMat;
+			}
+		}
+		else if (flashManaFrames > 0){
+			if (myRenderer.material != manaFlashMat){
+				myRenderer.material = manaFlashMat;
+			}
+
+		}else{
+			if (myRenderer.material != startMat){
+				myRenderer.material = startMat;
+			}
+		}
+
+		
+		flashDamageFrames--;
+		flashManaFrames--;
 
 	}
 
@@ -833,6 +881,10 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 ShootPosition(){
 		return (ShootDirectionUnlocked());
+	}
+
+	public bool IsRunning(){
+		return (_myAnimator.GetFloat("Speed") > 0.8f);
 	}
 
 	public void SetCombat(bool combat){

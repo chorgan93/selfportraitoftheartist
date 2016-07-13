@@ -6,10 +6,10 @@ public class CameraShakeS : MonoBehaviour {
 	//_______________________________________CLASS VARIABLES
 
 	private float 				_smallShakeIntensity = 0.22f;
-	private float 				_smallShakeDuration = 0.18f;
+	private float 				_smallShakeDuration = 0.2f;
 
-	private float 				_largeShakeIntensity = 1.8f;
-	private float 				_largeShakeDuration = 0.22f;
+	private float 				_largeShakeIntensity = 1.2f;
+	private float 				_largeShakeDuration = 0.38f;
 
 	private float 				_delayShakeTime;
 
@@ -68,16 +68,11 @@ public class CameraShakeS : MonoBehaviour {
 	void Update () {
 
 		ExecuteSleep();
-
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-	
-		ExecuteSleep();
 		ExecuteShake();
 
 	}
+	
+
 
 	//_________________________________________PRIVATE METHODS
 
@@ -139,7 +134,7 @@ public class CameraShakeS : MonoBehaviour {
 
 	private void ExecuteShake (){
 
-		if (_isShaking){
+		if (_isShaking && (!doDeathTime || (doDeathTime && !_isSleeping))){
 
 			if (_delayShakeTime > 0){
 				_delayShakeTime -= Time.unscaledDeltaTime;
@@ -149,7 +144,11 @@ public class CameraShakeS : MonoBehaviour {
 				_shakeOffset.y *= 0.7f;
 				_shakeOffset.z = 0;
 	
-				_shake_intensity -= _shake_decay * Time.unscaledDeltaTime;
+				if (doDeathTime){
+					_shake_intensity -= _shake_decay * Time.deltaTime;
+				}else{
+					_shake_intensity -= _shake_decay * Time.unscaledDeltaTime;
+				}
 	
 				if (_shake_intensity <= 0){
 					EndShake();

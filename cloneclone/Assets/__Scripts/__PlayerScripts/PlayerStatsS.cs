@@ -20,7 +20,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	
 	//________________________________MANA
-	private float _baseMana = 3;
+	private float _baseMana = 4;
 	private float _addedMana = 0; // (upgradeable)
 	private float _currentMana;
 	
@@ -37,7 +37,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________RECOVERY
-	private float _recoveryCooldownBase = 0.3f;
+	private float _recoveryCooldownBase = 0.1f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*_recoveryCooldownMultiplier);}}
 	private float _currentCooldownTimer;
@@ -171,7 +171,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	}
 
-	public void TakeDamage(float dmg, Vector3 knockbackForce, float knockbackTime){
+	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
 		if (!PlayerIsDead() && !myPlayerController.isDashing){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
@@ -182,14 +182,20 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraShakeS.C.SmallShake();
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
 					myPlayerController.Stun(BIG_KNOCKBACK_TIME);
+					myPlayerController.myAnimator.SetTrigger("Hurt");
+					myPlayerController.FlashMana();
+
 				}
 				else{
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
 					CameraShakeS.C.MicroShake();
 				}
+				damageSource.Deflect();
 			}else{
 				
 				myPlayerController.Stun(knockbackTime);
+				myPlayerController.myAnimator.SetTrigger("Hurt");
+				myPlayerController.FlashDamage();
 
 				if (_currentHealth > 1){
 				_currentHealth -= dmg;

@@ -428,4 +428,10 @@ public class EnemyS : MonoBehaviour {
 		
 	}
 
+	public void Deflect(){
+		Vector3 currentVelocity = _myRigidbody.velocity;
+		_myRigidbody.velocity = currentVelocity.magnitude*currentVelocity.normalized*-0.8f;
+		Debug.Log("Deflect!");
+	}
+
 }

@@ -40,7 +40,8 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		}else if (myController.facingDown){
 			currentSize = mySize;}
 		else{
-			if (!myController.isBlocking || (myController.isBlocking && enemyDetect.closestEnemy == null)){
+			if (enemyDetect.closestEnemy == null || myController.InAttack() || myController.isDashing 
+			                                         || myController.myStats.PlayerIsDead() || myController.IsRunning()){
 		if (rigidReference.velocity.x < 0){
 			currentSize = mySize;
 			currentSize.x *= -1f;

@@ -128,7 +128,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (other.gameObject.tag == "Player"){
 
 			other.gameObject.GetComponent<PlayerStatsS>().
-				TakeDamage(damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
+				TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
 
 			
 		}
