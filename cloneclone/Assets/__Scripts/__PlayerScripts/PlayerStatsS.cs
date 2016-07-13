@@ -23,6 +23,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _baseMana = 4;
 	private float _addedMana = 0; // (upgradeable)
 	private float _currentMana;
+	private RefreshDisplayS myRefresh;
 	
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
@@ -129,6 +130,7 @@ public class PlayerStatsS : MonoBehaviour {
 				if (currentRegenCountdown <= 0){
 					_currentMana++;
 					_currentManaUsed--;
+					//myRefresh.DoFlash();
 					if (_currentMana < maxMana){
 						currentRegenCountdown = GetRegenTime();
 					}
@@ -255,5 +257,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void AddBlocker(BlockDisplay3DS newBlock){
 		myBlocker = newBlock;
+	}
+	public void AddRefresh(RefreshDisplayS newBlock){
+		myRefresh = newBlock;
 	}
 }
