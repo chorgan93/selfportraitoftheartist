@@ -3,6 +3,11 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerStatDisplayS : MonoBehaviour {
+	
+	public Color healthFullColor;
+	public Color healthEmptyColor;
+	public Color staminaFullColor;
+	public Color staminaEmptyColor;
 
 	private float referenceScreenWidth = 1920f;
 	private float referenceScreenHeight = 1080f;
@@ -126,11 +131,13 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		Vector2 fillSize = healthBar.rectTransform.sizeDelta;
 		fillSize.x *= playerStats.currentHealth/playerStats.maxHealth;
 		healthFill.rectTransform.sizeDelta = fillSize;
+		healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
 
 		// stamina fill
 		fillSize = staminaBar.rectTransform.sizeDelta;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
+		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
 
 		// recharge fill
 		fillSize = recoveryBar.rectTransform.sizeDelta;

@@ -60,6 +60,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private float _defenseKnockbackMult = 0.5f;
 	private float _extraKnockbackMult = 2f;
+	private BlockDisplay3DS myBlocker;
 
 	//_____________________________________UNITY FUNCTIONS
 
@@ -187,6 +188,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 				}
 				else{
+					myBlocker.DoFlash();
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
 					CameraShakeS.C.MicroShake();
 				}
@@ -249,5 +251,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool PlayerIsDead(){
 		return (_currentHealth <= 0);
+	}
+
+	public void AddBlocker(BlockDisplay3DS newBlock){
+		myBlocker = newBlock;
 	}
 }
