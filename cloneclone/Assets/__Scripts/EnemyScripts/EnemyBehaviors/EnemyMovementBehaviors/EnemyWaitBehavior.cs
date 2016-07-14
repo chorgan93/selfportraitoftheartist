@@ -17,7 +17,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (behaviorActing){
+		if (BehaviorActing()){
 
 			waitTimeCountdown -= Time.deltaTime;
 			if (waitTimeCountdown <= 0){

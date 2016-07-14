@@ -22,7 +22,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (behaviorActing){
+		if (BehaviorActing()){
 
 			attackTimeCountdown -= Time.deltaTime;
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)){

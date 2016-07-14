@@ -25,7 +25,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (behaviorActing){
+		if (BehaviorActing()){
 			
 			attackTimeCountdown -= Time.deltaTime;
 

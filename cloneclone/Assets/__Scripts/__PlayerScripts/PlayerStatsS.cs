@@ -231,7 +231,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleep(0.2f, true);
+					CameraShakeS.C.TimeSleepBigPunch(0.2f);
 					CameraShakeS.C.DeathTimeEffect();
 				}
 				else if (_currentHealth <= 1){

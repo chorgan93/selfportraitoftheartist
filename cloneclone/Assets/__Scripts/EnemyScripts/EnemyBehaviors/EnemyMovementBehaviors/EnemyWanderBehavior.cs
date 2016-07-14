@@ -28,7 +28,7 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 	// Update is called once per frame
 	void FixedUpdate () {
 		
-		if (behaviorActing){
+		if (BehaviorActing()){
 
 			DetermineTarget();
 

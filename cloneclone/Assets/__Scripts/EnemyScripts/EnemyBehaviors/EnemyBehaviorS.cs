@@ -10,7 +10,6 @@ public class EnemyBehaviorS : MonoBehaviour {
 	private EnemyBehaviorStateS myBehaviorState;
 
 	private bool _behaviorActing = false;
-	public bool behaviorActing { get {return _behaviorActing;}}
 
 	public string behaviorName; // mostly for editor legibility
 	public string animationKey = "";
@@ -19,6 +18,11 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public bool allowStun = false;
 	public bool facePlayer = false;
 	public bool dontAllowStateChange = false;
+
+	[Header("Vulnerable Properties")]
+	public float vulnerableDuration = -1f;
+	public float vulnerableDelay = 0f;
+
 
 	public virtual void StartAction(){
 
@@ -29,6 +33,10 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetFaceStatus(facePlayer);
 		if (animationKey != ""){
 		myEnemy.myAnimator.SetTrigger(animationKey);
+		}
+
+		if (vulnerableDuration > 0){
+			myEnemy.SetVulnerableTiming(vulnerableDuration, vulnerableDelay);
 		}
 
 	}
@@ -49,5 +57,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	public virtual void SetState(EnemyBehaviorStateS myState){
 		myBehaviorState = myState;
+	}
+
+	public virtual bool BehaviorActing(){
+		return (_behaviorActing && !myEnemy.isCritical);
 	}
 }

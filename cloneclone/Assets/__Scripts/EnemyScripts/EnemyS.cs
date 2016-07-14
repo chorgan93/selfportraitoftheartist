@@ -10,12 +10,16 @@ public class EnemyS : MonoBehaviour {
 	private const float Z_POS_BEHIND_PLAYER = 2f;
 	private const float ENEMY_DEATH_Z = 2f;
 	private const float Z_POS_FRONT_PLAYER = -1f;
+
+	private const float VULN_EFFECT_RATE = 0.083f;
+	private const float VULN_EFFECT_AMT = 0.9f;
 	
 	//____________________________________ENEMY PROPERTIES
 
 	[Header("Enemy Properties")]
 	public float maxHealth;
 	public float knockbackTime;
+	public float criticalRecoverTime = 0.5f;
 	private float _currentHealth;
 	private bool _isDead;
 	public Material flashMaterial;
@@ -39,6 +43,17 @@ public class EnemyS : MonoBehaviour {
 	private bool _canBeStunned;
 	private bool _hitStunned;
 	private bool _facePlayer;
+
+	private bool _isVulnerable = false;
+	private bool _isCritical = false;
+	private bool vulnerableEffectEnded = false;
+	private float vulnEffectCountdown;
+
+	private float vulnerableDelay;
+	private float vulnerableCountdown;
+	private float _flashAmt;
+	private Color _flashCol;
+
 
 	//____________________________________ENEMY STATES
 
@@ -69,6 +84,12 @@ public class EnemyS : MonoBehaviour {
 	public bool isActing { get {return _isActing;}}
 	public bool hitStunned { get {return _hitStunned;}}
 	public bool isDead { get { return _isDead;}}
+
+	public bool isVulnerable { get { return _isVulnerable;}}
+	public bool isCritical { get { return _isCritical;}}
+
+	public float flashAmt { get { return _flashAmt; } }
+	public Color flashCol { get { return _flashCol; } }
 
 	//_____________________________________UNITY METHODS
 	// Use this for initialization
@@ -147,6 +168,7 @@ public class EnemyS : MonoBehaviour {
 	private void AliveFixedUpdate(){
 
 		if (!_isDead){
+
 			CheckStatus();
 
 
@@ -211,7 +233,39 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	private void CheckStatus(){
-		
+
+		// check vulnerable/critical
+		if (_isVulnerable){
+			if (_isCritical){
+				vulnerableCountdown -= Time.deltaTime;
+				if (vulnerableCountdown <= 0){
+					_isCritical = false;
+					_isVulnerable = false;
+
+					// reset whichever state should be active
+					_currentBehavior.EndAction();
+					_currentState.StartActions();
+				}
+			}else{
+				VulnerableEffect();
+				// countdown to end vuln state
+				vulnerableCountdown -= Time.deltaTime;
+				if (vulnerableCountdown <= 0){
+					_isVulnerable = false;
+				}
+			}
+
+
+		}else{
+			EndVulnerableEffect();
+
+			vulnerableDelay -= Time.deltaTime;
+			if (vulnerableDelay <= 0 && vulnerableCountdown > 0){
+				_isVulnerable = true;
+				flashFrames = FLASH_FRAME_COUNT;
+				myRenderer.material = flashMaterial;
+			}
+		}
 		// first, check active state
 		if (!_isActive){
 			if (activationDetect.PlayerInRange()){
@@ -233,6 +287,33 @@ public class EnemyS : MonoBehaviour {
 			CheckStates(false);
 		}
 
+	}
+
+	private void VulnerableEffect(){
+		vulnerableEffectEnded = false;
+		vulnEffectCountdown -= Time.deltaTime;
+		if (vulnEffectCountdown <= 0){
+			//myRenderer.material.SetFloat("_FlashAmount", VULN_EFFECT_AMT);
+			/*myRenderer.material.SetColor("_FlashColor", new Color(Random.Range(0.72f,1f),
+			                                                      Random.Range(0.72f,1f),
+			                                                      Random.Range(0.72f,1f)));*/
+			_flashAmt = VULN_EFFECT_AMT;
+			_flashCol = new Color(Random.Range(0.72f,1f),
+			                                                      Random.Range(0.72f,1f),
+			                                                      Random.Range(0.72f,1f));
+			vulnEffectCountdown = VULN_EFFECT_RATE;
+		}
+	}
+
+	private void EndVulnerableEffect(){
+		if (!vulnerableEffectEnded && myRenderer.material == startMaterial){
+			/*myRenderer.material.SetFloat("_FlashAmount", 0f);
+			myRenderer.material.SetColor("_FlashColor", Color.white);*/
+			_flashAmt = 0f;
+			_flashCol = Color.white;
+			vulnerableEffectEnded = true;
+			vulnEffectCountdown = VULN_EFFECT_RATE;
+		}
 	}
 
 	private EnemyBehaviorStateS[] GetBehaviorStates(){
@@ -290,11 +371,18 @@ public class EnemyS : MonoBehaviour {
 				}}
 			else{
 				_currentState.NextBehavior();
-				Debug.Log("Skipped behavior");
 			}
 		}
 
 
+	}
+
+	private void ResetMaterial(){
+		//myRenderer.material = startMaterial;
+		//myRenderer.material.SetFloat("_FlashAmount", 0f);
+		//myRenderer.material.SetColor("_FlashColor", Color.white);
+		_flashAmt = 0f;
+		_flashCol = Color.white;
 	}
 
 	private void EndAllBehaviors(){
@@ -370,8 +458,15 @@ public class EnemyS : MonoBehaviour {
 		_canBeStunned = setStun;
 	}
 
-	public void Stun(float sTime){
-		if (_canBeStunned && sTime > 0){
+	public void SetVulnerableTiming(float duration, float delay){
+
+		vulnerableCountdown = duration;
+		vulnerableDelay = delay;
+
+	}
+
+	public void Stun(float sTime, bool overrideStun = false){
+		if ((_canBeStunned||overrideStun) && sTime > 0){
 			_hitStunned = true;
 			currentKnockbackCooldown = sTime;
 			_myAnimator.SetTrigger("Hit");
@@ -398,6 +493,13 @@ public class EnemyS : MonoBehaviour {
 				currentKnockbackCooldown = knockbackTime;
 				Stun(knockbackTime);
 			}
+
+			if (_isVulnerable){
+				_isCritical = true;
+				vulnerableCountdown = criticalRecoverTime;
+				CameraShakeS.C.TimeSleep(0.1f, true);
+				Stun(criticalRecoverTime,true);
+			}
 		}
 		else{
 			_isDead = true;
@@ -411,6 +513,8 @@ public class EnemyS : MonoBehaviour {
 			_myRigidbody.AddForce(knockbackForce*1.5f, ForceMode.VelocityChange);
 			transform.position = new Vector3(transform.position.x, transform.position.y, 
 			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
+
+			ResetMaterial();
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep(true);
@@ -431,7 +535,6 @@ public class EnemyS : MonoBehaviour {
 	public void Deflect(){
 		Vector3 currentVelocity = _myRigidbody.velocity;
 		_myRigidbody.velocity = currentVelocity.magnitude*currentVelocity.normalized*-0.8f;
-		Debug.Log("Deflect!");
 	}
 
 }

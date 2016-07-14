@@ -17,6 +17,12 @@ public class BlockDisplay3DS : MonoBehaviour {
 	private Color currentColor;
 	private bool isFlashing = false;
 
+	private bool initialized = false;
+
+	private Texture startTexture;
+	public Texture flashTexture;
+	public Texture hitFlashTexture;
+
 	// Use this for initialization
 	void Start () {
 
@@ -24,12 +30,18 @@ public class BlockDisplay3DS : MonoBehaviour {
 		myPlayer = GetComponentInParent<PlayerController>();
 		startRotation = transform.rotation;
 		myRenderer.material.color = currentColor = colorFullPower;
-		myPlayer.myStats.AddBlocker(this);
+
+		startTexture = myRenderer.material.GetTexture("_MainTex");
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!initialized){
+			myPlayer.myStats.AddBlocker(this);
+			initialized = true;
+		}
 
 		if (myPlayer.isBlocking){
 			if (!myRenderer.enabled){
@@ -45,6 +57,7 @@ public class BlockDisplay3DS : MonoBehaviour {
 			if (currentFlashFrames <= 0){
 					isFlashing = false;
 					myRenderer.material.color = currentColor;
+					myRenderer.material.SetTexture("_MainTex", startTexture);
 			}
 			}
 		}
@@ -54,6 +67,7 @@ public class BlockDisplay3DS : MonoBehaviour {
 				if (currentFlashFrames <= 0){
 					isFlashing = false;
 					myRenderer.material.color = currentColor;
+					myRenderer.material.SetTexture("_MainTex", startTexture);
 					myRenderer.enabled = false;
 				}
 			}else{
@@ -64,9 +78,19 @@ public class BlockDisplay3DS : MonoBehaviour {
 	
 	}
 
+	public void DoStartFlash(){
+		
+		isFlashing = true;
+		myRenderer.material.SetTexture("_MainTex", flashTexture);
+		myRenderer.material.color = Color.white;
+		currentFlashFrames = flashFramesMax;
+		currentColor = Color.Lerp(colorNoPower, colorFullPower, myPlayer.myStats.currentDefense/myPlayer.myStats.maxDefense);
+	}
+
 	public void DoFlash(){
 
 		isFlashing = true;
+		myRenderer.material.SetTexture("_MainTex", hitFlashTexture);
 		myRenderer.material.color = Color.white;
 		currentFlashFrames = flashFramesMax;
 		currentColor = Color.Lerp(colorNoPower, colorFullPower, myPlayer.myStats.currentDefense/myPlayer.myStats.maxDefense);
