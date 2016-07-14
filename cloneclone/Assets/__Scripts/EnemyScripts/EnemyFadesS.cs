@@ -35,7 +35,7 @@ public class EnemyFadesS : MonoBehaviour {
 		if (!myEnemy.isDead){
 		spawnRateCountdown -= Time.deltaTime;
 			if (myEnemy.isVulnerable){
-				spawnRateCountdown -= Time.deltaTime*VULN_SPAWN_MULT;
+				//spawnRateCountdown -= Time.deltaTime*VULN_SPAWN_MULT;
 			}
 		if (spawnRateCountdown <= 0){
 			spawnPos = transform.position;
@@ -49,8 +49,8 @@ public class EnemyFadesS : MonoBehaviour {
 				SpriteRenderer fadeRender = newSpawn.GetComponent<SpriteRenderer>();
 			fadeRender.sprite = enemyRenderer.sprite;
 				if (myEnemy.isVulnerable){
-				fadeRender.material.SetFloat("_FlashAmount", myEnemy.flashAmt);
-				fadeRender.material.SetColor("_FlashColor", myEnemy.flashCol);
+				//fadeRender.material.SetFloat("_FlashAmount", myEnemy.flashAmt);
+				//fadeRender.material.SetColor("_FlashColor", myEnemy.flashCol);
 				}
 			spawnRateCountdown = FindSpawnValue(spawnRateMin, spawnRateMax);
 		}
@@ -59,7 +59,7 @@ public class EnemyFadesS : MonoBehaviour {
 	}
 
 	float FindSpawnValue(float min, float max){
-		if (myEnemy.isVulnerable){ return (min + (max-min)); }
-		else{ return (min + (max-min)*(1f-(myEnemy.currentHealth-1f)/myEnemy.maxHealth)); }
+		//if (myEnemy.isVulnerable){ return (min + (max-min)); }
+		return (min + (max-min)*(1f-(myEnemy.currentHealth-1f)/myEnemy.maxHealth)); 
 	}
 }

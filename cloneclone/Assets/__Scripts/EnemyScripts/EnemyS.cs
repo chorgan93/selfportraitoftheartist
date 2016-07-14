@@ -264,6 +264,7 @@ public class EnemyS : MonoBehaviour {
 				_isVulnerable = true;
 				flashFrames = FLASH_FRAME_COUNT;
 				myRenderer.material = flashMaterial;
+				myRenderer.material.SetColor("_FlashColor", Color.red);
 			}
 		}
 		// first, check active state
@@ -473,6 +474,7 @@ public class EnemyS : MonoBehaviour {
 			_myAnimator.SetLayerWeight(1,1f);
 		}
 		myRenderer.material = flashMaterial;
+		myRenderer.material.SetColor("_FlashColor", Color.white);
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
