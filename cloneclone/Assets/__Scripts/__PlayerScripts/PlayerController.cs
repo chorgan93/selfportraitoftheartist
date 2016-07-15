@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.2f;
+	private static float DASH_THRESHOLD = 0.18f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour {
 	private bool triggerBlockAnimation = true;
 	private bool doingBlockTrigger = false;
 	private float blockPrepCountdown = 0;
-	private float blockPrepMax = 0.22f;
+	private float blockPrepMax = 0.18f;
 
 	// Weapon Properites
 	private GameObject equippedProjectile;
@@ -319,6 +319,7 @@ public class PlayerController : MonoBehaviour {
 				doingBlockTrigger = false;
 				_myAnimator.SetBool("Blocking", false);
 				CameraShakeS.C.MicroShake();
+					FlashMana();
 			}
 			if (triggerBlockAnimation && _myStats.ManaCheck(1, false)){
 				PrepBlockAnimation();
@@ -362,6 +363,8 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
+
+		FlashMana();
 
 		inputDirection = Vector3.zero;
 		inputDirection.x = controller.Horizontal();
@@ -410,6 +413,7 @@ public class PlayerController : MonoBehaviour {
 
 				// subtract mana cost
 				_myStats.ManaCheck(staminaCost);
+				FlashMana();
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!useAltAnim){
@@ -642,7 +646,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (blockPrepMax-blockPrepCountdown < DASH_THRESHOLD && 
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned){
+		    && !_isStunned && _myStats.currentDefense > 0){
 			dashAllow = true;
 		}
 

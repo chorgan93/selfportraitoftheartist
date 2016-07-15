@@ -12,13 +12,13 @@ public class MuzzleFlareS : MonoBehaviour {
 	private Vector3 originalScale;
 	private float originalZRotation;
 
-	private SpriteRenderer mySpriteRenderer;
+	private Renderer mySpriteRenderer;
 	private Color fadeColor;
 
 	// Use this for initialization
 	void Start () {
 
-		mySpriteRenderer = GetComponent<SpriteRenderer>();
+		mySpriteRenderer = GetComponent<Renderer>();
 		mySpriteRenderer.enabled = false;
 
 		originalScale = transform.localScale;
@@ -40,9 +40,9 @@ public class MuzzleFlareS : MonoBehaviour {
 			else{
 				fadeMult = fadeTimeCountdown/fadeTime;
 
-				fadeColor = mySpriteRenderer.color;
+				fadeColor = mySpriteRenderer.material.color;
 				fadeColor.a = fadeMult;
-				mySpriteRenderer.color = fadeColor;
+				mySpriteRenderer.material.color = fadeColor;
 			}
 
 		}
@@ -53,7 +53,7 @@ public class MuzzleFlareS : MonoBehaviour {
 
 		Vector3 newScale = originalScale;
 		newScale.x += size*originalScale.x*0.5f;
-		newScale.y += size*originalScale.x*0.5f;
+		newScale.y += size*originalScale.y*0.5f;
 		transform.localScale = newScale;
 
 		float rotateZ = 0;
@@ -77,6 +77,8 @@ public class MuzzleFlareS : MonoBehaviour {
 			rotateZ += 180;
 		}
 
+		rotateZ += 90f;
+
 		
 		
 		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ+originalZRotation));
@@ -84,9 +86,9 @@ public class MuzzleFlareS : MonoBehaviour {
 		transform.localPosition = direction.normalized*(newScale.x/originalScale.x);
 
 		fadeTime = fadeTimeCountdown = flashTime;
-		fadeColor = mySpriteRenderer.color;
-		fadeColor.a = 1;
-		mySpriteRenderer.color = fadeColor;
+		fadeColor = mySpriteRenderer.material.color;
+		fadeColor.a = 0.8f;
+		mySpriteRenderer.material.color = fadeColor;
 		mySpriteRenderer.enabled = true;
 
 	}

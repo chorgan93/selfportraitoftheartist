@@ -60,6 +60,6 @@ public class EnemyBehaviorS : MonoBehaviour {
 	}
 
 	public virtual bool BehaviorActing(){
-		return (_behaviorActing && !myEnemy.isCritical);
+		return (_behaviorActing && !myEnemy.isCritical && !myEnemy.hitStunned);
 	}
 }
