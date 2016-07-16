@@ -7,7 +7,7 @@ public class ChargeAttackS : MonoBehaviour {
 	private float _animateRate = 0.033f;
 	private float animateCountdown;
 	private Vector2 startTiling;
-	private float tilingRandomMult = 1f;
+	private float tilingRandomMult = 0.5f;
 
 	// Use this for initialization
 	void Start () {

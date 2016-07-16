@@ -27,6 +27,7 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Weapon Stats")]
 	public float dmg = 1;
+	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float reloadTime = 1f;
 	public int numShots = 1;
@@ -126,7 +127,7 @@ public class ProjectileS : MonoBehaviour {
 
 		if (doKnockback){
 		
-			myPlayer.Knockback(knockbackForce, knockbackTime);
+			myPlayer.Knockback(knockbackForce, knockbackTime, true);
 
 		}
 
@@ -191,12 +192,15 @@ public class ProjectileS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy"){
 
 			if (stopOnEnemyContact && myPlayer != null){
-				myPlayer.myRigidbody.velocity = Vector3.zero;
+				if (!myPlayer.myStats.PlayerIsDead()){
+					myPlayer.myRigidbody.velocity *= 0.6f;
+				}
 			}
 
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
-				(shotSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, dmg);
+				(shotSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+				 dmg*myPlayer.myStats.strengthAmt, critDmg*myPlayer.myStats.critAmt);
 
 			if (!isPiercing){
 

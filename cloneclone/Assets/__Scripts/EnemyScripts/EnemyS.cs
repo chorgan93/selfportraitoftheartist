@@ -53,6 +53,7 @@ public class EnemyS : MonoBehaviour {
 	private float vulnerableCountdown;
 	private float _flashAmt;
 	private Color _flashCol;
+	public GameObject critObjRef;
 
 
 	//____________________________________ENEMY STATES
@@ -242,6 +243,8 @@ public class EnemyS : MonoBehaviour {
 					_isCritical = false;
 					_isVulnerable = false;
 
+					_myAnimator.SetBool("Crit", false);
+
 					// reset whichever state should be active
 					_currentBehavior.EndAction();
 					_currentState.StartActions();
@@ -400,8 +403,8 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	private void ManageFacing(){
-		if (!_hitStunned){
 		Vector3 newSize = startSize;
+		if (!_hitStunned || !_isCritical){
 		if (_facePlayer && GetPlayerReference() != null){
 			float playerX = GetPlayerReference().transform.position.x;
 			if (playerX < transform.position.x){
@@ -421,6 +424,15 @@ public class EnemyS : MonoBehaviour {
 				transform.localScale = newSize;
 			}
 		}
+		}else{
+			if (_myRigidbody.velocity.x > 0){
+				newSize.x *= -1f;
+				transform.localScale = newSize;
+			}
+			
+			if (_myRigidbody.velocity.x < 0){
+				transform.localScale = newSize;
+			}
 		}
 	}
 
@@ -478,9 +490,12 @@ public class EnemyS : MonoBehaviour {
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float sTime = 0f){
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float critDmg, float sTime = 0f){
 
 		_currentHealth -= dmg;
+		if (_isCritical){
+			_currentHealth -= critDmg;
+		}
 		if (_currentHealth > 0){
 			_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
 			
@@ -497,9 +512,16 @@ public class EnemyS : MonoBehaviour {
 			}
 
 			if (_isVulnerable){
-				_isCritical = true;
+				if (!_isCritical){
+					_myAnimator.SetBool("Crit", true);
+					CameraShakeS.C.TimeSleep(0.08f, true);
+					_isCritical = true;
+				}
+				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
+					as GameObject;
+				critBreak.transform.parent = transform;
 				vulnerableCountdown = criticalRecoverTime;
-				CameraShakeS.C.TimeSleep(0.1f, true);
+
 				Stun(criticalRecoverTime,true);
 			}
 		}

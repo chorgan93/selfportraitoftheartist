@@ -87,6 +87,7 @@
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyWaitBehavior.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyWanderBehavior.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/PlayerDetectS.cs'
+'Assets/__Scripts/EnemyScripts/EnemyBreakS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyFadesS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyProjectileS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyS.cs'

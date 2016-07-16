@@ -59,7 +59,7 @@ public class EnemyFadesS : MonoBehaviour {
 	}
 
 	float FindSpawnValue(float min, float max){
-		//if (myEnemy.isVulnerable){ return (min + (max-min)); }
-		return (min + (max-min)*(1f-(myEnemy.currentHealth-1f)/myEnemy.maxHealth)); 
+		if (myEnemy.isVulnerable){ return (min + (max-min)); }
+		else{return (min + (max-min)*(1f-(myEnemy.currentHealth-1f)/myEnemy.maxHealth)); }
 	}
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerStatsS : MonoBehaviour {
@@ -20,13 +20,23 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	
 	//________________________________MANA
-	private float _baseMana = 4;
+	private float _baseMana = 5;
 	private float _addedMana = 0; // (upgradeable)
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
 	
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
+
+	//________________________________ATTACK
+	private float _baseStrength = 1;
+	private float _addedStrength = 0; // (upgradeable)
+	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
+
+	
+	private float _baseCrit = 1;
+	private float _addedCrit = 0; // (upgradeable)
+	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 
 	//________________________________DEFENSE
 	private float _baseDefense = 3f;
@@ -38,20 +48,20 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________RECOVERY
-	private float _recoveryCooldownBase = 0.1f;
+	private float _recoveryCooldownBase = 0.3f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*_recoveryCooldownMultiplier);}}
 	private float _currentCooldownTimer;
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 0.6f;
+	private float _recoverRateMin = 1f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
 	
 	private float recoverBurdenMin = 0.08f;
-	private float recoverBurdenMax = 0.4f;
+	private float recoverBurdenMax = 0.3f;
 	private float currentRegenCountdown;
 	public float currentRegenCount { get { return currentRegenCountdown; } }
 

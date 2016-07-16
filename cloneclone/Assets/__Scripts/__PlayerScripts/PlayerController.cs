@@ -5,11 +5,11 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.18f;
+	private static float DASH_THRESHOLD = 0.22f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float ATTACK_CHAIN_TIMING = 0.1f;
+	private static float ATTACK_CHAIN_TIMING = 0.08f;
 	
 	//_________________________________________CLASS PROPERTIES
 
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 	private bool triggerBlockAnimation = true;
 	private bool doingBlockTrigger = false;
 	private float blockPrepCountdown = 0;
+	private float timeInBlock;
 	private float blockPrepMax = 0.18f;
 
 	// Weapon Properites
@@ -308,6 +309,10 @@ public class PlayerController : MonoBehaviour {
 
 	private void BlockControl(){
 
+		if (_isBlocking){
+			timeInBlock += Time.deltaTime;
+		}
+
 		if (BlockInputPressed()){
 			blockButtonUp = false;
 			if (!_isDashing && _myStats.currentDefense > 0 && !_isStunned){
@@ -325,6 +330,7 @@ public class PlayerController : MonoBehaviour {
 				PrepBlockAnimation();
 				triggerBlockAnimation = false;
 				doingBlockTrigger = true;
+					timeInBlock = 0;
 			}
 			}
 
@@ -337,11 +343,12 @@ public class PlayerController : MonoBehaviour {
 				blockPrepCountdown = blockPrepMax;
 				triggerBlockAnimation = true;
 				doingBlockTrigger = false;
+				timeInBlock = 0;
 				_isBlocking = false;
 			}
 		}else{
 			// check for dash tap
-			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1)){
+			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1, false)){
 				TriggerDash();
 			}
 
@@ -363,6 +370,10 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
+
+		if (timeInBlock <= 0){
+			_myStats.ManaCheck(1);
+		}
 
 		FlashMana();
 
@@ -387,7 +398,6 @@ public class PlayerController : MonoBehaviour {
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 
-			//if (dashDurationTime >= dashDuration || (dashDurationTime >= triggerSprintMult*dashDuration && !blockButtonUp)){
 			if (dashDurationTime >= dashDuration){
 				
 				_myAnimator.SetBool("Evading", false);
@@ -482,9 +492,10 @@ public class PlayerController : MonoBehaviour {
 
 			
 				}
-			else{
+			else{if (attackDuration <= 0){
 				_isShooting = false;
 					TurnOffAttackAnimation();
+					}
 				}}
 		}
 
@@ -631,7 +642,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputMovement(){
 
 		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
-		    && !doingBlockTrigger){
+		    && !doingBlockTrigger && attackDuration <= 0){
 			return true;
 		}
 		else{
@@ -644,7 +655,7 @@ public class PlayerController : MonoBehaviour {
 
 		bool dashAllow = false;
 
-		if (blockPrepMax-blockPrepCountdown < DASH_THRESHOLD && 
+		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && 
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0){
 			dashAllow = true;
