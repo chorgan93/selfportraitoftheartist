@@ -20,7 +20,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	
 	//________________________________MANA
-	private float _baseMana = 5;
+	private float _baseMana = 4;
 	private float _addedMana = 0; // (upgradeable)
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
