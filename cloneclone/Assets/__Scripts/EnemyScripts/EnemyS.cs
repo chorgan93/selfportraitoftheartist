@@ -54,6 +54,9 @@ public class EnemyS : MonoBehaviour {
 	private float _flashAmt;
 	private Color _flashCol;
 	public GameObject critObjRef;
+	public GameObject deathObjRef;
+	private bool spawnedDeathObj = false;
+	private int deathFrameDelay = 1;
 
 
 	//____________________________________ENEMY STATES
@@ -161,7 +164,7 @@ public class EnemyS : MonoBehaviour {
 	private void DeadUpdate(){
 
 		if (_isDead){
-			
+			SpawnDeathObj();
 		}
 		
 	}
@@ -201,6 +204,7 @@ public class EnemyS : MonoBehaviour {
 		
 	}
 
+
 	//______________________________________PRIVATE METHODS
 
 	private void Initialize(){
@@ -210,6 +214,9 @@ public class EnemyS : MonoBehaviour {
 		_isActive = false;
 
 		startSize = transform.localScale;
+
+		spawnedDeathObj = false;
+		deathFrameDelay = 3;
 
 		_myRigidbody = GetComponent<Rigidbody>();
 		_myCollider = GetComponent<Collider>();
@@ -381,6 +388,20 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
+	private void SpawnDeathObj(){
+
+		if (!spawnedDeathObj){
+			deathFrameDelay--;
+			if (deathFrameDelay <= 0){
+		GameObject deathObj = Instantiate(deathObjRef, transform.position, Quaternion.identity)
+			as GameObject;
+		deathObj.GetComponent<EnemyDeathShadowS>().StartFade(myRenderer.sprite, myRenderer.transform.localScale);
+
+		spawnedDeathObj = true;
+			}
+		}
+	}
+
 	private void ResetMaterial(){
 		//myRenderer.material = startMaterial;
 		//myRenderer.material.SetFloat("_FlashAmount", 0f);
@@ -539,6 +560,8 @@ public class EnemyS : MonoBehaviour {
 			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
 
 			ResetMaterial();
+
+
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep(true);

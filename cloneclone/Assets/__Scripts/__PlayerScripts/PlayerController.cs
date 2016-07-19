@@ -464,7 +464,7 @@ public class PlayerController : MonoBehaviour {
 			_chargeAttackTime+= Time.deltaTime;
 			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
 				_chargeAttackTriggered = true;
-				_chargeCollider.TriggerAttack(ShootDirection());
+				_chargeCollider.TriggerAttack(transform.position, ShootDirection());
 				_myStats.ManaCheck(3);
 			}
 			if (_chargeAttackTime >= _chargeAttackDuration){
@@ -749,9 +749,9 @@ public class PlayerController : MonoBehaviour {
 
 		bool dashAllow = false;
 
-		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && 
+		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned && _myStats.currentDefense > 0 && !_chargingAttack){
+		    && !_isStunned && _myStats.currentDefense > 0 && !_chargeAttackTriggered){
 			dashAllow = true;
 		}
 
@@ -771,7 +771,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if (!_isShooting && !InAttack() && !_chargingAttack){
+		if (!_isShooting && !_chargeAttackTriggered){
 			return true;
 		}else{
 			return false;
