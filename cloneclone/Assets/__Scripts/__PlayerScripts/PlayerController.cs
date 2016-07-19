@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float ATTACK_CHAIN_TIMING = 0.08f;
+	private static float CHAIN_DASH_THRESHOLD = 0.2f;
 	
 	//_________________________________________CLASS PROPERTIES
 
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
+	public float bigDashMult = 2f;
+	private bool preppingSecondDash = false;
+	private bool didSecondDash = false;
 
 	private bool _isShooting;
 	private bool _lastInClip;
@@ -69,6 +73,15 @@ public class PlayerController : MonoBehaviour {
 	private bool _isStunned = false;
 	private bool attackTriggered;
 	private float stunTime;
+
+	// Charging Properties
+	private bool _chargingAttack;
+	private float _chargeAttackTime;
+	private float _chargeAttackTrigger = 0.4f;
+	private float _chargeAttackDuration = 0.8f;
+	private ChargeAttackS _chargeCollider;
+	private bool _chargeAttackTriggered = false;
+	private bool allowChargeAttack = true;
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -130,6 +143,8 @@ public class PlayerController : MonoBehaviour {
 	public bool facingDown		{ get { return _facingDown; } }
 	public bool facingUp		{ get { return _facingUp; } }
 
+	public bool chargingAttack { get { return _chargingAttack;}}
+
 	
 	//_________________________________________UNITY METHODS
 
@@ -178,6 +193,7 @@ public class PlayerController : MonoBehaviour {
 
 		SetWeapon();
 
+		_chargeCollider = GetComponentInChildren<ChargeAttackS>();
 
 		muzzleFlare = GetComponentInChildren<MuzzleFlareS>();
 
@@ -280,7 +296,7 @@ public class PlayerController : MonoBehaviour {
 					FaceLeftRight();
 				}
 
-				if (_isBlocking){
+				if (_isBlocking || _chargingAttack){
 					moveVelocity *= walkSpeedBlockMult;
 					RunAnimationCheck(input2.magnitude*walkSpeedBlockMult);
 				}else{
@@ -313,7 +329,7 @@ public class PlayerController : MonoBehaviour {
 			timeInBlock += Time.deltaTime;
 		}
 
-		if (BlockInputPressed()){
+		if (BlockInputPressed() && CanInputBlock()){
 			blockButtonUp = false;
 			if (!_isDashing && _myStats.currentDefense > 0 && !_isStunned){
 				if (_myStats.ManaCheck(1, false)){
@@ -360,22 +376,24 @@ public class PlayerController : MonoBehaviour {
 			triggerBlockAnimation = true;
 			doingBlockTrigger = false;
 			_isBlocking = false;
+
 		}
 
 	}
 
 	private void TriggerDash(){
 
-		_isDashing = true;
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
 
-		if (timeInBlock <= 0){
+		if (timeInBlock <= 0 && (!_isDashing || didSecondDash)){
 			_myStats.ManaCheck(1);
+			if (didSecondDash){
+				FlashMana();
+			}
 		}
 
-		FlashMana();
 
 		inputDirection = Vector3.zero;
 		inputDirection.x = controller.Horizontal();
@@ -385,7 +403,18 @@ public class PlayerController : MonoBehaviour {
 		dashDurationTime = 0;
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
-		_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
+
+		if (_isDashing){
+			_myAnimator.SetTrigger("Dash");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*bigDashMult*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTime = dashDuration*0.2f;
+		}
+		else{
+			FlashMana();
+			_myAnimator.SetTrigger("Roll");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
+		}
+		_isDashing = true;
 
 	}
 
@@ -393,8 +422,26 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isDashing){
 
+			// allow for second dash
+			if (BlockInputPressed()){
+				preppingSecondDash = true;
+			}else{
+				if (preppingSecondDash && ((!didSecondDash && dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
+				    (didSecondDash && dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD))){
+					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						Debug.Log("yeah");
+						TriggerDash();
+						if (!didSecondDash){
+							didSecondDash = true;
+							CameraShakeS.C.MicroShake();
+						}
+					}
+					preppingSecondDash = false;
+				}
+			}
+
 			dashDurationTime += Time.deltaTime;
-			if (dashDurationTime >= dashDuration-dashSlideTime){
+			if (dashDurationTime >= dashDuration-dashSlideTime && !didSecondDash){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 
@@ -404,11 +451,37 @@ public class PlayerController : MonoBehaviour {
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
 			}
+		}else{
+			preppingSecondDash = false;
+			didSecondDash = false;
 		}
 
 	}
 
 	private void ShootControl(){
+
+		if (_chargingAttack && (ShootInputPressed() || _chargeAttackTriggered)){
+			_chargeAttackTime+= Time.deltaTime;
+			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
+				_chargeAttackTriggered = true;
+				_chargeCollider.TriggerAttack(ShootDirection());
+				_myStats.ManaCheck(3);
+			}
+			if (_chargeAttackTime >= _chargeAttackDuration){
+				_chargingAttack = false;
+				_chargeAttackTriggered = false;
+				_myAnimator.SetBool("Charging", false);
+				Debug.Log("TURN OFF CHARGE ANIMATION");
+			}
+
+		}
+		if (_chargingAttack && !ShootInputPressed() && !_chargeAttackTriggered){
+			_chargingAttack = false;
+			_myAnimator.SetBool("Charging", false);
+			Debug.Log("TURN OFF CHARGE ANIMATION");
+			shootButtonUp = false;
+			allowChargeAttack = true;
+		}
 
 		delayAttackCountdown -= Time.deltaTime;
 		if (delayAttackCountdown <= 0 && attackTriggered){
@@ -487,14 +560,35 @@ public class PlayerController : MonoBehaviour {
 					delayAttackCountdown = delayAttackTime;
 					attackTriggered = true;
 					_isShooting = true;
+					allowChargeAttack = true;
 
 					AttackAnimationTrigger();
 
 			
+				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
+					if (_myStats.ManaCheck(1, false)){
+					// charge attack
+					_chargingAttack = true;
+					_chargeAttackTriggered = false;
+					_chargeAttackTime = 0;
+					_myAnimator.SetBool("Charging", true);
+					_myAnimator.SetTrigger("Charge Attack");
+					allowChargeAttack = false;
+					}else{
+						allowChargeAttack = false;
+					}
 				}
 			else{if (attackDuration <= 0){
 				_isShooting = false;
 					TurnOffAttackAnimation();
+					}
+
+					if (_chargingAttack && (_chargeAttackTime < _chargeAttackTrigger 
+					                        || _chargeAttackTime > _chargeAttackDuration)){
+						_chargingAttack = false;
+						_chargeAttackTime = 0;
+						_myAnimator.SetBool("Charging", false);
+						Debug.Log("TURN OFF CHARGE ANIMATION");
 					}
 				}}
 		}
@@ -642,7 +736,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputMovement(){
 
 		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
-		    && !doingBlockTrigger && attackDuration <= 0){
+		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered){
 			return true;
 		}
 		else{
@@ -657,7 +751,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && 
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned && _myStats.currentDefense > 0){
+		    && !_isStunned && _myStats.currentDefense > 0 && !_chargingAttack){
 			dashAllow = true;
 		}
 
@@ -667,13 +761,21 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputShoot(){
 
 		if ((!_isDashing || (_isDashing && attackDashInterrupt)) && !doingBlockTrigger && !_isBlocking && !attackTriggered && !_isStunned
-		    && attackDuration <= ATTACK_CHAIN_TIMING){
+		    && attackDuration <= ATTACK_CHAIN_TIMING && !_chargingAttack){
 			return true;
 		}
 		else{
 			return false;
 		}
 
+	}
+
+	private bool CanInputBlock(){
+		if (!_isShooting && !InAttack() && !_chargingAttack){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	private Vector3 ShootDirectionUnlocked(){
@@ -753,7 +855,7 @@ public class PlayerController : MonoBehaviour {
 			else if (directionZ > 67.5f && directionZ <= 112.5f){
 				inputDirection.x = 0;
 				inputDirection.y = 1;
-				FaceLeftRight();
+				FaceUp();
 			}
 			else if (directionZ > 112.5f && directionZ <= 157.5f){
 				inputDirection.x = -1;
@@ -768,7 +870,7 @@ public class PlayerController : MonoBehaviour {
 			else if (directionZ > 202.5f && directionZ <= 247.5f){
 				inputDirection.x = -1;
 				inputDirection.y = -1;
-				FaceDown();
+				FaceLeftRight();
 			}
 			else if (directionZ > 247.5f && directionZ <= 292.5f){
 				inputDirection.x = 0;
@@ -778,7 +880,7 @@ public class PlayerController : MonoBehaviour {
 			else {
 				inputDirection.x = 1;
 				inputDirection.y = -1;
-				FaceDown();
+				FaceLeftRight();
 			}
 
 		}

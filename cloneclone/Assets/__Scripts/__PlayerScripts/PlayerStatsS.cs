@@ -34,7 +34,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
 
 	
-	private float _baseCrit = 1;
+	private float _baseCrit = 0;
 	private float _addedCrit = 0; // (upgradeable)
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 
