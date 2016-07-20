@@ -1,0 +1,197 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class EnemyProjectileS : MonoBehaviour {
+
+
+	private Rigidbody _rigidbody;
+	private SpriteRenderer _myRenderer;
+	private Renderer _myRenderer3D;
+	private EnemyS _myEnemy;
+
+	[Header("Attack Properties")]
+	public float range;
+	public float shotSpeed;
+	public float selfKnockbackMult;
+	public float attackSpawnDistance;
+	public float accuracyMult = 0f;
+	public bool stopEnemy = false;
+
+	[Header("Player Interaction")]
+	public float damage;
+	public float knockbackTime;
+	public float playerKnockbackMult;
+	public bool isPiercing = true;
+	
+	[Header("Effect Properties")]
+	public int shakeAmt = 0;
+	public int flashFrames = 0;
+	public Texture flashTexture;
+	private Texture startTexture;
+	private Color startColor;
+	private bool doFlashLogic;
+	private bool didFlashLogic = false;
+	
+	private float fadeThreshold = 0.1f;
+	private Color fadeColor;
+
+
+	// Update is called once per frame
+	void Update(){
+		if (doFlashLogic){
+			if (flashFrames > 0){
+				flashFrames--;
+			}else{
+				if (!didFlashLogic){
+					if (_myRenderer){
+						_myRenderer.material.SetFloat("_FlashAmount", 0f);
+					}
+					else{
+						_myRenderer3D.material.SetTexture("_MainTex", startTexture);
+						_myRenderer3D.material.color = startColor;
+					}
+					didFlashLogic = true;
+				}
+			}
+		}
+	}
+
+	void FixedUpdate () {
+		
+		range -= Time.deltaTime;
+		if (range < fadeThreshold){
+			if (_myRenderer){
+			fadeColor = _myRenderer.color;
+			fadeColor.a = range/fadeThreshold;
+			_myRenderer.color = fadeColor;
+			}else{
+				fadeColor = _myRenderer3D.material.color;
+				fadeColor.a = range/fadeThreshold;
+				_myRenderer3D.material.color = fadeColor;
+			}
+		}
+		
+		if (range <= 0){
+			Destroy(gameObject);
+		}
+		
+	}
+	
+	public void Fire(Vector3 aimDirection, EnemyS enemyReference){
+		
+		_rigidbody = GetComponent<Rigidbody>();
+		_myRenderer = GetComponentInChildren<SpriteRenderer>();
+		if (_myRenderer == null){
+			_myRenderer3D = GetComponentInChildren<Renderer>();
+			if (flashFrames > 0){
+				doFlashLogic = true;
+				startColor = _myRenderer3D.material.color;
+				startTexture = _myRenderer3D.material.GetTexture("_MainTex");
+				_myRenderer3D.material.color = Color.white;
+				_myRenderer3D.material.SetTexture("_MainTex", flashTexture);
+			}
+		}else{
+			if (flashFrames > 0){
+				doFlashLogic = true;
+				_myRenderer.material.SetFloat("_FlashAmount", 1f);
+			}
+		}
+
+		if (enemyReference != null){
+			_myEnemy = enemyReference;
+		}
+		
+		FaceDirection((aimDirection).normalized);
+		
+		Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+		
+		_rigidbody.AddForce(shootForce, ForceMode.Impulse);
+
+		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
+
+		if (_myEnemy != null){
+			if (stopEnemy){
+				_myEnemy.myRigidbody.velocity = Vector3.zero;
+			}
+	
+			_myEnemy.AttackKnockback(knockbackForce);
+		}
+			
+		
+		DoShake();
+		
+		
+	}
+
+	private void DoShake(){
+		
+		switch (shakeAmt){
+			
+		default:
+			CameraShakeS.C.MicroShake();
+			break;
+		case(0):
+			break;
+		case(1):
+			CameraShakeS.C.SmallShake();
+			break;
+		case(2):
+			CameraShakeS.C.LargeShake();
+			break;
+			
+		}
+		
+	}
+	
+	private void FaceDirection(Vector3 direction){
+		
+		float rotateZ = 0;
+		
+		Vector3 targetDir = direction.normalized;
+		
+		if(targetDir.x == 0){
+			if (targetDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+			rotateZ = Mathf.Rad2Deg*Mathf.Atan((targetDir.y/targetDir.x));
+		}	
+		
+		
+		if (targetDir.x < 0){
+			rotateZ += 180;
+		}
+		
+		rotateZ += accuracyMult*Random.insideUnitCircle.x;
+		
+		
+		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ));
+
+		
+	}
+
+	
+	void OnTriggerEnter(Collider other){
+		
+		if (other.gameObject.tag == "Player"){
+
+			if (_myEnemy != null){
+			other.gameObject.GetComponent<PlayerStatsS>().
+				TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
+			}
+			else{
+				other.gameObject.GetComponent<PlayerStatsS>().
+					TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+			}
+
+			if (!isPiercing){
+				Destroy(gameObject);
+			}
+		}
+		
+	}
+}

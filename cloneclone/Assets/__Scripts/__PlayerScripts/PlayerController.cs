@@ -471,14 +471,12 @@ public class PlayerController : MonoBehaviour {
 				_chargingAttack = false;
 				_chargeAttackTriggered = false;
 				_myAnimator.SetBool("Charging", false);
-				Debug.Log("TURN OFF CHARGE ANIMATION");
 			}
 
 		}
 		if (_chargingAttack && !ShootInputPressed() && !_chargeAttackTriggered){
 			_chargingAttack = false;
 			_myAnimator.SetBool("Charging", false);
-			Debug.Log("TURN OFF CHARGE ANIMATION");
 			shootButtonUp = false;
 			allowChargeAttack = true;
 		}
@@ -588,7 +586,6 @@ public class PlayerController : MonoBehaviour {
 						_chargingAttack = false;
 						_chargeAttackTime = 0;
 						_myAnimator.SetBool("Charging", false);
-						Debug.Log("TURN OFF CHARGE ANIMATION");
 					}
 				}}
 		}

@@ -157,7 +157,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
-				if (myPlayerController.isDashing || myPlayerController.isStunned || myPlayerController.InAttack()){
+				if (myPlayerController.isDashing || myPlayerController.isStunned || myPlayerController.InAttack()
+				    || myPlayerController.chargingAttack){
 					canRecover = false;
 				}
 			}
@@ -204,7 +205,9 @@ public class PlayerStatsS : MonoBehaviour {
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
 					CameraShakeS.C.MicroShake();
 				}
-				damageSource.Deflect();
+				if (damageSource != null){
+					damageSource.Deflect();
+				}
 			}else{
 				
 				myPlayerController.Stun(knockbackTime);

@@ -182,7 +182,7 @@ public class CameraShakeS : MonoBehaviour {
 
 	public void MicroShake(){
 		
-		StartShake (_smallShakeIntensity/2f, _smallShakeDuration, 1);
+		StartShake (_smallShakeIntensity/2f, _smallShakeDuration/2f, 1);
 		
 	}
 
