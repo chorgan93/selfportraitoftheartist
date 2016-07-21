@@ -330,7 +330,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (BlockInputPressed() && CanInputBlock()){
-			blockButtonUp = false;
+			if (!_isDashing){
+				blockButtonUp = false;
+			}
 			if (!_isDashing && _myStats.currentDefense > 0 && !_isStunned){
 				if (_myStats.ManaCheck(1, false)){
 					blockPrepCountdown -= Time.deltaTime;
@@ -387,12 +389,11 @@ public class PlayerController : MonoBehaviour {
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
 
-		if (timeInBlock <= 0 && (!_isDashing || didSecondDash)){
-			_myStats.ManaCheck(1);
-			if (didSecondDash){
-				FlashMana();
-			}
+
+		if (didSecondDash){
+			FlashMana();
 		}
+
 
 
 		inputDirection = Vector3.zero;
@@ -412,6 +413,7 @@ public class PlayerController : MonoBehaviour {
 		else{
 			FlashMana();
 			_myAnimator.SetTrigger("Roll");
+			blockButtonUp = true;
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
 		}
 		_isDashing = true;
@@ -422,12 +424,11 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isDashing){
 
+
 			// allow for second dash
 			if (BlockInputPressed()){
-				preppingSecondDash = true;
-			}else{
-				if (preppingSecondDash && ((!didSecondDash && dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
-				    (didSecondDash && dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD))){
+				if (blockButtonUp && ((!didSecondDash && dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
+				    (didSecondDash && dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
 						if (!didSecondDash){
@@ -435,9 +436,14 @@ public class PlayerController : MonoBehaviour {
 							CameraShakeS.C.MicroShake();
 						}
 					}
-					preppingSecondDash = false;
 				}
+				blockButtonUp = false;
 			}
+			else{
+				Debug.Log(blockButtonUp);
+				blockButtonUp = true;
+			}
+
 
 			dashDurationTime += Time.deltaTime;
 			if (dashDurationTime >= dashDuration-dashSlideTime && !didSecondDash){
