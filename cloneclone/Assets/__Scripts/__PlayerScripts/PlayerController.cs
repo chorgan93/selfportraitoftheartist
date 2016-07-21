@@ -429,7 +429,6 @@ public class PlayerController : MonoBehaviour {
 				if (preppingSecondDash && ((!didSecondDash && dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
 				    (didSecondDash && dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						Debug.Log("yeah");
 						TriggerDash();
 						if (!didSecondDash){
 							didSecondDash = true;

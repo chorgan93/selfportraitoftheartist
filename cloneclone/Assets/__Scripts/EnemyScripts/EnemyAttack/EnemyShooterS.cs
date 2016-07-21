@@ -106,7 +106,8 @@ public class EnemyShooterS : MonoBehaviour {
 					rotateAnimCountdown -= Time.deltaTime;
 					if (rotateAnimCountdown <= 0){
 						rotateAnimCountdown = rotateAnimRate;
-						transform.Rotate(rotateBase*rotateRate*Time.deltaTime);
+						myRenderer.transform.RotateAround(myRenderer.transform.position, myRenderer.transform.up,
+						                                  rotateRate*Time.deltaTime);
 					}
 				}
 			}

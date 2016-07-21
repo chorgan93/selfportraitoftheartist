@@ -1,9 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
+
+	public float rangeLvl;
+	public float powerLvl;
+	public GameObject hitObj;
+	public GameObject endObj;
 
 	[Header("Shot Effects")]
 	public bool isAutomatic = true;
@@ -19,9 +25,13 @@ public class ProjectileS : MonoBehaviour {
 	public float delayShotTime = 0.8f;
 
 	public float shotSpeed = 1000f;
+	public float maxShotSpeed;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
+	public float rangeRef { get { return currentRange; } }
+	public float minDrag;
+	public float maxDrag;
 
 	public float accuracyMult = 0.1f;
 
@@ -41,6 +51,7 @@ public class ProjectileS : MonoBehaviour {
 	private float colliderCutoff;
 	public bool stopPlayer = false;
 	public bool stopOnEnemyContact = false;
+	public float knockbackSpeed = 1200f;
 	public float knockbackMult = 1.25f;
 	public float enemyKnockbackMult = 1.25f;
 	public float knockbackTime = 0.2f;
@@ -49,42 +60,53 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
+	public float maxSizeMult = 1.6f;
 
 	private Rigidbody _rigidbody;
 	private SpriteRenderer myRenderer;
+	public SpriteRenderer projRenderer { get { return myRenderer; } }
 	private Collider myCollider;
 	private PlayerController myPlayer;
-	private float fadeThreshold = 0.1f;
-	private Color fadeColor;
 
-	// Update is called once per frame
+	private bool hitAllTargets = false;
+
+
+
 	void FixedUpdate () {
 
 		currentRange -= Time.deltaTime;
 
+		/*
 		delayColliderTimeCountdown -= Time.deltaTime;
 		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn){
 			myCollider.enabled = true;
 			colliderTurnedOn = true;
 		}
 
+
 		if (colliderTurnOffTime > 0){
 			if (currentRange <= colliderCutoff && !colliderTurnedOff){
 				myCollider.enabled = false;
 				colliderTurnedOff = true;
 			}
-		}
+		}**/
 		
 
-		if (currentRange < fadeThreshold){
-			fadeColor = myRenderer.color;
-			fadeColor.a = range/fadeThreshold;
-			myRenderer.color = fadeColor;
+		if (currentRange <= 0){
+
+			Vector3 endObjSpawn = transform.position;
+			GameObject newEndObj = Instantiate(endObj, endObjSpawn, transform.rotation)
+				as GameObject;
+			SpriteRenderer endRender = newEndObj.GetComponent<SpriteRenderer>();
+			endRender.sprite = myRenderer.sprite;
+			endRender.color = myRenderer.color;
+			newEndObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x;
+
+			Destroy(gameObject);
+
 		}
 
-		if (currentRange <= 0){
-			Destroy(gameObject);
-		}
+
 	
 	}
 
@@ -95,7 +117,9 @@ public class ProjectileS : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
 
-		if (delayColliderTime > 0){
+		_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
+
+		/*if (delayColliderTime > 0){
 			myCollider.enabled = false;
 		}
 
@@ -105,21 +129,31 @@ public class ProjectileS : MonoBehaviour {
 		}
 
 		colliderTurnedOn = false;
-		colliderTurnedOff = false;
-		currentRange = range;
+		colliderTurnedOff = false;**/
 		
 		FaceDirection((aimDirection).normalized, playerReference);
 		
 		if (extraTap){
 			shotSpeed *= EXTRA_FORCE_MULT;
 		}
+		if (rangeLvl >= 9999){
+			// do hitscan instead
+			HitscanAttack(aimDirection);
+		}else{
 
-		Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+			float actingShotSpeed = shotSpeed + (maxShotSpeed-shotSpeed)*((rangeLvl-1f)/4f);
+			if (rangeLvl >= 5){
+				//	actingShotSpeed *= 1.5f;
+			}
+
+			Vector3 shootForce = transform.right * actingShotSpeed * Time.deltaTime;
+		
 
 
-		_rigidbody.AddForce(shootForce, ForceMode.Impulse);
+			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
+		}
 
-		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * knockbackMult *Time.deltaTime;
+		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * knockbackMult *Time.deltaTime;
 
 		if (stopPlayer){
 			myPlayer.myRigidbody.velocity = Vector3.zero;
@@ -131,7 +165,65 @@ public class ProjectileS : MonoBehaviour {
 
 		}
 
+		currentRange = range;
 
+		transform.localScale *= 1+(maxSizeMult*(powerLvl-1f)/(4f));
+
+		//myRenderer.enabled = false;
+
+
+	}
+
+	private void HitscanAttack(Vector3 aimDirection){
+
+		// DOESNT WORK FIX LATER
+
+		currentRange = 1000f;
+		myRenderer.enabled = false;
+		myCollider.enabled = false;
+
+		StartCoroutine(HitTargets(aimDirection));
+
+	}
+
+	private IEnumerator HitTargets(Vector3 aim){
+
+		RaycastHit hitInfo = new RaycastHit();
+		bool hitTarget = true;
+		EnemyS hitEnemy;
+		Vector3 currentStartPos = myPlayer.transform.position;
+
+		while (!hitAllTargets){
+
+			hitTarget = Physics.Raycast(currentStartPos, aim.normalized, out hitInfo, 50f, 32,
+			                            QueryTriggerInteraction.Ignore);
+
+			Debug.DrawRay(currentStartPos, aim.normalized*50f, Color.green);
+
+			if (hitTarget){
+				Debug.Log("Hit something! " + hitInfo.collider.gameObject.name);
+				if (hitInfo.collider.gameObject.tag == "Wall"){
+					hitAllTargets = true;
+				}else{
+					currentStartPos.x = hitInfo.point.x;
+					currentStartPos.y = hitInfo.point.y;
+					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
+					if (hitEnemy != null){
+						hitEnemy.TakeDamage(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+						                          dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
+					}
+				}
+			}
+			else{
+				hitAllTargets = true;
+			}
+
+
+			yield return null;
+
+		}
+
+		Destroy(gameObject);
 
 	}
 
@@ -191,7 +283,7 @@ public class ProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Enemy"){
 
-			if (stopOnEnemyContact && myPlayer != null){
+			if (stopOnEnemyContact && rangeLvl < 3 && myPlayer != null){
 				if (!myPlayer.myStats.PlayerIsDead()){
 					myPlayer.myRigidbody.velocity *= 0.6f;
 				}
@@ -199,8 +291,8 @@ public class ProjectileS : MonoBehaviour {
 
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
-				(shotSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-				 dmg*myPlayer.myStats.strengthAmt, critDmg*myPlayer.myStats.critAmt);
+				(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+				 dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
 
 			if (!isPiercing){
 
@@ -208,7 +300,20 @@ public class ProjectileS : MonoBehaviour {
 
 			}
 
+			HitEffect();
+			
+
 		}
 
+	}
+
+	void HitEffect(){
+		Vector3 hitObjSpawn = transform.position;
+		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
+			as GameObject;
+		SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
+		hitRender.sprite = myRenderer.sprite;
+		hitRender.color = myRenderer.color;
+		newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.1f;
 	}
 }

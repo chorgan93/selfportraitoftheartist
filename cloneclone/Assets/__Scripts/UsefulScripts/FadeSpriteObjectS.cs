@@ -11,6 +11,9 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	private SpriteRenderer myRenderer;
 	private Color currentCol;
 
+	private bool useFlashFrames = false;
+	public int flashFrames = -1;
+
 	// Use this for initialization
 	void Start () {
 
@@ -19,11 +22,25 @@ public class FadeSpriteObjectS : MonoBehaviour {
 		currentCol.a = startFadeAlpha;
 		myRenderer.color = currentCol;
 
+		if (flashFrames > 0){
+			useFlashFrames = true;
+			myRenderer.material.SetFloat("_FlashAmount", 1f);
+			Debug.Log(myRenderer.material.GetFloat("_FlashAmount"));
+		}
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (useFlashFrames){
+			flashFrames--;
+			if (flashFrames <= 0 && myRenderer.material.GetFloat("_FlashAmount") > 0){
+				myRenderer.material.SetFloat("_FlashAmount", 0f);
+				useFlashFrames = false;
+			}
+		}
 
 		if (delayFadeTime > 0){
 			delayFadeTime -= Time.deltaTime;
@@ -40,6 +57,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 			}
 			myRenderer.color = currentCol;
 		}
+
 	
 	}
 }
