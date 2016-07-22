@@ -18,6 +18,7 @@ public class EnemyS : MonoBehaviour {
 
 	[Header("Enemy Properties")]
 	public float maxHealth;
+	public Color bloodColor = Color.red;
 	public float knockbackTime;
 	public float criticalRecoverTime = 0.5f;
 	private float _currentHealth;

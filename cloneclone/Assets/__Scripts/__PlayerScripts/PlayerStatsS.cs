@@ -214,7 +214,7 @@ public class PlayerStatsS : MonoBehaviour {
 				myPlayerController.myAnimator.SetTrigger("Hurt");
 				myPlayerController.FlashDamage();
 
-				if (_currentHealth > 1){
+				/*if (_currentHealth > 1){
 				_currentHealth -= dmg;
 			
 				if (_currentHealth <= 0){
@@ -227,7 +227,7 @@ public class PlayerStatsS : MonoBehaviour {
 					}
 
 				}
-				else{
+				else{*/
 					
 					_currentHealth -= dmg;
 					if (_currentHealth <= 0){
@@ -240,7 +240,7 @@ public class PlayerStatsS : MonoBehaviour {
 					else{
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 					}
-				}
+				//}
 
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();

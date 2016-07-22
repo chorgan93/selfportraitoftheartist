@@ -440,7 +440,6 @@ public class PlayerController : MonoBehaviour {
 				blockButtonUp = false;
 			}
 			else{
-				Debug.Log(blockButtonUp);
 				blockButtonUp = true;
 			}
 

@@ -6,7 +6,7 @@ public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
 
-	public float rangeLvl;
+	// public float rangeLvl;
 	public float powerLvl;
 	public GameObject hitObj;
 	public GameObject endObj;
@@ -30,8 +30,8 @@ public class ProjectileS : MonoBehaviour {
 	public float range = 1f;
 	private float currentRange;
 	public float rangeRef { get { return currentRange; } }
-	public float minDrag;
-	public float maxDrag;
+	//public float minDrag;
+	//public float maxDrag;
 
 	public float accuracyMult = 0.1f;
 
@@ -60,7 +60,7 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
-	public float maxSizeMult = 1.6f;
+	public float maxSizeMult = 1.1f;
 
 	private Rigidbody _rigidbody;
 	private SpriteRenderer myRenderer;
@@ -81,7 +81,7 @@ public class ProjectileS : MonoBehaviour {
 		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn){
 			myCollider.enabled = true;
 			colliderTurnedOn = true;
-		}
+		}**/
 
 
 		if (colliderTurnOffTime > 0){
@@ -89,18 +89,18 @@ public class ProjectileS : MonoBehaviour {
 				myCollider.enabled = false;
 				colliderTurnedOff = true;
 			}
-		}**/
+		}
 		
 
 		if (currentRange <= 0){
 
-			Vector3 endObjSpawn = transform.position;
+			/*Vector3 endObjSpawn = transform.position;
 			GameObject newEndObj = Instantiate(endObj, endObjSpawn, transform.rotation)
 				as GameObject;
 			SpriteRenderer endRender = newEndObj.GetComponent<SpriteRenderer>();
 			endRender.sprite = myRenderer.sprite;
 			endRender.color = myRenderer.color;
-			newEndObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x;
+			newEndObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x;*/
 
 			Destroy(gameObject);
 
@@ -117,7 +117,7 @@ public class ProjectileS : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
 
-		_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
+		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
 		/*if (delayColliderTime > 0){
 			myCollider.enabled = false;
@@ -128,30 +128,26 @@ public class ProjectileS : MonoBehaviour {
 			colliderCutoff = colliderTurnOffTime;
 		}
 
-		colliderTurnedOn = false;
-		colliderTurnedOff = false;**/
+		colliderTurnedOn = false;**/
+		colliderTurnedOff = false;
 		
-		FaceDirection((aimDirection).normalized, playerReference);
+		FaceDirection((aimDirection).normalized);
 		
 		if (extraTap){
 			shotSpeed *= EXTRA_FORCE_MULT;
 		}
-		if (rangeLvl >= 9999){
-			// do hitscan instead
-			HitscanAttack(aimDirection);
-		}else{
 
-			float actingShotSpeed = shotSpeed + (maxShotSpeed-shotSpeed)*((rangeLvl-1f)/4f);
+			/*float actingShotSpeed = shotSpeed + (maxShotSpeed-shotSpeed)*((rangeLvl-1f)/4f);
 			if (rangeLvl >= 5){
 				//	actingShotSpeed *= 1.5f;
-			}
+			}*/
 
-			Vector3 shootForce = transform.right * actingShotSpeed * Time.deltaTime;
+			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
 		
 
 
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
-		}
+		
 
 		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * knockbackMult *Time.deltaTime;
 
@@ -227,7 +223,7 @@ public class ProjectileS : MonoBehaviour {
 
 	}
 
-	private void FaceDirection(Vector3 direction, PlayerController player){
+	private void FaceDirection(Vector3 direction){
 
 		float rotateZ = 0;
 		
@@ -283,14 +279,16 @@ public class ProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Enemy"){
 
-			if (stopOnEnemyContact && rangeLvl < 3 && myPlayer != null){
+			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+
+			if (stopOnEnemyContact && myPlayer != null){
 				if (!myPlayer.myStats.PlayerIsDead()){
 					myPlayer.myRigidbody.velocity *= 0.6f;
 				}
 			}
 
 
-			other.gameObject.GetComponent<EnemyS>().TakeDamage
+			hitEnemy.TakeDamage
 				(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
 				 dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
 
@@ -300,20 +298,34 @@ public class ProjectileS : MonoBehaviour {
 
 			}
 
-			HitEffect();
+
+			HitEffect(other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			
 
 		}
 
 	}
 
-	void HitEffect(){
-		Vector3 hitObjSpawn = transform.position;
+	void HitEffect(Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
+		Vector3 hitObjSpawn = spawnPos;
 		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
 			as GameObject;
+
+		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
+		if (transform.localScale.y < 0){
+			newHitObj.transform.Rotate(new Vector3(0,0,180f));
+		}
+
 		SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
-		hitRender.sprite = myRenderer.sprite;
-		hitRender.color = myRenderer.color;
-		newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.1f;
+		hitRender.color = bloodCol;
+
+		if (bigBlood){
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*2f;
+		}else{
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.3f;
+		}
+
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
+		newHitObj.transform.position = hitObjSpawn;
 	}
 }

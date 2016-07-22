@@ -9,6 +9,8 @@ public class EnemyProjectileS : MonoBehaviour {
 	private Renderer _myRenderer3D;
 	private EnemyS _myEnemy;
 
+	public bool flipOnX = false;
+
 	[Header("Attack Properties")]
 	public float range;
 	public float shotSpeed;
@@ -106,6 +108,12 @@ public class EnemyProjectileS : MonoBehaviour {
 		Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
 		
 		_rigidbody.AddForce(shootForce, ForceMode.Impulse);
+
+		if (flipOnX && shootForce.x > 0){
+			Vector3 flipSize = transform.localScale;
+			flipSize.y *= -1f;
+			transform.localScale = flipSize;
+		}
 
 		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
 

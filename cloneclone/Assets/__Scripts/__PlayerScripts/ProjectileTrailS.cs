@@ -17,7 +17,7 @@ public class ProjectileTrailS : MonoBehaviour {
 	void Start () {
 
 		myProjectile = GetComponentInParent<ProjectileS>();
-		activeSpawnRate = minSpawnRate + (maxSpawnRate-minSpawnRate)*((myProjectile.rangeLvl-1f)/4f);
+		activeSpawnRate = minSpawnRate;
 		spawnCountdown = activeSpawnRate;
 	
 	}

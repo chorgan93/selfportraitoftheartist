@@ -6,6 +6,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public PlayerDetectS rangeCheck;
 
 	[Header("Behavior Duration")]
+	public float trackingTime = 0f;
+	private bool foundTarget = false;
 	public float attackDuration = 3f;
 	public float attackWarmup = 1f;
 	private bool launchedAttack = false;
@@ -25,6 +27,11 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		if (BehaviorActing()){
 
 			attackTimeCountdown -= Time.deltaTime;
+			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)){
+				SetAttackDirection();
+				foundTarget = true;
+			}
+
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)){
 				GameObject attackObj = Instantiate(attackPrefab, transform.position, Quaternion.identity)
 					as GameObject;

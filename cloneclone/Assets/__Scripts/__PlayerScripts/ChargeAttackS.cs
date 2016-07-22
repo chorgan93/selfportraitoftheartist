@@ -22,6 +22,8 @@ public class ChargeAttackS : MonoBehaviour {
 	private int flashMax = 3;
 	private int blackFlashFrames = 4;
 
+	public GameObject hitObj;
+
 	[Header("Attack Properties")]
 	public float spawnRange = 1f;
 	public float knockbackForce = 1000f;
@@ -118,6 +120,34 @@ public class ChargeAttackS : MonoBehaviour {
 
 	}
 
+	private float FaceDirection(Vector3 direction){
+		
+		float rotateZ = 0;
+		
+		Vector3 targetDir = direction.normalized;
+		
+		if(targetDir.x == 0){
+			if (targetDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+			rotateZ = Mathf.Rad2Deg*Mathf.Atan((targetDir.y/targetDir.x));
+		}	
+		
+		
+		if (targetDir.x < 0){
+			rotateZ += 180;
+		}
+		
+		rotateZ += -90f+25f*Random.insideUnitCircle.x;
+
+		return rotateZ;
+	}
+
 	void OnTriggerEnter(Collider other){
 		
 		if (other.gameObject.tag == "Enemy"){
@@ -129,8 +159,26 @@ public class ChargeAttackS : MonoBehaviour {
 				(knockBackDir*knockbackForce*Time.deltaTime, 
 				 dmg, dmg);
 
-			
+			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}
 		
+	}
+
+	void HitEffect(Vector3 spawnPos, Color bloodCol){
+
+		Vector3 hitObjSpawn = spawnPos;
+		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, Quaternion.identity)
+			as GameObject;
+		
+		newHitObj.transform.Rotate(new Vector3(0,0,FaceDirection((spawnPos-transform.position).normalized)));
+		
+		SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
+		hitRender.color = bloodCol;
+
+		newHitObj.transform.localScale = Vector3.one*10f;
+
+		
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/2f;
+		newHitObj.transform.position = hitObjSpawn;
 	}
 }
