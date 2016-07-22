@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
-	public float bigDashMult = 2f;
+	private float bigDashMult = 1.8f;
 	private bool preppingSecondDash = false;
 	private bool didSecondDash = false;
 
@@ -366,7 +366,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			// check for dash tap
-			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1, false)){
+			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1)){
 				TriggerDash();
 			}
 
@@ -412,9 +412,10 @@ public class PlayerController : MonoBehaviour {
 		}
 		else{
 			FlashMana();
-			_myAnimator.SetTrigger("Roll");
+			_myAnimator.SetTrigger("Dash");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*bigDashMult*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTime = dashDuration*0.2f;
 			blockButtonUp = true;
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
 		}
 		_isDashing = true;
 
@@ -427,8 +428,8 @@ public class PlayerController : MonoBehaviour {
 
 			// allow for second dash
 			if (BlockInputPressed()){
-				if (blockButtonUp && ((!didSecondDash && dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
-				    (didSecondDash && dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
+				if (blockButtonUp && ((dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
+				    (dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
 						if (!didSecondDash){
