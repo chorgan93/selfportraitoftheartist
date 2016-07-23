@@ -86,8 +86,14 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	private void SetAttackDirection(){
 
-		attackDirection = (myEnemyReference.GetPlayerReference().transform.position - transform.position).normalized;
-		attackDirection.z = 0;
+		if (trackingTime >= 0){
+			attackDirection = (myEnemyReference.GetPlayerReference().transform.position - transform.position).normalized;
+			attackDirection.z = 0;
+			myEnemyReference.SetTargetReference(attackDirection);
+		}else{
+			attackDirection = myEnemyReference.currentTarget;
+			foundTarget = true;
+		}
 
 	}
 

@@ -7,7 +7,8 @@ public class ProjectileS : MonoBehaviour {
 	public static float EXTRA_FORCE_MULT = 2.2f;
 
 	// public float rangeLvl;
-	public float powerLvl;
+	private float powerLvl;
+	private float speedLvl;
 	public GameObject hitObj;
 	public GameObject endObj;
 
@@ -60,7 +61,8 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
-	public float maxSizeMult = 1.1f;
+	private float maxSizeMult = 0.5f;
+	private float maxKnockbackMult = 0.5f;
 
 	private Rigidbody _rigidbody;
 	private SpriteRenderer myRenderer;
@@ -116,6 +118,7 @@ public class ProjectileS : MonoBehaviour {
 		myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
+		powerLvl = playerReference.myStats.strengthAmt;
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
@@ -149,21 +152,24 @@ public class ProjectileS : MonoBehaviour {
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
 
-		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * knockbackMult *Time.deltaTime;
+		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(powerLvl-1f)/(4f)) * knockbackMult *Time.deltaTime;
 
 		if (stopPlayer){
 			myPlayer.myRigidbody.velocity = Vector3.zero;
 		}
 
 		if (doKnockback){
+
+			// attack cooldown formula
+			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 		
-			myPlayer.Knockback(knockbackForce, knockbackTime, true);
+			myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
 		}
 
 		currentRange = range;
 
-		transform.localScale *= 1+(maxSizeMult*(powerLvl-1f)/(4f));
+		transform.localScale += transform.localScale*(maxSizeMult*(powerLvl-1f)/(4f));
 
 		//myRenderer.enabled = false;
 

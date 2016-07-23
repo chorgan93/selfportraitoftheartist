@@ -11,6 +11,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private PlayerController myPlayerController;
 
+	public bool godMode = true;
+
 	//________________________________HEALTH
 	private float _baseHealth = 3;
 	private float _addedHealth = 0; // (upgradeable)
@@ -30,7 +32,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________ATTACK
 	private float _baseStrength = 1;
-	private float _addedStrength = 0; // (upgradeable)
+	private float _addedStrength = 4; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
 
 	
@@ -45,6 +47,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public float maxDefense { get { return (_baseDefense+_addedDefense);}}
 	public float currentDefense { get { return _currentDefense; } }
+
+	//_______________________________SPEED
+	private float _baseSpeed = 1f;
+	private float _addedSpeed = 4f;
+	public float speedAmt { get { return (_baseSpeed+_addedSpeed);}}
 
 
 	//________________________________RECOVERY
@@ -90,6 +97,10 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool ManaCheck(float useAmount, bool reduce = true){
 
+		if (godMode){
+			return true;
+		}
+		else{
 		if (_currentMana > 0){
 			if (reduce){
 			if (_currentMana >= useAmount){
@@ -113,6 +124,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		else{
 			return false;
+		}
 		}
 	}
 
@@ -189,7 +201,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (!PlayerIsDead() && !myPlayerController.isDashing){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
+				if (!godMode){
 				_currentDefense-=dmg;
+				}
 				if (_currentDefense <= 0){
 					_currentDefense = 0;
 					CameraShakeS.C.TimeSleep(NO_MANA_STOP_TIME);
@@ -213,23 +227,10 @@ public class PlayerStatsS : MonoBehaviour {
 				myPlayerController.Stun(knockbackTime);
 				myPlayerController.myAnimator.SetTrigger("Hurt");
 				myPlayerController.FlashDamage();
-
-				/*if (_currentHealth > 1){
-				_currentHealth -= dmg;
-			
-				if (_currentHealth <= 0){
-						_currentHealth = 1;
-						CameraShakeS.C.TimeSleep(NEAR_DEATH_STOP_TIME);
-						myPlayerController.Stun(BIG_KNOCKBACK_TIME);
-						myPlayerController.myRigidbody.AddForce(knockbackForce*_extraKnockbackMult, ForceMode.Impulse);
-					}else{
-						myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
-					}
-
-				}
-				else{*/
 					
+				if(!godMode){
 					_currentHealth -= dmg;
+				}
 					if (_currentHealth <= 0){
 						_currentHealth = 0;
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;

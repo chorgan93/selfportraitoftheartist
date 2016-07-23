@@ -24,7 +24,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public Texture startFlash;
 	private Texture startTexture;
 	private int flashFrames = 3;
-	private int colliderFrames = 3;
+	private int colliderFrames = 6;
 	private int flashMax = 3;
 	private int blackFlashFrames = 4;
 
@@ -202,7 +202,6 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myCollider.enabled = false;
 		_myRenderer.enabled = true;
 		charging = true;
-		Debug.Log("I'm on!!");
 
 	}
 }

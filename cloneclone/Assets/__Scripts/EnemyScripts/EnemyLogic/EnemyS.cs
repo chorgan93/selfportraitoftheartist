@@ -76,6 +76,9 @@ public class EnemyS : MonoBehaviour {
 	private EnemyBehaviorStateS[] _behaviorStates;
 	private EnemyBehaviorStateS _currentState;
 
+	private Vector3 _currentTarget;
+	public Vector3 currentTarget { get { return _currentTarget; } }
+
 	//_____________________________________________GETTERS AND SETTERS
 
 	public Rigidbody myRigidbody { get { return _myRigidbody;} }
@@ -583,6 +586,10 @@ public class EnemyS : MonoBehaviour {
 	public void Deflect(){
 		Vector3 currentVelocity = _myRigidbody.velocity;
 		_myRigidbody.velocity = currentVelocity.magnitude*currentVelocity.normalized*-0.8f;
+	}
+
+	public void SetTargetReference(Vector3 setMe){
+		_currentTarget = setMe;
 	}
 
 }

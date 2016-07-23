@@ -3,28 +3,27 @@ using System.Collections;
 
 public class PlayerShadowS : MonoBehaviour {
 
-	private Vector3 startPos;
-	private Vector3 upPos;
 	private PlayerController myController;
+	private SpriteRenderer myRenderer;
 
 	// Use this for initialization
 	void Start () {
 
+		myRenderer = GetComponent<SpriteRenderer>();
 		myController = GetComponentInParent<PlayerController>();
-		startPos = transform.localPosition;
-		upPos = startPos;
-		upPos.y *= 0.7f;
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (myController.facingDown && !myController.InAttack() && !myController.isBlocking && myController.myAnimator.GetFloat("Speed") > 0.8f){
-			transform.localPosition = upPos;
+		if (myRenderer.enabled){
+			if (myController.myStats.PlayerIsDead() || !myController.myRenderer.enabled){
+				myRenderer.enabled = false;
+			}
 		}else{
-			transform.localPosition = startPos;
+			if (!myController.myStats.PlayerIsDead() && myController.myRenderer.enabled){
+				myRenderer.enabled = true;
+			}
 		}
-	
 	}
 }

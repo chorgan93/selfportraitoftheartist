@@ -51,6 +51,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	private PlayerStatsS playerStats;
 
+	private bool allTurnedOn = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -75,9 +77,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		if (playerStats.godMode){
+			TurnOffAll();
+		}
+		else{
+			TurnOnAll();
 		UpdateMaxSizes();
 		UpdateFills();
+		}
 	
 	}
 
@@ -176,5 +184,27 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		return 0;
 		//return (Screen.width-Screen.height*4f/3f)/2f;
 			
+	}
+
+	private void TurnOnAll(){
+
+		if (!allTurnedOn){
+			healthBar.enabled = true;
+			recoveryBar.enabled = true;
+			staminaBar.enabled = true;
+			background.enabled = true;
+			allTurnedOn = true;
+		}
+
+	}
+
+	private void TurnOffAll(){
+		if (allTurnedOn){
+			healthBar.enabled = false;
+			recoveryBar.enabled = false;
+			staminaBar.enabled = false;
+			background.enabled = false;
+			allTurnedOn = false;
+		}
 	}
 }

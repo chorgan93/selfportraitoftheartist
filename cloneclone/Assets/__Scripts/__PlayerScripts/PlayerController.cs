@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float ATTACK_CHAIN_TIMING = 0.08f;
+	private static float ATTACK_CHAIN_TIMING = 0.12f;
 	private static float CHAIN_DASH_THRESHOLD = 0.2f;
 	
 	//_________________________________________CLASS PROPERTIES
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
+	private float maxSpeedStatAdd = 0.6f;
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragSlideMult;
 	private float dashDurationTime;
 	private float bigDashMult = 1.8f;
+	private float speedDashMult = 0.1f;
 	private bool preppingSecondDash = false;
 	private bool didSecondDash = false;
 
@@ -304,13 +306,19 @@ public class PlayerController : MonoBehaviour {
 				}
 		
 				if (moveVelocity.magnitude < walkThreshold){
-					moveVelocity *= walkSpeed;
+
+					float actingWalkSpeed = walkSpeed + walkSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
+
+					moveVelocity *= actingWalkSpeed;
 					if (_myRigidbody.velocity.magnitude < walkSpeedMax){
 						_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
 					}
 				}
 				else{
-					moveVelocity *= runSpeed;
+					
+					float actingRunSpeed = runSpeed + runSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
+
+					moveVelocity *= actingRunSpeed;
 					if (_myRigidbody.velocity.magnitude < runSpeedMax){
 						_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
 					}
@@ -394,7 +402,9 @@ public class PlayerController : MonoBehaviour {
 			FlashMana();
 		}
 
-
+		if (_myStats.speedAmt >= 5f){
+			myRenderer.enabled = false;
+		}
 
 		inputDirection = Vector3.zero;
 		inputDirection.x = controller.Horizontal();
@@ -405,15 +415,17 @@ public class PlayerController : MonoBehaviour {
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
+		float actingDashSpeed = dashSpeed*bigDashMult + (dashSpeed*bigDashMult)*(_myStats.speedAmt-1f)/4f;
+
 		if (_isDashing){
 			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*bigDashMult*Time.deltaTime, ForceMode.Impulse);
+			_myRigidbody.AddForce(inputDirection.normalized*actingDashSpeed*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.2f;
 		}
 		else{
 			FlashMana();
 			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*bigDashMult*Time.deltaTime, ForceMode.Impulse);
+			_myRigidbody.AddForce(inputDirection.normalized*actingDashSpeed*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.2f;
 			blockButtonUp = true;
 		}
@@ -444,17 +456,22 @@ public class PlayerController : MonoBehaviour {
 				blockButtonUp = true;
 			}
 
+			float actingDashDuration = dashDuration-0.2f*dashDuration*(_myStats.speedAmt-1f)/4f;
 
 			dashDurationTime += Time.deltaTime;
-			if (dashDurationTime >= dashDuration-dashSlideTime && !didSecondDash){
+			if (dashDurationTime >= actingDashDuration-dashSlideTime*(1-(_myStats.speedAmt-1f)/4f) && !didSecondDash){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 
-			if (dashDurationTime >= dashDuration){
+			if (dashDurationTime >= actingDashDuration){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
+
+				if (!myRenderer.enabled){
+					myRenderer.enabled = true;
+				}
 			}
 		}else{
 			preppingSecondDash = false;
@@ -559,8 +576,9 @@ public class PlayerController : MonoBehaviour {
 
 
 				shootButtonUp = false;
-					
-					delayAttackCountdown = delayAttackTime;
+
+					// delay attack formula
+					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
 					attackTriggered = true;
 					_isShooting = true;
 					allowChargeAttack = true;
@@ -663,6 +681,9 @@ public class PlayerController : MonoBehaviour {
 		}else{
 			if (myRenderer.material != startMat){
 				myRenderer.material = startMat;
+				if (myRenderer.enabled && _isDashing && _myStats.speedAmt >= 5f){
+					myRenderer.enabled = false;
+				}
 			}
 		}
 
