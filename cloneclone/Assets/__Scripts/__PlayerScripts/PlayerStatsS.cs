@@ -15,7 +15,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________HEALTH
 	private float _baseHealth = 3;
-	private float _addedHealth = 0; // (upgradeable)
+	private float _addedHealth = 0; // max 5 (for 8 total)
 	private float _currentHealth;
 
 	public float currentHealth { get { return _currentHealth; } }
@@ -23,7 +23,7 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	//________________________________MANA
 	private float _baseMana = 4;
-	private float _addedMana = 0; // (upgradeable)
+	private float _addedMana = 0; // max 8 (for 12 total)
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
 	
@@ -32,7 +32,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________ATTACK
 	private float _baseStrength = 1;
-	private float _addedStrength = 4; // (upgradeable)
+	private float _addedStrength = 2; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
 
 	
@@ -50,14 +50,19 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//_______________________________SPEED
 	private float _baseSpeed = 1f;
-	private float _addedSpeed = 4f;
+	private float _addedSpeed = 2f;
 	public float speedAmt { get { return (_baseSpeed+_addedSpeed);}}
 
 
 	//________________________________RECOVERY
+	private float _baseRecovery = 1f;
+	private float _addedRecovery = 2f;
+	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
+
 	private float _recoveryCooldownBase = 0.3f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
-	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*_recoveryCooldownMultiplier);}}
+	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
+			                                                                        (0.1f*_recoveryCooldownMultiplier*(currentRecovery-1f)/4f)));}}
 	private float _currentCooldownTimer;
 	
 	private float blockRecoverMult = 0.5f;
@@ -68,7 +73,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
 	
 	private float recoverBurdenMin = 0.08f;
-	private float recoverBurdenMax = 0.3f;
+	private float recoverBurdenMax = 0.22f;
 	private float currentRegenCountdown;
 	public float currentRegenCount { get { return currentRegenCountdown; } }
 
@@ -129,7 +134,9 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public float GetRegenTime(){
-		return recoverBurdenMin+_currentManaUsed/(_baseMana+_addedMana)*recoverBurdenMax;
+		float baseBurden = recoverBurdenMin+_currentManaUsed/(_baseMana+_addedMana)*recoverBurdenMax;
+
+		return baseBurden - baseBurden*0.2f*(currentRecovery-1f)/4f;
 	}
 
 	//________________________________________PRIVATE FUNCTIONS
@@ -143,11 +150,14 @@ public class PlayerStatsS : MonoBehaviour {
 				_currentCooldownTimer -= Time.deltaTime;
 			}
 			else{
+
+				float actingRecoverRate = recoverRate + 0.1f*recoverRate*(currentRecovery-1f)/4f;
+
 				if (myPlayerController.isBlocking){
-				currentRegenCountdown -= recoverRate*blockRecoverMult*Time.deltaTime;
+				currentRegenCountdown -= actingRecoverRate*(blockRecoverMult+0.1f*(currentRecovery-1f)/4f)*Time.deltaTime;
 				}
 				else{
-					currentRegenCountdown -= recoverRate*Time.deltaTime;
+					currentRegenCountdown -= actingRecoverRate*Time.deltaTime;
 				}
 				if (currentRegenCountdown <= 0){
 					_currentMana++;

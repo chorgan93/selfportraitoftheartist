@@ -65,6 +65,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			}
 		}
 		else{
+			myEnemyReference.myAnimator.SetTrigger("Idle");
 			EndAction();
 		}
 

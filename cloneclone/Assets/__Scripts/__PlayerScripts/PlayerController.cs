@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
-	private float maxSpeedStatAdd = 0.6f;
+	private float maxSpeedStatAdd = 0.7f;
 
 	[Header("Dash Variables")]
 	public float dashSpeed;

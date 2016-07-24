@@ -24,6 +24,8 @@ public class ChargeAttackS : MonoBehaviour {
 
 	public GameObject hitObj;
 
+	private PlayerController myPlayer;
+
 	[Header("Attack Properties")]
 	public float spawnRange = 1f;
 	public float knockbackForce = 1000f;
@@ -36,6 +38,7 @@ public class ChargeAttackS : MonoBehaviour {
 
 		_myRenderer = GetComponent<Renderer>();
 		_myCollider = GetComponent<Collider>();
+		myPlayer = GetComponentInParent<PlayerController>();
 		animateCountdown = _animateRate;
 
 		startTiling = _myRenderer.material.GetTextureScale("_MainTex");
@@ -154,6 +157,8 @@ public class ChargeAttackS : MonoBehaviour {
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
+
+			float actingDmg = dmg*myPlayer.myStats.strengthAmt;
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
