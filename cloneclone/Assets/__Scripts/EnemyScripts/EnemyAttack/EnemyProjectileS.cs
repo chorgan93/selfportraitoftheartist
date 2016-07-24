@@ -9,6 +9,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private Renderer _myRenderer3D;
 	private EnemyS _myEnemy;
 
+	public GameObject hitObj;
 	public bool flipOnX = false;
 
 	[Header("Attack Properties")]
@@ -23,7 +24,6 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float damage;
 	public float knockbackTime;
 	public float playerKnockbackMult;
-	public bool isPiercing = true;
 	
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
@@ -36,6 +36,8 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	private float fadeThreshold = 0.1f;
 	private Color fadeColor;
+
+	private bool hitPlayer = false;
 
 
 	// Update is called once per frame
@@ -185,21 +187,44 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 		
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && !hitPlayer){
+
+			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
 
 			if (_myEnemy != null){
-			other.gameObject.GetComponent<PlayerStatsS>().
-				TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
+			playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
 			}
 			else{
-				other.gameObject.GetComponent<PlayerStatsS>().
+				playerRef.myStats.
 					TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
 			}
 
-			if (!isPiercing){
-				Destroy(gameObject);
+			if (!playerRef.isDashing && !playerRef.isBlocking){
+				HitEffect(other.transform.position,playerRef.myStats.currentHealth<=1f);
 			}
+
+			hitPlayer = true;
 		}
 		
+	}
+
+	void HitEffect(Vector3 spawnPos, bool bigBlood = false){
+		Vector3 hitObjSpawn = spawnPos;
+		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
+			as GameObject;
+		
+		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
+		if (transform.localScale.y < 0){
+			newHitObj.transform.Rotate(new Vector3(0,0,180f));
+		}
+		
+		if (bigBlood){
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.3f;
+		}else{
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.8f;
+		}
+		
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
+		newHitObj.transform.position = hitObjSpawn;
 	}
 }

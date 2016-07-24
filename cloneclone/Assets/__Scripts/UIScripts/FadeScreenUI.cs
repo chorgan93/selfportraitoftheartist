@@ -47,7 +47,7 @@ public class FadeScreenUI : MonoBehaviour {
 			if (_myColor.a >= 1){
 				_myColor.a = 1;
 				_fadingIn = false;
-				Application.LoadLevel(destinationScene);
+				Application.LoadLevel(Application.loadedLevel);
 			}
 			_myRenderer.color = _myColor;
 		}

@@ -32,7 +32,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________ATTACK
 	private float _baseStrength = 1;
-	private float _addedStrength = 2; // (upgradeable)
+	private float _addedStrength = 0; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
 
 	
@@ -50,13 +50,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//_______________________________SPEED
 	private float _baseSpeed = 1f;
-	private float _addedSpeed = 2f;
+	private float _addedSpeed = 0f;
 	public float speedAmt { get { return (_baseSpeed+_addedSpeed);}}
 
 
 	//________________________________RECOVERY
 	private float _baseRecovery = 1f;
-	private float _addedRecovery = 2f;
+	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
 	private float _recoveryCooldownBase = 0.3f;

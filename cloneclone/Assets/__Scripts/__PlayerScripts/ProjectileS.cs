@@ -27,6 +27,7 @@ public class ProjectileS : MonoBehaviour {
 
 	public float shotSpeed = 1000f;
 	public float maxShotSpeed;
+	private float dashAttackSpeedMult = 1.6f;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
@@ -47,6 +48,7 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Knockback Stats")]
 	public float delayColliderTime = -1f;
+	public float dashDelayAdd = 0.2f;
 	private float delayColliderTimeCountdown;
 	public float colliderTurnOffTime = -1f;
 	private float colliderCutoff;
@@ -119,6 +121,9 @@ public class ProjectileS : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
 		powerLvl = playerReference.myStats.strengthAmt;
+		if (extraTap){
+			powerLvl++;
+		}
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
@@ -135,34 +140,38 @@ public class ProjectileS : MonoBehaviour {
 		colliderTurnedOff = false;
 		
 		FaceDirection((aimDirection).normalized);
-		
-		if (extraTap){
-			shotSpeed *= EXTRA_FORCE_MULT;
-		}
 
-			/*float actingShotSpeed = shotSpeed + (maxShotSpeed-shotSpeed)*((rangeLvl-1f)/4f);
-			if (rangeLvl >= 5){
-				//	actingShotSpeed *= 1.5f;
-			}*/
+
 
 			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
 		
-
+		if (extraTap){
+			shootForce *= dashAttackSpeedMult;
+			Debug.Log("DASH ATTACK!!");
+		}
 
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
 
 		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(powerLvl-1f)/(4f)) * knockbackMult *Time.deltaTime;
 
+		if (extraTap){
+			//knockbackForce *= dashAttackSpeedMult;
+		}
+
 		if (stopPlayer){
+			if (extraTap){
+				myPlayer.myRigidbody.velocity *= 0.6f;
+			}else{
 			myPlayer.myRigidbody.velocity = Vector3.zero;
+			}
 		}
 
 		if (doKnockback){
 
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
-		
+
 			myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
 		}

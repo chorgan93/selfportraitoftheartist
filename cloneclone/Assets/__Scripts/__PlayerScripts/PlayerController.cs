@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour {
 	[Header("Movement Variables")]
 	public float walkSpeed;
 	public float walkSpeedMax;
-	private float walkSpeedBlockMult = 0.5f;
+	private float walkSpeedBlockMult = 0.4f;
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
-	private float maxSpeedStatAdd = 0.7f;
+	private float maxSpeedStatAdd = 0.3f;
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
-	private float bigDashMult = 1.8f;
+	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
 	private bool preppingSecondDash = false;
 	private bool didSecondDash = false;
@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool _shoot4Dir;
 	private bool _shoot8Dir;
+
+	private bool _doingDashAttack = false;
 
 	private Vector2 _inputDirectionLast;
 	private Vector2 _inputDirectionCurrent;
@@ -507,16 +509,26 @@ public class PlayerController : MonoBehaviour {
 		if (delayAttackCountdown <= 0 && attackTriggered){
 			for(int i = 0; i < numberShotsPerAmmo; i++){
 				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*spawnRange, Quaternion.identity);
+				if (_doingDashAttack){
 				if (i == 0){
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0));
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack);
 				}
 				else{
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, (DashInputPressed() || _smashReset > 0), false);
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, false);
+				}
+				}else{
+					if (i == 0){
+						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack);
+					}
+					else{
+						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, false);
+					}
 				}
 
 				// subtract mana cost
 				_myStats.ManaCheck(staminaCost);
 				FlashMana();
+				_doingDashAttack = false;
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!useAltAnim){
@@ -579,6 +591,10 @@ public class PlayerController : MonoBehaviour {
 
 					// delay attack formula
 					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
+					if (_isDashing){
+						delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().dashDelayAdd;
+						_doingDashAttack = true;
+					}
 					attackTriggered = true;
 					_isShooting = true;
 					allowChargeAttack = true;
@@ -698,6 +714,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AttackAnimationTrigger(){
+		if (_isDashing){
+			_myAnimator.SetTrigger("DashAttack");
+			_myAnimator.SetBool("Attacking", true);
+			_myAnimator.SetBool("Chaining", false);
+		}else{
 		if (useAltAnim){
 			_myAnimator.SetTrigger("Attack2");
 		}else{
@@ -710,6 +731,7 @@ public class PlayerController : MonoBehaviour {
 		}else{
 			_myAnimator.SetBool("Attacking", true);
 			_myAnimator.SetBool("Chaining", false);
+		}
 		}
 	}
 
@@ -823,12 +845,12 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private Vector3 ShootDirection(){
+	private Vector3 ShootDirection(bool moveOverride = false){
 
 		Vector3 inputDirection = Vector3.zero;
 
 		// read left analogue input
-		if (Input.GetJoystickNames().Length > 0){
+		if (Input.GetJoystickNames().Length > 0 || moveOverride){
 		inputDirection.x = controller.Horizontal();
 		inputDirection.y = controller.Vertical();
 		}

@@ -214,12 +214,17 @@ public class CameraShakeS : MonoBehaviour {
 
 	public void TimeSleep(float sleepTime, bool doPunch = false){
 
+		if (_isSleeping){
+			_sleepTimeAmount += sleepTime/2f;
+		}
+		else{
+			_sleepTimeAmount += sleepTime;
+		}
 
 			_isSleeping = true;
 				
 			Time.timeScale = 0;
 	
-			_sleepTimeAmount += sleepTime;
 	
 			if (doPunch){
 				GetComponent<CameraFollowS>().PunchIn();

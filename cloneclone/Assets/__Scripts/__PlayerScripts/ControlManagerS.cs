@@ -124,7 +124,8 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}
 		else{
-			return (Input.GetMouseButton(1));
+			return (Input.GetMouseButton(1) || Input.GetKey(KeyCode.Space) ||
+			        Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 		}
 
 	}
