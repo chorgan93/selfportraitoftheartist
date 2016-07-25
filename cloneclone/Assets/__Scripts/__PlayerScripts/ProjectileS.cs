@@ -80,31 +80,24 @@ public class ProjectileS : MonoBehaviour {
 
 		currentRange -= Time.deltaTime;
 
-		/*
+
 		delayColliderTimeCountdown -= Time.deltaTime;
 		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn){
 			myCollider.enabled = true;
 			colliderTurnedOn = true;
-		}**/
+		}
 
 
-		if (colliderTurnOffTime > 0){
+		/*if (colliderTurnOffTime > 0){
 			if (currentRange <= colliderCutoff && !colliderTurnedOff){
 				myCollider.enabled = false;
 				colliderTurnedOff = true;
 			}
-		}
+		}**/
 		
 
 		if (currentRange <= 0){
 
-			/*Vector3 endObjSpawn = transform.position;
-			GameObject newEndObj = Instantiate(endObj, endObjSpawn, transform.rotation)
-				as GameObject;
-			SpriteRenderer endRender = newEndObj.GetComponent<SpriteRenderer>();
-			endRender.sprite = myRenderer.sprite;
-			endRender.color = myRenderer.color;
-			newEndObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x;*/
 
 			Destroy(gameObject);
 
@@ -127,17 +120,21 @@ public class ProjectileS : MonoBehaviour {
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
-		/*if (delayColliderTime > 0){
+		if (delayColliderTime > 0){
 			myCollider.enabled = false;
+			colliderTurnedOn = false;
+			delayColliderTimeCountdown = delayColliderTime;
+		}else{
+			myCollider.enabled = true;
+			colliderTurnedOn = true;
 		}
 
-		delayColliderTimeCountdown = delayColliderTime;
-		if (colliderTurnOffTime > 0){
+
+		/*if (colliderTurnOffTime > 0){
 			colliderCutoff = colliderTurnOffTime;
 		}
 
 		colliderTurnedOn = false;**/
-		colliderTurnedOff = false;
 		
 		FaceDirection((aimDirection).normalized);
 
@@ -147,7 +144,6 @@ public class ProjectileS : MonoBehaviour {
 		
 		if (extraTap){
 			shootForce *= dashAttackSpeedMult;
-			Debug.Log("DASH ATTACK!!");
 		}
 
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
