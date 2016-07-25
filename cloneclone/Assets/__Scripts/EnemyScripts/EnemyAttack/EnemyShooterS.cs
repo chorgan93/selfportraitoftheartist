@@ -11,6 +11,10 @@ public class EnemyShooterS : MonoBehaviour {
 	public GameObject projectileToSpawn;
 	public float spawnTime;
 	private float startSpawnTime;
+	public float trackingTime = -1f;
+	private bool useTracking = false;
+	private bool foundTarget = false;
+	private Vector3 aimDirection;
 
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
@@ -54,11 +58,25 @@ public class EnemyShooterS : MonoBehaviour {
 		timingIndicatorStartSize = timingIndicator.transform.localScale;
 
 		DoShake();
+
+		if (trackingTime >= 0){
+			useTracking = true;
+		}
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (useTracking && !foundTarget){
+			trackingTime -= Time.deltaTime;
+			if (trackingTime <= 0){
+				foundTarget = true;
+				aimDirection = poi.transform.position-transform.position;
+				aimDirection = aimDirection.normalized;
+				aimDirection.z = 1f;
+			}
+		}
 
 		if (flashFrames > 0){
 			if (myRenderer.material.GetTexture("_MainTex") != flashTexture){
@@ -82,13 +100,16 @@ public class EnemyShooterS : MonoBehaviour {
 
 					timingIndicator.enabled = false;
 	
-					Vector3 aimDir = poi.transform.position-transform.position;
-					aimDir = aimDir.normalized;
-					aimDir.z = 1f;
+					if (!foundTarget){
+						aimDirection = poi.transform.position-transform.position;
+						aimDirection = aimDirection.normalized;
+						aimDirection.z = 1f;
+					}
+
 	
 					GameObject newProjectile = Instantiate(projectileToSpawn, transform.position, Quaternion.identity)
 						as GameObject;
-					newProjectile.GetComponent<EnemyProjectileS>().Fire(aimDir,null);
+					newProjectile.GetComponent<EnemyProjectileS>().Fire(aimDirection,null);
 					firedProjectile = true;
 				}else{
 

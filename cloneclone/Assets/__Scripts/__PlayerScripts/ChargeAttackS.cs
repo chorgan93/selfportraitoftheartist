@@ -158,7 +158,7 @@ public class ChargeAttackS : MonoBehaviour {
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
-			float actingDmg = dmg*myPlayer.myStats.strengthAmt;
+			//float actingDmg = dmg*myPlayer.myStats.strengthAmt;
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
