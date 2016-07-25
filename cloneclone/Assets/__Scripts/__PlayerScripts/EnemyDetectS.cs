@@ -11,6 +11,13 @@ public class EnemyDetectS : MonoBehaviour {
 	public EnemyS closestEnemy { get { return _closestEnemy; } }
 
 	private List<EnemyS> enemiesInRange;
+	private Vector3 _enemyCenterpoint;
+	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
+
+	private float lowestX;
+	private float lowestY;
+	private float largestX;
+	private float largestY;
 
 	void Start(){
 
@@ -24,6 +31,7 @@ public class EnemyDetectS : MonoBehaviour {
 	void FixedUpdate(){
 
 		UpdatePosition();
+		UpdateEnemyPosition();
 
 	}
 
@@ -41,6 +49,32 @@ public class EnemyDetectS : MonoBehaviour {
 		updatePos.z = transform.localPosition.z;
 
 		transform.localPosition = updatePos;
+
+	}
+
+	private void UpdateEnemyPosition(){
+
+		_enemyCenterpoint = Vector3.zero;
+
+		if (enemiesInRange.Count > 0){
+			lowestX = lowestY = largestX = largestY = 0f;
+			foreach (EnemyS e in enemiesInRange){
+				if (e.transform.position.x < lowestX || lowestX == 0f){
+					lowestX = e.transform.position.x;
+				}
+				if (e.transform.position.x > largestX || largestX == 0f){
+					largestX = e.transform.position.x;
+				}
+				if (e.transform.position.y < lowestY || lowestY == 0f){
+					lowestY = e.transform.position.y;
+				}
+				if (e.transform.position.y > largestX || largestY == 0f){
+					largestY = e.transform.position.y;
+				}
+			}
+			_enemyCenterpoint.x = (lowestX+largestX)/2f;
+			_enemyCenterpoint.y = (lowestY+largestY)/2f;
+		}
 
 	}
 

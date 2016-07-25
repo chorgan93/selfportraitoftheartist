@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.22f;
+	private static float DASH_THRESHOLD = 0.24f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
@@ -189,6 +189,7 @@ public class PlayerController : MonoBehaviour {
 	void InitializePlayer(){
 
 		_myRigidbody = GetComponent<Rigidbody>();
+		enemyDetect = GetComponentInChildren<EnemyDetectS>();
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMat = myRenderer.material;
@@ -508,7 +509,13 @@ public class PlayerController : MonoBehaviour {
 		delayAttackCountdown -= Time.deltaTime;
 		if (delayAttackCountdown <= 0 && attackTriggered){
 			for(int i = 0; i < numberShotsPerAmmo; i++){
-				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*spawnRange, Quaternion.identity);
+
+				float actingSpawnRange = spawnRange;
+				if (_doingDashAttack){
+					actingSpawnRange*=4f;
+				}
+
+				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*actingSpawnRange, Quaternion.identity);
 				if (_doingDashAttack){
 				if (i == 0){
 					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack);

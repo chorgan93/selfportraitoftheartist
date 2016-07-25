@@ -19,6 +19,14 @@ public class CameraFollowS : MonoBehaviour {
 	private float punchInMult = 0.86f;
 	private float punchInMultDeath = 0.7f;
 	private Camera myCam;
+
+	private float minX;
+	private float maxX;
+	private float minY;
+	private float maxY;
+	private bool useLimits = false;
+
+	public static CameraFollowS F;
 	
 	//_________________________________________________GETTERS AND SETTERS
 	
@@ -27,6 +35,10 @@ public class CameraFollowS : MonoBehaviour {
 	public Vector3	currentPos {get { return _currentPos; }}
 
 	//__________________________________________________UNITY METHODS
+
+	void Awake(){
+		F = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -76,6 +88,24 @@ public class CameraFollowS : MonoBehaviour {
 			if (CameraShakeS.C.isShaking){
 				_currentPos += CameraShakeS.C.shakeOffset;
 			}
+
+		if (useLimits){
+		if (_currentPos.x > maxX){
+			_currentPos.x = maxX;
+		}
+
+		if (_currentPos.x < minX){
+			_currentPos.x = minX;
+		}
+
+		if (_currentPos.y > maxY){
+			_currentPos.y = maxY;
+		}
+		
+		if (_currentPos.y < minY){
+			_currentPos.y = minY;
+		}
+		}
 			
 			transform.position = _currentPos;
 
@@ -121,6 +151,23 @@ public class CameraFollowS : MonoBehaviour {
 			myCam.orthographicSize =  startOrthoSize * punchInMultDeath;
 
 
+
+	}
+
+	public void SetLimits(float mX, float mxX, float mY, float mxY){
+
+		minX = mX;
+		minY = mY;
+		maxX = mxX;
+		maxY = mxY;
+
+		useLimits = true;
+
+	}
+
+	public void RemoveLimits(){
+
+		useLimits = false;
 
 	}
 
