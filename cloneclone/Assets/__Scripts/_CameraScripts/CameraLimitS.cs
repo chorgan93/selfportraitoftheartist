@@ -8,24 +8,22 @@ public class CameraLimitS : MonoBehaviour {
 	public float minY;
 	public float maxY;
 
+	public bool removeLimit = false;
+
 
 	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "Player"){
-			CameraFollowS.F.SetLimits(transform.position.x + minX,
+
+			if (removeLimit){
+				CameraFollowS.F.RemoveLimits();
+
+			}else{
+				CameraFollowS.F.SetLimits(transform.position.x + minX,
 		                          transform.position.x + maxX,
 		                          transform.position.y + minY,
 		                          transform.position.y + maxY);
-
-			Debug.Log(transform.position.x + minX);
-		}
-
-	}
-
-	void OnTriggerExit(Collider other){
-
-		if (other.gameObject.tag == "Player"){
-			CameraFollowS.F.RemoveLimits();
+			}
 		}
 
 	}
