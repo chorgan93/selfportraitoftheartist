@@ -22,7 +22,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	
 	//________________________________MANA
-	private float _baseMana = 4;
+	private float _baseMana = 3;
 	private float _addedMana = 0; // max 8 (for 12 total)
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
@@ -201,10 +201,24 @@ public class PlayerStatsS : MonoBehaviour {
 		myPlayerController = GetComponent<PlayerController>();
 		myPlayerController.SetStatReference(this);
 
+		InitializeStats();
+
 		_currentMana = maxMana;
 		_currentHealth = maxHealth;
 		_currentDefense = maxDefense;
 
+	}
+
+	private void InitializeStats(){
+		if (PlayerInventoryS.I.collectedItems.Count > 0){
+			foreach(int i in PlayerInventoryS.I.collectedItems){
+				// count mana
+				if (i >= 0 && i <= 8){
+					_addedMana++;
+					Debug.Log("Add mana! " + i);
+				}
+			}
+		}
 	}
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
@@ -286,5 +300,10 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 	public void AddRefresh(RefreshDisplayS newBlock){
 		myRefresh = newBlock;
+	}
+
+	//__________________________________STAT UPGRADES
+	public void AddStamina(){
+		_addedMana++;
 	}
 }

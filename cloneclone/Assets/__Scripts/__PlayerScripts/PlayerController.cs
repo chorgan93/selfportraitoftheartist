@@ -130,6 +130,8 @@ public class PlayerController : MonoBehaviour {
 	private MuzzleFlareS muzzleFlare;
 
 	public bool _inCombat = true;
+	private bool _examining = false;
+	private bool _isTalking = false;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -142,6 +144,7 @@ public class PlayerController : MonoBehaviour {
 	public Animator myAnimator		{ get { return _myAnimator; } }
 	public EnemyDetectS myDetect	{ get { return enemyDetect; } }
 	public PlayerStatsS myStats		{ get { return _myStats; } }
+	public ControlManagerS myControl { get { return controller; } }
 	public bool inCombat		{ get { return _inCombat; } }
 
 	public bool facingDown		{ get { return _facingDown; } }
@@ -217,7 +220,7 @@ public class PlayerController : MonoBehaviour {
 		StatusCheck();
 
 		// Control Methods
-		if (!_myStats.PlayerIsDead()){
+		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			if (_inCombat){
 				BlockControl();
@@ -803,7 +806,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned && _myStats.currentDefense > 0 && !_chargeAttackTriggered){
+		    && !_isStunned && _myStats.currentDefense > 0 && !_chargeAttackTriggered && (!_examining || enemyDetect.closestEnemy)){
 			dashAllow = true;
 		}
 
@@ -823,7 +826,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if (!_isShooting && !_chargeAttackTriggered){
+		if (!_isShooting && !_chargeAttackTriggered && (!_examining || enemyDetect.closestEnemy)){
 			return true;
 		}else{
 			return false;
@@ -1059,4 +1062,16 @@ public class PlayerController : MonoBehaviour {
 	public void SetCombat(bool combat){
 		_inCombat = combat;
 	}
+
+	public void SetExamining(bool nEx){
+		_examining = nEx;
+	}
+
+	public void SetTalking(bool nEx){
+		_isTalking = nEx;
+		if (_isTalking){
+			_myRigidbody.velocity = Vector3.zero;
+		}
+	}
+
 }

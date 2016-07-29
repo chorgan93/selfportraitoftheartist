@@ -9,6 +9,7 @@ public class ActivateOnTouchS : MonoBehaviour {
 
 	private bool turnedOn = false;
 
+
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player" && !turnedOn){
 

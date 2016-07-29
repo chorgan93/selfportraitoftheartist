@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CameraFollowS : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class CameraFollowS : MonoBehaviour {
 	//__________________________________________________INSTANCE PROPERTIES
 
 	private GameObject _poi;
+	private GameObject defaultPoi;
 
 	private float startOrthoSize;
 	private float focusMult = 0.95f;
@@ -25,6 +27,11 @@ public class CameraFollowS : MonoBehaviour {
 	private float minY;
 	private float maxY;
 	private bool useLimits = false;
+
+	private List<GameObject> poiQueue;
+	private List<float> poiDelayTimes;
+	private float delayMoveTime;
+	private bool queueOver = true;
 
 	public static CameraFollowS F;
 	
@@ -43,10 +50,13 @@ public class CameraFollowS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		_poi = GameObject.Find("CameraPOI");
+		defaultPoi = _poi = GameObject.Find("CameraPOI");
 
 		myCam = GetComponent<Camera>();
 		startOrthoSize = myCam.orthographicSize;
+
+		poiQueue = new List<GameObject>();
+		poiDelayTimes = new List<float>();
 
 
 			
@@ -68,7 +78,8 @@ public class CameraFollowS : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-
+		
+		SetPOIS();
 		FollowPOI();
 	
 	}
@@ -122,6 +133,28 @@ public class CameraFollowS : MonoBehaviour {
 
 	}
 
+	private void SetPOIS(){
+
+		if (!queueOver){
+			delayMoveTime -= Time.deltaTime;
+
+			if (delayMoveTime <= 0){
+			
+				poiQueue.RemoveAt(0);
+				poiDelayTimes.RemoveAt(0);
+
+				if (poiQueue.Count > 0){
+					SetNewPOI(poiQueue[0]);
+					delayMoveTime = poiDelayTimes[0];
+				}else{
+					ResetPOI();
+				}
+
+			}
+		}
+
+	}
+
 	//__________________________________________________PUBLIC METHODS
 	public void PunchIn(){
 
@@ -169,6 +202,27 @@ public class CameraFollowS : MonoBehaviour {
 
 		useLimits = false;
 
+	}
+
+	public void SetNewPOI(GameObject newPoi){
+		_poi = newPoi;
+	}
+
+	public void ResetPOI(){
+		_poi = defaultPoi;
+		queueOver = true;
+	}
+
+	public void AddToQueue(GameObject newPoi, float poiTime){
+		poiQueue.Add(newPoi);
+		poiDelayTimes.Add(poiTime);
+
+		if (poiQueue.Count == 1){
+			SetNewPOI(poiQueue[0]);
+			delayMoveTime = poiDelayTimes[0];
+		}
+
+		queueOver = false;
 	}
 
 
