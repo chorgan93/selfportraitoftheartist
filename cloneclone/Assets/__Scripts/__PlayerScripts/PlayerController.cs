@@ -152,6 +152,9 @@ public class PlayerController : MonoBehaviour {
 
 	public bool chargingAttack { get { return _chargingAttack;}}
 
+	public bool examining { get { return _examining; } }
+	public bool talking { get { return _isTalking; } }
+
 	
 	//_________________________________________UNITY METHODS
 
@@ -164,6 +167,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		ManageFlash();
+
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			Application.Quit();
+		}
 	}
 
 	void FixedUpdate () {
