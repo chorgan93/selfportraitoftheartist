@@ -813,7 +813,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned && _myStats.currentDefense > 0 && !_chargeAttackTriggered && (!_examining || enemyDetect.closestEnemy)){
+		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){
 			dashAllow = true;
 		}
 
@@ -833,7 +833,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if (!_isShooting && !_chargeAttackTriggered && (!_examining || enemyDetect.closestEnemy)){
+		if ((!_examining || enemyDetect.closestEnemy)){
 			return true;
 		}else{
 			return false;

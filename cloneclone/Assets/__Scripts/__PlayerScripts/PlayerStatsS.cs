@@ -14,7 +14,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public bool godMode = true;
 
 	//________________________________HEALTH
-	private float _baseHealth = 3;
+	private float _baseHealth = 4;
 	private float _addedHealth = 0; // max 5 (for 8 total)
 	private float _currentHealth;
 
@@ -22,7 +22,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	
 	//________________________________MANA
-	private float _baseMana = 3;
+	private float _baseMana = 4;
 	private float _addedMana = 0; // max 8 (for 12 total)
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
