@@ -904,44 +904,85 @@ public class PlayerController : MonoBehaviour {
 
 			float directionZ = FindDirectionOfVector(inputDirection.normalized);
 
-			if (directionZ > 337.5f || directionZ <= 22.5f){
+			if (directionZ > 348.75f || directionZ <= 11.25f){
 				inputDirection.x = 1;
 				inputDirection.y = 0;
 				FaceLeftRight();
 			}
-			else if (directionZ > 22.5f && directionZ <= 67.5f){
+			else if (directionZ > 11.25f && directionZ <= 33.75f){
+				inputDirection.x = 1f;
+				inputDirection.y = 0.5f;
+				FaceLeftRight();
+			}
+			else if (directionZ > 33.75f && directionZ <= 56.25f){
 				inputDirection.x = 1;
 				inputDirection.y = 1;
 				FaceLeftRight();
 			}
-			else if (directionZ > 67.5f && directionZ <= 112.5f){
+			else if (directionZ > 56.25f && directionZ <= 78.75f){
+				inputDirection.x = 0.5f;
+				inputDirection.y = 1;
+				FaceUp();
+			}
+			else if (directionZ > 78.75f && directionZ <= 101.25f) {
 				inputDirection.x = 0;
 				inputDirection.y = 1;
 				FaceUp();
 			}
-			else if (directionZ > 112.5f && directionZ <= 157.5f){
+			else if (directionZ > 101.25f && directionZ <= 123.75f) {
+				inputDirection.x = -0.5f;
+				inputDirection.y = 1;
+				FaceLeftRight();
+			}
+			else if (directionZ > 123.75f && directionZ <= 146.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = 1;
 				FaceLeftRight();
 			}
-			else if (directionZ > 157.5f && directionZ <= 202.5f){
+			else if (directionZ > 146.25f && directionZ <= 168.75f) {
+				inputDirection.x = -1;
+				inputDirection.y = 0.5f;
+				FaceLeftRight();
+			}
+			else if (directionZ > 168.75f && directionZ <= 191.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = 0;
 				FaceLeftRight();
 			}
-			else if (directionZ > 202.5f && directionZ <= 247.5f){
+			else if (directionZ > 191.25f && directionZ <= 213.75f) {
+				inputDirection.x = -1;
+				inputDirection.y = -0.5f;
+				FaceLeftRight();
+			}
+			else if (directionZ > 213.75f && directionZ <= 236.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = -1;
 				FaceLeftRight();
 			}
-			else if (directionZ > 247.5f && directionZ <= 292.5f){
+			else if (directionZ > 236.25f && directionZ <= 258.75f){
+				inputDirection.x = -0.5f;
+				inputDirection.y = -1;
+				FaceDown();
+			}
+			else if (directionZ > 258.75f && directionZ <= 281.25f)  {
 				inputDirection.x = 0;
 				inputDirection.y = -1;
 				FaceDown();
 			}
-			else {
+			else if (directionZ > 281.25f && directionZ <= 303.75f) {
+				inputDirection.x = 0.5f;
+				inputDirection.y = -1;
+				FaceLeftRight();
+			}
+			else if (directionZ > 303.75f && directionZ <= 326.25f) {
 				inputDirection.x = 1;
 				inputDirection.y = -1;
+				FaceLeftRight();
+			}
+			else{
+				Debug.Log("PROBLEM! " + directionZ);
+				inputDirection.x = 1;
+				inputDirection.y = -0.5f;
 				FaceLeftRight();
 			}
 

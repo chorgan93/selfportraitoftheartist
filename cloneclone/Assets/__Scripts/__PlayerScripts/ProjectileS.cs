@@ -27,7 +27,7 @@ public class ProjectileS : MonoBehaviour {
 
 	public float shotSpeed = 1000f;
 	public float maxShotSpeed;
-	private float dashAttackSpeedMult = 1.6f;
+	private float dashAttackSpeedMult = 1.4f;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
@@ -152,12 +152,12 @@ public class ProjectileS : MonoBehaviour {
 		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(powerLvl-1f)/(4f)) * knockbackMult *Time.deltaTime;
 
 		if (extraTap){
-			//knockbackForce *= dashAttackSpeedMult;
+			knockbackForce *= dashAttackSpeedMult;
 		}
 
 		if (stopPlayer){
 			if (extraTap){
-				myPlayer.myRigidbody.velocity *= 0.6f;
+				myPlayer.myRigidbody.velocity *= 0.3f;
 			}else{
 			myPlayer.myRigidbody.velocity = Vector3.zero;
 			}
@@ -294,7 +294,7 @@ public class ProjectileS : MonoBehaviour {
 
 			if (stopOnEnemyContact && myPlayer != null){
 				if (!myPlayer.myStats.PlayerIsDead()){
-					myPlayer.myRigidbody.velocity *= 0.6f;
+					myPlayer.myRigidbody.velocity *= 0.4f;
 				}
 			}
 
