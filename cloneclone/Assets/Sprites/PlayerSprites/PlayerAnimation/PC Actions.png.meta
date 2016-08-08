@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ed3d1a68125f74e7faf181373d7aeabe
-timeCreated: 1468653815
+timeCreated: 1470641379
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -23,6 +23,14 @@ TextureImporter:
     21300032: PC Actions_16
     21300034: PC Actions_17
     21300036: PC Actions_18
+    21300038: PC Actions_19
+    21300040: PC Actions_20
+    21300042: PC Actions_21
+    21300044: PC Actions_22
+    21300046: PC Actions_23
+    21300048: PC Actions_24
+    21300050: PC Actions_25
+    21300052: PC Actions_26
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,7 +81,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -83,7 +91,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -93,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -103,7 +111,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -112,8 +120,8 @@ TextureImporter:
     - name: PC Actions_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -122,8 +130,8 @@ TextureImporter:
     - name: PC Actions_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -132,8 +140,8 @@ TextureImporter:
     - name: PC Actions_6
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -142,8 +150,8 @@ TextureImporter:
     - name: PC Actions_7
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -152,8 +160,8 @@ TextureImporter:
     - name: PC Actions_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -162,8 +170,8 @@ TextureImporter:
     - name: PC Actions_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -172,8 +180,8 @@ TextureImporter:
     - name: PC Actions_10
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 0
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -182,8 +190,8 @@ TextureImporter:
     - name: PC Actions_11
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 64
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -192,6 +200,86 @@ TextureImporter:
     - name: PC Actions_12
       rect:
         serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_18
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_20
+      rect:
+        serializedVersion: 2
         x: 0
         y: 64
         width: 64
@@ -199,7 +287,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_13
+    - name: PC Actions_21
       rect:
         serializedVersion: 2
         x: 64
@@ -209,7 +297,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_14
+    - name: PC Actions_22
       rect:
         serializedVersion: 2
         x: 128
@@ -219,7 +307,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_15
+    - name: PC Actions_23
       rect:
         serializedVersion: 2
         x: 192
@@ -229,7 +317,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_16
+    - name: PC Actions_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Actions_25
       rect:
         serializedVersion: 2
         x: 0
@@ -239,20 +337,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_17
+    - name: PC Actions_26
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Actions_18
-      rect:
-        serializedVersion: 2
-        x: 128
         y: 0
         width: 64
         height: 64

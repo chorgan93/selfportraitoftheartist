@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float ATTACK_CHAIN_TIMING = 0.12f;
+	private static float ATTACK_CHAIN_TIMING = 0.18f;
 	private static float CHAIN_DASH_THRESHOLD = 0.2f;
 	
 	//_________________________________________CLASS PROPERTIES
@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _shoot8Dir;
 
 	private bool _doingDashAttack = false;
+	private bool _doingDelayAttack = false;
 
 	private Vector2 _inputDirectionLast;
 	private Vector2 _inputDirectionCurrent;
@@ -527,18 +528,19 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*actingSpawnRange, Quaternion.identity);
 				if (_doingDashAttack){
+					Debug.Log(attackDuration);
 				if (i == 0){
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack);
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack);
 				}
 				else{
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, false);
+					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack, false);
 				}
 				}else{
 					if (i == 0){
-						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack);
+						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack);
 					}
 					else{
-						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, false);
+						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack, false);
 					}
 				}
 
@@ -546,6 +548,7 @@ public class PlayerController : MonoBehaviour {
 				_myStats.ManaCheck(staminaCost);
 				FlashMana();
 				_doingDashAttack = false;
+				_doingDelayAttack = false;
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!useAltAnim){
@@ -582,10 +585,10 @@ public class PlayerController : MonoBehaviour {
 				for(int i = 0; i < numberShotsPerAmmo; i++){
 					GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+capturedShootDirection*spawnRange, Quaternion.identity);
 					if (i == 0){
-						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false);
+						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false, false);
 					}
 					else{
-						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false, false);
+						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false, false, false);
 					}
 				}
 				muzzleFlare.Fire(rateOfFireMax, capturedShootDirection, equippedProjectile.transform.localScale.x);
@@ -608,9 +611,16 @@ public class PlayerController : MonoBehaviour {
 
 					// delay attack formula
 					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
-					if (_isDashing){
+					if (_isDashing || (attackDuration > -0.08f && attackDuration <= 0.04f)){
+						if (_isDashing){
 						delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().dashDelayAdd;
+						}else{
+							delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().delayDelayAdd;
+						}
 						_doingDashAttack = true;
+						if (!_isDashing){
+							_doingDelayAttack = true;
+						}
 					}
 					attackTriggered = true;
 					_isShooting = true;
@@ -731,10 +741,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AttackAnimationTrigger(){
-		if (_isDashing){
-			_myAnimator.SetTrigger("DashAttack");
+		if (_doingDashAttack){
 			_myAnimator.SetBool("Attacking", true);
 			_myAnimator.SetBool("Chaining", false);
+			if (_isDashing){
+			_myAnimator.SetTrigger("DashAttack");
+			}else{
+				equippedProjectile.GetComponent<ProjectileS>().StartKnockback(this, ShootDirection());
+				_myAnimator.SetTrigger("DelayAttack");
+			}
 		}else{
 		if (useAltAnim){
 			_myAnimator.SetTrigger("Attack2");
@@ -980,7 +995,6 @@ public class PlayerController : MonoBehaviour {
 				FaceLeftRight();
 			}
 			else{
-				Debug.Log("PROBLEM! " + directionZ);
 				inputDirection.x = 1;
 				inputDirection.y = -0.5f;
 				FaceLeftRight();

@@ -28,6 +28,7 @@ public class ProjectileS : MonoBehaviour {
 	public float shotSpeed = 1000f;
 	public float maxShotSpeed;
 	private float dashAttackSpeedMult = 1.4f;
+	private float delayAttackSpeedMult = 1.8f;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
@@ -46,18 +47,25 @@ public class ProjectileS : MonoBehaviour {
 	public int numAttacks = 1;
 	public float numTimeBetweenAttacks = 0.08f;
 
-	[Header("Knockback Stats")]
+	[Header("Collider Properties")]
 	public float delayColliderTime = -1f;
 	public float dashDelayAdd = 0.2f;
+	public float delayDelayAdd = 0.12f;
 	private float delayColliderTimeCountdown;
 	public float colliderTurnOffTime = -1f;
 	private float colliderCutoff;
+	
+	[Header("Knockback Stats")]
 	public bool stopPlayer = false;
 	public bool stopOnEnemyContact = false;
+	public float startKnockbackSpeed = 1200f;
 	public float knockbackSpeed = 1200f;
 	public float knockbackMult = 1.25f;
 	public float enemyKnockbackMult = 1.25f;
 	public float knockbackTime = 0.2f;
+	private float delayAttackKnockbackMult = 1.8f;
+	private float delayAttackEnemyKnockbackMult = 3.2f;
+	private float dashAttackKnockbackMult = 1.4f;
 	private bool colliderTurnedOn = false;
 	private bool colliderTurnedOff = false;
 
@@ -67,12 +75,16 @@ public class ProjectileS : MonoBehaviour {
 	private float maxKnockbackMult = 0.5f;
 
 	private Rigidbody _rigidbody;
-	private SpriteRenderer myRenderer;
+	public SpriteRenderer myRenderer;
+	public SpriteRenderer myRendererBig;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }
 	private Collider myCollider;
 	private PlayerController myPlayer;
 
 	private bool hitAllTargets = false;
+
+	private bool isDashAttack = false;
+	private bool isDelayAttack = false;
 
 
 
@@ -107,20 +119,30 @@ public class ProjectileS : MonoBehaviour {
 	
 	}
 
-	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool extraTap, bool doKnockback = true){
+	public void StartKnockback(PlayerController playerReference, Vector3 aimDirection){
+		if (startKnockbackSpeed > 0){
+			Vector3 startKForce = aimDirection.normalized*startKnockbackSpeed*Time.unscaledDeltaTime;
+			playerReference.myRigidbody.AddForce(startKForce, ForceMode.Impulse);
+		}
+	}
+
+	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool extraTap, bool delayAttack, bool doKnockback = true){
 		
 		_rigidbody = GetComponent<Rigidbody>();
-		myRenderer = GetComponentInChildren<SpriteRenderer>();
+		//myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
 		powerLvl = playerReference.myStats.strengthAmt;
-		if (extraTap){
+		if (extraTap || delayAttack){
 			powerLvl++;
+			myRenderer.enabled = false;
+		}else{
+			myRendererBig.enabled = false;
 		}
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
-		if (delayColliderTime > 0){
+		if (delayColliderTime > 0 && !extraTap && !delayAttack){
 			myCollider.enabled = false;
 			colliderTurnedOn = false;
 			delayColliderTimeCountdown = delayColliderTime;
@@ -141,8 +163,11 @@ public class ProjectileS : MonoBehaviour {
 
 
 			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
-		
-		if (extraTap){
+
+		if (delayAttack){
+			shootForce *= delayAttackSpeedMult;
+		}
+		else if (extraTap){
 			shootForce *= dashAttackSpeedMult;
 		}
 
@@ -153,11 +178,17 @@ public class ProjectileS : MonoBehaviour {
 
 		if (extraTap){
 			knockbackForce *= dashAttackSpeedMult;
+			isDashAttack = true;
+		}
+
+		if (delayAttack){
+			knockbackForce *= delayAttackKnockbackMult;
+			isDelayAttack = true;
 		}
 
 		if (stopPlayer){
 			if (extraTap){
-				myPlayer.myRigidbody.velocity *= 0.3f;
+				myPlayer.myRigidbody.velocity *= 0.6f;
 			}else{
 			myPlayer.myRigidbody.velocity = Vector3.zero;
 			}
@@ -299,8 +330,19 @@ public class ProjectileS : MonoBehaviour {
 			}
 
 
+				float actingKnockbackSpeed = knockbackSpeed;
+
+
+				if (isDelayAttack){
+					actingKnockbackSpeed *= delayAttackEnemyKnockbackMult;
+				}
+
+				else if (isDashAttack){
+					actingKnockbackSpeed *= dashAttackKnockbackMult;
+				}
+
 			hitEnemy.TakeDamage
-				(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
 				 dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
 
 			if (!isPiercing){
