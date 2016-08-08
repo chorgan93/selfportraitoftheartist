@@ -134,6 +134,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _examining = false;
 	private bool _isTalking = false;
 
+	private bool canKick = true;
+
 	
 	//_________________________________________GETTERS AND SETTERS
 	
@@ -522,9 +524,7 @@ public class PlayerController : MonoBehaviour {
 			for(int i = 0; i < numberShotsPerAmmo; i++){
 
 				float actingSpawnRange = spawnRange;
-				if (_doingDashAttack){
-					actingSpawnRange*=4f;
-				}
+			
 
 				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*actingSpawnRange, Quaternion.identity);
 				if (_doingDashAttack){
@@ -611,16 +611,18 @@ public class PlayerController : MonoBehaviour {
 
 					// delay attack formula
 					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
-					if (_isDashing || (attackDuration > -0.08f && attackDuration <= 0.04f)){
+					if (_isDashing || (attackDuration > -0.2f && attackDuration <= 0.04f && canKick)){
 						if (_isDashing){
 						delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().dashDelayAdd;
+							canKick = false;
 						}else{
 							delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().delayDelayAdd;
+							_doingDelayAttack = true;
+							canKick = false;
 						}
 						_doingDashAttack = true;
-						if (!_isDashing){
-							_doingDelayAttack = true;
-						}
+					}else{
+						canKick = true;
 					}
 					attackTriggered = true;
 					_isShooting = true;
@@ -644,7 +646,9 @@ public class PlayerController : MonoBehaviour {
 				}
 			else{if (attackDuration <= 0){
 				_isShooting = false;
-					TurnOffAttackAnimation();
+
+						TurnOffAttackAnimation();
+						
 					}
 
 					if (_chargingAttack && (_chargeAttackTime < _chargeAttackTrigger 

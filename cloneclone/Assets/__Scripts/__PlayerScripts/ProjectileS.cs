@@ -28,7 +28,7 @@ public class ProjectileS : MonoBehaviour {
 	public float shotSpeed = 1000f;
 	public float maxShotSpeed;
 	private float dashAttackSpeedMult = 1.4f;
-	private float delayAttackSpeedMult = 1.8f;
+	private float delayAttackSpeedMult = 1.6f;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
