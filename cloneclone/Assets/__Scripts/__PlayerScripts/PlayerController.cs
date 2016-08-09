@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool _doingDashAttack = false;
 	private bool _doingDelayAttack = false;
+	public bool doingSpecialAttack { get { return _doingDashAttack; } }
 
 	private Vector2 _inputDirectionLast;
 	private Vector2 _inputDirectionCurrent;
@@ -547,8 +548,6 @@ public class PlayerController : MonoBehaviour {
 				// subtract mana cost
 				_myStats.ManaCheck(staminaCost);
 				FlashMana();
-				_doingDashAttack = false;
-				_doingDelayAttack = false;
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!useAltAnim){
@@ -608,6 +607,8 @@ public class PlayerController : MonoBehaviour {
 
 
 				shootButtonUp = false;
+					_doingDashAttack = false;
+					_doingDelayAttack = false;
 
 					// delay attack formula
 					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
@@ -621,8 +622,6 @@ public class PlayerController : MonoBehaviour {
 							canKick = false;
 						}
 						_doingDashAttack = true;
-					}else{
-						canKick = true;
 					}
 					attackTriggered = true;
 					_isShooting = true;
@@ -647,6 +646,12 @@ public class PlayerController : MonoBehaviour {
 			else{if (attackDuration <= 0){
 				_isShooting = false;
 
+						if (_doingDashAttack){
+						_doingDashAttack = false;
+						_doingDelayAttack = false;
+						}else{
+							canKick = true;
+						}
 						TurnOffAttackAnimation();
 						
 					}

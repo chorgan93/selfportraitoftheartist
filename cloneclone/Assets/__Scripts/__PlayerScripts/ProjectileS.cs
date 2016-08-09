@@ -352,14 +352,14 @@ public class ProjectileS : MonoBehaviour {
 			}
 
 
-			HitEffect(other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
+			HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			
 
 		}
 
 	}
 
-	void HitEffect(Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
+	void HitEffect(EnemyS enemyRef, Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
 		Vector3 hitObjSpawn = spawnPos;
 		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
 			as GameObject;
@@ -368,6 +368,8 @@ public class ProjectileS : MonoBehaviour {
 		if (transform.localScale.y < 0){
 			newHitObj.transform.Rotate(new Vector3(0,0,180f));
 		}
+
+		enemyRef.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
 
 		SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
 		hitRender.color = bloodCol;

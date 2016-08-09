@@ -18,6 +18,16 @@ public class BgEffectS : MonoBehaviour {
 	private Renderer myRenderer;
 	private Color fadeCol;
 
+	public float xMoveMult = 0.1f;
+	public float yMoveMult = 0.06f;
+	private Vector2 playerStartPos;
+	private Vector2 playerCurrentPos;
+	private Vector2 startPos;
+	private Vector2 currentPos;
+	private Transform playerRef;
+
+	private float bgZ;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,6 +37,11 @@ public class BgEffectS : MonoBehaviour {
 		fadingOut = true;
 
 		myRenderer = GetComponent<Renderer>();
+
+		playerRef = Camera.main.transform;
+		playerStartPos = new Vector2(playerRef.position.x, playerRef.position.y);
+		startPos = new Vector2(transform.position.x, transform.position.y);
+		bgZ = transform.position.z;
 	
 	}
 	
@@ -92,6 +107,15 @@ public class BgEffectS : MonoBehaviour {
 
 		}
 		}
+
+		// scroll effect
+		playerCurrentPos = new Vector2(playerRef.position.x, playerRef.position.y);
+		currentPos = new Vector2(transform.position.x, transform.position.y);
+
+		float dist = Vector2.Distance(playerCurrentPos, playerStartPos);
+		Vector2 offset = dist*(playerCurrentPos-playerStartPos).normalized;
+		Vector3 newPos = new Vector3(startPos.x + offset.x*xMoveMult, startPos.y + offset.y*yMoveMult, bgZ);
+		transform.position = newPos;
 	
 	}
 }

@@ -262,6 +262,8 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);
 
+					GetComponent<BleedingS>().StartDeath();
+
 					CameraFollowS.F.RemoveLimits();
 					}
 					else{

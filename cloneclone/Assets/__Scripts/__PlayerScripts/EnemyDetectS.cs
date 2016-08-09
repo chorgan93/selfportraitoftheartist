@@ -85,7 +85,7 @@ public class EnemyDetectS : MonoBehaviour {
 			if (enemiesInRange[i] == null){
 				enemiesInRange.RemoveAt(i);
 			}else{
-				if (enemiesInRange[i].isDead){
+				if (enemiesInRange[i].isDead || !enemiesInRange[i].gameObject.activeSelf){
 					enemiesInRange.RemoveAt(i);
 				}
 			}

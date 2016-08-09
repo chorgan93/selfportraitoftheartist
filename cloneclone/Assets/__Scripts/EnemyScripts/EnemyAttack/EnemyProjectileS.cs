@@ -191,6 +191,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
 
+			if (!playerRef.myStats.PlayerIsDead()){
 			if (_myEnemy != null){
 			playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
 			}
@@ -200,15 +201,16 @@ public class EnemyProjectileS : MonoBehaviour {
 			}
 
 			if (!playerRef.isDashing && !playerRef.isBlocking){
-				HitEffect(other.transform.position,playerRef.myStats.currentHealth<=1f);
+				HitEffect(other.gameObject, other.transform.position,playerRef.myStats.currentHealth<=1f);
 			}
 
 			hitPlayer = true;
+			}
 		}
 		
 	}
 
-	void HitEffect(Vector3 spawnPos, bool bigBlood = false){
+	void HitEffect(GameObject p, Vector3 spawnPos, bool bigBlood = false){
 		Vector3 hitObjSpawn = spawnPos;
 		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
 			as GameObject;
@@ -217,6 +219,8 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (transform.localScale.y < 0){
 			newHitObj.transform.Rotate(new Vector3(0,0,180f));
 		}
+		
+		p.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
 		
 		if (bigBlood){
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.3f;

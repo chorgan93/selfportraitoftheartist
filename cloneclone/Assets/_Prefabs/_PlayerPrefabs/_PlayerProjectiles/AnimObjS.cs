@@ -15,6 +15,8 @@ public class AnimObjS : MonoBehaviour {
 	public GameObject fadeObj;
 	private bool endAnim = false;
 
+	private EffectSpawnManagerS spawnManager;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,6 +25,9 @@ public class AnimObjS : MonoBehaviour {
 		mySprite.sprite = animFrames[currentFrame];
 		animRateCountdown = animRate;
 	
+		if (fadeObj){
+		spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -36,9 +41,13 @@ public class AnimObjS : MonoBehaviour {
 
 			if (currentFrame < animFrames.Length-1){
 				if (fadeObj){
-					GameObject fadeObjSpawn = Instantiate(fadeObj, transform.position, transform.rotation)
-						as GameObject;
+					Vector3 spawnpos = transform.position;
+					spawnpos.z += 2f;
+					GameObject fadeObjSpawn = spawnManager.SpawnPlayerFade(spawnpos);
 					fadeObjSpawn.GetComponent<SpriteRenderer>().sprite = animFrames[currentFrame];
+					fadeObjSpawn.transform.parent = transform;
+					fadeObjSpawn.transform.localScale = Vector3.one;
+					fadeObjSpawn.transform.localRotation = Quaternion.identity;
 				}
 			}
 

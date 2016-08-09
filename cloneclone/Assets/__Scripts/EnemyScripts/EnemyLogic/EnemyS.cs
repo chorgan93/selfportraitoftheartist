@@ -565,7 +565,7 @@ public class EnemyS : MonoBehaviour {
 
 			ResetMaterial();
 
-
+			GetComponent<BleedingS>().StartDeath();
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep(true);

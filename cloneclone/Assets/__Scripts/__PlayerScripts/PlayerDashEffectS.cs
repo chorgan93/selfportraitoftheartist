@@ -3,42 +3,57 @@ using System.Collections;
 
 public class PlayerDashEffectS : MonoBehaviour {
 
-	public GameObject dashShadow;
 	private PlayerController myController;
 
-	public float spawnRate = 0.08f;
-	private float spawnCountdown = 0f;
+	public float spawnDistance = 2f;
+	private float distanceTraveled;
+	private Vector2 prevDashPos;
+	private Vector2 currentDashPos;
 
-	private float endFadeTime = 0.04f;
-	private float endFadeCountdown;
+	public int maxShadows = 4;
+	private int currentShadow = 0;
+
+	private bool newDash = true;
+	private float dist = 0f;
+
+	private EffectSpawnManagerS spawnManager;
+
 
 	// Use this for initialization
 	void Start () {
 		myController = GetComponentInParent<PlayerController>();
+		spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (myController.myStats.speedAmt >= 3f){
 
-			if (myController.isDashing && endFadeCountdown <= 0){
-				endFadeCountdown = endFadeTime+myController.dashDuration;
-			}
-
-			if (endFadeCountdown > 0){
-				spawnCountdown -= Time.deltaTime;
-				if (endFadeCountdown > (myController.dashDuration+endFadeTime)*0.6f){
-					spawnCountdown -= Time.deltaTime*2f;
-				}
-				if (spawnCountdown <= 0f){
-					spawnCountdown = spawnRate;
-					SpawnShadow();
-				}
-				endFadeCountdown -= Time.deltaTime;
+		if (!myController.myStats.PlayerIsDead() && !myController.isBlocking && (myController.isDashing || myController.doingSpecialAttack)){
+			//if (currentShadow < maxShadows || !myController.isDashing){
+			currentDashPos.x = myController.transform.position.x;
+			currentDashPos.y = myController.transform.position.y;
+			if (newDash){
+				SpawnShadow();
+				prevDashPos = currentDashPos;
+				newDash = false;
 			}else{
-				spawnCountdown = spawnRate;
+				dist = Vector2.Distance(prevDashPos, currentDashPos);
+				distanceTraveled += dist;
+				if (myController.doingSpecialAttack){
+					distanceTraveled += dist*2f;
+				}
+				if (distanceTraveled >= spawnDistance){
+					SpawnShadow();
+					prevDashPos = currentDashPos;
+				}
+
 			}
+			//}
+		}else{
+			distanceTraveled = 0;
+			currentShadow = 0;
+			newDash = true;
 		}
 	
 	}
@@ -48,14 +63,16 @@ public class PlayerDashEffectS : MonoBehaviour {
 		Vector3 spawnPos = myController.transform.position;
 		spawnPos.z += 1f;
 
-		GameObject newSpawn = Instantiate(dashShadow, spawnPos, Quaternion.identity)
-			as GameObject;
+		GameObject newSpawn = spawnManager.SpawnPlayerFade(spawnPos);
 
 		SpriteRenderer newSprite = newSpawn.GetComponent<SpriteRenderer>();
 		newSprite.sprite = myController.myRenderer.sprite;
-		newSprite.material = myController.myRenderer.material;
 
-		dashShadow.transform.localScale = myController.transform.localScale.x * myController.myRenderer.transform.localScale;
+		newSpawn.transform.localScale = myController.transform.localScale.x * myController.myRenderer.transform.localScale;
+
+
+		distanceTraveled = 0f;
+		currentShadow++;
 
 	}
 }
