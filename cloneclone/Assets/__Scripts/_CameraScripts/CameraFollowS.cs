@@ -33,6 +33,8 @@ public class CameraFollowS : MonoBehaviour {
 	private float delayMoveTime;
 	private bool queueOver = true;
 
+	private PlayerController playerRef;
+
 	public static CameraFollowS F;
 	
 	//_________________________________________________GETTERS AND SETTERS
@@ -58,6 +60,7 @@ public class CameraFollowS : MonoBehaviour {
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
 
+		playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
 			
 			Vector3 camPos = poi.transform.position+_camPosOffset;
@@ -206,11 +209,13 @@ public class CameraFollowS : MonoBehaviour {
 
 	public void SetNewPOI(GameObject newPoi){
 		_poi = newPoi;
+		playerRef.SetTalking(true);
 	}
 
 	public void ResetPOI(){
 		_poi = defaultPoi;
 		queueOver = true;
+		playerRef.SetTalking(false);
 	}
 
 	public void AddToQueue(GameObject newPoi, float poiTime){

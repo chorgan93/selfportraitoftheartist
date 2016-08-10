@@ -27,7 +27,12 @@ public class BloodS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Initialize();
+		if (!StartRaycast()){
+			Destroy(gameObject);
+		}
+		else{
+			Initialize();
+		}
 	
 	}
 	
@@ -88,5 +93,27 @@ public class BloodS : MonoBehaviour {
 
 	public void AddWaitTime (float f){
 		waitToAppearTime += f;
+	}
+
+	private bool StartRaycast(){
+
+		bool amIAboveGround = false;
+
+		RaycastHit hit;
+
+		Physics.Raycast(transform.position, new Vector3(0,0,1f), out hit, 30f);
+
+		if (hit.collider != null){
+			if (hit.collider.gameObject.tag == "Background"){
+				amIAboveGround = false;
+			}else{
+				amIAboveGround = true;
+			}
+		}else{
+			amIAboveGround = false;
+		}
+
+		return amIAboveGround;
+
 	}
 }

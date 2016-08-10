@@ -14,6 +14,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	[Header("Attack Properties")]
 	public float range;
+	public float turnOffColliderTime = 0.1f;
 	public float shotSpeed;
 	public float selfKnockbackMult;
 	public float attackSpawnDistance;
@@ -39,6 +40,8 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	private bool hitPlayer = false;
 
+	private Collider myCollider;
+
 
 	// Update is called once per frame
 	void Update(){
@@ -63,6 +66,12 @@ public class EnemyProjectileS : MonoBehaviour {
 	void FixedUpdate () {
 		
 		range -= Time.deltaTime;
+		if (myCollider.enabled){
+			if (range <= turnOffColliderTime){
+				myCollider.enabled = false;
+			}
+		}
+
 		if (range < fadeThreshold){
 			if (_myRenderer){
 			fadeColor = _myRenderer.color;
@@ -85,6 +94,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
+			myCollider = GetComponent<Collider>();
 		if (_myRenderer == null){
 			_myRenderer3D = GetComponentInChildren<Renderer>();
 			if (flashFrames > 0){

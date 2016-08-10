@@ -54,7 +54,7 @@ public class BleedingS : MonoBehaviour {
 				deathSpawnPos.z = bloodZPos;
 
 				if (deathBloodPrefabAlt){
-					if (deathBleedCountdown < deathBleedTime*0.7f){
+					if (deathBleedCountdown < deathBleedTime*0.6f){
 						Instantiate(deathBloodPrefabAlt, deathSpawnPos, Quaternion.identity);
 					}else{
 						Instantiate(deathBloodPrefab, deathSpawnPos, Quaternion.identity);

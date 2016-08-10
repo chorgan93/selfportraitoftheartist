@@ -365,7 +365,7 @@ public class EnemyS : MonoBehaviour {
 			if (!dontChange){
 	
 			foreach (EnemyBehaviorStateS bState in _behaviorStates){
-				if (bState.isActive() && !behaviorSet){
+				if (bState.isActive() && !behaviorSet && !bState.doNotActAgain){
 					stateToChangeTo = bState;
 					behaviorSet = true;
 				}

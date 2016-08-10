@@ -529,7 +529,6 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*actingSpawnRange, Quaternion.identity);
 				if (_doingDashAttack){
-					Debug.Log(attackDuration);
 				if (i == 0){
 					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack);
 				}

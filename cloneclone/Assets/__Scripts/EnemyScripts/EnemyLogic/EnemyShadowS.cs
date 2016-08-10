@@ -8,6 +8,8 @@ public class EnemyShadowS : MonoBehaviour {
 	private Color myColor;
 	private float fadeRate = 2.4f;
 
+	public bool matchAlpha = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -27,6 +29,10 @@ public class EnemyShadowS : MonoBehaviour {
 					myRender.enabled = false;
 				}else{
 					myRender.color = myColor;
+				}
+			}else{
+				if (matchAlpha){
+					myRender.color = enemyRef.myRenderer.color;
 				}
 			}
 		}

@@ -13,6 +13,10 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	public float minHealthPercentage = -1f; // -1 = not health dependent, otherwise 1-100 (inclusive)
 
+	public bool onlyActOnce = false;
+	private bool _doNotActAgain = false;
+	public bool doNotActAgain { get { return _doNotActAgain; } }
+
 	public bool overrideImmediate = false; // if TRUE, begins immediately once conditions are met
 
 	public bool stateIgnoresHitstun = false; // if TRUE, cannot be interrupted by hitstun
@@ -63,9 +67,17 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 		currentActingBehavior++;
 		if (currentActingBehavior > behaviorSet.Length-1){
-			currentActingBehavior = 0;
+			if (onlyActOnce){
+				_doNotActAgain = true;
+				myEnemy.CheckBehaviorStateSwitch(false);
+			}else{
+				currentActingBehavior = 0;
+			}
 		}
-		behaviorSet[currentActingBehavior].StartAction();
+
+		if (!_doNotActAgain){
+			behaviorSet[currentActingBehavior].StartAction();
+		}
 
 	}
 
