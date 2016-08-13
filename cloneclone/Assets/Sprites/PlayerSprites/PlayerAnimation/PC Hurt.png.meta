@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 26c27d489e64448ff94480b28174fc4f
-timeCreated: 1468379914
+timeCreated: 1470883896
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -32,6 +32,11 @@ TextureImporter:
     21300050: PC Hurt_8
     21300052: PC Hurt_9
     21300054: PC Hurt_10
+    21300056: PC Hurt_11
+    21300058: PC Hurt_12
+    21300060: PC Hurt_13
+    21300062: PC Hurt_14
+    21300064: PC Hurt_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -111,8 +116,8 @@ TextureImporter:
     - name: PC Hurt_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -121,7 +126,7 @@ TextureImporter:
     - name: PC Hurt_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -131,7 +136,7 @@ TextureImporter:
     - name: PC Hurt_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -141,8 +146,8 @@ TextureImporter:
     - name: PC Hurt_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -151,8 +156,8 @@ TextureImporter:
     - name: PC Hurt_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -161,7 +166,7 @@ TextureImporter:
     - name: PC Hurt_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -171,8 +176,8 @@ TextureImporter:
     - name: PC Hurt_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -181,7 +186,57 @@ TextureImporter:
     - name: PC Hurt_10
       rect:
         serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Hurt_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Hurt_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Hurt_13
+      rect:
+        serializedVersion: 2
         x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Hurt_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Hurt_15
+      rect:
+        serializedVersion: 2
+        x: 192
         y: 0
         width: 64
         height: 64

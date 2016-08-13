@@ -11,10 +11,18 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float ATTACK_CHAIN_TIMING = 0.18f;
 	private static float CHAIN_DASH_THRESHOLD = 0.2f;
+
+	private static float SMASH_THRESHOLD = 0.75f;
 	
 	//_________________________________________CLASS PROPERTIES
 
 	private PlayerStatsS _myStats;
+
+	private static bool _doWakeUp = true;
+	private bool wakingUp = false;
+	public bool isWaking  { get { return  wakingUp; } }
+	private float wakeUpTime = 3f;
+	private float wakeUpCountdown;
 
 	[Header("Movement Variables")]
 	public float walkSpeed;
@@ -222,6 +230,10 @@ public class PlayerController : MonoBehaviour {
 
 		_inputDirectionLast = new Vector2(0,0);
 		_inputDirectionCurrent = new Vector2(0,0);
+
+		if (_doWakeUp){
+			TriggerWakeUp();
+		}
 
 	}
 
@@ -690,7 +702,7 @@ public class PlayerController : MonoBehaviour {
 
 		
 		_smashReset -= Time.deltaTime;
-		if (DashInputPressed() && _stickReset){
+		if (SmashInputPressed() && _stickReset){
 			_smashReset = SMASH_TIME_ALLOW;
 		}
 
@@ -706,6 +718,18 @@ public class PlayerController : MonoBehaviour {
 
 
 	private void StatusCheck(){
+
+		if (_myStats.PlayerIsDead()){
+			_doWakeUp = true;
+		}
+
+		if (wakingUp){
+			wakeUpCountdown -= Time.deltaTime;
+			if (wakeUpCountdown <= 0){
+				wakingUp = false;
+				_isTalking = false;
+			}
+		}
 
 		if (_isStunned){
 			stunTime -= Time.deltaTime;
@@ -746,6 +770,14 @@ public class PlayerController : MonoBehaviour {
 
 	private void RunAnimationCheck(float inputMagnitude){
 		_myAnimator.SetFloat("Speed", inputMagnitude);
+	}
+
+	private void TriggerWakeUp(){
+		_isTalking = true;
+		wakingUp = true;
+		wakeUpCountdown = wakeUpTime;
+		_myAnimator.SetTrigger("Wake");
+		_doWakeUp = false;
 	}
 
 	private void AttackAnimationTrigger(){
@@ -1026,14 +1058,14 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private bool DashInputPressed(){
+	private bool SmashInputPressed(){
 
 		if (controller.ControllerAttached()){
-		if ((ShootDirectionUnlocked().magnitude > DASH_THRESHOLD && _stickReset 
+		if ((ShootDirectionUnlocked().magnitude > SMASH_THRESHOLD && _stickReset 
 		     && Mathf.Abs(_inputDirectionCurrent.magnitude-_inputDirectionLast.magnitude) > SMASH_MIN_SPEED)){
 
 			if (_smashReset <= 0){
-				//_smashReset = SMASH_TIME_ALLOW;
+				_smashReset = SMASH_TIME_ALLOW;
 			}
 
 			return true;

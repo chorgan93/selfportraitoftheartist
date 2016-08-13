@@ -17,11 +17,11 @@ public class PlayerShadowS : MonoBehaviour {
 	void Update () {
 
 		if (myRenderer.enabled){
-			if (myController.myStats.PlayerIsDead() || !myController.myRenderer.enabled){
+			if (myController.myStats.PlayerIsDead() || !myController.myRenderer.enabled || myController.isWaking){
 				myRenderer.enabled = false;
 			}
 		}else{
-			if (!myController.myStats.PlayerIsDead() && myController.myRenderer.enabled){
+			if (!myController.myStats.PlayerIsDead() && myController.myRenderer.enabled && !myController.isWaking){
 				myRenderer.enabled = true;
 			}
 		}

@@ -44,6 +44,11 @@ public class BGMLayerS : MonoBehaviour {
 	}
 
 	public void FadeIn(bool instant = false){
+
+		if (!mySource.isPlaying){
+			mySource.Play();
+		}
+
 		if (!instant){
 			fadingIn = true;
 			fadingOut = false;

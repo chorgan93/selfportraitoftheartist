@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ActivateOnEnemyDefeatS : MonoBehaviour {
 
 	public List<GameObject> turnOnObjects;
+	public List<GameObject> turnOffObjects;
 	public List<BarrierS> turnOffBarriers;
 
 	public List<EnemyS> checkEnemies;
@@ -39,6 +40,10 @@ public class ActivateOnEnemyDefeatS : MonoBehaviour {
 
 		foreach (GameObject eh in turnOnObjects){
 			eh.SetActive(true);
+		}
+
+		foreach (GameObject ne in turnOffObjects){
+			ne.SetActive(false);
 		}
 
 			turnedOn = true;
