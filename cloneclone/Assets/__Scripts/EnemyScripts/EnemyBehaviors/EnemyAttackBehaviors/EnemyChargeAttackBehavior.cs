@@ -56,7 +56,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	}
 
-	public override void StartAction ()
+	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction ();
 

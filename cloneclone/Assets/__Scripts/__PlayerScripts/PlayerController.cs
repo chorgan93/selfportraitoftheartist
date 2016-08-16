@@ -97,6 +97,10 @@ public class PlayerController : MonoBehaviour {
 	private bool _chargeAttackTriggered = false;
 	private bool allowChargeAttack = true;
 
+	// Buddy Properties
+	private BuddyS _myBuddy;
+	public BuddyS myBuddy;
+
 	// Animation Properties
 	private bool _facingDown = true;
 	private bool _facingUp = true;
@@ -281,6 +285,10 @@ public class PlayerController : MonoBehaviour {
 		timeBetweenAttacks = newProjectileStats.numTimeBetweenAttacks;
 		delayAttackTime = newProjectileStats.delayShotTime;
 
+	}
+
+	public void EquipBuddy(BuddyS newBud){
+		_myBuddy = newBud;
 	}
 
 	public void Stun(float sTime){

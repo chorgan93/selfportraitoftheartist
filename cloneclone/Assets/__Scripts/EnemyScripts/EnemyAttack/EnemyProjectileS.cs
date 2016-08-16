@@ -22,6 +22,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public bool stopEnemy = false;
 
 	[Header("Player Interaction")]
+	public bool isPiercing = true;
 	public float damage;
 	public float knockbackTime;
 	public float playerKnockbackMult;
@@ -214,6 +215,10 @@ public class EnemyProjectileS : MonoBehaviour {
 				HitEffect(other.gameObject, other.transform.position,playerRef.myStats.currentHealth<=1f);
 			}
 
+				if (!isPiercing){
+					range = fadeThreshold;
+					_rigidbody.velocity = Vector3.zero;
+				}
 			hitPlayer = true;
 			}
 		}

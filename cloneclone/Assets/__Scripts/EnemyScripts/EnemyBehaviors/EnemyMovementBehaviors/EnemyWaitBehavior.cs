@@ -46,7 +46,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 
 	}
 
-	public override void StartAction ()
+	public override void StartAction (bool useAnimTrigger = true)
 	{
 		base.StartAction ();
 

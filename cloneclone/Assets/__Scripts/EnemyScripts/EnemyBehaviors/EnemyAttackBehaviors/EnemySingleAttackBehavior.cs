@@ -55,6 +55,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			attackTimeCountdown = attackDuration;
 			SetAttackDirection();
 			
+			myEnemyReference.myAnimator.SetTrigger(animationKey);
+			
 	
 			if (attackDragAmt > 0){
 				myEnemyReference.myRigidbody.drag = attackDragAmt;
@@ -98,9 +100,9 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	}
 
-	public override void StartAction ()
+	public override void StartAction (bool setAnimTrigger = true)
 	{
-		base.StartAction ();
+		base.StartAction (false);
 
 		InitializeAction();
 	}

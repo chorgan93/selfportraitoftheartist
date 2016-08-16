@@ -91,7 +91,7 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 
 	}
 	
-	public override void StartAction ()
+	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction ();
 		

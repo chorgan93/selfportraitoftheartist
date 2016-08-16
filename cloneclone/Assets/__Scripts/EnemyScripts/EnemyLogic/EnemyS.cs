@@ -8,7 +8,7 @@ public class EnemyS : MonoBehaviour {
 	private const int FLASH_FRAME_COUNT = 3;
 
 	private const float Z_POS_BEHIND_PLAYER = 2f;
-	private const float ENEMY_DEATH_Z = 2f;
+	private const float ENEMY_DEATH_Z = 3f;
 	private const float Z_POS_FRONT_PLAYER = -1f;
 
 	private const float VULN_EFFECT_RATE = 0.083f;

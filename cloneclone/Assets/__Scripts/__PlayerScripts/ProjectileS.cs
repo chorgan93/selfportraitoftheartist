@@ -351,6 +351,8 @@ public class ProjectileS : MonoBehaviour {
 
 			}
 
+			myPlayer.myStats.RecoverCharge(10f);
+
 
 			HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			

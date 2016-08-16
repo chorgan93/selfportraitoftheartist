@@ -30,6 +30,13 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
 
+	//________________________________CHARGE
+	private float _maxCharge = 100f;
+	private float _currentCharge = 0f;
+	
+	public float maxCharge { get { return _maxCharge;}}
+	public float currentCharge { get { return _currentCharge;}}
+
 	//________________________________ATTACK
 	private float _baseStrength = 1;
 	private float _addedStrength = 0; // (upgradeable)
@@ -139,6 +146,27 @@ public class PlayerStatsS : MonoBehaviour {
 		return baseBurden - baseBurden*0.2f*(currentRecovery-1f)/4f;
 	}
 
+	public bool ChargeCheck(float reqCharge, bool useCharge = true){
+
+		bool canUse =  (_currentCharge >= reqCharge);
+
+		if (useCharge && canUse){
+			_currentCharge -= reqCharge;
+		}
+
+		if (_currentCharge < 0f){
+			_currentCharge = 0f;
+		}
+		return canUse;
+	}
+
+	public void RecoverCharge(float addCharge){
+		_currentCharge += addCharge;
+		if (_currentCharge > _maxCharge){
+			_currentCharge = maxCharge;
+		}
+	}
+
 	//________________________________________PRIVATE FUNCTIONS
 
 	private void ManaRecovery(){
@@ -206,6 +234,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentMana = maxMana;
 		_currentHealth = maxHealth;
 		_currentDefense = maxDefense;
+		_currentCharge = _maxCharge;
 
 	}
 
@@ -254,6 +283,7 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					_currentHealth -= dmg;
+					ChargeCheck(10f);
 				}
 					if (_currentHealth <= 0){
 						_currentHealth = 0;

@@ -8,6 +8,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Color healthEmptyColor;
 	public Color staminaFullColor;
 	public Color staminaEmptyColor;
+	public Color chargeFullColor;
+	public Color chargeEmptyColor;
 
 	private float referenceScreenWidth = 1920f;
 	private float referenceScreenHeight = 1080f;
@@ -30,7 +32,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Vector2 recoveryBarCurrentSize;
 	public Image recoveryBar;
 
-	private Vector2 backgroundMaxSize = new Vector2(520,110);
+	private Vector2 chargeBarMaxSize = new Vector2(500,20);
+	private Vector2 chargeStartPos;
+	private float chargeStartYMult;
+	private Vector2 chargeBarCurrentSize;
+	public Image chargeBar;
+
+
+	private Vector2 backgroundMaxSize = new Vector2(520,130);
 	private Vector2 backgroundCurrentSize;
 	private Image background; 
 
@@ -43,6 +52,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image healthFill;
 	public Image staminaFill;
 	public Image recoveryFill;
+	public Image chargeFill;
 
 	public Text healthText;
 	public Text staminaText;
@@ -64,6 +74,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		staminaStartYMult = staminaStartPos.y/backgroundMaxSize.y;
 		recoveryStartPos = recoveryBar.rectTransform.anchoredPosition;
 		recoveryStartYMult = recoveryStartPos.y/backgroundMaxSize.y;
+		chargeStartPos = chargeBar.rectTransform.anchoredPosition;
+		chargeStartYMult = chargeStartPos.y/backgroundMaxSize.y;
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 
@@ -131,6 +143,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		reposition.y = backgroundCurrentSize.y*staminaStartYMult;
 		staminaBar.rectTransform.anchoredPosition = reposition;
 
+		// charge stuff
+		chargeBarCurrentSize = chargeBarMaxSize*ScreenMultiplier();
+		chargeBar.rectTransform.sizeDelta=chargeBarCurrentSize;
+
+		reposition = chargeBar.rectTransform.anchoredPosition;
+		reposition.x = chargeStartPos.x*ScreenMultiplier();
+		reposition.y = backgroundCurrentSize.y*chargeStartYMult;
+		chargeBar.rectTransform.anchoredPosition = reposition;
+
 	}
 
 	private void UpdateFills(){
@@ -146,6 +167,12 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
+
+		// charge fill
+		fillSize = chargeBar.rectTransform.sizeDelta;
+		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+		chargeFill.rectTransform.sizeDelta = fillSize;
+		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 
 		// recharge fill
 		fillSize = recoveryBar.rectTransform.sizeDelta;

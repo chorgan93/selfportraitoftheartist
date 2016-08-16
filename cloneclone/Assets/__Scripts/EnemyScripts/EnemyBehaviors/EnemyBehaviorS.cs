@@ -24,14 +24,14 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public float vulnerableDelay = 0f;
 
 
-	public virtual void StartAction(){
+	public virtual void StartAction(bool setAnimTrigger = true){
 
 		_behaviorActing = true;
 		myEnemy.SetActing(true);
 		myEnemy.SetBehavior(this);
 		myEnemy.SetStunStatus(allowStun);
 		myEnemy.SetFaceStatus(facePlayer);
-		if (animationKey != ""){
+		if (animationKey != "" && setAnimTrigger){
 		myEnemy.myAnimator.SetTrigger(animationKey);
 		}
 
