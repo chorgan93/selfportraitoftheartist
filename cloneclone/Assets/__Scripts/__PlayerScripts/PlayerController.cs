@@ -70,8 +70,10 @@ public class PlayerController : MonoBehaviour {
 	public SpriteRenderer myRenderer;
 	public Material damageFlashMat;
 	public Material manaFlashMat;
+	public Material healFlashMat;
 	private Material startMat;
 	private Animator _myAnimator;
+	private int flashHealFrames;
 	private int flashManaFrames;
 	private int flashDamageFrames;
 
@@ -305,6 +307,11 @@ public class PlayerController : MonoBehaviour {
 	public void FlashDamage(){
 		flashDamageFrames = 5;
 		myRenderer.material = damageFlashMat;
+	}
+
+	public void FlashHeal(){
+		flashHealFrames = 8;
+		myRenderer.material = healFlashMat;
 	}
 
 	public void FlashMana(){
@@ -756,6 +763,11 @@ public class PlayerController : MonoBehaviour {
 				myRenderer.material = damageFlashMat;
 			}
 		}
+		else if (flashHealFrames > 0){
+			if (myRenderer.material != healFlashMat){
+				myRenderer.material = healFlashMat;
+			}
+		}
 		else if (flashManaFrames > 0){
 			if (myRenderer.material != manaFlashMat){
 				myRenderer.material = manaFlashMat;
@@ -773,6 +785,7 @@ public class PlayerController : MonoBehaviour {
 		
 		flashDamageFrames--;
 		flashManaFrames--;
+		flashHealFrames--;
 
 	}
 

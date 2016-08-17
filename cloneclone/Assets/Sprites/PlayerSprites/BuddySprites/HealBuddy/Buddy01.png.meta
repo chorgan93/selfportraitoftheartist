@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2c691087b91ca42dc9d55a6aba9630dc
-timeCreated: 1471312561
+timeCreated: 1471412337
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -48,6 +48,23 @@ TextureImporter:
     21300082: Buddy00_14
     21300084: Buddy00_15
     21300086: Buddy00_16
+    21300088: Buddy01_0
+    21300090: Buddy01_1
+    21300092: Buddy01_2
+    21300094: Buddy01_3
+    21300096: Buddy01_4
+    21300098: Buddy01_5
+    21300100: Buddy01_6
+    21300102: Buddy01_7
+    21300104: Buddy01_8
+    21300106: Buddy01_9
+    21300108: Buddy01_10
+    21300110: Buddy01_11
+    21300112: Buddy01_12
+    21300114: Buddy01_13
+    21300116: Buddy01_14
+    21300118: Buddy01_15
+    21300120: Buddy01_16
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -94,7 +111,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Buddy00_0
+    - name: Buddy01_0
       rect:
         serializedVersion: 2
         x: 0
@@ -104,7 +121,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_1
+    - name: Buddy01_1
       rect:
         serializedVersion: 2
         x: 64
@@ -114,7 +131,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_2
+    - name: Buddy01_2
       rect:
         serializedVersion: 2
         x: 128
@@ -124,7 +141,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_3
+    - name: Buddy01_3
       rect:
         serializedVersion: 2
         x: 192
@@ -134,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_4
+    - name: Buddy01_4
       rect:
         serializedVersion: 2
         x: 0
@@ -144,7 +161,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_5
+    - name: Buddy01_5
       rect:
         serializedVersion: 2
         x: 64
@@ -154,7 +171,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_6
+    - name: Buddy01_6
       rect:
         serializedVersion: 2
         x: 128
@@ -164,7 +181,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_7
+    - name: Buddy01_7
       rect:
         serializedVersion: 2
         x: 192
@@ -174,7 +191,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_8
+    - name: Buddy01_8
       rect:
         serializedVersion: 2
         x: 0
@@ -184,7 +201,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_9
+    - name: Buddy01_9
       rect:
         serializedVersion: 2
         x: 64
@@ -194,7 +211,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_10
+    - name: Buddy01_10
       rect:
         serializedVersion: 2
         x: 128
@@ -204,7 +221,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_11
+    - name: Buddy01_11
       rect:
         serializedVersion: 2
         x: 192
@@ -214,7 +231,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_12
+    - name: Buddy01_12
       rect:
         serializedVersion: 2
         x: 0
@@ -224,7 +241,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_13
+    - name: Buddy01_13
       rect:
         serializedVersion: 2
         x: 64
@@ -234,7 +251,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_14
+    - name: Buddy01_14
       rect:
         serializedVersion: 2
         x: 128
@@ -244,7 +261,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_15
+    - name: Buddy01_15
       rect:
         serializedVersion: 2
         x: 192
@@ -254,7 +271,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Buddy00_16
+    - name: Buddy01_16
       rect:
         serializedVersion: 2
         x: 0

@@ -16,8 +16,6 @@ public class ShootBuddyS : BuddyS {
 
 	private bool chargeButtonUp = true;
 
-	public BuddyChargeIndicatorS chargeLevelOneIndicator;
-	public BuddyChargeIndicatorS chargeLevelTwoIndicator;
 
 	public string chargeAnimatorTrigger;
 	public string fireAnimatorTrigger;

@@ -250,6 +250,14 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
+	public void Heal(float healAmt){
+		_currentHealth += healAmt;
+		if (_currentHealth > maxHealth){
+			_currentHealth = maxHealth;
+		}
+		myPlayerController.FlashHeal();
+	}
+
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
 		if (!PlayerIsDead() && !myPlayerController.isDashing){

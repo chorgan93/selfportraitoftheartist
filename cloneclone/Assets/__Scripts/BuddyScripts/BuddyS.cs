@@ -8,8 +8,8 @@ public class BuddyS : MonoBehaviour {
 	private PlayerController _playerRef;
 	public PlayerController playerRef { get { return _playerRef; } }
 
-	private Transform _buddyPos;
-	public Transform buddyPos { get { return _buddyPos; } }
+	public Transform _buddyPos;
+	public Transform _buddyPosLower;
 
 	public float followSpeed;
 	public float nearPlayerMult = 0.5f;
@@ -19,7 +19,7 @@ public class BuddyS : MonoBehaviour {
 	private PlayerDetectS _myDetect;
 	public PlayerDetectS myDetect { get { return _myDetect; } }
 
-	private SpriteRenderer shadowRenderer;
+	public SpriteRenderer shadowRenderer;
 	public Color shadowColor;
 
 	private float startScale;
@@ -34,7 +34,6 @@ public class BuddyS : MonoBehaviour {
 	public virtual void Initialize(){
 
 		_playerRef = GetComponentInParent<PlayerController>();
-		_buddyPos = GameObject.Find("BuddyPos").transform;
 
 		_myRigid = GetComponent<Rigidbody>();
 		_myDetect = GetComponentInChildren<PlayerDetectS>();
@@ -45,14 +44,19 @@ public class BuddyS : MonoBehaviour {
 
 		startScale = transform.localScale.x;
 
-		shadowRenderer = GetComponentInChildren<SpriteRenderer>();
 		shadowRenderer.color = shadowColor;
 
 	}
 
 	public virtual void FollowPlayer(){
 
-		Vector3 moveForce = (_buddyPos.position-transform.position).normalized*followSpeed*Time.deltaTime;
+		Vector3 moveForce = Vector3.zero;
+		if (_playerRef.myRigidbody.velocity.y <= -0.1f){
+			moveForce = (_buddyPos.position-transform.position).normalized*followSpeed*Time.deltaTime;
+		}
+		else{
+			moveForce = (_buddyPosLower.position-transform.position).normalized*followSpeed*Time.deltaTime;
+		}
 
 		if (_myDetect.PlayerInRange()){
 			moveForce*=nearPlayerMult;
