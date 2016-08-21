@@ -551,8 +551,7 @@ public class PlayerController : MonoBehaviour {
 
 			
 						currentAttackS.GetComponent<ProjectileS>().Fire(ShootDirection(),
-				                                                  ShootDirectionUnlocked(), this, 
-				                                                  false, false);
+				                                                  ShootDirectionUnlocked(), this);
 
 
 				// subtract mana cost

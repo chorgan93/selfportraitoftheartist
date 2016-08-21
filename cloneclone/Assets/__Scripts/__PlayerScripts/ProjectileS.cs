@@ -128,7 +128,7 @@ public class ProjectileS : MonoBehaviour {
 		}
 	}
 
-	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool extraTap, bool _delayAttack, bool doKnockback = true){
+	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true){
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
