@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float ATTACK_CHAIN_TIMING = 0.18f;
 	private static float CHAIN_DASH_THRESHOLD = 0.2f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
@@ -54,7 +53,6 @@ public class PlayerController : MonoBehaviour {
 	private bool _shoot8Dir;
 
 	private bool _doingDashAttack = false;
-	private bool _doingDelayAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
 
 	private Vector2 _inputDirectionLast;
@@ -111,25 +109,15 @@ public class PlayerController : MonoBehaviour {
 	private float blockPrepCountdown = 0;
 	private float timeInBlock;
 	private float blockPrepMax = 0.18f;
-
-	// Weapon Properites
-	private GameObject equippedProjectile;
-	[Header("Equipment Properties")]
-	public GameObject mainProjectile;
-	private bool isAutomatic;
-	private float rateOfFireMax;
-	private float rateOfFire;
-	private float reloadTimeMax;
-	private float currentReloadMaxTime;
-	private float reloadTime;
-	private int numberShotsPerAmmo;
-	private bool attackDashInterrupt;
-	private float spawnRange;
-	private float staminaCost;
-	private float delayAttackTime;
-	private float delayAttackCountdown;
-	private float attackDuration = 0;
-	private bool useAltAnim = false;
+		
+	// Attack Properties
+	public GameObject[] attackChain;
+	public GameObject dashAttack;
+	private ProjectileS currentAttackS;
+	private int currentChain = 0;
+	private float comboDuration = 0f;
+	private float attackDelay;
+	private float attackDuration;
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
@@ -148,8 +136,6 @@ public class PlayerController : MonoBehaviour {
 	public bool _inCombat = true;
 	private bool _examining = false;
 	private bool _isTalking = false;
-
-	private bool canKick = true;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -224,7 +210,8 @@ public class PlayerController : MonoBehaviour {
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
-		SetWeapon();
+		currentChain = 0;
+		comboDuration = 0f;
 
 		_chargeCollider = GetComponentInChildren<ChargeAttackS>();
 
@@ -241,6 +228,8 @@ public class PlayerController : MonoBehaviour {
 			TriggerWakeUp();
 		}
 
+		currentAttackS = attackChain[0].GetComponent<ProjectileS>();
+
 	}
 
 	void PlayerFixedUpdate(){
@@ -254,7 +243,7 @@ public class PlayerController : MonoBehaviour {
 			if (_inCombat){
 				BlockControl();
 				DashControl();
-				ShootControl();
+				AttackControl();
 			}
 
 			MovementControl();
@@ -266,27 +255,6 @@ public class PlayerController : MonoBehaviour {
 
 	void PlayerUpdate(){
 		ManageFlash();
-	}
-
-	private void SetWeapon(){
-
-		// for initializing projectile without changing main/alt
-		equippedProjectile = mainProjectile;
-		ProjectileS newProjectileStats = equippedProjectile.GetComponent<ProjectileS>();
-
-		isAutomatic = newProjectileStats.isAutomatic;
-		rateOfFireMax = newProjectileStats.rateOfFire;
-		reloadTimeMax = newProjectileStats.reloadTime;
-		numberShotsPerAmmo = newProjectileStats.numShots;
-		attackDashInterrupt = newProjectileStats.canInterruptDash;
-		_shoot4Dir = newProjectileStats.lock4Directional;
-		_shoot8Dir = newProjectileStats.lock8Directional;
-		spawnRange = newProjectileStats.spawnRange;
-		staminaCost = newProjectileStats.staminaCost;
-		numAttacksPerShot = newProjectileStats.numAttacks;
-		timeBetweenAttacks = newProjectileStats.numTimeBetweenAttacks;
-		delayAttackTime = newProjectileStats.delayShotTime;
-
 	}
 
 	public void EquipBuddy(BuddyS newBud){
@@ -524,7 +492,14 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void ShootControl(){
+	private void AttackControl(){
+
+		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
+			comboDuration -= Time.deltaTime;
+			if (comboDuration <= 0 && currentChain != 0){
+				currentChain = 0;
+			}
+		}
 
 		if (_chargingAttack && (ShootInputPressed() || _chargeAttackTriggered)){
 			_chargeAttackTime+= Time.deltaTime;
@@ -547,108 +522,84 @@ public class PlayerController : MonoBehaviour {
 			allowChargeAttack = true;
 		}
 
-		delayAttackCountdown -= Time.deltaTime;
-		if (delayAttackCountdown <= 0 && attackTriggered){
-			for(int i = 0; i < numberShotsPerAmmo; i++){
+		attackDelay -= Time.deltaTime;
+		if (attackDelay <= 0 && attackTriggered){
 
-				float actingSpawnRange = spawnRange;
+			GameObject newProjectile;
+
+			if (_doingDashAttack){
+				
+				newProjectile = (GameObject)Instantiate(dashAttack, 
+				                                        transform.position, 
+				                                        Quaternion.identity);
+			}else{
+				
+				newProjectile = (GameObject)Instantiate(attackChain[currentChain], 
+				                                        transform.position, 
+				                                        Quaternion.identity);
+				currentChain++;
+				if (currentChain > attackChain.Length-1){
+					currentChain = 0;
+				}
+			}
+
+			comboDuration = currentAttackS.comboDuration;
+
+			currentAttackS = newProjectile.GetComponent<ProjectileS>();
+
+			newProjectile.transform.position += capturedShootDirection.normalized*currentAttackS.spawnRange;
+
 			
+						currentAttackS.GetComponent<ProjectileS>().Fire(ShootDirection(),
+				                                                  ShootDirectionUnlocked(), this, 
+				                                                  false, false);
 
-				GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+ShootDirection()*actingSpawnRange, Quaternion.identity);
-				if (_doingDashAttack){
-				if (i == 0){
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack);
-				}
-				else{
-					newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(true), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack, false);
-				}
-				}else{
-					if (i == 0){
-						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack);
-					}
-					else{
-						newProjectile.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirectionUnlocked(), this, _doingDashAttack, _doingDelayAttack, false);
-					}
-				}
 
 				// subtract mana cost
-				_myStats.ManaCheck(staminaCost);
+				_myStats.ManaCheck(1f);
 				FlashMana();
 
 				if (myRenderer.transform.localScale.x > 0){
-					if (!useAltAnim){
+					if (!currentAttackS.useAltAnim){
 						Vector3 flip = newProjectile.transform.localScale;
 						flip.y *= -1f;
 						newProjectile.transform.localScale = flip;
 					}
 				}else{
-					if (useAltAnim){
+					if (currentAttackS.useAltAnim){
 						Vector3 flip = newProjectile.transform.localScale;
 						flip.y *= -1f;
 						newProjectile.transform.localScale = flip;
 					}
 				}
-			}
-			muzzleFlare.Fire(rateOfFireMax, ShootDirection(), equippedProjectile.transform.localScale.x);
-			rateOfFire = rateOfFireMax;
-			
-			if (_lastInClip){
-				_lastInClip = false;
-			}
-			
-			if (numAttacksPerShot > 1){
-				capturedShootDirection = ShootDirection();
-				attacksRemaining = numAttacksPerShot-1;
-				timeBetweenAttacksCountdown = timeBetweenAttacks;
-			}
-			attackTriggered = false;
-		}
-		else if (attacksRemaining > 0){
-			// for multi attacks
-			timeBetweenAttacksCountdown -= Time.deltaTime;
-			if (timeBetweenAttacksCountdown <= 0){
-				for(int i = 0; i < numberShotsPerAmmo; i++){
-					GameObject newProjectile = (GameObject)Instantiate(equippedProjectile, transform.position+capturedShootDirection*spawnRange, Quaternion.identity);
-					if (i == 0){
-						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false, false);
-					}
-					else{
-						newProjectile.GetComponent<ProjectileS>().Fire(capturedShootDirection, ShootDirectionUnlocked(), this, false, false, false);
-					}
-				}
-				muzzleFlare.Fire(rateOfFireMax, capturedShootDirection, equippedProjectile.transform.localScale.x);
-				rateOfFire = rateOfFireMax;
-				attacksRemaining--;
-				if (attacksRemaining > 0){
-					timeBetweenAttacksCountdown = timeBetweenAttacks;
-				}
-			}
 
+			muzzleFlare.Fire(currentAttackS.rateOfFire, ShootDirection(), newProjectile.transform.localScale.x);
+
+			attackTriggered = false;
 		}
 		else{
 			attackDuration -= Time.deltaTime;
-		// once roF is less than 0, allow shooting
+
 		if (CanInputShoot()){
-				if (ShootInputPressed() && StaminaCheck(staminaCost, false) && shootButtonUp){
+				if (ShootInputPressed() && StaminaCheck(1f, false) && shootButtonUp){
 
 
 				shootButtonUp = false;
 					_doingDashAttack = false;
-					_doingDelayAttack = false;
 
-					// delay attack formula
-					delayAttackCountdown = delayAttackTime - delayAttackTime*0.08f*(_myStats.speedAmt-1f)/4f;
-					if (_isDashing || (attackDuration > -0.2f && attackDuration <= 0.04f && canKick)){
-						if (_isDashing){
-						delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().dashDelayAdd;
-							canKick = false;
-						}else{
-							delayAttackCountdown += equippedProjectile.GetComponent<ProjectileS>().delayDelayAdd;
-							_doingDelayAttack = true;
-							canKick = false;
-						}
+
+
+					if (_isDashing){
+
+						currentAttackS = dashAttack.GetComponent<ProjectileS>();
+
 						_doingDashAttack = true;
+
+					}else{
+						currentAttackS = attackChain[currentChain].GetComponent<ProjectileS>();
 					}
+					
+					attackDelay = currentAttackS.delayShotTime;
 					attackTriggered = true;
 					_isShooting = true;
 					allowChargeAttack = true;
@@ -674,9 +625,6 @@ public class PlayerController : MonoBehaviour {
 
 						if (_doingDashAttack){
 						_doingDashAttack = false;
-						_doingDelayAttack = false;
-						}else{
-							canKick = true;
 						}
 						TurnOffAttackAnimation();
 						
@@ -804,27 +752,17 @@ public class PlayerController : MonoBehaviour {
 	private void AttackAnimationTrigger(){
 		if (_doingDashAttack){
 			_myAnimator.SetBool("Attacking", true);
-			_myAnimator.SetBool("Chaining", false);
-			if (_isDashing){
+			//_myAnimator.SetBool("Chaining", false);
 			_myAnimator.SetTrigger("DashAttack");
-			}else{
-				equippedProjectile.GetComponent<ProjectileS>().StartKnockback(this, ShootDirection());
-				_myAnimator.SetTrigger("DelayAttack");
-			}
+			
 		}else{
-		if (useAltAnim){
-			_myAnimator.SetTrigger("Attack2");
-		}else{
-			_myAnimator.SetTrigger("Attack1");
-		}
-		useAltAnim = !useAltAnim;
-		if (_myAnimator.GetBool("Attacking")){
-			_myAnimator.SetBool("Chaining", true);
-			delayAttackCountdown = 0f;
-		}else{
+		
+
+
+			_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 			_myAnimator.SetBool("Attacking", true);
-			_myAnimator.SetBool("Chaining", false);
-		}
+			//_myAnimator.SetBool("Chaining", false);
+		
 		}
 	}
 
@@ -898,8 +836,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if ((!_isDashing || (_isDashing && attackDashInterrupt)) && !doingBlockTrigger && !_isBlocking && !attackTriggered && !_isStunned
-		    && attackDuration <= ATTACK_CHAIN_TIMING && !_chargingAttack){
+		if (!doingBlockTrigger && !_isBlocking && !attackTriggered && !_isStunned
+		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack){
 			return true;
 		}
 		else{

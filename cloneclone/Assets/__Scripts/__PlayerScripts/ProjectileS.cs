@@ -11,11 +11,14 @@ public class ProjectileS : MonoBehaviour {
 	private float speedLvl;
 	public GameObject hitObj;
 	public GameObject endObj;
+	public bool useAltAnim = false;
 
 	[Header("Shot Effects")]
 	public bool isAutomatic = true;
 	public bool isPiercing = false;
 	public bool canInterruptDash = false;
+	public float comboDuration = 0.5f;
+	public float chainAllow = 0.18f;
 
 	[Header("Control Type")]
 	public bool lock4Directional = false;
@@ -39,13 +42,12 @@ public class ProjectileS : MonoBehaviour {
 	public float accuracyMult = 0.1f;
 
 	[Header("Weapon Stats")]
+	public bool dashAttack = false;
+	public bool delayAttack = false;
 	public float dmg = 1;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float reloadTime = 1f;
-	public int numShots = 1;
-	public int numAttacks = 1;
-	public float numTimeBetweenAttacks = 0.08f;
 
 	[Header("Collider Properties")]
 	public float delayColliderTime = -1f;
@@ -70,13 +72,13 @@ public class ProjectileS : MonoBehaviour {
 	private bool colliderTurnedOff = false;
 
 	[Header("Effect Properties")]
+	public string attackAnimationTrigger;
 	public int shakeAmt = 0;
 	private float maxSizeMult = 0.5f;
 	private float maxKnockbackMult = 0.5f;
 
 	private Rigidbody _rigidbody;
 	public SpriteRenderer myRenderer;
-	public SpriteRenderer myRendererBig;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }
 	private Collider myCollider;
 	private PlayerController myPlayer;
@@ -126,23 +128,18 @@ public class ProjectileS : MonoBehaviour {
 		}
 	}
 
-	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool extraTap, bool delayAttack, bool doKnockback = true){
+	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool extraTap, bool _delayAttack, bool doKnockback = true){
 		
 		_rigidbody = GetComponent<Rigidbody>();
-		//myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
-		powerLvl = playerReference.myStats.strengthAmt;
-		if (extraTap || delayAttack){
-			powerLvl++;
-			myRenderer.enabled = false;
-		}else{
-			myRendererBig.enabled = false;
-		}
+		powerLvl = dmg;
+
+
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
-		if (delayColliderTime > 0 && !extraTap && !delayAttack){
+		if (delayColliderTime > 0 && !dashAttack && !delayAttack){
 			myCollider.enabled = false;
 			colliderTurnedOn = false;
 			delayColliderTimeCountdown = delayColliderTime;
@@ -164,30 +161,15 @@ public class ProjectileS : MonoBehaviour {
 
 			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
 
-		if (delayAttack){
-			shootForce *= delayAttackSpeedMult;
-		}
-		else if (extraTap){
-			shootForce *= dashAttackSpeedMult;
-		}
 
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
 
 		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(powerLvl-1f)/(4f)) * knockbackMult *Time.deltaTime;
 
-		if (extraTap){
-			knockbackForce *= dashAttackSpeedMult;
-			isDashAttack = true;
-		}
-
-		if (delayAttack){
-			knockbackForce *= delayAttackKnockbackMult;
-			isDelayAttack = true;
-		}
 
 		if (stopPlayer){
-			if (extraTap){
+			if (dashAttack){
 				myPlayer.myRigidbody.velocity *= 0.6f;
 			}else{
 			myPlayer.myRigidbody.velocity = Vector3.zero;
@@ -207,7 +189,6 @@ public class ProjectileS : MonoBehaviour {
 
 		transform.localScale += transform.localScale*(maxSizeMult*(powerLvl-1f)/(4f));
 
-		//myRenderer.enabled = false;
 
 
 	}

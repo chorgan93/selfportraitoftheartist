@@ -30,7 +30,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 
 		if (!myController.myStats.PlayerIsDead() && !myController.isBlocking && 
-		    (myController.isDashing || myController.doingSpecialAttack || myController.chargingAttack)){
+		    myController.isDashing){
 			//if (currentShadow < maxShadows || !myController.isDashing){
 			currentDashPos.x = myController.transform.position.x;
 			currentDashPos.y = myController.transform.position.y;
@@ -41,9 +41,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 			}else{
 				dist = Vector2.Distance(prevDashPos, currentDashPos);
 				distanceTraveled += dist;
-				if (myController.doingSpecialAttack || myController.chargingAttack){
-					distanceTraveled += dist*2f;
-				}
+
 				if (distanceTraveled >= spawnDistance){
 					SpawnShadow();
 					prevDashPos = currentDashPos;
