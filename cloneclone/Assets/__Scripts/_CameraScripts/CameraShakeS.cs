@@ -204,6 +204,12 @@ public class CameraShakeS : MonoBehaviour {
 		
 	}
 
+	public void SpecialAttackShake(){
+		
+		StartShake (_largeShakeIntensity*0.75f, _largeShakeDuration*0.5f, 3);
+		
+	}
+
 	public void LargeShakeCustomDuration(float newDuration){
 		
 		StartShake (_largeShakeIntensity, newDuration, 3);

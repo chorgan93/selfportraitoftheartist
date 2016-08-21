@@ -291,6 +291,10 @@ public class ProjectileS : MonoBehaviour {
 		case(2):
 			CameraShakeS.C.LargeShake();
 			break;
+
+		case(3):
+			CameraShakeS.C.SpecialAttackShake();
+			break;
 		case(-1):
 			break;
 
