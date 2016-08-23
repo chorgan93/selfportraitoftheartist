@@ -18,10 +18,10 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public bool allowStun = false;
 	public bool facePlayer = false;
 	public bool dontAllowStateChange = false;
-
-	[Header("Vulnerable Properties")]
-	public float vulnerableDuration = -1f;
-	public float vulnerableDelay = 0f;
+	
+	[Header ("Break Properties")]
+	public float breakAmt = 9999f;
+	public float breakRecoverTime = 1f;
 
 
 	public virtual void StartAction(bool setAnimTrigger = true){
@@ -30,14 +30,13 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetActing(true);
 		myEnemy.SetBehavior(this);
 		myEnemy.SetStunStatus(allowStun);
+		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
 		if (animationKey != "" && setAnimTrigger){
 		myEnemy.myAnimator.SetTrigger(animationKey);
 		}
 
-		if (vulnerableDuration > 0){
-			myEnemy.SetVulnerableTiming(vulnerableDuration, vulnerableDelay);
-		}
+
 
 	}
 

@@ -12,13 +12,15 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	public GameObject[] enemyPool;
 
-	private RoomClearCheck parentClear;
+	//private RoomClearCheck parentClear;
+	private InfinitySpawnS parentClear;
 	private bool sentClearMessage = false;
 
 	// Use this for initialization
 	void Start () {
 
-		parentClear = GetComponentInParent<RoomClearCheck>();
+		//parentClear = GetComponentInParent<RoomClearCheck>();
+		parentClear = GetComponentInParent<InfinitySpawnS>();
 
 		if (enemySpawnDelay <= 0){
 			SpawnEnemy();

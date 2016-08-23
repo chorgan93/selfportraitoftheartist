@@ -20,7 +20,7 @@ public class EnemyS : MonoBehaviour {
 	public float maxHealth;
 	public Color bloodColor = Color.red;
 	public float knockbackTime;
-	public float criticalRecoverTime = 0.5f;
+	private float criticalRecoverTime = 0.5f;
 	private float _currentHealth;
 	private bool _isDead;
 	public Material flashMaterial;
@@ -68,6 +68,10 @@ public class EnemyS : MonoBehaviour {
 	private bool behaviorSet;
 	private PlayerDetectS activationDetect;
 
+	private float _breakAmt = 0f;
+	private float _breakThreshold = 9999f;
+	private bool _behaviorBroken = false;
+
 	private bool _isActing; // currently doing an action
 	private EnemyBehaviorS _currentBehavior; // action that is currently acting
 	private EnemyBehaviorStateS stateToChangeTo;
@@ -98,6 +102,8 @@ public class EnemyS : MonoBehaviour {
 
 	public float flashAmt { get { return _flashAmt; } }
 	public Color flashCol { get { return _flashCol; } }
+
+	public bool behaviorBroken { get { return _behaviorBroken; } }
 
 	//_____________________________________UNITY METHODS
 	// Use this for initialization
@@ -151,6 +157,13 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetActing(bool newActingState){
 		_isActing = newActingState;
+	}
+
+	public void SetBreakState(float newBreakAmt, float newRecover){
+		_breakThreshold = newBreakAmt;
+		_breakAmt = 0f;
+		_behaviorBroken = false;
+		criticalRecoverTime = newRecover;
 	}
 
 	//______________________________________ACTION HOLDERS
@@ -504,7 +517,7 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	public void Stun(float sTime, bool overrideStun = false){
-		if ((_canBeStunned||overrideStun) && sTime > 0){
+		if ((_canBeStunned||overrideStun||_behaviorBroken) && sTime > 0){
 			_hitStunned = true;
 			currentKnockbackCooldown = sTime;
 			_myAnimator.SetTrigger("Hit");
@@ -518,6 +531,12 @@ public class EnemyS : MonoBehaviour {
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float critDmg, float sTime = 0f){
 
 		_currentHealth -= dmg;
+		_breakAmt += dmg;
+
+		if (_breakAmt >= _breakThreshold){
+			_behaviorBroken = true;
+		}
+
 		if (_isCritical){
 			_currentHealth -= critDmg;
 		}
@@ -536,9 +555,9 @@ public class EnemyS : MonoBehaviour {
 				Stun(knockbackTime);
 			}
 
-			if (_isVulnerable){
+			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
-					_myAnimator.SetBool("Crit", true);
+					_myAnimator.SetBool("Hit", true);
 					CameraShakeS.C.TimeSleep(0.08f, true);
 					_isCritical = true;
 				}

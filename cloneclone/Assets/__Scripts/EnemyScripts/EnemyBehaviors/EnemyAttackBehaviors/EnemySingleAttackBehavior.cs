@@ -17,6 +17,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public float attackDragAmt = -1;
 	public bool setVelocityToZeroOnStart = false;
 
+
 	private Vector3 attackDirection;
 
 	private float attackTimeCountdown;
@@ -25,6 +26,11 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 
 		if (BehaviorActing()){
+			
+			
+			if (attackTimeCountdown <= 0 || myEnemyReference.behaviorBroken){
+				EndAction();
+			}
 
 			attackTimeCountdown -= Time.deltaTime;
 			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)){
@@ -38,10 +44,6 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
 				projectileRef.Fire(attackDirection, myEnemyReference);
 				launchedAttack = true;
-			}
-
-			if (attackTimeCountdown <= 0){
-				EndAction();
 			}
 		}
 	

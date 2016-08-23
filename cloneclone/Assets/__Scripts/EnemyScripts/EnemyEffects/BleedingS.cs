@@ -101,6 +101,10 @@ public class BleedingS : MonoBehaviour {
 			newBlood = Instantiate(bloodPrefab, spawnPos, Quaternion.identity) as GameObject;
 			newBlood.GetComponent<BloodS>().AddWaitTime(addBloodTime*(currentSpawn*1f-1f));
 
+			if (transform.parent){
+				newBlood.transform.parent = transform.parent;
+			}
+
 			currentSpawn++;
 		}
 	}

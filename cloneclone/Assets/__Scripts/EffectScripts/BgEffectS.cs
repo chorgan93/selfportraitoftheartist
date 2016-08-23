@@ -118,4 +118,15 @@ public class BgEffectS : MonoBehaviour {
 		transform.position = newPos;
 	
 	}
+
+	public void RepositionBg(Vector3 newStart){
+
+		playerStartPos.x = startPos.x = newStart.x;
+		playerStartPos.y = startPos.y = newStart.y;
+
+		Vector3 newPos = new Vector3(startPos.x, startPos.y, transform.position.z);
+
+		transform.position = newPos;
+
+	}
 }
