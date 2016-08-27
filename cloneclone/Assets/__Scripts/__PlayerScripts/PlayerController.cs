@@ -31,6 +31,10 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
 	private float maxSpeedStatAdd = 0.3f;
+	private bool _isSprinting = false;
+	public float sprintMult = 1.4f;
+	public float sprintDuration = 1f;
+	private float sprintDurationCountdown = 0f;
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
@@ -43,7 +47,6 @@ public class PlayerController : MonoBehaviour {
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
 	private bool preppingSecondDash = false;
-	private bool didSecondDash = false;
 
 	private bool _isShooting;
 	private bool _lastInClip;
@@ -139,9 +142,11 @@ public class PlayerController : MonoBehaviour {
 
 	
 	//_________________________________________GETTERS AND SETTERS
-	
-	public bool isBlocking		{get { return _isBlocking; } }
+
+	public bool showBlock		{ get { return _isBlocking; } }
+	public bool isBlocking		{get { return _isBlocking || doingBlockTrigger; } }
 	public bool isDashing		{get { return _isDashing; } }
+	public bool isSprinting		{get { return _isSprinting; } }
 	public bool isShooting		{get { return _isShooting; } }
 	public bool isStunned		{get { return _isStunned; } }
 	public Rigidbody myRigidbody	{ get { return _myRigidbody; } }
@@ -313,11 +318,15 @@ public class PlayerController : MonoBehaviour {
 				if (_isBlocking || _chargingAttack){
 					moveVelocity *= walkSpeedBlockMult;
 					RunAnimationCheck(input2.magnitude*walkSpeedBlockMult);
+				}else if (_isSprinting){
+					RunAnimationCheck(input2.magnitude * 10f);
 				}else{
 					RunAnimationCheck(input2.magnitude);
 				}
 		
 				if (moveVelocity.magnitude < walkThreshold){
+
+					//_isSprinting = false;
 
 					float actingWalkSpeed = walkSpeed + walkSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
 
@@ -331,8 +340,16 @@ public class PlayerController : MonoBehaviour {
 					float actingRunSpeed = runSpeed + runSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
 
 					moveVelocity *= actingRunSpeed;
-					if (_myRigidbody.velocity.magnitude < runSpeedMax){
-						_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
+
+					if (_isSprinting){
+						if (_myRigidbody.velocity.magnitude < runSpeedMax*sprintMult){
+							_myRigidbody.AddForce( sprintMult*moveVelocity*Time.deltaTime, ForceMode.Acceleration );
+						}
+					}
+					else{
+						if (_myRigidbody.velocity.magnitude < runSpeedMax){
+							_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
+						}
 					}
 				}
 		
@@ -359,6 +376,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			if (blockPrepCountdown <= 0 && doingBlockTrigger && _myStats.ManaCheck(1)){
 				_isBlocking = true;
+					_isSprinting = false;
 				doingBlockTrigger = false;
 				_myAnimator.SetBool("Blocking", false);
 				CameraShakeS.C.MicroShake();
@@ -386,7 +404,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			// check for dash tap
-			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1)){
+			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
 				TriggerDash();
 			}
 
@@ -410,9 +428,8 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 
-		if (didSecondDash){
-			FlashMana();
-		}
+		FlashMana();
+
 
 		if (_myStats.speedAmt >= 5f){
 			myRenderer.enabled = false;
@@ -427,22 +444,32 @@ public class PlayerController : MonoBehaviour {
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
-		float actingDashSpeed = dashSpeed*bigDashMult + (dashSpeed*bigDashMult)*(_myStats.speedAmt-1f)/4f;
 
 		if (_isDashing){
-			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*actingDashSpeed*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTime = dashDuration*0.2f;
+			/*_myAnimator.SetTrigger("Dash");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);**/
+			_myAnimator.SetTrigger("Roll");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTime = dashDuration*0.4f;
 		}
 		else{
-			FlashMana();
-			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*actingDashSpeed*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTime = dashDuration*0.2f;
+			_myAnimator.SetTrigger("Roll");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTime = dashDuration*0.4f;
 			blockButtonUp = true;
 		}
 		_isDashing = true;
 
+	}
+
+	private void TriggerSprint(){
+		CameraShakeS.C.SmallShake();
+		_isSprinting = true;
+		sprintDurationCountdown = sprintDuration;
+		_myAnimator.SetBool("Evading", false);
+		_isDashing = false;
+		_myRigidbody.drag = startDrag;
+		Debug.Log("Trigger sprint!");
 	}
 
 	private void DashControl(){
@@ -452,30 +479,29 @@ public class PlayerController : MonoBehaviour {
 
 			// allow for second dash
 			if (BlockInputPressed()){
-				if (blockButtonUp && ((dashDurationTime <= CHAIN_DASH_THRESHOLD) ||
-				    (dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
+				if (blockButtonUp && ((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
-						if (!didSecondDash){
-							didSecondDash = true;
-							CameraShakeS.C.MicroShake();
-						}
 					}
 				}
+				/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
+					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						TriggerSprint();
+					}
+				}**/
 				blockButtonUp = false;
 			}
 			else{
 				blockButtonUp = true;
 			}
 
-			float actingDashDuration = dashDuration-0.2f*dashDuration*(_myStats.speedAmt-1f)/4f;
 
 			dashDurationTime += Time.deltaTime;
-			if (dashDurationTime >= actingDashDuration-dashSlideTime*(1-(_myStats.speedAmt-1f)/4f) && !didSecondDash){
+			if (dashDurationTime >= dashDuration-dashSlideTime){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 
-			if (dashDurationTime >= actingDashDuration){
+			if (dashDurationTime >= dashDuration){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -487,7 +513,13 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			preppingSecondDash = false;
-			didSecondDash = false;
+		}
+
+		if (_isSprinting){
+			sprintDurationCountdown -= Time.deltaTime;
+			if (_myRigidbody.velocity.magnitude <= 0.1f || sprintDurationCountdown <= 0f){
+				_isSprinting = false;
+			}
 		}
 
 	}
@@ -588,10 +620,11 @@ public class PlayerController : MonoBehaviour {
 
 
 
-					if (_isDashing){
+					if (_isDashing || _isSprinting){
 
 						currentAttackS = dashAttack.GetComponent<ProjectileS>();
 
+						_isSprinting = false;
 						_doingDashAttack = true;
 
 					}else{
@@ -768,7 +801,7 @@ public class PlayerController : MonoBehaviour {
 	private void PrepBlockAnimation(){
 		
 		_myAnimator.SetBool("Attacking", false);
-		_myAnimator.SetBool("Chaining", false);
+		//_myAnimator.SetBool("Chaining", false);
 		_myAnimator.SetBool("Blocking", true);
 		_myAnimator.SetLayerWeight(3, 1f);
 		FaceLeftRight();
@@ -781,7 +814,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
-		_myAnimator.SetBool("Chaining", false);
+		//_myAnimator.SetBool("Chaining", false);
 	}
 
 	private void FaceDown(){

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class EnemyBreakS : MonoBehaviour {
 
-	public float rotateMaxZ = 30f;
-	public float rotateMaxY = 15f;
 
 	public float startSpeed;
 	public float speedAccel;
@@ -24,11 +22,7 @@ public class EnemyBreakS : MonoBehaviour {
 
 	void Start () {
 
-		transform.Rotate ( new Vector3(0, rotateMaxY*Random.insideUnitCircle.x, rotateMaxZ*Random.insideUnitCircle.y));
-
-		foreach(Renderer piece in pieces){
-			piece.material.color = Color.white;
-		}
+		//transform.Rotate ( new Vector3(0, rotateMaxY*Random.insideUnitCircle.x, rotateMaxZ*Random.insideUnitCircle.y));
 
 	}
 
@@ -41,8 +35,10 @@ public class EnemyBreakS : MonoBehaviour {
 			foreach (Renderer piece in pieces){
 				piece.transform.position += piece.transform.right*startSpeed*Time.deltaTime;
 				if (!colorAssigned && flashFrames <= 0){
-				piece.material.color = pieceColor;
-					piece.material.SetTexture("_MainTex", nonFlashTexture);
+					Color newPieceCol = pieceColor;
+					newPieceCol.a = 0.6f;
+				piece.material.color = newPieceCol;
+					//piece.material.SetTexture("_MainTex", nonFlashTexture);
 				}
 			}
 			

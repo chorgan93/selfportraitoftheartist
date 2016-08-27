@@ -150,7 +150,7 @@ public class EnemyS : MonoBehaviour {
 
 	public void ForceBehaviorState(EnemyBehaviorStateS newState){
 
-		_currentBehavior.EndAction();
+		_currentBehavior.EndAction(false);
 		_currentState = newState;
 
 	}
@@ -269,8 +269,12 @@ public class EnemyS : MonoBehaviour {
 
 					_myAnimator.SetBool("Crit", false);
 
+					if (!_hitStunned){
+						_myAnimator.SetLayerWeight(1, 0f);
+					}
+
 					// reset whichever state should be active
-					_currentBehavior.EndAction();
+					_currentBehavior.EndAction(false);
 					_currentState.StartActions();
 				}
 			}else{
@@ -507,6 +511,9 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetStunStatus(bool setStun){
 		_canBeStunned = setStun;
+		_hitStunned = false;
+		currentKnockbackCooldown = 0f;
+		_myAnimator.SetLayerWeight(1,0f);
 	}
 
 	public void SetVulnerableTiming(float duration, float delay){
@@ -564,6 +571,7 @@ public class EnemyS : MonoBehaviour {
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
 				critBreak.transform.parent = transform;
+				critBreak.GetComponent<EnemyBreakS>().pieceColor = bloodColor;
 				vulnerableCountdown = criticalRecoverTime;
 
 				Stun(criticalRecoverTime,true);

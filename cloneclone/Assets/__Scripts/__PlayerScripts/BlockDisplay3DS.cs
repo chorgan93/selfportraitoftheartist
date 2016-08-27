@@ -43,7 +43,7 @@ public class BlockDisplay3DS : MonoBehaviour {
 			initialized = true;
 		}
 
-		if (myPlayer.isBlocking){
+		if (myPlayer.showBlock){
 			if (!myRenderer.enabled){
 				myRenderer.enabled = true;
 				DoFlash();

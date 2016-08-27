@@ -40,13 +40,16 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	}
 
-	public virtual void EndAction(){
+	public virtual void EndAction(bool doNextAction = true){
 
 		_behaviorActing = false;
 		myEnemy.SetActing(false);
 
-		myEnemy.CheckBehaviorStateSwitch(dontAllowStateChange);
-		
+		if (doNextAction){
+
+			myEnemy.CheckBehaviorStateSwitch(dontAllowStateChange);
+
+		}
 
 	}
 

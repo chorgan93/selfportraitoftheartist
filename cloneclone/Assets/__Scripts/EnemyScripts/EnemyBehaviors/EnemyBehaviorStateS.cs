@@ -82,7 +82,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	}
 
 	public void EndBehavior(){
-		behaviorSet[currentActingBehavior].EndAction();
+		behaviorSet[currentActingBehavior].EndAction(false);
 	}
 
 	public void SetEnemy(EnemyS enemy){

@@ -41,6 +41,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Cursor.visible = false;
+
 		fadeOnZoom.gameObject.SetActive(false);
 		firstScreenTurnOff.SetActive(true);
 
@@ -129,7 +131,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					SetSelection();
 				}
 
-				if (Input.GetKeyDown(KeyCode.Return) || myController.BlockButton()){
+				if ((Input.GetKeyDown(KeyCode.Return) || myController.BlockButton()) && !loading){
 					loadBlackScreen.gameObject.SetActive(true);
 					loading = true;
 					selectOrb.SetActive(false);

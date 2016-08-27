@@ -44,6 +44,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
 				projectileRef.Fire(attackDirection, myEnemyReference);
 				launchedAttack = true;
+
+				myEnemyReference.SetBreakState(9999f,0f);
 			}
 		}
 	
@@ -109,8 +111,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		InitializeAction();
 	}
 
-	public override void EndAction ()
+	public override void EndAction (bool doNextAction = true)
 	{
-		base.EndAction ();
+		base.EndAction (doNextAction);
 	}
 }

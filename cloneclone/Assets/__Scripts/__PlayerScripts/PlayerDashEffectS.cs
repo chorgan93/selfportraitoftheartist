@@ -30,7 +30,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 
 		if (!myController.myStats.PlayerIsDead() && !myController.isBlocking && 
-		    myController.isDashing){
+		    (myController.isDashing || myController.isSprinting)){
 			//if (currentShadow < maxShadows || !myController.isDashing){
 			currentDashPos.x = myController.transform.position.x;
 			currentDashPos.y = myController.transform.position.y;

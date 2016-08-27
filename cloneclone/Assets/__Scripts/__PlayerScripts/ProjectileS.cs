@@ -133,7 +133,7 @@ public class ProjectileS : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
 		myPlayer = playerReference;
-		powerLvl = dmg;
+		// powerLvl = dmg;
 
 
 
@@ -229,7 +229,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-						                          dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
+						                          dmg, critDmg*myPlayer.myStats.critAmt);
 					}
 				}
 			}
@@ -328,7 +328,7 @@ public class ProjectileS : MonoBehaviour {
 
 			hitEnemy.TakeDamage
 				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-				 dmg*powerLvl, critDmg*myPlayer.myStats.critAmt);
+				 dmg, critDmg*myPlayer.myStats.critAmt);
 
 			if (!isPiercing){
 

@@ -60,8 +60,8 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 		InitializeAction();
 	}
 	
-	public override void EndAction ()
+	public override void EndAction (bool doNextAction = true)
 	{
-		base.EndAction ();
+		base.EndAction (doNextAction);
 	}
 }

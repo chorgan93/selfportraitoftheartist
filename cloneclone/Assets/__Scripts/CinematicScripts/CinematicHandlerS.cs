@@ -17,6 +17,8 @@ public class CinematicHandlerS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Debug.Log(Application.loadedLevelName);
+
 		Time.timeScale = 1f;
 
 		currentStep = 0;

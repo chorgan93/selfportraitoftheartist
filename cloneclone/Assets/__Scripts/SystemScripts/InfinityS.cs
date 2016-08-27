@@ -89,7 +89,7 @@ public class InfinityS : MonoBehaviour {
 			}
 		}
 
-		int nextRoom = Mathf.RoundToInt(Random.Range(0, nextCheck.Count-1));
+		int nextRoom = Mathf.FloorToInt(Random.Range(0, nextCheck.Count));
 
 		GameObject newSpawn = Instantiate(possRooms[nextRoom].gameObject, playerReference.transform.position, Quaternion.identity)
 			as GameObject;
