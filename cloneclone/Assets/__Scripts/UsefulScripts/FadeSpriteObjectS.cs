@@ -15,6 +15,8 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	public float startFadeAlpha = 1f;
 	public bool destroyOnFade = true;
 
+	private bool stopFading = false;
+
 	private SpriteRenderer myRenderer;
 	private Color currentCol;
 
@@ -36,7 +38,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	void Update () {
 
 	
-
+		if (!stopFading){
 		if (delayFadeTime > 0){
 			delayFadeTime -= Time.deltaTime;
 		}
@@ -53,9 +55,11 @@ public class FadeSpriteObjectS : MonoBehaviour {
 					}
 				}else{
 					currentCol.a = 0f;
-				}
+					}
+					stopFading = true;
 			}
 			myRenderer.color = currentCol;
+		}
 		}
 
 	
@@ -64,6 +68,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	public void Reinitialize(){
 
 		delayFadeTime = startDelayFadeTime;
+		stopFading = false;
 
 		if (!myRenderer){
 			myRenderer = GetComponent<SpriteRenderer>();

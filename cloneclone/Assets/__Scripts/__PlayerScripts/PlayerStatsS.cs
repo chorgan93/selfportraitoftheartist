@@ -278,7 +278,7 @@ public class PlayerStatsS : MonoBehaviour {
 				else{
 					myBlocker.DoFlash();
 					myPlayerController.myRigidbody.AddForce(knockbackForce*_defenseKnockbackMult, ForceMode.Impulse);
-					CameraShakeS.C.MicroShake();
+					CameraShakeS.C.SmallShake();
 				}
 				if (damageSource != null){
 					damageSource.Deflect();
@@ -318,7 +318,7 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraShakeS.C.LargeShake();
 					CameraShakeS.C.TimeSleep(0.12f, true);
 				}else{
-					CameraShakeS.C.SmallShake();
+					CameraShakeS.C.SpecialAttackShake();
 					CameraShakeS.C.TimeSleep(0.08f);
 				}
 	

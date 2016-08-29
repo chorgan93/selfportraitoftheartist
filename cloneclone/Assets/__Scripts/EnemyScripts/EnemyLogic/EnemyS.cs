@@ -570,7 +570,7 @@ public class EnemyS : MonoBehaviour {
 				}
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
-				critBreak.transform.parent = transform;
+				critBreak.GetComponent<EnemyBreakS>().transformRef = transform;
 				critBreak.GetComponent<EnemyBreakS>().pieceColor = bloodColor;
 				vulnerableCountdown = criticalRecoverTime;
 

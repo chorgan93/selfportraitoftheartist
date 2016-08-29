@@ -8,7 +8,7 @@ public class EnemyBreakS : MonoBehaviour {
 	public float speedAccel;
 
 	public float flickerDelay;
-	private float flickerTime = 0.08f;
+	private float flickerTime = 0.06f;
 	private float flickerCountdown;
 
 	public int flickerAmt;
@@ -20,14 +20,13 @@ public class EnemyBreakS : MonoBehaviour {
 	private int flashFrames = 4;
 	public Texture nonFlashTexture;
 
-	void Start () {
+	public Transform transformRef;
 
-		//transform.Rotate ( new Vector3(0, rotateMaxY*Random.insideUnitCircle.x, rotateMaxZ*Random.insideUnitCircle.y));
-
-	}
 
 	// Update is called once per frame
 	void Update () {
+
+		transform.position = transformRef.position;
 
 		if (startSpeed > 0){
 

@@ -39,7 +39,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			}
 
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)){
-				GameObject attackObj = Instantiate(attackPrefab, transform.position, Quaternion.identity)
+				GameObject attackObj = Instantiate(attackPrefab, transform.position, attackPrefab.transform.rotation)
 					as GameObject;
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
 				projectileRef.Fire(attackDirection, myEnemyReference);

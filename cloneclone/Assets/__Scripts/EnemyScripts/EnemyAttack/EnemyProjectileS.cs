@@ -20,9 +20,12 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float attackSpawnDistance;
 	public float accuracyMult = 0f;
 	public bool stopEnemy = false;
+	public bool followEnemy = false;
 
 	[Header("Player Interaction")]
+	public bool aoe = false;
 	public bool isPiercing = true;
+	private bool allowMultiHit = false;
 	public float damage;
 	public float knockbackTime;
 	public float playerKnockbackMult;
@@ -36,7 +39,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private bool doFlashLogic;
 	private bool didFlashLogic = false;
 	
-	private float fadeThreshold = 0.1f;
+	public float fadeThreshold = 0.1f;
 	private Color fadeColor;
 
 	private bool hitPlayer = false;
@@ -65,6 +68,10 @@ public class EnemyProjectileS : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
+		if (followEnemy){
+			transform.localPosition = Vector3.zero;
+		}
 		
 		range -= Time.deltaTime;
 		if (myCollider.enabled){
@@ -115,27 +122,34 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (enemyReference != null){
 			_myEnemy = enemyReference;
 		}
-		
-		FaceDirection((aimDirection).normalized);
-		
-		Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
-		
-		_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 
-		if (flipOnX && shootForce.x > 0){
-			Vector3 flipSize = transform.localScale;
-			flipSize.y *= -1f;
-			transform.localScale = flipSize;
+		if (!aoe){
+			FaceDirection((aimDirection).normalized);
 		}
 
-		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
-
-		if (_myEnemy != null){
-			if (stopEnemy){
-				_myEnemy.myRigidbody.velocity = Vector3.zero;
+		if (followEnemy){
+			transform.parent=_myEnemy.transform;
+		}else{
+			
+			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+			
+			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
+	
+			if (flipOnX && shootForce.x > 0){
+				Vector3 flipSize = transform.localScale;
+				flipSize.y *= -1f;
+				transform.localScale = flipSize;
 			}
 	
-			_myEnemy.AttackKnockback(knockbackForce);
+			Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
+	
+			if (_myEnemy != null){
+				if (stopEnemy){
+					_myEnemy.myRigidbody.velocity = Vector3.zero;
+				}
+		
+				_myEnemy.AttackKnockback(knockbackForce);
+			}
 		}
 			
 		
@@ -198,7 +212,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 		
-		if (other.gameObject.tag == "Player" && !hitPlayer){
+		if (other.gameObject.tag == "Player" && (!hitPlayer || (hitPlayer && allowMultiHit))){
 
 			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
 
@@ -245,5 +259,9 @@ public class EnemyProjectileS : MonoBehaviour {
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	public void AllowMultiHit(){
+		allowMultiHit = true;
 	}
 }

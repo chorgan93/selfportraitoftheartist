@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemySpawnBehavior : EnemyBehaviorS {
 
+	public bool stopEnemy = false;
 	[Header("Behavior Duration")]
 	public float behaviorDuration = -1f;
 	private float behaviorCountdown;
@@ -12,6 +13,8 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 	public float timeBetweenSpawns = 0.3f;
 	public Transform[] spawnReferences;
 	public GameObject spawnObject;
+	private GameObject currentSpawnObject;
+	public bool parentSpawn = false;
 
 	private float currentSpawnDelay;
 	private int currentSpawnStep;
@@ -33,7 +36,11 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 	}
 	
 	private void InitializeAction(){
-		
+
+		if (stopEnemy){
+			myEnemyReference.myRigidbody.velocity = Vector3.zero;
+		}
+
 		currentSpawnDelay = spawnDelay;
 		currentSpawnStep = 0;
 		behaviorCountdown = behaviorDuration;
@@ -46,7 +53,11 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 			currentSpawnDelay -= Time.deltaTime;
 			if (currentSpawnDelay <= 0){
 				currentSpawnDelay = timeBetweenSpawns;
-				Instantiate(spawnObject, spawnReferences[currentSpawnStep].position, Quaternion.identity);
+				currentSpawnObject = 
+					(GameObject)Instantiate(spawnObject, spawnReferences[currentSpawnStep].position, Quaternion.identity);
+				if (parentSpawn){
+					currentSpawnObject.transform.parent = spawnReferences[currentSpawnStep].parent;
+				}
 				currentSpawnStep++;
 			}
 		}

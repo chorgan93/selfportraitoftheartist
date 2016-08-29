@@ -9,7 +9,7 @@ public class BleedingS : MonoBehaviour {
 	public GameObject deathBloodPrefabAlt;
 	public float maxBloodTime = 0.2f;
 	public float bloodYDifference = 3f;
-	public float bloodZPos = 4f;
+	private float bloodZPos = 5f;
 	private int currentSpawn = 0; 
 
 	private float addBloodTime = 0f;
@@ -31,6 +31,7 @@ public class BleedingS : MonoBehaviour {
 	private float currentDeathSpawnRate;
 	public float onDeathSpawnVariance = 0.3f;
 	private bool deathBleeding = false;
+	private GameObject currentBloodRef;
 
 	Vector3 spawnPos;
 
@@ -55,12 +56,18 @@ public class BleedingS : MonoBehaviour {
 
 				if (deathBloodPrefabAlt){
 					if (deathBleedCountdown < deathBleedTime*0.6f){
-						Instantiate(deathBloodPrefabAlt, deathSpawnPos, Quaternion.identity);
+						currentBloodRef = Instantiate(deathBloodPrefabAlt, deathSpawnPos, Quaternion.identity)
+							as GameObject;
 					}else{
-						Instantiate(deathBloodPrefab, deathSpawnPos, Quaternion.identity);
+						currentBloodRef = Instantiate(deathBloodPrefab, deathSpawnPos, Quaternion.identity)
+							as GameObject;
 					}
 				}else{
-				Instantiate(deathBloodPrefab, deathSpawnPos, Quaternion.identity);
+				currentBloodRef = Instantiate(deathBloodPrefab, deathSpawnPos, Quaternion.identity)
+						as GameObject;
+				}
+				if (transform.parent){
+					currentBloodRef.transform.parent = transform.parent;
 				}
 				currentDeathSpawnRate = endDeathSpawnRate + (onDeathSpawnRate-endDeathSpawnRate)*(deathBleedCountdown/deathBleedTime);
 			}

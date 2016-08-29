@@ -10,7 +10,9 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 	private float startDelayFadeTime;
 	public float startFadeAlpha = 1f;
 
+
 	private bool stopFading = false;
+	public bool destroyOnFadeIn = false;
 
 	public float fadeIncrement = -1f;
 	private float fadeIncrementCountdown;
@@ -55,6 +57,10 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 			
 					currentCol.a = 1f;
 				stopFading = true;
+
+						if (destroyOnFadeIn){
+							Destroy(gameObject);
+						}
 
 			}
 			myRenderer.color = currentCol;
