@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 98c20d9103f2849eeb77f80a600cc922
-timeCreated: 1472432756
+timeCreated: 1472500932
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -114,6 +114,13 @@ TextureImporter:
     21300214: bigman_24
     21300216: bigman_25
     21300218: bigman_26
+    21300220: bigman_27
+    21300222: bigman_28
+    21300224: bigman_29
+    21300226: bigman_30
+    21300228: bigman_31
+    21300230: bigman_32
+    21300232: bigman_33
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -213,8 +220,8 @@ TextureImporter:
     - name: bigman_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
+        x: 640
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -223,7 +230,7 @@ TextureImporter:
     - name: bigman_6
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 512
         width: 128
         height: 128
@@ -233,7 +240,7 @@ TextureImporter:
     - name: bigman_7
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 512
         width: 128
         height: 128
@@ -243,7 +250,7 @@ TextureImporter:
     - name: bigman_8
       rect:
         serializedVersion: 2
-        x: 384
+        x: 256
         y: 512
         width: 128
         height: 128
@@ -253,7 +260,7 @@ TextureImporter:
     - name: bigman_9
       rect:
         serializedVersion: 2
-        x: 512
+        x: 384
         y: 512
         width: 128
         height: 128
@@ -263,8 +270,8 @@ TextureImporter:
     - name: bigman_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 512
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -273,8 +280,8 @@ TextureImporter:
     - name: bigman_11
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
+        x: 640
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -283,7 +290,7 @@ TextureImporter:
     - name: bigman_12
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 384
         width: 128
         height: 128
@@ -293,7 +300,7 @@ TextureImporter:
     - name: bigman_13
       rect:
         serializedVersion: 2
-        x: 384
+        x: 128
         y: 384
         width: 128
         height: 128
@@ -303,7 +310,7 @@ TextureImporter:
     - name: bigman_14
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 384
         width: 128
         height: 128
@@ -313,8 +320,8 @@ TextureImporter:
     - name: bigman_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 384
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -323,8 +330,8 @@ TextureImporter:
     - name: bigman_16
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 512
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -333,8 +340,8 @@ TextureImporter:
     - name: bigman_17
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 640
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -343,7 +350,7 @@ TextureImporter:
     - name: bigman_18
       rect:
         serializedVersion: 2
-        x: 384
+        x: 0
         y: 256
         width: 128
         height: 128
@@ -353,7 +360,7 @@ TextureImporter:
     - name: bigman_19
       rect:
         serializedVersion: 2
-        x: 512
+        x: 128
         y: 256
         width: 128
         height: 128
@@ -363,8 +370,8 @@ TextureImporter:
     - name: bigman_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 256
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -373,8 +380,8 @@ TextureImporter:
     - name: bigman_21
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 384
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -383,8 +390,8 @@ TextureImporter:
     - name: bigman_22
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 512
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -393,8 +400,8 @@ TextureImporter:
     - name: bigman_23
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
+        x: 640
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -403,7 +410,7 @@ TextureImporter:
     - name: bigman_24
       rect:
         serializedVersion: 2
-        x: 512
+        x: 0
         y: 128
         width: 128
         height: 128
@@ -413,8 +420,8 @@ TextureImporter:
     - name: bigman_25
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 128
+        y: 128
         width: 128
         height: 128
       alignment: 0
@@ -423,7 +430,77 @@ TextureImporter:
     - name: bigman_26
       rect:
         serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_31
+      rect:
+        serializedVersion: 2
         x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bigman_33
+      rect:
+        serializedVersion: 2
+        x: 384
         y: 0
         width: 128
         height: 128

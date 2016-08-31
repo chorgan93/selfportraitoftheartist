@@ -218,12 +218,21 @@ public class EnemyProjectileS : MonoBehaviour {
 
 			if (!playerRef.myStats.PlayerIsDead()){
 			if (_myEnemy != null){
+					if (followEnemy){
+						playerRef.myStats.
+							TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+					}
+					else{
 			playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
-			}
+					}
+				}
+
 			else{
+
 				playerRef.myStats.
 					TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
-			}
+
+				}
 
 			if (!playerRef.isDashing && !playerRef.isBlocking){
 				HitEffect(other.gameObject, other.transform.position,playerRef.myStats.currentHealth<=1f);

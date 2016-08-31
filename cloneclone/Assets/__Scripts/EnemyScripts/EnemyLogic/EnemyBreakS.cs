@@ -21,12 +21,15 @@ public class EnemyBreakS : MonoBehaviour {
 	public Texture nonFlashTexture;
 
 	public Transform transformRef;
+	private Vector3 followPos;
 
 
 	// Update is called once per frame
 	void Update () {
 
-		transform.position = transformRef.position;
+		followPos = transformRef.position;
+		followPos.z -= 1f;
+		transform.position = followPos;
 
 		if (startSpeed > 0){
 
