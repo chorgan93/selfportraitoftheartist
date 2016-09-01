@@ -36,7 +36,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
 
-	private string newGameScene = "IntroCutscene";
+	//private string newGameScene = "IntroCutscene";
+	private string newGameScene = "TutorialScene";
 
 	// Use this for initialization
 	void Start () {

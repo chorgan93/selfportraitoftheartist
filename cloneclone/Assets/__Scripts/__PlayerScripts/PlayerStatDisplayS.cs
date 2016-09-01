@@ -42,6 +42,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Vector2 backgroundMaxSize = new Vector2(520,130);
 	private Vector2 backgroundCurrentSize;
 	private Image background; 
+	public Image backgroundFill;
 
 	private float xPositionMultiplier = 0.1f;
 	private float yPositionMultiplier = -0.05f;
@@ -56,8 +57,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	public Text healthText;
 	public Text staminaText;
+	public Text chargeText;
 	private int startFontSize;
 	private int startFontSizeSmall;
+	private int startFontSizeSmallest;
 
 	private PlayerStatsS playerStats;
 
@@ -81,6 +84,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		startFontSize = healthText.fontSize;
 		startFontSizeSmall = staminaText.fontSize;
+		startFontSizeSmallest = chargeText.fontSize;
 
 		UpdateMaxSizes();
 		UpdateFills();
@@ -108,6 +112,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		// bg stuff
 		backgroundCurrentSize = backgroundMaxSize*ScreenMultiplier();
 		background.rectTransform.sizeDelta=backgroundCurrentSize;
+		backgroundFill.rectTransform.sizeDelta = backgroundCurrentSize*0.99f;
 
 		reposition = background.rectTransform.anchoredPosition;
 		//reposition.x = 30f*ScreenMultiplier()+GetLeftAnchorPos();
@@ -186,9 +191,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
 		staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
+		chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
 		healthText.text = playerStats.currentHealth + " / " + playerStats.maxHealth;
 		staminaText.text = playerStats.currentMana + " / " + playerStats.maxMana;
+		chargeText.text = playerStats.currentCharge/10 + " / 10";
 
 	}
 
