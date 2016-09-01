@@ -14,25 +14,26 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float referenceScreenWidth = 1920f;
 	private float referenceScreenHeight = 1080f;
 
-	private Vector2 healthBarMaxSize = new Vector2(500,50);
+	private Vector2 healthBarMaxSize;
+
 	private Vector2 healthStartPos;
 	private float healthStartYMult;
 	private Vector2 healthBarCurrentSize;
 	public Image healthBar;
 
-	private Vector2 staminaBarMaxSize = new Vector2(500,25);
+	private Vector2 staminaBarMaxSize;
 	private Vector2 staminaStartPos;
 	private float staminaStartYMult;
 	private Vector2 staminaBarCurrentSize;
 	public Image staminaBar;
 	
-	private Vector2 recoveryBarMaxSize = new Vector2(500,10);
+	private Vector2 recoveryBarMaxSize;
 	private Vector2 recoveryStartPos;
 	private float recoveryStartYMult;
 	private Vector2 recoveryBarCurrentSize;
 	public Image recoveryBar;
 
-	private Vector2 chargeBarMaxSize = new Vector2(500,20);
+	private Vector2 chargeBarMaxSize;
 	private Vector2 chargeStartPos;
 	private float chargeStartYMult;
 	private Vector2 chargeBarCurrentSize;
@@ -42,7 +43,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Vector2 backgroundMaxSize = new Vector2(520,130);
 	private Vector2 backgroundCurrentSize;
 	private Image background; 
-	public Image backgroundFill;
+	//public Image backgroundFill;
 
 	private float xPositionMultiplier = 0.1f;
 	private float yPositionMultiplier = -0.05f;
@@ -58,9 +59,6 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Text healthText;
 	public Text staminaText;
 	public Text chargeText;
-	private int startFontSize;
-	private int startFontSizeSmall;
-	private int startFontSizeSmallest;
 
 	private PlayerStatsS playerStats;
 
@@ -73,18 +71,18 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		healthStartPos = healthBar.rectTransform.anchoredPosition;
 		healthStartYMult = healthStartPos.y/backgroundMaxSize.y;
+		healthBarMaxSize = healthBar.rectTransform.sizeDelta;
 		staminaStartPos = staminaBar.rectTransform.anchoredPosition;
 		staminaStartYMult = staminaStartPos.y/backgroundMaxSize.y;
+		staminaBarMaxSize = staminaBar.rectTransform.sizeDelta;
 		recoveryStartPos = recoveryBar.rectTransform.anchoredPosition;
 		recoveryStartYMult = recoveryStartPos.y/backgroundMaxSize.y;
+		recoveryBarMaxSize = recoveryBar.rectTransform.sizeDelta;
 		chargeStartPos = chargeBar.rectTransform.anchoredPosition;
 		chargeStartYMult = chargeStartPos.y/backgroundMaxSize.y;
+		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
-
-		startFontSize = healthText.fontSize;
-		startFontSizeSmall = staminaText.fontSize;
-		startFontSizeSmallest = chargeText.fontSize;
 
 		UpdateMaxSizes();
 		UpdateFills();
@@ -99,7 +97,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		else{
 			TurnOnAll();
-		UpdateMaxSizes();
+		//UpdateMaxSizes();
 		UpdateFills();
 		}
 	
@@ -112,12 +110,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		// bg stuff
 		backgroundCurrentSize = backgroundMaxSize*ScreenMultiplier();
 		background.rectTransform.sizeDelta=backgroundCurrentSize;
-		backgroundFill.rectTransform.sizeDelta = backgroundCurrentSize*0.99f;
-
-		reposition = background.rectTransform.anchoredPosition;
-		//reposition.x = 30f*ScreenMultiplier()+GetLeftAnchorPos();
-		reposition.y = -50f*ScreenMultiplier();
-		background.rectTransform.anchoredPosition = reposition;
+		//backgroundFill.rectTransform.sizeDelta = backgroundCurrentSize*0.99f;
 
 		// recover stuff
 		recoveryBarCurrentSize = recoveryBarMaxSize*ScreenMultiplier();
@@ -162,25 +155,25 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private void UpdateFills(){
 
 		// health fill
-		Vector2 fillSize = healthBar.rectTransform.sizeDelta;
+		Vector2 fillSize = healthBarMaxSize;
 		fillSize.x *= playerStats.currentHealth/playerStats.maxHealth;
 		healthFill.rectTransform.sizeDelta = fillSize;
 		healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
 
 		// stamina fill
-		fillSize = staminaBar.rectTransform.sizeDelta;
+		fillSize = staminaBarMaxSize;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
 
 		// charge fill
-		fillSize = chargeBar.rectTransform.sizeDelta;
+		fillSize = chargeBarMaxSize;
 		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
 		chargeFill.rectTransform.sizeDelta = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 
 		// recharge fill
-		fillSize = recoveryBar.rectTransform.sizeDelta;
+		fillSize = recoveryBarMaxSize;
 		if (playerStats.currentRegenCount > 0){
 			fillSize.x *= playerStats.currentRegenCount/playerStats.GetRegenTime();
 		}
@@ -189,25 +182,33 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		recoveryFill.rectTransform.sizeDelta = fillSize;
 
-		healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
-		staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
-		chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
+		//healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
+		//staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
+		//chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
-		healthText.text = playerStats.currentHealth + " / " + playerStats.maxHealth;
-		staminaText.text = playerStats.currentMana + " / " + playerStats.maxMana;
-		chargeText.text = playerStats.currentCharge/10 + " / 10";
+		healthText.text = "[ " + playerStats.currentHealth + " ]";
+		staminaText.text = "< " + playerStats.currentMana + " >";
+		chargeText.text = ""+ playerStats.currentCharge/100*1.0f;
+		if (chargeText.text == "1"){
+			chargeText.text = "1.0";
+		}
+		if (chargeText.text == "0"){
+			chargeText.text = "0.0";
+		}
 
 	}
 
 	private float ScreenMultiplier(){
 
-		return (Screen.width*1f)/referenceScreenWidth;
+		//return (Screen.width*1f)/referenceScreenWidth;
+		return 1f;
 
 	}
 
 	private float ScreenMultiplierY(){
 		
-		return (Screen.height*1f)/referenceScreenHeight;
+		//return (Screen.height*1f)/referenceScreenHeight;
+		return 1f;
 		
 	}
 
@@ -226,7 +227,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			healthBar.enabled = true;
 			recoveryBar.enabled = true;
 			staminaBar.enabled = true;
-			background.enabled = true;
+			//background.enabled = true;
 			allTurnedOn = true;
 		}
 
