@@ -15,6 +15,7 @@ public class EnemyShadowS : MonoBehaviour {
 	
 		enemyRef = GetComponentInParent<EnemyS>();
 		myRender = GetComponent<SpriteRenderer>();
+		myRender.color = enemyRef.bloodColor;
 
 	}
 	

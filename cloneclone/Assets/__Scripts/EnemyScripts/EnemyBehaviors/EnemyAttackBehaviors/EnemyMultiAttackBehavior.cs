@@ -11,6 +11,9 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	public float attackDuration = 3f;
 	public float attackWarmup = 1f;
 	private bool launchedAttack = false;
+	public float trackingTime = 0f;
+	private float trackingCountdown;
+	private bool foundTrackingTarget = false;
 
 	[Header ("Behavior Physics")]
 	public GameObject[] attackPrefab;
@@ -26,6 +29,14 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 
 		if (BehaviorActing()){
+
+			if (!foundTrackingTarget){
+				trackingCountdown -= Time.deltaTime;
+				if (trackingCountdown <= 0){
+					SetAttackDirection();
+					foundTrackingTarget = true;
+				}
+			}
 			
 			attackTimeCountdown -= Time.deltaTime;
 
@@ -65,6 +76,15 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			currentAttack = 0;
 			attackTimeCountdown = attackDuration;
 			SetAttackDirection();
+
+			
+			myEnemyReference.myAnimator.SetTrigger(animationKey);
+
+			if (trackingTime <= 0){
+				foundTrackingTarget = true;
+			}else{
+				trackingCountdown = trackingTime;
+			}
 			
 	
 			if (attackDragAmt > 0){
@@ -112,7 +132,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
 	public override void StartAction (bool setAnimTrigger = true)
 	{
-		base.StartAction ();
+		base.StartAction (false);
 
 		InitializeAction();
 	}

@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour {
 
 	public bool showBlock		{ get { return _isBlocking; } }
 	public bool isBlocking		{get { return _isBlocking || doingBlockTrigger; } }
+	public bool doDeflect		{get { return _isBlocking;}}
 	public bool isDashing		{get { return _isDashing; } }
 	public bool isSprinting		{get { return _isSprinting; } }
 	public bool isShooting		{get { return _isShooting; } }

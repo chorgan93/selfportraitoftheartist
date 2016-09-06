@@ -48,7 +48,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 
 	//________________________________DEFENSE
-	private float _baseDefense = 7f;
+	private float _baseDefense = 9f;
 	private float _addedDefense = 0;
 	private float _currentDefense;
 
