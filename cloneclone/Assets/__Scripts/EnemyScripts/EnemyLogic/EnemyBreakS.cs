@@ -27,20 +27,19 @@ public class EnemyBreakS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		followPos = transformRef.position;
 		followPos.z -= 1f;
 		transform.position = followPos;
 
 		if (startSpeed > 0){
 
-
 			foreach (Renderer piece in pieces){
-				piece.transform.position += piece.transform.right*startSpeed*Time.deltaTime;
+				piece.transform.position += piece.transform.right*startSpeed*Time.unscaledDeltaTime;
 				if (!colorAssigned && flashFrames <= 0){
 					Color newPieceCol = pieceColor;
 					newPieceCol.a = 0.6f;
-				piece.material.color = newPieceCol;
-					//piece.material.SetTexture("_MainTex", nonFlashTexture);
+					piece.material.color = newPieceCol;
 				}
 			}
 			
@@ -48,10 +47,21 @@ public class EnemyBreakS : MonoBehaviour {
 			if (flashFrames < 0){
 				colorAssigned = true;
 			}
-			startSpeed += speedAccel*Time.deltaTime;
+
+			startSpeed += speedAccel*Time.unscaledDeltaTime;
 
 		}else if (flickerDelay > 0){
 			flickerDelay -= Time.deltaTime;
+			if (!colorAssigned){
+				foreach (Renderer piece in pieces){
+
+					Color newPieceCol = pieceColor;
+					newPieceCol.a = 0.6f;
+					piece.material.color = newPieceCol;
+
+				}
+				colorAssigned = true;
+			}
 		}
 		else{
 			flickerCountdown -= Time.deltaTime;
@@ -68,5 +78,13 @@ public class EnemyBreakS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	public void ChangeScale (float multS){
+		foreach (Renderer piece in pieces){
+			piece.transform.localScale*=multS;
+		}
+		startSpeed*=multS;
+		speedAccel*=multS;
 	}
 }
