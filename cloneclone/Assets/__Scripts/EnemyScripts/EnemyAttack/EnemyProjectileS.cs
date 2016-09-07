@@ -29,6 +29,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float damage;
 	public float knockbackTime;
 	public float playerKnockbackMult;
+	public bool noCollider = false;
 	
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
@@ -103,6 +104,9 @@ public class EnemyProjectileS : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 			myCollider = GetComponent<Collider>();
+		if (noCollider){
+			myCollider.enabled = false;
+		}
 		if (_myRenderer == null){
 			_myRenderer3D = GetComponentInChildren<Renderer>();
 			if (flashFrames > 0){

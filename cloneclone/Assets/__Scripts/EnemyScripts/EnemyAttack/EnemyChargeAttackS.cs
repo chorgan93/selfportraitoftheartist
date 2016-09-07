@@ -36,6 +36,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	private Vector3 knockBackDir;
 	public float knockbackTime = 0.8f;
 
+	public bool standalone = false;
+	public float standaloneTurnOnTime = 0.6f;
+
 
 	// Use this for initialization
 	void Start () {
@@ -48,11 +51,17 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		startTiling = _myRenderer.material.GetTextureScale("_MainTex");
 		startTexture = _myRenderer.material.GetTexture("_MainTex");
-		_myRenderer.enabled = false;
+
 
 		fadeRate = startAlpha/visibleTime;
 
 		fadeColor = _myRenderer.material.color;
+		if (!standalone){
+			_myRenderer.enabled = false;
+		}
+		else{
+			TurnOn(standaloneTurnOnTime);
+		}
 	
 	}
 	
@@ -94,6 +103,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 				fadeColor.a = 0;
 				_myRenderer.enabled = false;
 					_myCollider.enabled = false;
+							if (standalone){
+								Destroy(transform.parent.gameObject);
+							}
 			}else{
 				_myRenderer.material.color = fadeColor;
 			}
@@ -123,7 +135,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myRenderer.enabled = true;
 		flashFrames = flashMax;
 
+		if (!standalone){
 		CameraShakeS.C.TimeSleep(0.06f);
+		}
 		CameraShakeS.C.SmallShake();
 
 		charging = false;
@@ -163,12 +177,17 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		
 		if (other.gameObject.tag == "Player"){
 		
-			Debug.Log("yeah");
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
+			if (myEnemy){
 			other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
 				(myEnemy, dmg, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+			}
+			else{
+				other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
+					(null, dmg, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+			}
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}
