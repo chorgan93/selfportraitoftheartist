@@ -9,13 +9,16 @@ public class EnemyShadowS : MonoBehaviour {
 	private float fadeRate = 2.4f;
 
 	public bool matchAlpha = false;
+	public bool overrideColor = false;
 
 	// Use this for initialization
 	void Start () {
 	
 		enemyRef = GetComponentInParent<EnemyS>();
 		myRender = GetComponent<SpriteRenderer>();
+		if (!overrideColor){
 		myRender.color = enemyRef.bloodColor;
+		}
 
 	}
 	
