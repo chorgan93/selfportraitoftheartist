@@ -11,6 +11,7 @@ public class InfinityS : MonoBehaviour {
 	private bool fadeOut = true;
 
 	public InfinitySpawnS[] possRooms;
+	public InfinitySpawnS[] setRooms;
 	private InfinitySpawnS currentSpawn;
 
 	private bool fadeIn = false;
@@ -83,13 +84,24 @@ public class InfinityS : MonoBehaviour {
 			Destroy(currentSpawn.gameObject);
 		}
 
-		foreach(InfinitySpawnS spawn in possRooms){
-			if (spawn.CheckDifficulty(difficulty)){
-				nextCheck.Add(spawn);
+		int nextRoom = 0;
+
+		foreach(InfinitySpawnS s in setRooms){
+			if (s.minDifficulty == difficulty){
+				nextCheck.Add(s);
 			}
 		}
 
-		int nextRoom = Mathf.FloorToInt(Random.Range(0, nextCheck.Count));
+		if (nextCheck.Count <= 0){
+			foreach(InfinitySpawnS spawn in possRooms){
+				if (spawn.CheckDifficulty(difficulty)){
+					nextCheck.Add(spawn);
+				}
+			}
+			nextRoom = Mathf.FloorToInt(Random.Range(0, nextCheck.Count));
+		}
+
+
 
 		GameObject newSpawn = Instantiate(nextCheck[nextRoom].gameObject, playerReference.transform.position, Quaternion.identity)
 			as GameObject;

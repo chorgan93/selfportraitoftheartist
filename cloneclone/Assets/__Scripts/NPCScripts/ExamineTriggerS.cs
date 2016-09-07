@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ExamineTriggerS : MonoBehaviour {
 
+	public string examineLabel = "";
 	public string examineString;
 	public string unlockString;
 
@@ -22,6 +23,9 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int inventoryNum = -1;
 	public ActivateOnExamineS myTrigger;
 
+	public bool inInfiniteMode = false;
+	private InfinitySpawnS parentInfinite;
+
 	public float lookTime = -1f;
 
 	void Start () {
@@ -32,6 +36,10 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (lookTime > 0){
 			CameraFollowS.F.AddToQueue(gameObject, lookTime);
+		}
+
+		if (inInfiniteMode){
+			parentInfinite = GetComponentInParent<InfinitySpawnS>();
 		}
 
 	}
@@ -57,7 +65,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (pRef.myControl.BlockButton() && !talkButtonDown){
 				talkButtonDown = true;
 
-				if (!talking){
+				if (!talking && examineString != ""){
 					pRef.SetTalking(true);
 					if (newPoi){
 						CameraFollowS.F.SetNewPOI(newPoi);
@@ -82,11 +90,15 @@ public class ExamineTriggerS : MonoBehaviour {
 						DialogueManagerS.D.EndText();
 						talking = false;
 
+						if (inInfiniteMode){
+							parentInfinite.AddClear();
+						}
+
 						if (myTrigger){
 							myTrigger.TurnOn();
 						}
 
-						if (inventoryNum >= 0){
+						if (inventoryNum >= -1){
 							AddPickup();
 						}
 
@@ -123,11 +135,23 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	private void AddPickup(){
 
-		PlayerInventoryS.I.AddToInventory(inventoryNum);
+		if (inventoryNum >= 0){
+			// PlayerInventoryS.I.AddToInventory(inventoryNum);
+	
+			// add stamina
+			if (inventoryNum >= 0 && inventoryNum <= 11){
+				pRef.myStats.AddStamina();
+			}
+	
+			// add health
+			if (inventoryNum >= 12 && inventoryNum <= 20){
+				pRef.myStats.AddHealth();
+			}
 
-		// add stamina
-		if (inventoryNum >= 0 && inventoryNum <= 8){
-			pRef.myStats.AddStamina();
+			// 
+		}else{
+			// full recovery
+			pRef.myStats.FullRecover();
 		}
 
 	}
@@ -147,7 +171,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
-			pRef.SetExamining(true);
+			pRef.SetExamining(true, examineLabel);
 			playerInRange = true;
 		}
 	}

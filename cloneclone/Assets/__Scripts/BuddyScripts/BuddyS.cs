@@ -31,6 +31,9 @@ public class BuddyS : MonoBehaviour {
 	private Animator _myAnimator;
 	public Animator myAnimator { get { return _myAnimator; } }
 
+	[HideInInspector]
+	public bool canSwitch = true;
+
 	public virtual void Initialize(){
 
 		_playerRef = GetComponentInParent<PlayerController>();

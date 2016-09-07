@@ -124,8 +124,7 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}
 		else{
-			return ( Input.GetKey(KeyCode.Space) ||
-			        Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+			return ( Input.GetKey(KeyCode.Space));
 		}
 
 	}
@@ -162,7 +161,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool DashKey(){
 
-		return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) ||
+		return (
 		        Input.GetKey(KeyCode.Space));
 		
 
@@ -202,11 +201,11 @@ public class ControlManagerS : MonoBehaviour {
 	public bool SwitchButton(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchButton"+platformType+"Alt")
-			        || Input.GetButton("SwitchButton"+platformType));
+			return (Input.GetButton("SwitchBuddyButton"+platformType)
+			        || Input.GetButton("ReloadButton"+platformType));
 		}
 		else{
-			return(Input.GetMouseButton(1));
+			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 		}
 		
 	}

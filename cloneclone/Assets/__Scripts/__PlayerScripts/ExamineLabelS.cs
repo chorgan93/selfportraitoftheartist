@@ -20,7 +20,11 @@ public class ExamineLabelS : MonoBehaviour {
 	void Update () {
 
 		if (myRef.examining && !myRef.talking){
-			myMesh.text = startString;
+			if (myRef.overrideExamineString != ""){
+				myMesh.text = myRef.overrideExamineString;
+			}else{
+				myMesh.text = startString;
+			}
 		}else{
 			myMesh.text = "";
 		}

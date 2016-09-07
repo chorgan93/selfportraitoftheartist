@@ -35,4 +35,8 @@ public class PlayerDetectS : MonoBehaviour {
 		return (playerList.Count > 0);
 
 	}
+
+	void OnDisable(){
+		playerList.Clear();
+	}
 }

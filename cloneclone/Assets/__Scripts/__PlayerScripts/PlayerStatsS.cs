@@ -291,7 +291,7 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					_currentHealth -= dmg;
-					ChargeCheck(10f);
+					//ChargeCheck(10f);
 				}
 					if (_currentHealth <= 0){
 						_currentHealth = 0;
@@ -344,6 +344,17 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//__________________________________STAT UPGRADES
 	public void AddStamina(){
-		_addedMana++;
+		_addedMana+=2f;
+		_currentMana+=2f;
+	}
+
+	public void AddHealth(){
+		_addedHealth += 3f;
+		_currentHealth += 3f;
+	}
+
+	public void FullRecover(){
+		_currentHealth = maxHealth;
+		_currentCharge = _maxCharge;
 	}
 }

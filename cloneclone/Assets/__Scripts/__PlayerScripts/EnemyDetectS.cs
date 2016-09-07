@@ -21,6 +21,7 @@ public class EnemyDetectS : MonoBehaviour {
 
 	void Start(){
 
+
 		playerReference = GetComponentInParent<PlayerController>();
 		playerReference.SetDetect(this);
 
@@ -30,7 +31,7 @@ public class EnemyDetectS : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		UpdatePosition();
+		//UpdatePosition();
 		UpdateEnemyPosition();
 
 	}

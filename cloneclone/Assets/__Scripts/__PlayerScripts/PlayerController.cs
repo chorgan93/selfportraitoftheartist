@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour {
 	private bool shootButtonUp;
 	private bool reloadButtonUp;
 	private bool aimButtonUp;
+	private bool switchButtonUp;
 
 	// Status Properties
 	private bool _isStunned = false;
@@ -101,8 +102,8 @@ public class PlayerController : MonoBehaviour {
 	private bool allowChargeAttack = true;
 
 	// Buddy Properties
-	private BuddyS _myBuddy;
 	public BuddyS myBuddy;
+	public BuddyS altBuddy;
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -138,6 +139,7 @@ public class PlayerController : MonoBehaviour {
 
 	public bool _inCombat = true;
 	private bool _examining = false;
+	private string _overrideExamineString = "";
 	private bool _isTalking = false;
 
 	
@@ -163,6 +165,7 @@ public class PlayerController : MonoBehaviour {
 	public bool chargingAttack { get { return _chargingAttack;}}
 
 	public bool examining { get { return _examining; } }
+	public string overrideExamineString { get { return _overrideExamineString; } }
 	public bool talking { get { return _isTalking; } }
 
 	
@@ -250,6 +253,7 @@ public class PlayerController : MonoBehaviour {
 				BlockControl();
 				DashControl();
 				AttackControl();
+				SwapControl();
 			}
 
 			MovementControl();
@@ -264,7 +268,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void EquipBuddy(BuddyS newBud){
-		_myBuddy = newBud;
+		myBuddy = newBud;
 	}
 
 	public void Stun(float sTime){
@@ -670,6 +674,28 @@ public class PlayerController : MonoBehaviour {
 						_myAnimator.SetBool("Charging", false);
 					}
 				}}
+		}
+
+	}
+
+	private void SwapControl(){
+
+		if (!myControl.SwitchButton()){
+			switchButtonUp = true;
+		}
+
+		if (!myStats.PlayerIsDead() && myBuddy.canSwitch && switchButtonUp){
+			if (myControl.SwitchButton()){
+				BuddyS tempSwap = myBuddy;
+				myBuddy = altBuddy;
+				myBuddy.transform.position = tempSwap.transform.position;
+				myBuddy.gameObject.SetActive(true);
+				altBuddy = tempSwap;
+				altBuddy.gameObject.SetActive(false);
+			}
+		}
+		if (myControl.SwitchButton()){
+			switchButtonUp = false;
 		}
 
 	}
@@ -1157,8 +1183,9 @@ public class PlayerController : MonoBehaviour {
 		_inCombat = combat;
 	}
 
-	public void SetExamining(bool nEx){
+	public void SetExamining(bool nEx, string newExString = ""){
 		_examining = nEx;
+		_overrideExamineString = newExString;
 	}
 
 	public void SetTalking(bool nEx){

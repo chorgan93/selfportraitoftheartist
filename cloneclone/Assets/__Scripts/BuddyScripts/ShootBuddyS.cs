@@ -88,6 +88,10 @@ public class ShootBuddyS : BuddyS {
 		}
 		else{
 			shootCountdown -= Time.deltaTime;
+
+			if (shootCountdown <= 0){
+				canSwitch = true;
+			}
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
@@ -102,6 +106,7 @@ public class ShootBuddyS : BuddyS {
 							}else{
 								shotDelayCountdown = shotDelay;
 								shotTriggered = true;
+								canSwitch = false;
 							}
 						}
 						chargeButtonUp = false;
