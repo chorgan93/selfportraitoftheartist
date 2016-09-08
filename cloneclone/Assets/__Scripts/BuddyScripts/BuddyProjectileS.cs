@@ -8,7 +8,9 @@ public class BuddyProjectileS : MonoBehaviour {
 	private SpriteRenderer _myRenderer;
 	private Renderer _myRenderer3D;
 	private BuddyS _myBuddy;
-	
+
+	[Header("Projectile Properties")]
+	public GameObject soundObj;
 	public GameObject hitObj;
 	public GameObject muzzleFlash;
 	public GameObject hitEffect;
@@ -92,6 +94,10 @@ public class BuddyProjectileS : MonoBehaviour {
 	}
 	
 	public void Fire(Vector3 aimDirection, BuddyS buddyReference){
+
+		if (soundObj){
+			Instantiate(soundObj);
+		}
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -154,6 +160,7 @@ public class BuddyProjectileS : MonoBehaviour {
 			CameraShakeS.C.MicroShake();
 			break;
 		case(0):
+			CameraShakeS.C.SpecialAttackShake();
 			break;
 		case(1):
 			CameraShakeS.C.SmallShake();

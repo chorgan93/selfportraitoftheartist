@@ -11,8 +11,10 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	private bool _behaviorActing = false;
 
+	[Header("Behavior Properties")]
 	public string behaviorName; // mostly for editor legibility
 	public string animationKey = "";
+	public GameObject soundObj;
 
 	[Header("Status Properties")]
 	public bool allowStun = false;
@@ -34,6 +36,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetFaceStatus(facePlayer);
 		if (animationKey != "" && setAnimTrigger){
 		myEnemy.myAnimator.SetTrigger(animationKey);
+			if (soundObj){
+				Instantiate(soundObj);
+			}
 		}
 
 

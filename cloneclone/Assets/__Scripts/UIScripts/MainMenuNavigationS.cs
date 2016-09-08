@@ -26,18 +26,28 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public GameObject secondScreenLoop;
 
 	public Transform[] menuSelections;
+	public TextMesh[] menuSelectionsText;
 	private int currentSelection = 0;
 	public GameObject selectOrb;
+	public GameObject credits;
 
 	private Vector3 selectionScale;
+	private Color selectionStartColor;
 
 	private bool stickReset = false;
 
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
 
-	//private string newGameScene = "IntroCutscene";
-	private string newGameScene = "TutorialScene";
+	private string newGameScene = "IntroCutscene";
+	//private string newGameScene = "InfiniteScene";
+	private string twitterLink = "http://www.twitter.com/melessthanthree";
+	private string facebookLink = "http://www.facebook.com/lucahgame/";
+
+	private string cheatString = "";
+	private bool allowCheats = true; // TURN OFF FOR DEMO
+
+	public InfiniteBGM startMusic;
 
 	// Use this for initialization
 	void Start () {
@@ -62,12 +72,16 @@ public class MainMenuNavigationS : MonoBehaviour {
 		selectOrb.SetActive(false);
 
 		selectionScale = menuSelections[0].localScale;
+		selectionStartColor = menuSelectionsText[0].color;
+
+		startMusic.FadeIn();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		CheckCheats();
 
 		if (!started){
 			allowStartTime -= Time.deltaTime;
@@ -97,6 +111,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					secondScreenLoop.SetActive(true);
 					SetSelection();
 					selectOrb.SetActive(true);
+					credits.SetActive(true);
 				}
 			}else{
 				
@@ -133,9 +148,18 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 
 				if ((Input.GetKeyDown(KeyCode.Return) || myController.BlockButton()) && !loading){
+					if (currentSelection == 0){
+						startMusic.FadeOut();
 					loadBlackScreen.gameObject.SetActive(true);
 					loading = true;
 					selectOrb.SetActive(false);
+					}
+					if (currentSelection == 1){
+						Application.OpenURL(facebookLink);
+					}
+					if (currentSelection == 2){
+						Application.OpenURL(twitterLink);
+					}
 				}
 			}
 		}else{
@@ -148,13 +172,42 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	void SetSelection(){
 
+		Color correctCol = Color.white;
 		for (int i = 0; i < menuSelections.Length; i++){
 			if (i == currentSelection){
-				menuSelections[i].localScale = selectionScale*1.2f;
+				//menuSelections[i].localScale = selectionScale*1.2f;
 				selectOrb.transform.position = menuSelections[i].position;
+				correctCol = Color.white;
+				correctCol.a = menuSelectionsText[i].color.a;
+				menuSelectionsText[i].color = correctCol;;
 			}else{
-				menuSelections[i].localScale = selectionScale;
+				//menuSelections[i].localScale = selectionScale;
+				correctCol = selectionStartColor;
+				correctCol.a = menuSelectionsText[i].color.a;
+				menuSelectionsText[i].color = correctCol;
 			}
+		}
+
+	}
+
+	private void CheckCheats(){
+
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			Application.Quit();
+		}
+
+		if (Input.GetKeyDown(KeyCode.G)){
+			cheatString += "G";
+			if (cheatString == "GGGG"){
+				PlayerStatsS.godMode = true;
+				Debug.Log("god mode on");
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
+			cheatString = "";
+			PlayerStatsS.godMode = false;
+			Debug.Log("god mode off");
 		}
 
 	}

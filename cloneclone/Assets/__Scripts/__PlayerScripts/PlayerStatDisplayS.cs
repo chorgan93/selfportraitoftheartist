@@ -92,8 +92,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (playerStats.godMode){
-			TurnOffAll();
+		if (PlayerStatsS.godMode){
+			//TurnOffAll();
 		}
 		else{
 			TurnOnAll();

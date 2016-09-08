@@ -16,10 +16,13 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 	private float largestX;
 	private float largestY;
 
+	private bool initialized = false;
+
 	void Start(){
 
 
 		enemiesInRange = new List<EnemyS>();
+		initialized = true;
 
 	}
 
@@ -95,7 +98,7 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 
-		if (other.gameObject.tag == "Enemy"){
+		if (other.gameObject.tag == "Enemy" && initialized){
 
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 
@@ -109,11 +112,11 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		
-		if (other.gameObject.tag == "Enemy"){
+		if (other.gameObject.tag == "Enemy" && initialized){
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			
-			if (!otherEnemy.isDead){
+			if (!otherEnemy.isDead && enemiesInRange.Count > 0){
 				enemiesInRange.Remove(otherEnemy);
 			}
 			

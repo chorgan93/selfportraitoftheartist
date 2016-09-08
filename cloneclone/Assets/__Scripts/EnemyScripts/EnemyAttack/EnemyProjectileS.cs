@@ -8,7 +8,9 @@ public class EnemyProjectileS : MonoBehaviour {
 	private SpriteRenderer _myRenderer;
 	private Renderer _myRenderer3D;
 	private EnemyS _myEnemy;
-
+	
+	[Header("Projectile Properties")]
+	public GameObject soundObj;
 	public GameObject hitObj;
 	public bool flipOnX = false;
 
@@ -100,6 +102,10 @@ public class EnemyProjectileS : MonoBehaviour {
 	}
 	
 	public void Fire(Vector3 aimDirection, EnemyS enemyReference){
+
+		if (soundObj){
+			Instantiate(soundObj);
+		}
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();

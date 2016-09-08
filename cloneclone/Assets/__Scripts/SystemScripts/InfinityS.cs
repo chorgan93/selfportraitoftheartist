@@ -25,6 +25,17 @@ public class InfinityS : MonoBehaviour {
 	private PlayerController playerReference;
 	private Transform cameraTransform;
 
+	// DRAMATIC DEMO STUFF
+	private InfiniteBGM musicHandler;
+	private bool musicStarted = false;
+	public AudioClip trackOne;
+	public AudioClip trackTwo;
+	public AudioClip finalTrack;
+	public int difficultyForTrackTwo = 11;
+	public int maxDifficulty = 37;
+
+	private string endDemoString = "DefeatBossScene";
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,6 +43,8 @@ public class InfinityS : MonoBehaviour {
 		cameraTransform = CameraShakeS.C.transform;
 
 		SpawnStage();
+
+		musicHandler = GameObject.Find("InfiniteBGM").GetComponent<InfiniteBGM>();
 	
 	}
 
@@ -61,12 +74,38 @@ public class InfinityS : MonoBehaviour {
 			spawnFlash.color = fadeCol;
 		}
 
+		if (playerReference.myStats.PlayerIsDead()){
+			if (musicStarted){
+				musicHandler.FadeOut();
+				musicStarted = false;
+			}
+		}
+
 	}
 
 
 	public void NextStage(){
 
 		difficulty ++;
+
+		if (!musicStarted){
+			musicStarted = true;
+			musicHandler.NewTrack(trackOne);
+			musicHandler.FadeIn();
+		}else{
+			if (difficulty == difficultyForTrackTwo-1 || difficulty == maxDifficulty-1){
+				musicHandler.FadeOut();
+			}
+			if (difficulty == difficultyForTrackTwo){
+				musicHandler.NewTrack(trackTwo);
+				musicHandler.FadeIn();
+			}
+			if (difficulty == maxDifficulty){
+				musicHandler.NewTrack(trackTwo);
+				musicHandler.FadeIn();
+			}
+
+		}
 
 		fadeIn = true;
 		Color fadeCol = spawnFlash.color;
@@ -79,6 +118,10 @@ public class InfinityS : MonoBehaviour {
 
 	private void SpawnStage(){
 
+		if (difficulty > maxDifficulty){
+			Application.LoadLevel(endDemoString);
+		}
+		else{
 		if (currentSpawn != null){
 			playerReference.transform.parent = null;
 			Destroy(currentSpawn.gameObject);
@@ -123,7 +166,7 @@ public class InfinityS : MonoBehaviour {
 		cameraTransform.position = camPos;
 
 		background.RepositionBg(playerReference.transform.position);
-
+		}
 
 	}
 }

@@ -103,6 +103,7 @@ public class MeleeBuddyS : BuddyS {
 			canSwitch = false;
 			shotDelayCountdown -= Time.deltaTime;
 			if (shotDelayCountdown <= 0 || (shootDetect.closestEnemy != null && shotDelayCountdown < shotDelay*0.5f)){
+			
 				FireProjectile();
 				shotTriggered = false;
 				shotDelayCountdown = 0;
@@ -110,10 +111,6 @@ public class MeleeBuddyS : BuddyS {
 		}
 		else{
 			shootCountdown -= Time.deltaTime;
-
-			if (shootCountdown <= 0){
-				canSwitch = true;
-			}
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
@@ -162,6 +159,7 @@ public class MeleeBuddyS : BuddyS {
 
 	private void FireProjectile(){
 
+		canSwitch = true;
 		myAnimator.SetTrigger(fireAnimatorTrigger);
 
 		Vector3 aimDir = Vector3.zero;
@@ -194,6 +192,7 @@ public class MeleeBuddyS : BuddyS {
 		flashFrames = flashFramesMax;
 		flashReset = true;
 		myRender.material.SetFloat("_FlashAmount", 1);
+
 
 	}
 }

@@ -9,6 +9,8 @@ public class ProjectileS : MonoBehaviour {
 	// public float rangeLvl;
 	private float powerLvl;
 	private float speedLvl;
+	[Header("Projectile Properties")]
+	public GameObject soundObj;
 	public GameObject hitObj;
 	public GameObject endObj;
 	public bool useAltAnim = false;
@@ -135,6 +137,9 @@ public class ProjectileS : MonoBehaviour {
 		myPlayer = playerReference;
 		// powerLvl = dmg;
 
+		if (soundObj){
+			Instantiate(soundObj);
+		}
 
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);

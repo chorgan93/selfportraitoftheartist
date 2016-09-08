@@ -20,6 +20,7 @@ public class ShootBuddyS : BuddyS {
 	public string chargeAnimatorTrigger;
 	public string fireAnimatorTrigger;
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -89,9 +90,6 @@ public class ShootBuddyS : BuddyS {
 		else{
 			shootCountdown -= Time.deltaTime;
 
-			if (shootCountdown <= 0){
-				canSwitch = true;
-			}
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
@@ -119,6 +117,7 @@ public class ShootBuddyS : BuddyS {
 
 	private void FireProjectile(){
 
+		canSwitch = true;
 		myAnimator.SetTrigger(fireAnimatorTrigger);
 
 		Vector3 aimDir = Vector3.zero;

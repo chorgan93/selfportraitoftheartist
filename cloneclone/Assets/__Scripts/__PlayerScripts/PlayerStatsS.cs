@@ -11,7 +11,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private PlayerController myPlayerController;
 
-	public bool godMode = true;
+	public static bool godMode = false;
 
 	//________________________________HEALTH
 	private float _baseHealth = 8;
