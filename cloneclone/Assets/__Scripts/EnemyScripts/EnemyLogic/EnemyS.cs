@@ -59,6 +59,11 @@ public class EnemyS : MonoBehaviour {
 	private bool spawnedDeathObj = false;
 	private int deathFrameDelay = 1;
 
+	
+	[Header("Sound Properties")]
+	public GameObject hitSound;
+	public GameObject deathSound;
+
 
 	//____________________________________ENEMY STATES
 
@@ -548,6 +553,9 @@ public class EnemyS : MonoBehaviour {
 			_currentHealth -= critDmg;
 		}
 		if (_currentHealth > 0){
+			if (hitSound){
+				Instantiate(hitSound);
+			}
 			_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
 			
 			CameraShakeS.C.SmallShake();
@@ -580,6 +588,9 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 		else{
+			if (deathSound){
+				Instantiate(deathSound);
+			}
 			_isDead = true;
 			Stun (0);
 			EndAllBehaviors();

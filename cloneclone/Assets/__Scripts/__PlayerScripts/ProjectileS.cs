@@ -11,6 +11,7 @@ public class ProjectileS : MonoBehaviour {
 	private float speedLvl;
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
+	public GameObject hitSoundObj;
 	public GameObject hitObj;
 	public GameObject endObj;
 	public bool useAltAnim = false;
@@ -334,6 +335,10 @@ public class ProjectileS : MonoBehaviour {
 			hitEnemy.TakeDamage
 				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
 				 dmg, critDmg*myPlayer.myStats.critAmt);
+
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
 
 			if (!isPiercing){
 

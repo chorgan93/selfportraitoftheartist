@@ -77,7 +77,9 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			attackTimeCountdown = attackDuration;
 			SetAttackDirection();
 
-			
+			if (soundObj){
+				Instantiate(soundObj);
+			}
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 
 			if (trackingTime <= 0){

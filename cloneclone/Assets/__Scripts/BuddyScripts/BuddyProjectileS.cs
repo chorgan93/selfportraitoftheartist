@@ -11,6 +11,7 @@ public class BuddyProjectileS : MonoBehaviour {
 
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
+	public GameObject hitSoundObj;
 	public GameObject hitObj;
 	public GameObject muzzleFlash;
 	public GameObject hitEffect;
@@ -226,6 +227,9 @@ public class BuddyProjectileS : MonoBehaviour {
 					range = fadeThreshold;
 					myCollider.enabled = false;
 					
+				}
+				if (hitSoundObj){
+					Instantiate(hitSoundObj);
 				}
 			
 

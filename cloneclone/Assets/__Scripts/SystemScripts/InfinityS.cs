@@ -34,6 +34,8 @@ public class InfinityS : MonoBehaviour {
 	public int difficultyForTrackTwo = 11;
 	public int maxDifficulty = 37;
 
+	public GameObject newLevelSound;
+
 	private string endDemoString = "DefeatBossScene";
 
 	// Use this for initialization
@@ -87,6 +89,10 @@ public class InfinityS : MonoBehaviour {
 	public void NextStage(){
 
 		difficulty ++;
+
+		if (newLevelSound){
+			Instantiate(newLevelSound);
+		}
 
 		if (!musicStarted){
 			musicStarted = true;

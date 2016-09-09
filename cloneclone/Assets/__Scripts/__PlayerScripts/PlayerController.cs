@@ -142,6 +142,8 @@ public class PlayerController : MonoBehaviour {
 	private string _overrideExamineString = "";
 	private bool _isTalking = false;
 
+	private PlayerSoundS playerSound;
+
 	
 	//_________________________________________GETTERS AND SETTERS
 
@@ -216,6 +218,7 @@ public class PlayerController : MonoBehaviour {
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMat = myRenderer.material;
+		playerSound = GetComponent<PlayerSoundS>();
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
@@ -309,8 +312,11 @@ public class PlayerController : MonoBehaviour {
 			Vector3 moveVelocity = _myRigidbody.velocity;
 	
 			if (input2.x != 0 || input2.y != 0){
+
 				moveVelocity.x = inputDirection.x = input2.x;
 				moveVelocity.y = inputDirection.y = input2.y;
+				
+				playerSound.SetWalking(true);
 
 				if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y < 0){
 					FaceDown();
@@ -360,7 +366,12 @@ public class PlayerController : MonoBehaviour {
 		
 			}else{
 				RunAnimationCheck(input2.magnitude);
+				playerSound.SetWalking(false);
 			}
+
+
+		}else{
+			playerSound.SetWalking(false);
 		}
 
 	}
@@ -798,6 +809,11 @@ public class PlayerController : MonoBehaviour {
 
 	private void RunAnimationCheck(float inputMagnitude){
 		_myAnimator.SetFloat("Speed", inputMagnitude);
+		if (inputMagnitude > 0.8f){
+			playerSound.SetRunning(true);
+		}else{
+			playerSound.SetRunning(false);
+		}
 	}
 
 	private void TriggerWakeUp(){

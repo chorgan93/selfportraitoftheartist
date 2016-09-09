@@ -11,6 +11,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
+	public GameObject hitSoundObj;
 	public GameObject hitObj;
 	public bool flipOnX = false;
 
@@ -242,6 +243,10 @@ public class EnemyProjectileS : MonoBehaviour {
 				playerRef.myStats.
 					TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
 
+				}
+
+				if (hitSoundObj){
+					Instantiate(hitSoundObj);
 				}
 
 			if (!playerRef.isDashing && !playerRef.isBlocking){
