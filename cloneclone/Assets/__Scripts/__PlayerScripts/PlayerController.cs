@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour {
 	private string _overrideExamineString = "";
 	private bool _isTalking = false;
 
-	private PlayerSoundS playerSound;
+	private PlayerSoundS _playerSound;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -160,6 +160,8 @@ public class PlayerController : MonoBehaviour {
 	public PlayerStatsS myStats		{ get { return _myStats; } }
 	public ControlManagerS myControl { get { return controller; } }
 	public bool inCombat		{ get { return _inCombat; } }
+
+	public PlayerSoundS playerSound { get { return _playerSound; } }
 
 	public bool facingDown		{ get { return _facingDown; } }
 	public bool facingUp		{ get { return _facingUp; } }
@@ -218,7 +220,7 @@ public class PlayerController : MonoBehaviour {
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMat = myRenderer.material;
-		playerSound = GetComponent<PlayerSoundS>();
+		_playerSound = GetComponent<PlayerSoundS>();
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
@@ -316,7 +318,7 @@ public class PlayerController : MonoBehaviour {
 				moveVelocity.x = inputDirection.x = input2.x;
 				moveVelocity.y = inputDirection.y = input2.y;
 				
-				playerSound.SetWalking(true);
+				_playerSound.SetWalking(true);
 
 				if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y < 0){
 					FaceDown();
@@ -366,12 +368,12 @@ public class PlayerController : MonoBehaviour {
 		
 			}else{
 				RunAnimationCheck(input2.magnitude);
-				playerSound.SetWalking(false);
+				_playerSound.SetWalking(false);
 			}
 
 
 		}else{
-			playerSound.SetWalking(false);
+			_playerSound.SetWalking(false);
 		}
 
 	}
@@ -395,6 +397,7 @@ public class PlayerController : MonoBehaviour {
 					_isSprinting = false;
 				doingBlockTrigger = false;
 				_myAnimator.SetBool("Blocking", false);
+					_playerSound.PlayShieldSound();
 				CameraShakeS.C.MicroShake();
 					FlashMana();
 			}
@@ -445,6 +448,8 @@ public class PlayerController : MonoBehaviour {
 
 
 		FlashMana();
+
+		_playerSound.PlayRollSound();
 
 
 		if (_myStats.speedAmt >= 5f){
@@ -555,6 +560,7 @@ public class PlayerController : MonoBehaviour {
 				_chargeAttackTriggered = true;
 				_chargeCollider.TriggerAttack(transform.position, ShootDirection());
 				_myStats.ManaCheck(3);
+				_playerSound.PlayChargeSound();
 			}
 			if (_chargeAttackTime >= _chargeAttackDuration){
 				_chargingAttack = false;
@@ -701,6 +707,7 @@ public class PlayerController : MonoBehaviour {
 				myBuddy = altBuddy;
 				myBuddy.transform.position = tempSwap.transform.position;
 				myBuddy.gameObject.SetActive(true);
+				Instantiate(myBuddy.buddySound);
 				altBuddy = tempSwap;
 				altBuddy.gameObject.SetActive(false);
 			}
@@ -810,9 +817,9 @@ public class PlayerController : MonoBehaviour {
 	private void RunAnimationCheck(float inputMagnitude){
 		_myAnimator.SetFloat("Speed", inputMagnitude);
 		if (inputMagnitude > 0.8f){
-			playerSound.SetRunning(true);
+			_playerSound.SetRunning(true);
 		}else{
-			playerSound.SetRunning(false);
+			_playerSound.SetRunning(false);
 		}
 	}
 

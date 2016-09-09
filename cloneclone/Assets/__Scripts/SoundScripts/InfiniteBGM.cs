@@ -16,6 +16,7 @@ public class InfiniteBGM : MonoBehaviour {
 	private AudioClip queuedTrack;
 
 	public bool notInfinite = false; // delete after demo
+	private bool destroyOnFade = false;
 
 	// Use this for initialization
 	void Awake(){
@@ -43,15 +44,18 @@ public class InfiniteBGM : MonoBehaviour {
 		if (fadingOut){
 			mySource.volume -= Time.deltaTime*fadeOutRate;
 			if (mySource.volume <= 0){
-				mySource.volume = 0;
-				fadingOut = false;
-				if (queuedTrack){
-					mySource.clip = queuedTrack;
-					queuedTrack = null;
-					fadingIn = true;
-				}
-				else{
+				if (destroyOnFade){
+					Destroy(gameObject);
+				}else{
+					mySource.volume = 0;
+					fadingOut = false;
 					mySource.Stop();
+					if (queuedTrack != null){
+						mySource.clip = queuedTrack;
+						queuedTrack = null;
+						fadingIn = true;
+						mySource.Play();
+					}
 				}
 			}
 
@@ -66,10 +70,11 @@ public class InfiniteBGM : MonoBehaviour {
 	
 	}
 
-	public void FadeOut(){
+	public void FadeOut(bool destroyOnOut = false){
 
 		fadingIn = false;
 		fadingOut = true;
+		destroyOnFade = destroyOnOut;
 
 	}
 	public void FadeIn(){

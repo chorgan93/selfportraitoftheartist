@@ -13,6 +13,15 @@ public class PlayerSoundS : MonoBehaviour {
 	private float footstepCountdown;
 	private int footstepToUse = 0;
 
+	[Header("Action Sounds")]
+	public GameObject shieldSound;
+	public GameObject rollSound;
+	public GameObject chargeSound;
+
+	[Header("Damange Sounds")]
+	public GameObject damageSound;
+	public GameObject deathSound;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -55,6 +64,27 @@ public class PlayerSoundS : MonoBehaviour {
 		}else{
 			footstepCountdown = footstepRate;
 		}
+
+	}
+
+	public void PlayRollSound(){
+		Instantiate(rollSound);
+	}
+
+	public void PlayShieldSound(){
+		Instantiate(shieldSound);
+	}
+
+	public void PlayHurtSound(){
+		Instantiate(damageSound);
+	}
+
+	public void PlayDeathSound(){
+		Instantiate(deathSound);
+	}
+
+	public void PlayChargeSound(){
+		Instantiate(chargeSound);
 
 	}
 }

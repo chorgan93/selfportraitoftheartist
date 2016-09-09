@@ -288,12 +288,14 @@ public class PlayerStatsS : MonoBehaviour {
 				myPlayerController.Stun(knockbackTime);
 				myPlayerController.myAnimator.SetTrigger("Hurt");
 				myPlayerController.FlashDamage();
+
 					
 				if(!godMode){
 					_currentHealth -= dmg;
 					//ChargeCheck(10f);
 				}
-					if (_currentHealth <= 0){
+				if (_currentHealth <= 0){
+					myPlayerController.playerSound.PlayDeathSound();
 						_currentHealth = 0;
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
@@ -304,7 +306,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 					CameraFollowS.F.RemoveLimits();
 					}
-					else{
+				else{
+					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 					}
 				//}

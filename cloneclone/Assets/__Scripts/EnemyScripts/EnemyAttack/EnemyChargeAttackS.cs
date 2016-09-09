@@ -29,6 +29,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	private int blackFlashFrames = 4;
 
 	public GameObject hitObj;
+	public GameObject soundObj;
 
 	[Header("Attack Properties")]
 	public float knockbackForce = 1000f;
@@ -137,6 +138,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		if (!standalone){
 		CameraShakeS.C.TimeSleep(0.06f);
+			if (soundObj && standalone){
+				Instantiate(soundObj);
+			}
 		}
 		CameraShakeS.C.SmallShake();
 
@@ -221,6 +225,10 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myCollider.enabled = false;
 		_myRenderer.enabled = true;
 		charging = true;
+
+		if (soundObj && standalone){
+			Instantiate(soundObj);
+		}
 
 	}
 }

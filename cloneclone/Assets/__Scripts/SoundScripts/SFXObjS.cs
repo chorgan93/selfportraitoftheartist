@@ -12,6 +12,10 @@ public class SFXObjS : MonoBehaviour {
 		mySource = GetComponent<AudioSource>();
 		mySource.pitch += Random.insideUnitCircle.x*pitchMult;
 		mySource.Play();
+
+		if (transform.parent){
+			transform.parent = null;
+		}
 	
 	}
 

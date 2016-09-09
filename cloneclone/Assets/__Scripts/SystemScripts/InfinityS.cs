@@ -102,12 +102,15 @@ public class InfinityS : MonoBehaviour {
 			if (difficulty == difficultyForTrackTwo-1 || difficulty == maxDifficulty-1){
 				musicHandler.FadeOut();
 			}
+			if (difficulty > maxDifficulty){
+				musicHandler.FadeOut(true);
+			}
 			if (difficulty == difficultyForTrackTwo){
 				musicHandler.NewTrack(trackTwo);
 				musicHandler.FadeIn();
 			}
 			if (difficulty == maxDifficulty){
-				musicHandler.NewTrack(trackTwo);
+				musicHandler.NewTrack(finalTrack);
 				musicHandler.FadeIn();
 			}
 

@@ -45,7 +45,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private string facebookLink = "http://www.facebook.com/lucahgame/";
 
 	private string cheatString = "";
-	private bool allowCheats = true; // TURN OFF FOR DEMO
+	private bool allowCheats = false; // TURN OFF FOR DEMO
 
 	public InfiniteBGM startMusic;
 
@@ -53,6 +53,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void Start () {
 
 		Cursor.visible = false;
+		PlayerStatsS.godMode = false;
 
 		fadeOnZoom.gameObject.SetActive(false);
 		firstScreenTurnOff.SetActive(true);
@@ -196,6 +197,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 			Application.Quit();
 		}
 
+		if (allowCheats){
 		if (Input.GetKeyDown(KeyCode.G)){
 			cheatString += "G";
 			if (cheatString == "GGGG"){
@@ -208,6 +210,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 			cheatString = "";
 			PlayerStatsS.godMode = false;
 			Debug.Log("god mode off");
+		}
 		}
 
 	}

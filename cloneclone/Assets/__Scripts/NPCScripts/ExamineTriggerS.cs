@@ -6,6 +6,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public string examineLabel = "";
 	public string examineString;
 	public string unlockString;
+	public GameObject examineSound;
 
 	public int keyInt = -1;
 	public BarrierS turnOffBarrier;
@@ -71,6 +72,9 @@ public class ExamineTriggerS : MonoBehaviour {
 						CameraFollowS.F.SetNewPOI(newPoi);
 					}
 
+					if (examineSound){
+						Instantiate(examineSound);
+					}
 					talking = true;
 
 					if (keyInt >= 0){
@@ -84,6 +88,11 @@ public class ExamineTriggerS : MonoBehaviour {
 					}
 
 				}else{
+
+					if (examineString == "" && examineSound != null){
+						Instantiate(examineSound);
+					}
+
 					if (DialogueManagerS.D.doneScrolling){
 						pRef.SetTalking(false);
 						CameraFollowS.F.ResetPOI();

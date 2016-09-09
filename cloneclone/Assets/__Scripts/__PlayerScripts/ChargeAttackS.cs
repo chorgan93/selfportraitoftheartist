@@ -22,6 +22,7 @@ public class ChargeAttackS : MonoBehaviour {
 	private int flashMax = 3;
 	private int blackFlashFrames = 4;
 
+	public GameObject soundObj;
 	public GameObject hitObj;
 
 	private PlayerController myPlayer;
@@ -119,6 +120,11 @@ public class ChargeAttackS : MonoBehaviour {
 
 		CameraShakeS.C.TimeSleep(0.1f);
 		CameraShakeS.C.LargeShake();
+
+		
+		if (soundObj){
+			Instantiate(soundObj);
+		}
 
 
 	}

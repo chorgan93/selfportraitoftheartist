@@ -10,6 +10,7 @@ public class BuddyS : MonoBehaviour {
 
 	public Transform _buddyPos;
 	public Transform _buddyPosLower;
+	public GameObject buddySound;
 
 	public float followSpeed;
 	public float nearPlayerMult = 0.5f;

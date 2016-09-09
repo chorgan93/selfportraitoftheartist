@@ -139,6 +139,9 @@ public class MeleeBuddyS : BuddyS {
 	private void LungeAtEnemy(){
 		
 		myAnimator.SetTrigger(chargeAnimatorTrigger);
+		if (buddySound){
+			Instantiate(buddySound);
+		}
 
 		Vector3 aimDir = Vector3.zero;
 

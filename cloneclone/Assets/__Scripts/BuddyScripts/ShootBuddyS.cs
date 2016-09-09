@@ -117,6 +117,10 @@ public class ShootBuddyS : BuddyS {
 
 	private void FireProjectile(){
 
+		if (buddySound){
+			Instantiate(buddySound);
+		}
+
 		canSwitch = true;
 		myAnimator.SetTrigger(fireAnimatorTrigger);
 
