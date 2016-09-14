@@ -51,6 +51,8 @@ public class ProjectileS : MonoBehaviour {
 	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float reloadTime = 1f;
+	public float numAttacks = 1;
+	public float timeBetweenAttacks = 0.1f;
 
 	[Header("Collider Properties")]
 	public float delayColliderTime = -1f;

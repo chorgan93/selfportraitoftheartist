@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 
@@ -53,7 +54,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _isAiming;
 
 	private bool _shoot4Dir;
-	private bool _shoot8Dir;
+	private bool _shoot8Dir = true;
+	private Vector3 savedDir = Vector3.zero;
 
 	private bool _doingDashAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
@@ -91,6 +93,9 @@ public class PlayerController : MonoBehaviour {
 	private bool _isStunned = false;
 	private bool attackTriggered;
 	private float stunTime;
+	private List<GameObject> queuedAttacks;
+	private List<float> queuedAttackDelays;
+	private bool newAttack = true;
 
 	// Charging Properties
 	private bool _chargingAttack;
@@ -185,6 +190,12 @@ public class PlayerController : MonoBehaviour {
 	void Update(){
 		ManageFlash();
 
+		if (myControl.ControllerAttached()){
+			Cursor.visible = false;
+		}else{
+			Cursor.visible = true;
+		}
+
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			Application.Quit();
 		}
@@ -224,8 +235,12 @@ public class PlayerController : MonoBehaviour {
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
-		currentChain = 0;
+		currentChain = -1;
 		comboDuration = 0f;
+
+		queuedAttacks = new List<GameObject>();
+		queuedAttackDelays = new List<float>();
+
 
 		_chargeCollider = GetComponentInChildren<ChargeAttackS>();
 
@@ -550,7 +565,7 @@ public class PlayerController : MonoBehaviour {
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
 			comboDuration -= Time.deltaTime;
 			if (comboDuration <= 0 && currentChain != 0){
-				currentChain = 0;
+				currentChain = -1;
 			}
 		}
 
@@ -581,35 +596,62 @@ public class PlayerController : MonoBehaviour {
 
 			GameObject newProjectile;
 
+			if (queuedAttacks.Count > 0){
+				newAttack = false;
+				newProjectile = Instantiate(queuedAttacks[0], transform.position, Quaternion.identity)
+					as GameObject;
+				queuedAttacks.RemoveAt(0);
+			}
+			else{
+				newAttack = true;
 			if (_doingDashAttack){
 				
 				newProjectile = (GameObject)Instantiate(dashAttack, 
 				                                        transform.position, 
 				                                        Quaternion.identity);
 			}else{
-				
+
+					currentChain++;
+					if (currentChain > attackChain.Length-1){
+						currentChain = 0;
+					}
+
 				newProjectile = (GameObject)Instantiate(attackChain[currentChain], 
 				                                        transform.position, 
 				                                        Quaternion.identity);
-				currentChain++;
-				if (currentChain > attackChain.Length-1){
-					currentChain = 0;
-				}
+				
+			}
 			}
 
 			comboDuration = currentAttackS.comboDuration;
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
 
-			newProjectile.transform.position += capturedShootDirection.normalized*currentAttackS.spawnRange;
+			if (newAttack && currentAttackS.numAttacks > 1){
+				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
+					if (_doingDashAttack){
+						queuedAttacks.Add(dashAttack);
+						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+					}else{
+						queuedAttacks.Add(attackChain[currentChain]);
+						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+					}
+				}
+			}
 
-			
-						currentAttackS.GetComponent<ProjectileS>().Fire(ShootDirection(),
+			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
+
+			if (newAttack){
+						currentAttackS.Fire(ShootDirection(),
 				                                                  ShootDirectionUnlocked(), this);
+			}else{
+				currentAttackS.Fire(savedDir,
+				                    savedDir, this);
+			}
 
 
 				// subtract mana cost
-				_myStats.ManaCheck(1f);
+				_myStats.ManaCheck(1f, newAttack);
 				FlashMana();
 
 				if (myRenderer.transform.localScale.x > 0){
@@ -628,7 +670,12 @@ public class PlayerController : MonoBehaviour {
 
 			muzzleFlare.Fire(currentAttackS.rateOfFire, ShootDirection(), newProjectile.transform.localScale.x);
 
-			attackTriggered = false;
+			if (queuedAttackDelays.Count > 0){
+				attackDelay = queuedAttackDelays[0];
+				queuedAttackDelays.RemoveAt(0);
+			}else{
+				attackTriggered = false;
+			}
 		}
 		else{
 			attackDuration -= Time.deltaTime;
@@ -650,7 +697,11 @@ public class PlayerController : MonoBehaviour {
 						_doingDashAttack = true;
 
 					}else{
-						currentAttackS = attackChain[currentChain].GetComponent<ProjectileS>();
+						int nextAttack = currentChain+1;
+						if (nextAttack > attackChain.Length-1){
+							nextAttack = 0;
+						}
+						currentAttackS = attackChain[nextAttack].GetComponent<ProjectileS>();
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
@@ -973,7 +1024,10 @@ public class PlayerController : MonoBehaviour {
 
 
 		// now check 4/8 directional, if applicable
-		if (_shoot4Dir && !_isAiming){
+		if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
+			inputDirection = savedDir;
+		}
+		else if (_shoot4Dir && !_isAiming){
 
 			float directionZ = FindDirectionOfVector(inputDirection.normalized);
 
@@ -998,91 +1052,110 @@ public class PlayerController : MonoBehaviour {
 		}
 		else if (_shoot8Dir || _isAiming){
 
+			//Debug.Log("8 dir!");
+
 			float directionZ = FindDirectionOfVector(inputDirection.normalized);
 
 			if (directionZ > 348.75f || directionZ <= 11.25f){
 				inputDirection.x = 1;
 				inputDirection.y = 0;
 				FaceLeftRight();
+				//Debug.Log("Look 1!");
 			}
 			else if (directionZ > 11.25f && directionZ <= 33.75f){
 				inputDirection.x = 1f;
 				inputDirection.y = 0.5f;
 				FaceLeftRight();
+				//Debug.Log("Look 2!");
 			}
 			else if (directionZ > 33.75f && directionZ <= 56.25f){
 				inputDirection.x = 1;
 				inputDirection.y = 1;
 				FaceLeftRight();
+				//Debug.Log("Look 3!");
 			}
 			else if (directionZ > 56.25f && directionZ <= 78.75f){
 				inputDirection.x = 0.5f;
 				inputDirection.y = 1;
 				FaceUp();
+				//Debug.Log("Look 4!");
 			}
 			else if (directionZ > 78.75f && directionZ <= 101.25f) {
 				inputDirection.x = 0;
 				inputDirection.y = 1;
 				FaceUp();
+				//Debug.Log("Look 5!");
 			}
 			else if (directionZ > 101.25f && directionZ <= 123.75f) {
 				inputDirection.x = -0.5f;
 				inputDirection.y = 1;
 				FaceLeftRight();
+				//Debug.Log("Look 6!");
 			}
 			else if (directionZ > 123.75f && directionZ <= 146.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = 1;
 				FaceLeftRight();
+				//Debug.Log("Look 7!");
 			}
 			else if (directionZ > 146.25f && directionZ <= 168.75f) {
 				inputDirection.x = -1;
 				inputDirection.y = 0.5f;
 				FaceLeftRight();
+				//Debug.Log("Look 8!");
 			}
 			else if (directionZ > 168.75f && directionZ <= 191.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = 0;
 				FaceLeftRight();
+				//Debug.Log("Look 9!");
 			}
 			else if (directionZ > 191.25f && directionZ <= 213.75f) {
 				inputDirection.x = -1;
 				inputDirection.y = -0.5f;
 				FaceLeftRight();
+				//Debug.Log("Look 10!");
 			}
 			else if (directionZ > 213.75f && directionZ <= 236.25f) {
 				inputDirection.x = -1;
 				inputDirection.y = -1;
 				FaceLeftRight();
+				//Debug.Log("Look 11!");
 			}
 			else if (directionZ > 236.25f && directionZ <= 258.75f){
 				inputDirection.x = -0.5f;
 				inputDirection.y = -1;
 				FaceDown();
+				//Debug.Log("Look 12!");
 			}
 			else if (directionZ > 258.75f && directionZ <= 281.25f)  {
 				inputDirection.x = 0;
 				inputDirection.y = -1;
 				FaceDown();
+				//Debug.Log("Look 13!");
 			}
 			else if (directionZ > 281.25f && directionZ <= 303.75f) {
 				inputDirection.x = 0.5f;
 				inputDirection.y = -1;
 				FaceLeftRight();
+				//Debug.Log("Look 14!");
 			}
 			else if (directionZ > 303.75f && directionZ <= 326.25f) {
 				inputDirection.x = 1;
 				inputDirection.y = -1;
 				FaceLeftRight();
+				//Debug.Log("Look 15!");
 			}
 			else{
 				inputDirection.x = 1;
 				inputDirection.y = -0.5f;
 				FaceLeftRight();
+				//Debug.Log("Look 16!");
 			}
 
 		}
 
+		savedDir = inputDirection.normalized;
 		return inputDirection.normalized;
 		
 

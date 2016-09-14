@@ -52,7 +52,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Cursor.visible = false;
+		//Cursor.visible = false;
 		PlayerStatsS.godMode = false;
 
 		fadeOnZoom.gameObject.SetActive(false);
@@ -121,9 +121,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 
 				// go down
-				if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || 
-				    (myController.Vertical() < -0.5f && stickReset)){
-					if (myController.Vertical() < -0.5f){
+				if (myController.Vertical() < -0.1f && stickReset){
+					if (myController.Vertical() < -0.1f){
 						stickReset = false;
 					}
 					currentSelection ++;
@@ -135,9 +134,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 
 				// go up
-				if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || 
-				    (myController.Vertical() > 0.5f && stickReset)){
-					if (myController.Vertical() > 0.5f){
+				if ((myController.Vertical() > 0.1f && stickReset)){
+					if (myController.Vertical() > 0.1f){
 						stickReset = false;
 					}
 					currentSelection --;
