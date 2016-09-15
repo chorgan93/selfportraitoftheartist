@@ -120,8 +120,9 @@ public class PlayerController : MonoBehaviour {
 	private float blockPrepMax = 0.18f;
 		
 	// Attack Properties
-	public GameObject[] attackChain;
-	public GameObject dashAttack;
+	//public GameObject[] attackChain;
+	//public GameObject dashAttack;
+	public PlayerWeaponS equippedWeapon;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private float comboDuration = 0f;
@@ -257,7 +258,7 @@ public class PlayerController : MonoBehaviour {
 			TriggerWakeUp();
 		}
 
-		currentAttackS = attackChain[0].GetComponent<ProjectileS>();
+		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
 
 	}
 
@@ -343,6 +344,7 @@ public class PlayerController : MonoBehaviour {
 					FaceLeftRight();
 				}
 
+
 				if (_isBlocking || _chargingAttack){
 					moveVelocity *= walkSpeedBlockMult;
 					RunAnimationCheck(input2.magnitude*walkSpeedBlockMult);
@@ -356,7 +358,7 @@ public class PlayerController : MonoBehaviour {
 
 					//_isSprinting = false;
 
-					float actingWalkSpeed = walkSpeed + walkSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
+					float actingWalkSpeed = walkSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingWalkSpeed;
 					if (_myRigidbody.velocity.magnitude < walkSpeedMax){
@@ -364,8 +366,8 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 				else{
-					
-					float actingRunSpeed = runSpeed + runSpeed*maxSpeedStatAdd*(_myStats.speedAmt-1f)/4f; 
+				
+					float actingRunSpeed = runSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingRunSpeed;
 
@@ -564,7 +566,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
 			comboDuration -= Time.deltaTime;
-			if (comboDuration <= 0 && currentChain != 0){
+			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 			}
 		}
@@ -606,17 +608,17 @@ public class PlayerController : MonoBehaviour {
 				newAttack = true;
 			if (_doingDashAttack){
 				
-				newProjectile = (GameObject)Instantiate(dashAttack, 
+				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
 				                                        transform.position, 
 				                                        Quaternion.identity);
 			}else{
 
 					currentChain++;
-					if (currentChain > attackChain.Length-1){
+					if (currentChain > equippedWeapon.attackChain.Length-1){
 						currentChain = 0;
 					}
 
-				newProjectile = (GameObject)Instantiate(attackChain[currentChain], 
+				newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
 				                                        transform.position, 
 				                                        Quaternion.identity);
 				
@@ -630,10 +632,10 @@ public class PlayerController : MonoBehaviour {
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
 					if (_doingDashAttack){
-						queuedAttacks.Add(dashAttack);
+						queuedAttacks.Add(equippedWeapon.dashAttack);
 						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
 					}else{
-						queuedAttacks.Add(attackChain[currentChain]);
+						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
 						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
 					}
 				}
@@ -651,7 +653,7 @@ public class PlayerController : MonoBehaviour {
 
 
 				// subtract mana cost
-				_myStats.ManaCheck(1f, newAttack);
+				_myStats.ManaCheck(currentAttackS.manaCost, newAttack);
 				FlashMana();
 
 				if (myRenderer.transform.localScale.x > 0){
@@ -691,20 +693,21 @@ public class PlayerController : MonoBehaviour {
 
 					if (_isDashing || _isSprinting){
 
-						currentAttackS = dashAttack.GetComponent<ProjectileS>();
+						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
 
 						_isSprinting = false;
 						_doingDashAttack = true;
 
 					}else{
 						int nextAttack = currentChain+1;
-						if (nextAttack > attackChain.Length-1){
+						if (nextAttack > equippedWeapon.attackChain.Length-1){
 							nextAttack = 0;
 						}
-						currentAttackS = attackChain[nextAttack].GetComponent<ProjectileS>();
+						currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
+					currentAttackS.StartKnockback(this, ShootDirection());
 					attackTriggered = true;
 					_isShooting = true;
 					allowChargeAttack = true;
@@ -891,7 +894,7 @@ public class PlayerController : MonoBehaviour {
 		}else{
 		
 
-
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
 			_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 			_myAnimator.SetBool("Attacking", true);
 			//_myAnimator.SetBool("Chaining", false);

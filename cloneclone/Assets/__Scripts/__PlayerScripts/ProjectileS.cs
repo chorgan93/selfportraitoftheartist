@@ -5,11 +5,9 @@ using System.Collections.Generic;
 public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
-
-	// public float rangeLvl;
-	private float powerLvl;
-	private float speedLvl;
+	
 	[Header("Projectile Properties")]
+	public float manaCost = 1f;
 	public GameObject soundObj;
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
@@ -78,6 +76,7 @@ public class ProjectileS : MonoBehaviour {
 
 	[Header("Effect Properties")]
 	public string attackAnimationTrigger;
+	public float animationSpeedMult = 1f;
 	public int shakeAmt = 0;
 	private float maxSizeMult = 0.5f;
 	private float maxKnockbackMult = 0.5f;
@@ -173,7 +172,7 @@ public class ProjectileS : MonoBehaviour {
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
 
-		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(powerLvl-1f)/(4f)) * knockbackMult *Time.deltaTime;
+		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(1f-1f)/(4f)) * knockbackMult *Time.deltaTime;
 
 
 		if (stopPlayer){
@@ -195,7 +194,7 @@ public class ProjectileS : MonoBehaviour {
 
 		currentRange = range;
 
-		transform.localScale += transform.localScale*(maxSizeMult*(powerLvl-1f)/(4f));
+		transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
 
 
 
