@@ -83,6 +83,7 @@ public class PlayerController : MonoBehaviour {
 	private float startDrag;
 
 	private Vector3 inputDirection;
+	private bool dashButtonUp;
 	private bool blockButtonUp;
 	private bool shootButtonUp;
 	private bool reloadButtonUp;
@@ -440,9 +441,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			// check for dash tap
-			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
+			/*if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
 				TriggerDash();
-			}
+			}*/
 
 			TurnOffBlockAnimation();
 			
@@ -512,26 +513,25 @@ public class PlayerController : MonoBehaviour {
 
 	private void DashControl(){
 
-		if (_isDashing){
-
-
-			// allow for second dash
-			if (BlockInputPressed()){
-				if (blockButtonUp && ((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD && _myStats.ManaCheck(1)))){
-					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						TriggerDash();
-					}
+		// allow for second dash
+		if (controller.DashKey()){
+			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || !_isDashing) && _myStats.ManaCheck(1)))){
+				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+					TriggerDash();
 				}
-				/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
+			}
+			/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerSprint();
 					}
 				}**/
-				blockButtonUp = false;
-			}
-			else{
-				blockButtonUp = true;
-			}
+			dashButtonUp = false;
+		}
+		else{
+			dashButtonUp = true;
+		}
+
+		if (_isDashing){
 
 
 			dashDurationTime += Time.deltaTime;
