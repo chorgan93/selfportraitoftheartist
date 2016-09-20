@@ -515,7 +515,8 @@ public class PlayerController : MonoBehaviour {
 
 		// allow for second dash
 		if (controller.DashKey()){
-			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || !_isDashing) && _myStats.ManaCheck(1)))){
+			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
+			                      && CanInputBlock() && _myStats.ManaCheck(1)))){
 				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 					TriggerDash();
 				}

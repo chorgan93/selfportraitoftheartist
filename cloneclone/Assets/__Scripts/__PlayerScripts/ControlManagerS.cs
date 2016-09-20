@@ -121,7 +121,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockTrigger(){
 
 		if (ControllerAttached()){
-			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchBuddyButton" + platformType));
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -132,7 +132,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool FamiliarControl(){
 
 		if (ControllerAttached()){
-			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchButton"+platformType));
 		}else{
 			return (Input.GetMouseButton(1));
 		}
@@ -151,7 +151,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockButton(){
 
 		if (ControllerAttached()){
-			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchBuddyButton" + platformType));
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -162,7 +162,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool DashKey(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton" + platformType));
+			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -174,9 +174,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ShootTrigger(){
 
 		if (ControllerAttached()){
-
-			return (Input.GetButton("SwitchButton"+platformType));
-			//return (Input.GetButton("SwitchButton" + platformType));
+			
+			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 
 		}
 		else{
@@ -190,8 +189,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ShootButton(){
 
 		if (ControllerAttached()){
-		
-			return (Input.GetButton("SwitchButton"+platformType));
+			
+			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 
 		}
 		else{
@@ -200,6 +199,19 @@ public class ControlManagerS : MonoBehaviour {
 
 		}
 		
+	}
+
+	public bool TalkButton(){
+		if (ControllerAttached()){
+			
+			return (Input.GetButton("DashButton"+platformType));
+			
+		}
+		else{
+			
+			return (Input.GetKey(KeyCode.Space));
+			
+		}
 	}
 
 	public bool SwitchButton(){

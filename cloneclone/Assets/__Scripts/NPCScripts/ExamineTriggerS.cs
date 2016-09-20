@@ -59,11 +59,11 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 		if (playerInRange && pRef.myDetect.closestEnemy == null){
 
-			if (!pRef.myControl.BlockButton()){
+			if (!pRef.myControl.TalkButton()){
 				talkButtonDown = false;
 			}
 
-			if (pRef.myControl.BlockButton() && !talkButtonDown){
+			if (pRef.myControl.TalkButton() && !talkButtonDown){
 				talkButtonDown = true;
 
 				if (!talking && examineString != ""){
