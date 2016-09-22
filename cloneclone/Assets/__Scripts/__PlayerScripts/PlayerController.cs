@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour {
 	private bool reloadButtonUp;
 	private bool aimButtonUp;
 	private bool switchButtonUp;
+	private bool switchBuddyButtonUp;
 
 	// Status Properties
 	private bool _isStunned = false;
@@ -108,8 +109,8 @@ public class PlayerController : MonoBehaviour {
 	private bool allowChargeAttack = true;
 
 	// Buddy Properties
-	public BuddyS myBuddy;
-	public BuddyS altBuddy;
+	private BuddyS _myBuddy;
+	public BuddyS[] equippedBuddies;
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -123,7 +124,11 @@ public class PlayerController : MonoBehaviour {
 	// Attack Properties
 	//public GameObject[] attackChain;
 	//public GameObject dashAttack;
-	public PlayerWeaponS equippedWeapon;
+	private PlayerWeaponS equippedWeapon;
+	public PlayerWeaponS[] equippedWeapons;
+	private WeaponSwitchFlashS weaponSwitchIndicator;
+	private int currentParadigm = 0;
+	private int currentBuddy = 0;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private float comboDuration = 0f;
@@ -169,6 +174,7 @@ public class PlayerController : MonoBehaviour {
 	public bool inCombat		{ get { return _inCombat; } }
 
 	public PlayerSoundS playerSound { get { return _playerSound; } }
+	public BuddyS myBuddy { get { return _myBuddy; } }
 
 	public bool facingDown		{ get { return _facingDown; } }
 	public bool facingUp		{ get { return _facingUp; } }
@@ -235,7 +241,13 @@ public class PlayerController : MonoBehaviour {
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
 
+		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
+
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
+
+		equippedWeapon = equippedWeapons[currentParadigm];
+		_myBuddy = equippedBuddies[currentParadigm];
+		_myBuddy.gameObject.SetActive(true);
 
 		currentChain = -1;
 		comboDuration = 0f;
@@ -272,10 +284,10 @@ public class PlayerController : MonoBehaviour {
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			if (_inCombat){
+				SwapControl();
 				BlockControl();
 				DashControl();
 				AttackControl();
-				SwapControl();
 			}
 
 			MovementControl();
@@ -290,7 +302,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void EquipBuddy(BuddyS newBud){
-		myBuddy = newBud;
+		_myBuddy = newBud;
 	}
 
 	public void Stun(float sTime){
@@ -441,9 +453,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			// check for dash tap
-			/*if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
+			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
 				TriggerDash();
-			}*/
+			}
 
 			TurnOffBlockAnimation();
 			
@@ -513,26 +525,28 @@ public class PlayerController : MonoBehaviour {
 
 	private void DashControl(){
 
-		// allow for second dash
-		if (controller.DashKey()){
-			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
-			                      && CanInputBlock() && _myStats.ManaCheck(1)))){
-				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-					TriggerDash();
+
+
+		if (_isDashing){
+
+			// allow for second dash
+			if ((controller.BlockButton() || controller.BlockTrigger())){
+				if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
+				                      && CanInputBlock() && _myStats.ManaCheck(1)))){
+					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						TriggerDash();
+					}
 				}
-			}
-			/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
+				/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerSprint();
 					}
 				}**/
-			dashButtonUp = false;
-		}
-		else{
-			dashButtonUp = true;
-		}
-
-		if (_isDashing){
+				dashButtonUp = false;
+			}
+			else{
+				dashButtonUp = true;
+			}
 
 
 			dashDurationTime += Time.deltaTime;
@@ -671,7 +685,7 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 
-			muzzleFlare.Fire(currentAttackS.rateOfFire, ShootDirection(), newProjectile.transform.localScale.x);
+			muzzleFlare.Fire(currentAttackS.knockbackTime, ShootDirection(), newProjectile.transform.localScale.x);
 
 			if (queuedAttackDelays.Count > 0){
 				attackDelay = queuedAttackDelays[0];
@@ -752,25 +766,79 @@ public class PlayerController : MonoBehaviour {
 
 	private void SwapControl(){
 
-		if (!myControl.SwitchButton()){
+		if (!myControl.WeaponButtonA() && !myControl.WeaponButtonB() && !myControl.WeaponButtonC()){
 			switchButtonUp = true;
 		}
 
-		if (!myStats.PlayerIsDead() && myBuddy.canSwitch && switchButtonUp){
-			if (myControl.SwitchButton()){
-				BuddyS tempSwap = myBuddy;
-				myBuddy = altBuddy;
-				myBuddy.transform.position = tempSwap.transform.position;
-				myBuddy.gameObject.SetActive(true);
-				Instantiate(myBuddy.buddySound);
-				altBuddy = tempSwap;
-				altBuddy.gameObject.SetActive(false);
-			}
-		}
-		if (myControl.SwitchButton()){
-			switchButtonUp = false;
+		if (!myControl.SwitchButton()){
+			switchBuddyButtonUp = true;
 		}
 
+		if (!myStats.PlayerIsDead()){
+		
+			if (!attackTriggered && switchButtonUp){
+				if (myControl.WeaponButtonA() && currentParadigm != 0){
+	
+					SwitchParadigm(0);
+	
+				}
+				if (myControl.WeaponButtonB() && currentParadigm != 1){
+					
+					SwitchParadigm(1);
+					
+				}
+				if (myControl.WeaponButtonC() && currentParadigm != 2){
+					
+					SwitchParadigm(2);
+					
+				}
+			}
+		
+
+			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.SwitchButton()){
+
+				currentBuddy++;
+				if (currentBuddy > equippedBuddies.Length-1){
+					currentBuddy = 0;
+				}
+
+				BuddyS tempSwap = _myBuddy;
+				_myBuddy = equippedBuddies[currentBuddy];
+				_myBuddy.transform.position = tempSwap.transform.position;
+				_myBuddy.gameObject.SetActive(true);
+				Instantiate(_myBuddy.buddySound);
+				tempSwap.gameObject.SetActive(false);
+			}
+		}
+
+		if (myControl.WeaponButtonA() || myControl.WeaponButtonB()|| myControl.WeaponButtonC()){
+			switchButtonUp = false;
+		}
+		if (myControl.SwitchButton()){
+			switchBuddyButtonUp = false;
+		}
+
+	}
+
+	private void SwitchParadigm (int newPara){
+
+		currentParadigm = newPara;
+
+		// switch buddy
+		/*BuddyS tempSwap = _myBuddy;
+		_myBuddy = equippedBuddies[currentParadigm];
+		_myBuddy.transform.position = tempSwap.transform.position;
+		_myBuddy.gameObject.SetActive(true);
+		Instantiate(_myBuddy.buddySound);
+		tempSwap.gameObject.SetActive(false);*/
+		
+		// switchWeapon
+		equippedWeapon = equippedWeapons[currentParadigm];
+		if (currentChain > equippedWeapon.attackChain.Length-1){
+			currentChain = -1;
+		}
+
+		weaponSwitchIndicator.Flash(equippedWeapon);
 	}
 
 	private bool StaminaCheck(float cost, bool takeAway = true){

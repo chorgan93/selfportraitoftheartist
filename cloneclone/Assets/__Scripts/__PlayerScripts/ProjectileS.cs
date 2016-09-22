@@ -26,7 +26,6 @@ public class ProjectileS : MonoBehaviour {
 	public bool lock8Directional = false;
 
 	[Header("Shot Stats")]
-	public float rateOfFire = 0.12f;
 	public float delayShotTime = 0.8f;
 
 	public float shotSpeed = 1000f;
@@ -46,6 +45,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool dashAttack = false;
 	public bool delayAttack = false;
 	public float dmg = 1;
+	public float stunMult = 1f;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float reloadTime = 1f;
@@ -236,7 +236,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-						                          dmg, critDmg*myPlayer.myStats.critAmt);
+						                          dmg, stunMult, critDmg*myPlayer.myStats.critAmt);
 					}
 				}
 			}
@@ -335,7 +335,7 @@ public class ProjectileS : MonoBehaviour {
 
 			hitEnemy.TakeDamage
 				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-				 dmg, critDmg*myPlayer.myStats.critAmt);
+				 dmg, stunMult, critDmg*myPlayer.myStats.critAmt);
 
 			if (hitSoundObj){
 				Instantiate(hitSoundObj);

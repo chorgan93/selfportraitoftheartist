@@ -121,7 +121,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockTrigger(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton" + platformType));
+			//return (Input.GetButton("SwitchBuddyButton" + platformType));
+			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -151,7 +152,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockButton(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton" + platformType));
+			//return (Input.GetButton("SwitchBuddyButton" + platformType));
+			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -162,7 +164,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool DashKey(){
 
 		if (ControllerAttached()){
-			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			//return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchBuddyButton" + platformType));
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -201,6 +204,46 @@ public class ControlManagerS : MonoBehaviour {
 		
 	}
 
+	public bool WeaponButtonA(){
+		if (ControllerAttached()){
+			
+			return (Input.GetButton("ShootButton"+platformType));
+			
+		}
+		else{
+			
+			return (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1));
+			
+		}
+	}
+
+	public bool WeaponButtonB(){
+		if (ControllerAttached()){
+			
+			return (Input.GetButton("SwitchButton"+platformType+"Alt"));
+			
+		}
+		else{
+			
+			return (Input.GetKey(KeyCode.Alpha2) || Input.GetKey(KeyCode.Keypad2));
+			
+		}
+	}
+
+	public bool WeaponButtonC(){
+		if (ControllerAttached()){
+			
+			return (Input.GetButton("ReloadButton"+platformType));
+			
+		}
+		else{
+			
+			return (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3));
+			
+		}
+	}
+
+
 	public bool TalkButton(){
 		if (ControllerAttached()){
 			
@@ -208,24 +251,22 @@ public class ControlManagerS : MonoBehaviour {
 			
 		}
 		else{
-			
-			return (Input.GetKey(KeyCode.Space));
+
+			return (Input.GetKey(KeyCode.E));
 			
 		}
 	}
 
 	public bool SwitchButton(){
 
-		return false;
 
-		/*
+
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton"+platformType)
-			        || Input.GetButton("ReloadButton"+platformType));
+			return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}
 		else{
 			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-		}**/
+		}
 		
 	}
 

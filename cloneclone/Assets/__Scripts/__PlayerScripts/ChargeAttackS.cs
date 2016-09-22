@@ -168,7 +168,7 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-				 dmg, dmg);
+				 dmg, 1f, dmg);
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}

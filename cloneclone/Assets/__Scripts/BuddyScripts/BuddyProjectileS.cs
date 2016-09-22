@@ -219,7 +219,7 @@ public class BuddyProjectileS : MonoBehaviour {
 				
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.deltaTime, 
-					 damage, damage);
+					 damage, 1f, damage);
 				
 				if (!isPiercing){
 					

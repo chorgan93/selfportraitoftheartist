@@ -540,10 +540,10 @@ public class EnemyS : MonoBehaviour {
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float critDmg, float sTime = 0f){
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f){
 
 		_currentHealth -= dmg;
-		_breakAmt += dmg;
+		_breakAmt += dmg*stunMult;
 
 		if (_breakAmt >= _breakThreshold){
 			_behaviorBroken = true;

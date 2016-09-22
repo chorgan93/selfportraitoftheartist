@@ -167,7 +167,9 @@ public class InfinityS : MonoBehaviour {
 			spawnFlash.transform.position = fadePos;
 
 		playerReference.transform.position = currentSpawn.playerSpawn.position;
-		playerReference.myBuddy.transform.position = playerReference.myBuddy._buddyPos.position;
+			if (playerReference.myBuddy != null){
+				playerReference.myBuddy.transform.position = playerReference.myBuddy._buddyPos.position;
+			}
 		playerReference.transform.parent = currentSpawn.transform;
 
 		Vector3 camPos = playerReference.transform.position;
