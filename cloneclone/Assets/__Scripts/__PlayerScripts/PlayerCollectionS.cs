@@ -8,6 +8,7 @@ public class PlayerCollectionS : MonoBehaviour {
 
 	public static List<int> upgradesGathered; 
 	public static List<int> keysGathered; // 1,2,3,4
+	public static int currencyCollected = 0;
 	
 	public static void Initialize(){
 

@@ -92,6 +92,10 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _extraKnockbackMult = 2f;
 	private BlockDisplay3DS myBlocker;
 
+	//________________________________________OTHER
+	private PlayerStatDisplayS _uiReference;
+	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -165,6 +169,10 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentCharge > _maxCharge){
 			_currentCharge = maxCharge;
 		}
+	}
+
+	public void AddUIReference(PlayerStatDisplayS sd){
+		_uiReference = sd;
 	}
 
 	//________________________________________PRIVATE FUNCTIONS

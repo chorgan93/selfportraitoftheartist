@@ -14,6 +14,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float referenceScreenWidth = 1920f;
 	private float referenceScreenHeight = 1080f;
 
+	public PlayerCurrencyDisplayS cDisplay;
+
 	private Vector2 healthBarMaxSize;
 
 	private Vector2 healthStartPos;
@@ -83,6 +85,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
+		playerStats.AddUIReference(this);
 
 		UpdateMaxSizes();
 		UpdateFills();

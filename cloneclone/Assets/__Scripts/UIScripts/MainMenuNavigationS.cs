@@ -86,7 +86,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 		if (!started){
 			allowStartTime -= Time.deltaTime;
-			if (allowStartTime <= 0 && (myController.BlockButton() || Input.GetKeyDown(KeyCode.Return))){
+			if (allowStartTime <= 0 && (myController.TalkButton() || Input.GetKeyDown(KeyCode.Return))){
 				started = true;
 				foreach (GameObject t in textTurnOff){
 					t.SetActive(false);
@@ -146,7 +146,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					SetSelection();
 				}
 
-				if ((Input.GetKeyDown(KeyCode.Return) || myController.BlockButton()) && !loading){
+				if ((Input.GetKeyDown(KeyCode.Return) || myController.TalkButton()) && !loading){
 					if (currentSelection == 0){
 						startMusic.FadeOut();
 					loadBlackScreen.gameObject.SetActive(true);

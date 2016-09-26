@@ -18,6 +18,7 @@ public class EnemyS : MonoBehaviour {
 
 	[Header("Enemy Properties")]
 	public float maxHealth;
+	public int sinAmt;
 	public Color bloodColor = Color.red;
 	public float knockbackTime;
 	private float criticalRecoverTime = 0.5f;
@@ -594,6 +595,7 @@ public class EnemyS : MonoBehaviour {
 			_isDead = true;
 			Stun (0);
 			EndAllBehaviors();
+			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
 			//_myCollider.enabled = false;
