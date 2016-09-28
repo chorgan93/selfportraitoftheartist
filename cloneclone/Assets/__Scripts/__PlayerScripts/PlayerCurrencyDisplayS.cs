@@ -64,9 +64,17 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			if (subtractTimer > 0){
 				subtractTimer -= Time.deltaTime;
 			}else{
-				if (beingAddedAmt > 0){
-					beingAddedAmt = Mathf.RoundToInt((beingAddedAmt*1f)-Time.deltaTime*subtractRate);
-					currencyDisplayAmt = Mathf.RoundToInt((currencyDisplayAmt*1f)+Time.deltaTime*subtractRate);
+				if (Mathf.Abs(beingAddedAmt) > 0){
+					if (beingAddedAmt > 0){
+						beingAddedAmt = Mathf.RoundToInt((beingAddedAmt*1f)-Time.deltaTime*subtractRate);
+					}else{
+						beingAddedAmt = Mathf.RoundToInt((beingAddedAmt*1f)+Time.deltaTime*subtractRate);
+					}
+					if (currencyTotalAmt > currencyDisplayAmt){
+						currencyDisplayAmt = Mathf.RoundToInt((currencyDisplayAmt*1f)+Time.deltaTime*subtractRate);
+					}else{
+						currencyDisplayAmt = Mathf.RoundToInt((currencyDisplayAmt*1f)-Time.deltaTime*subtractRate);
+					}
 					showTimer = showTimerMax;
 				}else if (showTimer > 0){
 					currencyDisplayAmt = currencyTotalAmt;
@@ -80,7 +88,12 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 
 		if (totalDisplay.color.a > 0){
 			totalDisplay.text = currencyDisplayAmt.ToString();
-			beingAddedDisplay.text = "+"+beingAddedAmt;
+			if (beingAddedAmt > 0){
+				beingAddedDisplay.text = "+"+beingAddedAmt;
+			}
+			else{
+				beingAddedDisplay.text = beingAddedAmt.ToString();
+			}
 		}
 	
 	}

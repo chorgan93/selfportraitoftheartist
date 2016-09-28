@@ -49,7 +49,7 @@ public class MuzzleFlareS : MonoBehaviour {
 	
 	}
 
-	public void Fire(float flashTime, Vector3 direction, float size){
+	public void Fire(float flashTime, Vector3 direction, float size, Color shootCol){
 
 		Vector3 newScale = originalScale;
 		newScale.x += size*originalScale.x*0.5f;
@@ -86,7 +86,7 @@ public class MuzzleFlareS : MonoBehaviour {
 		transform.localPosition = direction.normalized*(newScale.x/originalScale.x);
 
 		fadeTime = fadeTimeCountdown = flashTime;
-		fadeColor = mySpriteRenderer.material.color;
+		fadeColor = shootCol;
 		fadeColor.a = 0.8f;
 		mySpriteRenderer.material.color = fadeColor;
 		mySpriteRenderer.enabled = true;

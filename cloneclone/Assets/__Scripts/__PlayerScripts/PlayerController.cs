@@ -272,6 +272,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
+		myRenderer.color = equippedWeapon.swapColor;
 
 	}
 
@@ -685,7 +686,8 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 
-			muzzleFlare.Fire(currentAttackS.knockbackTime, ShootDirection(), newProjectile.transform.localScale.x);
+			muzzleFlare.Fire(currentAttackS.knockbackTime, ShootDirection(), newProjectile.transform.localScale.x,
+			                 equippedWeapon.swapColor);
 
 			if (queuedAttackDelays.Count > 0){
 				attackDelay = queuedAttackDelays[0];
@@ -839,6 +841,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		weaponSwitchIndicator.Flash(equippedWeapon);
+		myRenderer.color = equippedWeapon.swapColor;
+
 	}
 
 	private bool StaminaCheck(float cost, bool takeAway = true){

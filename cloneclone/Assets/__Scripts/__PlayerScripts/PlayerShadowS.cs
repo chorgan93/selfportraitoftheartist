@@ -19,6 +19,10 @@ public class PlayerShadowS : MonoBehaviour {
 		if (myRenderer.enabled){
 			if (myController.myStats.PlayerIsDead() || !myController.myRenderer.enabled || myController.isWaking){
 				myRenderer.enabled = false;
+			}else{
+				if (myRenderer.color != myController.myRenderer.color){
+					myRenderer.color = myController.myRenderer.color;
+				}
 			}
 		}else{
 			if (!myController.myStats.PlayerIsDead() && myController.myRenderer.enabled && !myController.isWaking){
