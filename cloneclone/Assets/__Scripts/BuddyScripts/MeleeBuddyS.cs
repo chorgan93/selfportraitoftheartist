@@ -62,7 +62,19 @@ public class MeleeBuddyS : BuddyS {
 			myEnemyDetect = playerRef.myDetect;
 		}
 
-		if (myEnemyDetect.closestEnemy != null && charging){
+		if (playerRef.myLockOn.myEnemy != null && charging){
+			Vector3 fScale = transform.localScale;
+			if (playerRef.myLockOn.myEnemy.transform.position.x > transform.position.x){
+				fScale.x = sScale;
+			}
+			
+			if (playerRef.myLockOn.myEnemy.transform.position.x < transform.position.x){
+				fScale.x = -sScale;
+			}
+			transform.localScale = fScale;
+			
+		}
+		else if (myEnemyDetect.closestEnemy != null && charging){
 			Vector3 fScale = transform.localScale;
 			if (myEnemyDetect.closestEnemy.transform.position.x > transform.position.x){
 				fScale.x = sScale;
@@ -145,7 +157,11 @@ public class MeleeBuddyS : BuddyS {
 
 		Vector3 aimDir = Vector3.zero;
 
-		if (myEnemyDetect.closestEnemy != null){
+		if (playerRef.myLockOn.myEnemy != null){
+			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
+		}
+		else if (myEnemyDetect.closestEnemy != null){
 			aimDir.x = myEnemyDetect.closestEnemy.transform.position.x - transform.position.x;
 			aimDir.y = myEnemyDetect.closestEnemy.transform.position.y - transform.position.y;
 		}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){
@@ -169,7 +185,11 @@ public class MeleeBuddyS : BuddyS {
 
 		myRigid.velocity = Vector3.zero;
 
-		if (myEnemyDetect.closestEnemy != null){
+		if (playerRef.myLockOn.myEnemy != null){
+			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
+		}
+		else if (myEnemyDetect.closestEnemy != null){
 			aimDir.x = myEnemyDetect.closestEnemy.transform.position.x - transform.position.x;
 			aimDir.y = myEnemyDetect.closestEnemy.transform.position.y - transform.position.y;
 		}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){

@@ -502,20 +502,20 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.drag = startDrag*dashDragMult;
 
 
-		if (_isDashing){
-			/*_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);**/
-			_myAnimator.SetTrigger("Roll");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+		if (!_myLockOn.lockedOn){
+			_myAnimator.SetTrigger("Dash");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.4f;
 		}
 		else{
 			_myAnimator.SetTrigger("Roll");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.4f;
-			blockButtonUp = true;
 		}
-		_isDashing = true;
+		if (!_isDashing){
+			blockButtonUp = true;
+			_isDashing = true;
+		}
 
 	}
 
@@ -1017,7 +1017,6 @@ public class PlayerController : MonoBehaviour {
 	private void AttackAnimationTrigger(){
 		if (_doingDashAttack){
 			_myAnimator.SetBool("Attacking", true);
-			//_myAnimator.SetBool("Chaining", false);
 			_myAnimator.SetTrigger("DashAttack");
 			
 		}else{
@@ -1026,7 +1025,6 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
 			_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 			_myAnimator.SetBool("Attacking", true);
-			//_myAnimator.SetBool("Chaining", false);
 		
 		}
 	}
@@ -1034,7 +1032,6 @@ public class PlayerController : MonoBehaviour {
 	private void PrepBlockAnimation(){
 		
 		_myAnimator.SetBool("Attacking", false);
-		//_myAnimator.SetBool("Chaining", false);
 		_myAnimator.SetBool("Blocking", true);
 		_myAnimator.SetLayerWeight(3, 1f);
 		FaceLeftRight();
@@ -1047,7 +1044,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
-		//_myAnimator.SetBool("Chaining", false);
 	}
 
 	private void FaceDown(){
@@ -1291,9 +1287,79 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		savedDir = inputDirection.normalized;
+		FaceAttackDirection(savedDir);
 		return inputDirection.normalized;
 		
 
+	}
+
+	private void FaceAttackDirection(Vector3 aimDir){
+		float directionZ = FindDirectionOfVector(aimDir);
+		
+		if (directionZ > 348.75f || directionZ <= 11.25f){
+			FaceLeftRight();
+			//Debug.Log("Look 1!");
+		}
+		else if (directionZ > 11.25f && directionZ <= 33.75f){
+			FaceLeftRight();
+			//Debug.Log("Look 2!");
+		}
+		else if (directionZ > 33.75f && directionZ <= 56.25f){
+			FaceLeftRight();
+			//Debug.Log("Look 3!");
+		}
+		else if (directionZ > 56.25f && directionZ <= 78.75f){
+			FaceUp();
+			//Debug.Log("Look 4!");
+		}
+		else if (directionZ > 78.75f && directionZ <= 101.25f) {
+			FaceUp();
+			//Debug.Log("Look 5!");
+		}
+		else if (directionZ > 101.25f && directionZ <= 123.75f) {
+			FaceLeftRight();
+			//Debug.Log("Look 6!");
+		}
+		else if (directionZ > 123.75f && directionZ <= 146.25f) {
+			FaceLeftRight();
+			//Debug.Log("Look 7!");
+		}
+		else if (directionZ > 146.25f && directionZ <= 168.75f) {
+			FaceLeftRight();
+			//Debug.Log("Look 8!");
+		}
+		else if (directionZ > 168.75f && directionZ <= 191.25f) {
+			FaceLeftRight();
+			//Debug.Log("Look 9!");
+		}
+		else if (directionZ > 191.25f && directionZ <= 213.75f) {
+			FaceLeftRight();
+			//Debug.Log("Look 10!");
+		}
+		else if (directionZ > 213.75f && directionZ <= 236.25f) {
+			FaceLeftRight();
+			//Debug.Log("Look 11!");
+		}
+		else if (directionZ > 236.25f && directionZ <= 258.75f){
+			FaceDown();
+			//Debug.Log("Look 12!");
+		}
+		else if (directionZ > 258.75f && directionZ <= 281.25f)  {
+			FaceDown();
+			//Debug.Log("Look 13!");
+		}
+		else if (directionZ > 281.25f && directionZ <= 303.75f) {
+			FaceLeftRight();
+			//Debug.Log("Look 14!");
+		}
+		else if (directionZ > 303.75f && directionZ <= 326.25f) {
+			FaceLeftRight();
+			//Debug.Log("Look 15!");
+		}
+		else{
+			FaceLeftRight();
+			//Debug.Log("Look 16!");
+		}
 	}
 
 	private Vector3 ShootDirectionAssisted(){
