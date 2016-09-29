@@ -32,8 +32,15 @@ public class CameraPOIS : MonoBehaviour {
 			Vector3 newPos = Vector3.zero;
 			if (enemyReference.closestEnemy != null && !playerReference.myStats.PlayerIsDead()){
 
-				currentPosition = (playerReference.transform.position*playerWeight + enemyReference.enemyCenterpoint*enemyWeight)/
+				if (playerReference.myLockOn.lockedOn){
+					currentPosition = (playerReference.transform.position*playerWeight 
+					                   + playerReference.myLockOn.myEnemy.transform.position*enemyWeight)/
+						(playerWeight+enemyWeight);
+				}else{
+					currentPosition = (playerReference.transform.position*playerWeight 
+					                   + enemyReference.enemyCenterpoint*enemyWeight)/
 					(playerWeight+enemyWeight);
+				}
 
 				newPos.x = (1-moveEasing)*transform.position.x + moveEasing*currentPosition.x;
 				newPos.y = (1-moveEasing)*transform.position.y + moveEasing*currentPosition.y;

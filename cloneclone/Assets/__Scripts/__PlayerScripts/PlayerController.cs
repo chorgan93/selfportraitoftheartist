@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour {
 	private bool aimButtonUp;
 	private bool switchButtonUp;
 	private bool switchBuddyButtonUp;
+	private bool lockInputReset = false;
 
 	// Status Properties
 	private bool _isStunned = false;
@@ -125,6 +126,7 @@ public class PlayerController : MonoBehaviour {
 	//public GameObject[] attackChain;
 	//public GameObject dashAttack;
 	private PlayerWeaponS equippedWeapon;
+	public PlayerWeaponS getEWeapon { get { return equippedWeapon; } }
 	public PlayerWeaponS[] equippedWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
 	private int currentParadigm = 0;
@@ -155,6 +157,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _isTalking = false;
 
 	private PlayerSoundS _playerSound;
+	private LockOnS _myLockOn;
+	public LockOnS myLockOn { get { return _myLockOn; } }
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -285,6 +289,7 @@ public class PlayerController : MonoBehaviour {
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			if (_inCombat){
+				LockOnControl();
 				SwapControl();
 				BlockControl();
 				DashControl();
@@ -822,6 +827,56 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	private void LockOnControl(){
+
+		// controller only for the moment
+		// figure out mouse control scheme (middle click & scroll wheel should work)
+		if (myControl.ControllerAttached()){
+			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f){
+				lockInputReset = true;
+			}else{
+				if (lockInputReset){
+
+					if (_myLockOn.lockedOn){
+						if (myControl.RightVertical() < -0.75f){
+							_myLockOn.EndLockOn();
+							lockInputReset = false;
+						}
+						else{
+							if (myDetect.allEnemiesInRange.Count > 1){
+								if (myControl.RightHorizontal() > 0){
+									int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+									currentLockedEnemy++;
+									if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
+										currentLockedEnemy = 0;
+									}
+									_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+									lockInputReset = false;
+								}
+								if (myControl.RightHorizontal() < 0){
+									int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+									currentLockedEnemy--;
+									if (currentLockedEnemy < 0){
+										currentLockedEnemy = myDetect.allEnemiesInRange.Count-1;
+									}
+									_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+									lockInputReset = false;
+								}
+							}
+						}
+					}else{
+						if (Mathf.Abs(myControl.RightVertical()) >= 0.15f || Mathf.Abs(myControl.RightVertical()) >= 0.15f){
+							if (myDetect.allEnemiesInRange.Count > 0){
+								_myLockOn.LockOn(myDetect.closestEnemy);
+								lockInputReset = false;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	private void SwitchParadigm (int newPara){
 
 		currentParadigm = newPara;
@@ -839,7 +894,8 @@ public class PlayerController : MonoBehaviour {
 		if (currentChain > equippedWeapon.attackChain.Length-1){
 			currentChain = -1;
 		}
-
+		
+		_myLockOn.SetSprite();
 		weaponSwitchIndicator.Flash(equippedWeapon);
 		myRenderer.color = equippedWeapon.swapColor;
 
@@ -1098,9 +1154,12 @@ public class PlayerController : MonoBehaviour {
 			inputDirection = GetMouseDirection();
 		}
 
-
+		// first, do lock on
+		if (_myLockOn.lockedOn){
+			inputDirection = (_myLockOn.myEnemy.transform.position-transform.position).normalized;
+		}
 		// now check 4/8 directional, if applicable
-		if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
+		else if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
 			inputDirection = savedDir;
 		}
 		else if (_shoot4Dir && !_isAiming){
@@ -1332,6 +1391,11 @@ public class PlayerController : MonoBehaviour {
 
 		enemyDetect = newDetect;
 
+	}
+
+	public void SetLockOnIndicator(LockOnS newLock){
+		_myLockOn = newLock;
+		//_myLockOn.SetSprite();
 	}
 
 	public bool InAttack(){

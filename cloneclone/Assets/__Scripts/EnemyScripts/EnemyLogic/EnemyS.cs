@@ -20,6 +20,7 @@ public class EnemyS : MonoBehaviour {
 	public float maxHealth;
 	public int sinAmt;
 	public Color bloodColor = Color.red;
+	public float lockOnSize = 1f;
 	public float knockbackTime;
 	private float criticalRecoverTime = 0.5f;
 	private float _currentHealth;

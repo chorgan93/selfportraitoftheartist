@@ -35,7 +35,8 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		displayColor.a = 0;
 		totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
 
-		totalDisplay.text = "";
+		currencyDisplayAmt = currencyTotalAmt = PlayerCollectionS.currencyCollected;
+		totalDisplay.text = currencyDisplayAmt.ToString();
 		beingAddedDisplay.text = "";
 	
 	}
