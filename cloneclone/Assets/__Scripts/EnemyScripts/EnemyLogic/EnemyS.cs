@@ -558,6 +558,7 @@ public class EnemyS : MonoBehaviour {
 
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f){
 
+		float damageTaken = dmg;
 		_currentHealth -= dmg;
 		_breakAmt += dmg*stunMult;
 
@@ -568,10 +569,15 @@ public class EnemyS : MonoBehaviour {
 
 		if (_isCritical){
 			_currentHealth -= critDmg;
+			damageTaken+=critDmg;
 		}
 
 		if (healthUIReference != null){
 			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);
+		}else{
+			if (!GetPlayerReference().myLockOn.lockedOn && _currentHealth > 0){
+				GetPlayerReference().myLockOn.enemyHealthUI.NewTarget(this, damageTaken);
+			}
 		}
 
 		if (_currentHealth > 0){

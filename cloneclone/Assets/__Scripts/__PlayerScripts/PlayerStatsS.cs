@@ -310,6 +310,8 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);
 
+					myPlayerController.myLockOn.enemyHealthUI.EndLockOn();
+
 					GetComponent<BleedingS>().StartDeath();
 
 					CameraFollowS.F.RemoveLimits();

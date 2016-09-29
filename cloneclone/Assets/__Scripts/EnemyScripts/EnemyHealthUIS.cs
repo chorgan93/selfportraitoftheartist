@@ -34,14 +34,18 @@ public class EnemyHealthUIS : MonoBehaviour {
 	private float startBarLength;
 
 	private float damageTargetLength;
-	private float startDecreaseDelay = 0.6f;
+	private float startDecreaseDelay = 0.4f;
 	private float decreaseDelay;
 	private float reduceRate = 300f;
 	private bool tookDamage = false;
 	private bool damageDecreasing = false;
 
+	private float addedDamage = 0f;
+
 	private EnemyS myEnemy;
 	private bool showing = false;
+
+	private LockOnS _lockOnRef;
 
 	// Use this for initialization
 	void Start () {
@@ -113,6 +117,10 @@ public class EnemyHealthUIS : MonoBehaviour {
 						damageResize.x = barFullImage.rectTransform.sizeDelta.x;
 						damageDecreasing = false;
 						tookDamage = false;
+
+						if (!_lockOnRef.lockedOn){
+							EndLockOn();
+						}
 					}
 					barDamageImage.rectTransform.sizeDelta = damageResize;
 				}
@@ -136,13 +144,13 @@ public class EnemyHealthUIS : MonoBehaviour {
 		}
 	}
 
-	public void NewTarget(EnemyS newEnemy){
+	public void NewTarget(EnemyS newEnemy, float addDamage = 0){
 
 		myEnemy = newEnemy;
 		myEnemy.SetUIReference(this);
 		enemyNameText.text = myEnemy.enemyName;
 
-		
+		damageDecreasing = false;
 		currentFade = 0f;
 		fadingOut = false;
 
@@ -192,32 +200,49 @@ public class EnemyHealthUIS : MonoBehaviour {
 		enemyNameText.gameObject.SetActive(true);
 
 		showing = true;
+
+		if (addDamage > 0){
+			addedDamage = addDamage;
+			ResizeForDamage();
+		}
 	}
 
 	public void ResizeForDamage(bool extraShake = false){
 
-		/*barFullImage.color = borderImage.color = enemyNameText.color = Color.white;
-		flashFrames = 6;
-		flashing = true;*/
-		ShakeBar(extraShake);
+		if (myEnemy != null){
 
-		Vector2 resizeRect = barFullImage.rectTransform.sizeDelta;
+			ShakeBar(extraShake);
+	
+			Vector2 resizeRect = barFullImage.rectTransform.sizeDelta;
+	
+			if (addedDamage > 0){
+				resizeRect.x = 
+					startBarLength+(myEnemy.currentHealth+addedDamage)/myEnemy.maxHealth*(lengthPerHealth*myEnemy.maxHealth);
+			}
 
-		if (damageDecreasing){
-			barDamageImage.rectTransform.sizeDelta = resizeRect;
-		}
+			if (damageDecreasing || addedDamage > 0){
+				barDamageImage.rectTransform.sizeDelta = resizeRect;
+			}
+
+			float healthMult = myEnemy.currentHealth/myEnemy.maxHealth;
+			if (healthMult < 0f){
+				healthMult = 0f;
+			}
 		
-		resizeRect = barFullImage.rectTransform.sizeDelta;
-		resizeRect.x = (startBarLength + lengthPerHealth*myEnemy.maxHealth)*(myEnemy.currentHealth/myEnemy.maxHealth);
-		barFullImage.rectTransform.sizeDelta = resizeRect;
-
-		damageDecreasing = false;
-		if (myEnemy.currentHealth > 0){
+			resizeRect = barFullImage.rectTransform.sizeDelta;
+			resizeRect.x = (startBarLength + lengthPerHealth*myEnemy.maxHealth)*healthMult;
+			barFullImage.rectTransform.sizeDelta = resizeRect;
+					
+			damageDecreasing = false;
+			if (myEnemy.currentHealth > 0){
 			decreaseDelay = startDecreaseDelay;
-		}else{
-			decreaseDelay = 0f;
+			}else{
+				decreaseDelay = 0f;
+				barDamageImage.rectTransform.sizeDelta = resizeRect;
+			}
+			tookDamage = true;
+			addedDamage = 0f;
 		}
-		tookDamage = true;
 			
 	}
 
@@ -232,6 +257,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 		if (myEnemy != null){
 			myEnemy.RemoveUIReference();
+			myEnemy = null;
 		}
 
 		currentFade = 0f;
@@ -258,5 +284,9 @@ public class EnemyHealthUIS : MonoBehaviour {
 			shakeDecay = 30f;
 		}
 
+	}
+
+	public void SetLockOnRef(LockOnS newRef){
+		_lockOnRef = newRef;
 	}
 }

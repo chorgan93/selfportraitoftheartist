@@ -16,7 +16,8 @@ public class LockOnS : MonoBehaviour {
 	private int flashCount = 0;
 	private bool flashing = false;
 
-	private EnemyHealthUIS enemyHealthUI;
+	private EnemyHealthUIS _enemyHealthUI;
+	public EnemyHealthUIS enemyHealthUI { get { return _enemyHealthUI; } } 
 
 
 	private Vector3 sizeDistortion = new Vector3(2.5f, 1.5f, 1f);
@@ -39,8 +40,9 @@ public class LockOnS : MonoBehaviour {
 		myPlayerReference.SetLockOnIndicator(this);
 		transform.parent = null;
 
-		enemyHealthUI = GameObject.Find("Enemy Health").GetComponent<EnemyHealthUIS>();
-		enemyHealthUI.TurnOff();
+		_enemyHealthUI = GameObject.Find("Enemy Health").GetComponent<EnemyHealthUIS>();
+		_enemyHealthUI.SetLockOnRef(this);
+		_enemyHealthUI.TurnOff();
 
 	
 	}
@@ -117,7 +119,7 @@ public class LockOnS : MonoBehaviour {
 
 	public void LockOn(EnemyS newEnemy){
 		_myEnemy = newEnemy;
-		enemyHealthUI.NewTarget(_myEnemy);
+		_enemyHealthUI.NewTarget(_myEnemy);
 		SetSprite();
 		myRenderer.enabled = true;
 		transform.localScale = sizeDistortion*newEnemy.myRenderer.transform.localScale.x*newEnemy.transform.localScale.x;
@@ -143,10 +145,11 @@ public class LockOnS : MonoBehaviour {
 	}
 
 	public void EndLockOn(){
-		enemyHealthUI.EndLockOn();
+		_enemyHealthUI.EndLockOn();
 		myRenderer.material.SetFloat("_FlashAmount", 1f);
 		flashCount = flashFrameMax;
 		flashing = true;
 		_lockedOn = false;
+		_myEnemy = null;
 	}
 }
