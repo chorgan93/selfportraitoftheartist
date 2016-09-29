@@ -832,13 +832,14 @@ public class PlayerController : MonoBehaviour {
 		// controller only for the moment
 		// figure out mouse control scheme (middle click & scroll wheel should work)
 		if (myControl.ControllerAttached()){
-			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f){
+			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f
+			    && !myControl.UnlockButton()){
 				lockInputReset = true;
 			}else{
 				if (lockInputReset){
 
 					if (_myLockOn.lockedOn){
-						if (myControl.RightVertical() < -0.75f){
+						if (myControl.UnlockButton()){
 							_myLockOn.EndLockOn();
 							lockInputReset = false;
 						}
@@ -865,7 +866,8 @@ public class PlayerController : MonoBehaviour {
 							}
 						}
 					}else{
-						if (Mathf.Abs(myControl.RightVertical()) >= 0.15f || Mathf.Abs(myControl.RightVertical()) >= 0.15f){
+						if (Mathf.Abs(myControl.RightVertical()) >= 0.1f || Mathf.Abs(myControl.RightVertical()) >= 0.1f
+						    || myControl.UnlockButton()){
 							if (myDetect.allEnemiesInRange.Count > 0){
 								_myLockOn.LockOn(myDetect.closestEnemy);
 								lockInputReset = false;

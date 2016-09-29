@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -279,5 +279,13 @@ public class ControlManagerS : MonoBehaviour {
 			return(Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.A));
 		}
 
+	}
+
+	public bool UnlockButton(){
+		if (ControllerAttached()){
+			return (Input.GetButton("RightAnalogClick"+platformType));
+		}else{
+			return (Input.GetMouseButton(2));
+		}
 	}
 }

@@ -17,10 +17,10 @@ public class EnemyS : MonoBehaviour {
 	//____________________________________ENEMY PROPERTIES
 
 	[Header("Enemy Properties")]
+	public string enemyName = "sickman";
 	public float maxHealth;
 	public int sinAmt;
 	public Color bloodColor = Color.red;
-	//public float lockOnSize = 1f;
 	public float knockbackTime;
 	private float criticalRecoverTime = 0.5f;
 	private float _currentHealth;
@@ -37,6 +37,8 @@ public class EnemyS : MonoBehaviour {
 	public SpriteRenderer myShadow;
 	private Animator _myAnimator;
 	private Collider _myCollider;
+
+	private EnemyHealthUIS healthUIReference;
 
 	private Vector3 startSize;
 
@@ -171,6 +173,18 @@ public class EnemyS : MonoBehaviour {
 		_breakAmt = 0f;
 		_behaviorBroken = false;
 		criticalRecoverTime = newRecover;
+	}
+
+	public void SetUIReference(EnemyHealthUIS newRef){
+
+		healthUIReference = newRef;
+
+	}
+
+	public void RemoveUIReference(){
+
+		healthUIReference = null;
+
 	}
 
 	//______________________________________ACTION HOLDERS
@@ -547,6 +561,7 @@ public class EnemyS : MonoBehaviour {
 		_currentHealth -= dmg;
 		_breakAmt += dmg*stunMult;
 
+
 		if (_breakAmt >= _breakThreshold){
 			_behaviorBroken = true;
 		}
@@ -554,7 +569,13 @@ public class EnemyS : MonoBehaviour {
 		if (_isCritical){
 			_currentHealth -= critDmg;
 		}
+
+		if (healthUIReference != null){
+			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);
+		}
+
 		if (_currentHealth > 0){
+
 			if (hitSound){
 				Instantiate(hitSound);
 			}

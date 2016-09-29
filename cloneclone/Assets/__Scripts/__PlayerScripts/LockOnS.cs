@@ -16,6 +16,8 @@ public class LockOnS : MonoBehaviour {
 	private int flashCount = 0;
 	private bool flashing = false;
 
+	private EnemyHealthUIS enemyHealthUI;
+
 
 	private Vector3 sizeDistortion = new Vector3(2.5f, 1.5f, 1f);
 
@@ -36,6 +38,9 @@ public class LockOnS : MonoBehaviour {
 		myPlayerReference = GetComponentInParent<PlayerController>();
 		myPlayerReference.SetLockOnIndicator(this);
 		transform.parent = null;
+
+		enemyHealthUI = GameObject.Find("Enemy Health").GetComponent<EnemyHealthUIS>();
+		enemyHealthUI.TurnOff();
 
 	
 	}
@@ -80,7 +85,7 @@ public class LockOnS : MonoBehaviour {
 			}
 			else if (_myEnemy == null){
 				if (myPlayerReference.myDetect.closestEnemy != null){
-					_myEnemy = myPlayerReference.myDetect.closestEnemy;
+					LockOn(myPlayerReference.myDetect.closestEnemy);
 				}else{
 					EndLockOn();
 				}
@@ -88,7 +93,7 @@ public class LockOnS : MonoBehaviour {
 				if (_myEnemy.isDead){
 					if (myPlayerReference.myDetect.closestEnemy != null){
 						if (myPlayerReference.myDetect.closestEnemy != null){
-							_myEnemy = myPlayerReference.myDetect.closestEnemy;
+							LockOn(myPlayerReference.myDetect.closestEnemy);
 						}else{
 							EndLockOn();
 						}
@@ -112,6 +117,7 @@ public class LockOnS : MonoBehaviour {
 
 	public void LockOn(EnemyS newEnemy){
 		_myEnemy = newEnemy;
+		enemyHealthUI.NewTarget(_myEnemy);
 		SetSprite();
 		myRenderer.enabled = true;
 		transform.localScale = sizeDistortion*newEnemy.myRenderer.transform.localScale.x*newEnemy.transform.localScale.x;
@@ -137,6 +143,7 @@ public class LockOnS : MonoBehaviour {
 	}
 
 	public void EndLockOn(){
+		enemyHealthUI.EndLockOn();
 		myRenderer.material.SetFloat("_FlashAmount", 1f);
 		flashCount = flashFrameMax;
 		flashing = true;
