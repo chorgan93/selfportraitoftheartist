@@ -558,8 +558,7 @@ public class EnemyS : MonoBehaviour {
 
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f){
 
-		float damageTaken = dmg;
-		_currentHealth -= dmg;
+		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
 
 
@@ -568,8 +567,11 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (_isCritical){
-			_currentHealth -= critDmg;
-			damageTaken+=critDmg;
+			_currentHealth -= dmg*critDmg;
+			damageTaken+=dmg*critDmg;
+		}else{
+			_currentHealth -= dmg;
+			damageTaken += dmg;
 		}
 
 		if (healthUIReference != null){

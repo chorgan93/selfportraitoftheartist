@@ -13,14 +13,27 @@ public class FadeScreenUI : MonoBehaviour {
 
 	private SpriteRenderer _myRenderer;
 	private Color _myColor;
+	private Color _textColor;
 
-	private string destinationScene = "WorldGeneration";
+	private string destinationScene = "HellScene";
+	AsyncOperation async;
+	private bool startedLoading = false;
+
+	public TextMesh loadingText;
+	private string loadingString = "L O A D I N G   ";
+	private string currentLoadingString = "";
+	private float addLetterRate = 0.1f;
+	private float addLetterCountdown;
 
 	// Use this for initialization
 	void Start () {
 
 		_myRenderer = GetComponent<SpriteRenderer>();
 		_myColor = _myRenderer.color; 
+		_textColor = loadingText.color;
+		_textColor.a = 0f;
+		loadingText.color = _textColor;
+		loadingText.text = loadingString;
 	
 	}
 	
@@ -47,9 +60,31 @@ public class FadeScreenUI : MonoBehaviour {
 			if (_myColor.a >= 1){
 				_myColor.a = 1;
 				_fadingIn = false;
-				Application.LoadLevel(Application.loadedLevel);
+				StartLoading();
 			}
 			_myRenderer.color = _myColor;
+
+			_textColor.a = _myColor.a;
+			loadingText.color = _textColor;
+		
+		}
+
+		if (startedLoading){
+
+			/*addLetterCountdown -= Time.deltaTime;
+			if (addLetterCountdown <= 0){
+				addLetterCountdown = addLetterRate;
+				if (currentLoadingString.Length >= loadingString.Length){
+					currentLoadingString = "";
+				}else{
+					currentLoadingString += loadingString[currentLoadingString.Length];
+				}
+				loadingText.text = currentLoadingString;
+			}*/
+
+			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){
+				async.allowSceneActivation = true;
+			}
 		}
 	
 	}
@@ -93,6 +128,21 @@ public class FadeScreenUI : MonoBehaviour {
 		_myRenderer.color = _myColor;
 		
 		_fadingIn = true;
-		
+
+	}
+
+	public void SetNewDestination(string newScene){
+		destinationScene = newScene;
+	}
+
+	private void StartLoading(){
+		StartCoroutine(LoadNextScene());
+		startedLoading = true;
+	}
+
+	private IEnumerator LoadNextScene(){
+		async = Application.LoadLevelAsync(destinationScene);
+		async.allowSceneActivation = false;
+		yield return async;
 	}
 }

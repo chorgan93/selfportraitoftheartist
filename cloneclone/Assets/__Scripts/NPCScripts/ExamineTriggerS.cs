@@ -6,6 +6,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public string examineLabel = "";
 	public string examineString;
 	public string unlockString;
+	public int costToExamine = -1;
 	public GameObject examineSound;
 
 	public int keyInt = -1;
@@ -26,6 +27,11 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
+
+	[Header("FOR DEMO REWORK AFTER")]
+	public bool teleportItem = false;
+	public string teleportScene = "InfiniteScene";
+	public bool fullRevive = false;
 
 	public float lookTime = -1f;
 
@@ -67,62 +73,83 @@ public class ExamineTriggerS : MonoBehaviour {
 				talkButtonDown = true;
 
 				if (!talking && examineString != ""){
-					pRef.SetTalking(true);
-					if (newPoi){
-						CameraFollowS.F.SetNewPOI(newPoi);
-					}
+					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
 
-					if (examineSound){
-						Instantiate(examineSound);
-					}
-					talking = true;
+						pRef.SetTalking(true);
+						if (newPoi){
+							CameraFollowS.F.SetNewPOI(newPoi);
+						}
 
-					if (keyInt >= 0){
-						CheckUnlock();
-					}
-
-					if (!unlocking){
-						DialogueManagerS.D.SetDisplayText(examineString);
-					}else{
-						DialogueManagerS.D.SetDisplayText(unlockString);
+						if (costToExamine > 0){
+							pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
+						}
+	
+						if (examineSound){
+							Instantiate(examineSound);
+						}
+						talking = true;
+	
+						if (keyInt >= 0){
+							CheckUnlock();
+						}
+	
+						if (!unlocking){
+							DialogueManagerS.D.SetDisplayText(examineString);
+						}else{
+							DialogueManagerS.D.SetDisplayText(unlockString);
+						}
 					}
 
 				}else{
-
-					if (examineString == "" && examineSound != null){
-						Instantiate(examineSound);
-					}
-
-					if (DialogueManagerS.D.doneScrolling){
-						pRef.SetTalking(false);
-						CameraFollowS.F.ResetPOI();
-						DialogueManagerS.D.EndText();
-						talking = false;
-
-						if (inInfiniteMode){
-							parentInfinite.AddClear();
+					
+					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
+						if (examineString == "" && examineSound != null){
+							Instantiate(examineSound);
 						}
-
-						if (myTrigger){
-							myTrigger.TurnOn();
+	
+						if (costToExamine > 0){
+							pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
 						}
+	
+						if (DialogueManagerS.D.doneScrolling){
+							pRef.SetTalking(false);
+							CameraFollowS.F.ResetPOI();
+							DialogueManagerS.D.EndText();
+							talking = false;
+	
+							if (inInfiniteMode){
+								parentInfinite.AddClear();
+							}
 
-						if (inventoryNum >= -1){
-							AddPickup();
+							if (teleportItem){
+								if (!fullRevive){
+									InfinityS.savedLastDifficulty = 1;
+								}
+								CameraEffectsS.E.SetNextScene(teleportScene);
+								CameraEffectsS.E.FadeIn();
+							}
+	
+							if (myTrigger){
+								myTrigger.TurnOn();
+							}
+	
+							if (inventoryNum >= -1){
+								AddPickup();
+							}
+	
+							if (unlocking){
+								turnOffBarrier.TurnOff();
+								pRef.SetExamining(false);
+								Destroy(gameObject);
+							}
+	
+							if (consumable){
+								pRef.SetExamining(false);
+								Destroy(gameObject);
+							}
+						}else{
+							DialogueManagerS.D.CompleteText();
 						}
-
-						if (unlocking){
-							turnOffBarrier.TurnOff();
-							pRef.SetExamining(false);
-							Destroy(gameObject);
-						}
-
-						if (consumable){
-							pRef.SetExamining(false);
-							Destroy(gameObject);
-						}
-					}else{
-						DialogueManagerS.D.CompleteText();
 					}
 				}
 			}

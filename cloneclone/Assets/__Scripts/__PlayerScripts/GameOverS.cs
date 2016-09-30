@@ -32,6 +32,7 @@ public class GameOverS : MonoBehaviour {
 
 			if (delayFadeTime <= 0 && !startedFade){
 				startedFade = true;
+				CameraEffectsS.E.SetNextScene("HellScene");
 				CameraEffectsS.E.FadeIn();
 			}
 

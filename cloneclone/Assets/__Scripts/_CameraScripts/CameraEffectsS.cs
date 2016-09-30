@@ -6,6 +6,7 @@ public class CameraEffectsS : MonoBehaviour {
 	public static CameraEffectsS E;
 
 	private bool _initialized;
+	public bool isFading = false;
 
 	private FadeScreenUI fadeScreen;
 
@@ -30,5 +31,9 @@ public class CameraEffectsS : MonoBehaviour {
 
 	public void FadeIn(){
 		fadeScreen.FadeIn("");
+		isFading = true;
+	}
+	public void SetNextScene(string newDestination){
+		fadeScreen.SetNewDestination(newDestination);
 	}
 }

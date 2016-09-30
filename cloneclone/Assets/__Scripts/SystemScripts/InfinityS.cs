@@ -33,6 +33,7 @@ public class InfinityS : MonoBehaviour {
 	public AudioClip finalTrack;
 	public int difficultyForTrackTwo = 11;
 	public int maxDifficulty = 37;
+	public static int savedLastDifficulty = 0;
 
 	public GameObject newLevelSound;
 
@@ -45,6 +46,7 @@ public class InfinityS : MonoBehaviour {
 		cameraTransform = CameraShakeS.C.transform;
 
 		SpawnStage();
+		difficulty = savedLastDifficulty;
 
 		musicHandler = GameObject.Find("InfiniteBGM").GetComponent<InfiniteBGM>();
 	
@@ -77,6 +79,7 @@ public class InfinityS : MonoBehaviour {
 		}
 
 		if (playerReference.myStats.PlayerIsDead()){
+			savedLastDifficulty = difficulty;
 			if (musicStarted){
 				musicHandler.FadeOut();
 				musicStarted = false;
