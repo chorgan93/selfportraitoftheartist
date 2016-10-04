@@ -168,7 +168,9 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-				 dmg, 1f, dmg);
+				 dmg, 2f, 2f);
+
+			myPlayer.myStats.RecoverCharge(10f);
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}

@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour {
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
 	private bool preppingSecondDash = false;
+	private float _dashCost = 2f;
+	private float _dodgeCost = 1f;
 
 	private bool _isShooting;
 	private bool _lastInClip;
@@ -103,11 +105,12 @@ public class PlayerController : MonoBehaviour {
 	// Charging Properties
 	private bool _chargingAttack;
 	private float _chargeAttackTime;
-	private float _chargeAttackTrigger = 0.4f;
-	private float _chargeAttackDuration = 0.8f;
+	private float _chargeAttackTrigger = 0.6f;
+	private float _chargeAttackDuration = 1f;
 	private ChargeAttackS _chargeCollider;
 	private bool _chargeAttackTriggered = false;
 	private bool allowChargeAttack = true;
+	private float _chargeAttackCost = 5f;
 
 	// Buddy Properties
 	private BuddyS _myBuddy;
@@ -504,11 +507,13 @@ public class PlayerController : MonoBehaviour {
 
 
 		if (!_myLockOn.lockedOn){
+			_myStats.ManaCheck(_dashCost);
 			_myAnimator.SetTrigger("Dash");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.4f;
 		}
 		else{
+			_myStats.ManaCheck(_dodgeCost);
 			_myAnimator.SetTrigger("Roll");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.4f;
@@ -536,7 +541,7 @@ public class PlayerController : MonoBehaviour {
 		// allow for second dash
 		if ((controller.BlockButton() || controller.BlockTrigger())){
 			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
-			                      && CanInputBlock() && _myStats.ManaCheck(1)))){
+			                      && CanInputDash() && _myStats.ManaCheck(1, false)))){
 				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 					TriggerDash();
 				}
@@ -600,7 +605,7 @@ public class PlayerController : MonoBehaviour {
 			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
 				_chargeAttackTriggered = true;
 				_chargeCollider.TriggerAttack(transform.position, ShootDirection());
-				_myStats.ManaCheck(3);
+				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 			}
 			if (_chargeAttackTime >= _chargeAttackDuration){
@@ -1091,9 +1096,10 @@ public class PlayerController : MonoBehaviour {
 
 		bool dashAllow = false;
 
-		if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
+		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
-		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){
+		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
+		if (!_isTalking && !_examining && CanInputShoot()){
 			dashAllow = true;
 		}
 

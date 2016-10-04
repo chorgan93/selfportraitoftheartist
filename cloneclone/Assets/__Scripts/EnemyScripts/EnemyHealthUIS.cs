@@ -277,10 +277,10 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 		shaking = true;
 		if (extra){
-			shakeAmount = 5f;
+			shakeAmount = 8f;
 			shakeDecay = 40f;
 		}else{
-			shakeAmount = 3f;
+			shakeAmount = 6f;
 			shakeDecay = 30f;
 		}
 
