@@ -66,7 +66,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.3f;
+	private float _recoveryCooldownBase = 0.2f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.1f*_recoveryCooldownMultiplier*(currentRecovery-1f)/4f)));}}
