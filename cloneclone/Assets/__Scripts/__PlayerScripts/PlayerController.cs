@@ -420,7 +420,8 @@ public class PlayerController : MonoBehaviour {
 			timeInBlock += Time.deltaTime;
 		}
 
-		if (BlockInputPressed() && CanInputBlock()){
+		//if (BlockInputPressed() && CanInputBlock()){
+		if (controller.SwitchButton() && CanInputBlock()){
 			if (!_isDashing){
 				blockButtonUp = false;
 			}
@@ -459,9 +460,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}else{
 			// check for dash tap
-			if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
+			/*if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
 				TriggerDash();
-			}
+			}**/
 
 			TurnOffBlockAnimation();
 			
@@ -532,27 +533,29 @@ public class PlayerController : MonoBehaviour {
 	private void DashControl(){
 
 
-
-		if (_isDashing){
-
-			// allow for second dash
-			if ((controller.BlockButton() || controller.BlockTrigger())){
-				if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
-				                      && CanInputBlock() && _myStats.ManaCheck(1)))){
-					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						TriggerDash();
-					}
+		// allow for second dash
+		if ((controller.BlockButton() || controller.BlockTrigger())){
+			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
+			                      && CanInputBlock() && _myStats.ManaCheck(1)))){
+				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+					TriggerDash();
 				}
-				/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
+			}
+			/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerSprint();
 					}
 				}**/
-				dashButtonUp = false;
-			}
-			else{
-				dashButtonUp = true;
-			}
+			dashButtonUp = false;
+		}
+		else{
+			dashButtonUp = true;
+		}
+
+
+		if (_isDashing){
+
+
 
 
 			dashDurationTime += Time.deltaTime;
@@ -802,7 +805,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		
 
-			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.SwitchButton()){
+			/*if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.SwitchButton()){
 
 				currentBuddy++;
 				if (currentBuddy > equippedBuddies.Length-1){
@@ -815,15 +818,15 @@ public class PlayerController : MonoBehaviour {
 				_myBuddy.gameObject.SetActive(true);
 				Instantiate(_myBuddy.buddySound);
 				tempSwap.gameObject.SetActive(false);
-			}
+			}**/
 		}
 
 		if (myControl.WeaponButtonA() || myControl.WeaponButtonB()|| myControl.WeaponButtonC()){
 			switchButtonUp = false;
 		}
-		if (myControl.SwitchButton()){
+		/*if (myControl.SwitchButton()){
 			switchBuddyButtonUp = false;
-		}
+		}**/
 
 	}
 
@@ -1099,7 +1102,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (!doingBlockTrigger && !_isBlocking && !attackTriggered && !_isStunned
+		if (!attackTriggered && !_isStunned
 		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack){
 			return true;
 		}
@@ -1110,7 +1113,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if ((!_examining || enemyDetect.closestEnemy)){
+		if (!_isDashing && !_isTalking && !_examining && !_isShooting && !_chargingAttack){
 			return true;
 		}else{
 			return false;
