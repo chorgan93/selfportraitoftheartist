@@ -1025,18 +1025,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AttackAnimationTrigger(){
-		if (_doingDashAttack){
-			_myAnimator.SetBool("Attacking", true);
-			_myAnimator.SetTrigger("DashAttack");
-			
-		}else{
+		
+		_myAnimator.SetTrigger("AttackTrigger");
+		_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
+
+		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
+		_myAnimator.SetBool("Attacking", true);
 		
 
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
-			_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
-			_myAnimator.SetBool("Attacking", true);
-		
-		}
 	}
 
 	private void PrepBlockAnimation(){
