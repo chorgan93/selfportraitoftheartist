@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour {
 	// Buddy Properties
 	private BuddyS _myBuddy;
 	public BuddyS[] equippedBuddies;
+	private BuddySwitchEffectS _buddyEffect;
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -162,6 +163,8 @@ public class PlayerController : MonoBehaviour {
 	private PlayerSoundS _playerSound;
 	private LockOnS _myLockOn;
 	public LockOnS myLockOn { get { return _myLockOn; } }
+
+	private BlockDisplay3DS _blockRef;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -253,8 +256,14 @@ public class PlayerController : MonoBehaviour {
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
 		equippedWeapon = equippedWeapons[currentParadigm];
-		_myBuddy = equippedBuddies[currentParadigm];
+		if (_blockRef){
+			_blockRef.ChangeColors(equippedWeapon.swapColor);
+		}
+		_myBuddy = equippedBuddies[currentBuddy];
 		_myBuddy.gameObject.SetActive(true);
+		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
+
+		_buddyEffect = GetComponentInChildren<BuddySwitchEffectS>();
 
 		currentChain = -1;
 		comboDuration = 0f;
@@ -781,36 +790,30 @@ public class PlayerController : MonoBehaviour {
 
 	private void SwapControl(){
 
-		if (!myControl.WeaponButtonA() && !myControl.WeaponButtonB() && !myControl.WeaponButtonC()){
+		if (!myControl.WeaponButtonA()){
 			switchButtonUp = true;
 		}
 
-		if (!myControl.SwitchButton()){
+		if (!myControl.WeaponButtonB()){
 			switchBuddyButtonUp = true;
 		}
 
 		if (!myStats.PlayerIsDead()){
 		
 			if (!attackTriggered && switchButtonUp){
-				if (myControl.WeaponButtonA() && currentParadigm != 0){
+				if (myControl.WeaponButtonA()){
 	
-					SwitchParadigm(0);
+					currentParadigm++;
+					if (currentParadigm > equippedWeapons.Length-1){
+						currentParadigm = 0;
+					}
+					SwitchParadigm(currentParadigm);
 	
-				}
-				if (myControl.WeaponButtonB() && currentParadigm != 1){
-					
-					SwitchParadigm(1);
-					
-				}
-				if (myControl.WeaponButtonC() && currentParadigm != 2){
-					
-					SwitchParadigm(2);
-					
 				}
 			}
 		
 
-			/*if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.SwitchButton()){
+			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.WeaponButtonB()){
 
 				currentBuddy++;
 				if (currentBuddy > equippedBuddies.Length-1){
@@ -823,15 +826,17 @@ public class PlayerController : MonoBehaviour {
 				_myBuddy.gameObject.SetActive(true);
 				Instantiate(_myBuddy.buddySound);
 				tempSwap.gameObject.SetActive(false);
-			}**/
+
+				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+			}
 		}
 
-		if (myControl.WeaponButtonA() || myControl.WeaponButtonB()|| myControl.WeaponButtonC()){
+		if (myControl.WeaponButtonA()){
 			switchButtonUp = false;
 		}
-		/*if (myControl.SwitchButton()){
+		if (myControl.WeaponButtonB()){
 			switchBuddyButtonUp = false;
-		}**/
+		}
 
 	}
 
@@ -898,16 +903,22 @@ public class PlayerController : MonoBehaviour {
 		_myBuddy.gameObject.SetActive(true);
 		Instantiate(_myBuddy.buddySound);
 		tempSwap.gameObject.SetActive(false);*/
+
 		
 		// switchWeapon
 		equippedWeapon = equippedWeapons[currentParadigm];
 		if (currentChain > equippedWeapon.attackChain.Length-1){
 			currentChain = -1;
 		}
-		
+
+		_myAnimator.SetInteger("WeaponNumber",equippedWeapon.weaponNum);
 		_myLockOn.SetSprite();
 		weaponSwitchIndicator.Flash(equippedWeapon);
 		myRenderer.color = equippedWeapon.swapColor;
+
+		if (_blockRef){
+			_blockRef.ChangeColors(equippedWeapon.swapColor);
+		}
 
 	}
 
@@ -1458,6 +1469,10 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetStatReference(PlayerStatsS stat){
 		_myStats = stat;
+	}
+
+	public void SetBlockReference(BlockDisplay3DS bd){
+		_blockRef = bd;
 	}
 
 	public void SetDetect(EnemyDetectS newDetect){

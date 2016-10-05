@@ -14,6 +14,7 @@ public class BlockDisplay3DS : MonoBehaviour {
 	private int currentFlashFrames = 0;
 	public Color colorFullPower;
 	public Color colorNoPower;
+	private Vector3 colorDiff;
 	private Color currentColor;
 	private bool isFlashing = false;
 
@@ -28,8 +29,11 @@ public class BlockDisplay3DS : MonoBehaviour {
 
 		myRenderer = GetComponent<Renderer>();
 		myPlayer = GetComponentInParent<PlayerController>();
+		myPlayer.SetBlockReference(this);
 		startRotation = transform.rotation;
 		myRenderer.material.color = currentColor = colorFullPower;
+
+		SetColorDiff();
 
 		startTexture = myRenderer.material.GetTexture("_MainTex");
 	
@@ -103,5 +107,31 @@ public class BlockDisplay3DS : MonoBehaviour {
 		transform.Rotate(rotateRate*Time.deltaTime);
 			rotateCountdown = rotateCountdownMax;
 		}
+	}
+
+	public void ChangeColors(Color newWeaponColor){
+
+		Color newColor = newWeaponColor;
+		newColor.a = colorFullPower.a;
+		colorFullPower = newColor;
+
+		SetNoPowerColor();
+
+
+	}
+
+	private void SetColorDiff(){
+		colorDiff.x = colorFullPower.r - colorNoPower.r;
+		colorDiff.y = colorFullPower.g - colorNoPower.g;
+		colorDiff.z = colorFullPower.b - colorNoPower.b;
+	}
+
+	private void SetNoPowerColor(){
+		Color newColor = colorFullPower;
+		newColor.a = colorNoPower.a;
+		newColor.r = colorFullPower.r-colorDiff.x;
+		newColor.g = colorFullPower.g-colorDiff.y;
+		newColor.b = colorFullPower.b-colorDiff.z;
+		colorNoPower = newColor;
 	}
 }
