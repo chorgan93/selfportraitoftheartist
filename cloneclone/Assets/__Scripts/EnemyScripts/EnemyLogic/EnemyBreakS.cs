@@ -23,6 +23,14 @@ public class EnemyBreakS : MonoBehaviour {
 	public Transform transformRef;
 	private Vector3 followPos;
 
+	public BuddySwitchEffectS breakBodyEffect;
+
+	void Start(){
+
+		breakBodyEffect.ChangeEffect(Color.red, transformRef);
+
+	}
+
 
 	// Update is called once per frame
 	void Update () {
@@ -69,6 +77,7 @@ public class EnemyBreakS : MonoBehaviour {
 				flickerCountdown = flickerTime;
 				numFlickers ++;
 				if (numFlickers > flickerAmt){
+					Destroy(breakBodyEffect.gameObject);
 					Destroy(gameObject);
 				}else{
 					foreach (Renderer piece in pieces){
@@ -86,5 +95,6 @@ public class EnemyBreakS : MonoBehaviour {
 		}
 		startSpeed*=multS;
 		speedAccel*=multS;
+		breakBodyEffect.transform.localScale*=multS*2f;
 	}
 }

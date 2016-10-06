@@ -80,6 +80,7 @@
 'Assets/__Scripts/BuddyScripts/BuddyChargeIndicatorS.cs'
 'Assets/__Scripts/BuddyScripts/BuddyProjectileS.cs'
 'Assets/__Scripts/BuddyScripts/BuddyS.cs'
+'Assets/__Scripts/BuddyScripts/BuddySwitchEffectS.cs'
 'Assets/__Scripts/BuddyScripts/HealBuddyS.cs'
 'Assets/__Scripts/BuddyScripts/MeleeBuddyS.cs'
 'Assets/__Scripts/BuddyScripts/ShootBuddyS.cs'

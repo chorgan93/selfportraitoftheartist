@@ -790,18 +790,18 @@ public class PlayerController : MonoBehaviour {
 
 	private void SwapControl(){
 
-		if (!myControl.WeaponButtonA()){
+		if (!myControl.WeaponButtonA() && !myControl.WeaponButtonB()){
 			switchButtonUp = true;
 		}
 
-		if (!myControl.WeaponButtonB()){
+		if (!myControl.WeaponButtonC()){
 			switchBuddyButtonUp = true;
 		}
 
 		if (!myStats.PlayerIsDead()){
 		
 			if (!attackTriggered && switchButtonUp){
-				if (myControl.WeaponButtonA()){
+				if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
 	
 					currentParadigm++;
 					if (currentParadigm > equippedWeapons.Length-1){
@@ -813,7 +813,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		
 
-			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.WeaponButtonB()){
+			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.WeaponButtonC()){
 
 				currentBuddy++;
 				if (currentBuddy > equippedBuddies.Length-1){
@@ -831,10 +831,10 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (myControl.WeaponButtonA()){
+		if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
 			switchButtonUp = false;
 		}
-		if (myControl.WeaponButtonB()){
+		if (myControl.WeaponButtonC()){
 			switchBuddyButtonUp = false;
 		}
 

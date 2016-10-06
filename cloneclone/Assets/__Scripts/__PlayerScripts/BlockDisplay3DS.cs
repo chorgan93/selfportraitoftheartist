@@ -116,7 +116,10 @@ public class BlockDisplay3DS : MonoBehaviour {
 		colorFullPower = newColor;
 
 		SetNoPowerColor();
-
+	
+		if (myPlayer.showBlock){
+			DoStartFlash();
+		}
 
 	}
 

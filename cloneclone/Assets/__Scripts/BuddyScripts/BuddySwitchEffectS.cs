@@ -26,25 +26,30 @@ public class BuddySwitchEffectS : MonoBehaviour {
 
 	[Header ("Flash Components")]
 	public Texture flashTexture;
-	private Texture startTexture;
+	public Texture startTexture;
 	public int flashFrames = 4;
 	private int flashCountdown;
 	private bool flashing = false;
+	public bool standalone = false;
 
 	private Transform followTransform;
 
 	// Use this for initialization
 	void Start () {
 	
-		fadeColor = effectLayers[0].material.color;
 		startTiling = effectLayers[0].material.GetTextureScale("_MainTex");
 		startOffset = effectLayers[0].material.GetTextureOffset("_MainTex");
-		startTexture = effectLayers[0].material.GetTexture("_MainTex");
+		if (!startTexture){
+			startTexture = effectLayers[0].material.GetTexture("_MainTex");
+		}
 
 		for (int i = 0; i < effectLayers.Length; i++){
 			startRotations[i] = effectLayers[i].transform.localRotation.eulerAngles;
 		}
-		TurnOffRenderers();
+		if (!standalone){
+			fadeColor = effectLayers[0].material.color;
+			TurnOffRenderers();
+		}
 
 	}
 	
@@ -72,6 +77,7 @@ public class BuddySwitchEffectS : MonoBehaviour {
 
 				}
 			}else{
+
 
 				// randomize texture effect
 				changeRateCountdown -= Time.deltaTime;
@@ -132,7 +138,9 @@ public class BuddySwitchEffectS : MonoBehaviour {
 
 	public void ChangeEffect(Color newCol, Transform newFollow){
 
-		transform.parent = null;
+		if (!standalone){
+			transform.parent = null;
+		}
 
 		Color resetCol = Color.white;
 		fadeColor = newCol;
