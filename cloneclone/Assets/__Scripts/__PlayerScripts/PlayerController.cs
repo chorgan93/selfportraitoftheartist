@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _isShooting;
 	private bool _lastInClip;
 	private bool _isAiming;
+	private bool _canSwap;
 
 	private bool _shoot4Dir;
 	private bool _shoot8Dir = true;
@@ -134,7 +135,9 @@ public class PlayerController : MonoBehaviour {
 	public PlayerWeaponS[] equippedWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
 	private int currentParadigm = 0;
+	private int subParadigm = 1;
 	private int currentBuddy = 0;
+	private int subBuddy = 1;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private float comboDuration = 0f;
@@ -214,9 +217,6 @@ public class PlayerController : MonoBehaviour {
 			Cursor.visible = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit();
-		}
 	}
 
 	void FixedUpdate () {
@@ -798,7 +798,7 @@ public class PlayerController : MonoBehaviour {
 			switchBuddyButtonUp = true;
 		}
 
-		if (!myStats.PlayerIsDead()){
+		if (!myStats.PlayerIsDead() && _canSwap){
 		
 			if (!attackTriggered && switchButtonUp){
 				if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
@@ -806,6 +806,9 @@ public class PlayerController : MonoBehaviour {
 					currentParadigm++;
 					if (currentParadigm > equippedWeapons.Length-1){
 						currentParadigm = 0;
+						subParadigm = 1;
+					}else{
+						subParadigm = 0;
 					}
 					SwitchParadigm(currentParadigm);
 	
@@ -818,6 +821,9 @@ public class PlayerController : MonoBehaviour {
 				currentBuddy++;
 				if (currentBuddy > equippedBuddies.Length-1){
 					currentBuddy = 0;
+					subBuddy = 1;
+				}else{
+					subBuddy = 0;
 				}
 
 				BuddyS tempSwap = _myBuddy;
@@ -1226,13 +1232,15 @@ public class PlayerController : MonoBehaviour {
 			else if (directionZ > 56.25f && directionZ <= 78.75f){
 				inputDirection.x = 0.5f;
 				inputDirection.y = 1;
-				FaceUp();
+				FaceLeftRight();
+				//FaceUp();
 				//Debug.Log("Look 4!");
 			}
 			else if (directionZ > 78.75f && directionZ <= 101.25f) {
 				inputDirection.x = 0;
 				inputDirection.y = 1;
-				FaceUp();
+				FaceLeftRight();
+				//FaceUp();
 				//Debug.Log("Look 5!");
 			}
 			else if (directionZ > 101.25f && directionZ <= 123.75f) {
@@ -1274,13 +1282,15 @@ public class PlayerController : MonoBehaviour {
 			else if (directionZ > 236.25f && directionZ <= 258.75f){
 				inputDirection.x = -0.5f;
 				inputDirection.y = -1;
-				FaceDown();
+				FaceLeftRight();
+				//FaceDown();
 				//Debug.Log("Look 12!");
 			}
 			else if (directionZ > 258.75f && directionZ <= 281.25f)  {
 				inputDirection.x = 0;
 				inputDirection.y = -1;
-				FaceDown();
+				FaceLeftRight();
+				//FaceDown();
 				//Debug.Log("Look 13!");
 			}
 			else if (directionZ > 281.25f && directionZ <= 303.75f) {
@@ -1516,7 +1526,28 @@ public class PlayerController : MonoBehaviour {
 		_isTalking = nEx;
 		if (_isTalking){
 			_myRigidbody.velocity = Vector3.zero;
+			_myAnimator.SetFloat("Speed", 0f);
+			_myAnimator.SetBool("Attacking", false);
 		}
+	}
+
+	public void SetCanSwap (bool newCanSwap)
+	{
+		_canSwap = newCanSwap;
+	}
+
+	public PlayerWeaponS EquippedWeapon(){
+		return (equippedWeapon);
+	}
+	public PlayerWeaponS SubWeapon(){
+		return (equippedWeapons[subParadigm]);
+	}
+
+	public BuddyS EquippedBuddy(){
+		return (_myBuddy);
+	}
+	public BuddyS SubBuddy(){
+		return (equippedBuddies[subBuddy]);
 	}
 
 }

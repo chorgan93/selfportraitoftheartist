@@ -288,4 +288,53 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetMouseButton(2));
 		}
 	}
+
+	public bool StartButton(){
+		if (ControllerAttached()){
+			return (Input.GetButton("StartButton"+platformType));
+		}else{
+			return (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return));
+		}
+	}
+	public bool BackButton(){
+		if (ControllerAttached()){
+			return (Input.GetButton("BackButton"+platformType));
+		}else{
+			return (Input.GetKey(KeyCode.Escape));
+		}
+	}
+
+	public bool MenuSelectButton(){
+		if (ControllerAttached()){
+			return (WeaponButtonA() || BlockButton());
+		}else{
+			return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
+		}
+	}
+
+	public bool MenuSelectUp(){
+		if (ControllerAttached()){
+			return (!WeaponButtonA() && !BlockButton());
+		}else{
+			return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
+		}
+	}
+
+	public bool ExitButton(){
+		if (ControllerAttached()){
+			return (WeaponButtonB() || WeaponButtonC());
+		}else{
+			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete));
+		}
+	}
+
+
+
+	public bool ExitButtonUp(){
+		if (ControllerAttached()){
+			return (!WeaponButtonB() && !WeaponButtonC());
+		}else{
+			return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete));
+		}
+	}
 }
