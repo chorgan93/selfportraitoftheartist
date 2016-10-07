@@ -36,6 +36,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 		    && !_pRef.talking){
 			if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
+				equipMenu.SetSelector(0);
 				equipMenu.gameObject.SetActive(true);
 				_pRef.SetTalking(true);
 				equipMenuButtonDown = true;

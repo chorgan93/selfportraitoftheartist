@@ -212,7 +212,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1));
+			return (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1) || (Input.GetKey(KeyCode.E)));
 			
 		}
 	}
@@ -238,7 +238,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3));
+			return (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3) || (Input.GetKey(KeyCode.Q)));
 			
 		}
 	}
