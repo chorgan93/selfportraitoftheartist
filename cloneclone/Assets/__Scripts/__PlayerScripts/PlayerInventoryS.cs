@@ -12,6 +12,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	private List<int> _clearedWalls;
 	public List<int> clearedWalls { get { return _clearedWalls; } }
 
+	public List<PlayerWeaponS> unlockedWeapons;
+
 	public static PlayerInventoryS I;
 
 	void Awake () {

@@ -36,8 +36,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 		    && !_pRef.talking){
 			if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
-				equipMenu.SetSelector(0);
-				equipMenu.gameObject.SetActive(true);
+				equipMenu.TurnOn();
 				_pRef.SetTalking(true);
 				equipMenuButtonDown = true;
 			}
@@ -59,10 +58,18 @@ public class InGameMenuManagerS : MonoBehaviour {
 		}
 
 		if (equipMenuActive){
+
+			if (!equipMenu.canBeQuit){
+				if (_pRef.myControl.ExitButton()){
+					exitButtonDown = true;
+				}
+			}
+
 			if ((_pRef.myControl.StartButton() && !equipMenuButtonDown) || 
-			    (!exitButtonDown && equipMenu.canBeQuit && _pRef.myControl.ExitButton())){
+			    (equipMenu.canBeQuit && !exitButtonDown && _pRef.myControl.ExitButton())){
 				equipMenuActive = false;
-				equipMenu.gameObject.SetActive(false);
+				//equipMenu.gameObject.SetActive(false);
+				equipMenu.TurnOff();
 				_pRef.SetTalking(false);
 				if (_pRef.myControl.ExitButton()){
 					exitButtonDown = true;

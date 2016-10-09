@@ -134,8 +134,10 @@ public class PlayerController : MonoBehaviour {
 	public PlayerWeaponS getEWeapon { get { return equippedWeapon; } }
 	public PlayerWeaponS[] equippedWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
-	private int currentParadigm = 0;
-	private int subParadigm = 1;
+	private int _currentParadigm = 0;
+	public int currentParadigm { get { return _currentParadigm; } }
+	private int _subParadigm = 1;
+	public int subParadigm { get { return _subParadigm; } }
 	private int currentBuddy = 0;
 	private int subBuddy = 1;
 	private ProjectileS currentAttackS;
@@ -255,7 +257,7 @@ public class PlayerController : MonoBehaviour {
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
 
-		equippedWeapon = equippedWeapons[currentParadigm];
+		equippedWeapon = equippedWeapons[_currentParadigm];
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}
@@ -803,14 +805,14 @@ public class PlayerController : MonoBehaviour {
 			if (!attackTriggered && switchButtonUp){
 				if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
 	
-					currentParadigm++;
-					if (currentParadigm > equippedWeapons.Length-1){
-						currentParadigm = 0;
-						subParadigm = 1;
+					_currentParadigm++;
+					if (_currentParadigm > equippedWeapons.Length-1){
+						_currentParadigm = 0;
+						_subParadigm = 1;
 					}else{
-						subParadigm = 0;
+						_subParadigm = 0;
 					}
-					SwitchParadigm(currentParadigm);
+					SwitchParadigm(_currentParadigm);
 	
 				}
 			}
@@ -898,13 +900,22 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void ParadigmCheck(){
+		SwitchParadigm(_currentParadigm);
+	}
+
 	private void SwitchParadigm (int newPara){
 
-		currentParadigm = newPara;
+		_currentParadigm = newPara;
+		if (newPara == 1){
+			_subParadigm = 0;
+		}else{
+			_subParadigm = 1;
+		}
 
 		// switch buddy
 		/*BuddyS tempSwap = _myBuddy;
-		_myBuddy = equippedBuddies[currentParadigm];
+		_myBuddy = equippedBuddies[_currentParadigm];
 		_myBuddy.transform.position = tempSwap.transform.position;
 		_myBuddy.gameObject.SetActive(true);
 		Instantiate(_myBuddy.buddySound);
@@ -912,7 +923,7 @@ public class PlayerController : MonoBehaviour {
 
 		
 		// switchWeapon
-		equippedWeapon = equippedWeapons[currentParadigm];
+		equippedWeapon = equippedWeapons[_currentParadigm];
 		if (currentChain > equippedWeapon.attackChain.Length-1){
 			currentChain = -1;
 		}
@@ -1537,10 +1548,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public PlayerWeaponS EquippedWeapon(){
-		return (equippedWeapon);
+		return (equippedWeapons[_currentParadigm]);
 	}
 	public PlayerWeaponS SubWeapon(){
-		return (equippedWeapons[subParadigm]);
+		return (equippedWeapons[_subParadigm]);
 	}
 
 	public BuddyS EquippedBuddy(){

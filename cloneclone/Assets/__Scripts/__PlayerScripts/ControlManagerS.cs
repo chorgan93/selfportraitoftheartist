@@ -306,7 +306,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
-			return (WeaponButtonA() || BlockButton());
+			return (WeaponButtonA() || TalkButton());
 		}else{
 			return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
 		}
@@ -314,7 +314,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
-			return (!WeaponButtonA() && !BlockButton());
+			return (!WeaponButtonA() && !TalkButton());
 		}else{
 			return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
 		}
