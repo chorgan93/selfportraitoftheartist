@@ -310,6 +310,8 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);
 
+					PlayerInventoryS.I.SaveWeapons(myPlayerController.equippedWeapons, myPlayerController.subWeapons);
+
 					myPlayerController.myLockOn.enemyHealthUI.EndLockOn();
 
 					GetComponent<BleedingS>().StartDeath();

@@ -11,19 +11,24 @@ public class EquipMenuS : MonoBehaviour {
 	private bool selectButtonDown = false;
 	private bool exitButtonDown = false;
 
-	public Image mantraMain;
-	public Image mantraSub;
 
-	public GameObject mantraWhole;
-	public GameObject mantraSubScreen;
+	// loadout one
+	public Image mantraMainParadigmI;
+	public Image mantraSubParadigmI;
+	public GameObject paradigmIMantraWhole;
+	public Image buddyParadigmI;
+	public Image buddyParadigmIOutline;
 
-	public Image buddyMain;
-	public Image buddyMainOutline;
-	public Image buddySub;
-	public Image buddySubOutline;
-	
-	public GameObject buddyWhole;
-	public GameObject buddySubScreen;
+	// loadout subscreens
+	public GameObject paradigmMantraSubscreen;
+	public GameObject paradigmBuddySubscreen;
+
+	// loadout two
+	public Image mantraMainParadigmII;
+	public Image mantraSubParadigmII;
+	public GameObject paradigmIIMantraWhole;
+	public Image buddyParadigmII;
+	public Image buddyParadigmIIOutline;
 
 	
 	public GameObject virtueWhole;
@@ -41,12 +46,15 @@ public class EquipMenuS : MonoBehaviour {
 	private bool _canBeQuit = false;
 	public bool canBeQuit { get { return _canBeQuit; } }
 
-	private bool inWeaponMenu;
+	private bool inParadigmIMenu;
+	private bool inParadigmIIMenu;
 	private bool changingWeapon;
 	private int currentWeaponSelected = 0;
 	public EquipWeaponItemS[] allMantraItems;
-	public RectTransform[] selectorPositionsWeapon;
-	public Image[] selectorElementsWeapon;
+	public RectTransform[] selectorPositionsParadigmI;
+	public Image[] selectorElementsParadigmI;
+	public RectTransform[] selectorPositionsParadigmII;
+	public Image[] selectorElementsParadigmII;
 
 	private bool _initialized = false;
 
@@ -57,10 +65,10 @@ public class EquipMenuS : MonoBehaviour {
 
 		if (!_initialized){
 			playerImage.enabled = false;
-			mantraMain.enabled = false;
-			mantraSub.enabled = false;
-			buddyMain.enabled = false;
-			buddySub.enabled = false;
+			mantraMainParadigmI.enabled = false;
+			mantraSubParadigmI.enabled = false;
+			buddyParadigmI.enabled = false;
+			buddyParadigmII.enabled = false;
 	
 			inventoryRef = PlayerInventoryS.I;
 			
@@ -121,15 +129,10 @@ public class EquipMenuS : MonoBehaviour {
 
 			if (pRef.myControl.MenuSelectButton() && !selectButtonDown){
 				if (currentPos == 0){
-					currentPos = 0;
-					selectButtonDown = true;
-					inWeaponMenu = true;
-					onMainScreen = false;
-					buddyWhole.gameObject.SetActive(false);
-					mantraSubScreen.gameObject.SetActive(true);
-					inventoryWhole.gameObject.SetActive(false);
-					virtueWhole.gameObject.SetActive(false);
-					SetSelectorWeapon(0);
+					GoToParadigmISetUp();
+				}
+				if (currentPos == 1){
+					GoToParadigmIISetUp();
 				}
 			}
 		
@@ -137,9 +140,11 @@ public class EquipMenuS : MonoBehaviour {
 
 		}
 
-		// EQUIP MANTRA SECTION
+		//______________________________________________________START LOADOUT SECTION
 
-		if (inWeaponMenu){
+		// EQUIP MANTRA PARADIGM I SECTION
+
+		if (inParadigmIMenu){
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
 					controlStickMoved = true;
@@ -148,12 +153,12 @@ public class EquipMenuS : MonoBehaviour {
 						if (targetPos > 1){
 							targetPos = 0;
 						}
-						SetSelectorWeapon(targetPos);
+						SetSelectorParadigmI(targetPos, 0);
 					}else{
-						if (targetPos > selectorPositionsWeapon.Length-1){
+						if (targetPos > selectorPositionsParadigmI.Length-1){
 							targetPos = 2;
 						}
-						SetSelectorWeapon(currentPos, 1);
+						SetSelectorParadigmI(currentPos, 0, 1);
 					}
 					controlStickMoved = true;
 				}
@@ -164,12 +169,12 @@ public class EquipMenuS : MonoBehaviour {
 						if (targetPos < 0){
 							targetPos = 1;
 						}
-						SetSelectorWeapon(targetPos);
+						SetSelectorParadigmI(targetPos, 0);
 					}else{
 						if (targetPos < 1){
-							targetPos = selectorPositionsWeapon.Length-1;
+							targetPos = selectorPositionsParadigmI.Length-1;
 						}
-						SetSelectorWeapon(currentPos, -1);
+						SetSelectorParadigmI(currentPos, 0, -1);
 					}
 					controlStickMoved = true;
 				}
@@ -180,12 +185,13 @@ public class EquipMenuS : MonoBehaviour {
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
 					changingWeapon = true;
 					selectButtonDown = true;
+					currentWeaponSelected = currentPos;
 					if (currentPos == 0){
-						currentWeaponSelected = pRef.currentParadigm;
+						SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeapon().weaponNum), 0); // replace with mantra's pos
 					}else{
-						currentWeaponSelected = pRef.subParadigm;
+						// sub wep of main paradigm
+						SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeaponAug().weaponNum), 0); // replace with mantra's pos
 					}
-					SetSelectorWeapon(FindMantraPosition(pRef.EquippedWeapon().weaponNum)); // replace with mantra's position
 				}
 			}
 			else{
@@ -193,36 +199,135 @@ public class EquipMenuS : MonoBehaviour {
 					changingWeapon = false;
 					selectButtonDown = true;
 					// swap actual mantra equip & update display
-					pRef.equippedWeapons[currentWeaponSelected] = allMantraItems[currentPos-2].WeaponRefForSwitch();
+					if (currentWeaponSelected == 0){
+						pRef.equippedWeapons[0] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+					}else{
+						pRef.subWeapons[0] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+					}
 					if (currentWeaponSelected == pRef.currentParadigm){
 						pRef.ParadigmCheck();
 					}
 					UpdateMantraDisplay();
 					// switch weapon positions (equip mantra)
-					SetSelectorWeapon(currentWeaponSelected); // replace with swapped mantra's position
+					SetSelectorParadigmI(currentWeaponSelected, 0); // replace with swapped mantra's position
 
 				}
 				if (!exitButtonDown && pRef.myControl.ExitButton()){
 					// exit out of mantra swap
 					changingWeapon = false;
 					exitButtonDown = true;
-					SetSelectorWeapon(currentWeaponSelected); // replace with selected mantra's position
+					SetSelectorParadigmI(currentWeaponSelected, 0); // replace with selected mantra's position
 				}
 			}
 
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
 				SetSelector(0);
-				buddyWhole.gameObject.SetActive(true);
-				mantraSubScreen.gameObject.SetActive(false);
+				paradigmMantraSubscreen.gameObject.SetActive(false);
 				inventoryWhole.gameObject.SetActive(true);
 				virtueWhole.gameObject.SetActive(true);
-				inWeaponMenu = false;
+				inParadigmIMenu = false;
+				onMainScreen = true;
+				exitButtonDown = true;
+			}
+			
+			_canBeQuit = false;
+
+		}
+
+		// EQUIP MANTRA PARADIGM II SECTION
+			
+		if (inParadigmIIMenu){
+			if (!controlStickMoved){
+				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos+1;
+					if (!changingWeapon){
+						if (targetPos > 1){
+							targetPos = 0;
+						}
+						SetSelectorParadigmII(targetPos);
+					}else{
+						if (targetPos > selectorPositionsParadigmII.Length-1){
+							targetPos = 2;
+						}
+						SetSelectorParadigmII(currentPos, 1);
+					}
+					controlStickMoved = true;
+				}
+				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos-1;
+					if (!changingWeapon){
+						if (targetPos < 0){
+							targetPos = 1;
+						}
+						SetSelectorParadigmII(targetPos);
+					}else{
+						if (targetPos < 1){
+							targetPos = selectorPositionsParadigmII.Length-1;
+						}
+						SetSelectorParadigmII(currentPos, -1);
+					}
+					controlStickMoved = true;
+				}
+			}
+
+			// changing mantra function
+			if (!changingWeapon){
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingWeapon = true;
+					selectButtonDown = true;
+					currentWeaponSelected = currentPos;
+					if (currentPos == 0){
+						SetSelectorParadigmII(FindMantraPosition(pRef.SubWeapon().weaponNum)); // replace with mantra's pos
+					}else{
+						// sub wep of main paradigm
+						SetSelectorParadigmII(FindMantraPosition(pRef.SubWeaponAug().weaponNum)); // replace with mantra's pos
+					}
+				}
+			}
+			else{
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingWeapon = false;
+					selectButtonDown = true;
+					// swap actual mantra equip & update display
+					if (currentWeaponSelected == 0){
+						pRef.equippedWeapons[1] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+					}else{
+						pRef.subWeapons[1] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+					}
+					if (currentWeaponSelected == pRef.currentParadigm){
+						pRef.ParadigmCheck();
+					}
+					UpdateMantraDisplay();
+					// switch weapon positions (equip mantra)
+					SetSelectorParadigmII(currentWeaponSelected); // replace with swapped mantra's position
+
+				}
+				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					// exit out of mantra swap
+					changingWeapon = false;
+					exitButtonDown = true;
+					SetSelectorParadigmII(currentWeaponSelected); // replace with selected mantra's position
+				}
+			}
+				
+			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				SetSelector(1);
+				paradigmMantraSubscreen.gameObject.SetActive(false);
+				inventoryWhole.gameObject.SetActive(true);
+				virtueWhole.gameObject.SetActive(true);
+				inParadigmIIMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
 			}
 
 			_canBeQuit = false;
 		}
+
+		//_______________________________________________END LOADOUT SECTION
+
+
 
 		if (pRef.myControl.MenuSelectUp()){
 			selectButtonDown = false;
@@ -259,11 +364,15 @@ public class EquipMenuS : MonoBehaviour {
 		selector.anchoredPosition = selectorPositions[currentPos].anchoredPosition;
 	}
 
-	public void SetSelectorWeapon(int newPos, int dir = 0){
+	public void SetSelectorParadigmI(int newPos, int paradigmNum, int dir = 0){
 
-		Color changeCols = selectorElementsWeapon[currentPos].color;
+		Color changeCols = selectorElementsParadigmI[currentPos].color;
 		changeCols.a = startElementAlpha;
-		selectorElementsWeapon[currentPos].color = changeCols;
+		if (paradigmNum == 0){
+			selectorElementsParadigmI[currentPos].color = changeCols;
+		}else{
+			selectorElementsParadigmII[currentPos].color = changeCols;
+		}
 
 		int nextAvailable = newPos;
 
@@ -272,19 +381,32 @@ public class EquipMenuS : MonoBehaviour {
 		}
 		
 		changeCols.a = 1f;
-		selectorElementsWeapon[nextAvailable].color = changeCols;
+		if (paradigmNum == 0){
+			selectorElementsParadigmI[nextAvailable].color = changeCols;
+		}else{
+			selectorElementsParadigmII[nextAvailable].color = changeCols;
+		}
 		
 		currentPos = nextAvailable;
-		selector.anchoredPosition = selectorPositionsWeapon[currentPos].anchoredPosition;
+		if (paradigmNum == 0){
+			selector.anchoredPosition = selectorPositionsParadigmI[currentPos].anchoredPosition;
+		}else{
+			selector.anchoredPosition = selectorPositionsParadigmII[currentPos].anchoredPosition;
+		}
 
+	}
+	public void SetSelectorParadigmII(int newPos, int dir = 0){
+		
+		SetSelectorParadigmI(newPos, 1, dir);
+		
 	}
 
 	public void TurnOff(){
-		buddyWhole.gameObject.SetActive(true);
-		mantraSubScreen.gameObject.SetActive(false);
+		paradigmMantraSubscreen.gameObject.SetActive(false);
 		inventoryWhole.gameObject.SetActive(true);
 		virtueWhole.gameObject.SetActive(true);
-		inWeaponMenu = false;
+		inParadigmIMenu = false;
+		inParadigmIIMenu = false;
 		exitButtonDown = true;
 		currentPos = 0;
 		onMainScreen = true;
@@ -299,43 +421,41 @@ public class EquipMenuS : MonoBehaviour {
 
 	private int FindNextAvailableMantra(int startPt, int dir = 1){
 
-		int nextAvail = startPt-2;
+		int nextAvail = startPt-3;
 
 		if (dir > 0){
-			if (startPt < allMantraItems.Length-3){
-				for (int i = startPt-2; i < allMantraItems.Length; i++){
-					if (allMantraItems[i].unlocked && nextAvail == startPt-2){
+			if (startPt+3 < allMantraItems.Length){
+				for (int i = startPt-3; i < allMantraItems.Length; i++){
+					if (allMantraItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;
 					}
 				}
 			}
-			if (nextAvail == startPt){
-				for (int j = 0; j < startPt-2; j++){
-					if (allMantraItems[j].unlocked && nextAvail == startPt-2){
+			if (nextAvail == startPt-3){
+				for (int j = 0; j < startPt-3; j++){
+					if (allMantraItems[j].unlocked && nextAvail == startPt-3){
 						nextAvail = j;
 					}
 				}
 			}
 		}else{
-			if (startPt > 2){
-				for (int j = startPt-2; j > -1; j--){
-					if (allMantraItems[j].unlocked && nextAvail == startPt-2){
+			if (startPt-3 > 0){
+				for (int j = startPt-3; j >= 0; j--){
+					if (allMantraItems[j].unlocked && nextAvail == startPt-3){
 						nextAvail = j;
 					}
 				}
 			}
-			if (nextAvail == startPt){
-				for (int i = allMantraItems.Length-1; i > startPt-2; i--){
-					if (allMantraItems[i].unlocked && nextAvail == startPt-2){
+			if (nextAvail == startPt-3){
+				for (int i = allMantraItems.Length-1; i > startPt-3; i--){
+					if (allMantraItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;
 					}
 				}
 			}
 		}
 
-		Debug.Log(nextAvail);
-
-		return nextAvail+2;
+		return nextAvail+3;
 
 	}
 
@@ -348,27 +468,57 @@ public class EquipMenuS : MonoBehaviour {
 			}
 			listCount++;
 		}
-		return returnNum+2;
+		return returnNum+3;
 	}
 
 	private void UpdateMantraDisplay(){
-		mantraMain.color = pRef.EquippedWeapon().swapColor;
-		mantraMain.sprite = pRef.EquippedWeapon().swapSprite;
-		mantraMain.enabled = true;
+		mantraMainParadigmI.color = pRef.EquippedWeapon().swapColor;
+		mantraMainParadigmI.sprite = pRef.EquippedWeapon().swapSprite;
+		mantraMainParadigmI.enabled = true;
 		
-		mantraSub.color = pRef.SubWeapon().swapColor;
-		mantraSub.sprite = pRef.SubWeapon().swapSprite;
-		mantraSub.enabled = true;
+		mantraSubParadigmI.color = pRef.EquippedWeaponAug().swapColor;
+		mantraSubParadigmI.sprite = pRef.EquippedWeaponAug().swapSprite;
+		mantraSubParadigmI.enabled = true;
+
+		mantraMainParadigmII.color = pRef.SubWeapon().swapColor;
+		mantraMainParadigmII.sprite = pRef.SubWeapon().swapSprite;
+		mantraMainParadigmII.enabled = true;
+		
+		mantraSubParadigmII.color = pRef.SubWeaponAug().swapColor;
+		mantraSubParadigmII.sprite = pRef.SubWeaponAug().swapSprite;
+		mantraSubParadigmII.enabled = true;
 	}
 
 	private void UpdateBuddyDisplay(){
-		buddyMain.color = buddyMainOutline.color = pRef.EquippedBuddy().shadowColor;
-		buddyMain.sprite = pRef.EquippedBuddy().buddyMenuSprite;
-		buddyMain.enabled = true;
+		buddyParadigmI.color = buddyParadigmIOutline.color = pRef.EquippedBuddy().shadowColor;
+		buddyParadigmI.sprite = pRef.EquippedBuddy().buddyMenuSprite;
+		buddyParadigmI.enabled = true;
 		
-		buddySub.color = buddySubOutline.color = pRef.SubBuddy().shadowColor;
-		buddySub.sprite = pRef.SubBuddy().buddyMenuSprite;
-		buddySub.enabled = true;
+		buddyParadigmII.color = buddyParadigmIIOutline.color = pRef.SubBuddy().shadowColor;
+		buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
+		buddyParadigmII.enabled = true;
+	}
+
+	private void GoToParadigmISetUp(){
+		currentPos = 0;
+		selectButtonDown = true;
+		inParadigmIMenu = true;
+		onMainScreen = false;
+		paradigmMantraSubscreen.gameObject.SetActive(true);
+		inventoryWhole.gameObject.SetActive(false);
+		virtueWhole.gameObject.SetActive(false);
+		SetSelectorParadigmI(0, 0);
+	}
+
+	private void GoToParadigmIISetUp(){
+		currentPos = 0;
+		selectButtonDown = true;
+		inParadigmIIMenu = true;
+		onMainScreen = false;
+		paradigmMantraSubscreen.gameObject.SetActive(true);
+		inventoryWhole.gameObject.SetActive(false);
+		virtueWhole.gameObject.SetActive(false);
+		SetSelectorParadigmII(0);
 	}
 
 

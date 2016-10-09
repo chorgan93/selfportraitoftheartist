@@ -13,6 +13,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private bool equipMenuButtonDown = false;
 	private bool exitButtonDown = false;
 
+	private bool playerDead = false;
+
 	private PlayerController _pRef;
 	public PlayerController pRef { get { return _pRef; } }
 
@@ -32,6 +34,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (!_pRef.myStats.PlayerIsDead()){
 		if (!gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
 		    && !_pRef.talking){
 			if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
@@ -77,6 +80,15 @@ public class InGameMenuManagerS : MonoBehaviour {
 				}else{
 					equipMenuButtonDown = true;
 				}
+			}
+		}
+		}else{
+			if (!playerDead){
+				gameMenuActive = false;
+				gameMenu.gameObject.SetActive(false);
+				equipMenuActive = false;
+				equipMenu.TurnOff();
+				playerDead = true;
 			}
 		}
 

@@ -132,7 +132,8 @@ public class PlayerController : MonoBehaviour {
 	//public GameObject dashAttack;
 	private PlayerWeaponS equippedWeapon;
 	public PlayerWeaponS getEWeapon { get { return equippedWeapon; } }
-	public PlayerWeaponS[] equippedWeapons;
+	public List<PlayerWeaponS> equippedWeapons;
+	public List<PlayerWeaponS> subWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
 	private int _currentParadigm = 0;
 	public int currentParadigm { get { return _currentParadigm; } }
@@ -256,6 +257,11 @@ public class PlayerController : MonoBehaviour {
 		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
+
+		if (PlayerInventoryS.I.EquippedWeapons() != null){
+		equippedWeapons = PlayerInventoryS.I.EquippedWeapons();
+			subWeapons = PlayerInventoryS.I.SubWeapons();
+		}
 
 		equippedWeapon = equippedWeapons[_currentParadigm];
 		if (_blockRef){
@@ -806,7 +812,7 @@ public class PlayerController : MonoBehaviour {
 				if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
 	
 					_currentParadigm++;
-					if (_currentParadigm > equippedWeapons.Length-1){
+					if (_currentParadigm > equippedWeapons.Count-1){
 						_currentParadigm = 0;
 						_subParadigm = 1;
 					}else{
@@ -1552,6 +1558,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	public PlayerWeaponS SubWeapon(){
 		return (equippedWeapons[_subParadigm]);
+	}
+
+	public PlayerWeaponS EquippedWeaponAug(){
+		return (subWeapons[_currentParadigm]);
+	}
+	public PlayerWeaponS SubWeaponAug(){
+		return (subWeapons[_subParadigm]);
 	}
 
 	public BuddyS EquippedBuddy(){
