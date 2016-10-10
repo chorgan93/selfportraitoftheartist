@@ -565,82 +565,55 @@ public class PlayerController : MonoBehaviour {
 
 	private void DashControl(){
 
-
+		//___________________________________________DASH VERSION WITHOUT SPRINTING
 		//control for first dash
+
 		if (!_isDashing){
-			if (controller.DashTrigger()){
-			
-				dashHoldTime += Time.deltaTime;
-	
-				// allow for tap when locked on, sprint when not 
-				if (myControl.LockOnButton()){
-					if (dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) &&
-						    (controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						
-						TriggerDash();
-						
-						}
+			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) &&
+			    (controller.Horizontal() != 0 || controller.Vertical() != 0)){
 					
-				}else{
-					if (CanInputDash()){
-						if (dashHoldTime >= SPRINT_THRESHOLD && !_isSprinting){
-							TriggerSprint();
-						}
-					}else{
-						dashHoldTime = 0f;
-					}
-				}
-			dashButtonUp = false;
+				TriggerDash();
+				dashButtonUp = false;
 			}
-		
-			else{
-				if (!myControl.LockOnButton() && !dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) && dashHoldTime < DASH_THRESHOLD && 
-				!_isSprinting && (controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						
-					TriggerDash();
-	
-				}
-				dashButtonUp = true;
-				dashHoldTime = 0f;
-				_isSprinting = false;
-			}
-
 		}
+			
+		
 		else{
-
+			
 			// allow for second dash
 			if (controller.DashTrigger()){
 				if (dashButtonUp && ((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD) 
-				                      && CanInputDash() && _myStats.ManaCheck(1, false))){
+				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
-						Debug.Log("Third dash trigger");
 					}
 				}
 				dashButtonUp = false;
 			}
-
-
+			
+			
 			dashDurationTime += Time.deltaTime;
 			if (dashDurationTime >= dashDuration-dashSlideTime){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
-
+			
 			if (dashDurationTime >= dashDuration){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
-
+				
 				if (!myRenderer.enabled){
 					myRenderer.enabled = true;
 				}
 			}
 		}
 
-		if (_isSprinting){
-			if (_myRigidbody.velocity.magnitude <= 0.1f){
-				_isSprinting = false;
+		if (_isTalking){
+			dashButtonUp = false;
+		}else{
+			if (!myControl.DashTrigger()){
+				dashButtonUp = true;
 			}
 		}
 

@@ -6,7 +6,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	// TODO distinguish mouse/keyboard and controller types
 
-	private float triggerSensitivity = 0.5f;
+	private float triggerSensitivity = 0.1f;
 
 	private string platformType;
 
@@ -121,8 +121,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockTrigger(){
 
 		if (ControllerAttached()){
-			//return (Input.GetButton("SwitchBuddyButton" + platformType));
-			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchBuddyButton" + platformType));
+			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -134,7 +134,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 			return (Input.GetButton("ShootButton"+platformType));
-			//return (Input.GetButton("ShootButton"+platformType));
+			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
 			return (Input.GetMouseButton(1));
 		}
@@ -193,8 +193,8 @@ public class ControlManagerS : MonoBehaviour {
 		
 		if (ControllerAttached()){
 			
-			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
-			return (Input.GetButton("DashButton"+platformType));
+			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			//return (Input.GetButton("DashButton"+platformType));
 			
 		}
 		else{
@@ -277,7 +277,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool TalkButton(){
 		if (ControllerAttached()){
 			
-			return (Input.GetButton("SwitchButton"+platformType));
+			return (Input.GetButton("DashButton"+platformType));
 			
 		}
 		else{
@@ -292,7 +292,8 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton"+platformType));
+			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			//return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}
 		else{
 			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
@@ -313,8 +314,8 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool LockOnButton(){
 		if (ControllerAttached()){
-			//return (Input.GetButton("SwitchButton"+platformType));
-			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchButton"+platformType));
+			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 		}else{
 			return (Input.GetMouseButton(2));
 		}

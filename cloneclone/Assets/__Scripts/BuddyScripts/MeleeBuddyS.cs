@@ -143,6 +143,8 @@ public class MeleeBuddyS : BuddyS {
 						chargeButtonUp = false;
 					}
 				}
+			}else{
+				chargeButtonUp = false;
 			}
 		}
 

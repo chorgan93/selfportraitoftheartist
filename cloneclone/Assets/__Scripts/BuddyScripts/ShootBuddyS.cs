@@ -122,6 +122,8 @@ public class ShootBuddyS : BuddyS {
 						chargeButtonUp = false;
 					}
 				}
+			}else{
+				chargeButtonUp = false;
 			}
 		}
 
