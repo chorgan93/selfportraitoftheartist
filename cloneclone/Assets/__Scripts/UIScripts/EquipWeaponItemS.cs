@@ -10,7 +10,8 @@ public class EquipWeaponItemS : MonoBehaviour {
 	public Image weaponImage;
 	public int weaponNum;
 
-	public string weaponDescription;
+	public string weaponDescriptionMain;
+	public string weaponDescriptionSub;
 	private bool _unlocked = false;
 	public bool unlocked { get { return _unlocked; } }
 

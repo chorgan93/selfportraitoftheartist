@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float DASH_THRESHOLD = 0.24f;
+	private static float SPRINT_THRESHOLD = 0.66f;
+	private static float DASH_THRESHOLD = 0.34f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
@@ -45,9 +46,9 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
+	private float dashHoldTime = 0f;
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
-	private bool preppingSecondDash = false;
 	private float _dashCost = 2f;
 	private float _dodgeCost = 1f;
 
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 	private float startDrag;
 
 	private Vector3 inputDirection;
-	private bool dashButtonUp;
+	private bool dashButtonUp = true;
 	private bool blockButtonUp;
 	private bool shootButtonUp;
 	private bool reloadButtonUp;
@@ -144,8 +145,8 @@ public class PlayerController : MonoBehaviour {
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
-	private int currentBuddy = 0;
-	private int subBuddy = 1;
+	private static int currentBuddy = 0;
+	private static int subBuddy = 1;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private float comboDuration = 0f;
@@ -408,7 +409,8 @@ public class PlayerController : MonoBehaviour {
 		
 				if (moveVelocity.magnitude < walkThreshold){
 
-					//_isSprinting = false;
+					_isSprinting = false;
+
 
 					float actingWalkSpeed = walkSpeed*equippedWeapon.speedMult; 
 
@@ -451,6 +453,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isBlocking){
 			timeInBlock += Time.deltaTime;
+			dashHoldTime = 0f;
 		}
 
 		//if (BlockInputPressed() && CanInputBlock()){
@@ -464,7 +467,6 @@ public class PlayerController : MonoBehaviour {
 				}
 			if (blockPrepCountdown <= 0 && doingBlockTrigger && _myStats.ManaCheck(1)){
 				_isBlocking = true;
-					_isSprinting = false;
 				doingBlockTrigger = false;
 				_myAnimator.SetBool("Blocking", false);
 					_playerSound.PlayShieldSound();
@@ -492,10 +494,6 @@ public class PlayerController : MonoBehaviour {
 				_isBlocking = false;
 			}
 		}else{
-			// check for dash tap
-			/*if  (!blockButtonUp && CanInputDash() && _myStats.ManaCheck(1) && !_isSprinting){
-				TriggerDash();
-			}**/
 
 			TurnOffBlockAnimation();
 			
@@ -532,11 +530,12 @@ public class PlayerController : MonoBehaviour {
 
 		
 		dashDurationTime = 0;
+		dashHoldTime = DASH_THRESHOLD;
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
 
-		if (!_myLockOn.lockedOn){
+		if (!myControl.LockOnButton()){
 			_myStats.ManaCheck(_dashCost);
 			_myAnimator.SetTrigger("Dash");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
@@ -556,41 +555,70 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void TriggerSprint(){
-		CameraShakeS.C.SmallShake();
+		//CameraShakeS.C.SmallShake();
 		_isSprinting = true;
 		sprintDurationCountdown = sprintDuration;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag;
-		Debug.Log("Trigger sprint!");
 	}
 
 	private void DashControl(){
 
 
-		// allow for second dash
-		if (controller.DashTrigger()){
-			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
-			                      && CanInputDash() && _myStats.ManaCheck(1, false)))){
-				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-					TriggerDash();
-				}
-			}
-			/*else if (blockButtonUp && ((dashDurationTime < dashDuration-CHAIN_DASH_THRESHOLD))){
-					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						TriggerSprint();
+		//control for first dash
+		if (!_isDashing){
+			if (controller.DashTrigger()){
+			
+				dashHoldTime += Time.deltaTime;
+	
+				// allow for tap when locked on, sprint when not 
+				if (myControl.LockOnButton()){
+					if (dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) &&
+						    (controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						
+						TriggerDash();
+						
+						}
+					
+				}else{
+					if (CanInputDash()){
+						if (dashHoldTime >= SPRINT_THRESHOLD && !_isSprinting){
+							TriggerSprint();
+						}
+					}else{
+						dashHoldTime = 0f;
 					}
-				}**/
+				}
 			dashButtonUp = false;
+			}
+		
+			else{
+				if (!myControl.LockOnButton() && !dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) && dashHoldTime < DASH_THRESHOLD && 
+				!_isSprinting && (controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						
+					TriggerDash();
+	
+				}
+				dashButtonUp = true;
+				dashHoldTime = 0f;
+				_isSprinting = false;
+			}
+
 		}
 		else{
-			dashButtonUp = true;
-		}
 
-
-		if (_isDashing){
-
-
+			// allow for second dash
+			if (controller.DashTrigger()){
+				if (dashButtonUp && ((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD) 
+				                      && CanInputDash() && _myStats.ManaCheck(1, false))){
+					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+						TriggerDash();
+						Debug.Log("Third dash trigger");
+					}
+				}
+				dashButtonUp = false;
+			}
 
 
 			dashDurationTime += Time.deltaTime;
@@ -608,13 +636,10 @@ public class PlayerController : MonoBehaviour {
 					myRenderer.enabled = true;
 				}
 			}
-		}else{
-			preppingSecondDash = false;
 		}
 
 		if (_isSprinting){
-			sprintDurationCountdown -= Time.deltaTime;
-			if (_myRigidbody.velocity.magnitude <= 0.1f || sprintDurationCountdown <= 0f){
+			if (_myRigidbody.velocity.magnitude <= 0.1f){
 				_isSprinting = false;
 			}
 		}
@@ -756,6 +781,7 @@ public class PlayerController : MonoBehaviour {
 						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
 
 						_isSprinting = false;
+						dashHoldTime = 0f;
 						_doingDashAttack = true;
 
 					}else{
@@ -870,50 +896,49 @@ public class PlayerController : MonoBehaviour {
 		// controller only for the moment
 		// figure out mouse control scheme (middle click & scroll wheel should work)
 		if (myControl.ControllerAttached()){
-			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f
-			    && !myControl.UnlockButton()){
-				lockInputReset = true;
-			}else{
-				if (lockInputReset){
 
-					if (_myLockOn.lockedOn){
-						if (myControl.UnlockButton()){
-							_myLockOn.EndLockOn();
-							lockInputReset = false;
-						}
-						else{
-							if (myDetect.allEnemiesInRange.Count > 1){
-								if (myControl.RightHorizontal() > 0){
-									int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
-									currentLockedEnemy++;
-									if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
-										currentLockedEnemy = 0;
-									}
-									_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
-									lockInputReset = false;
-								}
-								if (myControl.RightHorizontal() < 0){
-									int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
-									currentLockedEnemy--;
-									if (currentLockedEnemy < 0){
-										currentLockedEnemy = myDetect.allEnemiesInRange.Count-1;
-									}
-									_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
-									lockInputReset = false;
-								}
+			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f){
+				lockInputReset = true;
+			}
+
+			if (_myLockOn.lockedOn){
+				if (!myControl.LockOnButton()){
+					_myLockOn.EndLockOn();
+				}
+				else{
+				
+				if (lockInputReset){
+					if (myDetect.allEnemiesInRange.Count > 1){
+						if (myControl.RightHorizontal() > 0){
+							int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+							currentLockedEnemy++;
+							if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
+								currentLockedEnemy = 0;
 							}
-						}
-					}else{
-						if (Mathf.Abs(myControl.RightVertical()) >= 0.1f || Mathf.Abs(myControl.RightVertical()) >= 0.1f
-						    || myControl.UnlockButton()){
-							if (myDetect.allEnemiesInRange.Count > 0){
-								_myLockOn.LockOn(myDetect.closestEnemy);
+							_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+								lockInputReset = false;
+							}
+							if (myControl.RightHorizontal() < 0){
+								int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+								currentLockedEnemy--;
+								if (currentLockedEnemy < 0){
+									currentLockedEnemy = myDetect.allEnemiesInRange.Count-1;
+								}
+								_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
 								lockInputReset = false;
 							}
 						}
 					}
 				}
+			}else{
+				if (myControl.LockOnButton()){
+					_isSprinting = false;
+					if (myDetect.allEnemiesInRange.Count > 0){
+						_myLockOn.LockOn(myDetect.closestEnemy);
+					}
+				}
 			}
+			
 		}
 	}
 
@@ -997,7 +1022,7 @@ public class PlayerController : MonoBehaviour {
 		_inputDirectionCurrent.x = controller.Horizontal();
 		_inputDirectionCurrent.y = controller.Vertical();
 
-		if (!controller.ShootButton() && !controller.ShootTrigger()){
+		if (!controller.ShootButton()){
 			shootButtonUp = true;
 		}
 

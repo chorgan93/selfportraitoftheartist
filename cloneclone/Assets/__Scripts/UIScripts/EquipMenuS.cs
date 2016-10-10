@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class EquipMenuS : MonoBehaviour {
 
 	public Image playerImage;
+	public Text descriptionText;
 	private PlayerController pRef;
+	[Header("Text Properties")]
+	public string paradigmIString;
+	public string paradigmIIString;
+	public string virtueString;
+	public string inventoryString;
 
 	private bool controlStickMoved = false;
 	private bool selectButtonDown = false;
@@ -89,7 +95,8 @@ public class EquipMenuS : MonoBehaviour {
 
 			}
 		}
-		
+
+		descriptionText.text = "";
 		SetSelector(0);
 		UpdateMantraDisplay();
 		UpdateBuddyDisplay();
@@ -379,6 +386,21 @@ public class EquipMenuS : MonoBehaviour {
 
 		changeCols.a = 1f;
 		selectorElements[newPos].color = changeCols;
+
+		if (newPos == 0){
+			descriptionText.text = paradigmIString;
+		}
+		if (newPos == 1){
+			descriptionText.text = paradigmIIString;
+		}
+		
+		if (newPos == 2){
+			descriptionText.text = virtueString;
+		}
+		
+		if (newPos == 3){
+			descriptionText.text = inventoryString;
+		}
 		
 		currentPos = newPos;
 		selector.anchoredPosition = selectorPositions[currentPos].anchoredPosition;
@@ -410,9 +432,27 @@ public class EquipMenuS : MonoBehaviour {
 			if (newPos == 2){
 				paradigmBuddySubscreen.gameObject.SetActive(true);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
+				if (paradigmNum == 0){
+					descriptionText.text = allBuddyItems[pRef.EquippedBuddy().buddyNum].buddyDescription;
+				}else{
+					descriptionText.text = allBuddyItems[pRef.SubBuddy().buddyNum].buddyDescription;
+				}
 			}else{
 				paradigmBuddySubscreen.gameObject.SetActive(false);
 				paradigmMantraSubscreen.gameObject.SetActive(true);
+				if (paradigmNum == 0){
+					if (newPos == 0){
+						descriptionText.text = allMantraItems[pRef.EquippedWeapon().weaponNum].weaponDescriptionMain;
+					}else{
+						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().weaponNum].weaponDescriptionSub;
+					}
+				}else{
+					if (newPos == 0){
+						descriptionText.text = allMantraItems[pRef.SubWeapon().weaponNum].weaponDescriptionMain;
+					}else{
+						descriptionText.text = allMantraItems[pRef.SubWeaponAug().weaponNum].weaponDescriptionSub;
+					}
+				}
 			}
 		}
 		else{
@@ -432,13 +472,32 @@ public class EquipMenuS : MonoBehaviour {
 			if (paradigmNum == 0){
 				selectorElementsParadigmI[nextAvailable].color = changeCols;
 				selector.anchoredPosition = selectorPositionsParadigmI[currentPos].anchoredPosition;
+				if(currentPos > 2){
+
+					if (currentWeaponSelected == 0){
+						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain;
+					}else{
+						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionSub;
+					}
+
+				}
 			}else{
 				selectorElementsParadigmII[nextAvailable].color = changeCols;
 				selector.anchoredPosition = selectorPositionsParadigmII[currentPos].anchoredPosition;
+				if(currentPos > 2){
+
+					if (currentWeaponSelected == 0){
+						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain;
+					}else{
+						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionSub;
+					}
+
+				}
 			}
 		}else{
 			selectorElementsBuddy[nextAvailable-3].color = changeCols;
 			selector.anchoredPosition = selectorPositionsBuddy[currentPos-3].anchoredPosition;
+			descriptionText.text = allBuddyItems[nextAvailable-3].buddyDescription;
 		}
 
 	}
