@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 savedDir = Vector3.zero;
 
 	private bool _doingDashAttack = false;
+	private bool _doingHeavyAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
 
 	private Vector2 _inputDirectionLast;
@@ -677,6 +678,18 @@ public class PlayerController : MonoBehaviour {
 			}else{
 
 					currentChain++;
+					if (_doingHeavyAttack){
+						if (currentChain > equippedWeapon.heavyChain.Length-1){
+							currentChain = 0;
+						}
+						
+						newProjectile = (GameObject)Instantiate(equippedWeapon.heavyChain[currentChain], 
+						                                        transform.position, 
+						                                        Quaternion.identity);
+						// for now, heavy attacks do not combo
+						currentChain = -1;
+					}
+					else{
 					if (currentChain > equippedWeapon.attackChain.Length-1){
 						currentChain = 0;
 					}
@@ -684,6 +697,7 @@ public class PlayerController : MonoBehaviour {
 				newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
 				                                        transform.position, 
 				                                        Quaternion.identity);
+					}
 				
 			}
 			}
@@ -752,7 +766,7 @@ public class PlayerController : MonoBehaviour {
 
 				shootButtonUp = false;
 					_doingDashAttack = false;
-
+					_doingHeavyAttack = false;
 
 
 					if (_isDashing || _isSprinting){
@@ -763,12 +777,21 @@ public class PlayerController : MonoBehaviour {
 						dashHoldTime = 0f;
 						_doingDashAttack = true;
 
+
 					}else{
 						int nextAttack = currentChain+1;
-						if (nextAttack > equippedWeapon.attackChain.Length-1){
-							nextAttack = 0;
+						if (myControl.HeavyButton()){
+							if (nextAttack > equippedWeapon.heavyChain.Length-1){
+								nextAttack = 0;
+							}
+							currentAttackS = equippedWeapon.heavyChain[nextAttack].GetComponent<ProjectileS>();
+							_doingHeavyAttack = true;
+						}else{
+							if (nextAttack > equippedWeapon.attackChain.Length-1){
+								nextAttack = 0;
+							}
+							currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 						}
-						currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
@@ -777,7 +800,7 @@ public class PlayerController : MonoBehaviour {
 					_isShooting = true;
 					allowChargeAttack = true;
 
-					AttackAnimationTrigger();
+					AttackAnimationTrigger(_doingHeavyAttack);
 
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
@@ -1101,11 +1124,14 @@ public class PlayerController : MonoBehaviour {
 		_doWakeUp = false;
 	}
 
-	private void AttackAnimationTrigger(){
-		
-		_myAnimator.SetTrigger("AttackTrigger");
-		_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
+	private void AttackAnimationTrigger(bool heavy = false){
 
+		if (heavy){
+			_myAnimator.SetTrigger("HeavyTrigger");
+		}
+			_myAnimator.SetTrigger("AttackTrigger");
+
+		_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		_myAnimator.SetBool("Attacking", true);
 		
@@ -1493,7 +1519,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool ShootInputPressed(){
-		return (controller.ShootButton());
+		return (controller.ShootButton() || controller.HeavyButton());
 	}
 	
 
