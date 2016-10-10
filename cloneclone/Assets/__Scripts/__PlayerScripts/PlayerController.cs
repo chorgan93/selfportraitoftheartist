@@ -534,8 +534,8 @@ public class PlayerController : MonoBehaviour {
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
-
-		if (!myControl.LockOnButton()){
+		// if you want to differentiate bt lock on and not, uncomment this and remove solo roll code
+		/*if (!myControl.LockOnButton()){
 			_myStats.ManaCheck(_dashCost);
 			_myAnimator.SetTrigger("Dash");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
@@ -546,7 +546,13 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetTrigger("Roll");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTime = dashDuration*0.4f;
-		}
+		}**/
+
+		_myStats.ManaCheck(_dodgeCost);
+		_myAnimator.SetTrigger("Roll");
+		_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+		dashDurationTime = dashDuration*0.4f;
+
 		if (!_isDashing){
 			blockButtonUp = true;
 			_isDashing = true;
