@@ -133,7 +133,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool FamiliarControl(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchButton"+platformType));
+			return (Input.GetButton("SwitchButton"+platformType+"Alt"));
 		}else{
 			return (Input.GetMouseButton(1));
 		}
@@ -188,12 +188,26 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		
 	}
+	public bool DashTrigger(){
+		
+		if (ControllerAttached()){
+			
+			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			
+		}
+		else{
+			
+			return (Input.GetKey(KeyCode.Space));
+			
+		}
+		
+	}
 	
 	public bool ShootButton(){
 
 		if (ControllerAttached()){
 			
-			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			return (Input.GetButton("ShootButton"+platformType));
 
 		}
 		else{
@@ -262,7 +276,7 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton"+platformType));
+			return (Input.GetButton("SwitchButton"+platformType));
 		}
 		else{
 			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));

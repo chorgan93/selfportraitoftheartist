@@ -125,7 +125,7 @@ public class ExamineTriggerS : MonoBehaviour {
 								if (!fullRevive){
 									InfinityS.savedLastDifficulty = 1;
 								}
-								PlayerInventoryS.I.SaveWeapons(pRef.equippedWeapons, pRef.subWeapons);
+								PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, pRef.equippedBuddies);
 								CameraEffectsS.E.SetNextScene(teleportScene);
 								CameraEffectsS.E.FadeIn();
 							}

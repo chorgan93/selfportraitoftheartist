@@ -13,8 +13,11 @@ public class PlayerInventoryS : MonoBehaviour {
 	public List<int> clearedWalls { get { return _clearedWalls; } }
 
 	public List<PlayerWeaponS> unlockedWeapons;
+	public List<BuddyS> unlockedBuddies;
 	private static List<PlayerWeaponS> equippedWeapons;
 	private static List<PlayerWeaponS> subWeapons;
+	
+	private static List<GameObject> equippedBuddies;
 
 	public static PlayerInventoryS I;
 
@@ -45,13 +48,18 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls = new List<int>();
 	}
 
-	public void SaveWeapons(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList){
+	public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<GameObject> equipBuds){
 		equippedWeapons = wepList;
 		subWeapons = subList;
+		equippedBuddies = equipBuds;
 	}
 	public List<PlayerWeaponS> EquippedWeapons(){
 		return equippedWeapons;
-	}public List<PlayerWeaponS> SubWeapons(){
+	}
+	public List<PlayerWeaponS> SubWeapons(){
 		return subWeapons;
+	}
+	public List<GameObject> EquippedBuddies(){
+		return equippedBuddies;
 	}
 }

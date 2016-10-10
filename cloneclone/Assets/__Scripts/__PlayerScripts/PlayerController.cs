@@ -115,7 +115,12 @@ public class PlayerController : MonoBehaviour {
 
 	// Buddy Properties
 	private BuddyS _myBuddy;
-	public BuddyS[] equippedBuddies;
+	private BuddyS _altBuddy;
+	private bool altBuddyCreated = false;
+	[Header("Buddy Properties")]
+	public List<GameObject> equippedBuddies;
+	public Transform buddyPos;
+	public Transform buddyPosLower;
 	private BuddySwitchEffectS _buddyEffect;
 
 	// Animation Properties
@@ -135,9 +140,9 @@ public class PlayerController : MonoBehaviour {
 	public List<PlayerWeaponS> equippedWeapons;
 	public List<PlayerWeaponS> subWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
-	private int _currentParadigm = 0;
+	private static int _currentParadigm = 0;
 	public int currentParadigm { get { return _currentParadigm; } }
-	private int _subParadigm = 1;
+	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
 	private int currentBuddy = 0;
 	private int subBuddy = 1;
@@ -262,12 +267,20 @@ public class PlayerController : MonoBehaviour {
 		equippedWeapons = PlayerInventoryS.I.EquippedWeapons();
 			subWeapons = PlayerInventoryS.I.SubWeapons();
 		}
+		if (PlayerInventoryS.I.EquippedBuddies() != null){
+			equippedBuddies = PlayerInventoryS.I.EquippedBuddies();
+		}
 
 		equippedWeapon = equippedWeapons[_currentParadigm];
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}
-		_myBuddy = equippedBuddies[currentBuddy];
+
+		GameObject startBuddy = Instantiate(equippedBuddies[currentBuddy], transform.position, Quaternion.identity)
+			as GameObject;
+		startBuddy.transform.parent = transform;
+		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
+		_myBuddy.SetPositions(buddyPos, buddyPosLower);
 		_myBuddy.gameObject.SetActive(true);
 		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
 
@@ -441,7 +454,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//if (BlockInputPressed() && CanInputBlock()){
-		if (controller.SwitchButton() && CanInputBlock()){
+		if (controller.BlockTrigger() && CanInputBlock()){
 			if (!_isDashing){
 				blockButtonUp = false;
 			}
@@ -556,7 +569,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		// allow for second dash
-		if ((controller.BlockButton() || controller.BlockTrigger())){
+		if (controller.DashTrigger()){
 			if (dashButtonUp && (((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD || (!_isDashing)) 
 			                      && CanInputDash() && _myStats.ManaCheck(1, false)))){
 				if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
@@ -798,18 +811,14 @@ public class PlayerController : MonoBehaviour {
 
 	private void SwapControl(){
 
-		if (!myControl.WeaponButtonA() && !myControl.WeaponButtonB()){
+		if (!myControl.SwitchButton()){
 			switchButtonUp = true;
-		}
-
-		if (!myControl.WeaponButtonC()){
-			switchBuddyButtonUp = true;
 		}
 
 		if (!myStats.PlayerIsDead() && _canSwap){
 		
-			if (!attackTriggered && switchButtonUp){
-				if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
+			if (!attackTriggered && switchButtonUp && _myBuddy.canSwitch){
+				if (myControl.SwitchButton()){
 	
 					_currentParadigm++;
 					if (_currentParadigm > equippedWeapons.Count-1){
@@ -819,37 +828,39 @@ public class PlayerController : MonoBehaviour {
 						_subParadigm = 0;
 					}
 					SwitchParadigm(_currentParadigm);
+
+					currentBuddy++;
+					if (currentBuddy > equippedBuddies.Count-1){
+						currentBuddy = 0;
+						subBuddy = 1;
+					}else{
+						subBuddy = 0;
+					}
+					
+					BuddyS tempSwap = _myBuddy;
+					if (!altBuddyCreated){
+						altBuddyCreated = true;
+						GameObject newBuddy = Instantiate(equippedBuddies[currentBuddy], transform.position,Quaternion.identity)
+							as GameObject;
+						newBuddy.transform.parent = transform;
+						_altBuddy = newBuddy.GetComponent<BuddyS>();
+					}	
+					_altBuddy.SetPositions(buddyPos, buddyPosLower);
+					_myBuddy = _altBuddy;
+					_myBuddy.transform.position = tempSwap.transform.position;
+					_myBuddy.gameObject.SetActive(true);
+					Instantiate(_myBuddy.buddySound);
+					_altBuddy = tempSwap;
+					_altBuddy.gameObject.SetActive(false);
+					
+					_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 	
 				}
 			}
-		
-
-			if (_myBuddy.canSwitch && switchBuddyButtonUp && myControl.WeaponButtonC()){
-
-				currentBuddy++;
-				if (currentBuddy > equippedBuddies.Length-1){
-					currentBuddy = 0;
-					subBuddy = 1;
-				}else{
-					subBuddy = 0;
-				}
-
-				BuddyS tempSwap = _myBuddy;
-				_myBuddy = equippedBuddies[currentBuddy];
-				_myBuddy.transform.position = tempSwap.transform.position;
-				_myBuddy.gameObject.SetActive(true);
-				Instantiate(_myBuddy.buddySound);
-				tempSwap.gameObject.SetActive(false);
-
-				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
-			}
 		}
 
-		if (myControl.WeaponButtonA() || myControl.WeaponButtonB()){
+		if (myControl.SwitchButton()){
 			switchButtonUp = false;
-		}
-		if (myControl.WeaponButtonC()){
-			switchBuddyButtonUp = false;
 		}
 
 	}
@@ -908,6 +919,34 @@ public class PlayerController : MonoBehaviour {
 
 	public void ParadigmCheck(){
 		SwitchParadigm(_currentParadigm);
+	}
+	public void BuddyLoad(int buddyIndex, GameObject buddyPrefab){
+
+		if (buddyIndex > 0){
+			if (altBuddyCreated){
+				Destroy(_altBuddy.gameObject);
+				altBuddyCreated = false;
+			}
+			equippedBuddies[_subParadigm] = buddyPrefab;
+		}
+		else{
+		
+			GameObject oldBuddy = _myBuddy.gameObject;
+
+			equippedBuddies[_currentParadigm] = buddyPrefab;
+
+			GameObject newBuddy = Instantiate(equippedBuddies[_currentParadigm], oldBuddy.transform.position,Quaternion.identity)
+				as GameObject;
+			newBuddy.transform.parent = transform;
+			_myBuddy = newBuddy.GetComponent<BuddyS>();
+			_myBuddy.SetPositions(buddyPos, buddyPosLower);
+			_myBuddy.gameObject.SetActive(true);
+			Instantiate(_myBuddy.buddySound);
+			Destroy(oldBuddy);
+			
+			_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+
+		}
 	}
 
 	private void SwitchParadigm (int newPara){
@@ -1450,7 +1489,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool ShootInputPressed(){
-		return (controller.ShootButton() || controller.ShootTrigger());
+		return (controller.ShootButton());
 	}
 	
 
@@ -1571,7 +1610,11 @@ public class PlayerController : MonoBehaviour {
 		return (_myBuddy);
 	}
 	public BuddyS SubBuddy(){
-		return (equippedBuddies[subBuddy]);
+		if (!altBuddyCreated){
+			return (equippedBuddies[_subParadigm].GetComponent<BuddyS>());
+		}else{
+			return (_altBuddy);
+		}
 	}
 
 }

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BuddyS : MonoBehaviour {
 
+	public int buddyNum = 0;
 	public float costPerUse = 20f;
 
 	private PlayerController _playerRef;
@@ -39,7 +40,6 @@ public class BuddyS : MonoBehaviour {
 	public virtual void Initialize(){
 
 		_playerRef = GetComponentInParent<PlayerController>();
-
 		_myRigid = GetComponent<Rigidbody>();
 		_myDetect = GetComponentInChildren<PlayerDetectS>();
 
@@ -93,17 +93,10 @@ public class BuddyS : MonoBehaviour {
 		transform.localScale = faceScale;
 	}
 
-	public virtual void Equip(){
-
-		_playerRef.EquipBuddy(this);
-
+	public void SetPositions(Transform upperPos, Transform lowerPos){
+		_buddyPos = upperPos;
+		_buddyPosLower = lowerPos;
 	}
 
-	public virtual void Swap(){
 
-	}
-
-	public virtual void Unequip(){
-
-	}
 }
