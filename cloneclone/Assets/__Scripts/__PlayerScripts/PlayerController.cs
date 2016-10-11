@@ -1024,7 +1024,7 @@ public class PlayerController : MonoBehaviour {
 		_inputDirectionCurrent.x = controller.Horizontal();
 		_inputDirectionCurrent.y = controller.Vertical();
 
-		if (!controller.ShootButton()){
+		if (!controller.ShootButton() && !controller.HeavyButton()){
 			shootButtonUp = true;
 		}
 
@@ -1127,9 +1127,11 @@ public class PlayerController : MonoBehaviour {
 	private void AttackAnimationTrigger(bool heavy = false){
 
 		if (heavy){
-			_myAnimator.SetTrigger("HeavyTrigger");
+			_myAnimator.SetBool("HeavyAttacking", true);
+		}else{
+			_myAnimator.SetBool("HeavyAttacking", false);
 		}
-			_myAnimator.SetTrigger("AttackTrigger");
+		_myAnimator.SetTrigger("AttackTrigger");
 
 		_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
@@ -1153,6 +1155,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
+		_myAnimator.SetBool("HeavyAttacking", false);
 	}
 
 	private void FaceDown(){
