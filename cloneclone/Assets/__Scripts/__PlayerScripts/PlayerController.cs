@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerStatsS _myStats;
 
 	private static bool _doWakeUp = true;
+	public bool doWakeUp { get { return _doWakeUp; } }
 	private bool wakingUp = false;
 	public bool isWaking  { get { return  wakingUp; } }
 	private float wakeUpTime = 3f;
@@ -647,7 +648,7 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
-				newCharge.GetComponent<ProjectileS>().Fire(savedDir, savedDir, this);
+				newCharge.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirection(), this);
 
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();

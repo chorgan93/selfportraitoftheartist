@@ -16,7 +16,8 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________HEALTH
 	private float _baseHealth = 8;
 	private float _addedHealth = 0; // max 8 (for 12 total)
-	private float _currentHealth;
+	public float addedHealth { get { return _addedHealth; } }
+	private static float _currentHealth;
 
 	public float currentHealth { get { return _currentHealth; } }
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
@@ -24,6 +25,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________MANA
 	private float _baseMana = 5;
 	private float _addedMana = 0; // max 16 (for 20 total)
+	public float addedMana { get { return _addedMana; } }
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
 	
@@ -31,10 +33,12 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentMana { get { return (_currentMana);}}
 
 	//________________________________CHARGE
-	private float _maxCharge = 100f;
-	private float _currentCharge = 0f;
+	private float _baseCharge = 100f;
+	private float _addedCharge = 0;
+	public float addedCharge { get { return _addedCharge; }}
+	private static float _currentCharge = 0f;
 	
-	public float maxCharge { get { return _maxCharge;}}
+	public float maxCharge { get { return _baseCharge+_addedCharge;}}
 	public float currentCharge { get { return _currentCharge;}}
 
 	//________________________________ATTACK
@@ -156,7 +160,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool ChargeCheck(float reqCharge, bool useCharge = true){
 
-		bool canUse =  (_currentCharge >= reqCharge);
+		bool canUse =  (_currentCharge >= 0);
 
 		if (useCharge && canUse){
 			_currentCharge -= reqCharge;
@@ -170,7 +174,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void RecoverCharge(float addCharge){
 		_currentCharge += addCharge;
-		if (_currentCharge > _maxCharge){
+		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}
 	}
@@ -264,9 +268,11 @@ public class PlayerStatsS : MonoBehaviour {
 		InitializeStats();
 
 		_currentMana = maxMana;
-		_currentHealth = maxHealth;
+		if (myPlayerController.doWakeUp){
+			_currentHealth = maxHealth;
+			_currentCharge = maxCharge;
+		}
 		_currentDefense = maxDefense;
-		_currentCharge = _maxCharge;
 
 	}
 
@@ -274,9 +280,11 @@ public class PlayerStatsS : MonoBehaviour {
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach(int i in PlayerInventoryS.I.collectedItems){
 				// count mana
-				if (i >= 0 && i <= 8){
+				if (i == 0){
 					_addedMana++;
-					Debug.Log("Add mana! " + i);
+				}
+				if (i == 1){
+					_addedHealth++;
 				}
 			}
 		}
@@ -383,18 +391,22 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	//__________________________________STAT UPGRADES
-	public void AddStamina(){
-		_addedMana+=2f;
-		_currentMana+=2f;
+	public void AddStamina(float numToAdd = 1){
+		_addedMana+=numToAdd;
+		_currentMana+=numToAdd;
 	}
 
-	public void AddHealth(){
-		_addedHealth += 3f;
-		_currentHealth += 3f;
+	public void AddHealth(float numToAdd = 1){
+		_addedHealth += numToAdd;
+		_currentHealth += numToAdd;
+	}
+	public void AddCharge(float numToAdd = 10){
+		_addedCharge += numToAdd;
+		_currentCharge += numToAdd;
 	}
 
 	public void FullRecover(){
 		_currentHealth = maxHealth;
-		_currentCharge = _maxCharge;
+		_currentCharge = maxCharge;
 	}
 }

@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class PlayerStatDisplayS : MonoBehaviour {
+
+	private const float barAddSize = 3f;
+	private const float chargeAddSize = .3f;
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;
@@ -54,11 +57,20 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float xPositionMeterMultiplier = 0.1f;
 
 	//___________________________DISPLAY STUFF
-
+	
+	public Image healthBorder;
 	public Image healthFill;
+	private Vector2 healthBorderMaxSize;
+
 	public Image staminaFill;
+	public Image staminaBorder;
+	private Vector2 staminaBorderMaxSize;
+
 	public Image recoveryFill;
+	
 	public Image chargeFill;
+	public Image chargeBorder;
+	private Vector2 chargeBorderMaxSize;
 
 //	public Text healthText;
 //	public Text staminaText;
@@ -85,6 +97,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeStartPos = chargeBar.rectTransform.anchoredPosition;
 		chargeStartYMult = chargeStartPos.y/backgroundMaxSize.y;
 		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
+
+		healthBorderMaxSize = healthBorder.rectTransform.sizeDelta;
+		staminaBorderMaxSize = staminaBorder.rectTransform.sizeDelta;
+		chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 		playerStats.AddUIReference(this);
@@ -118,7 +134,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//backgroundFill.rectTransform.sizeDelta = backgroundCurrentSize*0.99f;
 
 		// recover stuff
-		recoveryBarCurrentSize = recoveryBarMaxSize*ScreenMultiplier();
+		recoveryBarCurrentSize = recoveryBarMaxSize;
+		recoveryBarCurrentSize.x = playerStats.addedMana*barAddSize;
 		recoveryBar.rectTransform.sizeDelta=recoveryBarCurrentSize;
 
 		
@@ -129,6 +146,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// health stuff
 		healthBarCurrentSize = healthBarMaxSize*ScreenMultiplier();
+		healthBarCurrentSize.x = playerStats.addedHealth*barAddSize;
 		healthBar.rectTransform.sizeDelta=healthBarCurrentSize;
 
 		
@@ -139,6 +157,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// stamina stuff
 		staminaBarCurrentSize = staminaBarMaxSize*ScreenMultiplier();
+		staminaBarCurrentSize.x = playerStats.addedMana*barAddSize;
 		staminaBar.rectTransform.sizeDelta=staminaBarCurrentSize;
 
 		reposition = staminaBar.rectTransform.anchoredPosition;
@@ -161,12 +180,18 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// health fill
 		Vector2 fillSize = healthBarMaxSize;
+		fillSize.x += playerStats.addedHealth*barAddSize;
 		fillSize.x *= playerStats.currentHealth/playerStats.maxHealth;
 		healthFill.rectTransform.sizeDelta = fillSize;
 		healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
 
+		Vector2 borderSize = healthBorderMaxSize;
+		borderSize.x += playerStats.addedHealth*barAddSize;
+		healthBorder.rectTransform.sizeDelta = borderSize;
+
 		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;
+		fillSize.x += playerStats.addedMana*barAddSize;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
@@ -186,11 +211,20 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		recoveryFill.rectTransform.sizeDelta = fillSize;
 
+		borderSize = staminaBorderMaxSize;
+		borderSize.x += playerStats.addedMana*barAddSize;
+		staminaBorder.rectTransform.sizeDelta = borderSize;
+
 		// charge fill
 		fillSize = chargeBarMaxSize;
+		fillSize.x += playerStats.addedCharge*chargeAddSize;
 		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
 		chargeFill.rectTransform.sizeDelta = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
+		
+		borderSize = chargeBorderMaxSize;
+		borderSize.x += playerStats.addedCharge*chargeAddSize;
+		chargeBorder.rectTransform.sizeDelta = borderSize;
 
 
 		//healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());

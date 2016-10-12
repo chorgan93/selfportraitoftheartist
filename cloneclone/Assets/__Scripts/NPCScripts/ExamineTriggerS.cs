@@ -162,7 +162,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach (int i in PlayerInventoryS.I.collectedItems){
-				if (i == inventoryNum){
+				if (i == inventoryNum && i > 2){
 					gameObject.SetActive(false);
 				}
 			}
@@ -173,22 +173,16 @@ public class ExamineTriggerS : MonoBehaviour {
 	private void AddPickup(){
 
 		if (inventoryNum >= 0){
-			// PlayerInventoryS.I.AddToInventory(inventoryNum);
-	
-			// add stamina
-			if (inventoryNum >= 0 && inventoryNum <= 11){
+			PlayerInventoryS.I.AddToInventory(inventoryNum);
+			if (inventoryNum == 0){
 				pRef.myStats.AddStamina();
 			}
-	
-			// add health
-			if (inventoryNum >= 12 && inventoryNum <= 20){
+			if (inventoryNum == 1){
 				pRef.myStats.AddHealth();
 			}
-
-			// 
-		}else{
-			// full recovery
-			pRef.myStats.FullRecover();
+			if (inventoryNum == 2){
+				pRef.myStats.AddCharge();
+			}
 		}
 
 	}
