@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour {
 	private float _chargeAttackTime;
 	private float _chargeAttackTrigger = 0.6f;
 	private float _chargeAttackDuration = 1f;
+	private string _chargeAnimationTrigger;
+	private float _chargeAnimationSpeed;
 	//private ChargeAttackS _chargeCollider;
 	private GameObject _chargePrefab;
 	private bool _chargeAttackTriggered = false;
@@ -151,6 +153,7 @@ public class PlayerController : MonoBehaviour {
 	private static int subBuddy = 1;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
+	private int prevChain = 0;
 	private float comboDuration = 0f;
 	private float attackDelay;
 	private float attackDuration;
@@ -693,6 +696,7 @@ public class PlayerController : MonoBehaviour {
 						                                        transform.position, 
 						                                        Quaternion.identity);
 						// for now, heavy attacks do not combo
+						prevChain = currentChain;
 						currentChain = -1;
 					}
 					else{
@@ -702,7 +706,8 @@ public class PlayerController : MonoBehaviour {
 
 				newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
 				                                        transform.position, 
-				                                        Quaternion.identity);
+						                                        Quaternion.identity);
+						prevChain = currentChain;
 					}
 				
 			}
@@ -712,10 +717,6 @@ public class PlayerController : MonoBehaviour {
 			comboDuration = currentAttackS.comboDuration;
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
-			ProjectileS chargeAttackRef = currentAttackS.chargeAttackPrefab.GetComponent<ProjectileS>();
-			ChargeAttackSet(currentAttackS.chargeAttackPrefab, 
-			                chargeAttackRef.chargeAttackTime, 
-			                chargeAttackRef.staminaCost, (chargeAttackRef.chargeAttackTime+chargeAttackRef.knockbackTime));
 
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
@@ -821,6 +822,33 @@ public class PlayerController : MonoBehaviour {
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
 					if (_myStats.ManaCheck(1, false)){
 					// charge attack
+
+						if (prevChain < 0){
+							prevChain = 0;
+						}
+
+						ProjectileS chargeAttackRef;
+						if (_doingHeavyAttack){
+							if (prevChain > equippedWeapon.heavyChain.Length-1){
+								prevChain = equippedWeapon.heavyChain.Length-1;
+							}
+							chargeAttackRef = 
+								equippedWeapon.heavyChain[prevChain].GetComponent<ProjectileS>()
+									.chargeAttackPrefab.GetComponent<ProjectileS>();
+						}else{
+							if (prevChain > equippedWeapon.attackChain.Length-1){
+								prevChain = equippedWeapon.attackChain.Length-1;
+							}
+							chargeAttackRef = 
+								equippedWeapon.attackChain[prevChain].GetComponent<ProjectileS>()
+									.chargeAttackPrefab.GetComponent<ProjectileS>();
+						}
+						ChargeAttackSet(chargeAttackRef.gameObject, 
+						                chargeAttackRef.chargeAttackTime, 
+						                chargeAttackRef.staminaCost, 
+						                (chargeAttackRef.chargeAttackTime+chargeAttackRef.knockbackTime),
+						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger);
+
 					_chargingAttack = true;
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
@@ -964,11 +992,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration){
+	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
+	                             float animationSpeed, string animationTrigger){
 		_chargePrefab = chargePrefab;
 		_chargeAttackTrigger = chargeTime;
 		_chargeAttackCost = chargeCost;
 		_chargeAttackDuration = cDuration;
+		_chargeAnimationSpeed = animationSpeed;
+		_chargeAnimationTrigger = animationTrigger;
 	}
 
 	public void ParadigmCheck(){
