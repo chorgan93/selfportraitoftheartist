@@ -724,7 +724,11 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(equippedWeapon.dashAttack);
 						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
 					}else{
+						if (_doingHeavyAttack){
+							queuedAttacks.Add(equippedWeapon.heavyChain[prevChain]);
+						}else{
 						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
+						}
 						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
 					}
 				}

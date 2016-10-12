@@ -11,6 +11,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 	public GameObject spawnObject;
 	public float spawnObjectRadius = 2.5f;
+	public float spawnRadiusAdd = 0f;
 	public float spawnObjZ = 0f;
 
 	private Vector3 spawnPos;
@@ -44,6 +45,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 				spawnPos = transform.position;
 				spawnPos += Random.insideUnitSphere*spawnObjectRadius;
+				spawnObjectRadius+=spawnRadiusAdd;
 				spawnPos.z = spawnObjZ;
 				GameObject newSpawn = Instantiate(spawnObject, spawnPos, spawnObject.transform.rotation)
 					as GameObject;
