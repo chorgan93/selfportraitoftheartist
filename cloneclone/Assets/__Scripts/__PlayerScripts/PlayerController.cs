@@ -1087,7 +1087,12 @@ public class PlayerController : MonoBehaviour {
 		_inputDirectionCurrent.x = controller.Horizontal();
 		_inputDirectionCurrent.y = controller.Vertical();
 
-		if (!controller.ShootButton() && !controller.HeavyButton()){
+		if (_isTalking){
+			shootButtonUp = false;
+			allowChargeAttack = false;
+		}
+
+		if (!controller.ShootButton() && !controller.HeavyButton() && !_isTalking){
 			shootButtonUp = true;
 		}
 

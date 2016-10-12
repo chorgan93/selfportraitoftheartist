@@ -214,9 +214,9 @@ public class EquipMenuS : MonoBehaviour {
 
 					// swap actual mantra equip & update display
 					if (currentWeaponSelected == 0){
-						pRef.equippedWeapons[0] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+						pRef.equippedWeapons[pRef.currentParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}else if (currentWeaponSelected == 1){
-						pRef.subWeapons[0] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+						pRef.subWeapons[pRef.currentParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}else{
 						pRef.BuddyLoad(0, allBuddyItems[currentPos-3].buddyInstance);
 						UpdateBuddyDisplay();
@@ -313,9 +313,9 @@ public class EquipMenuS : MonoBehaviour {
 					selectButtonDown = true;
 					// swap actual mantra equip & update display
 					if (currentWeaponSelected == 0){
-						pRef.equippedWeapons[1] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+						pRef.equippedWeapons[pRef.subParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}else if (currentWeaponSelected == 1){
-						pRef.subWeapons[1] = allMantraItems[currentPos-3].WeaponRefForSwitch();
+						pRef.subWeapons[pRef.subParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}
 					else{
 						pRef.BuddyLoad(1, allBuddyItems[currentPos-3].buddyInstance);
