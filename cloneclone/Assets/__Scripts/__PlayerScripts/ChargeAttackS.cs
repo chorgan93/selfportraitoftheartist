@@ -184,6 +184,8 @@ public class ChargeAttackS : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		
 		if (other.gameObject.tag == "Enemy"){
+
+			if (!other.gameObject.GetComponent<EnemyS>().isDead){
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
@@ -197,6 +199,7 @@ public class ChargeAttackS : MonoBehaviour {
 			myPlayer.myStats.RecoverCharge(10f);
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
+			}
 		}
 		
 	}

@@ -859,7 +859,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!myStats.PlayerIsDead() && _canSwap){
 		
-			if (!attackTriggered && switchButtonUp && _myBuddy.canSwitch){
+			if (switchButtonUp && _myBuddy.canSwitch){
 				if (myControl.SwitchButton()){
 	
 					_currentParadigm++;

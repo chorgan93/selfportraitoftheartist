@@ -121,8 +121,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool BlockTrigger(){
 
 		if (ControllerAttached()){
-			return (Input.GetButton("SwitchBuddyButton" + platformType));
-			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
+			//return (Input.GetButton("SwitchBuddyButton" + platformType));
+			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -292,8 +292,8 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
-			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
-			//return (Input.GetButton("SwitchBuddyButton"+platformType));
+			//return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}
 		else{
 			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
