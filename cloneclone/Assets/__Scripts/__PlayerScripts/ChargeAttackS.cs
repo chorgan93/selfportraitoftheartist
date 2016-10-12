@@ -33,6 +33,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public float knockbackForce = 1000f;
 	public float dmg = 5f;
 	private Vector3 knockBackDir;
+	public int shakeAmt = 1;
 
 	private bool standAlone = false;
 
@@ -133,8 +134,16 @@ public class ChargeAttackS : MonoBehaviour {
 		_myRenderer.enabled = true;
 		flashFrames = flashMax;
 
+		if (shakeAmt == 1){
 		CameraShakeS.C.TimeSleep(0.1f);
 		CameraShakeS.C.LargeShake();
+		}
+		else if (shakeAmt == 0){
+			CameraShakeS.C.SpecialAttackShake();
+			CameraShakeS.C.TimeSleep(0.04f);
+		}else{
+			CameraShakeS.C.SmallShake();
+		}
 
 		
 		if (soundObj){
