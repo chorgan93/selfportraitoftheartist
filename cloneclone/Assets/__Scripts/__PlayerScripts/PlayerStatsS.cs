@@ -188,11 +188,14 @@ public class PlayerStatsS : MonoBehaviour {
 			// first burn down cooldown, then recover
 			if (_currentCooldownTimer > 0){
 				_currentCooldownTimer -= Time.deltaTime;
+				if (_currentCooldownTimer < 0){
+					
+					_currentCooldownTimer = 0;
+				}
 				recoverRateIncrease = 0f;
 			}
 			else{
 
-				_currentCooldownTimer = 0;
 				float actingRecoverRate = recoverRate + recoverRateIncrease;
 				// OLD WAY
 				/*if (myPlayerController.isBlocking){

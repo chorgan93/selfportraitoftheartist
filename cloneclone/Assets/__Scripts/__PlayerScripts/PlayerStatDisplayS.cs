@@ -35,6 +35,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Vector2 recoveryBarCurrentSize;
 	public Image recoveryBar;
 
+	private float prevStaminaSize = 0f;
+
 	private Vector2 chargeBarMaxSize;
 	private Vector2 chargeStartPos;
 	private float chargeStartYMult;
@@ -58,9 +60,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image recoveryFill;
 	public Image chargeFill;
 
-	public Text healthText;
-	public Text staminaText;
-	public Text chargeText;
+//	public Text healthText;
+//	public Text staminaText;
+//	public Text chargeText;
 
 	private PlayerStatsS playerStats;
 
@@ -163,11 +165,26 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		healthFill.rectTransform.sizeDelta = fillSize;
 		healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
 
-		// stamina fill
+		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
+
+		if (playerStats.currentCooldownTimer <= 0){
+			prevStaminaSize = fillSize.x;
+		}
+
+		fillSize = staminaBarMaxSize;
+		fillSize.y = recoveryBarMaxSize.y;
+		if (playerStats.currentRegenCount > 0){
+			fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
+				playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
+		}
+		else{
+			fillSize.x = 0;
+		}
+		recoveryFill.rectTransform.sizeDelta = fillSize;
 
 		// charge fill
 		fillSize = chargeBarMaxSize;
@@ -175,21 +192,13 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeFill.rectTransform.sizeDelta = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 
-		// recharge fill
-		fillSize = recoveryBarMaxSize;
-		if (playerStats.currentRegenCount > 0){
-			fillSize.x *= playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
-		}
-		else{
-			fillSize.x = 0;
-		}
-		recoveryFill.rectTransform.sizeDelta = fillSize;
 
 		//healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
 		//staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
 		//chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
-		healthText.text = "[ " + Mathf.RoundToInt(playerStats.currentHealth*10f) + " ]";
+		// old text ui
+	/*	healthText.text = "[ " + Mathf.RoundToInt(playerStats.currentHealth*10f) + " ]";
 		staminaText.text = "< " + Mathf.RoundToInt(playerStats.currentMana*10f) + " >";
 		chargeText.text = ""+ playerStats.currentCharge/100*1.0f;
 		if (chargeText.text == "1"){
@@ -197,7 +206,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		if (chargeText.text == "0"){
 			chargeText.text = "0.0";
-		}
+		}**/
 
 	}
 

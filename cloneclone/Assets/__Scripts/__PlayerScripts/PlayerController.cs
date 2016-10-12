@@ -708,11 +708,14 @@ public class PlayerController : MonoBehaviour {
 			}
 			}
 
+
 			comboDuration = currentAttackS.comboDuration;
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
-			ChargeAttackSet(currentAttackS.chargeAttackPrefab, currentAttackS.chargeAttackTime, 
-			                currentAttackS.chargeAttackPrefab.GetComponent<ProjectileS>().staminaCost);
+			ProjectileS chargeAttackRef = currentAttackS.chargeAttackPrefab.GetComponent<ProjectileS>();
+			ChargeAttackSet(currentAttackS.chargeAttackPrefab, 
+			                chargeAttackRef.chargeAttackTime, 
+			                chargeAttackRef.staminaCost, (chargeAttackRef.chargeAttackTime+chargeAttackRef.knockbackTime));
 
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
@@ -740,6 +743,10 @@ public class PlayerController : MonoBehaviour {
 				// subtract mana cost
 				_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
 				FlashMana();
+
+			if (_myStats.currentMana <= 0){
+				comboDuration = 0f;
+			}
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!currentAttackS.useAltAnim){
@@ -957,10 +964,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost){
+	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration){
 		_chargePrefab = chargePrefab;
 		_chargeAttackTrigger = chargeTime;
 		_chargeAttackCost = chargeCost;
+		_chargeAttackDuration = cDuration;
 	}
 
 	public void ParadigmCheck(){
