@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ChargeAttackS : MonoBehaviour {
 
+
 	private Renderer _myRenderer;
 	private Collider _myCollider;
 	private float _animateRate = 0.033f;
@@ -33,13 +34,19 @@ public class ChargeAttackS : MonoBehaviour {
 	public float dmg = 5f;
 	private Vector3 knockBackDir;
 
+	private bool standAlone = false;
+
 
 	// Use this for initialization
 	void Start () {
 
-		_myRenderer = GetComponent<Renderer>();
+		_myRenderer = GetComponentInChildren<Renderer>();
 		_myCollider = GetComponent<Collider>();
-		myPlayer = GetComponentInParent<PlayerController>();
+		if (transform.parent != null){
+			myPlayer = GetComponentInParent<PlayerController>();
+		}else{
+			standAlone = true;
+		}
 		animateCountdown = _animateRate;
 
 		startTiling = _myRenderer.material.GetTextureScale("_MainTex");
@@ -49,6 +56,10 @@ public class ChargeAttackS : MonoBehaviour {
 		fadeRate = startAlpha/visibleTime;
 
 		fadeColor = _myRenderer.material.color;
+
+		if (standAlone){
+			TriggerAttack(transform.position, Vector3.zero, myPlayer.myRenderer.color);
+		}
 	
 	}
 	
@@ -82,9 +93,13 @@ public class ChargeAttackS : MonoBehaviour {
 
 			fadeColor.a -= Time.deltaTime*fadeRate;
 			if (fadeColor.a <= 0){
+						if (!standAlone){
 				fadeColor.a = 0;
 				_myRenderer.enabled = false;
 					_myCollider.enabled = false;
+						}else{
+							Destroy(gameObject);
+						}
 			}else{
 				_myRenderer.material.color = fadeColor;
 			}
@@ -102,14 +117,14 @@ public class ChargeAttackS : MonoBehaviour {
 	
 	}
 
-	public void TriggerAttack(Vector3 startPos, Vector3 attackDir){
+	public void TriggerAttack(Vector3 startPos, Vector3 attackDir, Color fadeCol){
 
 		Vector3 spawnPos = attackDir.normalized;
 		spawnPos*=spawnRange;
 		spawnPos.z = transform.position.z;
 		transform.position = startPos + spawnPos;
 
-		fadeColor = _myRenderer.material.color;
+		fadeColor = fadeCol;
 		fadeColor.a = startAlpha;
 
 		_myRenderer.material.color = Color.black;
@@ -193,5 +208,9 @@ public class ChargeAttackS : MonoBehaviour {
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/2f;
 		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	public void SetPlayer(PlayerController pRef){
+		myPlayer = pRef;
 	}
 }

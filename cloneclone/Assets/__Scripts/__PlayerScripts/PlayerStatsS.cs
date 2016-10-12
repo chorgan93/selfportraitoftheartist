@@ -71,13 +71,17 @@ public class PlayerStatsS : MonoBehaviour {
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.1f*_recoveryCooldownMultiplier*(currentRecovery-1f)/4f)));}}
 	private float _currentCooldownTimer;
+	public float currentCooldownTimer { get { return _currentCooldownTimer; } }
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 1f;
+	private float _recoverRateMin = 3f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
+
+	private float recoverRateIncrease;
+	private float recoverRateAccel = 5f;
 	
 	private float recoverBurdenMin = 0.08f;
 	private float recoverBurdenMax = 0.22f;
@@ -184,12 +188,14 @@ public class PlayerStatsS : MonoBehaviour {
 			// first burn down cooldown, then recover
 			if (_currentCooldownTimer > 0){
 				_currentCooldownTimer -= Time.deltaTime;
+				recoverRateIncrease = 0f;
 			}
 			else{
 
-				float actingRecoverRate = recoverRate + 0.1f*recoverRate*(currentRecovery-1f)/4f;
-
-				if (myPlayerController.isBlocking){
+				_currentCooldownTimer = 0;
+				float actingRecoverRate = recoverRate + recoverRateIncrease;
+				// OLD WAY
+				/*if (myPlayerController.isBlocking){
 				currentRegenCountdown -= actingRecoverRate*(blockRecoverMult+0.1f*(currentRecovery-1f)/4f)*Time.deltaTime;
 				}
 				else{
@@ -202,7 +208,22 @@ public class PlayerStatsS : MonoBehaviour {
 					if (_currentMana < maxMana){
 						currentRegenCountdown = GetRegenTime();
 					}
+				}**/
+
+				// new way (simple)
+				if (myPlayerController.isBlocking){
+					actingRecoverRate*=blockRecoverMult;
+				}else{
+					recoverRateIncrease+=recoverRateAccel*Time.deltaTime;
 				}
+					_currentMana+=actingRecoverRate*Time.deltaTime;
+				_currentManaUsed-=actingRecoverRate*Time.deltaTime;
+
+				if (_currentMana > maxMana){
+					_currentMana = maxMana;
+				}
+
+
 			}
 
 		}

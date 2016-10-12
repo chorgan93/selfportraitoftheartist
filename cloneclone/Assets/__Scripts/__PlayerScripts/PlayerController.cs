@@ -110,7 +110,8 @@ public class PlayerController : MonoBehaviour {
 	private float _chargeAttackTime;
 	private float _chargeAttackTrigger = 0.6f;
 	private float _chargeAttackDuration = 1f;
-	private ChargeAttackS _chargeCollider;
+	//private ChargeAttackS _chargeCollider;
+	private GameObject _chargePrefab;
 	private bool _chargeAttackTriggered = false;
 	private bool allowChargeAttack = true;
 	private float _chargeAttackCost = 5f;
@@ -175,6 +176,7 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerSoundS _playerSound;
 	private LockOnS _myLockOn;
+	private bool _lockButtonDown = false;
 	public LockOnS myLockOn { get { return _myLockOn; } }
 
 	private BlockDisplay3DS _blockRef;
@@ -295,7 +297,6 @@ public class PlayerController : MonoBehaviour {
 		queuedAttackDelays = new List<float>();
 
 
-		_chargeCollider = GetComponentInChildren<ChargeAttackS>();
 
 		muzzleFlare = GetComponentInChildren<MuzzleFlareS>();
 
@@ -639,7 +640,12 @@ public class PlayerController : MonoBehaviour {
 			_chargeAttackTime+= Time.deltaTime;
 			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
 				_chargeAttackTriggered = true;
-				_chargeCollider.TriggerAttack(transform.position, ShootDirection());
+				//_chargeCollider.TriggerAttack(transform.position, ShootDirection());
+
+				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
+					as GameObject;
+				newCharge.GetComponent<ProjectileS>().Fire(savedDir, savedDir, this);
+
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 			}
@@ -705,6 +711,8 @@ public class PlayerController : MonoBehaviour {
 			comboDuration = currentAttackS.comboDuration;
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
+			ChargeAttackSet(currentAttackS.chargeAttackPrefab, currentAttackS.chargeAttackTime, 
+			                currentAttackS.chargeAttackPrefab.GetComponent<ProjectileS>().staminaCost);
 
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
@@ -730,7 +738,7 @@ public class PlayerController : MonoBehaviour {
 
 
 				// subtract mana cost
-				_myStats.ManaCheck(currentAttackS.manaCost, newAttack);
+				_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
 				FlashMana();
 
 				if (myRenderer.transform.localScale.x > 0){
@@ -809,8 +817,7 @@ public class PlayerController : MonoBehaviour {
 					_chargingAttack = true;
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
-					_myAnimator.SetBool("Charging", true);
-					_myAnimator.SetTrigger("Charge Attack");
+						ChargeAnimationTrigger();
 					allowChargeAttack = false;
 					}else{
 						allowChargeAttack = false;
@@ -904,10 +911,11 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			if (_myLockOn.lockedOn){
-				if (!myControl.LockOnButton()){
+
+				if (!_lockButtonDown && myControl.LockOnButton()){
 					_myLockOn.EndLockOn();
+					_lockButtonDown = true;
 				}
-				else{
 				
 				if (lockInputReset){
 					if (myDetect.allEnemiesInRange.Count > 1){
@@ -931,17 +939,28 @@ public class PlayerController : MonoBehaviour {
 							}
 						}
 					}
-				}
+				
 			}else{
-				if (myControl.LockOnButton()){
+				if (myControl.LockOnButton() && !_lockButtonDown){
 					_isSprinting = false;
 					if (myDetect.allEnemiesInRange.Count > 0){
 						_myLockOn.LockOn(myDetect.closestEnemy);
 					}
+					_lockButtonDown = true;
 				}
+			}
+
+			if (!myControl.LockOnButton()){
+				_lockButtonDown = false;
 			}
 			
 		}
+	}
+
+	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost){
+		_chargePrefab = chargePrefab;
+		_chargeAttackTrigger = chargeTime;
+		_chargeAttackCost = chargeCost;
 	}
 
 	public void ParadigmCheck(){
@@ -1137,6 +1156,19 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		_myAnimator.SetBool("Attacking", true);
 		
+
+	}
+
+	private void ChargeAnimationTrigger(){
+
+		
+		_myAnimator.SetBool("Charging", true);
+		_myAnimator.SetTrigger("Charge Attack");
+
+		ProjectileS currentProj = _chargePrefab.GetComponent<ProjectileS>();
+
+		_myAnimator.SetTrigger(currentProj.attackAnimationTrigger);
+		_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult);
 
 	}
 

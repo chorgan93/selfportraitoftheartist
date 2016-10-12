@@ -15,12 +15,18 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 	private Vector3 spawnPos;
 
+	public bool chargeSpawner = false;
+	private PlayerController playerRef;
+
 	// Use this for initialization
 	void Start () {
 
 		spawnRateCountdown = firstSpawnDelay;
 		if (maxSpawns > 0){
 			infiniteSpawn = false;
+		}
+		if (chargeSpawner){
+			playerRef = GetComponent<ProjectileS>().myPlayer;
 		}
 	
 	}
@@ -39,7 +45,12 @@ public class SpawnOnProjectileS : MonoBehaviour {
 				spawnPos = transform.position;
 				spawnPos += Random.insideUnitSphere*spawnObjectRadius;
 				spawnPos.z = spawnObjZ;
-				Instantiate(spawnObject, spawnPos, Quaternion.identity);
+				GameObject newSpawn = Instantiate(spawnObject, spawnPos, spawnObject.transform.rotation)
+					as GameObject;
+
+				if (chargeSpawner){
+					newSpawn.GetComponent<ChargeAttackS>().SetPlayer(playerRef);
+				}
 			}
 		}
 	

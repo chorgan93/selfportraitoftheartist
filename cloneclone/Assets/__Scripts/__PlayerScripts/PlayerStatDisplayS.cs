@@ -178,7 +178,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		// recharge fill
 		fillSize = recoveryBarMaxSize;
 		if (playerStats.currentRegenCount > 0){
-			fillSize.x *= playerStats.currentRegenCount/playerStats.GetRegenTime();
+			fillSize.x *= playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
 		}
 		else{
 			fillSize.x = 0;
@@ -189,8 +189,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
 		//chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
-		healthText.text = "[ " + playerStats.currentHealth + " ]";
-		staminaText.text = "< " + playerStats.currentMana + " >";
+		healthText.text = "[ " + Mathf.RoundToInt(playerStats.currentHealth*10f) + " ]";
+		staminaText.text = "< " + Mathf.RoundToInt(playerStats.currentMana*10f) + " >";
 		chargeText.text = ""+ playerStats.currentCharge/100*1.0f;
 		if (chargeText.text == "1"){
 			chargeText.text = "1.0";

@@ -7,7 +7,6 @@ public class ProjectileS : MonoBehaviour {
 	public static float EXTRA_FORCE_MULT = 2.2f;
 	
 	[Header("Projectile Properties")]
-	public float manaCost = 1f;
 	public GameObject soundObj;
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
@@ -85,13 +84,17 @@ public class ProjectileS : MonoBehaviour {
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }
 	private Collider myCollider;
-	private PlayerController myPlayer;
+	private PlayerController _myPlayer;
+	public PlayerController myPlayer { get { return _myPlayer; } }
 
 	private bool hitAllTargets = false;
 
 	private bool isDashAttack = false;
 	private bool isDelayAttack = false;
 
+	[Header("Charge Attack Properties")]
+	public float chargeAttackTime;
+	public GameObject chargeAttackPrefab;
 
 
 	void FixedUpdate () {
@@ -136,7 +139,7 @@ public class ProjectileS : MonoBehaviour {
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
-		myPlayer = playerReference;
+		_myPlayer = playerReference;
 		// powerLvl = dmg;
 
 		if (soundObj){
@@ -153,6 +156,11 @@ public class ProjectileS : MonoBehaviour {
 		}else{
 			myCollider.enabled = true;
 			colliderTurnedOn = true;
+		}
+
+		if (dmg <= 0){
+			myCollider.enabled = false;
+			myRenderer.enabled = false;
 		}
 
 
@@ -177,9 +185,9 @@ public class ProjectileS : MonoBehaviour {
 
 		if (stopPlayer){
 			if (dashAttack){
-				myPlayer.myRigidbody.velocity *= 0.6f;
+				_myPlayer.myRigidbody.velocity *= 0.6f;
 			}else{
-			myPlayer.myRigidbody.velocity = Vector3.zero;
+			_myPlayer.myRigidbody.velocity = Vector3.zero;
 			}
 		}
 
@@ -188,7 +196,7 @@ public class ProjectileS : MonoBehaviour {
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 
-			myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
+			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
 		}
 
@@ -217,7 +225,7 @@ public class ProjectileS : MonoBehaviour {
 		RaycastHit hitInfo = new RaycastHit();
 		bool hitTarget = true;
 		EnemyS hitEnemy;
-		Vector3 currentStartPos = myPlayer.transform.position;
+		Vector3 currentStartPos = _myPlayer.transform.position;
 
 		while (!hitAllTargets){
 
@@ -315,9 +323,9 @@ public class ProjectileS : MonoBehaviour {
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (stopOnEnemyContact && myPlayer != null){
-				if (!myPlayer.myStats.PlayerIsDead()){
-					myPlayer.myRigidbody.velocity *= 0.4f;
+			if (stopOnEnemyContact && _myPlayer != null){
+				if (!_myPlayer.myStats.PlayerIsDead()){
+					_myPlayer.myRigidbody.velocity *= 0.4f;
 				}
 			}
 
@@ -347,7 +355,7 @@ public class ProjectileS : MonoBehaviour {
 
 			}
 
-			myPlayer.myStats.RecoverCharge(10f);
+			_myPlayer.myStats.RecoverCharge(10f);
 
 
 			HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
