@@ -202,7 +202,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		fillSize = staminaBarMaxSize;
 		fillSize.y = recoveryBarMaxSize.y;
-		if (playerStats.currentRegenCount > 0){
+		if (playerStats.currentRegenCount > 0 && !playerStats.PlayerIsDead()){
 			fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
 				playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
 		}
