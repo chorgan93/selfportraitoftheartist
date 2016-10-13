@@ -5,9 +5,11 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 	private GameMenuS gameMenu;
 	private EquipMenuS equipMenu;
+	private LevelUpMenu levelUpMenu;
 
 	private bool gameMenuActive = false;
 	private bool equipMenuActive = false;
+	private bool levelMenuActive = false;
 
 	private bool gameMenuButtonDown = false;
 	private bool equipMenuButtonDown = false;
@@ -23,11 +25,13 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 		gameMenu = GetComponentInChildren<GameMenuS>();
 		equipMenu = GetComponentInChildren<EquipMenuS>();
+		levelUpMenu = GetComponentInChildren<LevelUpMenu>();
 
 		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
 		gameMenu.gameObject.SetActive(false);
 		equipMenu.gameObject.SetActive(false);
+		levelUpMenu.gameObject.SetActive(false);
 	
 	}
 	
@@ -35,7 +39,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	void Update () {
 
 		if (!_pRef.myStats.PlayerIsDead()){
-		if (!gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
+		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
 		    && !_pRef.talking){
 			if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
@@ -92,6 +96,10 @@ public class InGameMenuManagerS : MonoBehaviour {
 			}
 		}
 
+		if (levelMenuActive && _pRef.myControl.ExitButton()){
+			exitButtonDown = true;
+		}
+
 		if (!_pRef.myControl.StartButton()){
 			equipMenuButtonDown = false;
 		}
@@ -104,5 +112,15 @@ public class InGameMenuManagerS : MonoBehaviour {
 			_pRef.SetCanSwap(true);
 		}
 
+	}
+
+	public void TurnOnLevelUpMenu(){
+		levelUpMenu.TurnOn();
+		levelMenuActive = true;
+	}
+
+	public void TurnOffLevelUpMenu(){
+		levelUpMenu.gameObject.SetActive(false);
+		levelMenuActive = false;
 	}
 }

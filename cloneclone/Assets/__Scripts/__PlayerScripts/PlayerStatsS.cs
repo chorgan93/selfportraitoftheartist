@@ -160,7 +160,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool ChargeCheck(float reqCharge, bool useCharge = true){
 
-		bool canUse =  (_currentCharge >= 0);
+		bool canUse =  (_currentCharge > 0);
 
 		if (useCharge && canUse){
 			_currentCharge -= reqCharge;

@@ -46,13 +46,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (!_initialized){
 			_initialized = true;
 		}
+		RefreshAll();
 
 	}
 
 	public void SetPlayerRef(PlayerController newRef){
 		_playerReference = newRef;
 		Initialize();
-		RefreshAll();
 	}
 
 	private void TurnOffAll(){
@@ -72,28 +72,30 @@ public class PlayerAugmentsS : MonoBehaviour {
 		TurnOffAll();
 
 		// turn on weapon augs
-		if (_playerReference.EquippedWeaponAug().weaponNum == 0){
-			_lunaAug = true;
-		}
-
-		if (_playerReference.EquippedWeaponAug().weaponNum == 1){
-			_thanaAug = true;
-		}
-
-		if (_playerReference.EquippedWeaponAug().weaponNum == 2){
-			_aeroAug = true;
-		}
-
-		if (_playerReference.EquippedWeaponAug().weaponNum == 3){
-			_gaeaAug = true;
-		}
-
-		if (_playerReference.EquippedWeaponAug().weaponNum == 4){
-			_animaAug = true;
-		}
-
-		if (_playerReference.EquippedWeaponAug().weaponNum == 5){
-			_solAug = true;
+		if (_playerReference.EquippedWeaponAug() != null){
+			if (_playerReference.EquippedWeaponAug().weaponNum == 0){
+				_lunaAug = true;
+			}
+	
+			if (_playerReference.EquippedWeaponAug().weaponNum == 1){
+				_thanaAug = true;
+			}
+	
+			if (_playerReference.EquippedWeaponAug().weaponNum == 2){
+				_aeroAug = true;
+			}
+	
+			if (_playerReference.EquippedWeaponAug().weaponNum == 3){
+				_gaeaAug = true;
+			}
+	
+			if (_playerReference.EquippedWeaponAug().weaponNum == 4){
+				_animaAug = true;
+			}
+	
+			if (_playerReference.EquippedWeaponAug().weaponNum == 5){
+				_solAug = true;
+			}
 		}
 	}
 }
