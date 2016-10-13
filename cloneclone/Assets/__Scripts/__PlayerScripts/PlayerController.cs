@@ -179,6 +179,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _isTalking = false;
 
 	private PlayerSoundS _playerSound;
+	private PlayerAugmentsS _playerAug;
+	public PlayerAugmentsS playerAug { get { return _playerAug; } }
 	private LockOnS _myLockOn;
 	private bool _lockButtonDown = false;
 	public LockOnS myLockOn { get { return _myLockOn; } }
@@ -266,6 +268,9 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
+
+		_playerAug = GetComponent<PlayerAugmentsS>();
+		_playerAug.SetPlayerRef(this);
 
 		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
 
@@ -360,6 +365,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void AttackDuration(float aTime){
 		attackDuration = aTime;
+		if (_playerAug.animaAug){
+			attackDuration*=PlayerAugmentsS.animaAugAmt;
+		}
 	}
 
 	public void FlashDamage(){
@@ -719,18 +727,30 @@ public class PlayerController : MonoBehaviour {
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
 
+			if (_doingHeavyAttack && _playerAug.thanaAug){
+				currentAttackS.dmg *= PlayerAugmentsS.thanaAugAmt;
+			}
+
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
 					if (_doingDashAttack){
 						queuedAttacks.Add(equippedWeapon.dashAttack);
-						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+						if (_playerAug.animaAug){
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+						}else{
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+						}
 					}else{
 						if (_doingHeavyAttack){
 							queuedAttacks.Add(equippedWeapon.heavyChain[prevChain]);
 						}else{
 						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
 						}
-						queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+						if (_playerAug.animaAug){
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+						}else{
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+						}
 					}
 				}
 			}
@@ -747,7 +767,11 @@ public class PlayerController : MonoBehaviour {
 
 
 				// subtract mana cost
+			if (_playerAug.gaeaAug && _doingHeavyAttack){
+				_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
+			}else{
 				_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
+			}
 				FlashMana();
 
 			if (_myStats.currentMana <= 0){
@@ -816,6 +840,9 @@ public class PlayerController : MonoBehaviour {
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
+					if (_playerAug.animaAug){
+						attackDelay*=PlayerAugmentsS.animaAugAmt;
+					}
 					currentAttackS.StartKnockback(this, ShootDirection());
 					attackTriggered = true;
 					_isShooting = true;
@@ -929,6 +956,8 @@ public class PlayerController : MonoBehaviour {
 					_altBuddy.gameObject.SetActive(false);
 					
 					_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+
+					_playerAug.RefreshAll();
 	
 				}
 			}
@@ -981,12 +1010,18 @@ public class PlayerController : MonoBehaviour {
 					}
 				
 			}else{
-				if (myControl.LockOnButton() && !_lockButtonDown){
+				if ((myControl.LockOnButton() && !_lockButtonDown) || 
+				    (lockInputReset && (Mathf.Abs(myControl.RightHorizontal()) > 0.1f 
+				                    && Mathf.Abs(myControl.RightVertical()) > 0.1f))){
 					_isSprinting = false;
 					if (myDetect.allEnemiesInRange.Count > 0){
 						_myLockOn.LockOn(myDetect.closestEnemy);
 					}
-					_lockButtonDown = true;
+					if (myControl.LockOnButton()){
+						_lockButtonDown = true;
+					}else{
+						lockInputReset = false;
+					}
 				}
 			}
 
@@ -1005,6 +1040,12 @@ public class PlayerController : MonoBehaviour {
 		_chargeAttackDuration = cDuration;
 		_chargeAnimationSpeed = animationSpeed;
 		_chargeAnimationTrigger = animationTrigger;
+
+		if (_playerAug.animaAug){
+			_chargeAttackTrigger *= PlayerAugmentsS.animaAugAmt;
+			_chargeAttackDuration *= PlayerAugmentsS.animaAugAmt;
+			_chargeAnimationSpeed *= PlayerAugmentsS.animaAugAmt;
+		}
 	}
 
 	public void ParadigmCheck(){
@@ -1201,7 +1242,11 @@ public class PlayerController : MonoBehaviour {
 		}
 		_myAnimator.SetTrigger("AttackTrigger");
 
-		_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
+		if (_playerAug.animaAug){
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt);
+		}else{
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
+		}
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		_myAnimator.SetBool("Attacking", true);
 		

@@ -182,6 +182,7 @@
 'Assets/__Scripts/__PlayerScripts/LockOnS.cs'
 'Assets/__Scripts/__PlayerScripts/MuzzleFlareS.cs'
 'Assets/__Scripts/__PlayerScripts/PlayerAnimationFaceS.cs'
+'Assets/__Scripts/__PlayerScripts/PlayerAugmentsS.cs'
 'Assets/__Scripts/__PlayerScripts/PlayerCollectionS.cs'
 'Assets/__Scripts/__PlayerScripts/PlayerController.cs'
 'Assets/__Scripts/__PlayerScripts/PlayerCurrencyDisplayS.cs'

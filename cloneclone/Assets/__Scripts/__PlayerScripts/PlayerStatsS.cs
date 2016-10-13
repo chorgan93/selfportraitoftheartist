@@ -172,8 +172,8 @@ public class PlayerStatsS : MonoBehaviour {
 		return canUse;
 	}
 
-	public void RecoverCharge(float addCharge){
-		_currentCharge += addCharge;
+	public void RecoverCharge(float addPercent){
+		_currentCharge += addPercent*maxCharge;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}

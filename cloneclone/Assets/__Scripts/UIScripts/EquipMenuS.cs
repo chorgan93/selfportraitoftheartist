@@ -222,9 +222,8 @@ public class EquipMenuS : MonoBehaviour {
 						UpdateBuddyDisplay();
 					}
 
-					if (currentWeaponSelected == pRef.currentParadigm){
-						pRef.ParadigmCheck();
-					}
+					pRef.ParadigmCheck();
+
 					UpdateMantraDisplay();
 					// switch weapon positions (equip mantra)
 					SetSelectorParadigmI(currentWeaponSelected, 0); // replace with swapped mantra's position
@@ -322,9 +321,7 @@ public class EquipMenuS : MonoBehaviour {
 						UpdateBuddyDisplay();
 					}
 
-					if (currentWeaponSelected == pRef.currentParadigm){
-						pRef.ParadigmCheck();
-					}
+
 					UpdateMantraDisplay();
 					// switch weapon positions (equip mantra)
 					SetSelectorParadigmII(currentWeaponSelected); // replace with swapped mantra's position
@@ -652,6 +649,8 @@ public class EquipMenuS : MonoBehaviour {
 		mantraSubParadigmII.color = pRef.SubWeaponAug().swapColor;
 		mantraSubParadigmII.sprite = pRef.SubWeaponAug().swapSprite;
 		mantraSubParadigmII.enabled = true;
+
+		pRef.playerAug.RefreshAll();
 	}
 
 	private void UpdateBuddyDisplay(){

@@ -47,6 +47,7 @@ public class ProjectileS : MonoBehaviour {
 	public float stunMult = 1f;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
+	public float absorbPercent = 0.1f;
 	public float reloadTime = 1f;
 	public float numAttacks = 1;
 	public float timeBetweenAttacks = 0.1f;
@@ -96,6 +97,10 @@ public class ProjectileS : MonoBehaviour {
 	public float chargeAttackTime;
 	public GameObject chargeAttackPrefab;
 
+	[Header("Extend Properties")]
+	public Collider extraRangeCollider;
+	public GameObject extraRangeSprite;
+
 
 	void FixedUpdate () {
 
@@ -103,8 +108,12 @@ public class ProjectileS : MonoBehaviour {
 
 
 		delayColliderTimeCountdown -= Time.deltaTime;
-		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn){
-			myCollider.enabled = true;
+		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn && dmg > 0){
+			if (_myPlayer.playerAug.aeroAug){
+				extraRangeCollider.enabled = true;
+			}else{
+				myCollider.enabled = true;
+			}
 			colliderTurnedOn = true;
 		}
 
@@ -146,19 +155,38 @@ public class ProjectileS : MonoBehaviour {
 			Instantiate(soundObj);
 		}
 
+		if (dmg > 0){ // exclude charge spawners
+			if (_myPlayer.playerAug.aeroAug){
+				extraRangeSprite.SetActive(true);
+				myCollider.enabled = false;
+				extraRangeCollider.enabled = true;
+			}else{
+				extraRangeCollider.enabled = false;
+				extraRangeSprite.SetActive(false);
+			}
+		
+
 
 		//_rigidbody.drag = minDrag + (1f-((rangeLvl-1f)/4f))*(maxDrag-minDrag);
 
 		if (delayColliderTime > 0 && !dashAttack && !delayAttack){
 			myCollider.enabled = false;
+			if (extraRangeCollider){
+				extraRangeCollider.enabled = false;
+			}
 			colliderTurnedOn = false;
 			delayColliderTimeCountdown = delayColliderTime;
 		}else{
-			myCollider.enabled = true;
+			if (_myPlayer.playerAug.aeroAug){
+				extraRangeCollider.enabled = true;
+			}else{
+				myCollider.enabled = true;
+			}
 			colliderTurnedOn = true;
 		}
+		}
 
-		if (dmg <= 0){
+		else{
 			myCollider.enabled = false;
 			myRenderer.enabled = false;
 		}
@@ -244,7 +272,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-						                          dmg, stunMult, critDmg);
+						                          dmg, stunMult, critDmg*SolAugMult());
 					}
 				}
 			}
@@ -343,7 +371,7 @@ public class ProjectileS : MonoBehaviour {
 
 			hitEnemy.TakeDamage
 				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-				 dmg, stunMult, critDmg);
+				 dmg, stunMult, critDmg*SolAugMult());
 
 			if (hitSoundObj){
 				Instantiate(hitSoundObj);
@@ -355,7 +383,11 @@ public class ProjectileS : MonoBehaviour {
 
 			}
 
-			_myPlayer.myStats.RecoverCharge(10f);
+			if (_myPlayer.playerAug.lunaAug){
+				_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
+			}else{
+				_myPlayer.myStats.RecoverCharge(absorbPercent);
+			}
 
 
 			HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
@@ -388,5 +420,15 @@ public class ProjectileS : MonoBehaviour {
 
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	private float SolAugMult(){
+
+		if (_myPlayer.playerAug.solAug){
+			return PlayerAugmentsS.solAugAmt;
+		}else{
+			return 1f;
+		}
+
 	}
 }

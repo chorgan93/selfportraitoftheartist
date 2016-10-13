@@ -32,6 +32,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public float spawnRange = 1f;
 	public float knockbackForce = 1000f;
 	public float dmg = 5f;
+	public float absorbPercent = 0.1f;
 	private Vector3 knockBackDir;
 	public int shakeAmt = 1;
 
@@ -196,7 +197,11 @@ public class ChargeAttackS : MonoBehaviour {
 				(knockBackDir*knockbackForce*Time.deltaTime, 
 				 dmg, 2f, 2f);
 
-			myPlayer.myStats.RecoverCharge(10f);
+				if (myPlayer.playerAug.lunaAug){
+					myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
+				}else{
+					myPlayer.myStats.RecoverCharge(absorbPercent);
+				}
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 			}
