@@ -10,6 +10,8 @@ public class GameOverS : MonoBehaviour {
 	private bool startedFade = false;
 	private PlayerStatsS playerReference;
 
+	private string reviveScene = "InfiniteScene";
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,7 +34,7 @@ public class GameOverS : MonoBehaviour {
 
 			if (delayFadeTime <= 0 && !startedFade){
 				startedFade = true;
-				CameraEffectsS.E.SetNextScene("HellScene");
+				CameraEffectsS.E.SetNextScene(reviveScene);
 				CameraEffectsS.E.FadeIn();
 			}
 

@@ -10,8 +10,6 @@ public class ControlManagerS : MonoBehaviour {
 
 	private string platformType;
 
-	public TouchPad touchInput;
-
 	// Use this for initialization
 	void Start () {
 

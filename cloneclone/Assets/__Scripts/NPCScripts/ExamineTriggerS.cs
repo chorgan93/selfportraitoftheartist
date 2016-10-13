@@ -49,6 +49,10 @@ public class ExamineTriggerS : MonoBehaviour {
 			parentInfinite = GetComponentInParent<InfinitySpawnS>();
 		}
 
+		if (examineString.Contains("NEWLINE")){
+			examineString = examineString.Replace("NEWLINE","\n");
+		}
+
 	}
 
 	// Update is called once per frame

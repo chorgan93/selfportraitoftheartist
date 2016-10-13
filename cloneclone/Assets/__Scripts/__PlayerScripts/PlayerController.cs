@@ -1311,7 +1311,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputMovement(){
 
 		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
-		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered){
+		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered && !_isTalking){
 			return true;
 		}
 		else{
@@ -1327,7 +1327,7 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && !_examining && CanInputShoot()){
+		if (!_isTalking && CanInputShoot()){
 			dashAllow = true;
 		}
 
@@ -1347,7 +1347,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if (!_isDashing && !_isTalking && !_examining && !_isShooting && !_chargingAttack){
+		if (!_isDashing && !_isTalking && !_isShooting && !_chargingAttack){
 			return true;
 		}else{
 			return false;
@@ -1743,6 +1743,7 @@ public class PlayerController : MonoBehaviour {
 			_myRigidbody.velocity = Vector3.zero;
 			_myAnimator.SetFloat("Speed", 0f);
 			_myAnimator.SetBool("Attacking", false);
+			_playerSound.SetWalking(false);
 		}
 	}
 
