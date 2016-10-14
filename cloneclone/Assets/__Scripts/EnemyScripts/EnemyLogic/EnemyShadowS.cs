@@ -8,6 +8,8 @@ public class EnemyShadowS : MonoBehaviour {
 	private Color myColor;
 	private float fadeRate = 2.4f;
 
+	private Color shadowColor;
+
 	public bool matchAlpha = false;
 	public bool overrideColor = false;
 
@@ -17,7 +19,11 @@ public class EnemyShadowS : MonoBehaviour {
 		enemyRef = GetComponentInParent<EnemyS>();
 		myRender = GetComponent<SpriteRenderer>();
 		if (!overrideColor){
-		myRender.color = enemyRef.bloodColor;
+		//myRender.color = enemyRef.bloodColor;
+			Color setFade = enemyRef.bloodColor;
+			setFade.a = 0.4f;
+			myRender.color = setFade;
+			myRender.material.SetColor("_FlashColor", enemyRef.bloodColor);
 		}
 
 	}
@@ -26,6 +32,7 @@ public class EnemyShadowS : MonoBehaviour {
 	void Update () {
 
 		if (myRender.enabled){
+
 			if (enemyRef.isDead){
 				myColor = myRender.color;
 				myColor.a -= fadeRate*Time.deltaTime;

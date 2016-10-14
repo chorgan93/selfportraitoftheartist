@@ -711,7 +711,7 @@ public class PlayerController : MonoBehaviour {
 						                                        Quaternion.identity);
 						// for now, heavy attacks do not combo
 						prevChain = currentChain;
-						currentChain = -1;
+						//currentChain = -1;
 					}
 					else{
 					if (currentChain > equippedWeapon.attackChain.Length-1){

@@ -6,6 +6,8 @@ public class PlayerShadowS : MonoBehaviour {
 	private PlayerController myController;
 	private SpriteRenderer myRenderer;
 
+	private Color shadowColor;
+
 	// Use this for initialization
 	void Start () {
 
@@ -20,8 +22,9 @@ public class PlayerShadowS : MonoBehaviour {
 			if (myController.myStats.PlayerIsDead() || !myController.myRenderer.enabled || myController.isWaking){
 				myRenderer.enabled = false;
 			}else{
-				if (myRenderer.color != myController.myRenderer.color){
-					myRenderer.color = myController.myRenderer.color;
+				if (shadowColor != myController.myRenderer.color){
+					shadowColor = myController.myRenderer.color;
+					myRenderer.material.SetColor("_FlashColor", shadowColor);
 				}
 			}
 		}else{

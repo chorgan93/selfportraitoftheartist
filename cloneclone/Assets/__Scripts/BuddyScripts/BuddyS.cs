@@ -49,7 +49,10 @@ public class BuddyS : MonoBehaviour {
 
 		startScale = transform.localScale.x;
 
-		shadowRenderer.color = shadowColor;
+		Color shadowCol = shadowColor;
+		shadowCol.a = shadowRenderer.color.a;
+		shadowRenderer.color = shadowCol;
+		shadowRenderer.material.SetColor("_FlashColor", shadowColor);
 
 	}
 

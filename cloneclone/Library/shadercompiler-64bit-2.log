@@ -1,56 +1,6 @@
 Base path: /Applications/Unity 5.1/Unity.app/Contents
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-2-714989568
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-2-1260134400
 Cmd: getPlatforms
-Cmd: compileSnippet
-  api=0 type=0 insize=4587 outsize=3223 kw=POINT pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=4587 outsize=6 kw=POINT pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=14582 outsize=2876 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=14582 outsize=4117 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=14582 outsize=3887 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF VERTEXLIGHT_ON PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=14582 outsize=6 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=14582 outsize=6 kw=DIRECTIONAL SHADOWS_SCREEN LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=8058 outsize=1972 kw=POINT_COOKIE pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=8058 outsize=2125 kw=POINT PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=8058 outsize=2264 kw=SPOT PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=8058 outsize=2025 kw=DIRECTIONAL_COOKIE PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=8058 outsize=6 kw=POINT_COOKIE pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=8058 outsize=6 kw=DIRECTIONAL_COOKIE pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=8058 outsize=6 kw=DIRECTIONAL PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=8058 outsize=6 kw=DIRECTIONAL_COOKIE PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=6865 outsize=1066 kw= pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=6865 outsize=6 kw=PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=12614 outsize=2793 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=12614 outsize=3008 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF PIXELSNAP_ON HDR_LIGHT_PREPASS_OFF pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=12614 outsize=6 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=12614 outsize=6 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON PIXELSNAP_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=12974 outsize=2608 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=0 insize=12974 outsize=2960 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF PIXELSNAP_ON HDR_LIGHT_PREPASS_OFF pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=12974 outsize=6 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON pd= ok=1
-Cmd: compileSnippet
-  api=0 type=1 insize=12974 outsize=6 kw=LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF UNITY_HDR_ON PIXELSNAP_ON pd= ok=1
 End of pipe
 
 Quitting shader compiler process
