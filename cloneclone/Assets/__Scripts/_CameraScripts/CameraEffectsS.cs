@@ -10,6 +10,11 @@ public class CameraEffectsS : MonoBehaviour {
 
 	private FadeScreenUI fadeScreen;
 
+	public FlashEffectS hurtFlash;
+	public FlashEffectS killFlash;
+	public FlashEffectS critFlash;
+	public FlashEffectS specialFlash;
+
 	// Use this for initialization
 	void Awake () {
 

@@ -104,6 +104,9 @@ public class PlayerStatsS : MonoBehaviour {
 	private PlayerStatDisplayS _uiReference;
 	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
 
+	private FlashEffectS _hurtFlash;
+	private FlashEffectS _killFlash;
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -267,6 +270,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 		InitializeStats();
 
+		_hurtFlash = CameraEffectsS.E.hurtFlash;
+		_killFlash = CameraEffectsS.E.killFlash;
+
 		_currentMana = maxMana;
 		if (myPlayerController.doWakeUp){
 			_currentHealth = maxHealth;
@@ -345,6 +351,8 @@ public class PlayerStatsS : MonoBehaviour {
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               myPlayerController.equippedBuddies);
 
+					_killFlash.Flash();
+
 					myPlayerController.myLockOn.enemyHealthUI.EndLockOn();
 
 					GetComponent<BleedingS>().StartDeath();
@@ -352,6 +360,7 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraFollowS.F.RemoveLimits();
 					}
 				else{
+					_hurtFlash.Flash();
 					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 					}

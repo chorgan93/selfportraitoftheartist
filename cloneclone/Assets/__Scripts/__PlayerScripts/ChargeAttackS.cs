@@ -36,7 +36,11 @@ public class ChargeAttackS : MonoBehaviour {
 	private Vector3 knockBackDir;
 	public int shakeAmt = 1;
 
+	private bool _firstSpawned = false;
+
 	private bool standAlone = false;
+
+	private FlashEffectS flashEffect;
 
 
 	// Use this for initialization
@@ -58,6 +62,8 @@ public class ChargeAttackS : MonoBehaviour {
 		fadeRate = startAlpha/visibleTime;
 
 		fadeColor = _myRenderer.material.color;
+
+		flashEffect = CameraEffectsS.E.specialFlash;
 
 		if (standAlone){
 			TriggerAttack(transform.position, Vector3.zero, myPlayer.myRenderer.color);
@@ -88,7 +94,11 @@ public class ChargeAttackS : MonoBehaviour {
 						flashFrames = blackFlashFrames;
 					}else{
 					_myRenderer.material.SetTexture("_MainTex", startTexture);
-					_myCollider.enabled = true;
+						_myCollider.enabled = true;
+						if (_firstSpawned){
+							flashEffect.NewColor(fadeColor);
+							flashEffect.Flash();
+						}
 					}
 				}else{
 
@@ -229,5 +239,9 @@ public class ChargeAttackS : MonoBehaviour {
 
 	public void SetPlayer(PlayerController pRef){
 		myPlayer = pRef;
+	}
+
+	public void SetFirstSpawned(){
+		_firstSpawned = true;
 	}
 }

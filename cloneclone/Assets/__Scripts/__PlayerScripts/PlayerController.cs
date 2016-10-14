@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour {
 	public LockOnS myLockOn { get { return _myLockOn; } }
 
 	private BlockDisplay3DS _blockRef;
+	//private FlashEffectS _specialFlash;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -271,6 +272,8 @@ public class PlayerController : MonoBehaviour {
 
 		_playerAug = GetComponent<PlayerAugmentsS>();
 		_playerAug.SetPlayerRef(this);
+
+		//_specialFlash = CameraEffectsS.E.specialFlash;
 
 		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
 
@@ -660,6 +663,8 @@ public class PlayerController : MonoBehaviour {
 
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
+
+				//_specialFlash.Flash();
 			}
 			if (_chargeAttackTime >= _chargeAttackDuration){
 				_chargingAttack = false;

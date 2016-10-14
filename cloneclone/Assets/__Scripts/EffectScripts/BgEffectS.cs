@@ -6,8 +6,8 @@ public class BgEffectS : MonoBehaviour {
 	public bool fadingIn;
 	public bool fadingOut;
 
-	private float fadeMin = 0.2f;
-	private float fadeMax = 0.8f;
+	private float fadeMin = 0.08f;
+	private float fadeMax = 0.3f;
 
 	public float fadeTimeMax = 3f;
 	private float fadeTime;

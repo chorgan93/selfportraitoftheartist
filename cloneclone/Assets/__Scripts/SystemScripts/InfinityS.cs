@@ -46,7 +46,7 @@ public class InfinityS : MonoBehaviour {
 		cameraTransform = CameraShakeS.C.transform;
 
 		SpawnStage();
-		difficulty = savedLastDifficulty;
+		//difficulty = savedLastDifficulty;
 
 		musicHandler = GameObject.Find("InfiniteBGM").GetComponent<InfiniteBGM>();
 	

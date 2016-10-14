@@ -63,6 +63,9 @@ public class EnemyS : MonoBehaviour {
 	private bool spawnedDeathObj = false;
 	private int deathFrameDelay = 1;
 
+	private FlashEffectS _critScreen;
+	private FlashEffectS _killScreen;
+
 	
 	[Header("Sound Properties")]
 	public GameObject hitSound;
@@ -255,6 +258,9 @@ public class EnemyS : MonoBehaviour {
 
 		spawnedDeathObj = false;
 		deathFrameDelay = 3;
+
+		_critScreen = CameraEffectsS.E.critFlash;
+		_killScreen = CameraEffectsS.E.killFlash;
 
 		_myRigidbody = GetComponent<Rigidbody>();
 		_myCollider = GetComponent<Collider>();
@@ -606,6 +612,7 @@ public class EnemyS : MonoBehaviour {
 					_myAnimator.SetBool("Hit", true);
 					CameraShakeS.C.TimeSleep(0.08f, true);
 					_isCritical = true;
+					_critScreen.Flash();
 				}
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
@@ -622,6 +629,7 @@ public class EnemyS : MonoBehaviour {
 			if (deathSound){
 				Instantiate(deathSound);
 			}
+			_killScreen.Flash();
 			_isDead = true;
 			Stun (0);
 			EndAllBehaviors();

@@ -6,6 +6,7 @@ public class AnimObjS : MonoBehaviour {
 	private SpriteRenderer mySprite;
 	public Sprite[] animFrames;
 	public float animRate;
+	public float firstFrameDelay = 0f;
 	private float animRateCountdown;
 	private int currentFrame;
 
@@ -23,7 +24,7 @@ public class AnimObjS : MonoBehaviour {
 		mySprite = GetComponent<SpriteRenderer>();
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
-		animRateCountdown = animRate;
+		animRateCountdown = animRate+firstFrameDelay;
 	
 		if (fadeObj){
 		spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();

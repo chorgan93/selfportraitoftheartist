@@ -19,6 +19,8 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	public bool chargeSpawner = false;
 	private PlayerController playerRef;
 
+	private bool firstSpawned = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -52,7 +54,11 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 				if (chargeSpawner){
 					newSpawn.GetComponent<ChargeAttackS>().SetPlayer(playerRef);
+					if (!firstSpawned){
+						newSpawn.GetComponent<ChargeAttackS>().SetFirstSpawned();
+					}
 				}
+				firstSpawned = true;
 			}
 		}
 	
