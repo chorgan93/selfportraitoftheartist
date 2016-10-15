@@ -13,6 +13,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public static bool godMode = false;
 
+	//________________________________LEVEL
+	private int _startLevel = 1;
+	private int _addedLevel = 0;
+	public int currentLevel { get { return _startLevel+_addedLevel; } }
+
 	//________________________________HEALTH
 	private float _baseHealth = 8;
 	private float _addedHealth = 0; // max 8 (for 12 total)
@@ -271,7 +276,7 @@ public class PlayerStatsS : MonoBehaviour {
 		InitializeStats();
 
 		_hurtFlash = CameraEffectsS.E.hurtFlash;
-		_killFlash = CameraEffectsS.E.killFlash;
+		_killFlash = CameraEffectsS.E.deathFlash;
 
 		_currentMana = maxMana;
 		if (myPlayerController.doWakeUp){
@@ -292,6 +297,10 @@ public class PlayerStatsS : MonoBehaviour {
 				if (i == 1){
 					_addedHealth++;
 				}
+				if (i == 2){
+					_addedCharge++;
+				}
+				_addedLevel++;
 			}
 		}
 	}
@@ -368,7 +377,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleepBigPunch(0.2f);
+					CameraShakeS.C.TimeSleepBigPunch(0.4f);
 					CameraShakeS.C.DeathTimeEffect();
 				}
 				else if (_currentHealth <= 1){
@@ -403,15 +412,18 @@ public class PlayerStatsS : MonoBehaviour {
 	public void AddStamina(float numToAdd = 1){
 		_addedMana+=numToAdd;
 		_currentMana+=numToAdd;
+		_addedLevel++;
 	}
 
 	public void AddHealth(float numToAdd = 1){
 		_addedHealth += numToAdd;
 		_currentHealth += numToAdd;
+		_addedLevel++;
 	}
 	public void AddCharge(float numToAdd = 10){
 		_addedCharge += numToAdd;
 		_currentCharge += numToAdd;
+		_addedLevel++;
 	}
 
 	public void FullRecover(){

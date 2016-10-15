@@ -12,14 +12,34 @@ public class CameraEffectsS : MonoBehaviour {
 
 	public FlashEffectS hurtFlash;
 	public FlashEffectS killFlash;
+	public FlashEffectS deathFlash;
 	public FlashEffectS critFlash;
 	public FlashEffectS specialFlash;
+
+	public SpriteRenderer[] vignetteSprites;
+	private Color vignetteFade;
+	private float vignetteFadeMax;
+	private float vignetteFadeRate = 1.6f;
+	private bool vignetteFading = true;
 
 	// Use this for initialization
 	void Awake () {
 
 		Initialize();
 	
+	}
+
+	void Update(){
+		if (vignetteFading){
+			vignetteFade.a += Time.deltaTime*vignetteFadeRate;
+			if (vignetteFade.a >= vignetteFadeMax){
+				vignetteFade.a = vignetteFadeMax;
+				vignetteFading = false;
+			}
+			foreach(SpriteRenderer f in vignetteSprites){
+				f.color = vignetteFade;
+			}
+		}
 	}
 
 
@@ -31,6 +51,9 @@ public class CameraEffectsS : MonoBehaviour {
 
 			fadeScreen = GetComponentInChildren<FadeScreenUI>();
 			fadeScreen.FadeOut();
+
+			vignetteFade = vignetteSprites[0].color;
+			vignetteFadeMax = vignetteFade.a;
 		}
 	}
 
@@ -40,5 +63,13 @@ public class CameraEffectsS : MonoBehaviour {
 	}
 	public void SetNextScene(string newDestination){
 		fadeScreen.SetNewDestination(newDestination);
+	}
+	public void VignetteDeathEffect(){
+		vignetteFading = true;
+		vignetteFade = vignetteSprites[0].color;
+		vignetteFade.a = 0f;
+		foreach(SpriteRenderer f in vignetteSprites){
+			f.color = vignetteFade;
+		}
 	}
 }

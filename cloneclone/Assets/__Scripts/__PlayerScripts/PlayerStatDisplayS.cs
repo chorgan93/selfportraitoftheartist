@@ -72,6 +72,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image chargeBorder;
 	private Vector2 chargeBorderMaxSize;
 
+	public Text lvText;
+
 //	public Text healthText;
 //	public Text staminaText;
 //	public Text chargeText;
@@ -120,8 +122,19 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			TurnOnAll();
 		//UpdateMaxSizes();
 		UpdateFills();
+			UpdateText();
 		}
 	
+	}
+
+	private void UpdateText(){
+
+		if (playerStats.currentLevel < 10){
+			lvText.text = "0"+playerStats.currentLevel;
+		}else{
+			lvText.text = playerStats.currentLevel.ToString();
+		}
+
 	}
 
 	private void UpdateMaxSizes(){

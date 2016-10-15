@@ -277,7 +277,7 @@ public class CameraShakeS : MonoBehaviour {
 	}
 
 	public void DeathTimeEffect(){
-
+		CameraEffectsS.E.VignetteDeathEffect();
 		doDeathTime = true;
 		_delayTimeIncreaseCountdown = _delayTimeIncreaseMax;
 		_addDeathTimeScale = 0f;
