@@ -732,7 +732,7 @@ public class PlayerController : MonoBehaviour {
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
 
-			if (_doingHeavyAttack && _playerAug.thanaAug){
+			if (_playerAug.thanaAug){
 				currentAttackS.dmg *= PlayerAugmentsS.thanaAugAmt;
 			}
 
@@ -772,7 +772,7 @@ public class PlayerController : MonoBehaviour {
 
 
 				// subtract mana cost
-			if (_playerAug.gaeaAug && _doingHeavyAttack){
+			if (_playerAug.gaeaAug){
 				_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
 			}else{
 				_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);

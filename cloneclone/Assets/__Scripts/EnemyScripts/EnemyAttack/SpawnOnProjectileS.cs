@@ -18,6 +18,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 	public bool chargeSpawner = false;
 	private PlayerController playerRef;
+	public bool turnOffStun = false;
 
 	private bool firstSpawned = false;
 
@@ -56,6 +57,9 @@ public class SpawnOnProjectileS : MonoBehaviour {
 					newSpawn.GetComponent<ChargeAttackS>().SetPlayer(playerRef);
 					if (!firstSpawned){
 						newSpawn.GetComponent<ChargeAttackS>().SetFirstSpawned();
+					}
+					if (turnOffStun){
+						newSpawn.GetComponent<ChargeAttackS>().TurnOffStun();
 					}
 				}
 				firstSpawned = true;

@@ -32,6 +32,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public float spawnRange = 1f;
 	public float knockbackForce = 1000f;
 	public float dmg = 5f;
+	public float stunMult = 2f;
 	public float absorbPercent = 0.1f;
 	private Vector3 knockBackDir;
 	public int shakeAmt = 1;
@@ -205,7 +206,7 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-				 dmg, 2f, 2f);
+				 dmg, stunMult, 2f);
 
 				if (myPlayer.playerAug.lunaAug){
 					myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
@@ -243,5 +244,9 @@ public class ChargeAttackS : MonoBehaviour {
 
 	public void SetFirstSpawned(){
 		_firstSpawned = true;
+	}
+
+	public void TurnOffStun(){
+		stunMult = 0f;
 	}
 }
