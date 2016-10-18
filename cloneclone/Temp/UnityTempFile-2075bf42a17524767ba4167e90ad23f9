@@ -146,6 +146,7 @@
 'Assets/__Scripts/NPCScripts/ExamineTriggerS.cs'
 'Assets/__Scripts/NPCScripts/NPCS.cs'
 'Assets/__Scripts/ProgressionScripts/ActivateNewSceneS.cs'
+'Assets/__Scripts/ProgressionScripts/CheckpointS.cs'
 'Assets/__Scripts/ProgressionScripts/FinalPortalS.cs'
 'Assets/__Scripts/SoundScripts/BGMLayerS.cs'
 'Assets/__Scripts/SoundScripts/InfiniteBGM.cs'

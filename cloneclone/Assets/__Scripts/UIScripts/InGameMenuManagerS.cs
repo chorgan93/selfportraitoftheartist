@@ -7,6 +7,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private EquipMenuS equipMenu;
 	private LevelUpMenu levelUpMenu;
 
+	public LevelUpMenu levelMenu { get { return levelUpMenu; } }
+
 	private bool gameMenuActive = false;
 	private bool equipMenuActive = false;
 	private bool levelMenuActive = false;

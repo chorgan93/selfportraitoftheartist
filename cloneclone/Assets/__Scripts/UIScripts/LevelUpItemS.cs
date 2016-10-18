@@ -3,48 +3,43 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class LevelUpItemS : MonoBehaviour {
-	
-	private PlayerInventoryS inventoryRef;
 
-	// TODO: Make this VVV
-	//private LevelUpS upgradeRef;
+	private LevelUpS upgradeRef;
 
 	public Image upgradeImage;
-	public int upgradeNum;
+	public Text upgradeNameText;
+	public Text upgradeDescriptionText;
+	private int upgradeNum;
+	private int upgradeCost;
 
-	public string upgradeDescription;
-	private bool _unlocked = false;
-	public bool unlocked { get { return _unlocked; } }
+	private string upgradeName;
+	private string upgradeDescription;
 
-	public void Initialize(PlayerInventoryS i){
 
-		inventoryRef = i;
+	public void Initialize(LevelUpS l){
 
-		bool turnOn = false;
-		/*foreach (PlayerWeaponS w in i.unlockedWeapons){
-			if (w.weaponNum == weaponNum){
-				turnOn = true;
-				weaponRef = w;
-			}
-		}
+		upgradeRef = l;
 
-		if (!turnOn){
-			weaponImage.enabled = false;
-			//weaponName.enabled = false;
-			_unlocked = false;
-		}else{
-			weaponImage.sprite = weaponRef.swapSprite;
-			weaponImage.color = weaponRef.swapColor;
-			weaponImage.enabled = true;
+		upgradeImage.sprite = upgradeRef.upgradeImg;
+		upgradeDescription = upgradeRef.upgradeDescription;
+		upgradeName = upgradeRef.upgradeName;
+		upgradeCost = upgradeRef.upgradeCost;
 
-			//weaponName.color = weaponRef.swapColor;
-			//weaponName.enabled = true;
-			_unlocked = true;
-		}**/
+		upgradeNameText.text = upgradeName + " (" + upgradeCost + + "/" + PlayerCollectionS.currencyCollected + ")";
+		upgradeDescriptionText.text = upgradeDescription;
+	
 
 	}
 
-	//public PlayerWeaponS WeaponRefForSwitch(){
-		//return weaponRef;
-	//}
+	public bool CanBeUpgraded(){
+		bool canBuy = false;
+		if (PlayerCollectionS.currencyCollected >= upgradeCost){
+			canBuy = true;
+		}
+		return canBuy;
+	}
+
+	public void BuyUpgrade(){
+		PlayerCollectionS.currencyCollected -= upgradeCost;
+	}
 }

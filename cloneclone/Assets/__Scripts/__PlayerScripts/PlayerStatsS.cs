@@ -429,5 +429,6 @@ public class PlayerStatsS : MonoBehaviour {
 	public void FullRecover(){
 		_currentHealth = maxHealth;
 		_currentCharge = maxCharge;
+		_currentMana = maxMana;
 	}
 }

@@ -4,14 +4,9 @@ using System.Collections;
 public class LevelUpS : MonoBehaviour {
 
 	public int upgradeID = -1; // determines type of upgrade (health, stamina, charge, etc)
-
-	// Use this for initialization
-	void Start () {
+	public string upgradeName;
+	public string upgradeDescription;
+	public int upgradeCost;
+	public Sprite upgradeImg;
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
