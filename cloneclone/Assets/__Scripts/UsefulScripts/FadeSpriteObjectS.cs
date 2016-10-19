@@ -26,7 +26,9 @@ public class FadeSpriteObjectS : MonoBehaviour {
 
 		myRenderer = GetComponent<SpriteRenderer>();
 		currentCol = myRenderer.color;
-		currentCol.a = startFadeAlpha;
+		if (startFadeAlpha > -1){
+			currentCol.a = startFadeAlpha;
+		}
 		myRenderer.color = currentCol;
 
 		startDelayFadeTime = delayFadeTime;

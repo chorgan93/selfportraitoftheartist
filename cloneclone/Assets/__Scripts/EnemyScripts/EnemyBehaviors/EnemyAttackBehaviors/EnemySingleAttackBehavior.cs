@@ -60,6 +60,11 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			SetAttackDirection();
 			
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
+			if (signalObj != null){
+				Vector3 signalPos =  transform.position;
+				signalPos.z = transform.position.z+1f;
+				Instantiate(signalObj, signalPos, Quaternion.identity);
+			}
 			
 	
 			if (attackDragAmt > 0){

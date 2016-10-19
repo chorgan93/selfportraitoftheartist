@@ -4,6 +4,8 @@ using System.Collections;
 public class BleedingS : MonoBehaviour {
 
 	[Header("Blood Properties")]
+	public GameObject[] hitPrefabs;
+	private int currentHit = 0;
 	public GameObject bloodPrefab;
 	public GameObject deathBloodPrefab;
 	public GameObject deathBloodPrefabAlt;
@@ -82,6 +84,15 @@ public class BleedingS : MonoBehaviour {
 
 	
 	public void SpawnBlood  (Vector3 spawnDir, bool bigBlood = false){
+
+		if (hitPrefabs.Length > 0){
+			Vector3 hitRotate = new Vector3(0, 0, Random.insideUnitCircle.x*25f);
+			Instantiate (hitPrefabs[currentHit], transform.position, Quaternion.Euler(hitRotate));
+			currentHit++;
+			if (currentHit > hitPrefabs.Length-1){
+				currentHit = 0;
+			}
+		}
 
 		int bloodAmt = bloodPerHit;
 		if (bigBlood){

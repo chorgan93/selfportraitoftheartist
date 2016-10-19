@@ -204,7 +204,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void RecoverCharge(float addPercent){
-		_currentCharge += addPercent*currentChargeRecover;
+		_currentCharge += addPercent*5f*currentChargeRecover;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}

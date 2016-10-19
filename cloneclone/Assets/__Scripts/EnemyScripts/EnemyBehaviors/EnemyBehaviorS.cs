@@ -24,6 +24,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 	[Header ("Break Properties")]
 	public float breakAmt = 9999f;
 	public float breakRecoverTime = 1f;
+	
+	[Header ("Effect Properties")]
+	public GameObject signalObj;
 
 
 	public virtual void StartAction(bool setAnimTrigger = true){
@@ -34,13 +37,21 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetStunStatus(allowStun);
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
+
 		if (animationKey != "" && setAnimTrigger){
-		myEnemy.myAnimator.SetTrigger(animationKey);
+			myEnemy.myAnimator.SetTrigger(animationKey);
+			
 			if (soundObj){
 				Instantiate(soundObj);
 			}
-		}
 
+			if (signalObj != null){
+				Vector3 signalPos =  transform.position;
+				signalPos.z = transform.position.z+1f;
+				Instantiate(signalObj, signalPos, Quaternion.identity);
+			}
+
+		}
 
 
 	}

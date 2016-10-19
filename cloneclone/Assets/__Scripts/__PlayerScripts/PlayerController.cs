@@ -659,7 +659,7 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
-				newCharge.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirection(), this);
+				newCharge.GetComponent<ProjectileS>().Fire(savedDir, savedDir, this);
 
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
@@ -763,8 +763,8 @@ public class PlayerController : MonoBehaviour {
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
 
 			if (newAttack){
-						currentAttackS.Fire(ShootDirection(),
-				                                                  ShootDirectionUnlocked(), this);
+						currentAttackS.Fire(savedDir,
+				                                                 savedDir, this);
 			}else{
 				currentAttackS.Fire(savedDir,
 				                    savedDir, this);
@@ -797,7 +797,7 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 
-			muzzleFlare.Fire(currentAttackS.knockbackTime, ShootDirection(), newProjectile.transform.localScale.x,
+			muzzleFlare.Fire(currentAttackS.knockbackTime, savedDir, newProjectile.transform.localScale.x,
 			                 equippedWeapon.swapColor);
 
 			if (queuedAttackDelays.Count > 0){
@@ -849,6 +849,7 @@ public class PlayerController : MonoBehaviour {
 						attackDelay*=PlayerAugmentsS.animaAugAmt;
 					}
 					currentAttackS.StartKnockback(this, ShootDirection());
+					equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					attackTriggered = true;
 					_isShooting = true;
 					allowChargeAttack = true;
@@ -887,6 +888,8 @@ public class PlayerController : MonoBehaviour {
 						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger);
 
 					_chargingAttack = true;
+						EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,
+						                             1);
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
 						ChargeAnimationTrigger();
