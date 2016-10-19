@@ -8,6 +8,9 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	private List<int> _collectedItems;
 	public List<int> collectedItems { get { return _collectedItems; } }
+	
+	private List<int> _earnedUpgrades;
+	public List<int> earnedUpgrades { get { return _earnedUpgrades; } }
 
 	private List<int> _clearedWalls;
 	public List<int> clearedWalls { get { return _clearedWalls; } }
@@ -23,17 +26,22 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	void Awake () {
 
-		if (!initialized){
-			if (I == null){
-				Initialize();
-			}else{
+		if (I == null){
+			Initialize();
+		}else{
+			if (I != this){
 				Destroy(gameObject);
 			}
 		}
+
 	}
 
 	public void AddToInventory(int i){
 		_collectedItems.Add(i);
+	}
+
+	public void AddToUpgrades(int i){
+		_earnedUpgrades.Add(i);
 	}
 
 	public void AddClearedWall(int i){
@@ -44,6 +52,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		I = this;
 		DontDestroyOnLoad(gameObject);
 
+		_earnedUpgrades = new List<int>();
 		_collectedItems = new List<int>();
 		_clearedWalls = new List<int>();
 	}

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class LevelUpMenu : MonoBehaviour {
 
 	public RectTransform cursorObj;
+	public RectTransform cursorObjLvl;
 	private int currentPos = 0;
 
 	private PlayerController pRef;
@@ -21,6 +22,9 @@ public class LevelUpMenu : MonoBehaviour {
 	public GameObject levelMenuProper;
 	private bool onLevelMenu = false;
 	private bool onTravelMenu = false;
+	public LevelUpItemS[] levelMenuItems;
+	public Image[] levelMenuItemOutlines;
+	public RectTransform[] levelMenuPositions;
 
 	private bool _canBeExited = false;
 	public bool canBeExited { get { return _canBeExited; } }
@@ -30,6 +34,8 @@ public class LevelUpMenu : MonoBehaviour {
 	private bool _exitButtonDown = false;
 
 	private bool _initialized = false;
+
+	private LevelUpHandlerS levelHandler;
 
 	[HideInInspector]
 	public bool sendExitMessage = false;
@@ -89,6 +95,42 @@ public class LevelUpMenu : MonoBehaviour {
 		}
 
 		if (onLevelMenu){
+
+			if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
+			                            Mathf.Abs(myControl.Vertical()) > 0.1f)){
+				_controlStickMoved = true;
+
+				levelMenuItemOutlines[currentPos].color = textStartColor;
+				
+				if (myControl.Horizontal() > 0f ||
+				    myControl.Vertical() < 0f){
+					currentPos++;
+					if (currentPos > levelMenuItems.Length-1){
+						currentPos = 0;
+					}
+				}else{
+					currentPos--;
+					if (currentPos < 0){
+						currentPos = levelMenuItems.Length-1;
+					}
+				}
+
+				levelMenuItemOutlines[currentPos].color = Color.white;
+				levelMenuItems[currentPos].ShowText();
+			}
+
+			cursorObjLvl.anchoredPosition = levelMenuPositions[currentPos].anchoredPosition;
+
+			if (!_selectButtonDown && myControl.MenuSelectButton()){
+				_selectButtonDown = true;
+				if (levelMenuItems[currentPos].CanBeUpgraded()){
+					pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
+					levelMenuItems[currentPos].BuyUpgrade(currentPos, levelHandler);
+					currentPos = 0;
+					UpdateAvailableLevelUps();
+				}
+			}
+
 			if (!_exitButtonDown && myControl.ExitButton()){
 				TurnOffLevelUpMenu();
 			}
@@ -107,14 +149,27 @@ public class LevelUpMenu : MonoBehaviour {
 	}
 
 	private void TurnOnLevelUpMenu(){
+		cursorObj.gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(true);
 		mainMenuObj.SetActive(false);
 		_canBeExited = false;
 		currentPos = 0;
 		onLevelMenu = true;
+		_controlStickMoved = true;
+		UpdateAvailableLevelUps();
+	}
+
+	private void UpdateAvailableLevelUps(){
+		int i = 0;
+		foreach (LevelUpItemS l in levelMenuItems){
+			l.Initialize(levelHandler.nextLevelUps[i]);
+			i++;
+		}
+		levelMenuItems[currentPos].ShowText();
 	}
 
 	private void TurnOffLevelUpMenu(){
+		cursorObj.gameObject.SetActive(true);
 		levelMenuProper.gameObject.SetActive(false);
 		mainMenuObj.SetActive(true);
 		_canBeExited = true;
@@ -131,6 +186,7 @@ public class LevelUpMenu : MonoBehaviour {
 			textStartColor = mainMenuTextObjs[0].color;
 			textStartSize = mainMenuTextObjs[0].fontSize;
 			_initialized = true;
+			levelHandler = PlayerInventoryS.I.GetComponent<LevelUpHandlerS>();
 		}
 
 		gameObject.SetActive(true);
@@ -142,10 +198,15 @@ public class LevelUpMenu : MonoBehaviour {
 
 		_selectButtonDown = true;
 		_exitButtonDown = true;
+		_controlStickMoved = true;
 		
 		cursorObj.anchoredPosition = mainMenuSelectPositions[currentPos].anchoredPosition;
 		mainMenuTextObjs[currentPos].fontSize = Mathf.RoundToInt(textStartSize*textSelectSizeMult);
 		mainMenuTextObjs[currentPos].color = Color.white;
+
+		foreach(Image i in levelMenuItemOutlines){
+			i.color = textStartColor;
+		}
 	}
 
 	private void TurnOff(){
@@ -153,6 +214,7 @@ public class LevelUpMenu : MonoBehaviour {
 			t.fontSize = textStartSize;
 			t.color = textStartColor;
 		}
+
 		gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(false);
 	}

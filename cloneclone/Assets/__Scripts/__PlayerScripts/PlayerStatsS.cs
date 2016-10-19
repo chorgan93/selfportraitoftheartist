@@ -38,13 +38,27 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentMana { get { return (_currentMana);}}
 
 	//________________________________CHARGE
-	private float _baseCharge = 100f;
+	private float _baseCharge = 50f;
 	private float _addedCharge = 0;
 	public float addedCharge { get { return _addedCharge; }}
 	private static float _currentCharge = 0f;
+
+	public float addedChargeLv {get { return Mathf.Round(_addedCharge/10f); } }
 	
 	public float maxCharge { get { return _baseCharge+_addedCharge;}}
 	public float currentCharge { get { return _currentCharge;}}
+
+	
+	//________________________________CHARGE RECOVERY
+
+	private int _currentChargeRecoverLv = 1;
+	private float _baseChargeRecover = 10f;
+	private float _addedChargeRecoverPerLevel = 5f;
+	public float currentChargeRecover  { get { return 
+			_baseChargeRecover+_addedChargeRecoverPerLevel*(_currentChargeRecoverLv*1f-1f); } }
+
+	public float currentChargeRecoverLv { get { return _currentChargeRecoverLv*1f; } }
+
 
 	//________________________________ATTACK
 	private float _baseStrength = 1;
@@ -57,9 +71,11 @@ public class PlayerStatsS : MonoBehaviour {
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 
 	//________________________________DEFENSE
-	private float _baseDefense = 9f;
+	private float _baseDefense = 3f;
 	private float _addedDefense = 0;
 	private float _currentDefense;
+
+	public float addedDefense { get { return _addedDefense; } }
 
 	public float maxDefense { get { return (_baseDefense+_addedDefense);}}
 	public float currentDefense { get { return _currentDefense; } }
@@ -90,7 +106,14 @@ public class PlayerStatsS : MonoBehaviour {
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
 
 	private float recoverRateIncrease;
-	private float recoverRateAccel = 5f;
+	private float recoverRateAccelBase = 1f;
+	private float recoverRateAccelAddPerLevel = 0.25f;
+	private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(_recoverRateLv*1f-1f); } }
+	private int _recoverRateLv = 1;
+	private int _addedRateLv = 0;
+	public int currentRecoverRateLv { get { return _recoverRateLv+_addedRateLv; } }
+
+	public int addedRateLv { get { return _addedRateLv; } }
 	
 	private float recoverBurdenMin = 0.08f;
 	private float recoverBurdenMax = 0.22f;
@@ -181,7 +204,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void RecoverCharge(float addPercent){
-		_currentCharge += addPercent*maxCharge;
+		_currentCharge += addPercent*currentChargeRecover;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}
@@ -288,21 +311,55 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	private void InitializeStats(){
-		if (PlayerInventoryS.I.collectedItems.Count > 0){
-			foreach(int i in PlayerInventoryS.I.collectedItems){
+		if (PlayerInventoryS.I.earnedUpgrades.Count > 0){
+			foreach(int i in PlayerInventoryS.I.earnedUpgrades){
 				// count mana
 				if (i == 0){
-					_addedMana++;
-				}
-				if (i == 1){
 					_addedHealth++;
 				}
+				if (i == 1){
+					_addedMana++;
+				}
 				if (i == 2){
-					_addedCharge++;
+					_addedCharge+=10f;
+				}
+				if (i == 3){
+					_addedDefense++;
+				}
+				if (i == 4){
+					_currentChargeRecoverLv++;
+				}
+				if (i == 5){
+					_addedRateLv++;
 				}
 				_addedLevel++;
 			}
 		}
+	}
+
+	public void AddStat(int i){
+		if (i == 0){
+			_addedHealth++;
+			_currentHealth++;
+		}
+		if (i == 1){
+			_addedMana++;
+			_currentMana++;
+		}
+		if (i == 2){
+			_currentCharge+=10f;
+			_addedCharge+=10f;
+		}
+		if (i == 3){
+			_addedDefense++;
+		}
+		if (i == 4){
+			_currentChargeRecoverLv++;
+		}
+		if (i == 5){
+			_addedRateLv++;
+		}
+		_addedLevel++;
 	}
 
 	public void Heal(float healAmt){

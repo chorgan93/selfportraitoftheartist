@@ -10,7 +10,7 @@ public class GameOverS : MonoBehaviour {
 	private bool startedFade = false;
 	private PlayerStatsS playerReference;
 
-	private string reviveScene = "InfiniteScene";
+	private string reviveScene = "HellScene";
 
 	// Use this for initialization
 	void Start () {
