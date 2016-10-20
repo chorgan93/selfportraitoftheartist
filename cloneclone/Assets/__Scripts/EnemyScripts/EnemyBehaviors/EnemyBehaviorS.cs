@@ -48,7 +48,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 			if (signalObj != null){
 				Vector3 signalPos =  transform.position;
 				signalPos.z = transform.position.z+1f;
-				Instantiate(signalObj, signalPos, Quaternion.identity);
+				GameObject signal = Instantiate(signalObj, signalPos, Quaternion.identity)
+					as GameObject;
+				signal.transform.parent = myEnemyReference.transform;
 			}
 
 		}

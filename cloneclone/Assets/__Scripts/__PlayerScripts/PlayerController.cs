@@ -888,8 +888,7 @@ public class PlayerController : MonoBehaviour {
 						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger);
 
 					_chargingAttack = true;
-						EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,
-						                             1);
+						//EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,1);
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
 						ChargeAnimationTrigger();

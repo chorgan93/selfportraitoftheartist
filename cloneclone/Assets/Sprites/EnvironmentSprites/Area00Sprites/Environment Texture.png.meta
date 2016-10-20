@@ -1,27 +1,16 @@
 fileFormatVersion: 2
-guid: 8c60232e80d994a7c8a7aac8b530cffc
-timeCreated: 1476925871
+guid: 36451864be63c477a8df9d951e50643d
+timeCreated: 1476921762
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Attack Signal_0
-    21300002: Attack Signal_1
-    21300004: Attack Signal_2
-    21300006: Attack Signal_3
-    21300008: Attack Signal_4
-    21300010: Attack Signal_5
-    21300012: Enemy Hit Effect_0
-    21300014: Enemy Hit Effect_1
-    21300016: Enemy Hit Effect_2
-    21300018: Enemy Hit Effect_3
-    21300020: Enemy Hit Effect_4
-    21300022: Enemy Hit Effect_5
-    21300024: Enemy Hit Effect Alt_0
-    21300026: Enemy Hit Effect Alt_1
-    21300028: Enemy Hit Effect Alt_2
-    21300030: Enemy Hit Effect Alt_3
-    21300032: Enemy Hit Effect Alt_4
-    21300034: Enemy Hit Effect Alt_5
+    21300000: Environment Texture_0
+    21300002: Environment Texture_1
+    21300004: Environment Texture_2
+    21300006: Environment Texture_3
+    21300008: Environment Texture_4
+    21300010: Environment Texture_5
+    21300012: Environment Texture_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -44,8 +33,8 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -3
+  maxTextureSize: 256
   textureSettings:
     filterMode: 0
     aniso: -1
@@ -65,71 +54,76 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -3
-    compressionQuality: 50
-    allowsAlphaSplitting: 0
+  buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Enemy Hit Effect Alt_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Enemy Hit Effect Alt_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 512
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Enemy Hit Effect Alt_2
+    - name: Environment Texture_0
       rect:
         serializedVersion: 2
         x: 0
         y: 256
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Enemy Hit Effect Alt_3
+    - name: Environment Texture_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Environment Texture_2
       rect:
         serializedVersion: 2
         x: 256
         y: 256
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Enemy Hit Effect Alt_4
+    - name: Environment Texture_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Environment Texture_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Environment Texture_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Environment Texture_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Enemy Hit Effect Alt_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
