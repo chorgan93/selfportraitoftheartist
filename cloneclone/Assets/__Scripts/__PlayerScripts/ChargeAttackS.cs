@@ -26,6 +26,8 @@ public class ChargeAttackS : MonoBehaviour {
 	public GameObject soundObj;
 	public GameObject hitObj;
 
+	private SpriteRenderer effectRender;
+
 	private PlayerController myPlayer;
 
 	[Header("Attack Properties")]
@@ -54,6 +56,7 @@ public class ChargeAttackS : MonoBehaviour {
 		}else{
 			standAlone = true;
 		}
+		effectRender = GetComponentInChildren<SpriteRenderer>();
 		animateCountdown = _animateRate;
 
 		startTiling = _myRenderer.material.GetTextureScale("_MainTex");
@@ -96,6 +99,7 @@ public class ChargeAttackS : MonoBehaviour {
 					}else{
 					_myRenderer.material.SetTexture("_MainTex", startTexture);
 						_myCollider.enabled = true;
+						effectRender.color = fadeColor;
 						if (_firstSpawned){
 							flashEffect.NewColor(fadeColor);
 							flashEffect.Flash();
@@ -141,6 +145,7 @@ public class ChargeAttackS : MonoBehaviour {
 		fadeColor.a = startAlpha;
 
 		_myRenderer.material.color = Color.black;
+		effectRender.color = Color.white;
 
 		_myRenderer.material.SetTexture("_MainTex", startFlash);
 		_myRenderer.enabled = true;
