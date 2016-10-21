@@ -7,7 +7,9 @@ public class PlayerInventoryS : MonoBehaviour {
 	private bool initialized = false;
 
 	private List<int> _collectedItems;
+	private List<int> _collectedItemCount;
 	public List<int> collectedItems { get { return _collectedItems; } }
+	public List<int> collectedItemCount { get { return _collectedItemCount; } }
 	
 	private List<int> _earnedUpgrades;
 	public List<int> earnedUpgrades { get { return _earnedUpgrades; } }
@@ -37,7 +39,34 @@ public class PlayerInventoryS : MonoBehaviour {
 	}
 
 	public void AddToInventory(int i){
-		_collectedItems.Add(i);
+		if (!_collectedItems.Contains(i)){
+			_collectedItems.Add(i);
+			_collectedItemCount.Add(1);
+		}else{
+			_collectedItemCount[_collectedItems.IndexOf(i)]++;
+		}
+	}
+
+	public int GetItemCount(int i){
+		int count = 0;
+		if (_collectedItems.Contains(i)){
+			count = _collectedItemCount[_collectedItems.IndexOf(i)];
+		}
+		return count;
+	}
+
+	public void RemoveFromInventory(int i){
+		if (_collectedItems.Contains(i)){
+			_collectedItemCount[_collectedItems.IndexOf(i)]--;
+			if (_collectedItemCount[_collectedItems.IndexOf(i)] <= 0){
+				_collectedItemCount.RemoveAt(_collectedItems.IndexOf(i));
+				_collectedItems.Remove(i);
+			}
+		}
+	}
+
+	public bool CheckForItem(int i){
+		return (_collectedItems.Contains(i));
 	}
 
 	public void AddToUpgrades(int i){

@@ -204,7 +204,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void RecoverCharge(float addPercent){
-		_currentCharge += addPercent*5f*currentChargeRecover;
+		_currentCharge += addPercent*3.5f*currentChargeRecover;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}
@@ -360,6 +360,14 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedRateLv++;
 		}
 		_addedLevel++;
+	}
+
+	public void ResetStamina(){
+
+		_currentMana = maxMana;
+		_currentCooldownTimer = 0f;
+		_currentManaUsed = 0f;
+
 	}
 
 	public void Heal(float healAmt){

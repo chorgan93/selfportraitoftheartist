@@ -659,7 +659,7 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
-				newCharge.GetComponent<ProjectileS>().Fire(savedDir, savedDir, this);
+				newCharge.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirection(), this);
 
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();

@@ -367,4 +367,17 @@ public class ControlManagerS : MonoBehaviour {
 			return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete));
 		}
 	}
+
+	public bool UseItemButton(){
+		//TODO add functionality
+		return false;
+	}
+	public bool ScrollItemLeftButton(){
+		//TODO add functionality
+		return false;
+	}
+	public bool ScrollItemRightButton(){
+		//TODO add functionality
+		return false;
+	}
 }
