@@ -3,6 +3,7 @@ using System.Collections;
 
 public class CheckpointS : MonoBehaviour {
 
+	public bool fullCheckpoint = true;
 	private PlayerDetectS _playerDetect;
 	private bool _examining = false;
 
@@ -11,11 +12,20 @@ public class CheckpointS : MonoBehaviour {
 	private bool _exitButtonUp = false;
 	private bool _talkButtonUp = false;
 
+	private InstructionTextS instructionText;
+
+	private string healMessage = "Health restored. Progress saved.";
+
 	// Use this for initialization
 	void Start () {
 
 		_playerDetect = GetComponentInChildren<PlayerDetectS>();
-		_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+
+		if (!fullCheckpoint){
+			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
+		}else{	
+			_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+		}
 	
 	}
 	
@@ -24,12 +34,20 @@ public class CheckpointS : MonoBehaviour {
 
 		if (_playerDetect.PlayerInRange() && !_examining){
 			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp){
-				_examining = true;
-				_menuManager.TurnOnLevelUpMenu();
-				_playerDetect.player.SetTalking(true);
-				// heal player
-				_playerDetect.player.myStats.FullRecover();
-				_talkButtonUp = false;
+				
+				if (fullCheckpoint){
+					_examining = true;
+						_menuManager.TurnOnLevelUpMenu();
+					_playerDetect.player.SetTalking(true);
+
+				}
+			else{
+				instructionText.SetTimedMessage(healMessage, 2f);
+					//Debug.Log("YEAH");
+			}
+			// heal player
+			_playerDetect.player.myStats.FullRecover();
+			_talkButtonUp = false;
 			}
 		}
 

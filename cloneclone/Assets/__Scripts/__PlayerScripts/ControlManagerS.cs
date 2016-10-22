@@ -369,15 +369,39 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool UseItemButton(){
-		//TODO add functionality
-		return false;
+		//TODO add functionality for keyboard/mouse and linux
+		if (ControllerAttached()){
+			if (platformType == "Mac"){
+				return (Input.GetButton("UseItemButtonMac"));
+			}else{
+				return (Input.GetAxis("UseItemAxisPC") < -0.1f);
+			}
+		}else{
+			return false;
+		}
 	}
 	public bool ScrollItemLeftButton(){
-		//TODO add functionality
-		return false;
+		//TODO add functionality for keyboard/mouse and linux
+		if (ControllerAttached()){
+			if (platformType == "Mac"){
+				return (Input.GetButton("SwitchItemButtonLeftMac"));
+			}else{
+				return (Input.GetAxis("SwitchItemAxisPC") < -0.1f);
+			}
+		}else{
+			return false;
+		}
 	}
 	public bool ScrollItemRightButton(){
-		//TODO add functionality
-		return false;
+		//TODO add functionality for keyboard/mouse and linux
+		if (ControllerAttached()){
+			if (platformType == "Mac"){
+				return (Input.GetButton("SwitchItemButtonRightMac"));
+			}else{
+				return (Input.GetAxis("SwitchItemAxisPC") > 0.1f);
+			}
+		}else{
+			return false;
+		}
 	}
 }

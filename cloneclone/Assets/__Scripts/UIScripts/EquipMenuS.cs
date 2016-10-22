@@ -142,7 +142,7 @@ public class EquipMenuS : MonoBehaviour {
 				if (currentPos == 0){
 					GoToParadigmISetUp();
 				}
-				if (currentPos == 1){
+				if (currentPos == 1 && pRef.SubWeapon() != null){
 					GoToParadigmIISetUp();
 				}
 			}
@@ -634,21 +634,35 @@ public class EquipMenuS : MonoBehaviour {
 	}
 
 	private void UpdateMantraDisplay(){
+
 		mantraMainParadigmI.color = pRef.EquippedWeapon().swapColor;
 		mantraMainParadigmI.sprite = pRef.EquippedWeapon().swapSprite;
 		mantraMainParadigmI.enabled = true;
-		
-		mantraSubParadigmI.color = pRef.EquippedWeaponAug().swapColor;
-		mantraSubParadigmI.sprite = pRef.EquippedWeaponAug().swapSprite;
-		mantraSubParadigmI.enabled = true;
 
+		if (pRef.EquippedWeaponAug() != null){
+			mantraSubParadigmI.color = pRef.EquippedWeaponAug().swapColor;
+			mantraSubParadigmI.sprite = pRef.EquippedWeaponAug().swapSprite;
+			mantraSubParadigmI.enabled = true;
+		}else{
+			mantraSubParadigmI.enabled = false;
+		}
+
+		if (pRef.SubWeapon() != null){
 		mantraMainParadigmII.color = pRef.SubWeapon().swapColor;
 		mantraMainParadigmII.sprite = pRef.SubWeapon().swapSprite;
 		mantraMainParadigmII.enabled = true;
-		
-		mantraSubParadigmII.color = pRef.SubWeaponAug().swapColor;
-		mantraSubParadigmII.sprite = pRef.SubWeaponAug().swapSprite;
-		mantraSubParadigmII.enabled = true;
+		}else{	
+			mantraMainParadigmII.enabled = false;
+		}
+
+		if (pRef.SubWeaponAug() != null){
+			mantraSubParadigmII.color = pRef.SubWeaponAug().swapColor;
+			mantraSubParadigmII.sprite = pRef.SubWeaponAug().swapSprite;
+			mantraSubParadigmII.enabled = true;
+		}
+		else{
+			mantraSubParadigmII.enabled = false;
+		}
 
 		pRef.playerAug.RefreshAll();
 	}
@@ -657,10 +671,14 @@ public class EquipMenuS : MonoBehaviour {
 		buddyParadigmI.color = buddyParadigmIOutline.color = pRef.EquippedBuddy().shadowColor;
 		buddyParadigmI.sprite = pRef.EquippedBuddy().buddyMenuSprite;
 		buddyParadigmI.enabled = true;
-		
-		buddyParadigmII.color = buddyParadigmIIOutline.color = pRef.SubBuddy().shadowColor;
-		buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
-		buddyParadigmII.enabled = true;
+
+		if (pRef.SubBuddy() != null){
+			buddyParadigmII.color = buddyParadigmIIOutline.color = pRef.SubBuddy().shadowColor;
+			buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
+			buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = true;
+		}else{
+			buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = false;
+		}
 	}
 
 	private void GoToParadigmISetUp(){

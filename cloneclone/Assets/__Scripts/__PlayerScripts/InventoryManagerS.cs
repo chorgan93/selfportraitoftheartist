@@ -10,7 +10,7 @@ public class InventoryManagerS : MonoBehaviour {
 	public List<int> equippedInventory { get { return _equippedInventory; } }
 
 	private int _currentSelection = 0;
-	public int currentSelection;
+	public int currentSelection { get { return _currentSelection; } }
 
 	private PlayerController _pRef;
 	private PlayerInventoryS _inventoryRef;
@@ -22,7 +22,7 @@ public class InventoryManagerS : MonoBehaviour {
 	public bool updateUICall { get {return _updateUICall; } }
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		_inventoryRef = GetComponent<PlayerInventoryS>();
 
@@ -52,8 +52,20 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private void SwitchControl(){
-		if (!scrollItemButtonDown){
+		if (!scrollItemButtonDown &&_pRef.myControl.ScrollItemRightButton()){
+			_currentSelection++;
+			if (_currentSelection > _equippedInventory.Count-1){
+				_currentSelection = 0;
+			}
 			_updateUICall = true;
+			scrollItemButtonDown = true;
+		}else if (!scrollItemButtonDown &&_pRef.myControl.ScrollItemLeftButton()){
+			_currentSelection--;
+			if (_currentSelection < 0){
+				_currentSelection = _equippedInventory.Count-1;
+			}
+			_updateUICall = true;
+			scrollItemButtonDown = true;
 		}else{
 			if (!_pRef.myControl.ScrollItemLeftButton() && !_pRef.myControl.ScrollItemRightButton()){
 				scrollItemButtonDown = false;
@@ -64,12 +76,16 @@ public class InventoryManagerS : MonoBehaviour {
 	private void UseItemControl(){
 		if (!useItemButtonDown && _pRef.myControl.UseItemButton()){
 			UseItem(_equippedInventory[_currentSelection]);
+			useItemButtonDown = true;
+		}
+		if (useItemButtonDown && !_pRef.myControl.UseItemButton()){
+			useItemButtonDown = false;
 		}
 	}
 
 	private void UseItem(int itemID){
 
-
+		if (itemID >= 0){
 		// do certain effect based on item id called
 		switch(itemID){
 
@@ -97,6 +113,7 @@ public class InventoryManagerS : MonoBehaviour {
 			RemoveItemAt(_currentSelection);
 		}
 		_updateUICall = true;
+		}
 
 	}
 
@@ -132,5 +149,16 @@ public class InventoryManagerS : MonoBehaviour {
 
 	public void UIUpdated(){
 		_updateUICall = false;
+	}
+
+	public void AddNextAvailable(int j){
+		bool itemAdded = false;
+		for (int i = 0; i < _equippedInventory.Count; i++){
+			if (_equippedInventory[i] < 0 && !itemAdded){
+				_equippedInventory[i] = j;
+				itemAdded = true;
+			}
+		}
+		_updateUICall = true;
 	}
 }

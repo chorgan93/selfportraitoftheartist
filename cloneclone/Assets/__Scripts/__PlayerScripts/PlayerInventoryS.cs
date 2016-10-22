@@ -24,6 +24,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	
 	private static List<GameObject> equippedBuddies;
 
+	private InventoryManagerS _iManager;
+
 	public static PlayerInventoryS I;
 
 	void Awake () {
@@ -42,6 +44,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		if (!_collectedItems.Contains(i)){
 			_collectedItems.Add(i);
 			_collectedItemCount.Add(1);
+			_iManager.AddNextAvailable(i);
 		}else{
 			_collectedItemCount[_collectedItems.IndexOf(i)]++;
 		}
@@ -81,8 +84,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		I = this;
 		DontDestroyOnLoad(gameObject);
 
+		_iManager = GetComponent<InventoryManagerS>();
+
 		_earnedUpgrades = new List<int>();
 		_collectedItems = new List<int>();
+		_collectedItemCount = new List<int>();
 		_clearedWalls = new List<int>();
 	}
 

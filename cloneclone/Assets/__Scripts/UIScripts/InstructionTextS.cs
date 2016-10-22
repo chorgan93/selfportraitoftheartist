@@ -9,6 +9,8 @@ public class InstructionTextS : MonoBehaviour {
 	private Color textColor;
 
 	private bool showing = false;
+	private bool timedShowing = false;
+	private float showCountdown;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,13 @@ public class InstructionTextS : MonoBehaviour {
 				textColor = myText.color;
 				textColor.a += Time.deltaTime*fadeRate;
 				myText.color = textColor;
+			}else{
+				if (timedShowing){
+					showCountdown-=Time.deltaTime;
+					if (showCountdown <= 0){
+						showing = false;
+					}
+				}
 			}
 		}else{
 			if (myText.color.a > 0){
@@ -40,10 +49,18 @@ public class InstructionTextS : MonoBehaviour {
 	}
 
 	public void SetShowing(bool newShow, string newText = ""){
+		timedShowing = false;
 		showing = newShow; 
 
 		if (newText != ""){
 			myText.text = newText;
 		}
+	}
+
+	public void SetTimedMessage(string newText, float timeToShow){
+		timedShowing = true;
+		showCountdown = timeToShow;
+		showing = true;
+		myText.text = newText;
 	}
 }

@@ -80,13 +80,14 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			dfStat.color = highlightColor;
 			break;
 		case (4):
-			enStat.text = (playerStatRef.currentRecoverRateLv+1).ToString();
-			enStat.color = highlightColor;
-			break;
-		case (5):
 			abStat.text = (playerStatRef.currentChargeRecoverLv+1).ToString();
 			abStat.color = highlightColor;
 			break;
+		case (5):
+			enStat.text = (playerStatRef.currentRecoverRateLv+1).ToString();
+			enStat.color = highlightColor;
+			break;
+		
 		}
 	}
 }

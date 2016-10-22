@@ -178,15 +178,6 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (inventoryNum >= 0){
 			PlayerInventoryS.I.AddToInventory(inventoryNum);
-			/*if (inventoryNum == 0){
-				pRef.myStats.AddStamina();
-			}
-			if (inventoryNum == 1){
-				pRef.myStats.AddHealth();
-			}
-			if (inventoryNum == 2){
-				pRef.myStats.AddCharge();
-			}**/
 		}
 
 	}

@@ -40,7 +40,9 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		if (EnemiesDefeated() && !sentClearMessage){
 			sentClearMessage = true;
-			parentClear.AddClear();
+			if (parentClear){
+				parentClear.AddClear();
+			}
 		}
 	
 	}

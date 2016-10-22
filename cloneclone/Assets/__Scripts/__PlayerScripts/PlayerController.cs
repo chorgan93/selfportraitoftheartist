@@ -924,7 +924,7 @@ public class PlayerController : MonoBehaviour {
 			switchButtonUp = true;
 		}
 
-		if (!myStats.PlayerIsDead() && _canSwap){
+		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap){
 		
 			if (switchButtonUp && _myBuddy.canSwitch){
 				if (myControl.SwitchButton()){
@@ -1763,24 +1763,39 @@ public class PlayerController : MonoBehaviour {
 		return (equippedWeapons[_currentParadigm]);
 	}
 	public PlayerWeaponS SubWeapon(){
-		return (equippedWeapons[_subParadigm]);
+		if (equippedWeapons.Count > 1){
+			return (equippedWeapons[_subParadigm]);
+		}else{
+			return null;
+		}
 	}
 
 	public PlayerWeaponS EquippedWeaponAug(){
+			
 		return (subWeapons[_currentParadigm]);
+
 	}
 	public PlayerWeaponS SubWeaponAug(){
-		return (subWeapons[_subParadigm]);
+		if (subWeapons.Count > 1){
+			return (subWeapons[_subParadigm]);
+		}else{
+			return null;
+		}
 	}
 
 	public BuddyS EquippedBuddy(){
 		return (_myBuddy);
 	}
 	public BuddyS SubBuddy(){
-		if (!altBuddyCreated){
-			return (equippedBuddies[_subParadigm].GetComponent<BuddyS>());
-		}else{
-			return (_altBuddy);
+		if (equippedBuddies.Count > 1){
+			if (!altBuddyCreated){
+				return (equippedBuddies[_subParadigm].GetComponent<BuddyS>());
+			}else{
+				return (_altBuddy);
+			}
+		}
+		else{
+			return null;
 		}
 	}
 
