@@ -14,6 +14,7 @@ public class InventoryManagerS : MonoBehaviour {
 
 	private PlayerController _pRef;
 	private PlayerInventoryS _inventoryRef;
+	private PlayerInteractCheckS _interactRef;
 
 	private bool useItemButtonDown = false;
 	private bool scrollItemButtonDown = false;
@@ -34,6 +35,7 @@ public class InventoryManagerS : MonoBehaviour {
 
 		if (!_pRef){
 			_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+			_interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();
 		}else{
 			if (!_pRef.talking){
 				SwitchControl();
@@ -85,33 +87,43 @@ public class InventoryManagerS : MonoBehaviour {
 
 	private void UseItem(int itemID){
 
+
 		if (itemID >= 0){
+			bool consumeItem = false;
 		// do certain effect based on item id called
 		switch(itemID){
 
 			default:
-				Debug.Log("Item ID " + itemID + " effect not found!");
+				// check player item receivers
+				if (_interactRef.CheckInteraction(itemID)){
+					consumeItem = true;
+				}
 				break;
 
 			// basic heal
 			case 0:
 				_pRef.myStats.Heal(20f);
+				consumeItem = true;
 				break;
 
 			// stamina recharge
 			case 1:
 				_pRef.myStats.ResetStamina();
+				consumeItem = true;
 				break;
 
 			// basic mana recarge
 			case 2:
 				_pRef.myStats.RecoverCharge(150f);
+				consumeItem = true;
 				break;
 		}
-		_inventoryRef.RemoveFromInventory(itemID);
-		if (!_inventoryRef.CheckForItem(itemID)){
-			RemoveItemAt(_currentSelection);
-		}
+			if (consumeItem){
+			_inventoryRef.RemoveFromInventory(itemID);
+			if (!_inventoryRef.CheckForItem(itemID)){
+				RemoveItemAt(_currentSelection);
+			}
+			}
 		_updateUICall = true;
 		}
 

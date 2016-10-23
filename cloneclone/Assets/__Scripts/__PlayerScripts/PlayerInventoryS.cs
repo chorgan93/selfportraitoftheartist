@@ -16,6 +16,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	private List<int> _clearedWalls;
 	public List<int> clearedWalls { get { return _clearedWalls; } }
+	private List<int> _openedDoors;
+	public List<int> openedDoors { get { return _openedDoors; } }
 
 	public List<PlayerWeaponS> unlockedWeapons;
 	public List<BuddyS> unlockedBuddies;
@@ -89,7 +91,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		_earnedUpgrades = new List<int>();
 		_collectedItems = new List<int>();
 		_collectedItemCount = new List<int>();
+		_openedDoors = new List<int>();
 		_clearedWalls = new List<int>();
+	}
+
+	public void AddOpenDoor(int i){
+		if (!_openedDoors.Contains(i)){
+			_openedDoors.Add(i);
+		}
 	}
 
 	public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<GameObject> equipBuds){
