@@ -7,6 +7,9 @@ public class DialogueManagerS : MonoBehaviour {
 	public Image dialogueBox;
 	public Text dialogueText;
 
+	public Image memoBG;
+	public Text memoText;
+
 	private string currentDisplayString;
 	private string targetDisplayString;
 	private int currentChar = 0;
@@ -30,6 +33,8 @@ public class DialogueManagerS : MonoBehaviour {
 
 		dialogueBox.enabled = false;
 		dialogueText.enabled = false;
+		memoBG.enabled = false;
+		memoText.enabled = false;
 		_doneScrolling = true;
 	
 	}
@@ -54,18 +59,32 @@ public class DialogueManagerS : MonoBehaviour {
 	
 	}
 
-	public void SetDisplayText(string newText){
+	public void SetDisplayText(string newText, bool isMemo = false){
 
+		if (!isMemo){
+			memoBG.enabled = false;
+			memoText.enabled = false;
 		dialogueBox.enabled = true;
 		dialogueText.enabled = true;
 
 		dialogueText.text = currentDisplayString = "";
 		targetDisplayString = newText;
+			
+			scrollCountdown = 0f;
+			
+			_doneScrolling = false;
+			currentChar = 0;
+		}else{
+			
+			memoBG.enabled = true;
+			memoText.enabled = true;
+			dialogueBox.enabled = false;
+			dialogueText.enabled = false;
 
-		scrollCountdown = 0f;
+			memoText.text = newText;
+			_doneScrolling = true;
+		}
 
-		_doneScrolling = false;
-		currentChar = 0;
 
 	}
 
@@ -78,6 +97,8 @@ public class DialogueManagerS : MonoBehaviour {
 
 		dialogueBox.enabled = false;
 		dialogueText.enabled = false;
+		memoBG.enabled = false;
+		memoText.enabled = false;
 		
 		dialogueText.text = currentDisplayString = targetDisplayString = "";
 		

@@ -380,7 +380,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
-		if (!PlayerIsDead() && !myPlayerController.isDashing){
+		if (!PlayerIsDead() && !myPlayerController.isDashing && !myPlayerController.talking){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
 				if (!godMode){
 				_currentDefense-=dmg;

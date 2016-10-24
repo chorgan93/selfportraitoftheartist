@@ -46,6 +46,13 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	}
 
+	public void AddKeyItem(int i){
+		// for key items that should NOT be in inventory (memos)
+		if (!_collectedKeyItems.Contains(i)){
+			_collectedKeyItems.Add(i);
+		}
+	}
+
 	public void AddToInventory(int i, bool isKey = false){
 		if (!_collectedItems.Contains(i)){
 			_collectedItems.Add(i);
