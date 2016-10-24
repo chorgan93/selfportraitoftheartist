@@ -7,8 +7,10 @@ public class PlayerInventoryS : MonoBehaviour {
 	private bool initialized = false;
 
 	private List<int> _collectedItems;
+	private List<int> _collectedKeyItems;
 	private List<int> _collectedItemCount;
 	public List<int> collectedItems { get { return _collectedItems; } }
+	public List<int> collectedKeyItems { get { return _collectedKeyItems; } }
 	public List<int> collectedItemCount { get { return _collectedItemCount; } }
 	
 	private List<int> _earnedUpgrades;
@@ -27,6 +29,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	private static List<GameObject> equippedBuddies;
 
 	private InventoryManagerS _iManager;
+	private PlayerDestructionS _dManager;
+	public PlayerDestructionS dManager { get { return _dManager; } }
 
 	public static PlayerInventoryS I;
 
@@ -42,11 +46,14 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	}
 
-	public void AddToInventory(int i){
+	public void AddToInventory(int i, bool isKey = false){
 		if (!_collectedItems.Contains(i)){
 			_collectedItems.Add(i);
 			_collectedItemCount.Add(1);
 			_iManager.AddNextAvailable(i);
+			if (isKey){
+				_collectedKeyItems.Add(i);
+			}
 		}else{
 			_collectedItemCount[_collectedItems.IndexOf(i)]++;
 		}
@@ -87,9 +94,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 
 		_iManager = GetComponent<InventoryManagerS>();
+		_dManager = GetComponent<PlayerDestructionS>();
 
 		_earnedUpgrades = new List<int>();
 		_collectedItems = new List<int>();
+		_collectedKeyItems = new List<int>();
 		_collectedItemCount = new List<int>();
 		_openedDoors = new List<int>();
 		_clearedWalls = new List<int>();

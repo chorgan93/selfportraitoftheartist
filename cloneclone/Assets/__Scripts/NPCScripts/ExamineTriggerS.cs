@@ -23,6 +23,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool consumable = false;
 	public int inventoryNum = -1;
+	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
 
 	public bool inInfiniteMode = false;
@@ -171,15 +172,22 @@ public class ExamineTriggerS : MonoBehaviour {
 				}
 			}
 		}
+		if (PlayerInventoryS.I.collectedKeyItems.Count > 0 && keyItem){
+			foreach (int j in PlayerInventoryS.I.collectedKeyItems){
+				if (j == inventoryNum){
+					gameObject.SetActive(false);
+				}
+			}
+		}
+
 
 	}
 
 	private void AddPickup(){
 
 		if (inventoryNum >= 0){
-			PlayerInventoryS.I.AddToInventory(inventoryNum);
+			PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
 		}
-
 	}
 
 	private void CheckUnlock(){

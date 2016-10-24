@@ -10,11 +10,15 @@ public class GameOverS : MonoBehaviour {
 	private bool startedFade = false;
 	private PlayerStatsS playerReference;
 
-	private string reviveScene = "HellScene";
+	public static string reviveScene;
+	public static int revivePosition = 0;
 
 	// Use this for initialization
 	void Start () {
 
+		if (reviveScene == ""){
+			reviveScene = Application.loadedLevelName;
+		}
 		playerReference = GetComponent<PlayerStatsS>();
 	
 	}
@@ -34,6 +38,8 @@ public class GameOverS : MonoBehaviour {
 
 			if (delayFadeTime <= 0 && !startedFade){
 				startedFade = true;
+				PlayerInventoryS.I.dManager.ClearAll();
+				SpawnPosManager.whereToSpawn = revivePosition;
 				CameraEffectsS.E.SetNextScene(reviveScene);
 				CameraEffectsS.E.FadeIn();
 			}

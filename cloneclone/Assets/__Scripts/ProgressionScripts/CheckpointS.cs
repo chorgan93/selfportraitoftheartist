@@ -15,6 +15,7 @@ public class CheckpointS : MonoBehaviour {
 	private InstructionTextS instructionText;
 
 	private string healMessage = "Health restored. Progress saved.";
+	public int spawnNum = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -45,8 +46,12 @@ public class CheckpointS : MonoBehaviour {
 				instructionText.SetTimedMessage(healMessage, 2f);
 					//Debug.Log("YEAH");
 			}
+				// set revive pos
+				GameOverS.reviveScene = Application.loadedLevelName;
+				GameOverS.revivePosition = spawnNum;
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
+				PlayerInventoryS.I.dManager.ClearAll();
 			_talkButtonUp = false;
 			}
 		}

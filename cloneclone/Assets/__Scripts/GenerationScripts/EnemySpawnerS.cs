@@ -11,6 +11,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	private bool didNotSpawnEnemy = false;
 
 	public GameObject[] enemyPool;
+	public int enemySpawnID = -1;
 
 	//private RoomClearCheck parentClear;
 	private InfinitySpawnS parentClear;
@@ -43,6 +44,9 @@ public class EnemySpawnerS : MonoBehaviour {
 			if (parentClear){
 				parentClear.AddClear();
 			}
+			if (enemySpawnID > -1){
+				PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID);
+			}
 		}
 	
 	}
@@ -51,7 +55,8 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		float chanceEnemySpawns = Random.Range(0f, 1f);
 
-		if (chanceEnemySpawns <= chanceToSpawn){
+		if (chanceEnemySpawns <= chanceToSpawn && 
+		    (enemySpawnID < 0 || (enemySpawnID > -1 && !PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)))){
 	
 			int enemyToSpawn = Mathf.RoundToInt(Random.Range(0, enemyPool.Length));
 	

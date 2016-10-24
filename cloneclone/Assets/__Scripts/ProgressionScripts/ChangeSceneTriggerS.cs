@@ -5,6 +5,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	public string nextSceneString = "";
 	public bool requireExamine = false;
+	public int whereToSpawn = 0;
 	public int doorNum = -1;
 	public string examineString = "";
 	public Sprite openedSprite;
@@ -79,6 +80,8 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		CameraEffectsS.E.SetNextScene(nextSceneString);
 		CameraEffectsS.E.FadeIn();
 		loading = true;
+
+		SpawnPosManager.whereToSpawn = whereToSpawn;
 
 		if (requireExamine && doorNum > -1){
 			PlayerInventoryS.I.AddOpenDoor(doorNum);

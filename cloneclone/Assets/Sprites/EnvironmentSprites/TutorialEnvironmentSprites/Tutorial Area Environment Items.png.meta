@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3ecfa136056f1443a904e162ae3ea956
-timeCreated: 1477194167
+timeCreated: 1477287624
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -29,6 +29,7 @@ TextureImporter:
     21300044: Tutorial Area Environment Items_15
     21300046: Tutorial Area Environment Items_16
     21300048: Tutorial Area Environment Items_17
+    21300050: Tutorial Area Environment Items_18
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -254,6 +255,16 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tutorial Area Environment Items_18
+      rect:
+        serializedVersion: 2
+        x: 256
         y: 0
         width: 128
         height: 128
