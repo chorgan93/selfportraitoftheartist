@@ -220,6 +220,12 @@ public class PlayerController : MonoBehaviour {
 	
 	//_________________________________________UNITY METHODS
 
+	void Awake(){
+
+		CinematicHandlerS.inCutscene = false;
+
+	}
+
 	// Use this for initialization
 	void Start () {
 

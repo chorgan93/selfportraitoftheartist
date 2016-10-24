@@ -24,8 +24,13 @@ public class CinematicHandlerS : MonoBehaviour {
 	private float skipRequireTime = 1.25f;
 
 	private bool skipActivated = false;
+	public static bool inCutscene = false;
 
 	AsyncOperation async;
+
+	void Awake(){
+		inCutscene = true;
+	}
 
 	// Use this for initialization
 	void Start () {

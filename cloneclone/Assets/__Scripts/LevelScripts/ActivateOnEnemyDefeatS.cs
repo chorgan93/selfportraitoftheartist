@@ -9,6 +9,7 @@ public class ActivateOnEnemyDefeatS : MonoBehaviour {
 	public List<BarrierS> turnOffBarriers;
 
 	public List<EnemyS> checkEnemies;
+	public List<EnemySpawnerS> checkEnemySpawners;
 	int defeatedEnemies = 0;
 
 	private bool turnedOn = false;
@@ -24,8 +25,13 @@ public class ActivateOnEnemyDefeatS : MonoBehaviour {
 					defeatedEnemies++;
 				}
 			}
+			foreach (EnemySpawnerS c in checkEnemySpawners){
+				if (c.sentMessage){
+					defeatedEnemies++;
+				}
+			}
 
-			if (defeatedEnemies >= checkEnemies.Count){
+			if (defeatedEnemies >= (checkEnemies.Count+checkEnemySpawners.Count)){
 				TurnOnOff();
 			}
 		}

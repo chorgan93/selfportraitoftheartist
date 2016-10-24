@@ -107,6 +107,11 @@ public class FadeScreenUI : MonoBehaviour {
 		_fadingOut = true;
 
 	}
+	public void ChangeColor(Color newCol){
+		Color changeCol = newCol;
+		changeCol.a = _myRenderer.color.a;
+		_myRenderer.color = changeCol;
+	}
 
 	public void FadeIn(string nextScene, float newRate = 0){
 

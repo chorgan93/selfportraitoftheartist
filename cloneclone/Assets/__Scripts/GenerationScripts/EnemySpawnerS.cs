@@ -16,6 +16,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	//private RoomClearCheck parentClear;
 	private InfinitySpawnS parentClear;
 	private bool sentClearMessage = false;
+	public bool sentMessage { get { return sentClearMessage; } }
 
 	// Use this for initialization
 	void Start () {
