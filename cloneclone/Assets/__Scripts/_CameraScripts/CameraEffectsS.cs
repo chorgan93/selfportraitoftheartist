@@ -61,8 +61,8 @@ public class CameraEffectsS : MonoBehaviour {
 		fadeScreen.ChangeColor(newCol);
 	}
 
-	public void FadeIn(){
-		fadeScreen.FadeIn("");
+	public void FadeIn(float newRate = 0){
+		fadeScreen.FadeIn("", newRate);
 		isFading = true;
 	}
 	public void SetNextScene(string newDestination){

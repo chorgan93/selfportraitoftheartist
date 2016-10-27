@@ -44,7 +44,9 @@ public class AnimObjS : MonoBehaviour {
 				if (fadeObj){
 					Vector3 spawnpos = transform.position;
 					spawnpos.z += 2f;
-					GameObject fadeObjSpawn = spawnManager.SpawnPlayerFade(spawnpos);
+					//GameObject fadeObjSpawn = spawnManager.SpawnPlayerFade(spawnpos);
+					GameObject fadeObjSpawn = Instantiate(fadeObj, spawnpos, Quaternion.identity)
+						as GameObject;
 					fadeObjSpawn.GetComponent<SpriteRenderer>().sprite = animFrames[currentFrame];
 					fadeObjSpawn.transform.parent = transform;
 					fadeObjSpawn.transform.localScale = Vector3.one;

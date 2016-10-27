@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerStatsS _myStats;
 
-	private static bool _doWakeUp = true;
-	public bool doWakeUp { get { return _doWakeUp; } }
+	public static bool doWakeUp = true;
 	private bool wakingUp = false;
 	public bool isWaking  { get { return  wakingUp; } }
 	private float wakeUpTime = 3f;
@@ -325,7 +324,7 @@ public class PlayerController : MonoBehaviour {
 		_inputDirectionLast = new Vector2(0,0);
 		_inputDirectionCurrent = new Vector2(0,0);
 
-		if (_doWakeUp){
+		if (doWakeUp){
 			TriggerWakeUp();
 		}
 
@@ -1175,7 +1174,7 @@ public class PlayerController : MonoBehaviour {
 	private void StatusCheck(){
 
 		if (_myStats.PlayerIsDead()){
-			_doWakeUp = true;
+			doWakeUp = true;
 		}
 
 		if (wakingUp){
@@ -1239,11 +1238,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void TriggerWakeUp(){
-		_isTalking = true;
-		wakingUp = true;
-		wakeUpCountdown = wakeUpTime;
-		_myAnimator.SetTrigger("Wake");
-		_doWakeUp = false;
+			_isTalking = true;
+			wakingUp = true;
+			wakeUpCountdown = wakeUpTime;
+			_myAnimator.SetTrigger("Wake");
+			doWakeUp = false;
 	}
 
 	private void AttackAnimationTrigger(bool heavy = false){
@@ -1757,6 +1756,15 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetFloat("Speed", 0f);
 			_myAnimator.SetBool("Attacking", false);
 			_playerSound.SetWalking(false);
+		}
+	}
+
+	public void SetBuddy(bool onOff){
+		if (!onOff){
+			EquippedBuddy().gameObject.SetActive(false);
+		}else{
+			EquippedBuddy().gameObject.SetActive(true);
+			_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 		}
 	}
 

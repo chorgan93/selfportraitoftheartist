@@ -26,10 +26,15 @@ public class CinematicHandlerS : MonoBehaviour {
 	private bool skipActivated = false;
 	public static bool inCutscene = false;
 
+	public bool loadPlayerDown = false;
+
 	AsyncOperation async;
 
 	void Awake(){
 		inCutscene = true;
+		if (loadPlayerDown){
+			PlayerController.doWakeUp = true;
+		}
 	}
 
 	// Use this for initialization

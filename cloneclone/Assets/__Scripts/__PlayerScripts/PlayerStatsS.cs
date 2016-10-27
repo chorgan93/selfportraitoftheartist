@@ -302,7 +302,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_killFlash = CameraEffectsS.E.deathFlash;
 
 		_currentMana = maxMana;
-		if (myPlayerController.doWakeUp){
+		if (PlayerController.doWakeUp){
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
 		}
