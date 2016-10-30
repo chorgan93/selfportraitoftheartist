@@ -3,9 +3,9 @@ using System.Collections;
 
 public class SlashEffectS : MonoBehaviour {
 
-	private float startMoveAmt = 0.5f;
-	private float moveAmt00 = 0.3f;
-	private float moveAmt01 = 0.6f;
+	private float startMoveAmt = 0.9f;
+	private float moveAmt00 = 0.45f;
+	private float moveAmt01 = 0.9f;
 
 	private float rotateAmt = 3f;
 

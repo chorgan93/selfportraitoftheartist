@@ -36,7 +36,7 @@ public class BgEffectS : MonoBehaviour {
 		fadingIn = false;
 		fadingOut = true;
 
-		myRenderer = GetComponent<Renderer>();
+		//myRenderer = GetComponent<Renderer>();
 
 		playerRef = Camera.main.transform;
 		playerStartPos = new Vector2(playerRef.position.x, playerRef.position.y);
@@ -48,7 +48,7 @@ public class BgEffectS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (inbetweenTime > 0){
+		/*if (inbetweenTime > 0){
 
 			inbetweenTime -= Time.deltaTime;
 
@@ -106,7 +106,7 @@ public class BgEffectS : MonoBehaviour {
 			}
 
 		}
-		}
+		}**/
 
 		// scroll effect
 		playerCurrentPos = new Vector2(playerRef.position.x, playerRef.position.y);

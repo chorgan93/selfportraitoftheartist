@@ -409,13 +409,13 @@ public class ProjectileS : MonoBehaviour {
 
 		enemyRef.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
 
-		SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
-		hitRender.color = bloodCol;
+		//SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
+		//hitRender.color = bloodCol;
 
 		if (bigBlood){
-			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*2f;
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*2.25f;
 		}else{
-			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.3f;
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.75f;
 		}
 
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 35570d6f4ef584d5e84c40451a878218
-timeCreated: 1477517883
+timeCreated: 1477693755
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -41,6 +41,8 @@ TextureImporter:
     21300068: ChurchWalls_8
     21300070: ChurchWalls_9
     21300072: ChurchWalls_10
+    21300074: ChurchWalls_11
+    21300076: ChurchWalls_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -64,7 +66,7 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 256
+  maxTextureSize: 2048
   textureSettings:
     filterMode: 0
     aniso: -1
@@ -125,8 +127,8 @@ TextureImporter:
     - name: ChurchWalls_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
+        x: 768
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -135,7 +137,7 @@ TextureImporter:
     - name: ChurchWalls_4
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 512
         width: 256
         height: 256
@@ -145,7 +147,7 @@ TextureImporter:
     - name: ChurchWalls_5
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 512
         width: 256
         height: 256
@@ -155,8 +157,8 @@ TextureImporter:
     - name: ChurchWalls_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 512
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -165,8 +167,8 @@ TextureImporter:
     - name: ChurchWalls_7
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 768
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -175,7 +177,7 @@ TextureImporter:
     - name: ChurchWalls_8
       rect:
         serializedVersion: 2
-        x: 512
+        x: 0
         y: 256
         width: 256
         height: 256
@@ -185,8 +187,8 @@ TextureImporter:
     - name: ChurchWalls_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 256
+        y: 256
         width: 256
         height: 256
       alignment: 0
@@ -195,7 +197,27 @@ TextureImporter:
     - name: ChurchWalls_10
       rect:
         serializedVersion: 2
-        x: 256
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ChurchWalls_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ChurchWalls_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 256
         height: 256

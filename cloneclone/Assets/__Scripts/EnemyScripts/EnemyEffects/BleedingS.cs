@@ -86,8 +86,10 @@ public class BleedingS : MonoBehaviour {
 	public void SpawnBlood  (Vector3 spawnDir, bool bigBlood = false){
 
 		if (hitPrefabs.Length > 0){
+			Vector3 spawnPos = transform.position;
+			spawnPos.z -= 1f;
 			Vector3 hitRotate = new Vector3(0, 0, Random.insideUnitCircle.x*25f);
-			Instantiate (hitPrefabs[currentHit], transform.position, Quaternion.Euler(hitRotate));
+			Instantiate (hitPrefabs[currentHit], spawnPos, Quaternion.Euler(hitRotate));
 			currentHit++;
 			if (currentHit > hitPrefabs.Length-1){
 				currentHit = 0;

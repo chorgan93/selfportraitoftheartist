@@ -125,12 +125,14 @@ public class ControlManagerS : MonoBehaviour {
 		else{
 			return ( Input.GetKey(KeyCode.Space));
 		}
+		return false;
 
 	}
 
 	public bool FamiliarControl(){
 
 		if (ControllerAttached()){
+			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 			return (Input.GetButton("ShootButton"+platformType));
 			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
@@ -191,6 +193,7 @@ public class ControlManagerS : MonoBehaviour {
 		
 		if (ControllerAttached()){
 			
+			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 			//return (Input.GetButton("DashButton"+platformType));
 			

@@ -20,6 +20,11 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	private SpriteRenderer myRenderer;
 	private Color currentCol;
 
+	public bool loopFade = false;
+	public float loopDelay = 0.3f;
+	private float loopDelayCountdown;
+	public float loopAlphaReset;
+
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +37,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 		myRenderer.color = currentCol;
 
 		startDelayFadeTime = delayFadeTime;
+		loopDelayCountdown = loopDelay;
 
 	
 	}
@@ -62,6 +68,17 @@ public class FadeSpriteObjectS : MonoBehaviour {
 			}
 			myRenderer.color = currentCol;
 		}
+		}else{
+			if (loopFade){
+				loopDelayCountdown -= Time.deltaTime;
+				if (loopDelayCountdown <= 0){
+					stopFading = false;
+					Color resetCol = myRenderer.color;
+					resetCol.a = loopAlphaReset;
+					myRenderer.color = resetCol;
+					loopDelayCountdown = loopDelay;
+				}
+			}
 		}
 
 	

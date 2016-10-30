@@ -39,6 +39,9 @@ public class BloodS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (!initialized){
+			Initialize();
+		}else{
 		if (waitToAppearCountdown > 0){
 			waitToAppearCountdown -= Time.deltaTime;
 		}
@@ -66,6 +69,7 @@ public class BloodS : MonoBehaviour {
 				}                                       
 			}
 		}
+		}
 	
 	}
 
@@ -74,7 +78,7 @@ public class BloodS : MonoBehaviour {
 		if (!initialized){
 
 			myRenderer = GetComponent<SpriteRenderer>();
-			myRenderer.enabled = false;
+			//myRenderer.enabled = false;
 			myRenderer.color = startColor;
 			myRenderer.sprite = bloodSprites[0];
 

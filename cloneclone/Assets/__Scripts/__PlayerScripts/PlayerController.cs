@@ -802,8 +802,7 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 
-			muzzleFlare.Fire(currentAttackS.knockbackTime, savedDir, newProjectile.transform.localScale.x,
-			                 equippedWeapon.swapColor);
+			//muzzleFlare.Fire(currentAttackS.knockbackTime, savedDir, newProjectile.transform.localScale.x, equippedWeapon.swapColor);
 
 			if (queuedAttackDelays.Count > 0){
 				attackDelay = queuedAttackDelays[0];
