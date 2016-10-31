@@ -4,7 +4,7 @@ using System.Collections;
 public class BloodParticleEffect : MonoBehaviour {
 
 	private SpriteRenderer mainBlood;
-	//public SpriteRenderer[] bloodBits;
+	public SpriteRenderer[] bloodBits;
 	//private Rigidbody[] bloodRigids;
 	//private TrailRenderer[] bloodTrails;
 	public float startSpeedMin = 1200;
@@ -26,8 +26,8 @@ public class BloodParticleEffect : MonoBehaviour {
 
 		changeColorCountdown = changeColorTime;
 
-		/*bloodRigids = new Rigidbody[bloodBits.Length];
-		bloodTrails = new TrailRenderer[bloodBits.Length];
+		// bloodRigids = new Rigidbody[bloodBits.Length];
+	//	bloodTrails = new TrailRenderer[bloodBits.Length];
 
 		Vector3 rotateAmtV = Vector3.zero;
 		int currentIndex = 0;
@@ -35,10 +35,20 @@ public class BloodParticleEffect : MonoBehaviour {
 		foreach(SpriteRenderer b in bloodBits){
 			rotateAmtV.z = Random.insideUnitCircle.x * rotateAmt;
 			b.transform.Rotate(rotateAmtV);
-			currentVel = b.transform.up*(Random.Range(startSpeedMin, startSpeedMax))*Time.unscaledDeltaTime*dir;
-			bloodTrails[currentIndex] = b.GetComponent<TrailRenderer>();
-			bloodRigids[currentIndex] = b.GetComponent<Rigidbody>();
-			bloodRigids[currentIndex].AddForce(currentVel, ForceMode.Impulse);
+			currentVel = b.transform.up*(Random.Range(startSpeedMin, startSpeedMax))*dir;
+			if (Mathf.Abs(rotateAmtV.z) < rotateAmt/2f){
+				currentVel*=0.25f;
+			}else{
+				currentVel*=1.5f;
+				Vector3 newScale = b.transform.localScale;
+				newScale.x *= 1.15f;
+				newScale.y *= 1.5f;
+				b.transform.localScale=newScale;
+			}
+			b.transform.position += currentVel;
+			//bloodTrails[currentIndex] = b.GetComponent<TrailRenderer>();
+		//	bloodRigids[currentIndex] = b.GetComponent<Rigidbody>();
+		//	bloodRigids[currentIndex].AddForce(currentVel, ForceMode.Impulse);
 			currentIndex++;
 			dir++;
 			if (dir > 2){
@@ -47,7 +57,7 @@ public class BloodParticleEffect : MonoBehaviour {
 			if (dir == 0){
 				dir = 1;
 			}
-		}**/
+		}
 	
 	}
 	
@@ -70,14 +80,14 @@ public class BloodParticleEffect : MonoBehaviour {
 			Color newCol = possColors[Mathf.RoundToInt(Random.Range(0, possColors.Length-1))];
 			newCol.a = mainBlood.color.a;
 			mainBlood.color = newCol;
-			/*int currentIndex = 0;
+			int currentIndex = 0;
 			foreach (SpriteRenderer b in bloodBits){
 				newCol = possColors[Mathf.RoundToInt(Random.Range(0, possColors.Length-1))];
-				newCol.a = mainBlood.color.a;
+				newCol.a = b.color.a;
 				b.color = newCol;
-				bloodTrails[currentIndex].material.color = newCol;
+				//bloodTrails[currentIndex].material.color = newCol;
 				currentIndex++;
-			}**/
+			}
 		}
 
 	

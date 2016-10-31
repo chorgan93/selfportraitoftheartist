@@ -11,7 +11,9 @@ public class ZControlTargetS : MonoBehaviour {
 		if (myTargetRef == null){
 			myTargetRef = transform;
 		}
+		if (ZControllerS.Z != null){
 		ZControllerS.Z.AddTarget(this);
+		}
 	
 	}
 }
