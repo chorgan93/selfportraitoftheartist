@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
 	private float _dashCost = 2f;
-	private float _dodgeCost = 1f;
+	private float _dodgeCost = 1.75f;
 
 	private bool _isShooting;
 	private bool _lastInClip;
