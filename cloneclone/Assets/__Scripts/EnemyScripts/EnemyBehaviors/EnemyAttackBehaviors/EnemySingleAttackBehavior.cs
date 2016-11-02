@@ -89,7 +89,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		bool canContinue = true;
 
 		if (rangeCheck != null){
-			if (!rangeCheck.PlayerInRange()){
+			if (!rangeCheck.currentTarget){
 				canContinue = false;
 			}
 		}
@@ -101,7 +101,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	private void SetAttackDirection(){
 
 		if (trackingTime >= 0){
-			attackDirection = (myEnemyReference.GetPlayerReference().transform.position - transform.position).normalized;
+			attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 			attackDirection.z = 0;
 			myEnemyReference.SetTargetReference(attackDirection);
 		}else{

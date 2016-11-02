@@ -30,7 +30,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 			chaseTimeCountdown -= Time.deltaTime;
 
 			if (chaseEndRange != null){
-				if (chaseEndRange.PlayerInRange()){
+				if (chaseEndRange.currentTarget!=null){
 					EndAction();
 				}
 			}
@@ -69,8 +69,13 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	private void DoMovement(){
 		
 		if (!myEnemyReference.hitStunned){
-			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetPlayerReference().transform.position
+			if (!myEnemyReference.GetTargetReference()){
+				myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
 		                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
+			}else{
+				myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetPlayerReference().transform.position
+				                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
+			}
 		}
 		
 	}

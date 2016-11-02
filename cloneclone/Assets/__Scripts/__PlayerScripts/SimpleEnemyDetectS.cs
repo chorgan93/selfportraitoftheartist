@@ -102,7 +102,7 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (!otherEnemy.isDead){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
 				enemiesInRange.Add(otherEnemy);
 			}
 

@@ -74,7 +74,7 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 		}
 
 		if (recenterMin > 0){
-			recenterTarget = myEnemyReference.GetPlayerReference().transform.position;
+			recenterTarget = myEnemyReference.GetTargetReference().transform.position;
 			recenterCountdown = Random.Range(recenterMin,recenterMax);
 		}
 
@@ -82,7 +82,7 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 			as GameObject;
 		currentAttackS = currentAttackPrefab.GetComponent<EnemyProjectileS>();
 		currentAttackS.AllowMultiHit();
-		currentAttackS.Fire((myEnemyReference.GetPlayerReference().transform.position
+		currentAttackS.Fire((myEnemyReference.GetTargetReference().transform.position
 		                     -transform.position).normalized, myEnemyReference);
 		currentAttackPrefab.transform.localPosition = Vector3.zero;
 		
@@ -118,13 +118,13 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 			if (recenterMin > 0){
 				recenterCountdown -= Time.deltaTime;
 				if (recenterCountdown <= 0){
-					recenterTarget = myEnemyReference.GetPlayerReference().transform.position;
+					recenterTarget = myEnemyReference.GetTargetReference().transform.position;
 					recenterCountdown = Random.Range(recenterMin,recenterMax);
 				}
 				myEnemyReference.myRigidbody.AddForce((recenterTarget
 				                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
 			}else{
-			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetPlayerReference().transform.position
+			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
 			                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
 			}
 		}

@@ -127,7 +127,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
 	private void SetAttackDirection(){
 
-		attackDirection = (myEnemyReference.GetPlayerReference().transform.position - transform.position).normalized;
+		attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 		attackDirection.z = 0;
 
 	}

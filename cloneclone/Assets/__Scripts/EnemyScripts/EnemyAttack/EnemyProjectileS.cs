@@ -8,6 +8,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private SpriteRenderer _myRenderer;
 	private Renderer _myRenderer3D;
 	private EnemyS _myEnemy;
+	private bool isFriendly = false;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -132,6 +133,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 		if (enemyReference != null){
 			_myEnemy = enemyReference;
+			isFriendly = _myEnemy.isFriendly;
 		}
 
 		if (!aoe){
@@ -222,7 +224,8 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	
 	void OnTriggerEnter(Collider other){
-		
+
+		if (!isFriendly){
 		if (other.gameObject.tag == "Player" && (!hitPlayer || (hitPlayer && allowMultiHit))){
 
 			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
@@ -260,6 +263,37 @@ public class EnemyProjectileS : MonoBehaviour {
 			hitPlayer = true;
 			}
 		}
+		}
+		else{
+
+			if (other.gameObject.tag == "Enemy"){
+				
+				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+				
+				if (!hitEnemy.isFriendly){
+
+					
+					hitEnemy.TakeDamage
+						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+						 damage, 1f, 1.5f);
+					
+					if (hitSoundObj){
+						Instantiate(hitSoundObj);
+					}
+					
+					if (!isPiercing){
+						
+						_rigidbody.velocity = Vector3.zero;
+						
+					}
+					
+					
+					HitEffectEnemy(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
+				}
+				
+			}
+
+		}
 		
 	}
 
@@ -279,6 +313,31 @@ public class EnemyProjectileS : MonoBehaviour {
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.3f;
 		}else{
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.8f;
+		}
+		
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
+		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	void HitEffectEnemy(EnemyS enemyRef, Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
+		Vector3 hitObjSpawn = spawnPos;
+		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
+			as GameObject;
+		
+		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
+		if (transform.localScale.y < 0){
+			newHitObj.transform.Rotate(new Vector3(0,0,180f));
+		}
+		
+		enemyRef.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
+		
+		//SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
+		//hitRender.color = bloodCol;
+		
+		if (bigBlood){
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*2.25f;
+		}else{
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.75f;
 		}
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;

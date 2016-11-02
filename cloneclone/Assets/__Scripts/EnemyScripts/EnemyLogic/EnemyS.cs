@@ -18,6 +18,7 @@ public class EnemyS : MonoBehaviour {
 
 	[Header("Enemy Properties")]
 	public string enemyName = "sickman";
+	public bool isFriendly = false;
 	public float maxHealth;
 	public int sinAmt;
 	public Color bloodColor = Color.red;
@@ -196,7 +197,7 @@ public class EnemyS : MonoBehaviour {
 
 		if (!_isDead){
 			ManageFacing();
-			ManageZ();
+		//	ManageZ();
 		}
 		FlashFrameManager();
 
@@ -327,8 +328,14 @@ public class EnemyS : MonoBehaviour {
 		}
 		// first, check active state
 		if (!_isActive){
-			if (activationDetect.PlayerInRange()){
-				_isActive = true;
+			if (!isFriendly){
+				if (activationDetect.PlayerInRange()){
+					_isActive = true;
+				}
+			}else{
+				if (activationDetect.currentTarget != null){
+					_isActive = true;
+				}
 			}
 		}
 
@@ -474,8 +481,8 @@ public class EnemyS : MonoBehaviour {
 	private void ManageFacing(){
 		Vector3 newSize = startSize;
 		if (!_hitStunned || !_isCritical){
-		if (_facePlayer && GetPlayerReference() != null){
-			float playerX = GetPlayerReference().transform.position.x;
+		if (_facePlayer && GetTargetReference() != null){
+			float playerX = GetTargetReference().transform.position.x;
 			if (playerX < transform.position.x){
 				newSize.x *= -1f;
 				transform.localScale = newSize;
@@ -505,24 +512,17 @@ public class EnemyS : MonoBehaviour {
 		}
 	}
 
-	private void ManageZ(){
-		if (GetPlayerReference() != null){
-			Vector3 fixPos = transform.position;
-			Vector3 playerPos = GetPlayerReference().transform.position;
-			if (playerPos.y < myShadow.transform.position.y){
-				fixPos.z = playerPos.z + Z_POS_BEHIND_PLAYER;
-			}else{
-				fixPos.z = playerPos.z + Z_POS_FRONT_PLAYER;
-			}
-			transform.position = fixPos;
-		}
-	}
-
 
 	//_______________________________________________PUBLIC METHODS
 	public void CheckBehaviorStateSwitch(bool dont){
 
 		CheckStates(dont);
+
+	}
+
+	public Transform GetTargetReference(){
+
+		return activationDetect.currentTarget;
 
 	}
 

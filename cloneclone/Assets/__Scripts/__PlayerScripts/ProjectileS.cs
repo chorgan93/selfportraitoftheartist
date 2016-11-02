@@ -351,47 +351,49 @@ public class ProjectileS : MonoBehaviour {
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (stopOnEnemyContact && _myPlayer != null){
-				if (!_myPlayer.myStats.PlayerIsDead()){
-					_myPlayer.myRigidbody.velocity *= 0.4f;
+			if (!hitEnemy.isFriendly){
+
+				if (stopOnEnemyContact && _myPlayer != null){
+					if (!_myPlayer.myStats.PlayerIsDead()){
+						_myPlayer.myRigidbody.velocity *= 0.4f;
+					}
 				}
-			}
-
-
+	
+	
 				float actingKnockbackSpeed = knockbackSpeed;
-
-
+	
+	
 				if (isDelayAttack){
 					actingKnockbackSpeed *= delayAttackEnemyKnockbackMult;
 				}
-
+	
 				else if (isDashAttack){
 					actingKnockbackSpeed *= dashAttackKnockbackMult;
 				}
+	
+				hitEnemy.TakeDamage
+					(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+					 dmg, stunMult, critDmg*SolAugMult());
 
-			hitEnemy.TakeDamage
-				(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
-				 dmg, stunMult, critDmg*SolAugMult());
-
-			if (hitSoundObj){
-				Instantiate(hitSoundObj);
+				if (hitSoundObj){
+					Instantiate(hitSoundObj);
+				}
+	
+				if (!isPiercing){
+	
+					_rigidbody.velocity = Vector3.zero;
+	
+				}
+	
+				if (_myPlayer.playerAug.lunaAug){
+					_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
+				}else{
+					_myPlayer.myStats.RecoverCharge(absorbPercent);
+				}
+	
+	
+				HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			}
-
-			if (!isPiercing){
-
-				_rigidbody.velocity = Vector3.zero;
-
-			}
-
-			if (_myPlayer.playerAug.lunaAug){
-				_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
-			}else{
-				_myPlayer.myStats.RecoverCharge(absorbPercent);
-			}
-
-
-			HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
-			
 
 		}
 
