@@ -583,8 +583,10 @@ public class EnemyS : MonoBehaviour {
 		if (healthUIReference != null){
 			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);
 		}else{
+			if (GetPlayerReference()){
 			if (!GetPlayerReference().myLockOn.lockedOn && _currentHealth > 0){
 				GetPlayerReference().myLockOn.enemyHealthUI.NewTarget(this, damageTaken);
+			}
 			}
 		}
 

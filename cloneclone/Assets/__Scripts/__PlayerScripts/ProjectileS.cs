@@ -10,6 +10,7 @@ public class ProjectileS : MonoBehaviour {
 	public GameObject soundObj;
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
+	public GameObject hitObjInanimate;
 	public GameObject endObj;
 	public bool useAltAnim = false;
 
@@ -347,6 +348,12 @@ public class ProjectileS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 
+		if (other.gameObject.tag == "Destructible"){
+			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
+			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f);
+			HitEffectDestructible(destructible.myRenderer, other.transform.position);
+		}
+
 		if (other.gameObject.tag == "Enemy"){
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
@@ -401,6 +408,7 @@ public class ProjectileS : MonoBehaviour {
 
 	void HitEffect(EnemyS enemyRef, Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
 		Vector3 hitObjSpawn = spawnPos;
+		hitObjSpawn.z -= 1f;
 		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
 			as GameObject;
 
@@ -420,6 +428,29 @@ public class ProjectileS : MonoBehaviour {
 			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.75f;
 		}
 
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
+		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	void HitEffectDestructible(SpriteRenderer renderRef, Vector3 spawnPos,bool bigBlood = false){
+		Vector3 hitObjSpawn = spawnPos;
+		hitObjSpawn.z -= 1f;
+		GameObject newHitObj = Instantiate(hitObjInanimate, hitObjSpawn, transform.rotation)
+			as GameObject;
+		
+		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
+		if (transform.localScale.y < 0){
+			newHitObj.transform.Rotate(new Vector3(0,0,180f));
+		}
+		
+		
+		
+		if (bigBlood){
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*2.25f;
+		}else{
+			newHitObj.transform.localScale = myRenderer.transform.localScale*transform.localScale.x*1.75f;
+		}
+		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;
 	}

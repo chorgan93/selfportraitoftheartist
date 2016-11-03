@@ -263,14 +263,42 @@ public class EnemyProjectileS : MonoBehaviour {
 			hitPlayer = true;
 			}
 		}
+			if (other.gameObject.tag == "Enemy"){
+				
+				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+				
+				if (hitEnemy.isFriendly && !hitEnemy.isDead){
+					
+					
+					hitEnemy.TakeDamage
+						(selfKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+						 0, 1f, 1.5f);
+					
+					if (hitSoundObj){
+						Instantiate(hitSoundObj);
+					}
+					
+					if (!isPiercing){
+						
+						_rigidbody.velocity = Vector3.zero;
+						
+					}
+					
+					
+					HitEffectEnemy(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
+				}
+				
+			}
+			
 		}
+
 		else{
 
 			if (other.gameObject.tag == "Enemy"){
 				
 				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 				
-				if (!hitEnemy.isFriendly){
+				if (!hitEnemy.isFriendly && !hitEnemy.isDead){
 
 					
 					hitEnemy.TakeDamage
@@ -310,9 +338,9 @@ public class EnemyProjectileS : MonoBehaviour {
 		p.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
 		
 		if (bigBlood){
-			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.3f;
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x;
 		}else{
-			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.8f;
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.75f;
 		}
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
@@ -334,10 +362,11 @@ public class EnemyProjectileS : MonoBehaviour {
 		//SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
 		//hitRender.color = bloodCol;
 		
+		
 		if (bigBlood){
-			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*2.25f;
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x;
 		}else{
-			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.75f;
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.75f;
 		}
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
