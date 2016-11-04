@@ -10,7 +10,11 @@ public class InGameCinemaCameraS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+		if (newPoi != null){
 		CameraFollowS.F.SetNewPOI(newPoi);
+		}else{
+			CameraFollowS.F.ResetPOI();
+		}
 
 	}
 }

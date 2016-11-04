@@ -10,6 +10,7 @@ public class ActivateOnEnemyDefeatS : MonoBehaviour {
 
 	public List<EnemyS> checkEnemies;
 	public List<EnemySpawnerS> checkEnemySpawners;
+	public List<DestructibleItemS> checkDestruction;
 	int defeatedEnemies = 0;
 
 	private bool turnedOn = false;
@@ -30,8 +31,13 @@ public class ActivateOnEnemyDefeatS : MonoBehaviour {
 					defeatedEnemies++;
 				}
 			}
+			foreach (DestructibleItemS d in checkDestruction){
+				if (d.destroyed){
+					defeatedEnemies++;
+				}
+			}
 
-			if (defeatedEnemies >= (checkEnemies.Count+checkEnemySpawners.Count)){
+			if (defeatedEnemies >= (checkEnemies.Count+checkEnemySpawners.Count+checkDestruction.Count)){
 				TurnOnOff();
 			}
 		}
