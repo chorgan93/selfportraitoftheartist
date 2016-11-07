@@ -66,7 +66,11 @@ public class ZControllerS : MonoBehaviour {
 
 		for(int j = 0; j < currentList.Count; j++){
 			placePos = currentList[j].transform.position;
+			if (currentList.Count > 1){
 			placePos.z = (minZ + (maxZ-minZ))*((j*1f)/((currentList.Count-1)*1f));
+			}else{
+				placePos.z = minZ;
+			}
 			currentList[j].transform.position = placePos;
 		}
 

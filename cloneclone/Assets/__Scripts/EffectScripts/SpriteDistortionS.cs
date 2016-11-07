@@ -16,7 +16,7 @@ public class SpriteDistortionS : MonoBehaviour {
 
 		mySprite = GetComponent<SpriteRenderer>();
 		parentSprite = transform.parent.GetComponent<SpriteRenderer>();
-		mySprite.material.SetColor("_FlashColor", parentSprite.color);
+	//	mySprite.material.SetColor("_FlashColor", parentSprite.color);
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
 
