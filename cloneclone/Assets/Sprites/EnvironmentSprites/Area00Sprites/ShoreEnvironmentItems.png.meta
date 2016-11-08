@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 69b0770f3fc5740fb8d29cc9d297cce9
-timeCreated: 1478296773
+timeCreated: 1478566505
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,18 @@ TextureImporter:
     21300026: ShoreEnvironmentItems_6
     21300028: ShoreEnvironmentItems_7
     21300030: ShoreEnvironmentItems_8
+    21300032: ShoreEnvironmentItems_9
+    21300034: ShoreEnvironmentItems_10
+    21300036: ShoreEnvironmentItems_11
+    21300038: ShoreEnvironmentItems_12
+    21300040: ShoreEnvironmentItems_13
+    21300042: ShoreEnvironmentItems_14
+    21300044: ShoreEnvironmentItems_15
+    21300046: ShoreEnvironmentItems_16
+    21300048: ShoreEnvironmentItems_17
+    21300050: ShoreEnvironmentItems_18
+    21300052: ShoreEnvironmentItems_19
+    21300054: ShoreEnvironmentItems_20
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,7 +82,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -80,7 +92,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 512
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -90,7 +102,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 512
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -99,8 +111,8 @@ TextureImporter:
     - name: ShoreEnvironmentItems_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 768
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -109,8 +121,8 @@ TextureImporter:
     - name: ShoreEnvironmentItems_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 1024
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -119,8 +131,8 @@ TextureImporter:
     - name: ShoreEnvironmentItems_5
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
+        x: 0
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -129,8 +141,8 @@ TextureImporter:
     - name: ShoreEnvironmentItems_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 256
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -139,8 +151,8 @@ TextureImporter:
     - name: ShoreEnvironmentItems_7
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
+        x: 512
+        y: 768
         width: 256
         height: 256
       alignment: 0
@@ -149,7 +161,127 @@ TextureImporter:
     - name: ShoreEnvironmentItems_8
       rect:
         serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_9
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_12
+      rect:
+        serializedVersion: 2
         x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_18
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_19
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_20
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 256
         height: 256
