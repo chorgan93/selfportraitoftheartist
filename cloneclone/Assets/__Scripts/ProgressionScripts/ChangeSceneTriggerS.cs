@@ -14,6 +14,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	private bool examining = false;
 	private bool talkButtonDown = false;
 	private PlayerController pRef;
+	public bool doWakeUp = false;
 
 	void Start(){
 		if (openedSprite != null){
@@ -85,6 +86,10 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		loading = true;
 
 		SpawnPosManager.whereToSpawn = whereToSpawn;
+
+		if (doWakeUp){
+			PlayerController.doWakeUp = true;
+		}
 
 		if (requireExamine && doorNum > -1){
 			PlayerInventoryS.I.AddOpenDoor(doorNum);

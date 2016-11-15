@@ -96,6 +96,8 @@ public class PlayerController : MonoBehaviour {
 	private bool switchButtonUp;
 	private bool switchBuddyButtonUp;
 	private bool lockInputReset = false;
+	private float lockDownTime = 0f;
+	private float lockTurnOffThreshold = 0.5f;
 
 	// Status Properties
 	private bool _isStunned = false;
@@ -989,58 +991,53 @@ public class PlayerController : MonoBehaviour {
 		// figure out mouse control scheme (middle click & scroll wheel should work)
 		if (myControl.ControllerAttached()){
 
-			if (Mathf.Abs(myControl.RightHorizontal()) < 0.1f && Mathf.Abs(myControl.RightVertical()) < 0.1f){
-				lockInputReset = true;
-			}
-
 			if (_myLockOn.lockedOn){
 
-				if (!_lockButtonDown && myControl.LockOnButton()){
+				if (myDetect.allEnemiesInRange.Count <= 0){
 					_myLockOn.EndLockOn();
+					lockInputReset = false;
+				}else{
+
+				if (myControl.LockOnButton()){
 					_lockButtonDown = true;
-				}
-				
-				if (lockInputReset){
-					if (myDetect.allEnemiesInRange.Count > 1){
-						if (myControl.RightHorizontal() > 0){
-							int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
-							currentLockedEnemy++;
-							if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
-								currentLockedEnemy = 0;
-							}
-							_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
-								lockInputReset = false;
-							}
-							if (myControl.RightHorizontal() < 0){
-								int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
-								currentLockedEnemy--;
-								if (currentLockedEnemy < 0){
-									currentLockedEnemy = myDetect.allEnemiesInRange.Count-1;
-								}
-								_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
-								lockInputReset = false;
-							}
-						}
+					lockDownTime+=Time.deltaTime;
+					if (lockDownTime >= lockTurnOffThreshold){
+						_myLockOn.EndLockOn();
+							lockInputReset = false;
 					}
+				}else{
+					if (_lockButtonDown && lockDownTime < lockTurnOffThreshold && myDetect.allEnemiesInRange.Count > 1){
+						int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+						currentLockedEnemy++;
+						if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
+							currentLockedEnemy = 0;
+						}
+						_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+					}
+						lockDownTime = 0f;
+						_lockButtonDown = false;
+				}
+
+			}
 				
 			}else{
-				if ((myControl.LockOnButton() && !_lockButtonDown) || 
-				    (lockInputReset && (Mathf.Abs(myControl.RightHorizontal()) > 0.1f 
-				                    && Mathf.Abs(myControl.RightVertical()) > 0.1f))){
-					_isSprinting = false;
-					if (myDetect.allEnemiesInRange.Count > 0){
-						_myLockOn.LockOn(myDetect.closestEnemy);
-					}
-					if (myControl.LockOnButton()){
-						_lockButtonDown = true;
-					}else{
-						lockInputReset = false;
+				if (myControl.LockOnButton()){
+					_lockButtonDown = true;
+				}else{
+					if (_lockButtonDown && lockInputReset){
+						if (myDetect.allEnemiesInRange.Count > 0){
+							_myLockOn.LockOn(myDetect.closestEnemy);
+							_isSprinting = false;
+							lockDownTime = 0f;
+						}
+						_lockButtonDown = false;
 					}
 				}
 			}
 
 			if (!myControl.LockOnButton()){
 				_lockButtonDown = false;
+				lockInputReset = true;
 			}
 			
 		}

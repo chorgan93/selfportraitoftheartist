@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 69b0770f3fc5740fb8d29cc9d297cce9
-timeCreated: 1478655406
+timeCreated: 1479246960
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -33,6 +33,7 @@ TextureImporter:
     21300052: ShoreEnvironmentItems_19
     21300054: ShoreEnvironmentItems_20
     21300056: ShoreEnvironmentItems_21
+    21300058: ShoreEnvironmentItems_22
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -293,6 +294,16 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ShoreEnvironmentItems_22
+      rect:
+        serializedVersion: 2
+        x: 512
         y: 0
         width: 256
         height: 256
