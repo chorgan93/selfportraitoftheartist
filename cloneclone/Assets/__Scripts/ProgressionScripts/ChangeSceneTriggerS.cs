@@ -77,6 +77,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	}
 
 	void StartNextScene(){
+
+		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, pRef.equippedBuddies);
+
 		CameraEffectsS.E.SetNextScene(nextSceneString);
 		CameraEffectsS.E.FadeIn();
 		loading = true;

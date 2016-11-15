@@ -118,13 +118,13 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool BlockTrigger(){
 
-		if (ControllerAttached()){
+		/*if (ControllerAttached()){
 			//return (Input.GetButton("SwitchBuddyButton" + platformType));
 			return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
-		}
+		}**/
 		return false;
 
 	}
@@ -152,13 +152,15 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool BlockButton(){
 
-		if (ControllerAttached()){
+		/*if (ControllerAttached()){
 			//return (Input.GetButton("SwitchBuddyButton" + platformType));
 			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
-		}
+		}**/
+
+		return false;
 
 	}
 
@@ -293,8 +295,8 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
-			//return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
-			return (Input.GetButton("SwitchBuddyButton"+platformType));
+			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			//return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}
 		else{
 			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
@@ -374,11 +376,13 @@ public class ControlManagerS : MonoBehaviour {
 	public bool UseItemButton(){
 		//TODO add functionality for keyboard/mouse and linux
 		if (ControllerAttached()){
-			if (platformType == "Mac"){
+		/*	if (platformType == "Mac"){
 				return (Input.GetButton("UseItemButtonMac"));
 			}else{
 				return (Input.GetAxis("UseItemAxisPC") < -0.1f);
-			}
+			}*/
+			
+			return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}else{
 			return false;
 		}

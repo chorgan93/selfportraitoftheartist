@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ed78b9e45c0274d9190ea837c5314db0
-timeCreated: 1468882209
+timeCreated: 1478661675
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -100,8 +100,8 @@ TextureImporter:
     - name: PC Movement_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -110,7 +110,7 @@ TextureImporter:
     - name: PC Movement_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -120,7 +120,7 @@ TextureImporter:
     - name: PC Movement_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -130,8 +130,8 @@ TextureImporter:
     - name: PC Movement_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -140,8 +140,8 @@ TextureImporter:
     - name: PC Movement_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -150,7 +150,7 @@ TextureImporter:
     - name: PC Movement_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -160,8 +160,8 @@ TextureImporter:
     - name: PC Movement_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -170,8 +170,8 @@ TextureImporter:
     - name: PC Movement_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -180,7 +180,27 @@ TextureImporter:
     - name: PC Movement_11
       rect:
         serializedVersion: 2
-        x: 128
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement_13
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 0
         width: 64
         height: 64

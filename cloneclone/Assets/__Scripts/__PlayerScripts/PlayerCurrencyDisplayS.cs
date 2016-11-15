@@ -99,6 +99,10 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	
 	}
 
+	public void DeathPenalty(){
+		AddCurrency(Mathf.RoundToInt(-0.01f*PlayerCollectionS.currencyCollected)*10);
+	}
+
 	public void AddCurrency (int currencyToAdd){
 		PlayerCollectionS.currencyCollected += currencyToAdd;
 		currencyTotalAmt = PlayerCollectionS.currencyCollected;

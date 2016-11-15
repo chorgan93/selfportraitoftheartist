@@ -24,6 +24,8 @@ public class BloodS : MonoBehaviour {
 	private SpriteRenderer myRenderer;
 	private bool initialized = false;
 
+	public int bloodSpriteNum = 0;
+
 	// Use this for initialization
 	void Start () {
 
@@ -89,6 +91,8 @@ public class BloodS : MonoBehaviour {
 
 			waitToAppearCountdown = waitToAppearTime;
 			currentFlashFrame = startFlashAmt;
+
+			PlayerInventoryS.I.dManager.AddBlood(Application.loadedLevel, transform.position, bloodSpriteNum);
 
 			initialized = true;
 		}

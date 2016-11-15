@@ -69,7 +69,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	private void DoMovement(){
 		
 		if (!myEnemyReference.hitStunned){
-			if (!myEnemyReference.GetTargetReference()){
+			if (myEnemyReference.GetTargetReference()){
 				myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
 		                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
 			}else{

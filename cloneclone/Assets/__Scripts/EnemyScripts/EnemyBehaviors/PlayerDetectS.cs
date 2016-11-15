@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerDetectS : MonoBehaviour {
 
-	private List<GameObject> playerList = new List<GameObject>();
+	public List<GameObject> playerList = new List<GameObject>();
 	private List<EnemyS> enemyList = new List<EnemyS>();
 	
 	private Transform _currentTarget;
@@ -46,7 +46,12 @@ public class PlayerDetectS : MonoBehaviour {
 
 		if (!keepTrackOfEnemies){
 			if (playerReference != null){
+				if (playerList.Count > 0){
 				_currentTarget = playerReference.transform;
+				}
+				else{
+					_currentTarget = null;
+				}
 			}
 		}else{
 			if (enemyList.Count > 0){
@@ -91,6 +96,7 @@ public class PlayerDetectS : MonoBehaviour {
 	}
 
 	public bool PlayerInRange(){
+
 
 		return (playerList.Count > 0);
 

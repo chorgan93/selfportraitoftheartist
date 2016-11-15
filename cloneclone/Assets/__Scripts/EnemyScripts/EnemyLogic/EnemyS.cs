@@ -251,9 +251,10 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
-		_currentHealth = maxHealth;
-		_isDead = false;
-		_isActive = false;
+		if (!_isDead){
+			_currentHealth = maxHealth;
+			_isActive = false;
+		}
 
 		startSize = transform.localScale;
 
@@ -466,7 +467,9 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	private void EndAllBehaviors(){
+		if (_currentState != null){
 		_currentState.EndBehavior();
+		}
 	}
 
 	private void FlashFrameManager(){
@@ -638,6 +641,7 @@ public class EnemyS : MonoBehaviour {
 			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
+			_myAnimator.SetFloat("DeathSpeed", 1f);
 			//_myCollider.enabled = false;
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
@@ -656,6 +660,27 @@ public class EnemyS : MonoBehaviour {
 		}
 
 
+
+	}
+
+	public void KillWithoutXP(){
+
+		if (!_initialized){
+			Initialize();
+		}
+
+		_currentHealth = 0;
+		_isDead = true;
+		Stun (0);
+		EndAllBehaviors();
+		_myAnimator.SetLayerWeight(1, 0f);
+		_myAnimator.SetBool("Death", true);
+		_myAnimator.SetFloat("DeathSpeed", 10f);
+		currentKnockbackCooldown = knockbackTime;
+		gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
+		_myRigidbody.velocity = Vector3.zero;
+		transform.position = new Vector3(transform.position.x, transform.position.y, ENEMY_DEATH_Z);
+		myRenderer.material = startMaterial;
 
 	}
 

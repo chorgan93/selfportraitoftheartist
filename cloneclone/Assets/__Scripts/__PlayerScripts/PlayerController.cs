@@ -275,9 +275,7 @@ public class PlayerController : MonoBehaviour {
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
 
-		_playerAug = GetComponent<PlayerAugmentsS>();
-		_playerAug.SetPlayerRef(this);
-
+		PlayerInventoryS.I.dManager.SpawnBlood();
 		//_specialFlash = CameraEffectsS.E.specialFlash;
 
 		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
@@ -293,6 +291,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		equippedWeapon = equippedWeapons[_currentParadigm];
+
+		
+		_playerAug = GetComponent<PlayerAugmentsS>();
+		_playerAug.SetPlayerRef(this);
+
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}

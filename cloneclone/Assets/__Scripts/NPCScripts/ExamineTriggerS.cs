@@ -25,6 +25,8 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int inventoryNum = -1;
 	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
+	public BuddyS buddyToGive;
+	public PlayerWeaponS mantraToGive;
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
@@ -38,7 +40,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void Start () {
 
-		if (inventoryNum >= 0){
+		if (inventoryNum >= 0 || buddyToGive || mantraToGive){
 			CheckInventory();
 		}
 
@@ -142,6 +144,27 @@ public class ExamineTriggerS : MonoBehaviour {
 							if (inventoryNum >= -1){
 								AddPickup();
 							}
+
+							if (buddyToGive){
+								PlayerInventoryS.I.unlockedBuddies.Add(buddyToGive);
+								if (pRef.equippedBuddies.Count < 2){
+									pRef.equippedBuddies.Add(buddyToGive.gameObject);
+									if (pRef.equippedWeapons.Count < 2){
+										pRef.equippedWeapons.Add(pRef.EquippedWeapon());
+										pRef.subWeapons.Add(pRef.EquippedWeaponAug());
+									}
+								}
+							}
+							if (mantraToGive){
+								PlayerInventoryS.I.unlockedWeapons.Add(mantraToGive);
+								if (pRef.equippedWeapons.Count < 2){
+									pRef.equippedWeapons.Add(mantraToGive);
+									pRef.subWeapons.Add(mantraToGive);
+									if (pRef.equippedBuddies.Count < 2){
+										pRef.equippedBuddies.Add(pRef.equippedBuddies[0]);
+									}
+								}
+							}
 	
 							if (unlocking){
 								turnOffBarrier.TurnOff();
@@ -164,6 +187,17 @@ public class ExamineTriggerS : MonoBehaviour {
 	}
 
 	private void CheckInventory () {
+
+		if (mantraToGive){
+			if (PlayerInventoryS.I.unlockedWeapons.Contains(mantraToGive)){
+				gameObject.SetActive(false);
+			}
+		}
+		if (buddyToGive){
+			if (PlayerInventoryS.I.unlockedBuddies.Contains(buddyToGive)){
+				gameObject.SetActive(false);
+			}
+		}
 
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach (int i in PlayerInventoryS.I.collectedItems){

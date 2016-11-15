@@ -46,7 +46,7 @@ public class EnemySpawnerS : MonoBehaviour {
 				parentClear.AddClear();
 			}
 			if (enemySpawnID > -1){
-				PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID);
+				PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID, currentEnemyReference.transform.position);
 			}
 		}
 	
@@ -56,8 +56,7 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		float chanceEnemySpawns = Random.Range(0f, 1f);
 
-		if (chanceEnemySpawns <= chanceToSpawn && 
-		    (enemySpawnID < 0 || (enemySpawnID > -1 && !PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)))){
+		if (chanceEnemySpawns <= chanceToSpawn){
 	
 			int enemyToSpawn = Mathf.RoundToInt(Random.Range(0, enemyPool.Length));
 	
@@ -67,6 +66,12 @@ public class EnemySpawnerS : MonoBehaviour {
 			currentEnemyReference = newEnemy.GetComponent<EnemyS>();
 	
 			newEnemy.transform.parent = transform;
+
+			if (enemySpawnID > -1 && PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)){
+				currentEnemyReference.transform.position = PlayerInventoryS.I.dManager.enemiesDefeatedPos
+					[PlayerInventoryS.I.dManager.enemiesDefeated.IndexOf(enemySpawnID)];
+				currentEnemyReference.KillWithoutXP();
+			}
 
 		}else{
 			didNotSpawnEnemy = true;

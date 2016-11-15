@@ -45,8 +45,13 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	
 	private void InitializeAction(){
 
-		if (poi == null){
-			poi = myEnemyReference.GetTargetReference().gameObject;
+		if (poi == null || poi == myEnemyReference.gameObject){
+			if (myEnemyReference.GetTargetReference() != null){
+				poi = myEnemyReference.GetTargetReference().gameObject;
+			}
+			else{
+				poi = myEnemyReference.gameObject;
+			}
 		}
 		
 		if (wanderTimeFixed > 0){

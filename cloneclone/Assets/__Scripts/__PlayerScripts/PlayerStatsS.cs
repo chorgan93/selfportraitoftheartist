@@ -63,7 +63,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________ATTACK
 	private float _baseStrength = 1;
 	private float _addedStrength = 0; // (upgradeable)
-	public float strengthAmt { get { return (_baseStrength+_addedStrength);}}
+	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
 
 	
 	private float _baseCrit = 0;
@@ -324,7 +324,7 @@ public class PlayerStatsS : MonoBehaviour {
 					_addedCharge+=10f;
 				}
 				if (i == 3){
-					_addedDefense++;
+					_addedStrength++;
 				}
 				if (i == 4){
 					_currentChargeRecoverLv++;
@@ -351,7 +351,7 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedCharge+=10f;
 		}
 		if (i == 3){
-			_addedDefense++;
+			_addedStrength++;
 		}
 		if (i == 4){
 			_currentChargeRecoverLv++;
@@ -424,6 +424,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               myPlayerController.equippedBuddies);
+					_uiReference.cDisplay.DeathPenalty();
 
 					_killFlash.Flash();
 

@@ -151,6 +151,7 @@ public class ProjectileS : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 		_myPlayer = playerReference;
 		// powerLvl = dmg;
+		dmg *= _myPlayer.myStats.strengthAmt;
 
 		if (soundObj){
 			Instantiate(soundObj);
