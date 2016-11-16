@@ -79,7 +79,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (pRef.myControl.TalkButton() && !talkButtonDown){
 				talkButtonDown = true;
 
-				if (!talking && examineString != ""){
+				if (!talking && examineString != "" && pRef.myDetect.allEnemiesInRange.Count <= 0){
 					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
 
 						pRef.SetTalking(true);
@@ -239,7 +239,9 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
-			pRef.SetExamining(true, examineLabel);
+			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
+				pRef.SetExamining(true, examineLabel);
+			}
 			playerInRange = true;
 		}
 	}

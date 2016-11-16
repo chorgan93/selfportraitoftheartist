@@ -52,7 +52,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 		hpStat.text = playerStatRef.maxHealth.ToString();
 		stStat.text = playerStatRef.maxMana.ToString();
 		mnStat.text = (playerStatRef.maxCharge/10f).ToString();
-		dfStat.text = playerStatRef.maxDefense.ToString();
+		dfStat.text = (playerStatRef.strengthAmt*10).ToString();
 		enStat.text = playerStatRef.currentRecoverRateLv.ToString();
 		abStat.text = playerStatRef.currentChargeRecoverLv.ToString();
 
@@ -76,7 +76,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			mnStat.color = highlightColor;
 			break;
 		case (3):
-			dfStat.text = (playerStatRef.maxDefense+1).ToString();
+			dfStat.text = (playerStatRef.strengthAmt*10+1).ToString();
 			dfStat.color = highlightColor;
 			break;
 		case (4):

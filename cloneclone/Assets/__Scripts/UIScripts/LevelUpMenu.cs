@@ -26,6 +26,9 @@ public class LevelUpMenu : MonoBehaviour {
 	public Image[] levelMenuItemOutlines;
 	public RectTransform[] levelMenuPositions;
 
+	private float timeBetweenImageOn = 0.1f;
+	private bool doingEffect = false;
+
 	private bool _canBeExited = false;
 	public bool canBeExited { get { return _canBeExited; } }
 
@@ -131,7 +134,7 @@ public class LevelUpMenu : MonoBehaviour {
 				}
 			}
 
-			if (!_exitButtonDown && myControl.ExitButton()){
+			if (!_exitButtonDown && myControl.ExitButton() && !doingEffect){
 				TurnOffLevelUpMenu();
 			}
 		}
@@ -149,32 +152,39 @@ public class LevelUpMenu : MonoBehaviour {
 	}
 
 	private void TurnOnLevelUpMenu(){
+		pRef.myStats.uiReference.cDisplay.SetShowing (true);
 		cursorObj.gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(true);
 		mainMenuObj.SetActive(false);
 		_canBeExited = false;
 		currentPos = 0;
 		onLevelMenu = true;
+		CameraFollowS.F.SetZoomIn(true);
 		_controlStickMoved = true;
 		UpdateAvailableLevelUps();
+		pRef.TriggerResting();
 	}
 
 	private void UpdateAvailableLevelUps(){
 		int i = 0;
 		foreach (LevelUpItemS l in levelMenuItems){
-			l.Initialize(levelHandler.nextLevelUps[i]);
+			l.Initialize(levelHandler.nextLevelUps[i], pRef.myStats.uiReference.cDisplay);
 			i++;
 		}
 		levelMenuItems[currentPos].ShowText();
+		UpdateUpgradeEffect();
 	}
 
 	private void TurnOffLevelUpMenu(){
+		pRef.myStats.uiReference.cDisplay.SetShowing (false);
 		cursorObj.gameObject.SetActive(true);
 		levelMenuProper.gameObject.SetActive(false);
 		mainMenuObj.SetActive(true);
 		_canBeExited = true;
 		currentPos = 0;
 		onLevelMenu = false;
+		CameraFollowS.F.SetZoomIn(false);
+		pRef.TurnOffResting();
 	}
 
 	public void TurnOn(){
@@ -217,5 +227,33 @@ public class LevelUpMenu : MonoBehaviour {
 
 		gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(false);
+	}
+
+	private void UpdateUpgradeEffect(){
+		int index = 0;
+		foreach (LevelUpItemS l in levelMenuItems){
+			l.TurnOffVisual();
+			levelMenuItemOutlines[index].enabled = false;
+			index++;
+		}
+		StartCoroutine(TurnOnUpgrades());
+	}
+
+	private IEnumerator TurnOnUpgrades(){
+		doingEffect = true;
+		
+		yield return new WaitForSeconds(timeBetweenImageOn);
+
+		int index = 0;
+		while (index < levelMenuItems.Length){
+
+			levelMenuItems[index].TurnOnVisual();
+			levelMenuItemOutlines[index].enabled = true;
+			index++;
+			
+			yield return new WaitForSeconds(timeBetweenImageOn);
+
+		}
+		doingEffect = false;
 	}
 }

@@ -20,7 +20,7 @@ public class LockOnS : MonoBehaviour {
 	public EnemyHealthUIS enemyHealthUI { get { return _enemyHealthUI; } } 
 
 
-	private Vector3 sizeDistortion = new Vector3(2.5f, 1.5f, 1f);
+	private Vector3 sizeDistortion = new Vector3(1.5f, 0.75f, 1f);
 
 	private PlayerController myPlayerReference;
 

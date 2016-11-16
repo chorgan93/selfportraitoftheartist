@@ -28,6 +28,8 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	private bool fadingIn = false;
 	private bool fadingOut = false;
 
+	private bool showing = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -50,6 +52,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			if (displayColor.a <= 0){
 				displayColor.a = 0;
 				fadingOut = false;
+				showing = false;
 			}
 			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
 		}
@@ -62,6 +65,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			}
 			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
 		}else{
+
 			if (subtractTimer > 0){
 				subtractTimer -= Time.deltaTime;
 			}else{
@@ -82,9 +86,12 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 					beingAddedAmt = 0;
 					showTimer -= Time.deltaTime;
 				}else{
-					fadingOut = true;
+					if (!showing){
+						fadingOut = true;
+					}
 				}
 			}
+
 		}
 
 		if (totalDisplay.color.a > 0){
@@ -115,13 +122,24 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 
 		subtractTimer = subtractTimerMax;
 
-		if (fadingOut){
-			fadingOut = false;
-			displayColor = totalDisplay.color;
-			displayColor.a = 1f;
-			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
-		}else{
+		if (!showing){
+			if (fadingOut){
+				fadingOut = false;
+				displayColor = totalDisplay.color;
+				displayColor.a = 1f;
+				totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
+			}else{
+				fadingIn = true;
+			}
+		}
+	}
+
+	public void SetShowing(bool nShow){
+		showing = nShow;
+		if (showing){
 			fadingIn = true;
+		}else{
+			fadingOut = false;
 		}
 	}
 }

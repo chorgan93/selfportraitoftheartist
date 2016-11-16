@@ -1295,6 +1295,14 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("HeavyAttacking", false);
 	}
 
+	public void TurnOffResting(){
+		_myAnimator.SetBool("Resting", false);
+	}
+	public void TriggerResting(){
+		_myAnimator.SetTrigger("Rest");
+		_myAnimator.SetBool("Resting", true);
+	}
+
 	private void FaceDown(){
 		if (!_isBlocking){
 		_myAnimator.SetLayerWeight(1, 1f);

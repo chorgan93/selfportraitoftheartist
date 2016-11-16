@@ -1,6 +1,98 @@
 Base path: /Applications/Unity 5.1/Unity.app/Contents
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-2-773632000
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-2-730374144
 Cmd: getPlatforms
+Cmd: compileSnippet
+  api=4 type=0 insize=5399 outsize=1314 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=5399 outsize=1974 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5399 outsize=892 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5406 outsize=1599 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5406 outsize=1534 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=5406 outsize=2251 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5410 outsize=1412 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5410 outsize=1534 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=5410 outsize=2771 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=5411 outsize=271 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=5411 outsize=2104 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5411 outsize=1534 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=5411 outsize=2771 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5415 outsize=1769 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=5415 outsize=1802 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=5416 outsize=1769 kw= pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=5416 outsize=661 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=5416 outsize=2901 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=935 outsize=1006 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=935 outsize=1054 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3943 outsize=1314 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3943 outsize=1217 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3951 outsize=1249 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3951 outsize=1201 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=3951 outsize=2007 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3943 outsize=1314 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3943 outsize=1721 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3945 outsize=1314 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3945 outsize=2021 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=3940 outsize=1314 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=3940 outsize=1974 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=3940 outsize=989 kw= pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=859 outsize=144 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=859 outsize=1576 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=859 outsize=754 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=814 outsize=1087 kw= pd= ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=814 outsize=63 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=814 outsize=853 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1515 outsize=1217 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1515 outsize=811 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=0 insize=1444 outsize=1217 kw= pd= ok=1
+Cmd: compileSnippet
+  api=4 type=1 insize=1444 outsize=673 kw= pd= ok=1
+Cmd: compileSnippet
+  api=1 type=0 insize=573 outsize=100 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=0 insize=573 outsize=1243 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+Cmd: compileSnippet
+  api=1 type=1 insize=573 outsize=58 kw= pd= ok=1
+Cmd: compileSnippet
+  api=8 type=1 insize=573 outsize=674 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
 End of pipe
 
 Quitting shader compiler process

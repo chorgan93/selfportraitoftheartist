@@ -18,6 +18,7 @@ public class LevelUpItemS : MonoBehaviour {
 	private string upgradeDescription;
 
 	public PlayerLvDisplayS statDisplayRef;
+	private PlayerCurrencyDisplayS cDisplay;
 
 	private PlayerStatsS statRef;
 
@@ -29,10 +30,13 @@ public class LevelUpItemS : MonoBehaviour {
 	}
 
 
-	public void Initialize(LevelUpS l){
+	public void Initialize(LevelUpS l, PlayerCurrencyDisplayS cD){
 
 		if (!statRef){
 			statRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
+		}
+		if (!cDisplay){
+			cDisplay = cD;
 		}
 
 		upgradeRef = l;
@@ -103,7 +107,7 @@ public class LevelUpItemS : MonoBehaviour {
 	}
 
 	public void BuyUpgrade(int index, LevelUpHandlerS lvH){
-		PlayerCollectionS.currencyCollected -= upgradeCost;
+		cDisplay.AddCurrency(-upgradeCost);
 		PlayerInventoryS.I.AddToUpgrades(upgradeNum);
 		lvH.nextLevelUps.RemoveAt(index);
 		if (upgradeRef.addUpgrades.Length > 0){
@@ -112,5 +116,12 @@ public class LevelUpItemS : MonoBehaviour {
 			}
 		}
 		lvH.NewNextLevelUps();
+	}
+
+	public void TurnOffVisual(){
+		upgradeImage.enabled = false;
+	}
+	public void TurnOnVisual(){
+		upgradeImage.enabled = true;
 	}
 }
