@@ -25,6 +25,10 @@ public class PlayerInventoryS : MonoBehaviour {
 	public List<BuddyS> unlockedBuddies;
 	private static List<PlayerWeaponS> equippedWeapons;
 	private static List<PlayerWeaponS> subWeapons;
+
+	private List<int> healNums;
+	private List<int> staminaNums;
+	private List<int> chargeNums;
 	
 	private static List<GameObject> equippedBuddies;
 
@@ -63,6 +67,23 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 		}else{
 			_collectedItemCount[_collectedItems.IndexOf(i)]++;
+			_iManager.RefreshUI();
+		}
+	}
+
+	public void AddHeal(int i){
+		if (!healNums.Contains(i)){
+			healNums.Add(i);
+		}
+	}
+	public void AddCharge(int i){
+		if (!chargeNums.Contains(i)){
+			chargeNums.Add(i);
+		}
+	}
+	public void AddStamina(int i){
+		if (!staminaNums.Contains(i)){
+			staminaNums.Add(i);
 		}
 	}
 
@@ -74,10 +95,10 @@ public class PlayerInventoryS : MonoBehaviour {
 		return count;
 	}
 
-	public void RemoveFromInventory(int i){
+	public void RemoveFromInventory(int i, bool rechargeable = false){
 		if (_collectedItems.Contains(i)){
 			_collectedItemCount[_collectedItems.IndexOf(i)]--;
-			if (_collectedItemCount[_collectedItems.IndexOf(i)] <= 0){
+			if (_collectedItemCount[_collectedItems.IndexOf(i)] <= 0 && !rechargeable){
 				_collectedItemCount.RemoveAt(_collectedItems.IndexOf(i));
 				_collectedItems.Remove(i);
 			}
@@ -105,6 +126,9 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		_earnedUpgrades = new List<int>();
 		_collectedItems = new List<int>();
+		healNums = new List<int>();
+		staminaNums = new List<int>();
+		chargeNums = new List<int>();
 		_collectedKeyItems = new List<int>();
 		_collectedItemCount = new List<int>();
 		_openedDoors = new List<int>();
@@ -115,6 +139,19 @@ public class PlayerInventoryS : MonoBehaviour {
 		if (!_openedDoors.Contains(i)){
 			_openedDoors.Add(i);
 		}
+	}
+
+	public void RefreshRechargeables(){
+		if (CheckForItem(0)){
+			_collectedItemCount[_collectedItems.IndexOf(0)]=healNums.Count;
+		}
+		if (CheckForItem(1)){
+			_collectedItemCount[_collectedItems.IndexOf(1)]=staminaNums.Count;
+		}
+		if (CheckForItem(2)){
+			_collectedItemCount[_collectedItems.IndexOf(2)]=chargeNums.Count;
+		}
+		_iManager.RefreshUI();
 	}
 
 	public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<GameObject> equipBuds){
@@ -130,5 +167,15 @@ public class PlayerInventoryS : MonoBehaviour {
 	}
 	public List<GameObject> EquippedBuddies(){
 		return equippedBuddies;
+	}
+
+	public bool CheckHeal(int n){
+		return healNums.Contains(n);
+	}
+	public bool CheckCharge(int n){
+		return chargeNums.Contains(n);
+	}
+	public bool CheckStim(int n){
+		return staminaNums.Contains(n);
 	}
 }

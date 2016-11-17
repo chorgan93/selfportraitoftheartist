@@ -46,6 +46,9 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
+	private float dashDurationTimeMax;
+	private float dashCooldown = 0.4f;
+	private float dashCooldownMax = 0.4f;
 	private float dashHoldTime = 0f;
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
@@ -79,10 +82,12 @@ public class PlayerController : MonoBehaviour {
 	public Material damageFlashMat;
 	public Material manaFlashMat;
 	public Material healFlashMat;
+	public Material chargeFlashMat;
 	private Material startMat;
 	private Animator _myAnimator;
 	private int flashHealFrames;
 	private int flashManaFrames;
+	private int flashChargeFrames;
 	private int flashDamageFrames;
 
 	private float startDrag;
@@ -129,6 +134,9 @@ public class PlayerController : MonoBehaviour {
 	public Transform buddyPos;
 	public Transform buddyPosLower;
 	private BuddySwitchEffectS _buddyEffect;
+
+	// Virtue Properties
+	public List<int> equippedVirtues;
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -178,6 +186,13 @@ public class PlayerController : MonoBehaviour {
 	private bool _examining = false;
 	private string _overrideExamineString = "";
 	private bool _isTalking = false;
+	private float delayTurnOffTalk;
+	private bool delayTalkTriggered = false;
+
+	private bool _usingItem = false;
+	public bool usingitem { get { return _usingItem; } }
+	private float usingItemTime = 0f;
+	private float usingItemTimeMax = 0.8f;
 
 	private PlayerSoundS _playerSound;
 	private PlayerAugmentsS _playerAug;
@@ -188,6 +203,11 @@ public class PlayerController : MonoBehaviour {
 
 	private BlockDisplay3DS _blockRef;
 	//private FlashEffectS _specialFlash;
+
+	//_________________________________________AUGMENT-SPECIFIC
+
+	private float staggerBonusTimeMax = 1f;
+	private float staggerBonusTime;
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -236,6 +256,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Update(){
 		ManageFlash();
+		ManageAugments();
 
 		if (myControl.ControllerAttached()){
 			Cursor.visible = false;
@@ -391,11 +412,20 @@ public class PlayerController : MonoBehaviour {
 	public void FlashHeal(){
 		flashHealFrames = 8;
 		myRenderer.material = healFlashMat;
+		VignetteEffectS.V.Flash(healFlashMat.color);
 	}
 
-	public void FlashMana(){
+	public void FlashMana(bool doEffect = false){
 		flashManaFrames = 5;
 		myRenderer.material = manaFlashMat;
+		if (doEffect){
+			VignetteEffectS.V.Flash(manaFlashMat.color);
+		}
+	}
+	public void FlashCharge(){
+		flashChargeFrames = 5;
+		myRenderer.material = chargeFlashMat;
+		VignetteEffectS.V.Flash(chargeFlashMat.color);
 	}
 
 	//_________________________________________CONTROL METHODS
@@ -575,10 +605,19 @@ public class PlayerController : MonoBehaviour {
 			dashDurationTime = dashDuration*0.4f;
 		}**/
 
-		_myStats.ManaCheck(_dodgeCost);
-		_myAnimator.SetTrigger("Roll");
-		_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
-		dashDurationTime = dashDuration*0.4f;
+		if (_playerAug.dashAug){
+			_myStats.ManaCheck(_dodgeCost);
+			_myAnimator.SetTrigger("Dash");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.9f*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTimeMax = dashDuration*0.96f;
+		}else{
+			_myStats.ManaCheck(_dodgeCost);
+			_myAnimator.SetTrigger("Roll");
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTimeMax = dashDuration*0.4f;
+		}
+
+		dashCooldown = dashCooldownMax;
 
 		if (!_isDashing){
 			blockButtonUp = true;
@@ -602,6 +641,7 @@ public class PlayerController : MonoBehaviour {
 		//control for first dash
 
 		if (!_isDashing){
+			dashCooldown -= Time.deltaTime;
 			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) &&
 			    (controller.Horizontal() != 0 || controller.Vertical() != 0)){
 					
@@ -615,7 +655,7 @@ public class PlayerController : MonoBehaviour {
 			
 			// allow for second dash
 			if (controller.DashTrigger()){
-				if (dashButtonUp && ((dashDurationTime >= dashDuration-CHAIN_DASH_THRESHOLD) 
+				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
@@ -626,11 +666,11 @@ public class PlayerController : MonoBehaviour {
 			
 			
 			dashDurationTime += Time.deltaTime;
-			if (dashDurationTime >= dashDuration-dashSlideTime){
+			if (dashDurationTime >= dashDurationTimeMax-dashSlideTime){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 			
-			if (dashDurationTime >= dashDuration){
+			if (dashDurationTime >= dashDurationTimeMax){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -715,7 +755,12 @@ public class PlayerController : MonoBehaviour {
 						if (currentChain > equippedWeapon.heavyChain.Length-1){
 							currentChain = 0;
 						}
-						
+
+						// Opportunistic effect
+						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+							currentChain = equippedWeapon.heavyChain.Length-1;
+						}
+
 						newProjectile = (GameObject)Instantiate(equippedWeapon.heavyChain[currentChain], 
 						                                        transform.position, 
 						                                        Quaternion.identity);
@@ -728,6 +773,10 @@ public class PlayerController : MonoBehaviour {
 						currentChain = 0;
 					}
 
+						// Opportunistic effect
+						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+							currentChain = equippedWeapon.attackChain.Length-1;
+						}
 				newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
 				                                        transform.position, 
 						                                        Quaternion.identity);
@@ -840,14 +889,23 @@ public class PlayerController : MonoBehaviour {
 					}else{
 						int nextAttack = currentChain+1;
 						if (myControl.HeavyButton()){
+
 							if (nextAttack > equippedWeapon.heavyChain.Length-1){
 								nextAttack = 0;
+							}
+							// Opportunistic effect
+							if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+								nextAttack = equippedWeapon.heavyChain.Length-1;
 							}
 							currentAttackS = equippedWeapon.heavyChain[nextAttack].GetComponent<ProjectileS>();
 							_doingHeavyAttack = true;
 						}else{
 							if (nextAttack > equippedWeapon.attackChain.Length-1){
 								nextAttack = 0;
+							}
+							// Opportunistic effect
+							if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+								nextAttack = equippedWeapon.attackChain.Length-1;
 							}
 							currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 						}
@@ -1043,6 +1101,18 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	private void ManageAugments(){
+
+		if (staggerBonusTime > 0){
+			staggerBonusTime -= Time.deltaTime;
+		}
+
+	}
+
+	public void SendCritMessage(){
+		staggerBonusTime = staggerBonusTimeMax;
+	}
+
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
 	                             float animationSpeed, string animationTrigger){
 		_chargePrefab = chargePrefab;
@@ -1191,6 +1261,24 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		if (_usingItem){
+			usingItemTime -= Time.deltaTime;
+			if (usingItemTime <= 0){
+				_usingItem = false;
+			}
+		}
+
+		if (delayTalkTriggered){
+			delayTurnOffTalk -= Time.deltaTime;
+			if (delayTurnOffTalk <= 0.5f){
+				TurnOffResting();
+			}
+			if (delayTurnOffTalk <= 0){
+				delayTalkTriggered = false;
+				_isTalking = false;
+			}
+		}
+
 
 	}
 
@@ -1211,6 +1299,10 @@ public class PlayerController : MonoBehaviour {
 				myRenderer.material = manaFlashMat;
 			}
 
+		}else if (flashChargeFrames > 0){
+			if (myRenderer.material != chargeFlashMat){
+				myRenderer.material = chargeFlashMat;
+			}
 		}else{
 			if (myRenderer.material != startMat){
 				myRenderer.material = startMat;
@@ -1223,6 +1315,7 @@ public class PlayerController : MonoBehaviour {
 		
 		flashDamageFrames--;
 		flashManaFrames--;
+		flashChargeFrames--;
 		flashHealFrames--;
 
 	}
@@ -1242,6 +1335,12 @@ public class PlayerController : MonoBehaviour {
 			wakeUpCountdown = wakeUpTime;
 			_myAnimator.SetTrigger("Wake");
 			doWakeUp = false;
+	}
+
+	public void TriggerItemAnimation(){
+		_myAnimator.SetTrigger("Item");
+		_usingItem = true;
+		usingItemTime = usingItemTimeMax;
 	}
 
 	private void AttackAnimationTrigger(bool heavy = false){
@@ -1298,9 +1397,15 @@ public class PlayerController : MonoBehaviour {
 	public void TurnOffResting(){
 		_myAnimator.SetBool("Resting", false);
 	}
-	public void TriggerResting(){
+	public void TriggerResting(float delayTalk = 0f){
+		if (delayTalk > 0f){
+			_isTalking = true;
+			delayTurnOffTalk = delayTalk;
+			delayTalkTriggered = true;
+		}
 		_myAnimator.SetTrigger("Rest");
 		_myAnimator.SetBool("Resting", true);
+		_playerSound.SetWalking(false);
 	}
 
 	private void FaceDown(){
@@ -1330,7 +1435,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputMovement(){
 
 		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
-		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered && !_isTalking){
+		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered && !_isTalking && !_usingItem){
 			return true;
 		}
 		else{
@@ -1346,7 +1451,7 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && CanInputShoot()){
+		if (!_isTalking && CanInputShoot() && dashCooldown <= 0){
 			dashAllow = true;
 		}
 
@@ -1356,7 +1461,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputShoot(){
 
 		if (!attackTriggered && !_isStunned
-		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack){
+		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
 			return true;
 		}
 		else{
@@ -1366,7 +1471,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool CanInputBlock(){
-		if (!_isDashing && !_isTalking && !_isShooting && !_chargingAttack){
+		if (!_isDashing && !_isTalking && !_isShooting && !_chargingAttack && !_usingItem){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public bool CanUseItem(){
+		if (CanInputShoot() && !_isDashing && !_isTalking){
 			return true;
 		}else{
 			return false;

@@ -34,16 +34,24 @@ public class CheckpointS : MonoBehaviour {
 	void Update () {
 
 		if (_playerDetect.PlayerInRange() && !_examining){
-			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp){
+
+			
+			_playerDetect.player.SetExamining(true, _playerDetect.examineString);
+
+			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp
+			    && !_playerDetect.player.talking){
 				
 				if (fullCheckpoint){
 					_examining = true;
 						_menuManager.TurnOnLevelUpMenu();
 					_playerDetect.player.SetTalking(true);
+					_playerDetect.player.SetExamining(true, "");
 
 				}
-			else{
-				instructionText.SetTimedMessage(healMessage, 2f);
+				else{
+					_playerDetect.player.TriggerResting(3f);
+					instructionText.SetTimedMessage(healMessage, 1.4f);
+					_playerDetect.player.SetExamining(true, "");
 					//Debug.Log("YEAH");
 			}
 				// set revive pos
@@ -52,6 +60,7 @@ public class CheckpointS : MonoBehaviour {
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
 				PlayerInventoryS.I.dManager.ClearAll();
+				PlayerInventoryS.I.RefreshRechargeables();
 			_talkButtonUp = false;
 			}
 		}

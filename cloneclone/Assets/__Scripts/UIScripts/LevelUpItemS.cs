@@ -82,7 +82,7 @@ public class LevelUpItemS : MonoBehaviour {
 	}
 
 	public void ShowText(){
-		upgradeNameText.text = upgradeName + " (" + upgradeCost +  "/" + PlayerCollectionS.currencyCollected + ")";
+		upgradeNameText.text = upgradeName + " (" + upgradeCost +  " la)";
 		upgradeDescriptionText.text = upgradeDescription;
 		
 		if (upgradeCost > PlayerCollectionS.currencyCollected){

@@ -203,10 +203,17 @@ public class PlayerStatsS : MonoBehaviour {
 		return canUse;
 	}
 
-	public void RecoverCharge(float addPercent){
+	public void RecoverCharge(float addPercent, bool itemEffect = false){
 		_currentCharge += addPercent*3.5f*currentChargeRecover;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
+		}
+		if (itemEffect){
+			
+			myPlayerController.FlashCharge();
+			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+			CameraShakeS.C.TimeSleep(0.08f);
+		
 		}
 	}
 
@@ -367,6 +374,9 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentMana = maxMana;
 		_currentCooldownTimer = 0f;
 		_currentManaUsed = 0f;
+		myPlayerController.FlashMana(true);
+		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+		CameraShakeS.C.TimeSleep(0.08f);
 
 	}
 
@@ -376,6 +386,8 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentHealth = maxHealth;
 		}
 		myPlayerController.FlashHeal();
+		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+		CameraShakeS.C.TimeSleep(0.08f);
 	}
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
@@ -411,7 +423,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 					
 				if(!godMode){
-					_currentHealth -= dmg;
+					
+					if (_currentHealth > maxHealth*0.01f && _currentHealth-dmg <= 0 
+					    && myPlayerController.playerAug.secondChanceAug){
+						_currentHealth = maxHealth*0.01f;
+					}else{
+						_currentHealth -= dmg;
+					}
 					//ChargeCheck(10f);
 				}
 				if (_currentHealth <= 0){

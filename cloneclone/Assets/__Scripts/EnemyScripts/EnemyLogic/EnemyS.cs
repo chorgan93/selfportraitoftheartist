@@ -618,6 +618,7 @@ public class EnemyS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.08f, true);
 					_isCritical = true;
 					_critScreen.Flash();
+					GetPlayerReference().SendCritMessage();
 				}
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;

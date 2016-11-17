@@ -22,6 +22,8 @@ public class InventoryManagerS : MonoBehaviour {
 	private bool _updateUICall = false;
 	public bool updateUICall { get {return _updateUICall; } }
 
+	private float useItemTime = 0.3f;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -78,7 +80,7 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private void UseItemControl(){
-		if (!useItemButtonDown && _pRef.myControl.UseItemButton()){
+		if (!useItemButtonDown && _pRef.myControl.UseItemButton() && !_pRef.usingitem && _pRef.CanUseItem()){
 			UseItem(_equippedInventory[_currentSelection]);
 			useItemButtonDown = true;
 		}
@@ -87,11 +89,34 @@ public class InventoryManagerS : MonoBehaviour {
 		}
 	}
 
+	private IEnumerator HealFunction(){
+
+		_pRef.TriggerItemAnimation();
+		yield return new WaitForSeconds(useItemTime);
+		_pRef.myStats.Heal(20f);
+
+	}
+	private IEnumerator RecoverStaminaFunction(){
+		
+		_pRef.TriggerItemAnimation();
+		yield return new WaitForSeconds(useItemTime);
+		_pRef.myStats.ResetStamina();
+		
+	}
+	private IEnumerator RecoverChargeFunction(){
+		
+		_pRef.TriggerItemAnimation();
+		yield return new WaitForSeconds(useItemTime);
+		_pRef.myStats.RecoverCharge(150f, true);
+
+	}
+
 	private void UseItem(int itemID){
 
 
-		if (itemID >= 0){
+		if (itemID >= 0 && _inventoryRef.GetItemCount(itemID) > 0){
 			bool consumeItem = false;
+			bool rechargeable = false;
 		// do certain effect based on item id called
 		switch(itemID){
 
@@ -104,24 +129,27 @@ public class InventoryManagerS : MonoBehaviour {
 
 			// basic heal
 			case 0:
-				_pRef.myStats.Heal(20f);
+				StartCoroutine(HealFunction());
 				consumeItem = true;
+				rechargeable = true;
 				break;
 
 			// stamina recharge
 			case 1:
-				_pRef.myStats.ResetStamina();
+				StartCoroutine(RecoverStaminaFunction());
 				consumeItem = true;
+				rechargeable = true;
 				break;
 
 			// basic mana recarge
 			case 2:
-				_pRef.myStats.RecoverCharge(150f);
+				StartCoroutine(RecoverChargeFunction());
 				consumeItem = true;
+				rechargeable = true;
 				break;
 		}
 			if (consumeItem){
-			_inventoryRef.RemoveFromInventory(itemID);
+			_inventoryRef.RemoveFromInventory(itemID, rechargeable);
 			if (!_inventoryRef.CheckForItem(itemID)){
 				RemoveItemAt(_currentSelection);
 			}
@@ -161,6 +189,10 @@ public class InventoryManagerS : MonoBehaviour {
 		return nextAvailable;
 	}
 
+	public void RefreshUI(){
+		_updateUICall = true;
+	}
+
 	public void UIUpdated(){
 		_updateUICall = false;
 	}
@@ -175,4 +207,5 @@ public class InventoryManagerS : MonoBehaviour {
 		}
 		_updateUICall = true;
 	}
+
 }

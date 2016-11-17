@@ -23,6 +23,9 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool consumable = false;
 	public int inventoryNum = -1;
+	public int healNum = -1;
+	public int chargeNum = -1;
+	public int staminaNum = -1;
 	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
 	public BuddyS buddyToGive;
@@ -70,7 +73,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 		}
 	
-		if (playerInRange && pRef.myDetect.closestEnemy == null){
+		if (playerInRange){
 
 			if (!pRef.myControl.TalkButton()){
 				talkButtonDown = false;
@@ -79,7 +82,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (pRef.myControl.TalkButton() && !talkButtonDown){
 				talkButtonDown = true;
 
-				if (!talking && examineString != "" && pRef.myDetect.allEnemiesInRange.Count <= 0){
+				if (!talking && examineString != ""){
 					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
 
 						pRef.SetTalking(true);
@@ -201,7 +204,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach (int i in PlayerInventoryS.I.collectedItems){
-				if (i == inventoryNum && i > 2){
+				if (i == inventoryNum && inventoryNum != 0){
 					gameObject.SetActive(false);
 				}
 			}
@@ -214,6 +217,16 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 		}
 
+		if (inventoryNum == 0 && PlayerInventoryS.I.CheckHeal(healNum)){
+			gameObject.SetActive(false);
+		}
+		if (inventoryNum == 1 && PlayerInventoryS.I.CheckStim(staminaNum)){
+			gameObject.SetActive(false);
+		}
+		if (inventoryNum == 2 && PlayerInventoryS.I.CheckCharge(chargeNum)){
+			gameObject.SetActive(false);
+		}
+
 
 	}
 
@@ -221,6 +234,15 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (inventoryNum >= 0){
 			PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
+		}
+		if (healNum >= 0){
+			PlayerInventoryS.I.AddHeal(healNum);
+		}
+		if (chargeNum >= 0){
+			PlayerInventoryS.I.AddCharge(chargeNum);
+		}
+		if (staminaNum >= 0){
+			PlayerInventoryS.I.AddStamina(staminaNum);
 		}
 	}
 

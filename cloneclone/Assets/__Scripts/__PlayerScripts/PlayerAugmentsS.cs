@@ -30,6 +30,19 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _aeroAug = false;
 	public bool aeroAug { get { return _aeroAug; } }
 
+	// virtue augmentations
+	private bool _secondChanceAug = false;
+	public bool secondChanceAug { get { return _secondChanceAug; } }
+	
+	private bool _opportunisticAug = false;
+	public bool opportunisticAug { get { return _opportunisticAug; } }
+	
+	private bool _dashAug = false;
+	public bool dashAug { get { return _dashAug; } }
+	
+	private bool _enragedAug = false;
+	public bool enragedAug { get { return _enragedAug; } }
+
 	private bool _initialized;
 
 	// Update is called once per frame
@@ -65,6 +78,12 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_aeroAug = false;
 		_thanaAug = false;
 
+		// turn off all virtue augs
+		_opportunisticAug = false;
+		_secondChanceAug = false;
+		_dashAug = false;
+		_enragedAug = false;
+
 
 	}
 
@@ -73,29 +92,55 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		// turn on weapon augs
 		if (_playerReference.EquippedWeaponAug() != null){
-			if (_playerReference.EquippedWeaponAug().weaponNum == 0){
-				_lunaAug = true;
-			}
-	
-			if (_playerReference.EquippedWeaponAug().weaponNum == 1){
-				_thanaAug = true;
-			}
-	
-			if (_playerReference.EquippedWeaponAug().weaponNum == 2){
-				_aeroAug = true;
-			}
-	
-			if (_playerReference.EquippedWeaponAug().weaponNum == 3){
-				_gaeaAug = true;
-			}
-	
-			if (_playerReference.EquippedWeaponAug().weaponNum == 4){
-				_animaAug = true;
-			}
-	
-			if (_playerReference.EquippedWeaponAug().weaponNum == 5){
-				_solAug = true;
-			}
+			TurnOnWeaponAugs();
 		}
+
+		// turn on virtues
+		if (_playerReference.equippedVirtues.Count > 0){
+			TurnOnVirtueAugs();
+		}
+	}
+
+	private void TurnOnWeaponAugs(){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 0){
+			_lunaAug = true;
+		}
+		
+		if (_playerReference.EquippedWeaponAug().weaponNum == 1){
+			_thanaAug = true;
+		}
+		
+		if (_playerReference.EquippedWeaponAug().weaponNum == 2){
+			_aeroAug = true;
+		}
+		
+		if (_playerReference.EquippedWeaponAug().weaponNum == 3){
+			_gaeaAug = true;
+		}
+		
+		if (_playerReference.EquippedWeaponAug().weaponNum == 4){
+			_animaAug = true;
+		}
+		
+		if (_playerReference.EquippedWeaponAug().weaponNum == 5){
+			_solAug = true;
+		}
+	}
+
+	private void TurnOnVirtueAugs(){
+
+		if (_playerReference.equippedVirtues.Contains(0)){
+			_secondChanceAug = true;
+		}
+		if (_playerReference.equippedVirtues.Contains(1)){
+			_opportunisticAug = true;
+		}
+		if (_playerReference.equippedVirtues.Contains(2)){
+			_dashAug = true;
+		}
+		if (_playerReference.equippedVirtues.Contains(3)){
+			_enragedAug = true;
+		}
+
 	}
 }

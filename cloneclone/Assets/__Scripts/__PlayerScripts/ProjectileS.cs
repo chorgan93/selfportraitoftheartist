@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
+	private float enragedMult = 1.75f;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -152,6 +153,9 @@ public class ProjectileS : MonoBehaviour {
 		_myPlayer = playerReference;
 		// powerLvl = dmg;
 		dmg *= _myPlayer.myStats.strengthAmt;
+		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
+			dmg*=enragedMult;
+		}
 
 		if (soundObj){
 			Instantiate(soundObj);

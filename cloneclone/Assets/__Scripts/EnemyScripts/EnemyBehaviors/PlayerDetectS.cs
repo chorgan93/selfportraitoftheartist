@@ -13,6 +13,8 @@ public class PlayerDetectS : MonoBehaviour {
 	private PlayerController playerReference;
 	public PlayerController player { get { return playerReference; } }
 
+	public string examineString;
+
 	private bool keepTrackOfEnemies = false;
 
 	void Start(){
@@ -71,6 +73,10 @@ public class PlayerDetectS : MonoBehaviour {
 			if (playerReference == null && other.gameObject.GetComponent<PlayerController>() != null){
 				playerReference = other.gameObject.GetComponent<PlayerController>();
 			}
+
+			if (playerReference != null && examineString != ""){
+				playerReference.SetExamining(true, examineString);
+			}
 		}
 
 		if (other.gameObject.tag == "Enemy" && keepTrackOfEnemies){
@@ -85,6 +91,10 @@ public class PlayerDetectS : MonoBehaviour {
 		
 		if (other.gameObject.tag == "Player"){
 			playerList.Remove(other.gameObject);
+
+			if (playerReference != null && examineString != ""){
+				playerReference.SetExamining(false, "");
+			}
 		}
 
 		if (keepTrackOfEnemies){

@@ -46,13 +46,12 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (fadingOut){
+		if (fadingOut && !showing){
 			displayColor = totalDisplay.color;
 			displayColor.a -= Time.deltaTime*fadeRateOut;
 			if (displayColor.a <= 0){
 				displayColor.a = 0;
 				fadingOut = false;
-				showing = false;
 			}
 			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
 		}
@@ -86,9 +85,9 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 					beingAddedAmt = 0;
 					showTimer -= Time.deltaTime;
 				}else{
-					if (!showing){
-						fadingOut = true;
-					}
+
+					fadingOut = true;
+
 				}
 			}
 
