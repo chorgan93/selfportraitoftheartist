@@ -75,8 +75,8 @@ public class DestructibleItemS : MonoBehaviour {
 			}
 			bitEuler.z = (zReference+90f)*dir+(destructionBitZDif*Random.insideUnitCircle.x);
 			newBit.transform.rotation = Quaternion.Euler(bitEuler);
-			bitForce = new Vector3(Random.Range(destructionBitSpeedMin, destructionBitSpeedMax)*dir, Random.Range(yForceMin,yForceMax), 0);
-			newBit.GetComponent<Rigidbody>().AddForce(bitForce, ForceMode.Impulse);
+			//bitForce = new Vector3(Random.Range(destructionBitSpeedMin, destructionBitSpeedMax)*dir, Random.Range(yForceMin,yForceMax), 0);
+			newBit.GetComponent<Rigidbody>().AddForce(Random.Range(destructionBitSpeedMin, destructionBitSpeedMax)*newBit.transform.right, ForceMode.Impulse);
 			dir*=-1f;
 		}
 

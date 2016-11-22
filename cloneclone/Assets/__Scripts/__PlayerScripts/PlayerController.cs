@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
+	public EnemyDetectS superCloseEnemyDetect;
 
 	private int numAttacksPerShot;
 	private float timeBetweenAttacks;
@@ -709,7 +710,8 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
-				newCharge.GetComponent<ProjectileS>().Fire(ShootDirection(), ShootDirection(), this);
+				newCharge.GetComponent<ProjectileS>().Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0,
+				                                           ShootDirection(), ShootDirection(), this);
 
 				_myStats.ManaCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
@@ -822,10 +824,10 @@ public class PlayerController : MonoBehaviour {
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
 
 			if (newAttack){
-						currentAttackS.Fire(savedDir,
+				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir,
 				                                                 savedDir, this);
 			}else{
-				currentAttackS.Fire(savedDir,
+				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir,
 				                    savedDir, this);
 			}
 
@@ -1053,17 +1055,43 @@ public class PlayerController : MonoBehaviour {
 
 				if (myDetect.allEnemiesInRange.Count <= 0){
 					_myLockOn.EndLockOn();
-					lockInputReset = false;
 				}else{
 
-				if (myControl.LockOnButton()){
+					// allow change of target
+					if (myDetect.allEnemiesInRange.Count > 1 && lockInputReset){
+						if (myControl.RightHorizontal() > 0.1f || myControl.RightVertical() > 0.1f){
+						int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+						currentLockedEnemy++;
+						if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
+							currentLockedEnemy = 0;
+						}
+						_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+							lockInputReset = false;
+						}
+						if (myControl.RightHorizontal() < -0.1f || myControl.RightVertical() < -0.1f){
+							int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
+							currentLockedEnemy--;
+							if (currentLockedEnemy < 0){
+								currentLockedEnemy = myDetect.allEnemiesInRange.Count-1;
+							}
+							_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
+							lockInputReset = false;
+						}
+					}
+
+				/*if (myControl.LockOnButton()){
 					_lockButtonDown = true;
 					lockDownTime+=Time.deltaTime;
 					if (lockDownTime >= lockTurnOffThreshold){
 						_myLockOn.EndLockOn();
 							lockInputReset = false;
-					}
-				}else{
+					}**/
+					if (!myControl.LockOnButton()){
+						_lockButtonDown = false;
+							_myLockOn.EndLockOn();
+							lockInputReset = false;
+
+				}/*else{
 					if (_lockButtonDown && lockDownTime < lockTurnOffThreshold && myDetect.allEnemiesInRange.Count > 1){
 						int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
 						currentLockedEnemy++;
@@ -1074,14 +1102,19 @@ public class PlayerController : MonoBehaviour {
 					}
 						lockDownTime = 0f;
 						_lockButtonDown = false;
-				}
+				}**/
 
 			}
 				
 			}else{
 				if (myControl.LockOnButton()){
 					_lockButtonDown = true;
-				}else{
+					if (myDetect.allEnemiesInRange.Count > 0){
+						_myLockOn.LockOn(myDetect.closestEnemy);
+						_isSprinting = false;
+						_lockButtonDown = false;
+					}
+				}/*else{
 					if (_lockButtonDown && lockInputReset){
 						if (myDetect.allEnemiesInRange.Count > 0){
 							_myLockOn.LockOn(myDetect.closestEnemy);
@@ -1090,11 +1123,14 @@ public class PlayerController : MonoBehaviour {
 						}
 						_lockButtonDown = false;
 					}
-				}
+				}**/
 			}
 
 			if (!myControl.LockOnButton()){
 				_lockButtonDown = false;
+			}
+
+			if (Mathf.Abs(myControl.RightVertical()) <= 0.1f && Mathf.Abs(myControl.RightHorizontal()) <= 0.1f){
 				lockInputReset = true;
 			}
 			

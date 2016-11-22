@@ -132,6 +132,9 @@ public class PlayerStatsS : MonoBehaviour {
 	private PlayerStatDisplayS _uiReference;
 	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
 
+	private ItemEffectS _itemEffect;
+	public ItemEffectS itemEffect { get { return _itemEffect; } }
+
 	private FlashEffectS _hurtFlash;
 	private FlashEffectS _killFlash;
 
@@ -213,6 +216,7 @@ public class PlayerStatsS : MonoBehaviour {
 			myPlayerController.FlashCharge();
 			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 			CameraShakeS.C.TimeSleep(0.08f);
+			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		
 		}
 	}
@@ -308,6 +312,8 @@ public class PlayerStatsS : MonoBehaviour {
 		_hurtFlash = CameraEffectsS.E.hurtFlash;
 		_killFlash = CameraEffectsS.E.deathFlash;
 
+		_itemEffect = GetComponentInChildren<ItemEffectS>();
+
 		_currentMana = maxMana;
 		if (PlayerController.doWakeUp){
 			_currentHealth = maxHealth;
@@ -377,6 +383,7 @@ public class PlayerStatsS : MonoBehaviour {
 		myPlayerController.FlashMana(true);
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
+		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 
 	}
 
@@ -386,6 +393,7 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentHealth = maxHealth;
 		}
 		myPlayerController.FlashHeal();
+		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
 	}

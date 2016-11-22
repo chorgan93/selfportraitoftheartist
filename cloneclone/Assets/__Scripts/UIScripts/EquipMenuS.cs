@@ -37,7 +37,9 @@ public class EquipMenuS : MonoBehaviour {
 	public Image buddyParadigmIIOutline;
 	
 	public GameObject virtueWhole;
+	public GameObject virtueSubscreen;
 	public GameObject inventoryWhole;
+	public GameObject inventorySubscreen;
 
 	public RectTransform selector;
 	public RectTransform[] selectorPositions;
@@ -50,7 +52,8 @@ public class EquipMenuS : MonoBehaviour {
 
 	private bool _canBeQuit = false;
 	public bool canBeQuit { get { return _canBeQuit; } }
-	
+
+	// PARADIGM ELEMENTS
 	private bool inParadigmIMenu;
 	private bool inParadigmIIMenu;
 	private bool changingWeapon;
@@ -64,6 +67,24 @@ public class EquipMenuS : MonoBehaviour {
 	public Image[] selectorElementsParadigmII;
 	public RectTransform[] selectorPositionsBuddy;
 	public Image[] selectorElementsBuddy;
+
+	// VIRTUE ELEMENTS
+	private bool inVirtueMenu;
+	private bool changingVirtue;
+	private int currentVirtueSelected = 0;
+	public EquipVirtueItemS[] allVirtueItems;
+	public Image[] selectorElementsVirtues;
+	public RectTransform[] selectorPositionsVirtues;
+	private int virtueCapacity = 4;
+
+	// INVENTORY ELEMENTS
+	private bool inInventoryMenu;
+	private bool changingInventory;
+	private int currentInventorySelected = 0;
+	public EquipInventoryItemS[] allInventoryItems;
+	public Image[] selectorElementsInventory;
+	public RectTransform[] selectorPositionsInventory;
+	private int inventoryCapacity = 4;
 
 	private bool _initialized = false;
 
@@ -100,8 +121,10 @@ public class EquipMenuS : MonoBehaviour {
 		SetSelector(0);
 		UpdateMantraDisplay();
 		UpdateBuddyDisplay();
+		UpdateVirtueDisplay();
 		UpdateMantras();
 		UpdateBuddies();
+		UpdateVirtues();
 		gameObject.SetActive(true);
 	}
 	
@@ -144,6 +167,12 @@ public class EquipMenuS : MonoBehaviour {
 				}
 				if (currentPos == 1 && pRef.SubWeapon() != null){
 					GoToParadigmIISetUp();
+				}
+				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
+					GoToVirtueSetUp();
+				}
+				if (currentPos == 3 && inventoryRef.collectedItems.Count > 0){
+					GoToInventorySetUp();
 				}
 			}
 		
@@ -351,7 +380,172 @@ public class EquipMenuS : MonoBehaviour {
 
 		//_______________________________________________END LOADOUT SECTION
 
+		//_______________________________________________START VIRTUE SECTION
+		if (inVirtueMenu){
+			if (!controlStickMoved){
+				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos+1;
+					SetSelectorVirtue(targetPos, 1);
+					controlStickMoved = true;
+				}
+				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos-1;
+					SetSelectorVirtue(targetPos, -1);
+					controlStickMoved = true;
+				}
+			}
+			// changing virtue function
+			if (!changingVirtue){
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingVirtue = true;
+					selectButtonDown = true;
+					currentVirtueSelected = currentPos;
+					if (pRef.equippedVirtues[currentVirtueSelected] > -1){
+						SetSelectorVirtue(pRef.equippedVirtues[currentVirtueSelected]+virtueCapacity);
+					}else{
+						SetSelectorVirtue(FindNextAvailableVirtue(0,0));
+					}
+				}
+			}
+			else{
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingVirtue = false;
+					selectButtonDown = true;
 
+					// swap actual virtue equip & update display
+					if (pRef.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
+						// unequip virtue if trying to swap with self
+						if (pRef.equippedVirtues[currentVirtueSelected] == allVirtueItems[currentPos].virtueNum){
+							pRef.equippedVirtues[currentVirtueSelected] =
+								allVirtueItems[currentVirtueSelected].virtueNum = -1;
+						}else{
+							pRef.equippedVirtues[pRef.equippedVirtues.IndexOf(allVirtueItems[currentPos].virtueNum)] =
+								allVirtueItems[pRef.equippedVirtues.IndexOf(allVirtueItems[currentPos].virtueNum)].virtueNum = -1;
+							pRef.equippedVirtues[currentVirtueSelected] = 
+								allVirtueItems[currentVirtueSelected].virtueNum = allVirtueItems[currentPos].virtueNum;
+						}
+					}else{
+
+						pRef.equippedVirtues[currentVirtueSelected] = 
+							allVirtueItems[currentVirtueSelected].virtueNum = allVirtueItems[currentPos].virtueNum;
+					}
+
+					
+					
+					UpdateVirtueDisplay();
+					// switch virtue positions (equip virtue)
+					SetSelectorVirtue(currentVirtueSelected);
+					
+				}
+				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					// exit out of mantra swap
+					changingVirtue = false;
+					exitButtonDown = true;
+					SetSelectorVirtue(currentVirtueSelected); // replace with selected mantra's position
+				}
+			}
+			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				SetSelector(2);
+				virtueSubscreen.gameObject.SetActive(false);
+				inventoryWhole.gameObject.SetActive(true);
+				virtueWhole.gameObject.SetActive(true);
+				paradigmIMantraWhole.SetActive(true);
+				paradigmIIMantraWhole.SetActive(true);
+				inVirtueMenu = false;
+				onMainScreen = true;
+				exitButtonDown = true;
+			}
+			
+			_canBeQuit = false;
+		}
+		//_______________________________________________END VIRTUE SECTION
+
+		//_______________________________________________START INVENTORY SECTION
+		if (inInventoryMenu){
+			if (!controlStickMoved){
+				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos+1;
+					SetSelectorInventory(targetPos, 1);
+					controlStickMoved = true;
+				}
+				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					controlStickMoved = true;
+					int targetPos = currentPos-1;
+					SetSelectorInventory(targetPos, -1);
+					controlStickMoved = true;
+				}
+			}
+			// changing inventory function
+			if (!changingInventory){
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingInventory = true;
+					selectButtonDown = true;
+					currentInventorySelected = currentPos;
+					if (inventoryRef.iManager.equippedInventory[currentInventorySelected] > -1){
+						SetSelectorInventory
+							(inventoryRef.collectedItems.IndexOf(
+								inventoryRef.iManager.equippedInventory[currentInventorySelected])+inventoryCapacity);
+					}else{
+						SetSelectorInventory(inventoryCapacity);
+					}
+				}
+			}
+			else{
+				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					changingInventory = false;
+					selectButtonDown = true;
+					
+					// swap actual virtue equip & update display
+					if (inventoryRef.iManager.equippedInventory.Contains(allInventoryItems[currentPos].itemNum)){
+						// unequip virtue if trying to swap with self
+						if (inventoryRef.iManager.equippedInventory[currentInventorySelected] 
+						    == allInventoryItems[currentPos].itemNum){
+							inventoryRef.iManager.equippedInventory[currentInventorySelected] =
+								allInventoryItems[currentInventorySelected].itemNum = -1;
+						}else{
+							inventoryRef.iManager.equippedInventory[inventoryRef.iManager.equippedInventory.IndexOf(allInventoryItems[currentPos].itemNum)] =
+								allInventoryItems[inventoryRef.iManager.equippedInventory.IndexOf(allInventoryItems[currentPos].itemNum)].itemNum = -1;
+							inventoryRef.iManager.equippedInventory[currentInventorySelected] = 
+								allInventoryItems[currentInventorySelected].itemNum = allInventoryItems[currentPos].itemNum;
+						}
+					}else{
+						
+						inventoryRef.iManager.equippedInventory[currentInventorySelected] = 
+							allInventoryItems[currentInventorySelected].itemNum = allInventoryItems[currentPos].itemNum;
+					}
+					
+					
+					
+					UpdateInventoryDisplay();
+					// switch inventory positions (equip item)
+					SetSelectorInventory(currentInventorySelected);
+					
+				}
+				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					// exit out of mantra swap
+					changingInventory = false;
+					exitButtonDown = true;
+					SetSelectorInventory(currentInventorySelected); // replace with selected item's position
+				}
+			}
+			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				SetSelector(3);
+				inventorySubscreen.gameObject.SetActive(false);
+				virtueWhole.gameObject.SetActive(true);
+				virtueWhole.gameObject.SetActive(true);
+				paradigmIMantraWhole.SetActive(true);
+				paradigmIIMantraWhole.SetActive(true);
+				inVirtueMenu = false;
+				onMainScreen = true;
+				exitButtonDown = true;
+			}
+			
+			_canBeQuit = false;
+		}
+		//_______________________________________________END INVENTORY SECTION
 
 		if (pRef.myControl.MenuSelectUp()){
 			selectButtonDown = false;
@@ -401,6 +595,83 @@ public class EquipMenuS : MonoBehaviour {
 		
 		currentPos = newPos;
 		selector.anchoredPosition = selectorPositions[currentPos].anchoredPosition;
+	}
+
+	public void SetSelectorVirtue(int newPos, int dir = 0){
+
+		Color changeCols = selectorElementsVirtues[currentPos].color;
+		changeCols.a = startElementAlpha;
+		selectorElementsVirtues[currentPos].color = changeCols;
+
+		int nextAvailable = newPos;
+		if (changingVirtue){
+
+			nextAvailable = FindNextAvailableVirtue(currentPos, dir);
+
+		}else{
+			if (nextAvailable >= virtueCapacity){
+				nextAvailable = 0;
+			}
+			if (nextAvailable < 0){
+				nextAvailable = virtueCapacity-1;
+			}
+		}
+
+		currentPos = nextAvailable;
+		changeCols.a = 1f;
+		selectorElementsVirtues[nextAvailable].color = changeCols;
+		selector.anchoredPosition = selectorPositionsVirtues[currentPos].anchoredPosition;
+		if (allVirtueItems[currentPos].virtueNum > -1){
+			if (!changingVirtue){
+				descriptionText.text = "Virtue Slot 0" + (currentPos+1) + ": " +
+					allVirtueItems[currentPos].virtueDescription;
+			}else{
+				descriptionText.text = allVirtueItems[currentPos].virtueDescription;
+			}
+		}else{
+			descriptionText.text = "Virtue Slot 0" + (currentPos+1);
+		}
+
+	}
+
+	public void SetSelectorInventory(int newPos, int dir = 0){
+		
+		Color changeCols = selectorElementsInventory[currentPos].color;
+		changeCols.a = startElementAlpha;
+		selectorElementsInventory[currentPos].color = changeCols;
+		
+		int nextAvailable = newPos;
+		if (changingInventory){
+			
+			nextAvailable = newPos;
+			if (nextAvailable-inventoryCapacity >= inventoryRef.collectedItems.Count){
+				nextAvailable = inventoryCapacity; 
+			}
+			
+		}else{
+			if (nextAvailable >= inventoryCapacity){
+				nextAvailable = 0;
+			}
+			if (nextAvailable < 0){
+				nextAvailable = inventoryCapacity-1;
+			}
+		}
+		
+		currentPos = nextAvailable;
+		changeCols.a = 1f;
+		selectorElementsInventory[nextAvailable].color = changeCols;
+		selector.anchoredPosition = selectorPositionsInventory[currentPos].anchoredPosition;
+		if (allInventoryItems[currentPos].itemNum > -1){
+			if (!changingInventory){
+				descriptionText.text = "Inventory Slot 0" + (currentPos+1) + ": " +
+					allInventoryItems[currentPos].GetItemDescription();
+			}else{
+				descriptionText.text = allInventoryItems[currentPos].GetItemDescription();
+			}
+		}else{
+			descriptionText.text = "Inventory Slot 0" + (currentPos+1);
+		}
+		
 	}
 
 	public void SetSelectorParadigmI(int newPos, int paradigmNum, int dir = 0){
@@ -507,10 +778,16 @@ public class EquipMenuS : MonoBehaviour {
 	public void TurnOff(){
 		paradigmMantraSubscreen.gameObject.SetActive(false);
 		paradigmBuddySubscreen.gameObject.SetActive(false);
+		virtueSubscreen.gameObject.SetActive(false);
+		inventorySubscreen.gameObject.SetActive(false);
 		inventoryWhole.gameObject.SetActive(true);
 		virtueWhole.gameObject.SetActive(true);
+		paradigmIMantraWhole.gameObject.SetActive(true);
+		paradigmIIMantraWhole.gameObject.SetActive(true);
 		inParadigmIMenu = false;
 		inParadigmIIMenu = false;
+		inInventoryMenu = false;
+		inVirtueMenu = false;
 		exitButtonDown = true;
 		currentPos = 0;
 		onMainScreen = true;
@@ -525,6 +802,16 @@ public class EquipMenuS : MonoBehaviour {
 	private void UpdateBuddies(){
 		foreach (EquipBuddyItemS b in allBuddyItems){
 			b.Initialize(inventoryRef);
+		}
+	}
+	private void UpdateVirtues(){
+		foreach (EquipVirtueItemS v in allVirtueItems){
+			v.Initialize(inventoryRef);
+		}
+	}
+	private void UpdateInventory(){
+		foreach (EquipInventoryItemS i in allInventoryItems){
+			i.Initialize(inventoryRef);
 		}
 	}
 
@@ -609,6 +896,52 @@ public class EquipMenuS : MonoBehaviour {
 		
 	}
 
+	private int FindNextAvailableVirtue(int startPt, int dir){
+		int nextAvail = startPt;
+		if (dir > 0){
+			if (startPt < allVirtueItems.Length){
+				for (int i = startPt; i < allVirtueItems.Length; i++){
+					if (allVirtueItems[i].unlocked  && nextAvail == startPt){
+						nextAvail = i;
+					}
+				}
+			}
+			if (nextAvail == startPt){
+				for (int j = virtueCapacity; j < startPt; j++){
+					if (allVirtueItems[j].unlocked && nextAvail == startPt){
+						nextAvail = j;
+					}
+				}
+			}
+		}else if (dir == 0){
+			nextAvail = -1;
+			for (int i = virtueCapacity; i < allVirtueItems.Length; i++){
+				if (allVirtueItems[i].unlocked  && nextAvail <0){
+					nextAvail = i;
+				}
+			}
+		}else{
+			if (startPt > virtueCapacity){
+				for (int j = startPt; j >= virtueCapacity; j--){
+					if (allVirtueItems[j].unlocked && nextAvail == startPt){
+						nextAvail = j;
+					}
+				}
+			}
+			if (nextAvail == startPt){
+				for (int i = allVirtueItems.Length-1; i > startPt; i--){
+					if (allVirtueItems[i].unlocked && nextAvail == startPt){
+						nextAvail = i;
+					}
+				}
+			}
+		}
+		
+		return nextAvail;
+	}
+
+
+	// FIND POSITION Functions
 	private int FindMantraPosition(int wepNum){
 		int returnNum = 0;
 		int listCount = 0;
@@ -681,6 +1014,27 @@ public class EquipMenuS : MonoBehaviour {
 		}
 	}
 
+	private void UpdateVirtueDisplay(){
+
+		for (int i = 0; i < virtueCapacity; i++){
+
+			if (allVirtueItems[i].virtueNum < 0){
+				allVirtueItems[i].Hide();
+			}else{
+				allVirtueItems[i].virtueImage.sprite = 
+					allVirtueItems[allVirtueItems[i].virtueNum+virtueCapacity].virtueImage.sprite;
+				allVirtueItems[i].virtueDescription = 
+					allVirtueItems[allVirtueItems[i].virtueNum+virtueCapacity].virtueDescription;
+				allVirtueItems[i].Show();
+			}
+		} 
+	}
+
+	private void UpdateInventoryDisplay(){
+		
+		UpdateInventory();
+	}
+
 	private void GoToParadigmISetUp(){
 		currentPos = 0;
 		selectButtonDown = true;
@@ -703,6 +1057,41 @@ public class EquipMenuS : MonoBehaviour {
 		inventoryWhole.gameObject.SetActive(false);
 		virtueWhole.gameObject.SetActive(false);
 		SetSelectorParadigmII(0);
+	}
+
+	private void GoToVirtueSetUp(){
+		currentPos = 0;
+		selectButtonDown = true;
+		inVirtueMenu = true;
+		onMainScreen = false;
+		paradigmBuddySubscreen.gameObject.SetActive(false);
+		paradigmIMantraWhole.gameObject.SetActive(false);
+		paradigmIIMantraWhole.gameObject.SetActive(false);
+		paradigmMantraSubscreen.gameObject.SetActive(false);
+		inventoryWhole.gameObject.SetActive(false);
+		inventorySubscreen.gameObject.SetActive(false);
+		virtueWhole.gameObject.SetActive(true);
+		virtueSubscreen.gameObject.SetActive(true);
+		currentVirtueSelected = 0;
+		changingVirtue = false;
+		SetSelectorVirtue(0);
+	}
+	private void GoToInventorySetUp(){
+		currentPos = 0;
+		selectButtonDown = true;
+		inInventoryMenu = true;
+		onMainScreen = false;
+		paradigmBuddySubscreen.gameObject.SetActive(false);
+		paradigmIMantraWhole.gameObject.SetActive(false);
+		paradigmIIMantraWhole.gameObject.SetActive(false);
+		paradigmMantraSubscreen.gameObject.SetActive(false);
+		inventoryWhole.gameObject.SetActive(true);
+		inventorySubscreen.gameObject.SetActive(true);
+		virtueWhole.gameObject.SetActive(false);
+		virtueSubscreen.gameObject.SetActive(false);
+		currentInventorySelected = 0;
+		changingInventory = false;
+		SetSelectorInventory(0);
 	}
 
 

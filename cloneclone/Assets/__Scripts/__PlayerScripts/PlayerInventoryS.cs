@@ -15,6 +15,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	
 	private List<int> _earnedUpgrades;
 	public List<int> earnedUpgrades { get { return _earnedUpgrades; } }
+	public List<int> _earnedVirtues;
+	public List<int> earnedVirtues { get { return _earnedVirtues; } }
 
 	private List<int> _clearedWalls;
 	public List<int> clearedWalls { get { return _clearedWalls; } }
@@ -33,6 +35,7 @@ public class PlayerInventoryS : MonoBehaviour {
 	private static List<GameObject> equippedBuddies;
 
 	private InventoryManagerS _iManager;
+	public InventoryManagerS iManager { get { return _iManager; } }
 	private PlayerDestructionS _dManager;
 	public PlayerDestructionS dManager { get { return _dManager; } }
 
@@ -125,6 +128,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_dManager = GetComponent<PlayerDestructionS>();
 
 		_earnedUpgrades = new List<int>();
+		//_earnedVirtues = new List<int>();
 		_collectedItems = new List<int>();
 		healNums = new List<int>();
 		staminaNums = new List<int>();

@@ -82,7 +82,13 @@ public class FadeScreenUI : MonoBehaviour {
 				loadingText.text = currentLoadingString;
 			}*/
 
-			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){
+			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){	
+				if (destinationScene == GameOverS.reviveScene){
+					if (PlayerInventoryS.I != null){
+						// this is reviving from game over, reset inventory
+						PlayerInventoryS.I.RefreshRechargeables();
+					}
+				}
 				async.allowSceneActivation = true;
 			}
 		}

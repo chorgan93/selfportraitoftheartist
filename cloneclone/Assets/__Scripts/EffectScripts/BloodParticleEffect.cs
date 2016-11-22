@@ -5,6 +5,7 @@ public class BloodParticleEffect : MonoBehaviour {
 
 	private SpriteRenderer mainBlood;
 	public SpriteRenderer[] bloodBits;
+	public SpriteRenderer rectEffect;
 	//private Rigidbody[] bloodRigids;
 	//private TrailRenderer[] bloodTrails;
 	public float startSpeedMin = 1200;
@@ -88,6 +89,7 @@ public class BloodParticleEffect : MonoBehaviour {
 				//bloodTrails[currentIndex].material.color = newCol;
 				currentIndex++;
 			}
+			rectEffect.color = newCol;
 		}
 
 	

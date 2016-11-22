@@ -58,14 +58,21 @@ public class CameraPOIS : MonoBehaviour {
 					(playerWeight+enemyWeight);
 				}
 
-				newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x;
-				newPos.y = (1-moveEasing)*(transform.position.y-lookVector.y) + moveEasing*currentPosition.y;
+				if (!playerReference.myLockOn.lockedOn){
+					newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x;
+					newPos.y = (1-moveEasing)*(transform.position.y-lookVector.y) + moveEasing*currentPosition.y;
+				}else{
+					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
+					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
+				}
 
 			}else{
 				newPos = currentPosition = playerReference.transform.position;
 			}
 
-			newPos += lookVector*lookAmt;
+			if (!playerReference.myLockOn.lockedOn){
+				newPos += lookVector*lookAmt;
+			}
 
 			transform.position = newPos;
 

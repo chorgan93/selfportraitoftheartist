@@ -146,7 +146,7 @@ public class ProjectileS : MonoBehaviour {
 		}
 	}
 
-	public void Fire(Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true){
+	public void Fire(bool tooCloseForKnockback, Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true){
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
@@ -225,13 +225,16 @@ public class ProjectileS : MonoBehaviour {
 			}
 		}
 
-		if (doKnockback){
+		if (doKnockback && !tooCloseForKnockback){
 
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 
 			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
+		}
+		if (tooCloseForKnockback){
+			knockbackSpeed*=1.4f;
 		}
 
 		currentRange = range;

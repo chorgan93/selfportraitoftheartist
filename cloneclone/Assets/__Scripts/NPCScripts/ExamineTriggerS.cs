@@ -83,7 +83,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				talkButtonDown = true;
 
 				if (!talking && examineString != ""){
-					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
+					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading && !pRef.talking){
 
 						pRef.SetTalking(true);
 						if (newPoi){
