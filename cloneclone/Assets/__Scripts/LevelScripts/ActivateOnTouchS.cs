@@ -20,7 +20,7 @@ public class ActivateOnTouchS : MonoBehaviour {
 				bleh.SetActive(false);
 			}
 
-			turnedOn = false;
+			turnedOn = true;
 		}
 	}
 }

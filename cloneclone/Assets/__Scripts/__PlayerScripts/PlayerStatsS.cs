@@ -162,14 +162,14 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentMana > 0){
 			if (reduce){
 			if (_currentMana >= useAmount){
-				_currentMana -= useAmount;
+			//	_currentMana -= useAmount;
 				
-				_currentManaUsed += useAmount;
+			//	_currentManaUsed += useAmount;
 
 			}else{
-				_currentManaUsed += _currentMana;
+			//	_currentManaUsed += _currentMana;
 
-				_currentMana = 0;
+			//	_currentMana = 0;
 
 			}
 

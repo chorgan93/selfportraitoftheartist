@@ -713,7 +713,7 @@ public class PlayerController : MonoBehaviour {
 				newCharge.GetComponent<ProjectileS>().Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0,
 				                                           ShootDirection(), ShootDirection(), this);
 
-				_myStats.ManaCheck(_chargeAttackCost);
+				_myStats.ChargeCheck(_chargeAttackCost*10f);
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();
@@ -921,13 +921,18 @@ public class PlayerController : MonoBehaviour {
 					equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					attackTriggered = true;
 					_isShooting = true;
-					allowChargeAttack = true;
+					if (currentAttackS.chargeAttackTime <=  0){
+						allowChargeAttack = true;
+					}
+					else{
+						allowChargeAttack = false;
+					}
 
 					AttackAnimationTrigger(_doingHeavyAttack);
 
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ManaCheck(1, false)){
+					if (_myStats.ChargeCheck(1, false)){
 					// charge attack
 
 						if (prevChain < 0){
