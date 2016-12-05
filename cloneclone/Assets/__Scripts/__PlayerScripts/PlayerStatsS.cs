@@ -26,6 +26,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public float currentHealth { get { return _currentHealth; } }
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
+	private float _savedHealth = 8f;
 	
 	//________________________________MANA
 	private float _baseMana = 5;
@@ -47,6 +48,7 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	public float maxCharge { get { return _baseCharge+_addedCharge;}}
 	public float currentCharge { get { return _currentCharge;}}
+	private float _savedCharge = 50f;
 
 	
 	//________________________________CHARGE RECOVERY
@@ -522,5 +524,15 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentHealth = maxHealth;
 		_currentCharge = maxCharge;
 		_currentMana = maxMana;
+	}
+
+	public void SaveStats ()
+	{
+		_savedHealth = _currentHealth;
+		_savedCharge = _currentCharge;
+	}
+	public void ResetCombatStats(){
+		_currentHealth = _savedHealth;
+		_currentCharge = _savedCharge;
 	}
 }

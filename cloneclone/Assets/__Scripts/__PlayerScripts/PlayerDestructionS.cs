@@ -16,6 +16,10 @@ public class PlayerDestructionS : MonoBehaviour {
 	private List<Vector3> _bloodPos;
 	public List<Vector3> bloodPos { get { return _bloodPos; } }
 
+	
+	private List<int> _clearedCombatTriggers;
+	public List<int> clearedCombatTriggers { get { return _clearedCombatTriggers; } }
+
 	public Sprite[] bloodSprites;
 	public GameObject oldBlood;
 
@@ -27,6 +31,7 @@ public class PlayerDestructionS : MonoBehaviour {
 		_bloodSpriteNums = new List<int>();
 		_enemiesDefeatedPos = new List<Vector3>();
 		_bloodPos = new List<Vector3>();
+		_clearedCombatTriggers = new List<int>();
 
 	}
 
@@ -60,5 +65,12 @@ public class PlayerDestructionS : MonoBehaviour {
 		_bloodIds.Clear();
 		_bloodPos.Clear();
 		_bloodSpriteNums.Clear();
+	}
+
+	public void AddClearedCombat(int newI){
+		_clearedCombatTriggers.Add(newI);
+	}
+	public void ClearCompletedCombat(){
+		_clearedCombatTriggers.Clear();
 	}
 }

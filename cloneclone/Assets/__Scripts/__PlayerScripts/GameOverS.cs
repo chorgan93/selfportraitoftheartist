@@ -39,6 +39,7 @@ public class GameOverS : MonoBehaviour {
 			if (delayFadeTime <= 0 && !startedFade){
 				startedFade = true;
 				PlayerInventoryS.I.dManager.ClearAll();
+				PlayerInventoryS.I.dManager.ClearCompletedCombat();
 				SpawnPosManager.whereToSpawn = revivePosition;
 				CameraEffectsS.E.SetNextScene(reviveScene);
 				CameraEffectsS.E.FadeIn();

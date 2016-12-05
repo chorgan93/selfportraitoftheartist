@@ -4,6 +4,8 @@ using System.Collections;
 public class ShootBuddyS : BuddyS {
 
 	public GameObject myProjectile;
+	public GameObject shootEffect;
+	private float effectDir = 1f;
 
 	private EnemyDetectS myEnemyDetect;
 
@@ -163,6 +165,13 @@ public class ShootBuddyS : BuddyS {
 
 		charging = false;
 		shootCountdown = shootRate;
+
+		if (shootEffect){
+			Vector3 pRotation = myProj.transform.rotation.eulerAngles;
+			pRotation.z += 225f*effectDir;
+			effectDir *= -1f;
+			Instantiate(shootEffect, transform.position, Quaternion.Euler(pRotation));
+		}
 
 	}
 }

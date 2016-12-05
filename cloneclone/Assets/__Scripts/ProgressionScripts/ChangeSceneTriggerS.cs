@@ -85,6 +85,8 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		CameraEffectsS.E.FadeIn();
 		loading = true;
 
+		VerseDisplayS.V.EndVerse();
+
 		SpawnPosManager.whereToSpawn = whereToSpawn;
 
 		if (doWakeUp){

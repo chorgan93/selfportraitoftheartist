@@ -41,7 +41,7 @@ public class InventoryManagerS : MonoBehaviour {
 				_interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();
 			}else{
 				if (!_pRef.talking){
-					SwitchControl();
+					//SwitchControl();
 					UseItemControl();
 				}
 			}
@@ -89,6 +89,13 @@ public class InventoryManagerS : MonoBehaviour {
 		}
 	}
 
+	private IEnumerator ResetFunction(){
+		_pRef.TriggerItemAnimation();
+		_pRef.myStats.itemEffect.Flash(Color.white);
+		yield return new WaitForSeconds(useItemTime);
+		_pRef.ResetCombat();
+	}
+
 	private IEnumerator HealFunction(){
 
 		_pRef.TriggerItemAnimation();
@@ -129,9 +136,12 @@ public class InventoryManagerS : MonoBehaviour {
 
 			// basic heal
 			case 0:
-				StartCoroutine(HealFunction());
-				consumeItem = true;
-				rechargeable = true;
+				//StartCoroutine(HealFunction());
+				if (_pRef.inCombat){
+					StartCoroutine(ResetFunction());
+					consumeItem = true;
+					rechargeable = true;
+				}
 				break;
 
 			// stamina recharge

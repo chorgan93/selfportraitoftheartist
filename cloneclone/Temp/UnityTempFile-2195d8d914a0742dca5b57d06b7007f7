@@ -158,6 +158,8 @@
 'Assets/__Scripts/LevelScripts/ActivateOnTouchS.cs'
 'Assets/__Scripts/LevelScripts/BarrierS.cs'
 'Assets/__Scripts/LevelScripts/ChangeDeathSceneS.cs'
+'Assets/__Scripts/LevelScripts/CombatManagerS.cs'
+'Assets/__Scripts/LevelScripts/CombatTriggerS.cs'
 'Assets/__Scripts/LevelScripts/LockedDoorS.cs'
 'Assets/__Scripts/LevelScripts/LookOnTouchS.cs'
 'Assets/__Scripts/LevelScripts/MemoS.cs'

@@ -5,6 +5,7 @@ public class PlayerSoundS : MonoBehaviour {
 
 	private bool _walking = false;
 	private bool _running = false;
+	private PlayerController pRef;
 
 	[Header("Footstep Sounds")]
 	public GameObject[] footsteps;
@@ -12,6 +13,10 @@ public class PlayerSoundS : MonoBehaviour {
 	public float runningMult = 1.6f;
 	private float footstepCountdown;
 	private int footstepToUse = 0;
+	public GameObject footstepObj;
+	private float footstepY = -0.6f;
+	private float footstepX = 0.22f;
+	private float xMult = 1f;
 
 	[Header("Action Sounds")]
 	public GameObject shieldSound;
@@ -24,6 +29,8 @@ public class PlayerSoundS : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		pRef = GetComponent<PlayerController>();
 	
 	}
 	
@@ -59,12 +66,32 @@ public class PlayerSoundS : MonoBehaviour {
 				footstepToUse = Mathf.RoundToInt(Random.Range(0, footsteps.Length-1));
 				if (footstepToUse < footsteps.Length){
 					Instantiate(footsteps[footstepToUse]);
+					PlaceFootstep();
 				}
 			}
 		}else{
 			footstepCountdown = footstepRate;
 		}
 
+	}
+
+	void PlaceFootstep(){
+
+		if (footstepObj){
+			Vector3 spawnPos = transform.position;
+			spawnPos.y += footstepY;
+			spawnPos.x += footstepX*xMult;
+			GameObject newFootstep = Instantiate(footstepObj, spawnPos, Quaternion.identity)
+					as GameObject;
+			if (pRef.myRenderer.transform.localScale.x < 0){
+				Vector3 flipSize = newFootstep.transform.localScale;
+				flipSize.x *= -1f;
+				newFootstep.transform.localScale = flipSize;
+			}
+			newFootstep.GetComponent<SpriteRenderer>().color = pRef.myRenderer.color;
+			newFootstep.transform.GetChild(0).GetComponent<SpriteRenderer>().color = pRef.myRenderer.color;
+			xMult *= -1f;
+		}
 	}
 
 	public void PlayRollSound(){

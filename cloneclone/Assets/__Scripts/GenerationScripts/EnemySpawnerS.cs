@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemySpawnerS : MonoBehaviour {
 
 	private bool _enemySpawned = false;
+	public bool enemySpawned { get { return _enemySpawned; } }
 	private EnemyS currentEnemyReference;
 
 	public float enemySpawnDelay = 0f;
@@ -17,6 +18,8 @@ public class EnemySpawnerS : MonoBehaviour {
 	private InfinitySpawnS parentClear;
 	private bool sentClearMessage = false;
 	public bool sentMessage { get { return sentClearMessage; } }
+
+	private Vector3 savedSpawnPt;
 
 	// Use this for initialization
 	void Start () {
@@ -62,6 +65,8 @@ public class EnemySpawnerS : MonoBehaviour {
 	
 			GameObject newEnemy = Instantiate(enemyPool[enemyToSpawn], transform.position, Quaternion.identity)
 				as GameObject;
+
+			savedSpawnPt = transform.position;
 	
 			currentEnemyReference = newEnemy.GetComponent<EnemyS>();
 	
@@ -79,6 +84,16 @@ public class EnemySpawnerS : MonoBehaviour {
 		
 		
 		_enemySpawned = true;
+
+	}
+
+	public void RespawnEnemies(){
+
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			currentEnemyReference.Reinitialize();
+			currentEnemyReference.transform.position = savedSpawnPt;
+			currentEnemyReference.transform.parent = transform;
+		}
 
 	}
 

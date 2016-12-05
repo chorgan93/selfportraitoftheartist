@@ -19,6 +19,7 @@ public class BarrierS : MonoBehaviour {
 
 	bool turningOff = false;
 	private int flashFrames = 6;
+	public GameObject turnOffSound;
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +48,11 @@ public class BarrierS : MonoBehaviour {
 						if (_myRenderer.material.color == Color.white){
 							_myRenderer.material.SetTexture("_MainTex", startTexture);
 							_myRenderer.material.color = myColor;
+							
+							if (turnOffSound){
+								Instantiate(turnOffSound);
+								Debug.Log("Played off sound!");
+							}
 						}
 						myColor.a -= fadeRate*Time.deltaTime;
 						if (myColor.a <= 0){

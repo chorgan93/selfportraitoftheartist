@@ -33,6 +33,8 @@ public class EnemyS : MonoBehaviour {
 
 	//____________________________________INSTANCE PROPERTIES
 
+	private int ALIVE_LAYER;
+
 	private Rigidbody _myRigidbody;
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer myShadow;
@@ -261,6 +263,8 @@ public class EnemyS : MonoBehaviour {
 		spawnedDeathObj = false;
 		deathFrameDelay = 3;
 
+		ALIVE_LAYER = gameObject.layer;
+
 		_critScreen = CameraEffectsS.E.critFlash;
 		_killScreen = CameraEffectsS.E.killFlash;
 
@@ -281,6 +285,37 @@ public class EnemyS : MonoBehaviour {
 
 			activationDetect = transform.FindChild("PlayerDetect").GetComponent<PlayerDetectS>();
 		}
+		
+		CheckStates(false);
+
+	}
+
+	public void Reinitialize(){
+
+		_isDead = false;
+
+		EndAllBehaviors();
+
+		_isActive = false;
+		
+		_myAnimator.SetBool("Death", false);
+			_currentHealth = maxHealth;
+			_isActive = false;
+
+		_myCollider.enabled = true;
+		gameObject.layer = ALIVE_LAYER;
+		
+		spawnedDeathObj = false;
+		deathFrameDelay = 3;
+		
+		startDrag = _myRigidbody.drag;
+
+		_behaviorStates = GetBehaviorStates();
+			
+		foreach (EnemyBehaviorStateS bState in _behaviorStates){
+			bState.SetEnemy(this);
+		}
+			
 		
 		CheckStates(false);
 
@@ -451,7 +486,12 @@ public class EnemyS : MonoBehaviour {
 			if (deathFrameDelay <= 0){
 		GameObject deathObj = Instantiate(deathObjRef, transform.position, Quaternion.identity)
 			as GameObject;
-		deathObj.GetComponent<EnemyDeathShadowS>().StartFade(myRenderer.sprite, myRenderer.transform.localScale);
+				if (transform.localScale.x < 0){
+					Vector3 flipScale = deathObj.transform.localScale;
+					flipScale.x *= -1f;
+					deathObj.transform.localScale = flipScale;
+				}
+		//deathObj.GetComponent<EnemyDeathShadowS>().StartFade(myRenderer.sprite, myRenderer.transform.localScale);
 
 		spawnedDeathObj = true;
 			}
@@ -639,7 +679,8 @@ public class EnemyS : MonoBehaviour {
 			_isDead = true;
 			Stun (0);
 			EndAllBehaviors();
-			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
+			// TODO figure out what to do with the XP references
+			//GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
 			_myAnimator.SetFloat("DeathSpeed", 1f);

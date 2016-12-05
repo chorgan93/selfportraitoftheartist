@@ -100,7 +100,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	private void SetAttackDirection(){
 
-		if (trackingTime >= 0){
+		if (trackingTime >= 0 && myEnemyReference.GetTargetReference() != null){
 			attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 			attackDirection.z = 0;
 			myEnemyReference.SetTargetReference(attackDirection);

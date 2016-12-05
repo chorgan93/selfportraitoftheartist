@@ -48,12 +48,13 @@ public class PlayerController : MonoBehaviour {
 	private float dashDurationTime;
 	private float dashDurationTimeMax;
 	private float dashCooldown = 0.4f;
-	private float dashCooldownMax = 0.4f;
+	private float dashCooldownMax = 0.2f;
 	private float dashHoldTime = 0f;
 	private float bigDashMult = 1.6f;
 	private float speedDashMult = 0.1f;
 	private float _dashCost = 2f;
 	private float _dodgeCost = 1.75f;
+	public GameObject dashObj;
 
 	private bool _isShooting;
 	private bool _lastInClip;
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour {
 	private float comboDuration = 0f;
 	private float attackDelay;
 	private float attackDuration;
+	public GameObject attackEffectObj;
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
@@ -204,6 +206,8 @@ public class PlayerController : MonoBehaviour {
 
 	private BlockDisplay3DS _blockRef;
 	//private FlashEffectS _specialFlash;
+	private CombatManagerS _currentCombatManager;
+	public CombatManagerS currentCombatManager { get { return _currentCombatManager; } }
 
 	//_________________________________________AUGMENT-SPECIFIC
 
@@ -368,13 +372,13 @@ public class PlayerController : MonoBehaviour {
 		// Control Methods
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
-			if (_inCombat){
+			//if (_inCombat){
 				LockOnControl();
 				SwapControl();
 				BlockControl();
 				DashControl();
 				AttackControl();
-			}
+			//}
 
 			MovementControl();
 		}
@@ -387,6 +391,7 @@ public class PlayerController : MonoBehaviour {
 		ManageFlash();
 	}
 
+
 	public void EquipBuddy(BuddyS newBud){
 		_myBuddy = newBud;
 	}
@@ -395,7 +400,20 @@ public class PlayerController : MonoBehaviour {
 
 		stunTime = sTime;
 		_isStunned = true;
+		CancelAttack();
 
+	}
+
+	private void CancelAttack(){
+		attackTriggered = false;
+		attackDuration = 0f;
+		currentChain = 0;
+		_chargingAttack = false;
+		allowChargeAttack = false;
+		_chargeAttackTriggered = false;
+		_chargeAttackTime = 0f;
+		_myAnimator.SetBool("Charging", false);
+		TurnOffAttackAnimation();
 	}
 
 	public void AttackDuration(float aTime){
@@ -625,6 +643,8 @@ public class PlayerController : MonoBehaviour {
 			_isDashing = true;
 		}
 
+		SpawnDashPuff();
+
 	}
 
 	private void TriggerSprint(){
@@ -712,6 +732,7 @@ public class PlayerController : MonoBehaviour {
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0,
 				                                           ShootDirection(), ShootDirection(), this);
+				SpawnAttackPuff();
 
 				_myStats.ChargeCheck(_chargeAttackCost*10f);
 				_playerSound.PlayChargeSound();
@@ -830,6 +851,7 @@ public class PlayerController : MonoBehaviour {
 				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir,
 				                    savedDir, this);
 			}
+			SpawnAttackPuff();
 
 
 				// subtract mana cost
@@ -1384,6 +1406,17 @@ public class PlayerController : MonoBehaviour {
 		usingItemTime = usingItemTimeMax;
 	}
 
+	public void ResetCombat(){
+		if (_currentCombatManager != null){
+			_currentCombatManager.Initialize(true);
+			FlashMana();
+			CameraEffectsS.E.ResetEffect();
+			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+			CameraShakeS.C.TimeSleep(0.08f);
+			_myStats.ResetCombatStats();
+		}
+	}
+
 	private void AttackAnimationTrigger(bool heavy = false){
 
 		if (heavy){
@@ -1903,6 +1936,14 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetCombat(bool combat){
 		_inCombat = combat;
+		if (combat = false){
+			_currentCombatManager = null;
+		}
+	}
+
+	public void SetCombatManager(CombatManagerS m){
+		_currentCombatManager = m;
+		_myStats.SaveStats();
 	}
 
 	public void SetExamining(bool nEx, string newExString = ""){
@@ -1972,6 +2013,41 @@ public class PlayerController : MonoBehaviour {
 		else{
 			return null;
 		}
+	}
+
+	//_________________________________________________________________VISUAL EFFECTS
+	public void SpawnDashPuff(){
+		Vector3 spawnPos = transform.position;
+		spawnPos.y -= 0.5f;
+		spawnPos.z += 1f;
+		GameObject dashEffect = Instantiate(dashObj, spawnPos, Quaternion.identity)
+			as GameObject;
+		float rotateFix = 0f;
+		if (myRenderer.transform.localScale.x < 0){
+			Vector3 flipsize = dashEffect.transform.localScale;
+			flipsize.x *= -1f;
+			dashEffect.transform.localScale = flipsize;
+			rotateFix = 180f;
+		}
+		dashEffect.GetComponent<SpriteRenderer>().color = myRenderer.color;
+		dashEffect.transform.GetChild(1).GetComponent<SpriteRenderer>().color = myRenderer.color;
+	}
+
+	public void SpawnAttackPuff(){
+		Vector3 spawnPos = transform.position;
+		spawnPos.z += 1f;
+		GameObject attackEffect = Instantiate(attackEffectObj, spawnPos, Quaternion.identity)
+			as GameObject;
+		float rotateFix = 0f;
+		if (myRenderer.transform.localScale.x < 0){
+			Vector3 flipsize = attackEffect.transform.localScale;
+			flipsize.x *= -1f;
+			attackEffect.transform.localScale = flipsize;
+			rotateFix = 180f;
+		}
+
+		attackEffect.GetComponent<SpriteRenderer>().color = myRenderer.color;
+		attackEffect.transform.GetChild(1).GetComponent<SpriteRenderer>().color = myRenderer.color;
 	}
 
 }

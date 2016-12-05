@@ -44,6 +44,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 				if (distanceTraveled >= spawnDistance){
 					SpawnShadow();
+					myController.SpawnAttackPuff();
 					prevDashPos = currentDashPos;
 				}
 
