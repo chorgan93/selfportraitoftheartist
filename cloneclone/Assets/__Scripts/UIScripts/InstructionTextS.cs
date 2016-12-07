@@ -6,7 +6,9 @@ public class InstructionTextS : MonoBehaviour {
 
 	public float fadeRate = 1f;
 	private Text myText;
+	public Image bgText;
 	private Color textColor;
+	private Color bgColor;
 
 	private bool showing = false;
 	private bool timedShowing = false;
@@ -19,6 +21,10 @@ public class InstructionTextS : MonoBehaviour {
 		textColor = myText.color;
 		textColor.a = 0;
 		myText.color = textColor;
+
+		bgColor = bgText.color;
+		bgColor.a = 0;
+		bgText.color = bgColor;
 	
 	}
 	
@@ -30,6 +36,8 @@ public class InstructionTextS : MonoBehaviour {
 				textColor = myText.color;
 				textColor.a += Time.deltaTime*fadeRate;
 				myText.color = textColor;
+				bgColor.a = textColor.a;
+				bgText.color = bgColor;
 			}else{
 				if (timedShowing){
 					showCountdown-=Time.deltaTime;
@@ -43,6 +51,8 @@ public class InstructionTextS : MonoBehaviour {
 				textColor = myText.color;
 				textColor.a -= Time.deltaTime*fadeRate/2f;
 				myText.color = textColor;
+				bgColor.a = textColor.a;
+				bgText.color = bgColor;
 			}
 		}
 	

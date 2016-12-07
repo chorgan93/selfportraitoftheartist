@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour {
 	public float sprintMult = 1.4f;
 	public float sprintDuration = 1f;
 	private float sprintDurationCountdown = 0f;
+	private bool _isDoingMovement = false;
+	public bool isDoingMovement { get { return _isDoingMovement; } }
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
@@ -464,6 +466,7 @@ public class PlayerController : MonoBehaviour {
 				moveVelocity.y = inputDirection.y = input2.y;
 				
 				_playerSound.SetWalking(true);
+				_isDoingMovement = true;
 
 				if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y < 0){
 					FaceDown();
@@ -516,11 +519,13 @@ public class PlayerController : MonoBehaviour {
 			}else{
 				RunAnimationCheck(input2.magnitude);
 				_playerSound.SetWalking(false);
+				_isDoingMovement = false;
 			}
 
 
 		}else{
 			_playerSound.SetWalking(false);
+			_isDoingMovement = false;
 		}
 
 	}

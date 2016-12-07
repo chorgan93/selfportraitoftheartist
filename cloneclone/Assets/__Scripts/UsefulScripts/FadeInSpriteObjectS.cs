@@ -6,6 +6,7 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 
 
 	public float fadeRate = 1f;
+	public float maxFade = 1f;
 	public float delayFadeTime;
 	private float startDelayFadeTime;
 	public float startFadeAlpha = 1f;
@@ -53,9 +54,9 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 				}else{
 			currentCol = myRenderer.color;
 			currentCol.a += Time.deltaTime*fadeRate;
-			if (currentCol.a >= 1f){
+			if (currentCol.a >= maxFade){
 			
-					currentCol.a = 1f;
+					currentCol.a = maxFade;
 				stopFading = true;
 
 						if (destroyOnFadeIn){

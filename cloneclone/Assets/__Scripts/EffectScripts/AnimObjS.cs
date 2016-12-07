@@ -12,6 +12,9 @@ public class AnimObjS : MonoBehaviour {
 
 	public bool destroyOnEnd = true;
 	public bool loop = false;
+	public float loopBufferTime = 0f;
+	private float loopTime = 0f;
+	private bool delayingLoop = false;
 
 	public GameObject fadeObj;
 	private bool endAnim = false;
@@ -34,6 +37,14 @@ public class AnimObjS : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
+		if (delayingLoop){
+			loopTime -= Time.deltaTime;
+			if (loopTime <= 0){
+				delayingLoop = false;
+				currentFrame = 0;
+				mySprite.sprite = animFrames[currentFrame];
+			}
+		}else{
 		if (!endAnim){
 			animRateCountdown -= Time.deltaTime;
 		}
@@ -62,7 +73,13 @@ public class AnimObjS : MonoBehaviour {
 					currentFrame = animFrames.Length-1;
 				}
 				else{
-					currentFrame = 0;
+					if (loopBufferTime > 0){
+						loopTime = loopBufferTime;
+						delayingLoop = true;
+							currentFrame = animFrames.Length-1;
+					}else{
+						currentFrame = 0;
+					}
 				}
 
 				if (destroyOnEnd){
@@ -71,6 +88,7 @@ public class AnimObjS : MonoBehaviour {
 			}
 			
 			mySprite.sprite = animFrames[currentFrame];
+		}
 		}
 
 	

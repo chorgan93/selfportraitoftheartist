@@ -42,13 +42,24 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		else{
 			if (enemyDetect.closestEnemy == null || myController.isDashing || myController.chargingAttack 
 			                                         || myController.myStats.PlayerIsDead() || myController.IsRunning()){
-		if (rigidReference.velocity.x < 0){
-			currentSize = mySize;
-			currentSize.x *= -1f;
-		}
-		if (rigidReference.velocity.x > 0){
-			currentSize = mySize;
-		}
+				// first, do a check to see if player is inputting movement, otherwise face velocity direction
+				if (myController.isDoingMovement){
+					if (myController.myControl.Horizontal() < 0){
+						currentSize = mySize;
+						currentSize.x *= -1f;
+					}
+					if (myController.myControl.Horizontal() > 0){
+						currentSize = mySize;
+					}
+				}else{
+					if (rigidReference.velocity.x < 0){
+						currentSize = mySize;
+						currentSize.x *= -1f;
+					}
+					if (rigidReference.velocity.x > 0){
+						currentSize = mySize;
+					}
+				}
 			}
 			else{
 				float closestEnemyX = enemyDetect.closestEnemy.transform.position.x;
