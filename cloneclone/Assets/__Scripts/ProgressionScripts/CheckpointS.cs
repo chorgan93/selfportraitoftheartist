@@ -14,8 +14,12 @@ public class CheckpointS : MonoBehaviour {
 
 	private InstructionTextS instructionText;
 
+
 	private string healMessage = "Health restored. Progress saved.";
 	public int spawnNum = 0;
+
+	
+	public BGMLayerS[] musicAtPoint;
 
 	// Use this for initialization
 	void Start () {
@@ -95,5 +99,23 @@ public class CheckpointS : MonoBehaviour {
 		}
 
 	
+	}
+
+	public void ActivateMusic(){
+
+		if (musicAtPoint.Length > 0){
+			for (int i = 0; i < musicAtPoint.Length; i++){
+				if (BGMHolderS.BG.ContainsChild(musicAtPoint[i].sourceRef.clip)){
+					BGMHolderS.BG.GetLayerWithClip(musicAtPoint[i].sourceRef.clip).FadeIn();
+				}else{
+					musicAtPoint[i].transform.parent = BGMHolderS.BG.transform;
+					if (musicAtPoint[i].matchTimeStamp){
+						musicAtPoint[i].sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
+						musicAtPoint[i].FadeIn();
+					}
+				}
+			}
+		}
+
 	}
 }

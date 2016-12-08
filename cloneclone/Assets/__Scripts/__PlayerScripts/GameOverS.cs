@@ -41,6 +41,7 @@ public class GameOverS : MonoBehaviour {
 				PlayerInventoryS.I.dManager.ClearAll();
 				PlayerInventoryS.I.dManager.ClearCompletedCombat();
 				SpawnPosManager.whereToSpawn = revivePosition;
+				SpawnPosManager.spawningFromDeath = true;
 				CameraEffectsS.E.SetNextScene(reviveScene);
 				CameraEffectsS.E.FadeIn();
 			}

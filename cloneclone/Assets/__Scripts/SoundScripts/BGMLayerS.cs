@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BGMLayerS : MonoBehaviour {
 
+	public bool matchTimeStamp = true;
 	public float startVolume;
 	public float maxVolume;
 
@@ -13,6 +14,9 @@ public class BGMLayerS : MonoBehaviour {
 	private bool fadingOut = false;
 
 	private AudioSource mySource;
+	public AudioSource sourceRef { get { return mySource; } }
+
+	private bool destroyOnFade = false;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +42,9 @@ public class BGMLayerS : MonoBehaviour {
 			if (mySource.volume <= 0f){
 				mySource.volume = 0f;
 				fadingOut = false;
+				if (destroyOnFade){
+					Destroy(gameObject);
+				}
 			}
 		}
 	
@@ -61,7 +68,7 @@ public class BGMLayerS : MonoBehaviour {
 		}
 	}
 
-	public void FadeOut(bool instant = false){
+	public void FadeOut(bool instant, bool dOnFade = false){
 		if (!instant){
 			fadingOut = true;
 			fadingIn = false;
@@ -70,9 +77,18 @@ public class BGMLayerS : MonoBehaviour {
 			fadingIn = false;
 			mySource.volume = 0f;
 		}
+		destroyOnFade = dOnFade;
 	}
 
 	public void StopLayer(){
 		mySource.Stop();
+	}
+
+	public bool isPlayingAndHeard(){
+		bool iP = false;
+		if (mySource.volume > 0 && mySource.isPlaying && gameObject.activeSelf){
+			iP = true;
+		}
+		return iP;
 	}
 }

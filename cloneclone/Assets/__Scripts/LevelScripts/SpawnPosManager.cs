@@ -4,8 +4,10 @@ using System.Collections;
 public class SpawnPosManager : MonoBehaviour {
 
 	public static int whereToSpawn = 0;
+	public static bool spawningFromDeath = false;
 	private GameObject pRef;
 
+	public CheckpointS sceneCheckpoint;
 	public Transform[] spawnPts;
 
 	// Use this for initialization
@@ -14,6 +16,12 @@ public class SpawnPosManager : MonoBehaviour {
 		if (spawnPts.Length > 0){
 			pRef = GameObject.Find("Player");
 			pRef.transform.position = spawnPts[whereToSpawn].position;
+		}
+
+		if (sceneCheckpoint){
+			if (spawningFromDeath){
+				sceneCheckpoint.ActivateMusic();
+			}
 		}
 	
 	}

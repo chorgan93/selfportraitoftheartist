@@ -18,10 +18,20 @@ public class MixTriggerS : MonoBehaviour {
 		if (other.gameObject.tag == "Player"){
 			if ((activateOnce && !activated) || !activateOnce){
 				if (fadeIn){
-					targetLayer.FadeIn(instant);
+					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
+						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
+					}else{
+						targetLayer.transform.parent = BGMHolderS.BG.transform;
+						if (targetLayer.matchTimeStamp){
+							targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
+							targetLayer.FadeIn(instant);
+						}
+					}
 				}
 				if (fadeOut){
-					targetLayer.FadeOut(instant);
+					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
+						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant);
+					}
 				}
 				activated = true;
 			}
