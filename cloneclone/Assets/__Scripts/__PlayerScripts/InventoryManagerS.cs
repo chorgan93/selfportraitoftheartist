@@ -22,6 +22,8 @@ public class InventoryManagerS : MonoBehaviour {
 	private bool _updateUICall = false;
 	public bool updateUICall { get {return _updateUICall; } }
 
+	public static bool infiniteResets = false;
+
 	private float useItemTime = 0.3f;
 
 	// Use this for initialization
@@ -139,7 +141,9 @@ public class InventoryManagerS : MonoBehaviour {
 				//StartCoroutine(HealFunction());
 				if (_pRef.inCombat){
 					StartCoroutine(ResetFunction());
-					consumeItem = true;
+					if (!infiniteResets){
+						consumeItem = true;
+					}
 					rechargeable = true;
 				}
 				break;
