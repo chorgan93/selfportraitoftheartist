@@ -21,6 +21,8 @@ public class BarrierS : MonoBehaviour {
 	private int flashFrames = 6;
 	public GameObject turnOffSound;
 
+	public int turnOffAtProgression = -1;
+
 	// Use this for initialization
 	void Start () {
 
@@ -77,6 +79,13 @@ public class BarrierS : MonoBehaviour {
 					gameObject.SetActive(false);
 					barrierCollider.enabled = false;
 				}
+			}
+		}
+
+		if (turnOffAtProgression > -1){
+			if (StoryProgressionS.storyProgress >= turnOffAtProgression){
+				gameObject.SetActive(false);
+				barrierCollider.enabled = false;
 			}
 		}
 

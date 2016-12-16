@@ -8,8 +8,10 @@ public class DarknessS : MonoBehaviour {
 	public float turnOnTime = 2f;
 	private float turnOnCountdown = 0;
 
+
 	// Use this for initialization
 	void Start () {
+
 
 		turnOnCountdown = turnOnTime/(darkBits.Length*1f);
 		StartCoroutine(TurnOn());

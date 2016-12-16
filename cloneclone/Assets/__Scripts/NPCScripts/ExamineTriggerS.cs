@@ -31,6 +31,9 @@ public class ExamineTriggerS : MonoBehaviour {
 	public BuddyS buddyToGive;
 	public PlayerWeaponS mantraToGive;
 
+	public bool advanceProgress = false;
+	public int setProgress = -1;
+
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
 
@@ -231,6 +234,12 @@ public class ExamineTriggerS : MonoBehaviour {
 	}
 
 	private void AddPickup(){
+
+		if (advanceProgress){
+			StoryProgressionS.AdvanceStory();
+		}else if (setProgress > -1){
+			StoryProgressionS.SetStory(setProgress);
+		}
 
 		if (inventoryNum >= 0){
 			PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);

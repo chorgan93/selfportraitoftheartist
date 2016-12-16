@@ -61,6 +61,7 @@ public class CheckpointS : MonoBehaviour {
 				// set revive pos
 				GameOverS.reviveScene = Application.loadedLevelName;
 				GameOverS.revivePosition = spawnNum;
+				StoryProgressionS.SaveProgress();
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
 				PlayerInventoryS.I.dManager.ClearAll();

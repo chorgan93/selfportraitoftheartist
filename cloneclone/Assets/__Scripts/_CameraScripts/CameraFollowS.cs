@@ -63,7 +63,9 @@ public class CameraFollowS : MonoBehaviour {
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
 
-		playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
+		if (GameObject.Find("Player") != null){
+			playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
+		}
 
 			
 			Vector3 camPos = poi.transform.position+_camPosOffset;
@@ -219,13 +221,17 @@ public class CameraFollowS : MonoBehaviour {
 
 	public void SetNewPOI(GameObject newPoi){
 		_poi = newPoi;
-		playerRef.SetTalking(true);
+		if (playerRef){
+			playerRef.SetTalking(true);
+		}
 	}
 
 	public void ResetPOI(){
 		_poi = defaultPoi;
 		queueOver = true;
-		playerRef.SetTalking(false);
+		if (playerRef){
+			playerRef.SetTalking(false);
+		}
 	}
 
 	public void AddToQueue(GameObject newPoi, float poiTime){
