@@ -16,6 +16,7 @@ public class CheckpointS : MonoBehaviour {
 
 
 	private string healMessage = "Health restored. Progress saved.";
+	private string healMessageWithItem =  "Health restored. Progress saved.\nROSEMARY restored.";
 	public int spawnNum = 0;
 
 	
@@ -54,7 +55,11 @@ public class CheckpointS : MonoBehaviour {
 				}
 				else{
 					_playerDetect.player.TriggerResting(3f);
-					instructionText.SetTimedMessage(healMessage, 1.4f);
+					if (PlayerInventoryS.I.CheckForItem(0)){
+						instructionText.SetTimedMessage(healMessageWithItem, 1.4f);
+					}else{
+						instructionText.SetTimedMessage(healMessage, 1.4f);
+					}
 					_playerDetect.player.SetExamining(true, "");
 					//Debug.Log("YEAH");
 			}
@@ -105,6 +110,7 @@ public class CheckpointS : MonoBehaviour {
 	public void ActivateMusic(){
 
 		if (musicAtPoint.Length > 0){
+
 			for (int i = 0; i < musicAtPoint.Length; i++){
 				if (BGMHolderS.BG.ContainsChild(musicAtPoint[i].sourceRef.clip)){
 					BGMHolderS.BG.GetLayerWithClip(musicAtPoint[i].sourceRef.clip).FadeIn();
@@ -116,6 +122,11 @@ public class CheckpointS : MonoBehaviour {
 					}
 				}
 			}
+
+			BGMHolderS.BG.EndAllExcept(musicAtPoint, false, true);
+		}else{
+			// clear all currently playing
+			BGMHolderS.BG.EndAllLayers(false, true);
 		}
 
 	}

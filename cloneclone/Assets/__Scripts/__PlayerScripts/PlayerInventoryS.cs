@@ -75,9 +75,9 @@ public class PlayerInventoryS : MonoBehaviour {
 	}
 
 	public void AddHeal(int i){
-		if (!healNums.Contains(i)){
+		//if (!healNums.Contains(i)){
 			healNums.Add(i);
-		}
+		//}
 	}
 	public void AddCharge(int i){
 		if (!chargeNums.Contains(i)){

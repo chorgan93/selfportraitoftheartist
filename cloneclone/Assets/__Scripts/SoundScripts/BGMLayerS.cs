@@ -19,7 +19,7 @@ public class BGMLayerS : MonoBehaviour {
 	private bool destroyOnFade = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		mySource = GetComponent<AudioSource>();
 		mySource.volume = startVolume;
@@ -66,6 +66,8 @@ public class BGMLayerS : MonoBehaviour {
 			fadingOut = false;
 			mySource.volume = maxVolume;
 		}
+
+		destroyOnFade = false;
 	}
 
 	public void FadeOut(bool instant, bool dOnFade = false){

@@ -69,6 +69,10 @@ public class EnemyS : MonoBehaviour {
 	private FlashEffectS _critScreen;
 	private FlashEffectS _killScreen;
 
+	private Color fadeInColor;
+	private float fadeRate = 1f;
+	private bool fadedIn = false;
+
 	
 	[Header("Sound Properties")]
 	public GameObject hitSound;
@@ -130,6 +134,10 @@ public class EnemyS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!fadedIn){
+			FadeIn();
+		}
 
 		AliveUpdate();
 		DeadUpdate();
@@ -272,6 +280,13 @@ public class EnemyS : MonoBehaviour {
 		_myCollider = GetComponent<Collider>();
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMaterial = myRenderer.material;
+
+		if (myRenderer.color.a < 1f){
+			fadedIn = false;
+			fadeInColor = myRenderer.color;
+		}else{
+			fadedIn = true;
+		}
 
 		startDrag = _myRigidbody.drag;
 
@@ -553,6 +568,16 @@ public class EnemyS : MonoBehaviour {
 				transform.localScale = newSize;
 			}
 		}
+	}
+
+	private void FadeIn(){
+		fadeInColor = myRenderer.color;
+		fadeInColor.a += fadeRate * Time.deltaTime;
+		if (fadeInColor.a >= 1f){
+			fadeInColor.a = 1f;
+			fadedIn = true;
+		}
+		myRenderer.color = fadeInColor;
 	}
 
 

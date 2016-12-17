@@ -739,7 +739,7 @@ public class PlayerController : MonoBehaviour {
 				                                           ShootDirection(), ShootDirection(), this);
 				SpawnAttackPuff();
 
-				_myStats.ChargeCheck(_chargeAttackCost*10f);
+				_myStats.ChargeCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();

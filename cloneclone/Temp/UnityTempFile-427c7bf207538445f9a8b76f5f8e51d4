@@ -180,6 +180,7 @@
 'Assets/__Scripts/ProgressionScripts/FinalPortalS.cs'
 'Assets/__Scripts/ProgressionScripts/LevelUpHandlerS.cs'
 'Assets/__Scripts/ProgressionScripts/StoryProgressionS.cs'
+'Assets/__Scripts/ProgressionScripts/TurnOnOffAtProgressionS.cs'
 'Assets/__Scripts/SoundScripts/BGMHolderS.cs'
 'Assets/__Scripts/SoundScripts/BGMLayerS.cs'
 'Assets/__Scripts/SoundScripts/ClearAllLayersS.cs'

@@ -204,8 +204,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;
-		fillSize.x += playerStats.addedCharge*barAddSize;
-		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+		fillSize.x += playerStats.addedMana*barAddSize;
+		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		staminaFill.rectTransform.sizeDelta = fillSize;
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
 
@@ -213,11 +213,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			prevStaminaSize = fillSize.x;
 		}
 
-		// figure out something to do with the recharge bar
-		// for now, size is always 0
 		fillSize = staminaBarMaxSize;
 		fillSize.y = recoveryBarMaxSize.y;
-		/*if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead()){
+		if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead()){
 			fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
 				playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
 			if (playerStats.currentCooldownTimer < playerStats.recoveryCooldownMax){
@@ -226,8 +224,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		else{
 			fillSize.x = 0;
-		}**/
-		fillSize.x = 0;
+		}
+		//fillSize.x = 0;
 		recoveryFill.rectTransform.sizeDelta = fillSize;
 
 		borderSize = staminaBorderMaxSize;
@@ -238,6 +236,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		fillSize = chargeBarMaxSize;
 		fillSize.x += playerStats.addedCharge*chargeAddSize;
 		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+		//fillSize.x = 0f;
 		chargeFill.rectTransform.sizeDelta = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 		

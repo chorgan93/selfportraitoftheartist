@@ -26,6 +26,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int healNum = -1;
 	public int chargeNum = -1;
 	public int staminaNum = -1;
+	public int numToAdd = 1;
 	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
 	public BuddyS buddyToGive;
@@ -33,6 +34,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
+	public bool saveOnPickup = false;
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
@@ -241,17 +243,23 @@ public class ExamineTriggerS : MonoBehaviour {
 			StoryProgressionS.SetStory(setProgress);
 		}
 
-		if (inventoryNum >= 0){
-			PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
+		if (saveOnPickup){
+			StoryProgressionS.SaveProgress();
 		}
-		if (healNum >= 0){
-			PlayerInventoryS.I.AddHeal(healNum);
-		}
-		if (chargeNum >= 0){
-			PlayerInventoryS.I.AddCharge(chargeNum);
-		}
-		if (staminaNum >= 0){
-			PlayerInventoryS.I.AddStamina(staminaNum);
+
+		for (int i = 0; i < numToAdd; i++){
+			if (inventoryNum >= 0){
+				PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
+			}
+			if (healNum >= 0){
+				PlayerInventoryS.I.AddHeal(healNum);
+			}
+			if (chargeNum >= 0){
+				PlayerInventoryS.I.AddCharge(chargeNum);
+			}
+			if (staminaNum >= 0){
+				PlayerInventoryS.I.AddStamina(staminaNum);
+			}
 		}
 	}
 

@@ -17,12 +17,16 @@ public class SpawnPosManager : MonoBehaviour {
 			pRef = GameObject.Find("Player");
 			pRef.transform.position = spawnPts[whereToSpawn].position;
 		}
+	
+	}
+
+	void Start(){
 
 		if (sceneCheckpoint){
 			if (spawningFromDeath){
 				sceneCheckpoint.ActivateMusic();
 			}
 		}
-	
+
 	}
 }

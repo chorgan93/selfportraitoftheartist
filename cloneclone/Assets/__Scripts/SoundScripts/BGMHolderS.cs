@@ -61,6 +61,28 @@ public class BGMHolderS : MonoBehaviour {
 		return containsChild;
 	}
 
+	public void EndAllExcept(BGMLayerS[] layers, bool instant, bool destroy){
+
+
+		if (transform.childCount > 0){
+
+			bool foundOnList = false;
+
+			for (int i = 0; i < transform.childCount; i++){
+				if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null){
+					foundOnList = false;
+					for (int j = 0; j < layers.Length; j++){
+						if (layers[j].sourceRef.clip == transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().sourceRef.clip){
+							foundOnList = true;
+						}
+					}
+					if (!foundOnList){
+						transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().FadeOut(instant, destroy);
+					}
+				}
+			}
+		}
+	}
 
 	public void EndAllLayers(bool instant, bool destroy){
 		if (transform.childCount > 0){

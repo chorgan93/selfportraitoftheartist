@@ -39,7 +39,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentMana { get { return (_currentMana);}}
 
 	//________________________________CHARGE
-	private float _baseCharge = 50f;
+	private float _baseCharge = 5f;
 	private float _addedCharge = 0;
 	public float addedCharge { get { return _addedCharge; }}
 	private static float _currentCharge = 0f;
@@ -54,8 +54,8 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________CHARGE RECOVERY
 
 	private int _currentChargeRecoverLv = 1;
-	private float _baseChargeRecover = 10f;
-	private float _addedChargeRecoverPerLevel = 5f;
+	private float _baseChargeRecover = 1f;
+	private float _addedChargeRecoverPerLevel = .5f;
 	public float currentChargeRecover  { get { return 
 			_baseChargeRecover+_addedChargeRecoverPerLevel*(_currentChargeRecoverLv*1f-1f); } }
 
@@ -93,7 +93,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.2f;
+	private float _recoveryCooldownBase = 0.5f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.1f*_recoveryCooldownMultiplier*(currentRecovery-1f)/4f)));}}
@@ -108,7 +108,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
 
 	private float recoverRateIncrease;
-	private float recoverRateAccelBase = 1f;
+	private float recoverRateAccelBase = 2f;
 	private float recoverRateAccelAddPerLevel = 0.25f;
 	private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(_recoverRateLv*1f-1f); } }
 	private int _recoverRateLv = 1;
@@ -164,14 +164,14 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentMana > 0){
 			if (reduce){
 			if (_currentMana >= useAmount){
-			//	_currentMana -= useAmount;
+				_currentMana -= useAmount;
 				
-			//	_currentManaUsed += useAmount;
+				_currentManaUsed += useAmount;
 
 			}else{
-			//	_currentManaUsed += _currentMana;
+				_currentManaUsed += _currentMana;
 
-			//	_currentMana = 0;
+				_currentMana = 0;
 
 			}
 
@@ -287,7 +287,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
-				if (myPlayerController.isDashing || myPlayerController.isStunned || myPlayerController.InAttack()
+				if (myPlayerController.isDashing || myPlayerController.InAttack()
 				    || myPlayerController.chargingAttack){
 					canRecover = false;
 				}

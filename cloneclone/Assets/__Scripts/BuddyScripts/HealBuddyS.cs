@@ -93,7 +93,7 @@ public class HealBuddyS : BuddyS {
 					chargeButtonUp = true;
 				}else{
 					if (chargeButtonUp){
-						if (healCountdown <= 0 && playerRef.myStats.ChargeCheck(costPerUse)){
+						if (healCountdown <= 0 && playerRef.myStats.ManaCheck(costPerUse)){
 
 							myAnimator.SetTrigger(healAnimatorTrigger);
 
