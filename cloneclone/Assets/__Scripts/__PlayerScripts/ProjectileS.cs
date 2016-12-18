@@ -103,6 +103,8 @@ public class ProjectileS : MonoBehaviour {
 	public Collider extraRangeCollider;
 	public GameObject extraRangeSprite;
 
+	private int weaponNum = 0;
+
 
 	void FixedUpdate () {
 
@@ -156,6 +158,8 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
 			dmg*=enragedMult;
 		}
+
+		weaponNum = _myPlayer.EquippedWeapon().weaponNum;
 
 		if (soundObj){
 			Instantiate(soundObj);
@@ -358,7 +362,7 @@ public class ProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Destructible"){
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
-			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f);
+			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, weaponNum);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
 		}
 

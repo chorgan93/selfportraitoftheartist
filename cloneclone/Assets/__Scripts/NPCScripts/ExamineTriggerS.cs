@@ -80,6 +80,8 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 		if (playerInRange){
 
+			if (!pRef._inCombat){
+
 			if (!pRef.myControl.TalkButton()){
 				talkButtonDown = false;
 			}
@@ -188,6 +190,11 @@ public class ExamineTriggerS : MonoBehaviour {
 							DialogueManagerS.D.CompleteText();
 						}
 					}
+				}
+			}
+			}else{
+				if (pRef.examining){
+					pRef.SetExamining(false);
 				}
 			}
 		}

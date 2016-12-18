@@ -210,7 +210,7 @@ public class BuddyProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Destructible"){
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
-			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f);
+			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
 		}
 		

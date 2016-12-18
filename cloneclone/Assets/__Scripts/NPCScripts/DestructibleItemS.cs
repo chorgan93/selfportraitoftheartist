@@ -30,6 +30,8 @@ public class DestructibleItemS : MonoBehaviour {
 	private Color startCol;
 	private Collider myCollider;
 
+	public int onlyTakeDamageFromWeapon = -1;
+
 	public float destroySleepTime = 0.1f;
 
 	// Use this for initialization
@@ -100,17 +102,20 @@ public class DestructibleItemS : MonoBehaviour {
 
 	}
 
-	public void TakeDamage(float dmgAmt, float destructionRotation, Vector3 hitPos){
-		_currentHealth -= dmgAmt;
-		if (_currentHealth <= 0){
-			myCollider.enabled = false;
+	public void TakeDamage(float dmgAmt, float destructionRotation, Vector3 hitPos, int weaponNum){
+
+		if (onlyTakeDamageFromWeapon < -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
+			_currentHealth -= dmgAmt;
+				if (_currentHealth <= 0){
+				myCollider.enabled = false;
 					CameraShakeS.C.SmallShake();
-			CameraShakeS.C.TimeSleep(destroySleepTime);
-				}else{
+					CameraShakeS.C.TimeSleep(destroySleepTime);
+					}else{
 					CameraShakeS.C.MicroShake();
-			CameraShakeS.C.SmallSleep();
+					CameraShakeS.C.SmallSleep();
 				}
-		SpawnBits(destructionRotation, hitPos);
-		HitSprite();
+			SpawnBits(destructionRotation, hitPos);
+			HitSprite();
+		}
 	}
 }

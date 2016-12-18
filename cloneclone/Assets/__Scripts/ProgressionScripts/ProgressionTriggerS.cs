@@ -1,0 +1,22 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class ProgressionTriggerS : MonoBehaviour {
+	
+	public int progressionSet = -1;
+	private bool _activated = false;
+
+	void Start(){
+		if (StoryProgressionS.storyProgress > progressionSet){
+			_activated = true;
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+
+		if (other.gameObject.tag == "Player" && !_activated){
+			StoryProgressionS.SetStory(progressionSet);
+		}
+
+	}
+}

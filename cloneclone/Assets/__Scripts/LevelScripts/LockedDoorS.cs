@@ -29,6 +29,7 @@ public class LockedDoorS : MonoBehaviour {
 	void Update () {
 
 		if (playerInRange && pRef != null){
+			if (!pRef.inCombat){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){
@@ -51,6 +52,11 @@ public class LockedDoorS : MonoBehaviour {
 				talkButtonDown = true;
 			}else{
 				talkButtonDown = false;
+			}
+			}else{
+				if (pRef.examining){
+					pRef.SetExamining(false);
+				}
 			}
 		}
 	
