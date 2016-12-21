@@ -182,4 +182,25 @@ public class PlayerInventoryS : MonoBehaviour {
 	public bool CheckStim(int n){
 		return staminaNums.Contains(n);
 	}
+
+	public void NewGame(){
+		_dManager.ClearAllSaved();
+		_collectedItems.Clear();
+		_collectedItemCount.Clear();
+		_collectedKeyItems.Clear();
+		_clearedWalls.Clear();
+		PlayerInventoryS.I._earnedUpgrades.Clear();
+		PlayerInventoryS.I._earnedVirtues.Clear();
+		if (unlockedWeapons.Count > 1){
+			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
+		}
+		if (unlockedBuddies.Count > 1){
+			unlockedBuddies.RemoveRange(1, unlockedWeapons.Count-1);
+		}
+		SpawnPosManager.whereToSpawn = 0;
+		GameOverS.revivePosition = 0;
+		List<GameObject> buddyList = new List<GameObject>();
+		buddyList.Add(unlockedBuddies[0].gameObject);
+		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
+	}
 }

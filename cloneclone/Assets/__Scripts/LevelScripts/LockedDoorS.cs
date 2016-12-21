@@ -16,11 +16,20 @@ public class LockedDoorS : MonoBehaviour {
 	private PlayerInteractCheckS interactRef;
 	private bool playerInRange;
 
+	public GameObject unlockSound;
+	public SpriteRenderer mySprite;
+	public Collider myCollider;
+	private Color fadeColor;
+	private bool fading = false;
+	private float fadeRate = 1f;
+
 	// Use this for initialization
 	void Start () {
 
 		if (PlayerInventoryS.I.clearedWalls.Contains(keyID)){
 			TurnOff();
+		}else{
+			fadeColor = mySprite.color;
 		}
 	
 	}
@@ -28,19 +37,30 @@ public class LockedDoorS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (fading && !isTalking){
+			fadeColor = mySprite.color;
+			fadeColor.a -= fadeRate*Time.deltaTime;
+			if (fadeColor.a <= 0){
+				gameObject.SetActive(false);
+				fading = false;
+			}else{
+				mySprite.color = fadeColor;
+			}
+		}
+
 		if (playerInRange && pRef != null){
 			if (!pRef.inCombat){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){
-					if (!isTalking){
+					if (!isTalking && !fading){
 						TriggerExamine();
 					}
 					else{
 						if (DialogueManagerS.D.doneScrolling){
 							DialogueManagerS.D.EndText();
 							if (unlocking){
-									TurnOff();
+									TurnOffFade();
 							}else{
 									EndExamine();
 								}
@@ -75,14 +95,25 @@ public class LockedDoorS : MonoBehaviour {
 		isTalking = true;
 		unlocking = true;
 		DialogueManagerS.D.SetDisplayText(unlockString);
+		fading = true;
+
+		if (unlockSound){
+			Instantiate(unlockSound);
+		}
 	}
 
 	private void TriggerExamine(){
-		
-		pRef.SetTalking(true);
-		pRef.SetExamining(true);
-		isTalking = true;
-		DialogueManagerS.D.SetDisplayText(lockString);
+
+		if (PlayerInventoryS.I.CheckForItem(keyID)){
+			TriggerUnlock();
+			PlayerInventoryS.I.AddClearedWall(keyID);
+		}
+		else{
+			pRef.SetTalking(true);
+			pRef.SetExamining(true);
+			isTalking = true;
+			DialogueManagerS.D.SetDisplayText(lockString);
+		}
 
 	}
 
@@ -92,6 +123,16 @@ public class LockedDoorS : MonoBehaviour {
 			pRef.SetTalking(false);
 		}
 		gameObject.SetActive(false);
+	}
+
+	private void TurnOffFade(){
+		if (playerInRange){
+			pRef.SetExamining(false);
+			pRef.SetTalking(false);
+		}
+		isTalking = false;
+		myCollider.enabled  =false;
+		fading = true;
 	}
 
 	private void EndExamine(){

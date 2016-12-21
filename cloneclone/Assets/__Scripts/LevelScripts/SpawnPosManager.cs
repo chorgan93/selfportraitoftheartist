@@ -15,7 +15,11 @@ public class SpawnPosManager : MonoBehaviour {
 		
 		if (spawnPts.Length > 0){
 			pRef = GameObject.Find("Player");
-			pRef.transform.position = spawnPts[whereToSpawn].position;
+			if (whereToSpawn > spawnPts.Length-1){
+				pRef.transform.position = spawnPts[0].position;
+			}else{
+				pRef.transform.position = spawnPts[whereToSpawn].position;
+			}
 		}
 	
 	}
@@ -26,6 +30,8 @@ public class SpawnPosManager : MonoBehaviour {
 			if (spawningFromDeath){
 				sceneCheckpoint.ActivateMusic();
 			}
+			GameOverS.reviveScene = Application.loadedLevelName;
+			GameOverS.revivePosition = sceneCheckpoint.spawnNum;
 		}
 
 	}

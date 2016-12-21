@@ -10,6 +10,8 @@ public class SpriteDistortionS : MonoBehaviour {
 	private float changeCountdown = 0f;
 	public float changeSizeAmt = 0.2f;
 
+	public bool matchColor = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,6 +30,10 @@ public class SpriteDistortionS : MonoBehaviour {
 
 		if (mySprite.enabled){
 			mySprite.sprite = parentSprite.sprite;
+
+			if (matchColor){
+				mySprite.color = parentSprite.color;
+			}
 	
 
 				changeCountdown -= Time.deltaTime;

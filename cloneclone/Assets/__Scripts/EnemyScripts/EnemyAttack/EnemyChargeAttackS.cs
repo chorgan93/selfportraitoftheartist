@@ -138,7 +138,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		if (!standalone){
 		CameraShakeS.C.TimeSleep(0.06f);
-			if (soundObj && standalone){
+			if (soundObj){
 				Instantiate(soundObj);
 			}
 		}

@@ -21,4 +21,11 @@ public class StoryProgressionS : MonoBehaviour {
 	public static void ResetToSavedProgress(){
 		storyProgress = savedProgress;
 	}
+
+	public static void NewGame(){
+		storyProgress = savedProgress = 0;
+		if (PlayerInventoryS.I != null){
+			PlayerInventoryS.I.NewGame();
+		}
+	}
 }

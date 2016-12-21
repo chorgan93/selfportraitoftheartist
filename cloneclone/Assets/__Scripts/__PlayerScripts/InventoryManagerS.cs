@@ -42,7 +42,7 @@ public class InventoryManagerS : MonoBehaviour {
 				_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 				_interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();
 			}else{
-				if (!_pRef.talking){
+				if (!_pRef.talking && !_pRef.myStats.PlayerIsDead()){
 					//SwitchControl();
 					UseItemControl();
 				}

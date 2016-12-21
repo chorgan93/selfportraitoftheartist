@@ -15,6 +15,8 @@ public class CombatManagerS : MonoBehaviour {
 
 	private bool completed = false;
 	private bool activated = false;
+
+	public GameObject[] turnOffOnEnd;
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +52,7 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID);
 		}
+		TurnOffObjects();
 	}
 
 	public void SetPlayerRef(PlayerController p){
@@ -80,6 +83,14 @@ public class CombatManagerS : MonoBehaviour {
 			}
 			playerRef.transform.position = _resetPos;
 
+		}
+	}
+
+	void TurnOffObjects(){
+		if (turnOffOnEnd != null){
+			for (int i = 0; i < turnOffOnEnd.Length; i++){
+				turnOffOnEnd[i].SetActive(false);
+			}
 		}
 	}
 }

@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour {
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			//if (_inCombat){
-				LockOnControl();
+				//LockOnControl();
 				SwapControl();
 				BlockControl();
 				DashControl();
@@ -739,6 +739,7 @@ public class PlayerController : MonoBehaviour {
 				                                           ShootDirection(), ShootDirection(), this);
 				SpawnAttackPuff();
 
+				_myStats.ManaCheck(_chargeAttackCost);
 				_myStats.ChargeCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 
@@ -959,7 +960,7 @@ public class PlayerController : MonoBehaviour {
 
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ChargeCheck(1, false)){
+					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false)){
 					// charge attack
 
 						if (prevChain < 0){

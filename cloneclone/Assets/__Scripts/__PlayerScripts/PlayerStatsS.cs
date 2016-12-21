@@ -63,7 +63,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________ATTACK
-	private float _baseStrength = 0.8f;
+	private float _baseStrength = 1f;
 	private float _addedStrength = 0; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
 
@@ -93,7 +93,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.5f;
+	private float _recoveryCooldownBase = 0.2f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.1f*_recoveryCooldownMultiplier*(currentRecovery-1f)/4f)));}}
@@ -102,13 +102,13 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 3f;
+	private float _recoverRateMin = 4f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
 
 	private float recoverRateIncrease;
-	private float recoverRateAccelBase = 2f;
+	private float recoverRateAccelBase = 4f;
 	private float recoverRateAccelAddPerLevel = 0.25f;
 	private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(_recoverRateLv*1f-1f); } }
 	private int _recoverRateLv = 1;

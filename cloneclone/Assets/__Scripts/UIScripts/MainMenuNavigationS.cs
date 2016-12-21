@@ -82,7 +82,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		CheckCheats();
+		//CheckCheats();
 
 		if (!started){
 			allowStartTime -= Time.deltaTime;
@@ -152,6 +152,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					loadBlackScreen.gameObject.SetActive(true);
 					loading = true;
 					selectOrb.SetActive(false);
+						StoryProgressionS.NewGame(); // reset for new game progress
 					}
 					if (currentSelection == 1){
 						Application.OpenURL(facebookLink);

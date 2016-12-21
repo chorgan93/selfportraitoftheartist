@@ -12,6 +12,31 @@ public class MixTriggerS : MonoBehaviour {
 	public bool activateOnce = false;
 	private bool activated = false;
 
+	public bool activateOnStart = false;
+
+	void Start(){
+		if (activateOnStart){
+			if (fadeIn){
+				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
+					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
+				}else{
+					targetLayer.transform.parent = BGMHolderS.BG.transform;
+					if (targetLayer.matchTimeStamp){
+						targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
+					}
+					targetLayer.FadeIn(instant);
+					
+				}
+			}
+			if (fadeOut){
+				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
+					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant);
+				}
+			}
+			activated = true;
+		}
+	}
+
 
 	void OnTriggerEnter (Collider other) {
 	
@@ -24,8 +49,9 @@ public class MixTriggerS : MonoBehaviour {
 						targetLayer.transform.parent = BGMHolderS.BG.transform;
 						if (targetLayer.matchTimeStamp){
 							targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
-							targetLayer.FadeIn(instant);
 						}
+							targetLayer.FadeIn(instant);
+						
 					}
 				}
 				if (fadeOut){
