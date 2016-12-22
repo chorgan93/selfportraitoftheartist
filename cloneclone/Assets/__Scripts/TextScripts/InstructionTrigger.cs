@@ -4,6 +4,7 @@ using System.Collections;
 public class InstructionTrigger : MonoBehaviour {
 
 	public string instructionString;
+	public string noControllerInstructionString = "";
 	private InstructionTextS instructionRef;
 	private bool isShowing = false;
 
@@ -13,6 +14,9 @@ public class InstructionTrigger : MonoBehaviour {
 
 		instructionRef = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
 		instructionString = instructionString.Replace("NEWLINE", "\n");
+		if (noControllerInstructionString != ""){
+			noControllerInstructionString = noControllerInstructionString.Replace("NEWLINE", "\n");
+		}
 
 		if (turnedOffIfClearedCombat > -1){
 			if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(turnedOffIfClearedCombat)){
@@ -30,7 +34,11 @@ public class InstructionTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player"){
-			instructionRef.SetShowing(true, instructionString);
+			if (noControllerInstructionString != "" && !other.GetComponent<PlayerController>().myControl.ControllerAttached()){
+				instructionRef.SetShowing(true, noControllerInstructionString);
+			}else{
+				instructionRef.SetShowing(true, instructionString);
+			}
 			isShowing = true;
 		}
 	}

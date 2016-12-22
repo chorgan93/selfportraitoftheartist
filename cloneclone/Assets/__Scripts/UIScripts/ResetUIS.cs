@@ -18,6 +18,12 @@ public class ResetUIS : MonoBehaviour {
 
 		inventoryRef = PlayerInventoryS.I.iManager;
 		UpdateUI ();
+
+		if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
+			instruction.text = "RB";
+		}else{
+			instruction.text = "R";
+		}
 	
 	}
 	
