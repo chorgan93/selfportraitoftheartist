@@ -43,7 +43,9 @@ public class InGameMenuManagerS : MonoBehaviour {
 		if (!_pRef.myStats.PlayerIsDead()){
 		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
 		    && !_pRef.talking){
-			if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
+
+				// TODO: turn back on once functional
+			/*if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
 				equipMenu.TurnOn();
 				_pRef.SetTalking(true);
@@ -54,7 +56,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 				gameMenuButtonDown = true;
 				gameMenu.gameObject.SetActive(true);
 				_pRef.SetTalking(true);
-			}
+			}**/
 		}
 
 		if (gameMenuActive){

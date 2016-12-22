@@ -16,7 +16,7 @@ public class CheckpointS : MonoBehaviour {
 
 
 	private string healMessage = "Health restored. Progress saved.";
-	private string healMessageWithItem =  "Health restored. Progress saved.\nROSEMARY restored.";
+	private string healMessageWithItem =  "Health restored. Progress saved.\nRESETs restored.";
 	public int spawnNum = 0;
 
 	

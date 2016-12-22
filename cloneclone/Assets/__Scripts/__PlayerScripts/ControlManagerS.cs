@@ -136,7 +136,7 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetButton("ShootButton"+platformType));
 			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
-			return (Input.GetMouseButton(1));
+			return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 		}
 
 	}
@@ -231,7 +231,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetMouseButton(0));
+			return (Input.GetMouseButton(1));
 			
 		}
 		
@@ -299,7 +299,7 @@ public class ControlManagerS : MonoBehaviour {
 			//return (Input.GetButton("SwitchButton"+platformType));
 		}
 		else{
-			return(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+			return(Input.GetKey(KeyCode.Q));
 		}
 		
 	}
@@ -374,13 +374,13 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool UseItemButton(){
-		//TODO add functionality for keyboard/mouse and linux
+
 		if (ControllerAttached()){
 		
 			
 			return (Input.GetButton("SwitchBuddyButton"+platformType));
 		}else{
-			return false;
+			return (Input.GetKey(KeyCode.R));
 		}
 	}
 	public bool ScrollItemLeftButton(){

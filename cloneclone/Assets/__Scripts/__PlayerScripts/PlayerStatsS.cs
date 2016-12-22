@@ -9,6 +9,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 
+	public static bool healOnStart = false;
+
 	private PlayerController myPlayerController;
 
 	public static bool godMode = false;
@@ -317,9 +319,10 @@ public class PlayerStatsS : MonoBehaviour {
 		_itemEffect = GetComponentInChildren<ItemEffectS>();
 
 		_currentMana = maxMana;
-		if (PlayerController.doWakeUp){
+		if (PlayerController.doWakeUp || healOnStart){
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
+			healOnStart = false;
 		}
 		_currentDefense = maxDefense;
 

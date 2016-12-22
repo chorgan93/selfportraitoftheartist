@@ -1,39 +1,3 @@
 Base path: /Applications/Unity 5.1/Unity.app/Contents
 Pipe name: \\.\pipe\UnityShaderCompiler-64bit-1-1965142784
 Cmd: getPlatforms
-Cmd: compileSnippet
-  api=1 type=0 insize=4390 outsize=249 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=4390 outsize=2275 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=4390 outsize=252 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=4390 outsize=1909 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=4394 outsize=271 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=4394 outsize=2104 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=4394 outsize=738 kw= pd= ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=4395 outsize=271 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=4395 outsize=2104 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=4395 outsize=738 kw= pd= ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=4399 outsize=371 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=4399 outsize=2641 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=4399 outsize=661 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=4399 outsize=2901 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=4400 outsize=381 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=4400 outsize=2641 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=4400 outsize=661 kw= pd= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=4400 outsize=2901 kw= pd=UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1

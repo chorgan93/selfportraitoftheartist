@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 	public List<PlayerWeaponS> equippedWeapons;
 	public List<PlayerWeaponS> subWeapons;
 	private WeaponSwitchFlashS weaponSwitchIndicator;
-	private static int _currentParadigm = 0;
+	public static int _currentParadigm = 0;
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }

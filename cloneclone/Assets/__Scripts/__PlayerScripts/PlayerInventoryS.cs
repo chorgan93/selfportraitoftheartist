@@ -189,6 +189,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_collectedItemCount.Clear();
 		_collectedKeyItems.Clear();
 		_clearedWalls.Clear();
+		healNums.Clear();
 		PlayerInventoryS.I._earnedUpgrades.Clear();
 		PlayerInventoryS.I._earnedVirtues.Clear();
 		if (unlockedWeapons.Count > 1){
@@ -197,6 +198,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		if (unlockedBuddies.Count > 1){
 			unlockedBuddies.RemoveRange(1, unlockedWeapons.Count-1);
 		}
+		PlayerStatsS.healOnStart = true;
+		PlayerController._currentParadigm = 0;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
 		List<GameObject> buddyList = new List<GameObject>();
