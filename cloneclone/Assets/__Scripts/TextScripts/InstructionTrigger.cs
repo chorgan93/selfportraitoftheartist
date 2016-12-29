@@ -8,7 +8,9 @@ public class InstructionTrigger : MonoBehaviour {
 	private InstructionTextS instructionRef;
 	private bool isShowing = false;
 
+	[Header("Turn Off Conditions")]
 	public int turnedOffIfClearedCombat = -1;
+	public bool menuInstruction = false;
 
 	void Start(){
 
@@ -24,6 +26,14 @@ public class InstructionTrigger : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void Update(){
+		if (menuInstruction){
+			if (InGameMenuManagerS.hasUsedMenu){
+				gameObject.SetActive(false);
+			}
+		}
 	}
 
 	void OnDisable(){

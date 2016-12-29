@@ -169,10 +169,10 @@ public class EquipMenuS : MonoBehaviour {
 					GoToParadigmIISetUp();
 				}
 				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
-					GoToVirtueSetUp();
+					//GoToVirtueSetUp();
 				}
 				if (currentPos == 3 && inventoryRef.collectedItems.Count > 0){
-					GoToInventorySetUp();
+					//GoToInventorySetUp();
 				}
 			}
 		

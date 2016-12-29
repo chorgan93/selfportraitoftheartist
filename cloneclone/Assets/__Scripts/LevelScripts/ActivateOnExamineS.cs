@@ -7,8 +7,8 @@ public class ActivateOnExamineS : MonoBehaviour {
 	public List<GameObject> turnOnObjects;
 	public List<GameObject> turnOffObjects;
 	public List<BarrierS> offBarriers;
-	private float timeBetweenBarriers = 0.32f;
-	private float timeTurnOffBarriers = 0.5f;
+	public float timeBetweenBarriers = 0.32f;
+	public float timeTurnOffBarriers = 0.5f;
 
 	private bool turnedOn = false;
 

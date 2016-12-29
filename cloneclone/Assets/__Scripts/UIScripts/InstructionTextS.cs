@@ -11,6 +11,7 @@ public class InstructionTextS : MonoBehaviour {
 	private Color bgColor;
 
 	private bool showing = false;
+	public bool isShowing { get { return showing; } }
 	private bool timedShowing = false;
 	private float showCountdown;
 
