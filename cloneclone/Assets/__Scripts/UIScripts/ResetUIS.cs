@@ -20,7 +20,7 @@ public class ResetUIS : MonoBehaviour {
 		UpdateUI ();
 
 		if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
-			instruction.text = "RB";
+			instruction.text = "LB";
 		}else{
 			instruction.text = "R";
 		}

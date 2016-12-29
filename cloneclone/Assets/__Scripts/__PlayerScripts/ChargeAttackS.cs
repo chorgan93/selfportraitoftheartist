@@ -219,11 +219,11 @@ public class ChargeAttackS : MonoBehaviour {
 				(knockBackDir*knockbackForce*Time.deltaTime, 
 				 dmg, stunMult, 2f);
 
-				if (myPlayer.playerAug.lunaAug){
+				/*if (myPlayer.playerAug.lunaAug){
 					myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
 				}else{
 					myPlayer.myStats.RecoverCharge(absorbPercent);
-				}
+				}**/
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 			}

@@ -6,6 +6,7 @@ public class LockedDoorS : MonoBehaviour {
 	public string lockString;
 	public string unlockString;
 	public string examineLabel;
+	public string examineLabelNoController;
 	public int keyID;
 
 	private bool isTalking = false;
@@ -147,7 +148,15 @@ public class LockedDoorS : MonoBehaviour {
 				pRef = other.gameObject.GetComponent<PlayerController>();
 				interactRef = pRef.GetComponentInChildren<PlayerInteractCheckS>();
 			}
-			pRef.SetExamining(true, examineLabel);
+			if (examineLabelNoController != ""){
+				if (!pRef.myControl.ControllerAttached()){
+					pRef.SetExamining(true, examineLabelNoController);
+				}else{
+					pRef.SetExamining(true, examineLabel);
+				}
+			}else{
+				pRef.SetExamining(true, examineLabel);
+			}
 			interactRef.AddDoor(this);
 			playerInRange = true;
 		}

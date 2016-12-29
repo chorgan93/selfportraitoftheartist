@@ -19,6 +19,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 	private bool playerDead = false;
 
+	public static bool allowMenuUse = false;
+
 	private PlayerController _pRef;
 	public PlayerController pRef { get { return _pRef; } }
 
@@ -45,7 +47,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 		    && !_pRef.talking){
 
 				// TODO: turn back on once functional
-			/*if (_pRef.myControl.StartButton() && !equipMenuButtonDown){
+			if (allowMenuUse && _pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
 				equipMenu.TurnOn();
 				_pRef.SetTalking(true);
@@ -56,7 +58,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 				gameMenuButtonDown = true;
 				gameMenu.gameObject.SetActive(true);
 				_pRef.SetTalking(true);
-			}**/
+			}
 		}
 
 		if (gameMenuActive){

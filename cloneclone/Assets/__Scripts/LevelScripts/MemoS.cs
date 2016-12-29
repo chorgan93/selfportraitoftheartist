@@ -7,6 +7,7 @@ public class MemoS : MonoBehaviour {
 	public int startMemoIndex;
 	public int endMemoIndex;
 	public string examineLabel;
+	public string examineLabelNoController = "";
 	public int memoID;
 	private int currentStep = 0;
 
@@ -92,7 +93,15 @@ public class MemoS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
-			pRef.SetExamining(true, examineLabel);
+			if (examineLabelNoController != ""){
+				if (!pRef.myControl.ControllerAttached()){
+					pRef.SetExamining(true, examineLabelNoController);
+				}else{
+					pRef.SetExamining(true, examineLabel);
+				}
+			}else{
+				pRef.SetExamining(true, examineLabel);
+			}
 			playerInRange = true;
 		}
 	}

@@ -4,6 +4,7 @@ using System.Collections;
 public class ExamineTriggerS : MonoBehaviour {
 
 	public string examineLabel = "";
+	public string examineLabelNoController = "";
 	public string examineString;
 	public string unlockString;
 	public int costToExamine = -1;
@@ -30,6 +31,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
 	public BuddyS buddyToGive;
+	public bool forceBuddySwitch = false;
 	public PlayerWeaponS mantraToGive;
 
 	public bool advanceProgress = false;
@@ -156,6 +158,7 @@ public class ExamineTriggerS : MonoBehaviour {
 							}
 
 							if (buddyToGive){
+									InGameMenuManagerS.allowMenuUse = true;
 								PlayerInventoryS.I.unlockedBuddies.Add(buddyToGive);
 								if (pRef.equippedBuddies.Count < 2){
 									pRef.equippedBuddies.Add(buddyToGive.gameObject);
@@ -286,7 +289,15 @@ public class ExamineTriggerS : MonoBehaviour {
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
 			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
-				pRef.SetExamining(true, examineLabel);
+				if (examineLabelNoController != ""){
+					if (!pRef.myControl.ControllerAttached()){
+						pRef.SetExamining(true, examineLabelNoController);
+					}else{
+						pRef.SetExamining(true, examineLabel);
+					}
+				}else{
+					pRef.SetExamining(true, examineLabel);
+				}
 			}
 			playerInRange = true;
 		}

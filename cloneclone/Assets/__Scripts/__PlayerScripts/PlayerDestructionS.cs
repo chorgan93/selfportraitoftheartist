@@ -69,6 +69,7 @@ public class PlayerDestructionS : MonoBehaviour {
 		_bloodIds.Clear();
 		_bloodPos.Clear();
 		_bloodSpriteNums.Clear();
+		_clearedCombatTriggers.Clear();
 	}
 
 	public void ClearAllSaved(){

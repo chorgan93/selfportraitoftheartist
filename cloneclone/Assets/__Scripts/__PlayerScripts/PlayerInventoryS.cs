@@ -189,6 +189,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_collectedItemCount.Clear();
 		_collectedKeyItems.Clear();
 		_clearedWalls.Clear();
+		_openedDoors.Clear();
 		healNums.Clear();
 		PlayerInventoryS.I._earnedUpgrades.Clear();
 		PlayerInventoryS.I._earnedVirtues.Clear();
@@ -200,6 +201,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 		PlayerStatsS.healOnStart = true;
 		PlayerController._currentParadigm = 0;
+		PlayerController.currentBuddy = 0;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
 		List<GameObject> buddyList = new List<GameObject>();

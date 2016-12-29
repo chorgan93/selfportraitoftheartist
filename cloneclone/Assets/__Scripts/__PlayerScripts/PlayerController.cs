@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
-	private static int currentBuddy = 0;
+	public static int currentBuddy = 0;
 	private static int subBuddy = 1;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;

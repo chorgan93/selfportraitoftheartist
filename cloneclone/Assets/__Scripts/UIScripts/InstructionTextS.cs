@@ -36,7 +36,7 @@ public class InstructionTextS : MonoBehaviour {
 				textColor = myText.color;
 				textColor.a += Time.deltaTime*fadeRate;
 				myText.color = textColor;
-				bgColor.a = textColor.a;
+				bgColor.a = textColor.a*0.8f;
 				bgText.color = bgColor;
 			}else{
 				if (timedShowing){
