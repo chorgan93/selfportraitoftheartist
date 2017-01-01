@@ -39,9 +39,10 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
 
-	private string newGameScene = "IntroCutscene";
+	private string newGameScene = "TutorialScene";
 	//private string newGameScene = "InfiniteScene";
 	private string twitterLink = "http://www.twitter.com/melessthanthree";
+	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
 	private string facebookLink = "http://www.facebook.com/lucahgame/";
 
 	private string cheatString = "";
@@ -159,6 +160,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 					if (currentSelection == 2){
 						Application.OpenURL(twitterLink);
+					}
+					if (currentSelection == 3){
+						Application.OpenURL(twitterLinkII);
 					}
 				}
 			}
