@@ -15,6 +15,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	private bool talkButtonDown = false;
 	private PlayerController pRef;
 	public bool doWakeUp = false;
+	public int setProgressOnActivate = -1;
 
 	void Start(){
 		if (openedSprite != null){
@@ -80,6 +81,10 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	void StartNextScene(){
 
 		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, pRef.equippedBuddies);
+
+		if (setProgressOnActivate > -1 && setProgressOnActivate > StoryProgressionS.storyProgress){
+			StoryProgressionS.storyProgress = setProgressOnActivate;
+		}
 
 		CameraEffectsS.E.SetNextScene(nextSceneString);
 		CameraEffectsS.E.FadeIn();
