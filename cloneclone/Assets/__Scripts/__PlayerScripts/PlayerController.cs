@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour {
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			//if (_inCombat){
-				//LockOnControl();
+				LockOnControl();
 				SwapControl();
 				BlockControl();
 				DashControl();
@@ -1119,44 +1119,23 @@ public class PlayerController : MonoBehaviour {
 						_myLockOn.EndLockOn();
 							lockInputReset = false;
 					}**/
-					if (!myControl.LockOnButton()){
-						_lockButtonDown = false;
+					if (!_lockButtonDown && myControl.LockOnButton()){
+						_lockButtonDown = true;
 							_myLockOn.EndLockOn();
 							lockInputReset = false;
 
-				}/*else{
-					if (_lockButtonDown && lockDownTime < lockTurnOffThreshold && myDetect.allEnemiesInRange.Count > 1){
-						int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
-						currentLockedEnemy++;
-						if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
-							currentLockedEnemy = 0;
-						}
-						_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
-					}
-						lockDownTime = 0f;
-						_lockButtonDown = false;
-				}**/
+				}
 
 			}
 				
 			}else{
-				if (myControl.LockOnButton()){
+				if (!_lockButtonDown && myControl.LockOnButton()){
 					_lockButtonDown = true;
 					if (myDetect.allEnemiesInRange.Count > 0){
 						_myLockOn.LockOn(myDetect.closestEnemy);
 						_isSprinting = false;
-						_lockButtonDown = false;
 					}
-				}/*else{
-					if (_lockButtonDown && lockInputReset){
-						if (myDetect.allEnemiesInRange.Count > 0){
-							_myLockOn.LockOn(myDetect.closestEnemy);
-							_isSprinting = false;
-							lockDownTime = 0f;
-						}
-						_lockButtonDown = false;
-					}
-				}**/
+				}
 			}
 
 			if (!myControl.LockOnButton()){
