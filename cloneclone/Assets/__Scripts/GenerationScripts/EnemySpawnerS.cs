@@ -70,7 +70,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	
 			currentEnemyReference = newEnemy.GetComponent<EnemyS>();
 	
-			newEnemy.transform.parent = transform;
+			//newEnemy.transform.parent = transform;
 
 			if (enemySpawnID > -1 && PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)){
 				currentEnemyReference.transform.position = PlayerInventoryS.I.dManager.enemiesDefeatedPos
@@ -92,7 +92,7 @@ public class EnemySpawnerS : MonoBehaviour {
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
 			currentEnemyReference.Reinitialize();
 			currentEnemyReference.transform.position = savedSpawnPt;
-			currentEnemyReference.transform.parent = transform;
+			//currentEnemyReference.transform.parent = transform;
 		}
 
 	}

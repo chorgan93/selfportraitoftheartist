@@ -320,7 +320,26 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetButton("SwitchButton"+platformType));
 			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 		}else{
-			return (Input.GetMouseButton(2));
+			Debug.Log("Pressing Lock on!");
+			return (Input.GetKey(KeyCode.X));
+		}
+	}
+
+	public bool ChangeLockTargetKeyRight(){
+		if (!ControllerAttached()){
+			return (Input.GetKey(KeyCode.C));
+		}else{
+			return 
+				false;
+		}
+	}
+
+	public bool ChangeLockTargetKeyLeft(){
+		if (!ControllerAttached()){
+			return (Input.GetKey(KeyCode.Z));
+		}else{
+			return 
+				false;
 		}
 	}
 

@@ -14,6 +14,7 @@ public class PlayerDetectS : MonoBehaviour {
 	public PlayerController player { get { return playerReference; } }
 
 	public string examineString;
+	public string examineStringNoController = "";
 
 	private bool keepTrackOfEnemies = false;
 
@@ -75,7 +76,11 @@ public class PlayerDetectS : MonoBehaviour {
 			}
 
 			if (playerReference != null && examineString != ""){
-				playerReference.SetExamining(true, examineString);
+				if (playerReference.myControl.ControllerAttached() || examineStringNoController == ""){
+					playerReference.SetExamining(true, examineString);
+				}else{
+					playerReference.SetExamining(true, examineStringNoController);
+				}
 			}
 		}
 

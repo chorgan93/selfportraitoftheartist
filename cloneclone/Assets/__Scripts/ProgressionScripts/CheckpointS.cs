@@ -41,7 +41,11 @@ public class CheckpointS : MonoBehaviour {
 		if (_playerDetect.PlayerInRange() && !_examining){
 
 			
-			_playerDetect.player.SetExamining(true, _playerDetect.examineString);
+			if (_playerDetect.player.myControl.ControllerAttached() || _playerDetect.examineStringNoController == ""){
+				_playerDetect.player.SetExamining(true, _playerDetect.examineString);
+			}else{
+				_playerDetect.player.SetExamining(true, _playerDetect.examineStringNoController);
+			}
 
 			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp
 			    && !_playerDetect.player.talking){

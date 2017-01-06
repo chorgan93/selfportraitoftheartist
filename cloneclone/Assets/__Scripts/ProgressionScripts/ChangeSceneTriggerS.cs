@@ -8,6 +8,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	public int whereToSpawn = 0;
 	public int doorNum = -1;
 	public string examineString = "";
+	public string examineStringNoController = "";
 	public Sprite openedSprite;
 	private SpriteRenderer _myRender;
 	private bool loading = false;
@@ -32,7 +33,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		if (requireExamine && examining && !loading){
 
 			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
+				if (pRef.myControl.ControllerAttached() || examineStringNoController == ""){
 				pRef.SetExamining(true, examineString);
+				}else{
+					pRef.SetExamining(true, examineStringNoController);
+				}
 			}
 
 			if (pRef.myControl.TalkButton()){
@@ -61,7 +66,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 				StartNextScene();
 			}else{
 				if (pRef.myDetect.allEnemiesInRange.Count <= 0){
-					pRef.SetExamining(true, examineString);
+					if (pRef.myControl.ControllerAttached() || examineStringNoController == ""){
+						pRef.SetExamining(true, examineString);
+					}else{
+						pRef.SetExamining(true, examineStringNoController);
+					}
 				}
 				examining = true;
 			}

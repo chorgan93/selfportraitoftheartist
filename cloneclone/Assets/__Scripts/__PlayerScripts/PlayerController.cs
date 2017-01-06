@@ -1080,9 +1080,6 @@ public class PlayerController : MonoBehaviour {
 
 	private void LockOnControl(){
 
-		// controller only for the moment
-		// figure out mouse control scheme (middle click & scroll wheel should work)
-		if (myControl.ControllerAttached()){
 
 			if (_myLockOn.lockedOn){
 
@@ -1092,7 +1089,8 @@ public class PlayerController : MonoBehaviour {
 
 					// allow change of target
 					if (myDetect.allEnemiesInRange.Count > 1 && lockInputReset){
-						if (myControl.RightHorizontal() > 0.1f || myControl.RightVertical() > 0.1f){
+					if ((controller.ControllerAttached() && (myControl.RightHorizontal() > 0.1f || myControl.RightVertical() > 0.1f))
+					    || (!controller.ControllerAttached() && myControl.ChangeLockTargetKeyRight())){
 						int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
 						currentLockedEnemy++;
 						if (currentLockedEnemy > myDetect.allEnemiesInRange.Count-1){
@@ -1101,7 +1099,8 @@ public class PlayerController : MonoBehaviour {
 						_myLockOn.LockOn(myDetect.allEnemiesInRange[currentLockedEnemy]);
 							lockInputReset = false;
 						}
-						if (myControl.RightHorizontal() < -0.1f || myControl.RightVertical() < -0.1f){
+						if ((controller.ControllerAttached() && (myControl.RightHorizontal() < -0.1f || myControl.RightVertical() < -0.1f))
+					    || (!controller.ControllerAttached() && myControl.ChangeLockTargetKeyLeft())){
 							int currentLockedEnemy = myDetect.allEnemiesInRange.IndexOf(_myLockOn.myEnemy);
 							currentLockedEnemy--;
 							if (currentLockedEnemy < 0){
@@ -1122,7 +1121,8 @@ public class PlayerController : MonoBehaviour {
 					if (!_lockButtonDown && myControl.LockOnButton()){
 						_lockButtonDown = true;
 							_myLockOn.EndLockOn();
-							lockInputReset = false;
+						lockInputReset = false;
+						Debug.Log("LOCK ON OFF!");
 
 				}
 
@@ -1132,6 +1132,7 @@ public class PlayerController : MonoBehaviour {
 				if (!_lockButtonDown && myControl.LockOnButton()){
 					_lockButtonDown = true;
 					if (myDetect.allEnemiesInRange.Count > 0){
+						Debug.Log("LOCK ON SUCCESS!");
 						_myLockOn.LockOn(myDetect.closestEnemy);
 						_isSprinting = false;
 					}
@@ -1142,11 +1143,16 @@ public class PlayerController : MonoBehaviour {
 				_lockButtonDown = false;
 			}
 
+		if (controller.ControllerAttached()){
 			if (Mathf.Abs(myControl.RightVertical()) <= 0.1f && Mathf.Abs(myControl.RightHorizontal()) <= 0.1f){
 				lockInputReset = true;
 			}
-			
+		}else{
+			if (!controller.ChangeLockTargetKeyLeft() && !controller.ChangeLockTargetKeyRight()){
+				lockInputReset = true;
+			}
 		}
+			
 	}
 
 	private void ManageAugments(){

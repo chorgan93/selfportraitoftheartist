@@ -3,9 +3,14 @@ using System.Collections;
 
 public class NPCS : MonoBehaviour {
 
+	public enum DialogueStructure {Loop, RepeatLast};
+	public DialogueStructure dialogueType = DialogueStructure.Loop;
+
 	[Header("Talk Properties")]
 	public string talkLabel = "";
-	public string talkString;
+	public NPCDialogueSet[] dialogues;
+	private int currentDialogue = 0;
+	private int currentDialogueIndex = 0;
 	public GameObject talkSound;
 
 	public GameObject newPoi;
@@ -77,14 +82,14 @@ public class NPCS : MonoBehaviour {
 			if (pRef.myControl.TalkButton() && !talkButtonDown){
 				talkButtonDown = true;
 				
-				if (!talking && talkString != ""){
+				if (!talking){
 						
 						pRef.SetTalking(true);
 						if (newPoi){
 							CameraFollowS.F.SetNewPOI(newPoi);
 						}
 						
-					DialogueManagerS.D.SetDisplayText(talkString);
+					DialogueManagerS.D.SetDisplayText(dialogues[currentDialogue].dialogueStrings[currentDialogueIndex]);
 
 						if (talkSound){
 							Instantiate(talkSound);
@@ -103,15 +108,21 @@ public class NPCS : MonoBehaviour {
 					
 				}else{
 
-						if (talkString == "" && talkSound != null){
+						if (talkSound != null){
 							Instantiate(talkSound);
 						}
 
 						if (DialogueManagerS.D.doneScrolling){
+						currentDialogueIndex++;
+						if (currentDialogueIndex >= dialogues[currentDialogue].dialogueStrings.Length){
 							pRef.SetTalking(false);
 							CameraFollowS.F.ResetPOI();
 							DialogueManagerS.D.EndText();
 							talking = false;
+							currentDialogueIndex++;
+						}else{
+							DialogueManagerS.D.SetDisplayText(dialogues[currentDialogue].dialogueStrings[currentDialogueIndex]);
+						}
 
 						if (isWaiting){
 							
