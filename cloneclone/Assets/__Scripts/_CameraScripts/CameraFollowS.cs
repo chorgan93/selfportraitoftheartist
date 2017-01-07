@@ -226,11 +226,11 @@ public class CameraFollowS : MonoBehaviour {
 		}
 	}
 
-	public void ResetPOI(){
+	public void ResetPOI(bool isCinematic = false){
 		_poi = defaultPoi;
 		queueOver = true;
 		if (playerRef){
-			playerRef.SetTalking(false);
+			playerRef.SetTalking(isCinematic);
 		}
 	}
 

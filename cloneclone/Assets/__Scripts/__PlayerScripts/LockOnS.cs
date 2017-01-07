@@ -20,7 +20,7 @@ public class LockOnS : MonoBehaviour {
 	public EnemyHealthUIS enemyHealthUI { get { return _enemyHealthUI; } } 
 
 
-	private Vector3 sizeDistortion = new Vector3(1.5f, 0.75f, 1f);
+	private Vector3 sizeDistortion = new Vector3(2f, 1.25f, 1f);
 
 	private PlayerController myPlayerReference;
 
@@ -111,6 +111,7 @@ public class LockOnS : MonoBehaviour {
 
 
 		currentPos = _myEnemy.myShadow.transform.position;
+		currentPos.x = _myEnemy.transform.position.x;
 		currentPos.y -= Mathf.Abs(transform.localScale.y*0.15f);
 		currentPos.z += zDiff;
 		transform.position = currentPos;
@@ -125,6 +126,11 @@ public class LockOnS : MonoBehaviour {
 		transform.localScale = sizeDistortion*newEnemy.myRenderer.transform.localScale.x*newEnemy.transform.localScale.x;
 		if (_myEnemy.transform.parent != null){
 			transform.localScale*=_myEnemy.transform.parent.localScale.x;
+		}
+		if (transform.localScale.y < 0){
+			Vector3 fixScale = transform.localScale;
+			fixScale.y *= -1f;
+			transform.localScale = fixScale;
 		}
 		UpdatePosition();
 		_lockedOn = true;

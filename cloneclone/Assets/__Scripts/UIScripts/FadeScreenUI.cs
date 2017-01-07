@@ -89,6 +89,7 @@ public class FadeScreenUI : MonoBehaviour {
 						PlayerInventoryS.I.RefreshRechargeables();
 					}
 				}
+				InGameCinematicS.inGameCinematic = false;
 				async.allowSceneActivation = true;
 			}
 		}

@@ -1303,8 +1303,10 @@ public class PlayerController : MonoBehaviour {
 		if (wakingUp){
 			wakeUpCountdown -= Time.deltaTime;
 			if (wakeUpCountdown <= 0){
-				wakingUp = false;
-				_isTalking = false;
+				if (!InGameCinematicS.inGameCinematic){
+					wakingUp = false;
+					_isTalking = false;
+				}
 			}
 		}
 

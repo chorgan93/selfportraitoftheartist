@@ -19,12 +19,15 @@ public class InGameCinematicS : MonoBehaviour {
 	public float fadeRate = 0.4f;
 	public bool wakeNextScene = true;
 	public bool noBuddy = false;
+
+	public static bool inGameCinematic = false;
 	
 
 	// Use this for initialization
 	void Awake () {
 	
 		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+		inGameCinematic = true;
 
 	}
 
@@ -35,6 +38,7 @@ public class InGameCinematicS : MonoBehaviour {
 		if (noBuddy){
 			_pRef.SetBuddy(false);
 		}
+		_pRef.SetTalking(true);
 
 	}
 	
@@ -122,6 +126,7 @@ public class InGameCinematicS : MonoBehaviour {
 
 	private void EndCinematic(){
 
+		inGameCinematic = false;
 		pRef.SetTalking(false);
 		pRef.SetBuddy(true);
 		Destroy(gameObject);

@@ -8,6 +8,7 @@ public class NPCS : MonoBehaviour {
 
 	[Header("Talk Properties")]
 	public string talkLabel = "";
+	public string talkLabelNoController = "";
 	public NPCDialogueSet[] dialogues;
 	private int currentDialogue = 0;
 	private int currentDialogueIndex = 0;
@@ -88,6 +89,7 @@ public class NPCS : MonoBehaviour {
 						if (newPoi){
 							CameraFollowS.F.SetNewPOI(newPoi);
 						}
+					currentDialogueIndex = 0;
 						
 					DialogueManagerS.D.SetDisplayText(dialogues[currentDialogue].dialogueStrings[currentDialogueIndex]);
 
@@ -96,9 +98,9 @@ public class NPCS : MonoBehaviour {
 						}
 					talking = true;
 					_myRigid.velocity = Vector3.zero;
-					_myAnimator.SetTrigger(talkKey);
+					_myAnimator.SetBool(talkKey, true);
 
-					if (pRef.transform.position.x > transform.position.x){
+					if (pRef.transform.position.x < transform.position.x){
 						transform.localScale = startScale;
 					}else{
 						transform.localScale = flipScale;
@@ -120,16 +122,15 @@ public class NPCS : MonoBehaviour {
 							DialogueManagerS.D.EndText();
 							talking = false;
 							currentDialogueIndex++;
+							
+							_myAnimator.SetBool(talkKey, false);
+							if (isWaiting){
+								_myAnimator.SetTrigger(walkKey);
+							}else{
+								_myAnimator.SetTrigger(idleKey);
+							}
 						}else{
 							DialogueManagerS.D.SetDisplayText(dialogues[currentDialogue].dialogueStrings[currentDialogueIndex]);
-						}
-
-						if (isWaiting){
-							
-							_myAnimator.SetTrigger(walkKey);
-						}else{
-							
-							_myAnimator.SetTrigger(idleKey);
 						}
 							
 
@@ -256,7 +257,11 @@ public class NPCS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
-			pRef.SetExamining(true, talkLabel);
+			if (pRef.myControl.ControllerAttached() || talkLabelNoController == ""){
+				pRef.SetExamining(true, talkLabel);
+			}else{
+				pRef.SetExamining(true, talkLabelNoController);
+			}
 			playerInRange = true;
 		}
 
