@@ -155,13 +155,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 					selectOrb.SetActive(false);
 						StoryProgressionS.NewGame(); // reset for new game progress
 					}
+					//if (currentSelection == 1){
+					//	Application.OpenURL(facebookLink);
+					//}
 					if (currentSelection == 1){
-						Application.OpenURL(facebookLink);
-					}
-					if (currentSelection == 2){
 						Application.OpenURL(twitterLink);
 					}
-					if (currentSelection == 3){
+					if (currentSelection == 2){
 						Application.OpenURL(twitterLinkII);
 					}
 				}

@@ -1956,10 +1956,14 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetBuddy(bool onOff){
 		if (!onOff){
-			EquippedBuddy().gameObject.SetActive(false);
+			if (EquippedBuddy() != null){
+				EquippedBuddy().gameObject.SetActive(false);
+			}
 		}else{
-			EquippedBuddy().gameObject.SetActive(true);
-			_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+			if (EquippedBuddy() != null){
+				EquippedBuddy().gameObject.SetActive(true);
+				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+			}
 		}
 	}
 

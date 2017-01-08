@@ -121,7 +121,15 @@ public class NPCS : MonoBehaviour {
 							CameraFollowS.F.ResetPOI();
 							DialogueManagerS.D.EndText();
 							talking = false;
-							currentDialogueIndex++;
+							currentDialogue++;
+							currentDialogueIndex = 0;
+							if (currentDialogue > dialogues.Length-1){
+								if (dialogueType == DialogueStructure.Loop){
+									currentDialogue = 0;
+								}else{
+									currentDialogue = dialogues.Length-1;
+								}
+							}
 							
 							_myAnimator.SetBool(talkKey, false);
 							if (isWaiting){

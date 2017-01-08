@@ -55,12 +55,15 @@ public class InGameMenuManagerS : MonoBehaviour {
 				equipMenuButtonDown = true;
 					hasUsedMenu = true;
 			}
-			if (_pRef.myControl.BackButton() && !gameMenuButtonDown){
+			/*if (_pRef.myControl.BackButton() && !gameMenuButtonDown){
 				gameMenuActive = true;
 				gameMenuButtonDown = true;
 				gameMenu.gameObject.SetActive(true);
 				_pRef.SetTalking(true);
-			}
+			}**/
+				if (Input.GetKeyDown(KeyCode.Escape)){
+					Application.Quit();
+				}
 		}
 
 		if (gameMenuActive){
