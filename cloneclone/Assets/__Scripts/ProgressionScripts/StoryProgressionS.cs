@@ -16,6 +16,7 @@ public class StoryProgressionS : MonoBehaviour {
 
 	public static void SaveProgress(){
 		savedProgress = storyProgress;
+		SaveLoadS.OverriteCurrentSave();
 	}
 
 	public static void ResetToSavedProgress(){
@@ -24,6 +25,7 @@ public class StoryProgressionS : MonoBehaviour {
 
 	public static void NewGame(){
 		storyProgress = savedProgress = 0;
+		//SaveLoadS.Load();
 		InGameMenuManagerS.allowMenuUse = false;
 		if (PlayerInventoryS.I != null){
 			PlayerInventoryS.I.NewGame();

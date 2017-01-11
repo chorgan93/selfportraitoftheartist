@@ -148,19 +148,24 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 
 				if ((Input.GetKeyDown(KeyCode.Return) || myController.TalkButton()) && !loading){
-					if (currentSelection == 0){
+					if (currentSelection == 0 || currentSelection == 1){
 						startMusic.FadeOut();
 					loadBlackScreen.gameObject.SetActive(true);
 					loading = true;
 					selectOrb.SetActive(false);
-						StoryProgressionS.NewGame(); // reset for new game progress
+						if (currentSelection == 0){
+							StoryProgressionS.NewGame(); // reset for new game progress
+						}else{
+							SaveLoadS.Load();
+							newGameScene = GameOverS.reviveScene;
+						}
 					}
 					//if (currentSelection == 1){
 					//	Application.OpenURL(facebookLink);
 					//}
-					if (currentSelection == 1){
-						Application.OpenURL(twitterLink);
-					}
+					/*if (currentSelection == 1){
+						//Application.OpenURL(twitterLink);
+					}*/
 					if (currentSelection == 2){
 						Application.OpenURL(twitterLinkII);
 					}

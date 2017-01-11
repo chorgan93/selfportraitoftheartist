@@ -41,6 +41,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public static PlayerInventoryS I;
 
+	public static InventorySave inventoryData;
+
 	void Awake () {
 
 		if (I == null){
@@ -127,16 +129,25 @@ public class PlayerInventoryS : MonoBehaviour {
 		_iManager = GetComponent<InventoryManagerS>();
 		_dManager = GetComponent<PlayerDestructionS>();
 
-		_earnedUpgrades = new List<int>();
-		//_earnedVirtues = new List<int>();
-		_collectedItems = new List<int>();
-		healNums = new List<int>();
-		staminaNums = new List<int>();
-		chargeNums = new List<int>();
-		_collectedKeyItems = new List<int>();
-		_collectedItemCount = new List<int>();
-		_openedDoors = new List<int>();
-		_clearedWalls = new List<int>();
+		if (inventoryData != null){
+
+			LoadInventoryData();
+
+		}else{
+
+
+			_earnedUpgrades = new List<int>();
+			//_earnedVirtues = new List<int>();
+			_collectedItems = new List<int>();
+			healNums = new List<int>();
+			staminaNums = new List<int>();
+			chargeNums = new List<int>();
+			_collectedKeyItems = new List<int>();
+			_collectedItemCount = new List<int>();
+			_openedDoors = new List<int>();
+			_clearedWalls = new List<int>();
+
+		}
 	}
 
 	public void AddOpenDoor(int i){
@@ -207,5 +218,62 @@ public class PlayerInventoryS : MonoBehaviour {
 		List<GameObject> buddyList = new List<GameObject>();
 		buddyList.Add(unlockedBuddies[0].gameObject);
 		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
+		OverriteInventoryData();
+	}
+
+	void LoadInventoryData(){
+		_earnedUpgrades = inventoryData.earnedUpgrades;
+		_collectedItems = inventoryData.collectedItems;
+		healNums = inventoryData.healNums;
+		staminaNums = inventoryData.staminaNums;
+		chargeNums = inventoryData.chargeNums;
+		_collectedKeyItems = inventoryData.collectedKeyItems;
+		_collectedItemCount = inventoryData.collectedItemCount;
+		_openedDoors = inventoryData.openedDoors;
+		_clearedWalls = inventoryData.clearedWalls;
+	}
+	 
+	public void OverriteInventoryData(){
+		if (inventoryData != null){
+			inventoryData = new InventorySave();
+		}
+
+		if (initialized){
+		inventoryData.earnedUpgrades = _earnedUpgrades;
+		inventoryData.collectedItems = _collectedItems;
+		inventoryData.healNums = healNums;
+		inventoryData.staminaNums = staminaNums;
+		inventoryData.chargeNums = chargeNums;
+		inventoryData.collectedKeyItems = _collectedKeyItems;
+		inventoryData.collectedItemCount = _collectedItemCount;
+		inventoryData.openedDoors = _openedDoors;
+		inventoryData.clearedWalls = _clearedWalls;
+		}
+	}
+}
+
+[System.Serializable]
+public class InventorySave : MonoBehaviour {
+	public List<int> earnedUpgrades;
+	public List<int> collectedItems;
+	public List<int> healNums;
+	public List<int> staminaNums;
+	public List<int> chargeNums;
+	public List<int> collectedKeyItems;
+	public List<int> collectedItemCount;
+	public List<int> openedDoors;
+	public List<int> clearedWalls;
+
+
+	public InventorySave(){
+		earnedUpgrades = new List<int>();
+		collectedItems = new List<int>();
+		healNums = new List<int>();
+		staminaNums = new List<int>();
+		chargeNums = new List<int>();
+		collectedKeyItems = new List<int>();
+		collectedItemCount = new List<int>();
+		openedDoors = new List<int>();
+		clearedWalls = new List<int>();
 	}
 }
