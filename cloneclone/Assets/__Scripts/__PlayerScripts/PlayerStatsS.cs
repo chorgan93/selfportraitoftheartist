@@ -215,7 +215,12 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void RecoverCharge(float addPercent, bool itemEffect = false){
-		_currentCharge += addPercent*3.5f*currentChargeRecover;
+		float amtAdded = addPercent*5.5f*currentChargeRecover;
+		if (_currentCharge + amtAdded > maxCharge){
+			amtAdded = maxCharge-_currentCharge;
+		}
+		_uiReference.ChargeAddEffect(amtAdded);
+		_currentCharge += amtAdded;
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}

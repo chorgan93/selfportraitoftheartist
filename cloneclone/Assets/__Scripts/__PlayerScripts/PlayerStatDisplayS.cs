@@ -45,6 +45,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float chargeStartYMult;
 	private Vector2 chargeBarCurrentSize;
 	public Image chargeBar;
+	private float rechargeTimeMax = 0.4f;
+	private float rechargeTime;
+	private bool refillingCharge = false;
+	private float refillSizeRate = 50f;
+	public Image rechargeRecoveryBar;
 
 
 	private Vector2 backgroundMaxSize = new Vector2(520,130);
@@ -55,6 +60,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float xPositionMultiplier = 0.1f;
 	private float yPositionMultiplier = -0.05f;
 	private float xPositionMeterMultiplier = 0.1f;
+
 
 	//___________________________DISPLAY STUFF
 	
@@ -106,6 +112,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		healthBorderMaxSize = healthBorder.rectTransform.sizeDelta;
 		staminaBorderMaxSize = staminaBorder.rectTransform.sizeDelta;
 		chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
+
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 		playerStats.AddUIReference(this);
@@ -236,12 +243,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		staminaBorder.rectTransform.sizeDelta = borderSize;
 
 		// charge fill
-		fillSize = chargeBarMaxSize;
-		fillSize.x += playerStats.addedCharge*chargeAddSize;
-		fillSize.x *= playerStats.currentCharge/playerStats.maxCharge;
-		//fillSize.x = 0f;
-		chargeFill.rectTransform.sizeDelta = fillSize;
-		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
+		updateChargeFills();
 		
 		borderSize = chargeBorderMaxSize;
 		borderSize.x += playerStats.addedCharge*chargeAddSize;
@@ -310,7 +312,41 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 	}
 
+	private void updateChargeFills(){
+		if (!refillingCharge){
+			chargeBarCurrentSize = chargeBarMaxSize;
+			chargeBarCurrentSize.x += playerStats.addedCharge*chargeAddSize;
+			chargeBarCurrentSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+			chargeFill.rectTransform.sizeDelta = rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
+			chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
+		}else{
+			if (rechargeTime > 0){
+				rechargeTime -= Time.deltaTime;
+			}else{
+				chargeBarCurrentSize.x += refillSizeRate*Time.deltaTime;
+				if (chargeBarCurrentSize.x >= rechargeRecoveryBar.rectTransform.sizeDelta.x){
+					refillingCharge = false;
+					chargeBarCurrentSize.x = rechargeRecoveryBar.rectTransform.sizeDelta.x;
+				}
+				chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize;
+				chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, chargeBarCurrentSize.x/chargeBarMaxSize.x);
+			}
+		}
+	}
+
+	public void SetChargeImmediate(){
+		chargeBarCurrentSize = chargeBarMaxSize;
+		chargeBarCurrentSize.x += playerStats.addedCharge*chargeAddSize;
+		chargeBarCurrentSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+		chargeFill.rectTransform.sizeDelta = rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
+		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
+	}
+
 	public void ChargeUseEffect(float chargeUsed){
+
+		refillingCharge = false;
+
+		SetChargeImmediate();
 
 		float chargeUseWidth =  chargeBarMaxSize.x;
 		chargeUseWidth += playerStats.addedCharge*chargeAddSize;
@@ -327,5 +363,28 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (currentUseIndex > chargeUses.Length-1){
 			currentUseIndex = 0;
 		}
+	}
+
+	public void ChargeAddEffect(float chargeAdded){
+
+		if (refillingCharge){
+			SetChargeImmediate();
+		}
+
+		rechargeTime = rechargeTimeMax;
+
+		Vector2 fillSize = chargeBarMaxSize;
+		fillSize.x += playerStats.addedCharge*chargeAddSize;
+		fillSize.x *= (playerStats.currentCharge+chargeAdded)/playerStats.maxCharge;
+		rechargeRecoveryBar.rectTransform.sizeDelta = fillSize;
+
+		fillSize.x -= fillSize.x*(chargeAdded/playerStats.maxCharge);
+
+		chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize = fillSize;
+		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
+
+		refillingCharge = true;
+
+
 	}
 }
