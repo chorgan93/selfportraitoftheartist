@@ -72,6 +72,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image chargeBorder;
 	private Vector2 chargeBorderMaxSize;
 
+	public ChargeUseUIS[] chargeUses;
+	private int currentUseIndex = 0;
+
 	public Text lvText;
 
 //	public Text healthText;
@@ -304,6 +307,25 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			staminaBar.enabled = false;
 			background.enabled = false;
 			allTurnedOn = false;
+		}
+	}
+
+	public void ChargeUseEffect(float chargeUsed){
+
+		float chargeUseWidth =  chargeBarMaxSize.x;
+		chargeUseWidth += playerStats.addedCharge*chargeAddSize;
+		chargeUseWidth *= chargeUsed/playerStats.maxCharge;
+
+		float usePosX = chargeBarMaxSize.x;
+		usePosX += playerStats.addedCharge*chargeAddSize;
+		usePosX *= playerStats.currentCharge/playerStats.maxCharge;
+		usePosX+=chargeFill.rectTransform.anchoredPosition.x;
+
+		chargeUses[currentUseIndex].StartUse(chargeUseWidth, usePosX);
+
+		currentUseIndex++;
+		if (currentUseIndex > chargeUses.Length-1){
+			currentUseIndex = 0;
 		}
 	}
 }

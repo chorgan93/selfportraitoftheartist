@@ -201,7 +201,11 @@ public class PlayerStatsS : MonoBehaviour {
 		bool canUse =  (_currentCharge > 0);
 
 		if (useCharge && canUse){
+			if (reqCharge > _currentCharge){
+				reqCharge = _currentCharge;
+			}
 			_currentCharge -= reqCharge;
+			_uiReference.ChargeUseEffect(reqCharge);
 		}
 
 		if (_currentCharge < 0f){

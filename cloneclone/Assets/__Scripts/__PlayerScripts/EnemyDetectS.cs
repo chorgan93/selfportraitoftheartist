@@ -32,7 +32,9 @@ public class EnemyDetectS : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		//UpdatePosition();
+		if (inputRange > 0){
+			UpdatePosition();
+		}
 		UpdateEnemyPosition();
 
 	}
@@ -167,5 +169,9 @@ public class EnemyDetectS : MonoBehaviour {
 			
 		}
 		
+	}
+
+	public bool NoEnemies(){
+		return (enemiesInRange.Count <= 0);
 	}
 }

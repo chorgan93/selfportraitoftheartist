@@ -201,6 +201,7 @@
 'Assets/__Scripts/TextScripts/InstructionTrigger.cs'
 'Assets/__Scripts/TextScripts/TextSource.cs'
 'Assets/__Scripts/UIScripts/BorderResizeS.cs'
+'Assets/__Scripts/UIScripts/ChargeUseUIS.cs'
 'Assets/__Scripts/UIScripts/ColorFilterSetter.cs'
 'Assets/__Scripts/UIScripts/DialogueManagerS.cs'
 'Assets/__Scripts/UIScripts/EquipBuddyItemS.cs'

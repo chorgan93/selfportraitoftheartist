@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.2f;
 
+	private const float PUSH_ENEMY_MULT = 0.2f;
+	private const int START_PHYSICS_LAYER = 8;
+	private const int DODGE_PHYSICS_LAYER = 12;
+
 	private static float SMASH_THRESHOLD = 0.75f;
 	
 	//_________________________________________CLASS PROPERTIES
@@ -174,7 +178,10 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
+	[Header ("Enemy Detection References")]
 	public EnemyDetectS superCloseEnemyDetect;
+	public EnemyDetectS dontWalkIntoEnemiesCheck;
+	public EnemyDetectS dontGetStuckInEnemiesCheck;
 
 	private int numAttacksPerShot;
 	private float timeBetweenAttacks;
@@ -494,6 +501,9 @@ public class PlayerController : MonoBehaviour {
 					float actingWalkSpeed = walkSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingWalkSpeed;
+					if (!dontWalkIntoEnemiesCheck.NoEnemies() && gameObject.layer == START_PHYSICS_LAYER){
+						moveVelocity *= PUSH_ENEMY_MULT;
+					}
 					if (_myRigidbody.velocity.magnitude < walkSpeedMax){
 						_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
 					}
@@ -503,6 +513,9 @@ public class PlayerController : MonoBehaviour {
 					float actingRunSpeed = runSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingRunSpeed;
+					if (!dontWalkIntoEnemiesCheck.NoEnemies() && gameObject.layer == START_PHYSICS_LAYER){
+						moveVelocity *= PUSH_ENEMY_MULT;
+					}
 
 					if (_isSprinting){
 						if (_myRigidbody.velocity.magnitude < runSpeedMax*sprintMult){
@@ -615,19 +628,7 @@ public class PlayerController : MonoBehaviour {
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
-		// if you want to differentiate bt lock on and not, uncomment this and remove solo roll code
-		/*if (!myControl.LockOnButton()){
-			_myStats.ManaCheck(_dashCost);
-			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTime = dashDuration*0.4f;
-		}
-		else{
-			_myStats.ManaCheck(_dodgeCost);
-			_myAnimator.SetTrigger("Roll");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTime = dashDuration*0.4f;
-		}**/
+		gameObject.layer = DODGE_PHYSICS_LAYER;
 
 		if (_playerAug.dashAug){
 			_myStats.ManaCheck(_dodgeCost);
@@ -701,6 +702,10 @@ public class PlayerController : MonoBehaviour {
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
+
+				if (dontGetStuckInEnemiesCheck.NoEnemies()){
+					gameObject.layer = START_PHYSICS_LAYER;
+				}
 				
 				if (!myRenderer.enabled){
 					myRenderer.enabled = true;
@@ -1298,6 +1303,15 @@ public class PlayerController : MonoBehaviour {
 
 		if (_myStats.PlayerIsDead()){
 			doWakeUp = true;
+			if (gameObject.layer != DODGE_PHYSICS_LAYER){
+				gameObject.layer = DODGE_PHYSICS_LAYER;
+			}
+		}else{
+			if (gameObject.layer != START_PHYSICS_LAYER){
+				if (!_isDashing && dontGetStuckInEnemiesCheck.NoEnemies()){
+					gameObject.layer = START_PHYSICS_LAYER;
+				}
+			}
 		}
 
 		if (wakingUp){
