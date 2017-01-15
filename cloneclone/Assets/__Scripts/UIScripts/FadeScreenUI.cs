@@ -25,6 +25,8 @@ public class FadeScreenUI : MonoBehaviour {
 	private float addLetterRate = 0.1f;
 	private float addLetterCountdown;
 
+	private DarknessPercentUIS darknessTracker;
+
 	// Use this for initialization
 	void Start () {
 
@@ -34,6 +36,8 @@ public class FadeScreenUI : MonoBehaviour {
 		_textColor.a = 0f;
 		loadingText.color = _textColor;
 		loadingText.text = loadingString;
+
+		darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
 	
 	}
 	
@@ -82,7 +86,7 @@ public class FadeScreenUI : MonoBehaviour {
 				loadingText.text = currentLoadingString;
 			}*/
 
-			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){	
+			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && darknessTracker.allowAdvance){	
 				if (destinationScene == GameOverS.reviveScene){
 					if (PlayerInventoryS.I != null){
 						// this is reviving from game over, reset inventory

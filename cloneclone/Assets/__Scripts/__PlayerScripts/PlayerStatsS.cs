@@ -9,6 +9,10 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 
+	private const float DARKNESS_ADD_RATE = 0.001f;
+	private const float DARKNESS_ADD_DEATH = 0.2f;
+	public const float DARKNESS_MAX = 100f;
+
 	public static bool healOnStart = false;
 
 	private PlayerController myPlayerController;
@@ -29,6 +33,9 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentHealth { get { return _currentHealth; } }
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
+
+	private static float _currentDarkness = 0.01f;
+	public float currentDarkness {get { return _currentDarkness; } }
 	
 	//________________________________MANA
 	private float _baseMana = 5;
@@ -153,6 +160,7 @@ public class PlayerStatsS : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		ManaRecovery();
+		DarknessAdd();
 	}
 
 	//________________________________________PUBLIC FUNCTIONS
@@ -239,6 +247,12 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	//________________________________________PRIVATE FUNCTIONS
+
+	private void DarknessAdd(){
+		if (!PlayerIsDead() && !myPlayerController.talking){
+			_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE;
+		}
+	}
 
 	private void ManaRecovery(){
 
@@ -466,6 +480,9 @@ public class PlayerStatsS : MonoBehaviour {
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               myPlayerController.equippedBuddies);
 					_uiReference.cDisplay.DeathPenalty();
+
+					_uiReference.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
+					_currentDarkness += DARKNESS_ADD_DEATH;
 
 					_killFlash.Flash();
 
