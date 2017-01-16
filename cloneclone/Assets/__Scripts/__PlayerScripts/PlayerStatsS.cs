@@ -9,8 +9,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 
-	private const float DARKNESS_ADD_RATE = 0.001f;
-	private const float DARKNESS_ADD_DEATH = 0.2f;
+	private const float DARKNESS_ADD_RATE = 0.0001f;
+	private const float DARKNESS_ADD_DEATH = 0.1f;
 	public const float DARKNESS_MAX = 100f;
 
 	public static bool healOnStart = false;
@@ -34,7 +34,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
 
-	private static float _currentDarkness = 0.01f;
+	private static float _currentDarkness = 0f;
 	public float currentDarkness {get { return _currentDarkness; } }
 	
 	//________________________________MANA
@@ -481,7 +481,7 @@ public class PlayerStatsS : MonoBehaviour {
 					                               myPlayerController.equippedBuddies);
 					_uiReference.cDisplay.DeathPenalty();
 
-					_uiReference.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
+					_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
 					_currentDarkness += DARKNESS_ADD_DEATH;
 
 					_killFlash.Flash();
