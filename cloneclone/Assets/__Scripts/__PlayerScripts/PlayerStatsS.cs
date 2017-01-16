@@ -18,6 +18,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private PlayerController myPlayerController;
 
 	public static bool godMode = false;
+	public static bool dontDoCountUp = false;
 
 	//________________________________LEVEL
 	private int _startLevel = 1;
@@ -481,8 +482,12 @@ public class PlayerStatsS : MonoBehaviour {
 					                               myPlayerController.equippedBuddies);
 					_uiReference.cDisplay.DeathPenalty();
 
-					_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
-					_currentDarkness += DARKNESS_ADD_DEATH;
+					if (dontDoCountUp){
+						dontDoCountUp = false;
+					}else{
+						_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
+						_currentDarkness += DARKNESS_ADD_DEATH;
+					}
 
 					_killFlash.Flash();
 

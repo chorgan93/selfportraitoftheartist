@@ -15,6 +15,8 @@ public class InstructionTextS : MonoBehaviour {
 	private bool timedShowing = false;
 	private float showCountdown;
 
+	private PlayerStatsS pRef;
+
 	// Use this for initialization
 	void Start () {
 
@@ -26,13 +28,15 @@ public class InstructionTextS : MonoBehaviour {
 		bgColor = bgText.color;
 		bgColor.a = 0;
 		bgText.color = bgColor;
+
+		pRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (showing){
+		if (showing && !pRef.PlayerIsDead()){
 			if (myText.color.a < 1){
 				textColor = myText.color;
 				textColor.a += Time.deltaTime*fadeRate;
