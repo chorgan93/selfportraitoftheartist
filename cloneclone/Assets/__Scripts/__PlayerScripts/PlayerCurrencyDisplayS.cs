@@ -133,6 +133,8 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 
 		subtractTimer = subtractTimerMax;
 
+		subtractRate = beingAddedAmt/subtractTimerMax;
+
 		if (!showing){
 			if (fadingOut){
 				fadingOut = false;

@@ -12,6 +12,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DARKNESS_ADD_RATE = 0.0001f;
 	private const float DARKNESS_ADD_DEATH = 0.1f;
 	public const float DARKNESS_MAX = 100f;
+	
+	private const float VIRTUE_ADD_AMT = 2f;
 
 	public static bool healOnStart = false;
 
@@ -81,6 +83,11 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _baseCrit = 0;
 	private float _addedCrit = 0; // (upgradeable)
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
+	
+	//________________________________VIRTUE
+	private float _baseVirtue = 5f;
+	private float _addedVirtue = 0; // (upgradeable)
+	public float virtueAmt { get { return (_baseVirtue+_addedVirtue);}}
 
 	//________________________________DEFENSE
 	private float _baseDefense = 3f;
@@ -366,7 +373,8 @@ public class PlayerStatsS : MonoBehaviour {
 					_addedCharge+=10f;
 				}
 				if (i == 3){
-					_addedStrength++;
+					//_addedStrength++;
+					_addedVirtue += VIRTUE_ADD_AMT;
 				}
 				if (i == 4){
 					_currentChargeRecoverLv++;

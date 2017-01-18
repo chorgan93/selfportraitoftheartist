@@ -9,7 +9,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 	public Text hpStat;
 	public Text stStat;
 	public Text mnStat;
-	public Text dfStat;
+	public Text vtStat;
 	public Text enStat;
 	public Text abStat;
 
@@ -48,13 +48,13 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			Initialize(false);
 		}
 
-		hpStat.color = stStat.color = mnStat.color = dfStat.color = enStat.color = abStat.color = textStartColor;
+		hpStat.color = stStat.color = mnStat.color = vtStat.color = enStat.color = abStat.color = textStartColor;
 		hpStat.text = playerStatRef.maxHealth.ToString();
 		stStat.text = playerStatRef.maxMana.ToString();
 		mnStat.text = (playerStatRef.maxCharge/10f).ToString();
-		dfStat.text = (playerStatRef.strengthAmt*10).ToString();
-		enStat.text = playerStatRef.currentRecoverRateLv.ToString();
-		abStat.text = playerStatRef.currentChargeRecoverLv.ToString();
+		vtStat.text = (playerStatRef.virtueAmt).ToString();
+		//enStat.text = playerStatRef.currentRecoverRateLv.ToString();
+		//abStat.text = playerStatRef.currentChargeRecoverLv.ToString();
 
 	}
 
@@ -76,8 +76,8 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			mnStat.color = highlightColor;
 			break;
 		case (3):
-			dfStat.text = (playerStatRef.strengthAmt*10+1).ToString();
-			dfStat.color = highlightColor;
+			vtStat.text = (playerStatRef.virtueAmt+2).ToString();
+			vtStat.color = highlightColor;
 			break;
 		case (4):
 			abStat.text = (playerStatRef.currentChargeRecoverLv+1).ToString();
