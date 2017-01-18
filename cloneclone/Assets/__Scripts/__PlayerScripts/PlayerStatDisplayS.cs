@@ -65,17 +65,20 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	//___________________________DISPLAY STUFF
 	
 	public Image healthBorder;
+	public Image healthBorderBG;
 	public Image healthFill;
 	private Vector2 healthBorderMaxSize;
 
 	public Image staminaFill;
 	public Image staminaBorder;
+	public Image staminaBorderBG;
 	private Vector2 staminaBorderMaxSize;
 
 	public Image recoveryFill;
 	
 	public Image chargeFill;
 	public Image chargeBorder;
+	public Image chargeBorderBG;
 	private Vector2 chargeBorderMaxSize;
 
 	public ChargeUseUIS[] chargeUses;
@@ -190,6 +193,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// charge stuff
 		chargeBarCurrentSize = chargeBarMaxSize*ScreenMultiplier();
+		chargeBarCurrentSize.x = playerStats.addedCharge*barAddSize;
 		chargeBar.rectTransform.sizeDelta=chargeBarCurrentSize;
 
 		reposition = chargeBar.rectTransform.anchoredPosition;
@@ -210,7 +214,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		Vector2 borderSize = healthBorderMaxSize;
 		borderSize.x += playerStats.addedHealth*barAddSize;
-		healthBorder.rectTransform.sizeDelta = borderSize;
+		healthBorder.rectTransform.sizeDelta = healthBorderBG.rectTransform.sizeDelta = borderSize;
 
 		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;
@@ -239,15 +243,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		recoveryFill.rectTransform.sizeDelta = fillSize;
 
 		borderSize = staminaBorderMaxSize;
-		borderSize.x += playerStats.addedCharge*barAddSize;
-		staminaBorder.rectTransform.sizeDelta = borderSize;
+		borderSize.x += playerStats.addedMana*barAddSize;
+		staminaBorder.rectTransform.sizeDelta = staminaBorderBG.rectTransform.sizeDelta = borderSize;
 
 		// charge fill
 		updateChargeFills();
 		
 		borderSize = chargeBorderMaxSize;
 		borderSize.x += playerStats.addedCharge*chargeAddSize;
-		chargeBorder.rectTransform.sizeDelta = borderSize;
+		chargeBorder.rectTransform.sizeDelta = chargeBorderBG.rectTransform.sizeDelta = borderSize;
 
 
 		//healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());

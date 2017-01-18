@@ -42,6 +42,14 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		beingAddedDisplay.text = "";
 	
 	}
+
+	void Update(){
+		#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.Equals)){
+			AddCurrency(1000);
+		}
+		#endif
+	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
