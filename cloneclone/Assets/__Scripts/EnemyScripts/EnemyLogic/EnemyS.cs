@@ -704,8 +704,7 @@ public class EnemyS : MonoBehaviour {
 			_isDead = true;
 			Stun (0);
 			EndAllBehaviors();
-			// TODO figure out what to do with the XP references
-			//GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
+			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
 			_myAnimator.SetFloat("DeathSpeed", 1f);

@@ -7,6 +7,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 	[Header("Text Display")]
 	public Image wholeDisplay;
 	public Image displayBG;
+	public Image wholeNumDisplay;
+	public Image displayBGForNum;
 	public Text mainTextDisplay;
 	public Text redTextDisplay;
 	public Text purpleTextDisplay;
@@ -114,50 +116,53 @@ public class DarknessPercentUIS : MonoBehaviour {
 	void Update () {
 	
 		if (!fadeOutRegNumbers){
+			SetText();
 			BarOffset();
 			SetMainSize();
-			SetText();
-			TextShake();
 		}else{
-			if (wholeDisplay.enabled){
+			/*if (wholeDisplay.enabled && fadeOutDeathNumber){
 				fadeOutElementCol = wholeDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
-				wholeDisplay.color = fadeOutElementCol;
+				fadeOutElementCol.a = fadeColorWhite.a;
+				wholeDisplay.color = wholeNumDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = displayBG.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
-				displayBG.color = fadeOutElementCol;
+				fadeOutElementCol.a = fadeColorWhite.a;
+				displayBG.color = displayBGForNum.color = fadeOutElementCol;
 
 				fadeOutElementCol = mainBarDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				mainBarDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = redBarDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				redBarDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = purpleBarDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				purpleBarDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = mainTextDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				mainTextDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = redTextDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				redTextDisplay.color = fadeOutElementCol;
 
 				fadeOutElementCol = purpleTextDisplay.color;
-				fadeOutElementCol.a -= Time.deltaTime*fadeOutElementRate;
+				fadeOutElementCol.a = fadeColorWhite.a;
 				purpleTextDisplay.color = fadeOutElementCol;
 
 				if (wholeDisplay.color.a <= 0){
 					wholeDisplay.enabled = displayBG.enabled = mainBarDisplay.enabled = redBarDisplay.enabled
 						= purpleBarDisplay.enabled = mainTextDisplay.enabled = redTextDisplay.enabled
-							= purpleTextDisplay.enabled = false;
+							= purpleTextDisplay.enabled = wholeNumDisplay.enabled = displayBGForNum.enabled = false;
 				}
-			}
+			}**/
+			BarOffset();
+			SetMainSizeAdjustNum();
+			TextShake();
+
 		}
 
 		if (fadeInDeathNumbers){
@@ -217,7 +222,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 				}else{
 					displayString = displayAmt.ToString("F2") + "%";
 				}
-				deathTextDisplay.text = deathRedTextDisplay.text = displayString;
+				redTextDisplay.text = mainTextDisplay.text = purpleTextDisplay.text
+					= deathTextDisplay.text = deathRedTextDisplay.text = displayString;
 			}else{
 				delayFadeOut -= Time.deltaTime;
 				if (delayFadeOut <= 0){
@@ -249,6 +255,18 @@ public class DarknessPercentUIS : MonoBehaviour {
 		purpleBarDisplay.rectTransform.sizeDelta += purpleBarSizeOffset;
 		redBarDisplay.rectTransform.sizeDelta += redBarSizeOffset;
 
+	}
+
+	void SetMainSizeAdjustNum(){
+		
+		currentBarSize = maxBarSize;
+		currentBarSize.x *= displayAmt/100f;
+		mainBarDisplay.rectTransform.sizeDelta = purpleBarDisplay.rectTransform.sizeDelta 
+			= redBarDisplay.rectTransform.sizeDelta = currentBarSize;
+		
+		purpleBarDisplay.rectTransform.sizeDelta += purpleBarSizeOffset;
+		redBarDisplay.rectTransform.sizeDelta += redBarSizeOffset;
+		
 	}
 
 	void SetText(){
@@ -338,7 +356,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 	public void ActivateDeathCountUp(){
 		delayFadeOut = delayFadeInTime;
-		saveDeathAmt = pStats.currentDarkness;
+		saveDeathAmt = displayAmt = pStats.currentDarkness;
 		_allowAdvance = false;
 		fadeInDeathNumbers = true;
 

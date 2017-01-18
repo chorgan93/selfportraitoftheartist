@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -8,7 +8,8 @@ public class ResetUIS : MonoBehaviour {
 	public Image itemHolder;
 	public Text resetCount;
 	public Text instruction;
-	public Image countHolder;
+	public Image countHolderLeft;
+	public Image countHolderRight;
 	public Image instructHolder;
 
 	private InventoryManagerS inventoryRef;
@@ -41,13 +42,15 @@ public class ResetUIS : MonoBehaviour {
 		if (PlayerInventoryS.I.CheckForItem(0)){
 			itemIcon.enabled = true;
 			itemHolder.enabled = true;
-			countHolder.enabled = true;
+			countHolderLeft.enabled = true;
+			countHolderRight.enabled = true;
 			instructHolder.enabled = true;
 			resetCount.enabled = true;
 			instruction.enabled = true;
 			if (InventoryManagerS.infiniteResets){
 				resetCount.enabled = false;
-				countHolder.enabled = false;
+				countHolderLeft.enabled = false;
+				countHolderRight.enabled = false;
 			}else{
 				resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
 			}
@@ -55,7 +58,8 @@ public class ResetUIS : MonoBehaviour {
 			resetCount.enabled = false;
 			itemIcon.enabled = false;
 			itemHolder.enabled = false;
-			countHolder.enabled = false;
+			countHolderLeft.enabled = false;
+			countHolderRight.enabled = false;
 			instruction.enabled = false;
 			instructHolder.enabled = false;
 		}

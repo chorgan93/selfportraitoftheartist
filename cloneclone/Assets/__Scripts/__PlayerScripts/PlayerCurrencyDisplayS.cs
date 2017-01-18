@@ -35,7 +35,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 
 		displayColor = totalDisplay.color;
 		displayColor.a = 0;
-		totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
+		beingAddedDisplay.color = displayColor;
 
 		currencyDisplayAmt = currencyTotalAmt = PlayerCollectionS.currencyCollected;
 		totalDisplay.text = currencyDisplayAmt.ToString();
@@ -47,22 +47,26 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (fadingOut && !showing){
-			displayColor = totalDisplay.color;
+			displayColor = beingAddedDisplay.color;
 			displayColor.a -= Time.deltaTime*fadeRateOut;
 			if (displayColor.a <= 0){
 				displayColor.a = 0;
 				fadingOut = false;
 			}
-			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
+			beingAddedDisplay.color = displayColor;
+			//displayColor.a *= 0.75f;
+			//borderDisplay.color = iconDisplay.color = displayColor;
 		}
 		else if (fadingIn){
-			displayColor = totalDisplay.color;
+			displayColor = beingAddedDisplay.color;
 			displayColor.a += Time.deltaTime*fadeRateIn;
 			if (displayColor.a >= fadeMax){
 				displayColor.a = fadeMax;
 				fadingIn = false;
 			}
-			totalDisplay.color = beingAddedDisplay.color = borderDisplay.color = iconDisplay.color = displayColor;
+			beingAddedDisplay.color = displayColor;
+			//displayColor.a *= 0.75f;
+			//borderDisplay.color = iconDisplay.color = displayColor;
 		}else{
 
 			if (subtractTimer > 0){

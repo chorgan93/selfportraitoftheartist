@@ -480,7 +480,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               myPlayerController.equippedBuddies);
-					_uiReference.cDisplay.DeathPenalty();
+					//_uiReference.cDisplay.DeathPenalty();
 
 					if (dontDoCountUp){
 						dontDoCountUp = false;
