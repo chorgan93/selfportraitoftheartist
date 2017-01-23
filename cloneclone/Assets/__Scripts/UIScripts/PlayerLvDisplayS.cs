@@ -49,9 +49,9 @@ public class PlayerLvDisplayS : MonoBehaviour {
 		}
 
 		hpStat.color = stStat.color = mnStat.color = vtStat.color = enStat.color = abStat.color = textStartColor;
-		hpStat.text = playerStatRef.maxHealth.ToString();
-		stStat.text = playerStatRef.maxMana.ToString();
-		mnStat.text = (playerStatRef.maxCharge/10f).ToString();
+		hpStat.text = (playerStatRef.maxHealth*10f).ToString();
+		stStat.text = (playerStatRef.maxMana*10f).ToString();
+		mnStat.text = (playerStatRef.maxCharge).ToString();
 		vtStat.text = (playerStatRef.virtueAmt).ToString();
 		//enStat.text = playerStatRef.currentRecoverRateLv.ToString();
 		//abStat.text = playerStatRef.currentChargeRecoverLv.ToString();
@@ -64,19 +64,19 @@ public class PlayerLvDisplayS : MonoBehaviour {
 		default: 
 			break;
 		case (0):
-			hpStat.text = (playerStatRef.maxHealth+1).ToString();
+			hpStat.text = (playerStatRef.maxHealth*10f+10f).ToString();
 			hpStat.color = highlightColor;
 			break;
 		case (1):
-			stStat.text = (playerStatRef.maxMana+1).ToString();
+			stStat.text = (playerStatRef.maxMana*10f+10f).ToString();
 			stStat.color = highlightColor;
 			break;
 		case (2):
-			mnStat.text = (playerStatRef.maxCharge/10f+1).ToString();
+			mnStat.text = (playerStatRef.maxCharge+1f).ToString();
 			mnStat.color = highlightColor;
 			break;
 		case (3):
-			vtStat.text = (playerStatRef.virtueAmt+2).ToString();
+			vtStat.text = (playerStatRef.virtueAmt+2f).ToString();
 			vtStat.color = highlightColor;
 			break;
 		case (4):

@@ -7,6 +7,7 @@ public class TurnOffInGameUIS : MonoBehaviour {
 	void Start () {
 	
 		GameObject.Find("Player Status").SetActive(false);
+		GameObject.Find("SinBorder").SetActive(false);
 
 	}
 }

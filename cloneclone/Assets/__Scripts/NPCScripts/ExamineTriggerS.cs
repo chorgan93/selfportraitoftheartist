@@ -50,7 +50,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void Start () {
 
-		if (inventoryNum >= 0 || buddyToGive || mantraToGive){
+		if (inventoryNum >= 0 || buddyToGive || (mantraToGive != null)){
 			CheckInventory();
 		}
 
@@ -168,7 +168,7 @@ public class ExamineTriggerS : MonoBehaviour {
 									}
 								}
 							}
-							if (mantraToGive){
+							if (mantraToGive != null){
 								PlayerInventoryS.I.unlockedWeapons.Add(mantraToGive);
 								if (pRef.equippedWeapons.Count < 2){
 									pRef.equippedWeapons.Add(mantraToGive);
@@ -206,7 +206,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	private void CheckInventory () {
 
-		if (mantraToGive){
+		if (mantraToGive != null){
 			if (PlayerInventoryS.I.unlockedWeapons.Contains(mantraToGive)){
 				gameObject.SetActive(false);
 			}
@@ -247,16 +247,6 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	private void AddPickup(){
 
-		if (advanceProgress){
-			StoryProgressionS.AdvanceStory();
-		}else if (setProgress > -1){
-			StoryProgressionS.SetStory(setProgress);
-		}
-
-		if (saveOnPickup){
-			StoryProgressionS.SaveProgress();
-		}
-
 		for (int i = 0; i < numToAdd; i++){
 			if (inventoryNum >= 0){
 				PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
@@ -271,6 +261,17 @@ public class ExamineTriggerS : MonoBehaviour {
 				PlayerInventoryS.I.AddStamina(staminaNum);
 			}
 		}
+
+		if (advanceProgress){
+			StoryProgressionS.AdvanceStory();
+		}else if (setProgress > -1){
+			StoryProgressionS.SetStory(setProgress);
+		}
+		
+		if (saveOnPickup){
+			StoryProgressionS.SaveProgress();
+		}
+
 	}
 
 	private void CheckUnlock(){

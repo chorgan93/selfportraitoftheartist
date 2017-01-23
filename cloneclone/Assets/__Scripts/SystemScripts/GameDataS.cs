@@ -8,6 +8,11 @@ public class GameDataS {
 	public int currentSpawnPos = 0;
 	public int storyProgression = 0;
 	public InventorySave playerInventory;
+	public bool canUseMenu = false;
+	public bool hasUsedMenu = false;
+
+	public float currentDarkness;
+	public int currentLa;
 	
 	public GameDataS () {
 
@@ -21,6 +26,13 @@ public class GameDataS {
 		currentReviveScene = GameOverS.reviveScene;
 		currentSpawnPos = GameOverS.revivePosition;
 		storyProgression = StoryProgressionS.storyProgress;
+
+		canUseMenu = InGameMenuManagerS.allowMenuUse;
+		hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
+
+		currentDarkness = PlayerStatsS._currentDarkness;
+		currentLa = PlayerCollectionS.currencyCollected;
+
 		if (PlayerInventoryS.I != null){
 			PlayerInventoryS.I.OverriteInventoryData();
 			playerInventory = PlayerInventoryS.inventoryData;
@@ -34,6 +46,10 @@ public class GameDataS {
 		GameOverS.revivePosition = currentSpawnPos;
 		StoryProgressionS.storyProgress = storyProgression;
 		PlayerInventoryS.inventoryData = playerInventory;
+		InGameMenuManagerS.hasUsedMenu = hasUsedMenu;
+		InGameMenuManagerS.allowMenuUse = canUseMenu;
+		PlayerStatsS._currentDarkness = currentDarkness;
+		PlayerCollectionS.currencyCollected = currentLa;
 
 	}
 	

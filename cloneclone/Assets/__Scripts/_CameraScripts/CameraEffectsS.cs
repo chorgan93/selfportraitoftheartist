@@ -36,6 +36,7 @@ public class CameraEffectsS : MonoBehaviour {
 	private bool endCombatEffect;
 	Color staticCol;
 	public GameObject staticSound;
+	public GameObject endCombatSound;
 
 	// Use this for initialization
 	void Awake () {
@@ -154,6 +155,12 @@ public class CameraEffectsS : MonoBehaviour {
 
 		if (staticSound){
 			Instantiate(staticSound);
+		}
+	}
+
+	public void ResetSound(){
+		if (endCombatSound){
+			Instantiate(endCombatSound);
 		}
 	}
 }

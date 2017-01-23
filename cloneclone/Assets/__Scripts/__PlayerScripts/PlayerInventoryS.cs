@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerInventoryS : MonoBehaviour {
 
+	public LoadoutMasterScriptableObject masterLoadoutList;
+
 	private bool initialized = false;
 
 	private List<int> _collectedItems;
@@ -128,6 +130,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		_iManager = GetComponent<InventoryManagerS>();
 		_dManager = GetComponent<PlayerDestructionS>();
+		
+		unlockedBuddies = new List<BuddyS>();
 
 		if (inventoryData != null){
 
@@ -135,9 +139,12 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		}else{
 
+			PlayerController pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+
 
 			_earnedUpgrades = new List<int>();
-			//_earnedVirtues = new List<int>();
+			_earnedVirtues = new List<int>();
+			_earnedVirtues.Add(0);
 			_collectedItems = new List<int>();
 			healNums = new List<int>();
 			staminaNums = new List<int>();
@@ -146,8 +153,35 @@ public class PlayerInventoryS : MonoBehaviour {
 			_collectedItemCount = new List<int>();
 			_openedDoors = new List<int>();
 			_clearedWalls = new List<int>();
+			equippedWeapons = pRef.equippedWeapons;
+			equippedBuddies = pRef.equippedBuddies;
+			subWeapons = pRef.subWeapons;
+
+			unlockedWeapons = new List<PlayerWeaponS>();
+			for (int i = 0; i < pRef.equippedWeapons.Count; i++){
+				if (i == 0){
+					unlockedWeapons.Add(pRef.equippedWeapons[i]);
+				}else{
+					if (!unlockedWeapons.Contains(pRef.equippedWeapons[i])){
+						unlockedWeapons.Add(pRef.equippedWeapons[i]);
+					}
+				}
+			}
+
+			unlockedBuddies = new List<BuddyS>();
+			for (int i = 0; i < pRef.equippedBuddies.Count; i++){
+				if (i == 0){
+					unlockedBuddies.Add(pRef.equippedBuddies[i].GetComponent<BuddyS>());
+				}else{
+					if (!unlockedBuddies.Contains(pRef.equippedBuddies[i].GetComponent<BuddyS>())){
+						unlockedBuddies.Add(pRef.equippedBuddies[i].GetComponent<BuddyS>());
+					}
+				}
+			}
 
 		}
+
+		initialized = true;
 	}
 
 	public void AddOpenDoor(int i){
@@ -204,6 +238,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		healNums.Clear();
 		PlayerInventoryS.I._earnedUpgrades.Clear();
 		PlayerInventoryS.I._earnedVirtues.Clear();
+		PlayerInventoryS.I._earnedVirtues.Add(0);
 		if (unlockedWeapons.Count > 1){
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
 		}
@@ -231,12 +266,59 @@ public class PlayerInventoryS : MonoBehaviour {
 		_collectedItemCount = inventoryData.collectedItemCount;
 		_openedDoors = inventoryData.openedDoors;
 		_clearedWalls = inventoryData.clearedWalls;
+		_earnedVirtues = inventoryData.earnedVirtues;
+
+
+		unlockedWeapons = new List<PlayerWeaponS>();
+		equippedWeapons = new List<PlayerWeaponS>();
+		subWeapons = new List<PlayerWeaponS>();
+		unlockedBuddies = new List<BuddyS>();
+		equippedBuddies = new List<GameObject>();
+
+		for (int i = 0; i < inventoryData.unlockedWeapons.Count; i++){
+			unlockedWeapons.Add(masterLoadoutList.masterWeaponList[inventoryData.unlockedWeapons[i]]);
+		}
+		for (int i = 0; i < inventoryData.equippedWeapons.Count; i++){
+			equippedWeapons.Add(masterLoadoutList.masterWeaponList[inventoryData.equippedWeapons[i]]);
+		}
+		for (int i = 0; i < inventoryData.subWeapons.Count; i++){
+			subWeapons.Add(masterLoadoutList.masterWeaponList[inventoryData.subWeapons[i]]);
+		}
+		for (int i = 0; i < inventoryData.unlockedBuddies.Count; i++){
+			unlockedBuddies.Add(masterLoadoutList.masterBuddyList[inventoryData.unlockedBuddies[i]]);
+		}
+		for (int i = 0; i < inventoryData.equippedBuddies.Count; i++){
+			equippedBuddies.Add(masterLoadoutList.masterBuddyList[inventoryData.equippedBuddies[i]].gameObject);
+		}
+
+		PlayerController._currentParadigm = inventoryData.currentParadigm;
+		
+		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
+		//PlayerController.equippedUpgrades = inventoryData.equippedUpgrades;
+
+		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
+		List<LevelUpS> nLU = new List<LevelUpS>();
+		List<LevelUpS> aLU = new List<LevelUpS>();
+		for (int i = 0; i < inventoryData.nextLevelUpgrades.Count; i++){
+			nLU.Add(masterLoadoutList.levelUpList[inventoryData.nextLevelUpgrades[i]]);
+		}
+		for (int i = 0; i < inventoryData.availableUpgrades.Count; i++){
+			aLU.Add(masterLoadoutList.levelUpList[inventoryData.availableUpgrades[i]]);
+		}
+		lHandler.LoadLists(nLU, aLU);
+
+		
+		RefreshRechargeables();
+
+
+		_iManager.LoadInventory(inventoryData.equippedInventory);
+		_iManager.RefreshUI();
 	}
 	 
 	public void OverriteInventoryData(){
-		if (inventoryData != null){
-			inventoryData = new InventorySave();
-		}
+
+		inventoryData = new InventorySave();
+
 
 		if (initialized){
 		inventoryData.earnedUpgrades = _earnedUpgrades;
@@ -248,13 +330,55 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData.collectedItemCount = _collectedItemCount;
 		inventoryData.openedDoors = _openedDoors;
 		inventoryData.clearedWalls = _clearedWalls;
+			inventoryData.earnedVirtues = _earnedVirtues;
+
+
+			for (int i = 0; i < unlockedWeapons.Count; i++){
+				inventoryData.unlockedWeapons.Add(unlockedWeapons[i].weaponNum);
+			}
+
+			for (int i = 0; i < unlockedBuddies.Count; i++){
+				inventoryData.unlockedBuddies.Add(unlockedBuddies[i].buddyNum);
+			}
+			for (int i = 0; i < equippedWeapons.Count; i++){
+				inventoryData.equippedWeapons.Add(equippedWeapons[i].weaponNum);
+			}
+			for (int i = 0; i < subWeapons.Count; i++){
+				inventoryData.subWeapons.Add(subWeapons[i].weaponNum);
+			}
+			
+			inventoryData.equippedVirtues = PlayerController.equippedVirtues;
+			//inventoryData.equippedTech = PlayerController.equippedTech;
+
+			for (int i = 0; i < equippedBuddies.Count; i++){
+				inventoryData.equippedBuddies.Add(equippedBuddies[i].GetComponent<BuddyS>().buddyNum);
+			}
+
+			inventoryData.equippedInventory = _iManager.equippedInventory;
+
+			LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
+			inventoryData.availableUpgrades = new List<int>();
+			for (int i = 0; i < lHandler.availableLevelUps.Count; i++){
+				inventoryData.availableUpgrades.Add(lHandler.availableLevelUps[i].upgradeID);
+			}
+			inventoryData.nextLevelUpgrades = new List<int>();
+			for (int i = 0; i < lHandler.nextLevelUps.Count; i++){
+				inventoryData.nextLevelUpgrades.Add(lHandler.nextLevelUps[i].upgradeID);
+			}
+
+			inventoryData.currentParadigm = PlayerController._currentParadigm;
+
+
+
 		}
 	}
 }
 
 [System.Serializable]
-public class InventorySave : MonoBehaviour {
+public class InventorySave {
 	public List<int> earnedUpgrades;
+	public List<int> earnedVirtues;
+	//public List<int> earnedTech;
 	public List<int> collectedItems;
 	public List<int> healNums;
 	public List<int> staminaNums;
@@ -263,10 +387,28 @@ public class InventorySave : MonoBehaviour {
 	public List<int> collectedItemCount;
 	public List<int> openedDoors;
 	public List<int> clearedWalls;
+	
+	public List<int> unlockedWeapons;
+	public List<int> unlockedBuddies;
+	public List<int> equippedWeapons;
+	public List<int> subWeapons;
+
+	public List<int> equippedVirtues;
+	//public List<int> equippedTech;
+	
+	public List<int> equippedBuddies;
+	public int currentParadigm;
+
+	public List<int> equippedInventory;
+
+	public List<int> nextLevelUpgrades;
+	public List<int> availableUpgrades;
 
 
 	public InventorySave(){
 		earnedUpgrades = new List<int>();
+		earnedVirtues = new List<int>();
+		//earnedTech = new List<int>();
 		collectedItems = new List<int>();
 		healNums = new List<int>();
 		staminaNums = new List<int>();
@@ -275,5 +417,22 @@ public class InventorySave : MonoBehaviour {
 		collectedItemCount = new List<int>();
 		openedDoors = new List<int>();
 		clearedWalls = new List<int>();
+
+		unlockedWeapons = new List<int>();
+		unlockedBuddies = new List<int>();
+		equippedWeapons = new List<int>();
+		subWeapons = new List<int>();
+		
+		equippedVirtues = new List<int>();
+		//equippedUpgrades = new List<int>();
+		
+		equippedBuddies = new List<int>();
+
+		equippedInventory = new List<int>();
+		currentParadigm = 0;
+
+		availableUpgrades = new List<int>();
+		nextLevelUpgrades = new List<int>();
+
 	}
 }

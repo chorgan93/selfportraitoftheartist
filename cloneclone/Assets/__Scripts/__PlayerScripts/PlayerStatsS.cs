@@ -37,7 +37,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
 
-	private static float _currentDarkness = 0f;
+	public static float _currentDarkness = 0f;
 	public float currentDarkness {get { return _currentDarkness; } }
 	
 	//________________________________MANA
@@ -87,6 +87,9 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________VIRTUE
 	private float _baseVirtue = 5f;
 	private float _addedVirtue = 0; // (upgradeable)
+	private static float _usedVirtue = 0;
+	public float usedVirtue {get {return _usedVirtue; } }
+	public float usedVirtuePercent {get { return _usedVirtue/(_baseVirtue+_addedVirtue); } }
 	public float virtueAmt { get { return (_baseVirtue+_addedVirtue);}}
 
 	//________________________________DEFENSE
@@ -561,6 +564,13 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedCharge += numToAdd;
 		_currentCharge += numToAdd;
 		_addedLevel++;
+	}
+
+	public void ChangeVirtue(float numChange){
+		_usedVirtue += numChange;
+		if (_usedVirtue < 0){
+			_usedVirtue = 0;
+		}
 	}
 
 	public void FullRecover(){

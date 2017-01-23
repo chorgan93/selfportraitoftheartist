@@ -222,4 +222,8 @@ public class InventoryManagerS : MonoBehaviour {
 		_updateUICall = true;
 	}
 
+	public void LoadInventory(List<int> newInventory){
+		_equippedInventory = newInventory;
+	}
+
 }

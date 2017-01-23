@@ -76,6 +76,9 @@ public class EquipMenuS : MonoBehaviour {
 	public Image[] selectorElementsVirtues;
 	public RectTransform[] selectorPositionsVirtues;
 	private int virtueCapacity = 4;
+	public Image virtueBarUsed;
+	private Vector2 virtueBarSizeDelta;
+	private float virtueBarMaxX;
 
 	// INVENTORY ELEMENTS
 	private bool inInventoryMenu;
@@ -115,7 +118,15 @@ public class EquipMenuS : MonoBehaviour {
 				playerImage.enabled = true;
 
 			}
+
+			for (int i = 0; i < allVirtueItems.Length; i++){
+				if (PlayerController.equippedVirtues.Contains(allVirtueItems[i].virtueNum)){
+					pRef.myStats.ChangeVirtue(allVirtueItems[i].virtueCost);
+				}
+			}
 		}
+
+		virtueBarMaxX = virtueBarUsed.rectTransform.sizeDelta.x;
 
 		descriptionText.text = "";
 		SetSelector(0);
@@ -169,7 +180,7 @@ public class EquipMenuS : MonoBehaviour {
 					GoToParadigmIISetUp();
 				}
 				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
-					//GoToVirtueSetUp();
+					GoToVirtueSetUp();
 				}
 				if (currentPos == 3 && inventoryRef.collectedItems.Count > 0){
 					//GoToInventorySetUp();
@@ -382,6 +393,7 @@ public class EquipMenuS : MonoBehaviour {
 
 		//_______________________________________________START VIRTUE SECTION
 		if (inVirtueMenu){
+			changingVirtue = true;
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
 					controlStickMoved = true;
@@ -397,48 +409,28 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			// changing virtue function
-			if (!changingVirtue){
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
-					changingVirtue = true;
-					selectButtonDown = true;
-					currentVirtueSelected = currentPos;
-					if (pRef.equippedVirtues[currentVirtueSelected] > -1){
-						SetSelectorVirtue(pRef.equippedVirtues[currentVirtueSelected]+virtueCapacity);
-					}else{
-						SetSelectorVirtue(FindNextAvailableVirtue(0,0));
-					}
-				}
-			}
-			else{
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
-					changingVirtue = false;
+					//changingVirtue = false;
 					selectButtonDown = true;
 
 					// swap actual virtue equip & update display
-					if (pRef.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
-						// unequip virtue if trying to swap with self
-						if (pRef.equippedVirtues[currentVirtueSelected] == allVirtueItems[currentPos].virtueNum){
-							pRef.equippedVirtues[currentVirtueSelected] =
-								allVirtueItems[currentVirtueSelected].virtueNum = -1;
-						}else{
-							pRef.equippedVirtues[pRef.equippedVirtues.IndexOf(allVirtueItems[currentPos].virtueNum)] =
-								allVirtueItems[pRef.equippedVirtues.IndexOf(allVirtueItems[currentPos].virtueNum)].virtueNum = -1;
-							pRef.equippedVirtues[currentVirtueSelected] = 
-								allVirtueItems[currentVirtueSelected].virtueNum = allVirtueItems[currentPos].virtueNum;
-						}
+					if (PlayerController.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
+						PlayerController.equippedVirtues.Remove(allVirtueItems[currentPos].virtueNum);
+						pRef.myStats.ChangeVirtue(-allVirtueItems[currentPos].virtueCost);
+					allVirtueItems[currentPos].Unequip();
+						
 					}else{
-
-						pRef.equippedVirtues[currentVirtueSelected] = 
-							allVirtueItems[currentVirtueSelected].virtueNum = allVirtueItems[currentPos].virtueNum;
+						if (pRef.myStats.usedVirtue + allVirtueItems[currentPos].virtueCost <= pRef.myStats.virtueAmt){
+							PlayerController.equippedVirtues.Add (allVirtueItems[currentPos].virtueNum);
+							pRef.myStats.ChangeVirtue(allVirtueItems[currentPos].virtueCost);
+						allVirtueItems[currentPos].Equip();
+						}
 					}
 
 					
 					
 					UpdateVirtueDisplay();
-					// switch virtue positions (equip virtue)
-					SetSelectorVirtue(currentVirtueSelected);
-					
-				}
+
 				if (!exitButtonDown && pRef.myControl.ExitButton()){
 					// exit out of mantra swap
 					changingVirtue = false;
@@ -604,32 +596,32 @@ public class EquipMenuS : MonoBehaviour {
 		selectorElementsVirtues[currentPos].color = changeCols;
 
 		int nextAvailable = newPos;
-		if (changingVirtue){
+		//if (changingVirtue){
 
 			nextAvailable = FindNextAvailableVirtue(currentPos, dir);
 
-		}else{
+		/*}else{
 			if (nextAvailable >= virtueCapacity){
 				nextAvailable = 0;
 			}
 			if (nextAvailable < 0){
 				nextAvailable = virtueCapacity-1;
 			}
-		}
+		}**/
 
 		currentPos = nextAvailable;
 		changeCols.a = 1f;
 		selectorElementsVirtues[nextAvailable].color = changeCols;
-		selector.anchoredPosition = selectorPositionsVirtues[currentPos].anchoredPosition;
+		selector.position = selectorPositionsVirtues[currentPos].position;
 		if (allVirtueItems[currentPos].virtueNum > -1){
-			if (!changingVirtue){
+			/*if (!changingVirtue){
 				descriptionText.text = "Virtue Slot 0" + (currentPos+1) + ": " +
 					allVirtueItems[currentPos].virtueDescription;
-			}else{
+			}else{**/
 				descriptionText.text = allVirtueItems[currentPos].virtueDescription;
-			}
+			//}
 		}else{
-			descriptionText.text = "Virtue Slot 0" + (currentPos+1);
+			descriptionText.text = "";
 		}
 
 	}
@@ -806,7 +798,7 @@ public class EquipMenuS : MonoBehaviour {
 	}
 	private void UpdateVirtues(){
 		foreach (EquipVirtueItemS v in allVirtueItems){
-			v.Initialize(inventoryRef);
+			v.Initialize(inventoryRef, pRef);
 		}
 	}
 	private void UpdateInventory(){
@@ -915,14 +907,14 @@ public class EquipMenuS : MonoBehaviour {
 			}
 		}else if (dir == 0){
 			nextAvail = -1;
-			for (int i = virtueCapacity; i < allVirtueItems.Length; i++){
+			for (int i = 0; i < allVirtueItems.Length; i++){
 				if (allVirtueItems[i].unlocked  && nextAvail <0){
 					nextAvail = i;
 				}
 			}
 		}else{
 			if (startPt > virtueCapacity){
-				for (int j = startPt; j >= virtueCapacity; j--){
+				for (int j = startPt; j >= 0; j--){
 					if (allVirtueItems[j].unlocked && nextAvail == startPt){
 						nextAvail = j;
 					}
@@ -1016,7 +1008,7 @@ public class EquipMenuS : MonoBehaviour {
 
 	private void UpdateVirtueDisplay(){
 
-		for (int i = 0; i < virtueCapacity; i++){
+		/*for (int i = 0; i < virtueCapacity; i++){
 
 			if (allVirtueItems[i].virtueNum < 0){
 				allVirtueItems[i].Hide();
@@ -1027,7 +1019,10 @@ public class EquipMenuS : MonoBehaviour {
 					allVirtueItems[allVirtueItems[i].virtueNum+virtueCapacity].virtueDescription;
 				allVirtueItems[i].Show();
 			}
-		} 
+		} **/
+		virtueBarSizeDelta = virtueBarUsed.rectTransform.sizeDelta;
+		virtueBarSizeDelta.x = virtueBarMaxX*pRef.myStats.usedVirtuePercent;
+		virtueBarUsed.rectTransform.sizeDelta = virtueBarSizeDelta;
 	}
 
 	private void UpdateInventoryDisplay(){
@@ -1064,13 +1059,13 @@ public class EquipMenuS : MonoBehaviour {
 		selectButtonDown = true;
 		inVirtueMenu = true;
 		onMainScreen = false;
+		virtueWhole.gameObject.SetActive(false);
 		paradigmBuddySubscreen.gameObject.SetActive(false);
 		paradigmIMantraWhole.gameObject.SetActive(false);
 		paradigmIIMantraWhole.gameObject.SetActive(false);
 		paradigmMantraSubscreen.gameObject.SetActive(false);
 		inventoryWhole.gameObject.SetActive(false);
 		inventorySubscreen.gameObject.SetActive(false);
-		virtueWhole.gameObject.SetActive(true);
 		virtueSubscreen.gameObject.SetActive(true);
 		currentVirtueSelected = 0;
 		changingVirtue = false;

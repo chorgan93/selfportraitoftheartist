@@ -96,7 +96,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 
 		// turn on virtues
-		if (_playerReference.equippedVirtues.Count > 0){
+		if (PlayerController.equippedVirtues.Count > 0){
 			TurnOnVirtueAugs();
 		}
 	}
@@ -129,16 +129,16 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private void TurnOnVirtueAugs(){
 
-		if (_playerReference.equippedVirtues.Contains(0)){
+		if (PlayerController.equippedVirtues.Contains(0)){
 			_secondChanceAug = true;
 		}
-		if (_playerReference.equippedVirtues.Contains(1)){
+		if (PlayerController.equippedVirtues.Contains(1)){
 			_opportunisticAug = true;
 		}
-		if (_playerReference.equippedVirtues.Contains(2)){
+		if (PlayerController.equippedVirtues.Contains(2)){
 			_dashAug = true;
 		}
-		if (_playerReference.equippedVirtues.Contains(3)){
+		if (PlayerController.equippedVirtues.Contains(3)){
 			_enragedAug = true;
 		}
 

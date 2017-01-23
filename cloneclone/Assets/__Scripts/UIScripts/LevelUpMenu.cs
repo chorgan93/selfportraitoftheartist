@@ -173,6 +173,8 @@ public class LevelUpMenu : MonoBehaviour {
 		}
 		levelMenuItems[currentPos].ShowText();
 		UpdateUpgradeEffect();
+		
+		StoryProgressionS.SaveProgress();
 	}
 
 	private void TurnOffLevelUpMenu(){

@@ -36,18 +36,20 @@ public class CombatManagerS : MonoBehaviour {
 				defeatedEnemies++;
 			}
 		}
-		if (defeatedEnemies >= enemies.Length){
-			CompleteCombat();
+		if (defeatedEnemies >= enemies.Length && !completed){
+			StartCoroutine(CompleteCombat());
 		}
 
 	}
 
-	void CompleteCombat(){
+	IEnumerator CompleteCombat(){
+		completed = true;
+		CameraEffectsS.E.ResetSound();
+		yield return new WaitForSeconds(0.2f);
 		foreach (BarrierS b in barriers){
 			b.TurnOff();
 		}
 		playerRef.SetCombat(false);
-		completed = true;
 		CameraEffectsS.E.ResetEffect(true);
 		VerseDisplayS.V.EndVerse();
 		if (combatID > -1){

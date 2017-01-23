@@ -7,13 +7,15 @@ public class EquipVirtueItemS : MonoBehaviour {
 	private PlayerInventoryS inventoryRef;
 
 	public Image virtueImage;
+	public Image virtueEquip;
 	public int virtueNum;
+	public float virtueCost = 2f;
 
 	public string virtueDescription;
 	private bool _unlocked = false;
 	public bool unlocked { get { return _unlocked; } }
 
-	public void Initialize(PlayerInventoryS i){
+	public void Initialize(PlayerInventoryS i, PlayerController pRef){
 
 		inventoryRef = i;
 
@@ -26,10 +28,17 @@ public class EquipVirtueItemS : MonoBehaviour {
 
 		if (!turnOn){
 			virtueImage.enabled = false;
+			virtueEquip.enabled = false;
 			//weaponName.enabled = false;
 			_unlocked = false;
 		}else{
 			virtueImage.enabled = true;
+
+			if (PlayerController.equippedVirtues.Contains(virtueNum)){
+				Equip();
+			}else{
+				Unequip();
+			}
 
 			//weaponName.color = weaponRef.swapColor;
 			//weaponName.enabled = true;
@@ -44,6 +53,14 @@ public class EquipVirtueItemS : MonoBehaviour {
 
 	public void Hide(){
 		virtueImage.enabled = false;
+	}
+
+	public void Equip(){
+		virtueEquip.enabled = true;
+	}
+
+	public void Unequip(){
+		virtueEquip.enabled = false;
 	}
 
 

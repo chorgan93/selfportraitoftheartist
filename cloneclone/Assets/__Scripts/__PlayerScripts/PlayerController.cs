@@ -143,7 +143,8 @@ public class PlayerController : MonoBehaviour {
 	private BuddySwitchEffectS _buddyEffect;
 
 	// Virtue Properties
-	public List<int> equippedVirtues;
+	public static List<int> equippedVirtues;
+	public List<int> equippedUpgrades; // tech
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -328,6 +329,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		equippedWeapon = equippedWeapons[_currentParadigm];
+
+		if (equippedVirtues == null){
+			equippedVirtues = new List<int>();
+			equippedVirtues.Add(0);
+		}
 
 		
 		_playerAug = GetComponent<PlayerAugmentsS>();
@@ -1127,7 +1133,6 @@ public class PlayerController : MonoBehaviour {
 						_lockButtonDown = true;
 							_myLockOn.EndLockOn();
 						lockInputReset = false;
-						Debug.Log("LOCK ON OFF!");
 
 				}
 
@@ -1137,7 +1142,6 @@ public class PlayerController : MonoBehaviour {
 				if (!_lockButtonDown && myControl.LockOnButton()){
 					_lockButtonDown = true;
 					if (myDetect.allEnemiesInRange.Count > 0){
-						Debug.Log("LOCK ON SUCCESS!");
 						_myLockOn.LockOn(myDetect.closestEnemy);
 						_isSprinting = false;
 					}
