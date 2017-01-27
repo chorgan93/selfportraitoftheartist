@@ -180,6 +180,9 @@ public class PlayerInventoryS : MonoBehaviour {
 					}
 				}
 			}
+			
+			_earnedTech = new List<int>(){0,1,2,3,6,7,8,9};
+			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,6,7};
 
 		}
 
@@ -261,7 +264,7 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	void SetUpStartTech(){
 		_earnedTech = new List<int>(){0,1,2,3,6,7,8,9};
-		PlayerController.equippedUpgrades = new List<int>(){0,1,2,3,6,7};
+		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,6,7};
 	}
 
 	void LoadInventoryData(){

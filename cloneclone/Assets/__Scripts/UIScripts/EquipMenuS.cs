@@ -85,7 +85,6 @@ public class EquipMenuS : MonoBehaviour {
 
 	// INVENTORY ELEMENTS
 	private bool inInventoryMenu;
-	private int currentInventorySelected = 0;
 	public EquipTechItemS[] allInventoryItems;
 	public Image[] selectorElementsInventory;
 	public RectTransform[] selectorPositionsInventory;
@@ -140,6 +139,7 @@ public class EquipMenuS : MonoBehaviour {
 		UpdateMantraDisplay();
 		UpdateBuddyDisplay();
 		UpdateVirtueDisplay();
+		UpdateInventoryDisplay();
 		UpdateMantras();
 		UpdateBuddies();
 		UpdateVirtues();
@@ -189,8 +189,8 @@ public class EquipMenuS : MonoBehaviour {
 				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
 					GoToVirtueSetUp();
 				}
-				if (currentPos == 3 && inventoryRef.collectedItems.Count > 0){
-					//GoToInventorySetUp();
+				if (currentPos == 3){
+					GoToInventorySetUp();
 				}
 			}
 		
@@ -490,14 +490,14 @@ public class EquipMenuS : MonoBehaviour {
 					
 					
 					UpdateInventoryDisplay();
-					// switch inventory positions (equip item)
-					SetSelectorInventory(currentInventorySelected);
 					
 			}
 
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				currentPos = 0;
 				SetSelector(3);
 				inventorySubscreen.gameObject.SetActive(false);
+				inventoryWhole.gameObject.SetActive(true);
 				virtueWhole.gameObject.SetActive(true);
 				virtueWhole.gameObject.SetActive(true);
 				paradigmIMantraWhole.SetActive(true);
@@ -606,11 +606,11 @@ public class EquipMenuS : MonoBehaviour {
 		
 		int nextAvailable = newPos;
 
-		if (nextAvailable >= inventoryRef.earnedTech.Count-1){
+		if (nextAvailable >= selectorElementsInventory.Length-1){
 			nextAvailable = 0;
 		}
 		if (nextAvailable < 0){
-			nextAvailable = inventoryRef.earnedTech.Count-1;
+			nextAvailable = selectorElementsInventory.Length-1;
 		}
 
 		nextAvailable = FindNextAvailableTech(currentPos, dir);
@@ -1074,11 +1074,10 @@ public class EquipMenuS : MonoBehaviour {
 		paradigmIMantraWhole.gameObject.SetActive(false);
 		paradigmIIMantraWhole.gameObject.SetActive(false);
 		paradigmMantraSubscreen.gameObject.SetActive(false);
-		inventoryWhole.gameObject.SetActive(true);
+		inventoryWhole.gameObject.SetActive(false);
 		inventorySubscreen.gameObject.SetActive(true);
 		virtueWhole.gameObject.SetActive(false);
 		virtueSubscreen.gameObject.SetActive(false);
-		currentInventorySelected = 0;
 		SetSelectorInventory(0);
 	}
 

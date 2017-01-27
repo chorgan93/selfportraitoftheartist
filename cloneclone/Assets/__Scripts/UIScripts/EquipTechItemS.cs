@@ -14,6 +14,7 @@ public class EquipTechItemS : MonoBehaviour {
 	public Color textOnColor;
 	public Color textOffColor;
 
+	private string techName;
 	public string techDescription;
 	private bool _unlocked = false;
 	public bool unlocked { get { return _unlocked; } }
@@ -31,6 +32,8 @@ public class EquipTechItemS : MonoBehaviour {
 			}
 		}
 
+		techName = techText.text;
+
 		if (!turnOn){
 			_unlocked = false;
 			techBG.enabled = true;
@@ -43,7 +46,7 @@ public class EquipTechItemS : MonoBehaviour {
 			}else{
 				techText.color = textOffColor;
 			}
-			techText.text = techDescription;
+			techText.text = techName;
 
 			_unlocked = true;
 		}

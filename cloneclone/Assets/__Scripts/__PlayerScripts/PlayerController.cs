@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 
 		InitializePlayer();
-	
+
 	}
 
 	void Update(){
