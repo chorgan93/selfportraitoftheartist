@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Virtue Properties
 	public static List<int> equippedVirtues;
-	public List<int> equippedUpgrades; // tech
+	public static List<int> equippedUpgrades; // tech
 
 	// Animation Properties
 	private bool _facingDown = true;

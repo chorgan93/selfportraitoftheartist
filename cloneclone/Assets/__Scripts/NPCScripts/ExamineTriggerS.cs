@@ -177,6 +177,9 @@ public class ExamineTriggerS : MonoBehaviour {
 										pRef.equippedBuddies.Add(pRef.equippedBuddies[0]);
 									}
 								}
+									if (saveOnPickup){
+										StoryProgressionS.SaveProgress();
+									}
 							}
 	
 							if (unlocking){

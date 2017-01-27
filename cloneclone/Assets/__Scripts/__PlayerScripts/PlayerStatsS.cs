@@ -87,7 +87,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________VIRTUE
 	private float _baseVirtue = 5f;
 	private float _addedVirtue = 0; // (upgradeable)
-	private static float _usedVirtue = 0;
+	private float _usedVirtue = 0;
 	public float usedVirtue {get {return _usedVirtue; } }
 	public float usedVirtuePercent {get { return _usedVirtue/(_baseVirtue+_addedVirtue); } }
 	public float virtueAmt { get { return (_baseVirtue+_addedVirtue);}}

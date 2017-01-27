@@ -19,6 +19,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	public List<int> earnedUpgrades { get { return _earnedUpgrades; } }
 	public List<int> _earnedVirtues;
 	public List<int> earnedVirtues { get { return _earnedVirtues; } }
+	public List<int> _earnedTech;
+	public List<int> earnedTech { get { return _earnedTech; } }
 
 	private List<int> _clearedWalls;
 	public List<int> clearedWalls { get { return _clearedWalls; } }
@@ -245,6 +247,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		if (unlockedBuddies.Count > 1){
 			unlockedBuddies.RemoveRange(1, unlockedWeapons.Count-1);
 		}
+		SetUpStartTech();
 		PlayerStatsS.healOnStart = true;
 		PlayerController._currentParadigm = 0;
 		PlayerController.currentBuddy = 0;
@@ -254,6 +257,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		buddyList.Add(unlockedBuddies[0].gameObject);
 		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
 		OverriteInventoryData();
+	}
+
+	void SetUpStartTech(){
+		_earnedTech = new List<int>(){0,1,2,3,6,7,8,9};
+		PlayerController.equippedUpgrades = new List<int>(){0,1,2,3,6,7};
 	}
 
 	void LoadInventoryData(){
@@ -267,6 +275,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_openedDoors = inventoryData.openedDoors;
 		_clearedWalls = inventoryData.clearedWalls;
 		_earnedVirtues = inventoryData.earnedVirtues;
+		_earnedTech = inventoryData.earnedTech;
 
 
 		unlockedWeapons = new List<PlayerWeaponS>();
@@ -294,7 +303,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerController._currentParadigm = inventoryData.currentParadigm;
 		
 		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
-		//PlayerController.equippedUpgrades = inventoryData.equippedUpgrades;
+		PlayerController.equippedUpgrades = inventoryData.equippedTech;
 
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		List<LevelUpS> nLU = new List<LevelUpS>();
@@ -331,6 +340,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData.openedDoors = _openedDoors;
 		inventoryData.clearedWalls = _clearedWalls;
 			inventoryData.earnedVirtues = _earnedVirtues;
+			inventoryData.earnedTech = _earnedTech;
 
 
 			for (int i = 0; i < unlockedWeapons.Count; i++){
@@ -348,7 +358,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 			
 			inventoryData.equippedVirtues = PlayerController.equippedVirtues;
-			//inventoryData.equippedTech = PlayerController.equippedTech;
+			inventoryData.equippedTech = PlayerController.equippedUpgrades;
 
 			for (int i = 0; i < equippedBuddies.Count; i++){
 				inventoryData.equippedBuddies.Add(equippedBuddies[i].GetComponent<BuddyS>().buddyNum);
@@ -378,7 +388,7 @@ public class PlayerInventoryS : MonoBehaviour {
 public class InventorySave {
 	public List<int> earnedUpgrades;
 	public List<int> earnedVirtues;
-	//public List<int> earnedTech;
+	public List<int> earnedTech;
 	public List<int> collectedItems;
 	public List<int> healNums;
 	public List<int> staminaNums;
@@ -394,7 +404,7 @@ public class InventorySave {
 	public List<int> subWeapons;
 
 	public List<int> equippedVirtues;
-	//public List<int> equippedTech;
+	public List<int> equippedTech;
 	
 	public List<int> equippedBuddies;
 	public int currentParadigm;
@@ -408,7 +418,7 @@ public class InventorySave {
 	public InventorySave(){
 		earnedUpgrades = new List<int>();
 		earnedVirtues = new List<int>();
-		//earnedTech = new List<int>();
+		earnedTech = new List<int>();
 		collectedItems = new List<int>();
 		healNums = new List<int>();
 		staminaNums = new List<int>();
@@ -424,7 +434,7 @@ public class InventorySave {
 		subWeapons = new List<int>();
 		
 		equippedVirtues = new List<int>();
-		//equippedUpgrades = new List<int>();
+		equippedTech = new List<int>();
 		
 		equippedBuddies = new List<int>();
 
