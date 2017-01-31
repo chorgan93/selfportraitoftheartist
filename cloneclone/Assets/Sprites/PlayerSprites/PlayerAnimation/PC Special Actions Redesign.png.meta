@@ -1,42 +1,59 @@
 fileFormatVersion: 2
-guid: 26c27d489e64448ff94480b28174fc4f
-timeCreated: 1485831462
+guid: aa07d0f795c3a4a22a340bf5d80ae847
+timeCreated: 1485831336
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PC Actions_0
-    21300002: PC Actions_1
-    21300004: PC Actions_2
-    21300006: PC Actions_3
-    21300008: PC Actions_4
-    21300010: PC Actions_5
-    21300012: PC Actions_6
-    21300014: PC Actions_7
-    21300016: PC Actions_8
-    21300018: PC Actions_9
-    21300020: PC Actions_10
-    21300022: PC Actions_11
-    21300024: PC Actions_12
-    21300026: PC Actions_13
-    21300028: PC Actions_14
-    21300030: PC Actions_15
-    21300032: PC Actions_16
-    21300034: PC Hurt_0
-    21300036: PC Hurt_1
-    21300038: PC Hurt_2
-    21300040: PC Hurt_3
-    21300042: PC Hurt_4
-    21300044: PC Hurt_5
-    21300046: PC Hurt_6
-    21300048: PC Hurt_7
-    21300050: PC Hurt_8
-    21300052: PC Hurt_9
-    21300054: PC Hurt_10
-    21300056: PC Hurt_11
-    21300058: PC Hurt_12
-    21300060: PC Hurt_13
-    21300062: PC Hurt_14
-    21300064: PC Hurt_15
+    21300000: PC Movement_0
+    21300002: PC Movement_1
+    21300004: PC Movement_2
+    21300006: PC Movement_3
+    21300008: PC Movement_4
+    21300010: PC Movement_5
+    21300012: PC Movement_6
+    21300014: PC Movement_7
+    21300016: PC Movement_8
+    21300018: PC Movement_9
+    21300020: PC Movement_10
+    21300022: PC Movement_11
+    21300024: PC Movement_12
+    21300026: PC Movement_13
+    21300028: PC Movement_14
+    21300030: PC Movement_15
+    21300032: PC Movement_16
+    21300034: PC Special_0
+    21300036: PC Special_1
+    21300038: PC Special_2
+    21300040: PC Special_3
+    21300042: PC Special_4
+    21300044: PC Special_5
+    21300046: PC Special_6
+    21300048: PC Special_7
+    21300050: PC Special_8
+    21300052: PC Special_9
+    21300054: PC Special_10
+    21300056: PC Special_11
+    21300058: PC Special_12
+    21300060: PC Special_13
+    21300062: PC Special_14
+    21300064: PC Special_15
+    21300066: PC Special Actions Redesign_0
+    21300068: PC Special Actions Redesign_1
+    21300070: PC Special Actions Redesign_2
+    21300072: PC Special Actions Redesign_3
+    21300074: PC Special Actions Redesign_4
+    21300076: PC Special Actions Redesign_5
+    21300078: PC Special Actions Redesign_6
+    21300080: PC Special Actions Redesign_7
+    21300082: PC Special Actions Redesign_8
+    21300084: PC Special Actions Redesign_9
+    21300086: PC Special Actions Redesign_10
+    21300088: PC Special Actions Redesign_11
+    21300090: PC Special Actions Redesign_12
+    21300092: PC Special Actions Redesign_13
+    21300094: PC Special Actions Redesign_14
+    21300096: PC Special Actions Redesign_15
+    21300098: PC Special Actions Redesign_16
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -83,7 +100,47 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: PC Hurt_0
+    - name: PC Special Actions Redesign_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Special Actions Redesign_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Special Actions Redesign_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Special Actions Redesign_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Special Actions Redesign_4
       rect:
         serializedVersion: 2
         x: 0
@@ -93,7 +150,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_1
+    - name: PC Special Actions Redesign_5
       rect:
         serializedVersion: 2
         x: 64
@@ -103,7 +160,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_2
+    - name: PC Special Actions Redesign_6
       rect:
         serializedVersion: 2
         x: 128
@@ -113,7 +170,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_3
+    - name: PC Special Actions Redesign_7
       rect:
         serializedVersion: 2
         x: 192
@@ -123,7 +180,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_4
+    - name: PC Special Actions Redesign_8
       rect:
         serializedVersion: 2
         x: 0
@@ -133,7 +190,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_5
+    - name: PC Special Actions Redesign_9
       rect:
         serializedVersion: 2
         x: 64
@@ -143,7 +200,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_6
+    - name: PC Special Actions Redesign_10
       rect:
         serializedVersion: 2
         x: 128
@@ -153,7 +210,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_7
+    - name: PC Special Actions Redesign_11
       rect:
         serializedVersion: 2
         x: 192
@@ -163,7 +220,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_8
+    - name: PC Special Actions Redesign_12
       rect:
         serializedVersion: 2
         x: 0
@@ -173,7 +230,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_9
+    - name: PC Special Actions Redesign_13
       rect:
         serializedVersion: 2
         x: 64
@@ -183,7 +240,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_10
+    - name: PC Special Actions Redesign_14
       rect:
         serializedVersion: 2
         x: 128
@@ -193,7 +250,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_11
+    - name: PC Special Actions Redesign_15
       rect:
         serializedVersion: 2
         x: 192
@@ -203,40 +260,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_12
+    - name: PC Special Actions Redesign_16
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_13
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Hurt_15
-      rect:
-        serializedVersion: 2
-        x: 192
         y: 0
         width: 64
         height: 64
