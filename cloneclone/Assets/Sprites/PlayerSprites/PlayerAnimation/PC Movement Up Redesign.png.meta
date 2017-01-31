@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: aa424be9bdd0048ba8c075ad3d0caea4
+timeCreated: 1485823506
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Actions_0
+    21300002: PC Actions_1
+    21300004: PC Actions_2
+    21300006: PC Actions_3
+    21300008: PC Actions_4
+    21300010: PC Actions_5
+    21300012: PC Actions_6
+    21300014: PC Actions_7
+    21300016: PC Actions_8
+    21300018: PC Actions_9
+    21300020: PC Actions_10
+    21300022: PC Actions_11
+    21300024: PC Actions_12
+    21300026: PC Actions_13
+    21300028: PC Actions_14
+    21300030: PC Actions_15
+    21300032: PC Actions_16
+    21300034: PC Movement Down_0
+    21300036: PC Movement Down_1
+    21300038: PC Movement Down_2
+    21300040: PC Movement Down_3
+    21300042: PC Movement Down_4
+    21300044: PC Movement Down_5
+    21300046: PC Movement Down_6
+    21300048: PC Movement Down_7
+    21300050: PC Movement Down_8
+    21300052: PC Movement Down_9
+    21300054: PC Movement Down_10
+    21300056: PC Movement Down_11
+    21300058: PC Movement Down_12
+    21300060: PC Movement Down_13
+    21300062: PC Movement Down_14
+    21300064: PC Movement Down_15
+    21300066: PC Movement Down_16
+    21300068: PC Movement Up Redesign_0
+    21300070: PC Movement Up Redesign_1
+    21300072: PC Movement Up Redesign_2
+    21300074: PC Movement Up Redesign_3
+    21300076: PC Movement Up Redesign_4
+    21300078: PC Movement Up Redesign_5
+    21300080: PC Movement Up Redesign_6
+    21300082: PC Movement Up Redesign_7
+    21300084: PC Movement Up Redesign_8
+    21300086: PC Movement Up Redesign_9
+    21300088: PC Movement Up Redesign_10
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: PC Movement Up Redesign_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
