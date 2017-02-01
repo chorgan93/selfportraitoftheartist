@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b5d7bb117e5bb4669919a62024c4b162
-timeCreated: 1485844928
+timeCreated: 1485932852
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,6 +62,10 @@ TextureImporter:
     21300110: PC Luna Attacks Redesign_28
     21300112: PC Luna Attacks Redesign_29
     21300114: PC Luna Attacks Redesign_30
+    21300116: PC Luna Attacks Redesign_31
+    21300118: PC Luna Attacks Redesign_32
+    21300120: PC Luna Attacks Redesign_33
+    21300122: PC Luna Attacks Redesign_34
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -84,7 +88,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -417,6 +421,46 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Luna Attacks Redesign_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Luna Attacks Redesign_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Luna Attacks Redesign_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Luna Attacks Redesign_34
+      rect:
+        serializedVersion: 2
+        x: 256
         y: 0
         width: 64
         height: 64
