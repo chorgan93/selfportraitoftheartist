@@ -395,6 +395,10 @@ public class ProjectileS : MonoBehaviour {
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
 					 dmg, stunMult, critDmg*SolAugMult());
 
+				if (!hitEnemy.isDead){
+					_myPlayer.AddEnemyHit(hitEnemy);
+				}
+
 				if (hitSoundObj){
 					Instantiate(hitSoundObj);
 				}

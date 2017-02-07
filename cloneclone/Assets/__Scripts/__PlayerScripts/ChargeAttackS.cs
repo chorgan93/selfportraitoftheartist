@@ -50,7 +50,7 @@ public class ChargeAttackS : MonoBehaviour {
 	void Start () {
 
 		_myRenderer = GetComponentInChildren<Renderer>();
-		_myCollider = GetComponent<Collider>();
+		_myCollider = GetComponentInChildren<Collider>();
 		if (transform.parent != null){
 			myPlayer = GetComponentInParent<PlayerController>();
 		}else{

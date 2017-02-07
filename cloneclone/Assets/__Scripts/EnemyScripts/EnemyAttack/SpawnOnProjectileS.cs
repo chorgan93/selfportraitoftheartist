@@ -20,6 +20,11 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	private PlayerController playerRef;
 	public bool turnOffStun = false;
 
+	public float spawnOnHitEnemyDelay = -1f;
+	public bool spawnOnHitEnemies = false;
+	private bool spawnedOnHitEnemies = false;
+	public GameObject spawnObjectOnHitEnemies;
+
 	private bool firstSpawned = false;
 
 	// Use this for initialization
@@ -29,7 +34,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		if (maxSpawns > 0){
 			infiniteSpawn = false;
 		}
-		if (chargeSpawner){
+		if (chargeSpawner || spawnOnHitEnemies){
 			playerRef = GetComponent<ProjectileS>().myPlayer;
 		}
 	
@@ -63,6 +68,33 @@ public class SpawnOnProjectileS : MonoBehaviour {
 					}
 				}
 				firstSpawned = true;
+			}
+		}
+
+		if (spawnOnHitEnemies && !spawnedOnHitEnemies){
+			spawnOnHitEnemyDelay -= Time.deltaTime;
+			if (spawnOnHitEnemyDelay <= 0){
+			if (playerRef){
+				for (int i = 0; i < playerRef.enemiesHitByAttackRef.Count; i++){
+					spawnPos = playerRef.enemiesHitByAttackRef[i].transform.position;
+					spawnPos += Random.insideUnitSphere*spawnObjectRadius;
+					spawnObjectRadius+=spawnRadiusAdd;
+					spawnPos.z = spawnObjZ;
+						GameObject newSpawn = Instantiate(spawnObjectOnHitEnemies, spawnPos, spawnObjectOnHitEnemies.transform.rotation)
+						as GameObject;
+					
+					if (chargeSpawner){
+						newSpawn.GetComponent<ChargeAttackS>().SetPlayer(playerRef);
+						if (!firstSpawned){
+							newSpawn.GetComponent<ChargeAttackS>().SetFirstSpawned();
+						}
+						if (turnOffStun){
+							newSpawn.GetComponent<ChargeAttackS>().TurnOffStun();
+						}
+					}
+				}
+			}
+				spawnedOnHitEnemies = true;
 			}
 		}
 	

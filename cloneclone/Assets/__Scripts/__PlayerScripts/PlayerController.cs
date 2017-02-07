@@ -186,6 +186,9 @@ public class PlayerController : MonoBehaviour {
 	public EnemyDetectS dontWalkIntoEnemiesCheck;
 	public EnemyDetectS dontGetStuckInEnemiesCheck;
 
+	private List<EnemyS> enemiesHitByLastAttack;
+	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
+
 	private int numAttacksPerShot;
 	private float timeBetweenAttacks;
 	private float timeBetweenAttacksCountdown;
@@ -304,6 +307,12 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void AddEnemyHit(EnemyS newEnemy){
+		if (!enemiesHitByLastAttack.Contains(newEnemy)){
+			enemiesHitByLastAttack.Add(newEnemy);
+		}
+	}
+
 	//_________________________________________PRIVATE METHODS
 
 	void InitializePlayer(){
@@ -321,6 +330,8 @@ public class PlayerController : MonoBehaviour {
 		weaponSwitchIndicator = GetComponentInChildren<WeaponSwitchFlashS>();
 
 		mainCamera = CameraShakeS.C.GetComponent<Camera>();
+
+		enemiesHitByLastAttack = new List<EnemyS>();
 
 		if (PlayerInventoryS.I.EquippedWeapons() != null){
 		equippedWeapons = PlayerInventoryS.I.EquippedWeapons();
@@ -737,6 +748,7 @@ public class PlayerController : MonoBehaviour {
 			comboDuration -= Time.deltaTime;
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
+				enemiesHitByLastAttack.Clear();
 			}
 		}
 
