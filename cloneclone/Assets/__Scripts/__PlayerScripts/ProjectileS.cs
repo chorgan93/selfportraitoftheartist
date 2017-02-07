@@ -21,6 +21,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool canInterruptDash = false;
 	public float comboDuration = 0.5f;
 	public float chainAllow = 0.18f;
+	public bool momsEye = false;
 
 	[Header("Control Type")]
 	public bool lock4Directional = false;

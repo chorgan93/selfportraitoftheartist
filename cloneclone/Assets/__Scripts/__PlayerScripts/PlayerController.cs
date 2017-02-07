@@ -111,6 +111,8 @@ public class PlayerController : MonoBehaviour {
 	private float lockDownTime = 0f;
 	private float lockTurnOffThreshold = 0.5f;
 
+	private float momsEyeMult = 1f;
+
 	// Status Properties
 	private bool _isStunned = false;
 	private bool attackTriggered;
@@ -776,6 +778,9 @@ public class PlayerController : MonoBehaviour {
 			GameObject newProjectile;
 
 			if (queuedAttacks.Count > 0){
+				if (queuedAttacks[0].GetComponent<ProjectileS>().momsEye){
+					momsEyeMult*=-1f;
+				}
 				newAttack = false;
 				newProjectile = Instantiate(queuedAttacks[0], transform.position, Quaternion.identity)
 					as GameObject;
@@ -783,6 +788,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			else{
 				newAttack = true;
+				momsEyeMult = 1f;
 			if (_doingDashAttack){
 				
 				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
@@ -862,11 +868,11 @@ public class PlayerController : MonoBehaviour {
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
 
 			if (newAttack){
-				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir,
-				                                                 savedDir, this);
+				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir*momsEyeMult,
+				                                                 savedDir*momsEyeMult, this);
 			}else{
-				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir,
-				                    savedDir, this);
+				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir*momsEyeMult,
+				                    savedDir*momsEyeMult, this);
 			}
 			SpawnAttackPuff();
 

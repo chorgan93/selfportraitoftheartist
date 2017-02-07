@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5401c14498c874f848ee00780f814f9c
-timeCreated: 1486437233
+timeCreated: 1486447626
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,6 +31,18 @@ TextureImporter:
     21300048: PC Pyra Attacks Redesign_24
     21300050: PC Pyra Attacks Redesign_25
     21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -81,7 +93,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -91,7 +103,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -101,7 +113,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -111,7 +123,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -121,7 +133,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -130,8 +142,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -140,8 +152,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 0
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -150,8 +162,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 64
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -160,8 +172,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -170,8 +182,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 192
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -180,8 +192,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -190,8 +202,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -200,8 +212,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_12
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -210,8 +222,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_13
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -220,8 +232,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_14
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -230,8 +242,8 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -240,6 +252,96 @@ TextureImporter:
     - name: PC Pyra Attacks Redesign_16
       rect:
         serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_25
+      rect:
+        serializedVersion: 2
         x: 64
         y: 128
         width: 64
@@ -247,7 +349,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_17
+    - name: PC Pyra Attacks Redesign_26
       rect:
         serializedVersion: 2
         x: 128
@@ -257,7 +359,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_18
+    - name: PC Pyra Attacks Redesign_27
       rect:
         serializedVersion: 2
         x: 192
@@ -267,7 +369,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_19
+    - name: PC Pyra Attacks Redesign_28
       rect:
         serializedVersion: 2
         x: 256
@@ -277,7 +379,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_20
+    - name: PC Pyra Attacks Redesign_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_30
       rect:
         serializedVersion: 2
         x: 0
@@ -287,7 +399,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_21
+    - name: PC Pyra Attacks Redesign_31
       rect:
         serializedVersion: 2
         x: 64
@@ -297,7 +409,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_22
+    - name: PC Pyra Attacks Redesign_32
       rect:
         serializedVersion: 2
         x: 128
@@ -307,7 +419,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_23
+    - name: PC Pyra Attacks Redesign_33
       rect:
         serializedVersion: 2
         x: 192
@@ -317,7 +429,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_24
+    - name: PC Pyra Attacks Redesign_34
       rect:
         serializedVersion: 2
         x: 256
@@ -327,7 +439,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_25
+    - name: PC Pyra Attacks Redesign_35
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_36
       rect:
         serializedVersion: 2
         x: 0
@@ -337,10 +459,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Pyra Attacks Redesign_26
+    - name: PC Pyra Attacks Redesign_37
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Pyra Attacks Redesign_38
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 0
         width: 64
         height: 64
