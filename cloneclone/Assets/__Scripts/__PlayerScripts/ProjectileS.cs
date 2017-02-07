@@ -284,7 +284,7 @@ public class ProjectileS : MonoBehaviour {
 					currentStartPos.y = hitInfo.point.y;
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
-						hitEnemy.TakeDamage(knockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
 						                          dmg, stunMult, critDmg*SolAugMult());
 					}
 				}
@@ -391,7 +391,7 @@ public class ProjectileS : MonoBehaviour {
 				}
 	
 				hitEnemy.TakeDamage
-					(actingKnockbackSpeed*Mathf.Abs(enemyKnockbackMult)*_rigidbody.velocity.normalized*Time.deltaTime, 
+					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
 					 dmg, stunMult, critDmg*SolAugMult());
 
 				if (hitSoundObj){
