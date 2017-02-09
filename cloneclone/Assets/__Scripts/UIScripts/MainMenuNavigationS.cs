@@ -159,6 +159,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 							SaveLoadS.Load();
 							newGameScene = GameOverS.reviveScene;
 						}
+						PlayerStatsS.healOnStart = true;
 					}
 					//if (currentSelection == 1){
 					//	Application.OpenURL(facebookLink);
