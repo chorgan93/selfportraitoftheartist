@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 548e7187639c5412c88f4578ad530038
-timeCreated: 1486540685
+timeCreated: 1486718578
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -91,6 +91,14 @@ TextureImporter:
     21300168: PC Anima Attacks_26
     21300170: PC Anima Attacks_27
     21300172: PC Anima Attacks_28
+    21300174: PC Anima Attacks_29
+    21300176: PC Anima Attacks_30
+    21300178: PC Anima Attacks_31
+    21300180: PC Anima Attacks_32
+    21300182: PC Anima Attacks_33
+    21300184: PC Anima Attacks_34
+    21300186: PC Anima Attacks_35
+    21300188: PC Anima Attacks_36
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -141,7 +149,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -151,7 +159,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -161,7 +169,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -171,7 +179,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -181,7 +189,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -190,8 +198,8 @@ TextureImporter:
     - name: PC Anima Attacks_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -200,8 +208,8 @@ TextureImporter:
     - name: PC Anima Attacks_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 0
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -210,8 +218,8 @@ TextureImporter:
     - name: PC Anima Attacks_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 64
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -220,8 +228,8 @@ TextureImporter:
     - name: PC Anima Attacks_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -230,8 +238,8 @@ TextureImporter:
     - name: PC Anima Attacks_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 192
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -240,8 +248,8 @@ TextureImporter:
     - name: PC Anima Attacks_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -250,8 +258,8 @@ TextureImporter:
     - name: PC Anima Attacks_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -260,8 +268,8 @@ TextureImporter:
     - name: PC Anima Attacks_12
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -270,8 +278,8 @@ TextureImporter:
     - name: PC Anima Attacks_13
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -280,8 +288,8 @@ TextureImporter:
     - name: PC Anima Attacks_14
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -290,8 +298,8 @@ TextureImporter:
     - name: PC Anima Attacks_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -300,8 +308,8 @@ TextureImporter:
     - name: PC Anima Attacks_16
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -310,8 +318,8 @@ TextureImporter:
     - name: PC Anima Attacks_17
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 320
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -320,8 +328,8 @@ TextureImporter:
     - name: PC Anima Attacks_18
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 0
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -330,8 +338,8 @@ TextureImporter:
     - name: PC Anima Attacks_19
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 64
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -340,6 +348,106 @@ TextureImporter:
     - name: PC Anima Attacks_20
       rect:
         serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_30
+      rect:
+        serializedVersion: 2
         x: 0
         y: 64
         width: 64
@@ -347,7 +455,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_21
+    - name: PC Anima Attacks_31
       rect:
         serializedVersion: 2
         x: 64
@@ -357,7 +465,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_22
+    - name: PC Anima Attacks_32
       rect:
         serializedVersion: 2
         x: 128
@@ -367,7 +475,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_23
+    - name: PC Anima Attacks_33
       rect:
         serializedVersion: 2
         x: 192
@@ -377,7 +485,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_24
+    - name: PC Anima Attacks_34
       rect:
         serializedVersion: 2
         x: 256
@@ -387,40 +495,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_25
+    - name: PC Anima Attacks_35
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Anima Attacks_36
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_26
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_27
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Anima Attacks_28
-      rect:
-        serializedVersion: 2
-        x: 192
         y: 0
         width: 64
         height: 64
