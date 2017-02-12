@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour {
 	private bool _shoot8Dir = true;
 	private Vector3 savedDir = Vector3.zero;
 
+	private bool allowChainHeavy;
+	private bool allowChainLight;
+
 	private bool _doingDashAttack = false;
 	private bool _doingHeavyAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
@@ -808,8 +811,12 @@ public class PlayerController : MonoBehaviour {
 				                                        Quaternion.identity);
 			}else{
 
-					currentChain++;
 					if (_doingHeavyAttack){
+						if (allowChainHeavy){
+							currentChain++;
+						}else{
+							currentChain = 0;
+						}
 						if (currentChain > equippedWeapon.heavyChain.Length-1){
 							currentChain = 0;
 						}
@@ -827,6 +834,11 @@ public class PlayerController : MonoBehaviour {
 						//currentChain = -1;
 					}
 					else{
+						if (allowChainLight){
+							currentChain++;
+						}else{
+							currentChain = 0;
+						}
 					if (currentChain > equippedWeapon.attackChain.Length-1){
 						currentChain = 0;
 					}
@@ -880,6 +892,8 @@ public class PlayerController : MonoBehaviour {
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
 
 			if (newAttack){
+				allowChainHeavy = currentAttackS.allowChainHeavy;
+				allowChainLight = currentAttackS.allowChainLight;
 				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir*momsEyeMult,
 				                                                 savedDir*momsEyeMult, this);
 			}else{
@@ -1262,8 +1276,19 @@ public class PlayerController : MonoBehaviour {
 		
 		// switchWeapon
 		equippedWeapon = equippedWeapons[_currentParadigm];
-		if (currentChain > equippedWeapon.attackChain.Length-1){
+		/*if (currentChain > equippedWeapon.attackChain.Length-1){
 			currentChain = -1;
+		}**/
+		if (currentChain < equippedWeapon.heavyChain.Length && currentChain > -1){
+			allowChainHeavy = equippedWeapon.heavyChain[currentChain].GetComponent<ProjectileS>().allowChainHeavy;
+		}else{
+			allowChainHeavy = false;
+		}
+
+		if (currentChain < equippedWeapon.attackChain.Length && currentChain > -1){
+			allowChainHeavy = equippedWeapon.attackChain[currentChain].GetComponent<ProjectileS>().allowChainLight;
+		}else{
+			allowChainLight = false;
 		}
 
 		_myAnimator.SetInteger("WeaponNumber",equippedWeapon.weaponNum);

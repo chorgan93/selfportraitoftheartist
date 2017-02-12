@@ -55,6 +55,10 @@ public class ProjectileS : MonoBehaviour {
 	public float numAttacks = 1;
 	public float timeBetweenAttacks = 0.1f;
 
+	[Header("Combo Properties")]
+	public bool allowChainHeavy = true;
+	public bool allowChainLight = true;
+
 	[Header("Collider Properties")]
 	public float delayColliderTime = -1f;
 	public float dashDelayAdd = 0.2f;
