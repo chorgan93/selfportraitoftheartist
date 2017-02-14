@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour {
 	private float _dodgeCost = 1.75f;
 	public GameObject dashObj;
 
+	private float dashChargeAllowMult = 0.8f;
+	private bool speedUpChargeAttack = false;
+
 	private bool _isShooting;
 	private bool _lastInClip;
 	private bool _isAiming;
@@ -719,7 +722,8 @@ public class PlayerController : MonoBehaviour {
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
 			}
 			
-			if (dashDurationTime >= dashDurationTimeMax){
+			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
+			    (chargingAttack && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -735,7 +739,7 @@ public class PlayerController : MonoBehaviour {
 
 				if (_chargingAttack){
 					_chargeAttackTime = 0f;
-					ChargeAnimationTrigger();
+					ChargeAnimationTrigger(true);
 				}
 			}
 		}
@@ -764,7 +768,8 @@ public class PlayerController : MonoBehaviour {
 			if (!_isDashing){
 				_chargeAttackTime+= Time.deltaTime;
 			}
-			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
+			if (!_chargeAttackTriggered && ((!speedUpChargeAttack && _chargeAttackTime >= _chargeAttackTrigger) ||
+			                                (speedUpChargeAttack && _chargeAttackTime >= dashChargeAllowMult*_chargeAttackTrigger))){
 				_chargeAttackTriggered = true;
 				//_chargeCollider.TriggerAttack(transform.position, ShootDirection());
 
@@ -1498,7 +1503,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void ChargeAnimationTrigger(){
+	private void ChargeAnimationTrigger(bool inDash = false){
 
 		
 		_myAnimator.SetBool("Charging", true);
@@ -1507,7 +1512,12 @@ public class PlayerController : MonoBehaviour {
 		ProjectileS currentProj = _chargePrefab.GetComponent<ProjectileS>();
 
 		_myAnimator.SetTrigger(currentProj.attackAnimationTrigger);
-		_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult);
+		if (inDash){
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult/dashChargeAllowMult);
+		}else{
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult);
+		}
+		speedUpChargeAttack = inDash;
 
 	}
 
