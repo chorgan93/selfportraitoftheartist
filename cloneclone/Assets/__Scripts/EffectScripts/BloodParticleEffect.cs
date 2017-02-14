@@ -89,7 +89,9 @@ public class BloodParticleEffect : MonoBehaviour {
 				//bloodTrails[currentIndex].material.color = newCol;
 				currentIndex++;
 			}
-			rectEffect.color = newCol;
+			if (rectEffect){
+				rectEffect.color = newCol;
+			}
 		}
 
 	

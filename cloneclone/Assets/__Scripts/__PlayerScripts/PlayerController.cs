@@ -732,6 +732,11 @@ public class PlayerController : MonoBehaviour {
 				if (!myRenderer.enabled){
 					myRenderer.enabled = true;
 				}
+
+				if (_chargingAttack){
+					_chargeAttackTime = 0f;
+					ChargeAnimationTrigger();
+				}
 			}
 		}
 
@@ -756,7 +761,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (_chargingAttack && (ShootInputPressed() || _chargeAttackTriggered)){
-			_chargeAttackTime+= Time.deltaTime;
+			if (!_isDashing){
+				_chargeAttackTime+= Time.deltaTime;
+			}
 			if (!_chargeAttackTriggered && _chargeAttackTime >= _chargeAttackTrigger){
 				_chargeAttackTriggered = true;
 				//_chargeCollider.TriggerAttack(transform.position, ShootDirection());
@@ -1579,7 +1586,8 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && CanInputShoot() && dashCooldown <= 0){
+		if (!_isTalking && !attackTriggered && !_isStunned
+		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= 0){
 			dashAllow = true;
 		}
 
