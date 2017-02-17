@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float CHAIN_DASH_THRESHOLD = 0.2f;
+	private static float CHAIN_DASH_THRESHOLD = 0.4f;
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
 	private const int START_PHYSICS_LAYER = 8;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour {
 	[Header("Movement Variables")]
 	public float walkSpeed;
 	public float walkSpeedMax;
-	private float walkSpeedBlockMult = 0.4f;
+	private float walkSpeedBlockMult = 0.2f;
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour {
 	[Header("Dash Variables")]
 	public float dashSpeed;
 	private bool _isDashing;
+	private bool _triggerBlock;
+	private bool _dashStickReset;
 	public float dashDuration;
 	public float dashSlideTime;
 	public float dashDragMult;
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour {
 	private bool allowChainLight;
 
 	private bool _doingDashAttack = false;
+	private bool _allowDashAttack = false;
 	private bool _doingHeavyAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
 
@@ -576,11 +579,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//if (BlockInputPressed() && CanInputBlock()){
-		if (controller.BlockTrigger() && CanInputBlock()){
-			if (!_isDashing){
-				blockButtonUp = false;
-			}
-			if (!_isDashing && _myStats.currentDefense > 0 && !_isStunned){
+		if (_triggerBlock){
+			if (_myStats.currentDefense > 0 && !_isStunned){
 				if (_myStats.ManaCheck(1, false)){
 					blockPrepCountdown -= Time.deltaTime;
 				}
@@ -627,12 +627,12 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void TriggerDash(){
+	private void TriggerDash(bool fullDash = false){
 
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
-
+		_triggerBlock = false;
 
 		FlashMana();
 
@@ -655,12 +655,14 @@ public class PlayerController : MonoBehaviour {
 
 		gameObject.layer = DODGE_PHYSICS_LAYER;
 
-		if (_playerAug.dashAug){
-			_myStats.ManaCheck(_dodgeCost);
+		if (fullDash){
+			_myStats.ManaCheck(_dodgeCost/2f);
 			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.9f*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTimeMax = dashDuration*0.96f;
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.7f*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTimeMax = dashDuration*0.46f;
+			_allowDashAttack = true;
 		}else{
+			_allowDashAttack = false;
 			_myStats.ManaCheck(_dodgeCost);
 			_myAnimator.SetTrigger("Roll");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
@@ -694,10 +696,13 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
-			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false) &&
-			    (controller.Horizontal() != 0 || controller.Vertical() != 0)){
-					
-				TriggerDash();
+			if (myControl.DashTrigger() && CanInputDash() && _myStats.ManaCheck(1, false)){
+				if ((controller.Horizontal() != 0 || controller.Vertical() != 0) && _dashStickReset){
+					TriggerDash();
+					_dashStickReset = false;
+				}else{
+					_triggerBlock = true;
+				}
 				dashButtonUp = false;
 			}
 		}
@@ -710,7 +715,8 @@ public class PlayerController : MonoBehaviour {
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						TriggerDash();
+						TriggerDash(true);
+						_dashStickReset = false;
 					}
 				}
 				dashButtonUp = false;
@@ -746,9 +752,17 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isTalking){
 			dashButtonUp = false;
+			_triggerBlock = false;
 		}else{
 			if (!myControl.DashTrigger()){
 				dashButtonUp = true;
+				_triggerBlock = false;
+				_dashStickReset = true;
+			}
+			if (!_dashStickReset){
+				if (Mathf.Abs(controller.Horizontal()) <= 0.1f && Mathf.Abs(controller.Vertical()) <= 0.1f){
+					_dashStickReset = true;
+				}
 			}
 		}
 
@@ -962,7 +976,7 @@ public class PlayerController : MonoBehaviour {
 					_doingHeavyAttack = false;
 
 
-					if (_isDashing || _isSprinting){
+					if ((_isDashing || _isSprinting) && _allowDashAttack){
 
 						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
 
@@ -1597,7 +1611,7 @@ public class PlayerController : MonoBehaviour {
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
 		if (!_isTalking && !attackTriggered && !_isStunned
-		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= 0){
+		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
 			dashAllow = true;
 		}
 
@@ -1606,7 +1620,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (!attackTriggered && !_isStunned
+		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack))
 		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
 			return true;
 		}
