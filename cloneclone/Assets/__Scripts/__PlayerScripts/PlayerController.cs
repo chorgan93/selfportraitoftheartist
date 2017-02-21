@@ -701,7 +701,9 @@ public class PlayerController : MonoBehaviour {
 					TriggerDash();
 					_dashStickReset = false;
 				}else{
-					_triggerBlock = true;
+					if (!_chargingAttack){
+						_triggerBlock = true;
+					}
 				}
 				dashButtonUp = false;
 			}
@@ -729,7 +731,8 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
-			    (chargingAttack && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
+			    (chargingAttack && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult) ||
+			    (controller.DashTrigger() && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -746,6 +749,8 @@ public class PlayerController : MonoBehaviour {
 				if (_chargingAttack){
 					_chargeAttackTime = 0f;
 					ChargeAnimationTrigger(true);
+				}else if (controller.DashTrigger()){
+					_triggerBlock = true;
 				}
 			}
 		}
@@ -1621,7 +1626,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputShoot(){
 
 		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack))
-		    && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
+		    && !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
 			return true;
 		}
 		else{

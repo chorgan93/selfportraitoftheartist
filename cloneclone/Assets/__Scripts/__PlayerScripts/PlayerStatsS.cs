@@ -93,7 +93,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float virtueAmt { get { return (_baseVirtue+_addedVirtue);}}
 
 	//________________________________DEFENSE
-	private float _baseDefense = 3f;
+	private float _baseDefense = 9f;
 	private float _addedDefense = 0;
 	private float _currentDefense;
 

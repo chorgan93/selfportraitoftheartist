@@ -104,8 +104,10 @@ public class DestructibleItemS : MonoBehaviour {
 
 	public void TakeDamage(float dmgAmt, float destructionRotation, Vector3 hitPos, int weaponNum){
 
-		if (onlyTakeDamageFromWeapon < -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
+		if (onlyTakeDamageFromWeapon <= -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
 			_currentHealth -= dmgAmt;
+
+			Debug.Log(_currentHealth);
 				if (_currentHealth <= 0){
 				myCollider.enabled = false;
 					CameraShakeS.C.SmallShake();
