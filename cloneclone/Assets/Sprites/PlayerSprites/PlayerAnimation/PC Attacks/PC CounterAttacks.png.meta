@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2a9af4964912d40e4b3572fb3bea068c
-timeCreated: 1487750742
+timeCreated: 1487805824
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,6 +54,24 @@ TextureImporter:
     21300094: PC CounterAttacks_20
     21300096: PC CounterAttacks_21
     21300098: PC CounterAttacks_22
+    21300100: PC CounterAttacks_23
+    21300102: PC CounterAttacks_24
+    21300104: PC CounterAttacks_25
+    21300106: PC CounterAttacks_26
+    21300108: PC CounterAttacks_27
+    21300110: PC CounterAttacks_28
+    21300112: PC CounterAttacks_29
+    21300114: PC CounterAttacks_30
+    21300116: PC CounterAttacks_31
+    21300118: PC CounterAttacks_32
+    21300120: PC CounterAttacks_33
+    21300122: PC CounterAttacks_34
+    21300124: PC CounterAttacks_35
+    21300126: PC CounterAttacks_36
+    21300128: PC CounterAttacks_37
+    21300130: PC CounterAttacks_38
+    21300132: PC CounterAttacks_39
+    21300134: PC CounterAttacks_40
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -109,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -119,7 +137,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -129,7 +147,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -139,7 +157,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -149,7 +167,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -158,8 +176,8 @@ TextureImporter:
     - name: PC CounterAttacks_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -168,8 +186,8 @@ TextureImporter:
     - name: PC CounterAttacks_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 0
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -178,8 +196,8 @@ TextureImporter:
     - name: PC CounterAttacks_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 64
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -188,8 +206,8 @@ TextureImporter:
     - name: PC CounterAttacks_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -198,8 +216,8 @@ TextureImporter:
     - name: PC CounterAttacks_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 192
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -208,8 +226,8 @@ TextureImporter:
     - name: PC CounterAttacks_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -218,8 +236,8 @@ TextureImporter:
     - name: PC CounterAttacks_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -228,8 +246,8 @@ TextureImporter:
     - name: PC CounterAttacks_12
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -238,8 +256,8 @@ TextureImporter:
     - name: PC CounterAttacks_13
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -248,6 +266,146 @@ TextureImporter:
     - name: PC CounterAttacks_14
       rect:
         serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_28
+      rect:
+        serializedVersion: 2
         x: 256
         y: 128
         width: 64
@@ -255,7 +413,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_15
+    - name: PC CounterAttacks_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_30
       rect:
         serializedVersion: 2
         x: 0
@@ -265,7 +433,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_16
+    - name: PC CounterAttacks_31
       rect:
         serializedVersion: 2
         x: 64
@@ -275,7 +443,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_17
+    - name: PC CounterAttacks_32
       rect:
         serializedVersion: 2
         x: 128
@@ -285,7 +453,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_18
+    - name: PC CounterAttacks_33
       rect:
         serializedVersion: 2
         x: 192
@@ -295,7 +463,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_19
+    - name: PC CounterAttacks_34
       rect:
         serializedVersion: 2
         x: 256
@@ -305,7 +473,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_20
+    - name: PC CounterAttacks_35
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_36
       rect:
         serializedVersion: 2
         x: 0
@@ -315,7 +493,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_21
+    - name: PC CounterAttacks_37
       rect:
         serializedVersion: 2
         x: 64
@@ -325,10 +503,30 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_22
+    - name: PC CounterAttacks_38
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC CounterAttacks_40
+      rect:
+        serializedVersion: 2
+        x: 256
         y: 0
         width: 64
         height: 64
