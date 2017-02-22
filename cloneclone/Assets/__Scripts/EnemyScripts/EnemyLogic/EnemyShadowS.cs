@@ -49,4 +49,15 @@ public class EnemyShadowS : MonoBehaviour {
 		}
 	
 	}
+
+	public void Reinitialize(){
+		if (!overrideColor){
+			//myRender.color = enemyRef.bloodColor;
+			Color setFade = enemyRef.bloodColor;
+			setFade.a = 0.4f;
+			myRender.color = setFade;
+			myRender.material.SetColor("_FlashColor", enemyRef.bloodColor);
+		}
+		myRender.enabled = true;
+	}
 }

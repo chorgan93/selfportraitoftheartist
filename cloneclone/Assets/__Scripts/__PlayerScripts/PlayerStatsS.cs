@@ -440,7 +440,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
-		if (!PlayerIsDead() && !myPlayerController.isDashing && !myPlayerController.talking){
+		if (!PlayerIsDead() && !myPlayerController.doingCounterAttack 
+		    && (!myPlayerController.isDashing || (myPlayerController.isDashing && myPlayerController.IsSliding())) 
+		    && !myPlayerController.talking){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
 				if (!godMode){
 				_currentDefense-=dmg;
@@ -478,6 +480,7 @@ public class PlayerStatsS : MonoBehaviour {
 					}else{
 						_currentHealth -= dmg;
 					}
+					CameraShakeS.C.CancelSloMo();
 					//ChargeCheck(10f);
 				}
 				if (_currentHealth <= 0){
@@ -528,6 +531,10 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.08f);
 				}
 	
+			}
+		}else{
+			if (myPlayerController.AllowDodgeEffect()){
+				myPlayerController.WitchTime(damageSource);
 			}
 		}
 

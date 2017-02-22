@@ -43,6 +43,7 @@ public class CombatManagerS : MonoBehaviour {
 	}
 
 	IEnumerator CompleteCombat(){
+		CameraShakeS.C.TimeSleepEndCombat(0.12f);
 		completed = true;
 		CameraEffectsS.E.ResetSound();
 		yield return new WaitForSeconds(0.2f);

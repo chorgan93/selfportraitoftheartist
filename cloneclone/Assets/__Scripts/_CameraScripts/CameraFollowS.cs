@@ -18,9 +18,10 @@ public class CameraFollowS : MonoBehaviour {
 
 	private float startOrthoSize;
 	private float focusMult = 0.9f;
-	private float punchInMult = 0.8f;
-	private float punchInMultDeath = 0.5f;
+	private float punchInMult = 0.7f;
+	private float punchInMultDeath = 0.4f;
 	private Camera myCam;
+	private float _punchHangTime = 0f;
 
 	private float minX;
 	private float maxX;
@@ -79,9 +80,9 @@ public class CameraFollowS : MonoBehaviour {
 	// Update is called once per frame
 	void Update(){
 
-		/*if (Input.GetKeyDown(KeyCode.Escape)){
-			Application.Quit();
-		}**/
+		if (_punchHangTime > 0f){
+			_punchHangTime -= Time.deltaTime;
+		}
 
 	}
 
@@ -129,16 +130,17 @@ public class CameraFollowS : MonoBehaviour {
 			transform.position = _currentPos;
 
 		
-
-		if (zoomingIn){
-			myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
-		}
-		else{
-			if (!CameraShakeS.C.isSleeping){
-
-				myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*focusMult;
-			
-
+		if (_punchHangTime <= 0f){
+			if (zoomingIn){
+				myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+			}
+			else{
+				if (!CameraShakeS.C.isSleeping){
+	
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*focusMult;
+				
+	
+				}
 			}
 		}
 
@@ -171,6 +173,13 @@ public class CameraFollowS : MonoBehaviour {
 
 		myCam.orthographicSize =  startOrthoSize * punchInMult;
 
+	}
+
+	public void PunchInCustom(float punchMult, float punchHangTime){
+		
+		myCam.orthographicSize =  startOrthoSize * punchMult;
+		_punchHangTime = punchHangTime;
+		
 	}
 
 	public void PunchInBig(){

@@ -228,23 +228,27 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (!isFriendly){
 		if (other.gameObject.tag == "Player" && (!hitPlayer || (hitPlayer && allowMultiHit))){
 
+
 			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
 
 			if (!playerRef.myStats.PlayerIsDead()){
 			if (_myEnemy != null){
 					if (followEnemy){
 						playerRef.myStats.
-							TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+								TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+						
 					}
 					else{
-			playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);	
+							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+
 					}
 				}
 
 			else{
 
 				playerRef.myStats.
-					TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+							TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+				
 
 				}
 

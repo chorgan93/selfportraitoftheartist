@@ -16,19 +16,31 @@ public class PlayerDashEffectS : MonoBehaviour {
 	private bool newDash = true;
 	private float dist = 0f;
 
+	private bool doingAttackEffect = false;
+	private float attackEffectTime = 0.1f;
+	private float attackEffectCountdown = 0f;
+	private bool useAltColor = false;
+	private Color mainCol;
+	private Color altCol;
+
+	Vector3 spawnPos;
+	GameObject newSpawn;
+	private SpriteRenderer newSprite;
+
 	private EffectSpawnManagerS spawnManager;
 
 
 	// Use this for initialization
 	void Start () {
 		myController = GetComponentInParent<PlayerController>();
+		myController.SetAttackEffectRef(this);
 		spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-
+		if (!doingAttackEffect){
 		if (!myController.myStats.PlayerIsDead() && !myController.isBlocking && 
 		    (myController.isDashing)){
 			//if (currentShadow < maxShadows || !myController.isDashing){
@@ -54,25 +66,55 @@ public class PlayerDashEffectS : MonoBehaviour {
 			distanceTraveled = 0;
 			currentShadow = 0;
 			newDash = true;
+			}}
+		else{
+			attackEffectCountdown -= Time.deltaTime;
+			if (attackEffectCountdown <= 0){
+				SpawnShadow();
+			}
 		}
 	
 	}
 
 	void SpawnShadow(){
 
-		Vector3 spawnPos = myController.transform.position;
+		spawnPos = myController.transform.position;
 		spawnPos.z += 1f;
 
-		GameObject newSpawn = spawnManager.SpawnPlayerFade(spawnPos);
+		newSpawn = spawnManager.SpawnPlayerFade(spawnPos);
 
-		SpriteRenderer newSprite = newSpawn.GetComponent<SpriteRenderer>();
+		newSprite = newSpawn.GetComponent<SpriteRenderer>();
 		newSprite.sprite = myController.myRenderer.sprite;
 
 		newSpawn.transform.localScale = myController.transform.localScale.x * myController.myRenderer.transform.localScale;
 
-
+		if (doingAttackEffect){
+			if (useAltColor){
+				newSprite.material.SetColor("_FlashColor", altCol);
+			}else{
+				newSprite.material.SetColor("_FlashColor", mainCol);
+			}
+			useAltColor = !useAltColor;
+			attackEffectCountdown = attackEffectTime;
+			newSpawn.transform.localScale*=1.25f;
+		}
+		else{
+			newSprite.material.SetColor("_FlashColor", myController.EquippedWeapon().flashSubColor);
 		distanceTraveled = 0f;
 		currentShadow++;
+		}
 
+	}
+
+	public void StartAttackEffect(Color mCol, Color aCol){
+		attackEffectCountdown = 0f;
+		useAltColor = false;
+		mainCol = mCol;
+		altCol = aCol;
+		doingAttackEffect = true;
+	}
+
+	public void EndAttackEffect(){
+		doingAttackEffect = false;
 	}
 }

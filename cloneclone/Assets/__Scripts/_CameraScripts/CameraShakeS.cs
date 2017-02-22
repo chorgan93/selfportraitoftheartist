@@ -13,8 +13,8 @@ public class CameraShakeS : MonoBehaviour {
 
 	private float 				_delayShakeTime;
 
-	private float 				_smallSleepTime = 0.0333f;
-	private float 				_bigSleepTime = 0.0866f;
+	private float 				_smallSleepTime = 0.06f;
+	private float 				_bigSleepTime = 0.14f;
 
 	private float 				_startDeathTimeScale = .3f;
 	private float 				_addDeathTimeScale = 0f;
@@ -42,6 +42,9 @@ public class CameraShakeS : MonoBehaviour {
 
 	private float 				_slowTimeAmount;
 	private bool				_sloMoOn;
+	private bool 				_dodgeSloMoStart;
+	private float 				_dodgeSloTime;
+	private bool 				dodgeSloMo;
 	private bool 				doDeathTime = false;
 
 	//_________________________________________________GETTERS AND SETTERS
@@ -118,9 +121,21 @@ public class CameraShakeS : MonoBehaviour {
 		else{
 			if (_sloMoOn){
 
-				Time.timeScale = 0.5f;
+				if (_dodgeSloMoStart){
+					Time.timeScale = 0.4f;
+					_dodgeSloTime -= Time.unscaledDeltaTime;
+					if (_dodgeSloTime <= 0){
+						_dodgeSloMoStart = false;
+					}
+				}
+				else if (dodgeSloMo){
+					Time.timeScale = 0.7f;
+					_slowTimeAmount -= Time.unscaledDeltaTime;
+				}else{
+					Time.timeScale = 0.5f;
+					_slowTimeAmount -= Time.unscaledDeltaTime;
+				}
 
-				_slowTimeAmount -= Time.unscaledDeltaTime;
 				if (_slowTimeAmount <= 0){
 					_sloMoOn = false;
 				}
@@ -204,6 +219,11 @@ public class CameraShakeS : MonoBehaviour {
 		
 	}
 
+	public void CancelSloMo(){
+		_dodgeSloMoStart = dodgeSloMo = _sloMoOn = false;
+		_slowTimeAmount = _dodgeSloTime = 0f;
+	}
+
 	public void SpecialAttackShake(){
 		
 		StartShake (_largeShakeIntensity*0.75f, _largeShakeDuration*0.5f, 3);
@@ -239,6 +259,26 @@ public class CameraShakeS : MonoBehaviour {
 
 	}
 
+	public void TimeSleepEndCombat(float sleepTime){
+		
+		if (_isSleeping){
+			_sleepTimeAmount += sleepTime/2f;
+		}
+		else{
+			_sleepTimeAmount += sleepTime;
+		}
+		
+		_isSleeping = true;
+		
+		Time.timeScale = 0;
+		
+
+		GetComponent<CameraFollowS>().PunchInCustom(0.56f, 0.1f);
+
+		
+		
+	}
+
 	public void TimeSleepBigPunch(float sleepTime){
 
 		
@@ -253,6 +293,20 @@ public class CameraShakeS : MonoBehaviour {
 
 		
 		
+	}
+
+	public void DodgeSloMo(float slowTime, float sleepTime, float punchMult, float punchHangTime){
+		
+		_dodgeSloMoStart = dodgeSloMo = true;
+		_dodgeSloTime = sleepTime;
+		SloMo(slowTime);
+		GetComponent<CameraFollowS>().PunchInCustom(punchMult, punchHangTime);
+	}
+
+	public void SloAndPunch(float slowTime, float punchMult, float hangTime){
+		dodgeSloMo = true;
+		SloMo(slowTime);
+		GetComponent<CameraFollowS>().PunchInCustom(punchMult, hangTime);
 	}
 
 	public void SloMo(float slowTime){

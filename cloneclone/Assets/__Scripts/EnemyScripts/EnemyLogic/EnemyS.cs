@@ -308,6 +308,7 @@ public class EnemyS : MonoBehaviour {
 	public void Reinitialize(){
 
 		_isDead = false;
+		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 
 		EndAllBehaviors();
 
@@ -590,7 +591,11 @@ public class EnemyS : MonoBehaviour {
 
 	public Transform GetTargetReference(){
 
-		return activationDetect.currentTarget;
+		if (activationDetect.currentTarget != null){
+			return activationDetect.currentTarget;
+		}else{
+			return transform;
+		}
 
 	}
 
@@ -680,7 +685,8 @@ public class EnemyS : MonoBehaviour {
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
 					_myAnimator.SetBool("Hit", true);
-					CameraShakeS.C.TimeSleep(0.08f, true);
+					CameraShakeS.C.TimeSleep(0.2f);
+					CameraShakeS.C.SloAndPunch(0.1f, 0.7f, 0.1f);
 					_isCritical = true;
 					_critScreen.Flash();
 					GetPlayerReference().SendCritMessage();
@@ -720,7 +726,8 @@ public class EnemyS : MonoBehaviour {
 			GetComponent<BleedingS>().StartDeath();
 			
 			CameraShakeS.C.LargeShake();
-			CameraShakeS.C.BigSleep(true);
+			CameraShakeS.C.BigSleep();
+			CameraShakeS.C.SloAndPunch(0.3f, 0.7f, 0.2f);
 			
 			currentKnockbackCooldown = knockbackTime;
 		}

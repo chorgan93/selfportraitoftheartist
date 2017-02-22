@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
-	private static float CHAIN_DASH_THRESHOLD = 0.4f;
+	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
 	private const int START_PHYSICS_LAYER = 8;
@@ -36,11 +36,9 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeed;
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
-	private float maxSpeedStatAdd = 0.3f;
 	private bool _isSprinting = false;
 	public float sprintMult = 1.4f;
 	public float sprintDuration = 1f;
-	private float sprintDurationCountdown = 0f;
 	private bool _isDoingMovement = false;
 	public bool isDoingMovement { get { return _isDoingMovement; } }
 
@@ -51,28 +49,28 @@ public class PlayerController : MonoBehaviour {
 	private bool _dashStickReset;
 	public float dashDuration;
 	public float dashSlideTime;
+	private float triggerDashSlideTime;
 	public float dashDragMult;
 	public float dashDragSlideMult;
 	private float dashDurationTime;
 	private float dashDurationTimeMax;
+	private float dashEffectThreshold = 0.3f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
-	private float dashHoldTime = 0f;
-	private float bigDashMult = 1.6f;
-	private float speedDashMult = 0.1f;
-	private float _dashCost = 2f;
 	private float _dodgeCost = 1.75f;
 	public GameObject dashObj;
+	private bool allowCounterAttack = false;
+	private float counterAttackTime;
+	private float counterAttackTimeMax = 0.6f;
+	private EnemyS _counterTarget;
 
 	private float dashChargeAllowMult = 0.8f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
 	private bool _lastInClip;
-	private bool _isAiming;
 	private bool _canSwap;
 
-	private bool _shoot4Dir;
 	private bool _shoot8Dir = true;
 	private Vector3 savedDir = Vector3.zero;
 
@@ -80,6 +78,8 @@ public class PlayerController : MonoBehaviour {
 	private bool allowChainLight;
 
 	private bool _doingDashAttack = false;
+	private bool _doingCounterAttack = false;
+	public bool doingCounterAttack { get { return _doingCounterAttack; } } 
 	private bool _allowDashAttack = false;
 	private bool _doingHeavyAttack = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
@@ -110,15 +110,12 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 inputDirection;
 	private bool dashButtonUp = true;
-	private bool blockButtonUp;
 	private bool shootButtonUp;
 	private bool reloadButtonUp;
 	private bool aimButtonUp;
 	private bool switchButtonUp;
 	private bool switchBuddyButtonUp;
 	private bool lockInputReset = false;
-	private float lockDownTime = 0f;
-	private float lockTurnOffThreshold = 0.5f;
 
 	private float momsEyeMult = 1f;
 
@@ -129,13 +126,14 @@ public class PlayerController : MonoBehaviour {
 	private List<GameObject> queuedAttacks;
 	private List<float> queuedAttackDelays;
 	private bool newAttack = true;
+	private bool counterQueued = false;
+	private bool heavyCounterQueued;
 
 	// Charging Properties
 	private bool _chargingAttack;
 	private float _chargeAttackTime;
 	private float _chargeAttackTrigger = 0.6f;
 	private float _chargeAttackDuration = 1f;
-	private string _chargeAnimationTrigger;
 	private float _chargeAnimationSpeed;
 	//private ChargeAttackS _chargeCollider;
 	private GameObject _chargePrefab;
@@ -179,7 +177,6 @@ public class PlayerController : MonoBehaviour {
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
 	public static int currentBuddy = 0;
-	private static int subBuddy = 1;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private int prevChain = 0;
@@ -194,6 +191,7 @@ public class PlayerController : MonoBehaviour {
 	public EnemyDetectS superCloseEnemyDetect;
 	public EnemyDetectS dontWalkIntoEnemiesCheck;
 	public EnemyDetectS dontGetStuckInEnemiesCheck;
+	private PlayerDashEffectS attackEffectRef;
 
 	private List<EnemyS> enemiesHitByLastAttack;
 	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
@@ -206,8 +204,6 @@ public class PlayerController : MonoBehaviour {
 	private bool _isBlocking;
 	private bool _stickReset = false;
 	private float _smashReset = 0;
-
-	private MuzzleFlareS muzzleFlare;
 
 	public bool _inCombat = true;
 	private bool _examining = false;
@@ -229,6 +225,7 @@ public class PlayerController : MonoBehaviour {
 	public LockOnS myLockOn { get { return _myLockOn; } }
 
 	private BlockDisplay3DS _blockRef;
+	private PlayerDodgeEffect _dodgeEffectRef;
 	//private FlashEffectS _specialFlash;
 	private CombatManagerS _currentCombatManager;
 	public CombatManagerS currentCombatManager { get { return _currentCombatManager; } }
@@ -284,8 +281,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
-		ManageFlash();
-		ManageAugments();
+
+		PlayerUpdate();
 
 		if (myControl.ControllerAttached()){
 			Cursor.visible = false;
@@ -330,6 +327,7 @@ public class PlayerController : MonoBehaviour {
 		enemyDetect = GetComponentInChildren<EnemyDetectS>();
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
+		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
 
@@ -383,8 +381,6 @@ public class PlayerController : MonoBehaviour {
 
 
 
-		muzzleFlare = GetComponentInChildren<MuzzleFlareS>();
-
 		controller = GetComponent<ControlManagerS>();
 
 		inputDirection = new Vector3(1,0,0);
@@ -425,7 +421,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerUpdate(){
+
+		ManageCounterTimer();
+		
 		ManageFlash();
+		ManageAugments();
 	}
 
 
@@ -482,6 +482,16 @@ public class PlayerController : MonoBehaviour {
 		flashChargeFrames = 5;
 		myRenderer.material = chargeFlashMat;
 		VignetteEffectS.V.Flash(chargeFlashMat.color);
+	}
+
+	public void WitchTime(EnemyS targetEnemy){
+		if (!allowCounterAttack && !_doingCounterAttack && !counterQueued){
+			CameraShakeS.C.DodgeSloMo(0.26f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
+			_dodgeEffectRef.FireEffect();
+			allowCounterAttack = true;
+			counterAttackTime = counterAttackTimeMax;
+			_counterTarget = targetEnemy;
+		}
 	}
 
 	//_________________________________________CONTROL METHODS
@@ -575,7 +585,6 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isBlocking){
 			timeInBlock += Time.deltaTime;
-			dashHoldTime = 0f;
 		}
 
 		//if (BlockInputPressed() && CanInputBlock()){
@@ -605,7 +614,6 @@ public class PlayerController : MonoBehaviour {
 				TurnOffBlockAnimation();
 				
 				_myStats.ActivateDefense();
-				blockButtonUp = true;
 				blockPrepCountdown = blockPrepMax;
 				triggerBlockAnimation = true;
 				doingBlockTrigger = false;
@@ -617,7 +625,6 @@ public class PlayerController : MonoBehaviour {
 			TurnOffBlockAnimation();
 			
 			_myStats.ActivateDefense();
-			blockButtonUp = true;
 			blockPrepCountdown = blockPrepMax;
 			triggerBlockAnimation = true;
 			doingBlockTrigger = false;
@@ -638,6 +645,8 @@ public class PlayerController : MonoBehaviour {
 
 		_playerSound.PlayRollSound();
 
+		allowCounterAttack = false;
+
 
 		if (_myStats.speedAmt >= 5f){
 			myRenderer.enabled = false;
@@ -649,7 +658,6 @@ public class PlayerController : MonoBehaviour {
 
 		
 		dashDurationTime = 0;
-		dashHoldTime = DASH_THRESHOLD;
 		
 		_myRigidbody.drag = startDrag*dashDragMult;
 
@@ -658,21 +666,22 @@ public class PlayerController : MonoBehaviour {
 		if (fullDash){
 			_myStats.ManaCheck(_dodgeCost/2f);
 			_myAnimator.SetTrigger("Dash");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.7f*Time.deltaTime, ForceMode.Impulse);
-			dashDurationTimeMax = dashDuration*0.46f;
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
+			dashDurationTimeMax = dashDuration*0.6f;
 			_allowDashAttack = true;
 		}else{
-			_allowDashAttack = false;
+			_allowDashAttack = true; // change this to false if we dont want roll attacks
 			_myStats.ManaCheck(_dodgeCost);
 			_myAnimator.SetTrigger("Roll");
-			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.6f*Time.deltaTime, ForceMode.Impulse);
+			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.7f*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTimeMax = dashDuration*0.4f;
 		}
+
+		triggerDashSlideTime = dashDurationTimeMax*dashSlideTime;
 
 		dashCooldown = dashCooldownMax;
 
 		if (!_isDashing){
-			blockButtonUp = true;
 			_isDashing = true;
 		}
 
@@ -683,7 +692,6 @@ public class PlayerController : MonoBehaviour {
 	private void TriggerSprint(){
 		//CameraShakeS.C.SmallShake();
 		_isSprinting = true;
-		sprintDurationCountdown = sprintDuration;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag;
@@ -697,11 +705,13 @@ public class PlayerController : MonoBehaviour {
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
 			if (myControl.DashTrigger() && CanInputDash() && _myStats.ManaCheck(1, false)){
-				if ((controller.Horizontal() != 0 || controller.Vertical() != 0) && _dashStickReset){
+				if ((((controller.Horizontal() != 0 || controller.Vertical() != 0) && dashButtonUp) || 
+				     ((Mathf.Abs(controller.Horizontal()) >= 0.5f || Mathf.Abs(controller.Vertical()) >= 0.5f)) && !dashButtonUp) 
+				     && _dashStickReset){
 					TriggerDash();
 					_dashStickReset = false;
 				}else{
-					if (!_chargingAttack){
+					if (!_chargingAttack && !InAttack()){
 						_triggerBlock = true;
 					}
 				}
@@ -717,7 +727,7 @@ public class PlayerController : MonoBehaviour {
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
-						TriggerDash(true);
+						TriggerDash();
 						_dashStickReset = false;
 					}
 				}
@@ -726,8 +736,15 @@ public class PlayerController : MonoBehaviour {
 			
 			
 			dashDurationTime += Time.deltaTime;
-			if (dashDurationTime >= dashDurationTimeMax-dashSlideTime){
+			if (_doingCounterAttack){
+				dashDurationTime = dashDurationTimeMax;
+			}
+			if (dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime){
 				_myRigidbody.drag = startDrag*dashDragSlideMult;
+			}
+
+			if (dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD && controller.DashTrigger()){
+				_triggerBlock = true;
 			}
 			
 			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
@@ -835,7 +852,18 @@ public class PlayerController : MonoBehaviour {
 			else{
 				newAttack = true;
 				momsEyeMult = 1f;
-			if (_doingDashAttack){
+				if (_doingCounterAttack){
+					if (_doingHeavyAttack){
+						newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttackHeavy, 
+						                                        transform.position, 
+						                                        Quaternion.identity);
+					}else{
+					newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttack, 
+					                                        transform.position, 
+					                                        Quaternion.identity);
+					}
+				}
+			else if (_doingDashAttack){
 				
 				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
 				                                        transform.position, 
@@ -898,7 +926,19 @@ public class PlayerController : MonoBehaviour {
 
 			if (newAttack && currentAttackS.numAttacks > 1){
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
-					if (_doingDashAttack){
+					if (_doingCounterAttack){
+						if (_doingHeavyAttack){
+							queuedAttacks.Add(equippedWeapon.counterAttackHeavy);
+						}else{
+						queuedAttacks.Add(equippedWeapon.counterAttack);
+						}
+						if (_playerAug.animaAug){
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+						}else{
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+						}
+					}
+					else if (_doingDashAttack){
 						queuedAttacks.Add(equippedWeapon.dashAttack);
 						if (_playerAug.animaAug){
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
@@ -918,6 +958,10 @@ public class PlayerController : MonoBehaviour {
 						}
 					}
 				}
+			}
+
+			if (_doingCounterAttack && _counterTarget != null){
+				savedDir = (_counterTarget.transform.position-transform.position).normalized;
 			}
 
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
@@ -973,21 +1017,58 @@ public class PlayerController : MonoBehaviour {
 			attackDuration -= Time.deltaTime;
 
 		if (CanInputShoot()){
-				if (ShootInputPressed() && StaminaCheck(1f, false) && shootButtonUp){
+				if ((ShootInputPressed() && StaminaCheck(1f, false) && shootButtonUp && !counterQueued) 
+				    || ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())){
 
+					if (allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
+						if (controller.HeavyButton()){
+							heavyCounterQueued = true;
+						}
+						counterQueued = true;
+						allowCounterAttack = false;
+						shootButtonUp = false;
+						_allowDashAttack = false;
+					}
+					else{
 
 				shootButtonUp = false;
 					_doingDashAttack = false;
 					_doingHeavyAttack = false;
+					_doingCounterAttack = false;
 
+					attackEffectRef.EndAttackEffect();
 
-					if ((_isDashing || _isSprinting) && _allowDashAttack){
+					if (counterQueued || allowCounterAttack){
+
+						if ((counterQueued && heavyCounterQueued) || (controller.HeavyButton() && !counterQueued)){
+							_doingHeavyAttack = true;
+							currentAttackS = equippedWeapon.counterAttackHeavy.GetComponent<ProjectileS>();
+						}else{
+							currentAttackS = equippedWeapon.counterAttack.GetComponent<ProjectileS>();
+						}
+						_doingCounterAttack = true;
+						allowCounterAttack = false;
+						_allowDashAttack = false;
+
+						heavyCounterQueued = false;
+						counterQueued = false;
+
+						counterAttackTime = 0f;
+						CameraShakeS.C.CancelSloMo();
+
+						attackEffectRef.StartAttackEffect(equippedWeapon.swapColor, equippedWeapon.flashSubColor);
+					}
+					else if ((_isDashing || _isSprinting) && _allowDashAttack){
 
 						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
 
 						_isSprinting = false;
-						dashHoldTime = 0f;
 						_doingDashAttack = true;
+
+							
+							_myAnimator.SetBool("Evading", false);
+							_isDashing = false;
+							_myRigidbody.drag = startDrag;
 
 
 					}else{
@@ -1016,11 +1097,18 @@ public class PlayerController : MonoBehaviour {
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
+
 					if (_playerAug.animaAug){
 						attackDelay*=PlayerAugmentsS.animaAugAmt;
 					}
-					currentAttackS.StartKnockback(this, ShootDirection());
-					equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
+					if (_doingCounterAttack && _counterTarget != null){
+						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
+						currentAttackS.StartKnockback(this, targetDir);
+						equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay);
+					}else{
+						currentAttackS.StartKnockback(this, ShootDirection());
+						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
+					}
 					attackTriggered = true;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
@@ -1031,7 +1119,7 @@ public class PlayerController : MonoBehaviour {
 					}
 
 					AttackAnimationTrigger(_doingHeavyAttack);
-
+				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
 					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false)){
@@ -1079,6 +1167,9 @@ public class PlayerController : MonoBehaviour {
 						if (_doingDashAttack){
 						_doingDashAttack = false;
 						}
+						if (_doingCounterAttack){
+							_doingCounterAttack = false;
+						}
 						TurnOffAttackAnimation();
 						
 					}
@@ -1117,9 +1208,6 @@ public class PlayerController : MonoBehaviour {
 					currentBuddy++;
 					if (currentBuddy > equippedBuddies.Count-1){
 						currentBuddy = 0;
-						subBuddy = 1;
-					}else{
-						subBuddy = 0;
 					}
 					
 					BuddyS tempSwap = _myBuddy;
@@ -1157,9 +1245,14 @@ public class PlayerController : MonoBehaviour {
 
 			if (_myLockOn.lockedOn){
 
-				if (myDetect.allEnemiesInRange.Count <= 0){
-					_myLockOn.EndLockOn();
-				}else{
+			if (!_lockButtonDown && myControl.LockOnButton()){
+				_lockButtonDown = true;
+				_myLockOn.EndLockOn();
+				lockInputReset = false;
+				
+			}
+				if (myDetect.allEnemiesInRange.Count > 0){
+					
 
 					// allow change of target
 					if (myDetect.allEnemiesInRange.Count > 1 && lockInputReset){
@@ -1185,19 +1278,7 @@ public class PlayerController : MonoBehaviour {
 						}
 					}
 
-				/*if (myControl.LockOnButton()){
-					_lockButtonDown = true;
-					lockDownTime+=Time.deltaTime;
-					if (lockDownTime >= lockTurnOffThreshold){
-						_myLockOn.EndLockOn();
-							lockInputReset = false;
-					}**/
-					if (!_lockButtonDown && myControl.LockOnButton()){
-						_lockButtonDown = true;
-							_myLockOn.EndLockOn();
-						lockInputReset = false;
-
-				}
+					
 
 			}
 				
@@ -1246,7 +1327,6 @@ public class PlayerController : MonoBehaviour {
 		_chargeAttackCost = chargeCost;
 		_chargeAttackDuration = cDuration;
 		_chargeAnimationSpeed = animationSpeed;
-		_chargeAnimationTrigger = animationTrigger;
 
 		if (_playerAug.animaAug){
 			_chargeAttackTrigger *= PlayerAugmentsS.animaAugAmt;
@@ -1430,6 +1510,16 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	private void ManageCounterTimer(){
+		if (allowCounterAttack){
+			counterAttackTime -= Time.unscaledDeltaTime;
+			Debug.Log(counterAttackTime);
+			if (counterAttackTime <= 0){
+				allowCounterAttack = false;
+			}
+		}
+	}
+
 	private void ManageFlash(){
 
 		if (flashDamageFrames > 0){
@@ -1556,6 +1646,7 @@ public class PlayerController : MonoBehaviour {
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("HeavyAttacking", false);
+		attackEffectRef.EndAttackEffect();
 	}
 
 	public void TurnOffResting(){
@@ -1598,7 +1689,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputMovement(){
 
-		if (!_isDashing && !_isStunned && !_isAiming && attacksRemaining <= 0 && !attackTriggered
+		if (!_isDashing && !_isStunned && attacksRemaining <= 0 && !attackTriggered && !_doingCounterAttack
 		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered && !_isTalking && !_usingItem){
 			return true;
 		}
@@ -1625,7 +1716,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack))
+		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && allowCounterAttack))
 		    && !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
 			return true;
 		}
@@ -1694,30 +1785,7 @@ public class PlayerController : MonoBehaviour {
 		else if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
 			inputDirection = savedDir;
 		}
-		else if (_shoot4Dir && !_isAiming){
-
-			float directionZ = FindDirectionOfVector(inputDirection.normalized);
-
-
-			if (directionZ > 315 || directionZ <= 45){
-				inputDirection.x = 1;
-				inputDirection.y = 0;
-			}
-			else if (directionZ > 45 && directionZ <= 135){
-				inputDirection.x = 0;
-				inputDirection.y = 1;
-			}
-			else if (directionZ > 135 && directionZ <= 225){
-				inputDirection.x = -1;
-				inputDirection.y = 0;
-			}
-			else {
-				inputDirection.x = 0;
-				inputDirection.y = -1;
-			}
-
-		}
-		else if (_shoot8Dir || _isAiming){
+		else if (_shoot8Dir){
 
 			//Debug.Log("8 dir!");
 
@@ -2003,6 +2071,10 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void SetAttackEffectRef(PlayerDashEffectS dRef){
+		attackEffectRef = dRef;
+	}
+
 	public void SetLockOnIndicator(LockOnS newLock){
 		_myLockOn = newLock;
 		//_myLockOn.SetSprite();
@@ -2015,6 +2087,10 @@ public class PlayerController : MonoBehaviour {
 		else{
 			return false;
 		}
+	}
+
+	public bool IsSliding(){
+		return (_isDashing && dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime);
 	}
 
 	public Vector3 ShootPosition(){
@@ -2107,6 +2183,15 @@ public class PlayerController : MonoBehaviour {
 		}
 		else{
 			return null;
+		}
+	}
+
+	public bool AllowDodgeEffect(){
+		if (_isDashing && dashDurationTime <= dashEffectThreshold){
+			return true;
+		}else{
+			Debug.Log(dashDuration);
+			return false;
 		}
 	}
 

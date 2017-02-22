@@ -9,6 +9,8 @@ public class PlayerWeaponS : MonoBehaviour {
 	public GameObject[] heavyChain;
 	public GameObject[] chargeChain;
 	public GameObject dashAttack;
+	public GameObject counterAttack;
+	public GameObject counterAttackHeavy;
 	public GameObject switchSoundObj;
 
 	public Sprite swapSprite;
