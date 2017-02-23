@@ -29,6 +29,8 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	// Update is called once per frame
 	void FixedUpdate () {
 		
+		BehaviorUpdate();
+		
 		if (BehaviorActing()){
 
 			DetermineTarget();

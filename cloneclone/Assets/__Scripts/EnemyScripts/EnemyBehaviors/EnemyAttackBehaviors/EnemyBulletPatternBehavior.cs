@@ -27,6 +27,8 @@ public class EnemyBulletPatternBehavior: EnemyBehaviorS {
 		if (BehaviorActing()){
 			
 			
+			BehaviorUpdate();
+			
 			if (attackTimeCountdown <= 0 || myEnemyReference.behaviorBroken){
 				EndAction();
 			}

@@ -30,6 +30,7 @@ public class GameOverS : MonoBehaviour {
 			gameOver = true;
 
 			delayFadeTime = delayFadeTimeMax;
+			PlayerStatsS.healOnStart = true;
 		}
 
 		if (gameOver){

@@ -20,6 +20,11 @@ public class EnemyDetectS : MonoBehaviour {
 	private float largestX;
 	private float largestY;
 
+	private List<EnemyS> parryEnemies = new List<EnemyS>();
+
+	public bool faceVector = false;
+	private Vector3 currentRotation = Vector3.zero;
+
 	void Start(){
 
 
@@ -48,11 +53,17 @@ public class EnemyDetectS : MonoBehaviour {
 
 	private void UpdatePosition(){
 
-		Vector3 updatePos = playerReference.ShootPosition();
+		if (playerReference.ShootPosition().x != 0 && playerReference.ShootPosition().y != 0){
+		Vector3 updatePos = playerReference.ShootPosition().normalized;
 		updatePos*=inputRange;
 		updatePos.z = transform.localPosition.z;
 
 		transform.localPosition = updatePos;
+
+		if (faceVector){
+			RotateToDirection(transform.localPosition.normalized);
+		}
+		}
 
 	}
 
@@ -171,7 +182,57 @@ public class EnemyDetectS : MonoBehaviour {
 		
 	}
 
+	void RotateToDirection(Vector3 aimDir){
+		float rotateZ = 0;
+		
+		Vector3 targetDir = aimDir.normalized;
+		
+		if(targetDir.x == 0){
+			if (targetDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+			rotateZ = Mathf.Rad2Deg*Mathf.Atan((targetDir.y/targetDir.x));
+		}	
+		
+		
+		if (targetDir.x < 0){
+			rotateZ += 180;
+		}
+		currentRotation = transform.rotation.eulerAngles;
+		currentRotation.z = rotateZ+90f;
+		transform.rotation = Quaternion.Euler(currentRotation);
+	}
+
 	public bool NoEnemies(){
 		return (enemiesInRange.Count <= 0);
+	}
+
+	bool parryEnemyInRange(){
+		bool parryInRange = false;
+		parryEnemies.Clear();
+		for (int i = 0; i < enemiesInRange.Count; i++){
+			if (enemiesInRange[i].canBeParried){
+				parryInRange = true;
+				parryEnemies.Add(enemiesInRange[i]);
+			}
+		}
+		return parryInRange;
+	}
+
+	public List<EnemyS> EnemyToParry(){
+		if (!NoEnemies()){
+			if (parryEnemyInRange()){
+				return parryEnemies;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+		}
 	}
 }

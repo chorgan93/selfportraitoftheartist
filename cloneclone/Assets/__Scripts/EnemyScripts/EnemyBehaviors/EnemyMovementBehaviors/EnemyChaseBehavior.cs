@@ -23,6 +23,8 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 		
 		if (BehaviorActing()){
+			
+			BehaviorUpdate();
 
 			
 			DoMovement();

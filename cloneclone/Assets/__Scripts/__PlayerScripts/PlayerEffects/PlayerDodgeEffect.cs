@@ -24,6 +24,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	Vector3 twoStartPos;
 	Vector3 twoEndPos;
 
+	private bool matchSprites = false;
+
 	private Color startColor;
 	private Color endColor;
 
@@ -62,7 +64,9 @@ public class PlayerDodgeEffect : MonoBehaviour {
 				spriteTwo.gameObject.SetActive(false);
 				spriteThree.gameObject.SetActive(false);
 			}else{
-				//spriteOne.sprite = spriteTwo.sprite = playerSprite.sprite;
+				if (matchSprites){
+					spriteOne.sprite = spriteTwo.sprite = spriteThree.sprite = playerSprite.sprite;
+				}
 				effectT = effectTime/effectDuration;
 				spriteOne.transform.position = Vector3.Lerp(oneStartPos, oneEndPos, movementCurve.Evaluate(effectT));
 				spriteTwo.transform.position = Vector3.Lerp(twoStartPos, twoEndPos, movementCurve.Evaluate(effectT));
@@ -73,7 +77,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	
 	}
 
-	public void FireEffect(){
+	public void FireEffect(bool fromParry = false){
 		spriteOne.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
 		spriteOne.material.SetFloat("_FlashAmount", 1f);
 		spriteThree.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
@@ -83,12 +87,16 @@ public class PlayerDodgeEffect : MonoBehaviour {
 		spriteOne.sprite = spriteTwo.sprite = playerSprite.sprite;
 		spriteOne.transform.position = playerSprite.transform.position + spriteOneDirection * effectSpawnDistance;
 		oneStartPos = spriteOne.transform.position;
-		oneStartPos.z -= 1f;
+		if (!fromParry){
+			oneStartPos.z -= 1f;
+		}
 		spriteOne.transform.position = oneStartPos;
 		oneEndPos = oneStartPos+effectDistance*spriteOneDirection;
 		spriteTwo.transform.position = playerSprite.transform.position + spriteTwoDirection * effectSpawnDistance;
 		twoStartPos = spriteTwo.transform.position;
-		twoStartPos.z -= 1f;
+		if (!fromParry){
+			twoStartPos.z -= 1f;
+		}
 		spriteTwo.transform.position = twoStartPos;
 		twoEndPos = twoStartPos+effectDistance*spriteTwoDirection;
 		spriteThree.transform.position = playerSprite.transform.position;
@@ -99,6 +107,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 		spriteTwo.gameObject.SetActive(true);
 		spriteThree.gameObject.SetActive(true);
 		CameraShakeS.C.TimeSleep(sleepTime);
+
+		matchSprites = fromParry;
 
 		allowCounter = allowCounterTime;
 	}

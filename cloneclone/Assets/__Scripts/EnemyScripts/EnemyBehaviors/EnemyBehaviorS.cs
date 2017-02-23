@@ -9,6 +9,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	private EnemyBehaviorStateS myBehaviorState;
 
+	private float behaviorActTime = 0f;
+
 	private bool _behaviorActing = false;
 
 	[Header("Behavior Properties")]
@@ -24,6 +26,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 	[Header ("Break Properties")]
 	public float breakAmt = 9999f;
 	public float breakRecoverTime = 1f;
+	public float allowParryStartTime = -1f;
+	public float allowParryEndTime = -1f;
 	
 	[Header ("Effect Properties")]
 	public GameObject signalObj;
@@ -37,6 +41,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetStunStatus(allowStun);
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
+
+		behaviorActTime = 0f;
 
 		if (animationKey != "" && setAnimTrigger){
 			myEnemy.myAnimator.SetTrigger(animationKey);
@@ -58,10 +64,23 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	}
 
+	public virtual void BehaviorUpdate(){
+		if (_behaviorActing){
+			behaviorActTime += Time.deltaTime;
+			if (behaviorActTime >= allowParryStartTime && behaviorActTime <= allowParryEndTime && !myEnemy.isCritical){
+				myEnemy.canBeParried = true;
+			}else{
+				myEnemy.canBeParried = false;
+			}
+		}
+	}
+
 	public virtual void EndAction(bool doNextAction = true){
 
 		_behaviorActing = false;
 		myEnemy.SetActing(false);
+
+		myEnemy.canBeParried = false;
 
 		if (doNextAction){
 

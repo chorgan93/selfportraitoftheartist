@@ -54,14 +54,19 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragSlideMult;
 	private float dashDurationTime;
 	private float dashDurationTimeMax;
-	private float dashEffectThreshold = 0.3f;
+	private float dashEffectThreshold = 0.24f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
 	private float _dodgeCost = 1.75f;
 	public GameObject dashObj;
-	private bool allowCounterAttack = false;
+	private bool _allowCounterAttack = false;
+	public bool allowCounterAttack { get { return _allowCounterAttack; } }
 	private float counterAttackTime;
-	private float counterAttackTimeMax = 0.6f;
+	private float counterAttackTimeMax = 0.5f;
+	private float parryDelayWitchTime = 0.2f;
+	private float parryDelayWitchCountdown = 0f;
+	private bool _delayWitchTime = false;
+	public bool delayWitchTime { get { return _delayWitchTime; } }
 	private EnemyS _counterTarget;
 
 	private float dashChargeAllowMult = 0.8f;
@@ -184,6 +189,8 @@ public class PlayerController : MonoBehaviour {
 	private float attackDelay;
 	private float attackDuration;
 	public GameObject attackEffectObj;
+	private float allowParryInput = 0.1f;
+	private float allowParryCountdown = 0f;
 
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
@@ -484,11 +491,15 @@ public class PlayerController : MonoBehaviour {
 		VignetteEffectS.V.Flash(chargeFlashMat.color);
 	}
 
-	public void WitchTime(EnemyS targetEnemy){
-		if (!allowCounterAttack && !_doingCounterAttack && !counterQueued){
-			CameraShakeS.C.DodgeSloMo(0.26f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
-			_dodgeEffectRef.FireEffect();
-			allowCounterAttack = true;
+	public void WitchTime(EnemyS targetEnemy, bool fromParry = false){
+		if (!_allowCounterAttack && !_doingCounterAttack && !counterQueued && !_delayWitchTime){
+			if (!fromParry){
+				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.7f, counterAttackTimeMax*0.3f);
+				_dodgeEffectRef.FireEffect();
+			}else{
+				CameraShakeS.C.DodgeSloMo(0.28f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
+			}
+			_allowCounterAttack = true;
 			counterAttackTime = counterAttackTimeMax;
 			_counterTarget = targetEnemy;
 		}
@@ -645,7 +656,7 @@ public class PlayerController : MonoBehaviour {
 
 		_playerSound.PlayRollSound();
 
-		allowCounterAttack = false;
+		_allowCounterAttack = false;
 
 
 		if (_myStats.speedAmt >= 5f){
@@ -712,7 +723,7 @@ public class PlayerController : MonoBehaviour {
 					_dashStickReset = false;
 				}else{
 					if (!_chargingAttack && !InAttack()){
-						_triggerBlock = true;
+						//_triggerBlock = true;
 					}
 				}
 				dashButtonUp = false;
@@ -744,7 +755,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			if (dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD && controller.DashTrigger()){
-				_triggerBlock = true;
+				//_triggerBlock = true;
 			}
 			
 			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
@@ -767,7 +778,7 @@ public class PlayerController : MonoBehaviour {
 					_chargeAttackTime = 0f;
 					ChargeAnimationTrigger(true);
 				}else if (controller.DashTrigger()){
-					_triggerBlock = true;
+					//_triggerBlock = true;
 				}
 			}
 		}
@@ -836,6 +847,21 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		attackDelay -= Time.deltaTime;
+		allowParryCountdown -= Time.deltaTime;
+		// check if parry conditions are met before attack fires off
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
+			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
+			for (int i = 0; i < enemiesToParry.Count; i++){
+				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
+			}
+			CameraShakeS.C.SmallShake();
+			//CameraShakeS.C.SmallSleep();
+			DelayWitchTimeActivate(enemiesToParry[0]);
+			shootButtonUp = false;
+			CancelAttack();
+			PrepParryAnimation();
+		}
+
 		if (attackDelay <= 0 && attackTriggered){
 
 			GameObject newProjectile;
@@ -1020,12 +1046,24 @@ public class PlayerController : MonoBehaviour {
 				if ((ShootInputPressed() && StaminaCheck(1f, false) && shootButtonUp && !counterQueued) 
 				    || ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())){
 
-					if (allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
+					// first, check for parry, then counter attack, then regular attack
+					if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack){
+						List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
+						for (int i = 0; i < enemiesToParry.Count; i++){
+							enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
+						}
+						CameraShakeS.C.SmallShake();
+						//CameraShakeS.C.SmallSleep();
+						DelayWitchTimeActivate(enemiesToParry[0]);
+						shootButtonUp = false;
+						PrepParryAnimation();
+					}
+					else if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
 						if (controller.HeavyButton()){
 							heavyCounterQueued = true;
 						}
 						counterQueued = true;
-						allowCounterAttack = false;
+						_allowCounterAttack = false;
 						shootButtonUp = false;
 						_allowDashAttack = false;
 					}
@@ -1038,7 +1076,7 @@ public class PlayerController : MonoBehaviour {
 
 					attackEffectRef.EndAttackEffect();
 
-					if (counterQueued || allowCounterAttack){
+					if (counterQueued || _allowCounterAttack){
 
 						if ((counterQueued && heavyCounterQueued) || (controller.HeavyButton() && !counterQueued)){
 							_doingHeavyAttack = true;
@@ -1047,7 +1085,7 @@ public class PlayerController : MonoBehaviour {
 							currentAttackS = equippedWeapon.counterAttack.GetComponent<ProjectileS>();
 						}
 						_doingCounterAttack = true;
-						allowCounterAttack = false;
+						_allowCounterAttack = false;
 						_allowDashAttack = false;
 
 						heavyCounterQueued = false;
@@ -1069,6 +1107,8 @@ public class PlayerController : MonoBehaviour {
 							_myAnimator.SetBool("Evading", false);
 							_isDashing = false;
 							_myRigidbody.drag = startDrag;
+
+							allowParryCountdown = allowParryInput;
 
 
 					}else{
@@ -1094,6 +1134,9 @@ public class PlayerController : MonoBehaviour {
 							}
 							currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 						}
+							
+							allowParryCountdown = allowParryInput;
+
 					}
 					
 					attackDelay = currentAttackS.delayShotTime;
@@ -1510,12 +1553,25 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	private void DelayWitchTimeActivate(EnemyS targetEnemy){
+		_delayWitchTime = true;
+		parryDelayWitchCountdown = parryDelayWitchTime;
+		_dodgeEffectRef.FireEffect(true);
+	}
+
 	private void ManageCounterTimer(){
-		if (allowCounterAttack){
+		if (_delayWitchTime){
+			parryDelayWitchCountdown -= Time.deltaTime;
+			if (parryDelayWitchCountdown <= 0){
+				_delayWitchTime = false;
+				WitchTime(_counterTarget, true);
+			}
+		}
+		if (_allowCounterAttack){
 			counterAttackTime -= Time.unscaledDeltaTime;
 			Debug.Log(counterAttackTime);
 			if (counterAttackTime <= 0){
-				allowCounterAttack = false;
+				_allowCounterAttack = false;
 			}
 		}
 	}
@@ -1637,6 +1693,12 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetLayerWeight(3, 1f);
 		FaceLeftRight();
 	}
+
+	private void PrepParryAnimation(){
+		_myAnimator.SetBool("Attacking", false);
+		_myAnimator.SetTrigger("Parry");
+		FaceLeftRight();
+	}
 	
 	private void TurnOffBlockAnimation(){
 		_myAnimator.SetLayerWeight(3, 0f);
@@ -1706,7 +1768,7 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && !attackTriggered && !_isStunned
+		if (!_isTalking && !attackTriggered && !_isStunned && !_delayWitchTime
 		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
 			dashAllow = true;
 		}
@@ -1716,7 +1778,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && allowCounterAttack))
+		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
 		    && !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
 			return true;
 		}

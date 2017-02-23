@@ -18,6 +18,8 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 
 		if (BehaviorActing()){
+			
+			BehaviorUpdate();
 
 			waitTimeCountdown -= Time.deltaTime;
 			if (waitTimeCountdown <= 0){

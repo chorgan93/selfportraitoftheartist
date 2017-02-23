@@ -29,6 +29,8 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 
 		if (BehaviorActing()){
+			
+			BehaviorUpdate();
 
 			if (!foundTrackingTarget){
 				trackingCountdown -= Time.deltaTime;

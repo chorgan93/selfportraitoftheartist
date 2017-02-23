@@ -29,6 +29,8 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 		
 		if (BehaviorActing()){
+			
+			BehaviorUpdate();
 
 			DetermineTarget();
 

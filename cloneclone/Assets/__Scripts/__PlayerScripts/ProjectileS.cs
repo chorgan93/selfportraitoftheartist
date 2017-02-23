@@ -149,6 +149,9 @@ public class ProjectileS : MonoBehaviour {
 	public void StartKnockback(PlayerController playerReference, Vector3 aimDirection){
 		if (startKnockbackSpeed > 0){
 			Vector3 startKForce = aimDirection.normalized*startKnockbackSpeed*Time.unscaledDeltaTime;
+			if (playerReference.superCloseEnemyDetect.allEnemiesInRange.Count > 0){
+				startKForce *= 0.1f;
+			}
 			playerReference.myRigidbody.AddForce(startKForce, ForceMode.Impulse);
 		}
 	}
@@ -234,17 +237,21 @@ public class ProjectileS : MonoBehaviour {
 			}
 		}
 
-		if (doKnockback && !tooCloseForKnockback){
+		if (doKnockback){
 
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 
+			if (tooCloseForKnockback){
+				knockbackForce *= 0.1f;
+			}
+
 			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
 		}
-		if (tooCloseForKnockback){
-			knockbackSpeed*=1.4f;
-		}
+		//if (tooCloseForKnockback){
+		//	knockbackSpeed*=1.4f;
+		//}
 
 		currentRange = range;
 

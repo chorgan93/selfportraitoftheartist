@@ -25,6 +25,8 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 		
 		if (BehaviorActing()){
 
+			BehaviorUpdate();
+
 			DoSpawns();
 
 			behaviorCountdown -= Time.deltaTime;

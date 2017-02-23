@@ -26,7 +26,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	void FixedUpdate () {
 
 		if (BehaviorActing()){
-			
+
+			BehaviorUpdate();
 			
 			if (attackTimeCountdown <= 0 || myEnemyReference.behaviorBroken){
 				EndAction();

@@ -57,6 +57,9 @@ public class EnemyS : MonoBehaviour {
 	private bool vulnerableEffectEnded = false;
 	private float vulnEffectCountdown;
 
+	[HideInInspector]
+	public bool canBeParried = false;
+
 	private float vulnerableDelay;
 	private float vulnerableCountdown;
 	private float _flashAmt;
@@ -633,6 +636,13 @@ public class EnemyS : MonoBehaviour {
 		myRenderer.material = flashMaterial;
 		myRenderer.material.SetColor("_FlashColor", Color.white);
 		flashFrames = FLASH_FRAME_COUNT;
+	}
+
+	public void AutoCrit(Vector3 knockback, float critTime){
+		_isVulnerable = true;
+		_breakAmt = _breakThreshold+1f;
+		TakeDamage(knockback, 0f, 0f, 0f, critTime);
+		canBeParried = false;
 	}
 
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f){
