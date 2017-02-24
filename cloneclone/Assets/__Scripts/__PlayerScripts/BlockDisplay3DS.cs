@@ -24,6 +24,14 @@ public class BlockDisplay3DS : MonoBehaviour {
 	public Texture flashTexture;
 	public Texture hitFlashTexture;
 
+	private bool parryEffect = false;
+	public bool doingParry { get { return parryEffect; } }
+	private float parryEffectTimeMax = 0.1f;
+	private float parryEffectTime;
+	private float parryFadeRate = 3f;
+	private Vector3 parryGrowRate = new Vector3(5f, 5f, 5f);
+	private Vector3 startSize;
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,6 +40,8 @@ public class BlockDisplay3DS : MonoBehaviour {
 		myPlayer.SetBlockReference(this);
 		startRotation = transform.rotation;
 		myRenderer.material.color = currentColor = colorFullPower;
+
+		startSize = transform.localScale;
 
 		SetColorDiff();
 
@@ -47,14 +57,29 @@ public class BlockDisplay3DS : MonoBehaviour {
 			initialized = true;
 		}
 
-		if (myPlayer.showBlock){
+		if (myPlayer.showBlock || parryEffect){
 			if (!myRenderer.enabled){
 				myRenderer.enabled = true;
-				DoFlash();
+				DoFlash(parryEffect);
 				transform.rotation = startRotation;
 				rotateCountdown = rotateCountdownMax;
 			}
 			ApplyRotation();
+			if (parryEffect){
+				if (!isFlashing){
+				parryEffectTime -= Time.unscaledDeltaTime;
+				if (parryEffectTime <= 0){
+						currentColor = myRenderer.material.color;
+						currentColor.a -= parryFadeRate*Time.unscaledDeltaTime;
+						transform.localScale += parryGrowRate*Time.unscaledDeltaTime;
+						if (currentColor.a <= 0){
+							currentColor.a = 0;
+							parryEffect = false;
+						}
+						myRenderer.material.color = currentColor;
+					}
+				}
+			}
 
 			if (isFlashing){
 			currentFlashFrames--;
@@ -91,14 +116,25 @@ public class BlockDisplay3DS : MonoBehaviour {
 		currentColor = Color.Lerp(colorNoPower, colorFullPower, myPlayer.myStats.currentDefense/myPlayer.myStats.maxDefense);
 	}
 
-	public void DoFlash(){
+	public void DoFlash(bool extraFrames = false){
 
 		isFlashing = true;
 		myRenderer.material.SetTexture("_MainTex", hitFlashTexture);
 		myRenderer.material.color = Color.white;
-		currentFlashFrames = flashFramesMax;
+		if (extraFrames){
+			currentFlashFrames = flashFramesMax*2;
+		}else{
+			currentFlashFrames = flashFramesMax;
+			parryEffect = false;
+		}
 		currentColor = Color.Lerp(colorNoPower, colorFullPower, myPlayer.myStats.currentDefense/myPlayer.myStats.maxDefense);
 
+	}
+
+	public void FireParryEffect(){
+		transform.localScale = startSize;
+		parryEffect = true;
+		parryEffectTime = parryEffectTimeMax;
 	}
 
 	void ApplyRotation(){

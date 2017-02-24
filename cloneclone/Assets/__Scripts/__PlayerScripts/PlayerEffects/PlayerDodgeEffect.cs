@@ -7,6 +7,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	public SpriteRenderer spriteOne;
 	public SpriteRenderer spriteTwo;
 	public SpriteRenderer spriteThree;
+	public SpriteRenderer spriteFour;
+	public SpriteRenderer spriteFive;
 
 	[Header("Effect Timings")]
 	public float sleepTime = 0.14f;
@@ -23,11 +25,17 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	Vector3 oneEndPos;
 	Vector3 twoStartPos;
 	Vector3 twoEndPos;
+	Vector3 fourStartPos;
+	Vector3 fourEndPos;
+	Vector3 fiveStartPos;
+	Vector3 fiveEndPos;
+	Vector3 spriteThreePos;
 
 	private bool matchSprites = false;
 
 	private Color startColor;
 	private Color endColor;
+	private Color halfCol;
 
 	private float effectTime;
 	private float effectT;
@@ -35,6 +43,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 
 	private Vector3 spriteOneDirection = Vector3.left;
 	private Vector3 spriteTwoDirection = Vector3.right;
+	private Vector3 spriteFourDirection = Vector3.left;
+	private Vector3 spriteFiveDirection = Vector3.right;
 
 	// Use this for initialization
 	void Start () {
@@ -42,6 +52,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 		spriteOne.gameObject.SetActive(false);
 		spriteTwo.gameObject.SetActive(false);
 		spriteThree.gameObject.SetActive(false);
+		spriteFour.gameObject.SetActive(false);
+		spriteFive.gameObject.SetActive(false);
 		playerSprite = GetComponent<SpriteRenderer>();
 		playerController = GetComponentInParent<PlayerController>();
 
@@ -63,49 +75,102 @@ public class PlayerDodgeEffect : MonoBehaviour {
 				spriteOne.gameObject.SetActive(false);
 				spriteTwo.gameObject.SetActive(false);
 				spriteThree.gameObject.SetActive(false);
+				spriteFour.gameObject.SetActive(false);
+				spriteFive.gameObject.SetActive(false);
 			}else{
 				if (matchSprites){
-					spriteOne.sprite = spriteTwo.sprite = spriteThree.sprite = playerSprite.sprite;
+					spriteOne.sprite = spriteTwo.sprite = spriteThree.sprite 
+						= spriteFour.sprite = spriteFive.sprite = playerSprite.sprite;
 				}
 				effectT = effectTime/effectDuration;
 				spriteOne.transform.position = Vector3.Lerp(oneStartPos, oneEndPos, movementCurve.Evaluate(effectT));
 				spriteTwo.transform.position = Vector3.Lerp(twoStartPos, twoEndPos, movementCurve.Evaluate(effectT));
-				spriteOne.color = spriteTwo.color = spriteThree.color =
+				spriteThree.transform.position = spriteThreePos;
+
+				if (spriteFour.gameObject.activeSelf){
+					
+					spriteFour.transform.position = Vector3.Lerp(fourStartPos, fourEndPos, movementCurve.Evaluate(effectT));
+					spriteFive.transform.position = Vector3.Lerp(fiveStartPos, fiveEndPos, movementCurve.Evaluate(effectT));
+				}
+
+				spriteOne.color = spriteTwo.color = spriteFour.color = spriteFive.color =
 					Color.Lerp(startColor, endColor, movementCurve.Evaluate(effectT));
+				halfCol = spriteOne.color;
+				halfCol.a *= 0.5f;
+				spriteThree.color = halfCol;
 			}
 		}
 	
 	}
 
 	public void FireEffect(bool fromParry = false){
-		spriteOne.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
-		spriteOne.material.SetFloat("_FlashAmount", 1f);
-		spriteThree.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
-		spriteThree.material.SetFloat("_FlashAmount", 1f);
-		spriteTwo.material.SetColor("_FlashColor", playerController.EquippedWeapon().flashSubColor);
-		spriteTwo.material.SetFloat("_FlashAmount", 1f);
-		spriteOne.sprite = spriteTwo.sprite = playerSprite.sprite;
+
+		SetSpriteAppearance(fromParry);
+
+		// set up sprite one
+		if (!fromParry){
+			spriteOneDirection = Vector3.Cross(playerController.counterNormal, Vector3.back);
+			spriteOneDirection.z = 0f;
+			spriteOneDirection = Quaternion.Euler(0,0,-160f) * spriteOneDirection;
+		}else{
+			spriteOneDirection = Vector3.Cross(playerController.counterNormal, Vector3.forward);
+			spriteOneDirection = Quaternion.Euler(0,0,-30f) * spriteOneDirection;
+		}
+		spriteOneDirection.z = 0f;
 		spriteOne.transform.position = playerSprite.transform.position + spriteOneDirection * effectSpawnDistance;
 		oneStartPos = spriteOne.transform.position;
-		if (!fromParry){
-			oneStartPos.z -= 1f;
+		if (fromParry){
+			oneEndPos = oneStartPos+effectDistance*spriteOneDirection*1.5f;
+		}else{
+			oneEndPos = oneStartPos+effectDistance*spriteOneDirection;
 		}
-		spriteOne.transform.position = oneStartPos;
-		oneEndPos = oneStartPos+effectDistance*spriteOneDirection;
+
+		// set up sprite two
+		if (!fromParry){
+			spriteTwoDirection = Vector3.Cross(playerController.counterNormal, Vector3.forward);
+			spriteTwoDirection.z = 0f;
+			spriteTwoDirection = Quaternion.Euler(0,0,-160f) * spriteTwoDirection;
+		}else{
+			spriteTwoDirection = Vector3.Cross(playerController.counterNormal, Vector3.back);
+			spriteTwoDirection = Quaternion.Euler(0,0,30f) * spriteTwoDirection;
+		}
+		spriteTwoDirection.z = 0f;
 		spriteTwo.transform.position = playerSprite.transform.position + spriteTwoDirection * effectSpawnDistance;
 		twoStartPos = spriteTwo.transform.position;
-		if (!fromParry){
-			twoStartPos.z -= 1f;
+		if (fromParry){
+			twoEndPos = twoStartPos+effectDistance*spriteTwoDirection*1.5f;
+		}else{
+			twoEndPos = twoStartPos+effectDistance*spriteTwoDirection;
 		}
-		spriteTwo.transform.position = twoStartPos;
-		twoEndPos = twoStartPos+effectDistance*spriteTwoDirection;
-		spriteThree.transform.position = playerSprite.transform.position;
-		spriteThree.transform.localScale = spriteOne.transform.localScale = 
-			spriteTwo.transform.localScale = playerSprite.transform.localScale;
+
+		spriteThree.transform.position = spriteThreePos = playerSprite.transform.position;
+		spriteFive.transform.localScale = spriteFour.transform.localScale = spriteThree.transform.localScale = 
+			spriteOne.transform.localScale = spriteTwo.transform.localScale = playerSprite.transform.localScale;
 		effectT = effectTime = 0f;
 		spriteOne.gameObject.SetActive(true);
 		spriteTwo.gameObject.SetActive(true);
 		spriteThree.gameObject.SetActive(true);
+
+		if (!fromParry){
+			// set up sprite four and five for dodge effect
+			spriteFourDirection = -playerController.counterNormal;
+			spriteFourDirection = Quaternion.Euler(0,0,-160f) * spriteFourDirection;
+			spriteFourDirection.z = 0f;
+			spriteFour.transform.position = playerSprite.transform.position + spriteFourDirection * effectSpawnDistance;
+			fourStartPos = spriteFour.transform.position;
+			fourEndPos = fourStartPos+effectDistance*spriteFourDirection*1.8f;
+
+			/*spriteFiveDirection = playerController.counterNormal;
+			spriteFiveDirection = Quaternion.Euler(0,0,40f) * spriteFiveDirection;
+			spriteFiveDirection.z = 0f;
+			spriteFive.transform.position = playerSprite.transform.position + spriteFiveDirection * effectSpawnDistance;
+			fiveStartPos = spriteFive.transform.position;
+			fiveEndPos = fiveStartPos+effectDistance*spriteFiveDirection*1.8f;*/
+
+			spriteFour.gameObject.SetActive(true);
+			//spriteFive.gameObject.SetActive(true);
+		}
+
 		CameraShakeS.C.TimeSleep(sleepTime);
 
 		matchSprites = fromParry;
@@ -115,5 +180,29 @@ public class PlayerDodgeEffect : MonoBehaviour {
 
 	public bool AllowAttackTime(){
 		return(allowCounter <= 0f);
+	}
+
+	void SetSpriteAppearance(bool fromParry = false){
+		spriteThree.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
+		spriteThree.material.SetFloat("_FlashAmount", 1f);
+		if (!fromParry){
+			
+			spriteOne.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
+			spriteOne.material.SetFloat("_FlashAmount", 1f);
+			spriteTwo.material.SetColor("_FlashColor", playerController.EquippedWeapon().flashSubColor);
+			spriteTwo.material.SetFloat("_FlashAmount", 1f);
+			spriteFour.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
+			spriteFour.material.SetFloat("_FlashAmount", 1f);
+			spriteFive.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
+			spriteFive.material.SetFloat("_FlashAmount", 1f);
+
+		}else{
+			spriteOne.material.SetColor("_FlashColor", playerController.EquippedWeapon().swapColor);
+			spriteOne.material.SetFloat("_FlashAmount", 1f);
+			spriteTwo.material.SetColor("_FlashColor", playerController.EquippedWeapon().flashSubColor);
+			spriteTwo.material.SetFloat("_FlashAmount", 1f);
+		}
+		spriteOne.sprite = spriteTwo.sprite = spriteThree.sprite 
+			= spriteFour.sprite = spriteFive.sprite = playerSprite.sprite;
 	}
 }

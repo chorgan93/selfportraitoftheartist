@@ -26,6 +26,7 @@ public class PlayerSoundS : MonoBehaviour {
 	[Header("Damange Sounds")]
 	public GameObject damageSound;
 	public GameObject deathSound;
+	public GameObject slowSound;
 
 	// Use this for initialization
 	void Start () {
@@ -113,5 +114,9 @@ public class PlayerSoundS : MonoBehaviour {
 	public void PlayChargeSound(){
 		Instantiate(chargeSound);
 
+	}
+
+	public void PlaySlowSound(){
+		Instantiate(slowSound);
 	}
 }

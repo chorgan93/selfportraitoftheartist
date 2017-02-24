@@ -109,6 +109,7 @@ public class ProjectileS : MonoBehaviour {
 	public GameObject extraRangeSprite;
 
 	private int weaponNum = 0;
+	private List<EnemyS> enemiesHit = new List<EnemyS>();
 
 
 	void FixedUpdate () {
@@ -161,6 +162,7 @@ public class ProjectileS : MonoBehaviour {
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
 		_myPlayer = playerReference;
+		enemiesHit.Clear();
 		// powerLvl = dmg;
 		dmg *= _myPlayer.myStats.strengthAmt;
 		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
@@ -383,7 +385,7 @@ public class ProjectileS : MonoBehaviour {
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (!hitEnemy.isFriendly){
+			if (!hitEnemy.isFriendly && !enemiesHit.Contains(hitEnemy)){
 
 				if (stopOnEnemyContact && _myPlayer != null){
 					if (!_myPlayer.myStats.PlayerIsDead()){
@@ -427,7 +429,7 @@ public class ProjectileS : MonoBehaviour {
 					_myPlayer.myStats.RecoverCharge(absorbPercent);
 				}
 	
-	
+				enemiesHit.Add(hitEnemy);
 				HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			}
 
