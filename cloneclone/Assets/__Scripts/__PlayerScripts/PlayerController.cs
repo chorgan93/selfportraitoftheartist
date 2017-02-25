@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
 	private static float ALLOW_DASHATTACK_TIME = 0.34f;
-	private static float ENEMY_TOO_CLOSE_DISTANCE = 1f;
+	private static float ENEMY_TOO_CLOSE_DISTANCE = 12f;
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
 	private const int START_PHYSICS_LAYER = 8;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragSlideMult;
 	private float dashDurationTime;
 	private float dashDurationTimeMax;
-	private float dashEffectThreshold = 0.24f;
+	private float dashEffectThreshold = 0.2f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
 	private float _dodgeCost = 1.75f;
@@ -1012,14 +1012,16 @@ public class PlayerController : MonoBehaviour {
 				allowChainLight = currentAttackS.allowChainLight;
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
-					                    < ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+					Debug.Log(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
+					          < ENEMY_TOO_CLOSE_DISTANCE);
 				}else{
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}
 			}else{
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
-					                    < ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}else{
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}
@@ -1879,6 +1881,10 @@ public class PlayerController : MonoBehaviour {
 			currentTargetEnemy = lockOnEnemyDetect.ReturnClosestAngleEnemy(inputDirection);
 			inputDirection = (currentTargetEnemy
 				.transform.position-transform.position).normalized;
+		}// if no enemies in lock on detect, attack closest enemy in general detect
+		else if (enemyDetect.closestEnemy != null){
+			currentTargetEnemy = enemyDetect.closestEnemy;
+			inputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
 		}
 		// now check 4/8 directional, if applicable
 		else if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){

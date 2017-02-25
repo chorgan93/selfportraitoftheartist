@@ -244,8 +244,9 @@ public class ProjectileS : MonoBehaviour {
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 
-			if (tooCloseForKnockback && knockbackSpeed < 0){
+			if (tooCloseForKnockback && knockbackMult < 0){
 				knockbackForce *= 0.1f;
+				Debug.Log("ATTACK TOO CLOSE FOR KNOCKBACK!");
 			}
 
 			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);

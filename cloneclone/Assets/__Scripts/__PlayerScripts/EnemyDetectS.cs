@@ -126,20 +126,20 @@ public class EnemyDetectS : MonoBehaviour {
 					closestEnemyPosition.x = _closestEnemy.transform.position.x;
 					closestEnemyPosition.y = _closestEnemy.transform.position.y;
 
-					closestDistance = Vector2.Distance(playerPosition2D(), closestEnemyPosition);
+					closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 				}
 				else{
 
 					otherEnemyPosition.x = enemy.transform.position.x;
 					otherEnemyPosition.y = enemy.transform.position.y;
-					float newDistance = Vector2.Distance(playerPosition2D(), otherEnemyPosition);
+					float newDistance = Vector2.SqrMagnitude(otherEnemyPosition-playerPosition2D());
 
 					if (newDistance < closestDistance){
 						_closestEnemy = enemy;
 						closestEnemyPosition.x = _closestEnemy.transform.position.x;
 						closestEnemyPosition.y = _closestEnemy.transform.position.y;
 						
-						closestDistance = Vector2.Distance(playerPosition2D(), closestEnemyPosition);
+						closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 					}
 
 				}
