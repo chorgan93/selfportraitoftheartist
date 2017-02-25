@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
 	private static float ALLOW_DASHATTACK_TIME = 0.34f;
+	private static float ENEMY_TOO_CLOSE_DISTANCE = 1f;
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
 	private const int START_PHYSICS_LAYER = 8;
@@ -199,10 +200,12 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 capturedShootDirection;
 	private EnemyDetectS enemyDetect;
 	[Header ("Enemy Detection References")]
+	public EnemyDetectS lockOnEnemyDetect;
 	public EnemyDetectS superCloseEnemyDetect;
 	public EnemyDetectS dontWalkIntoEnemiesCheck;
 	public EnemyDetectS dontGetStuckInEnemiesCheck;
 	private PlayerDashEffectS attackEffectRef;
+	private EnemyS currentTargetEnemy;
 
 	private List<EnemyS> enemiesHitByLastAttack;
 	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
@@ -834,7 +837,7 @@ public class PlayerController : MonoBehaviour {
 
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
-				newCharge.GetComponent<ProjectileS>().Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0,
+				newCharge.GetComponent<ProjectileS>().Fire(false,
 				                                           ShootDirection(), ShootDirection(), this);
 				SpawnAttackPuff();
 
@@ -1007,11 +1010,19 @@ public class PlayerController : MonoBehaviour {
 			if (newAttack){
 				allowChainHeavy = currentAttackS.allowChainHeavy;
 				allowChainLight = currentAttackS.allowChainLight;
-				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir*momsEyeMult,
-				                                                 savedDir*momsEyeMult, this);
+				if (currentTargetEnemy){
+					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
+					                    < ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+				}else{
+					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+				}
 			}else{
-				currentAttackS.Fire(superCloseEnemyDetect.allEnemiesInRange.Count > 0, savedDir*momsEyeMult,
-				                    savedDir*momsEyeMult, this);
+				if (currentTargetEnemy){
+					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
+					                    < ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+				}else{
+					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+				}
 			}
 			SpawnAttackPuff();
 
@@ -1858,12 +1869,29 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// first, do lock on
-		if (_myLockOn.lockedOn){
+		/*if (_myLockOn.lockedOn){
 			inputDirection = (_myLockOn.myEnemy.transform.position-transform.position).normalized;
+		}**/
+		if (lockOnEnemyDetect.allEnemiesInRange.Count == 1){
+			currentTargetEnemy = lockOnEnemyDetect.allEnemiesInRange[0];
+			inputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
+		}else if (lockOnEnemyDetect.allEnemiesInRange.Count > 1){
+			currentTargetEnemy = lockOnEnemyDetect.ReturnClosestAngleEnemy(inputDirection);
+			inputDirection = (currentTargetEnemy
+				.transform.position-transform.position).normalized;
 		}
 		// now check 4/8 directional, if applicable
 		else if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
-			inputDirection = savedDir;
+			if (currentTargetEnemy != null){
+				if (!currentTargetEnemy.isDead){
+					inputDirection = (currentTargetEnemy
+					                  .transform.position-transform.position).normalized;
+				}else{
+					inputDirection = savedDir;
+				}
+			}else{
+				inputDirection = savedDir;
+			}
 		}
 		else if (_shoot8Dir){
 

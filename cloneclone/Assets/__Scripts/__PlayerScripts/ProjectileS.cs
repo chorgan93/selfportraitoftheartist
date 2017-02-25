@@ -244,7 +244,7 @@ public class ProjectileS : MonoBehaviour {
 			// attack cooldown formula
 			float actingKnockbackTime = knockbackTime - knockbackTime*0.12f*(playerReference.myStats.speedAmt-1f)/4f;
 
-			if (tooCloseForKnockback){
+			if (tooCloseForKnockback && knockbackSpeed < 0){
 				knockbackForce *= 0.1f;
 			}
 

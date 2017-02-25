@@ -235,4 +235,17 @@ public class EnemyDetectS : MonoBehaviour {
 			return null;
 		}
 	}
+
+	public EnemyS ReturnClosestAngleEnemy(Vector3 refVector){
+		EnemyS closestEnemyToAngle = null;
+		float lowestAngle = -9999;
+		float currentAngle;
+		for (int i = 0; i < allEnemiesInRange.Count; i++){
+			currentAngle = Mathf.Abs(Vector3.Angle(refVector, allEnemiesInRange[i].transform.position));
+			if (lowestAngle == -9999 || currentAngle <= lowestAngle){
+				closestEnemyToAngle = allEnemiesInRange[i];
+			}
+		}
+		return closestEnemyToAngle;
+	}
 }
