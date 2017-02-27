@@ -79,7 +79,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 				}
 			}
 			else if (fadingOut){
-				currentFade -= Time.deltaTime;
+				//currentFade -= Time.deltaTime;
 				if (currentFade <= 0f){
 					TurnOff();
 				}else{

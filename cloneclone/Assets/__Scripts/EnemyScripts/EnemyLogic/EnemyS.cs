@@ -20,6 +20,7 @@ public class EnemyS : MonoBehaviour {
 	public string enemyName = "sickman";
 	public bool isFriendly = false;
 	public float maxHealth;
+	public bool showHealth;
 	public int sinAmt;
 	public Color bloodColor = Color.red;
 	public float knockbackTime;
@@ -194,7 +195,7 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetUIReference(EnemyHealthUIS newRef){
 
-		healthUIReference = newRef;
+		//healthUIReference = newRef;
 
 	}
 
@@ -305,6 +306,12 @@ public class EnemyS : MonoBehaviour {
 		}
 		
 		CheckStates(false);
+		if (showHealth){
+			if (healthUIReference == null){
+				healthUIReference = GameObject.Find("Enemy Health").GetComponent<EnemyHealthUIS>();
+			}
+			healthUIReference.NewTarget(this);
+		}
 
 	}
 
@@ -337,6 +344,9 @@ public class EnemyS : MonoBehaviour {
 			
 		
 		CheckStates(false);
+		if (showHealth){
+			healthUIReference.NewTarget(this);
+		}
 
 	}
 
@@ -663,14 +673,14 @@ public class EnemyS : MonoBehaviour {
 			damageTaken += dmg;
 		}
 
-		if (healthUIReference != null){
+		if (healthUIReference != null && showHealth){
 			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);
 		}else{
-			if (GetPlayerReference()){
+			/*if (GetPlayerReference()){
 			if (!GetPlayerReference().myLockOn.lockedOn && _currentHealth > 0){
 				GetPlayerReference().myLockOn.enemyHealthUI.NewTarget(this, damageTaken);
 			}
-			}
+			}**/
 		}
 
 		if (_currentHealth > 0){

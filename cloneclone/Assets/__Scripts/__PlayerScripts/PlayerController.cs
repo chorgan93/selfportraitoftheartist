@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
 	private static float ALLOW_DASHATTACK_TIME = 0.34f;
-	private static float ENEMY_TOO_CLOSE_DISTANCE = 12f;
+	private static float ENEMY_TOO_CLOSE_DISTANCE = 8f;
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
 	private const int START_PHYSICS_LAYER = 8;
@@ -420,7 +420,7 @@ public class PlayerController : MonoBehaviour {
 		if (!_myStats.PlayerIsDead() && !_isTalking){
 
 			//if (_inCombat){
-				LockOnControl();
+				//LockOnControl();
 				SwapControl();
 				BlockControl();
 				DashControl();
@@ -527,6 +527,10 @@ public class PlayerController : MonoBehaviour {
 			input2.x = controller.Horizontal();
 			input2.y = controller.Vertical();
 
+			if (input2.x != 0 || input2.y != 0){
+				savedDir.x = input2.x;
+				savedDir.y = input2.y;
+			}
 	
 			Vector3 moveVelocity = _myRigidbody.velocity;
 	
@@ -681,6 +685,10 @@ public class PlayerController : MonoBehaviour {
 		inputDirection.x = controller.Horizontal();
 		inputDirection.y = controller.Vertical();
 
+		if (inputDirection.x == 0 && inputDirection.y == 0){
+			inputDirection = -savedDir;
+		}
+
 		
 		dashDurationTime = 0;
 		
@@ -730,16 +738,8 @@ public class PlayerController : MonoBehaviour {
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
 			if (myControl.DashTrigger() && CanInputDash() && _myStats.ManaCheck(1, false)){
-				if ((((controller.Horizontal() != 0 || controller.Vertical() != 0) && dashButtonUp) || 
-				     ((Mathf.Abs(controller.Horizontal()) >= 0.5f || Mathf.Abs(controller.Vertical()) >= 0.5f)) && !dashButtonUp) 
-				     && _dashStickReset){
-					TriggerDash();
-					_dashStickReset = false;
-				}else{
-					if (!_chargingAttack && !InAttack()){
-						//_triggerBlock = true;
-					}
-				}
+
+				TriggerDash();
 				dashButtonUp = false;
 			}
 		}
@@ -790,8 +790,13 @@ public class PlayerController : MonoBehaviour {
 				}
 
 				if (_chargingAttack){
-					_chargeAttackTime = 0f;
-					ChargeAnimationTrigger(true);
+					if (!_chargeAttackTriggered){
+						_chargeAttackTime = 0f;
+						ChargeAnimationTrigger(true);
+					}else{
+						_chargingAttack = false;
+						_myAnimator.SetBool("Charging", false);
+					}
 				}else if (controller.DashTrigger()){
 					//_triggerBlock = true;
 				}
@@ -1013,8 +1018,6 @@ public class PlayerController : MonoBehaviour {
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
 					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
-					Debug.Log(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
-					          < ENEMY_TOO_CLOSE_DISTANCE);
 				}else{
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}

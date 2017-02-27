@@ -474,7 +474,7 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					
-					if (_currentHealth > maxHealth*0.01f && _currentHealth-dmg <= 0 
+					if (_currentHealth > maxHealth*0.011f && _currentHealth-dmg <= 0 
 					    && myPlayerController.playerAug.secondChanceAug){
 						_currentHealth = maxHealth*0.01f;
 					}else{
