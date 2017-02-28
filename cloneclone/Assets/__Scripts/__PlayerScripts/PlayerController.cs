@@ -486,8 +486,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashMana(bool doEffect = false){
-		flashManaFrames = 5;
+		flashManaFrames = 10;
 		myRenderer.material = manaFlashMat;
+		myRenderer.material.SetColor("_FlashColor", equippedWeapon.flashSubColor);
 		if (doEffect){
 			VignetteEffectS.V.Flash(manaFlashMat.color);
 		}

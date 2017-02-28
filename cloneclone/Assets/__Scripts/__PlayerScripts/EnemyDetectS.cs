@@ -156,7 +156,7 @@ public class EnemyDetectS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 
-		if (other.gameObject.tag == "Enemy"){
+		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
 
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 
@@ -170,7 +170,7 @@ public class EnemyDetectS : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		
-		if (other.gameObject.tag == "Enemy"){
+		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			

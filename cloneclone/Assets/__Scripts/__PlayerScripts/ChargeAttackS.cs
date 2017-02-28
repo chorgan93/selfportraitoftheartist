@@ -208,7 +208,7 @@ public class ChargeAttackS : MonoBehaviour {
 		
 		if (other.gameObject.tag == "Enemy"){
 
-			if (!other.gameObject.GetComponent<EnemyS>().isDead){
+			if (!other.gameObject.GetComponent<EnemyS>().isDead && !other.gameObject.GetComponent<EnemyS>().isFriendly){
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;

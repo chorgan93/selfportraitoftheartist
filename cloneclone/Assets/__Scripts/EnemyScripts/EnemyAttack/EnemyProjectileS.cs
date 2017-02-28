@@ -225,6 +225,22 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 
+		if (other.gameObject.tag == "Destructible"){
+			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
+			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
+			HitEffectDestructible(destructible.myRenderer, other.transform.position);
+			if (!isPiercing){
+				
+				_rigidbody.velocity = Vector3.zero;
+				range = fadeThreshold;
+				myCollider.enabled = false;
+				
+			}
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
+		}
+
 		if (!isFriendly){
 		if (other.gameObject.tag == "Player" && (!hitPlayer || (hitPlayer && allowMultiHit))){
 
@@ -371,6 +387,29 @@ public class EnemyProjectileS : MonoBehaviour {
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x;
 		}else{
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*0.75f;
+		}
+		
+		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
+		newHitObj.transform.position = hitObjSpawn;
+	}
+
+	void HitEffectDestructible(SpriteRenderer renderRef, Vector3 spawnPos,bool bigBlood = false){
+		Vector3 hitObjSpawn = spawnPos;
+		hitObjSpawn.z -= 1f;
+		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
+			as GameObject;
+		
+		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
+		if (transform.localScale.y < 0){
+			newHitObj.transform.Rotate(new Vector3(0,0,180f));
+		}
+		
+		
+		
+		if (bigBlood){
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*2.25f;
+		}else{
+			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.75f;
 		}
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;

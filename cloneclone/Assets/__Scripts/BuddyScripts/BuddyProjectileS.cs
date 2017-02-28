@@ -212,13 +212,23 @@ public class BuddyProjectileS : MonoBehaviour {
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
+			if (!isPiercing){
+				
+				_rigidbody.velocity = Vector3.zero;
+				range = fadeThreshold;
+				myCollider.enabled = false;
+				
+			}
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
 		}
 		
 		if (other.gameObject.tag == "Enemy"){
 			
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (!hitEnemy.isDead){
+			if (!hitEnemy.isDead && !hitEnemy.isFriendly){
 			
 				float actingKnockbackSpeed = shotSpeed*knockbackMult;
 	

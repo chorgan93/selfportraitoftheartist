@@ -205,6 +205,11 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
+	public void DestructibleDead(){
+		_currentHealth = 0f;
+		_isDead = true;
+	}
+
 	//______________________________________ACTION HOLDERS
 
 	private void AliveUpdate(){

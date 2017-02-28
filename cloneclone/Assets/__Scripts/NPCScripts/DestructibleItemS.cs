@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DestructibleItemS : MonoBehaviour {
+public class DestructibleItemS : EnemyS {
 
-	public float maxHealth;
-	private float _currentHealth;
-	public float currentHealth { get { return _currentHealth; } }
-	public bool destroyed { get { return _currentHealth <= 0; } }
+	new public float maxDestructibleHealth;
+	private float _currentDestructibleHealth;
+	new public float currentDestructibleHealth { get { return _currentDestructibleHealth; } }
+	public bool destroyed { get { return _currentDestructibleHealth <= 0; } }
 
 	public float[] healthLevels;
 	public Sprite[] destructionSprites;
@@ -25,10 +25,10 @@ public class DestructibleItemS : MonoBehaviour {
 	private int whiteFramesMax = 6;
 	private bool flashing = false;
 
-	private SpriteRenderer _myRenderer;
-	public SpriteRenderer myRenderer { get { return _myRenderer; } }
+	private SpriteRenderer _myDestructibleRenderer;
+	//public SpriteRenderer myDestructibleRenderer { get { return _myDestructibleRenderer; } }
 	private Color startCol;
-	private Collider myCollider;
+	private Collider _myDestructibleCollider;
 
 	public int onlyTakeDamageFromWeapon = -1;
 
@@ -37,11 +37,11 @@ public class DestructibleItemS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		myCollider = GetComponent<Collider>();
-		_myRenderer = GetComponent<SpriteRenderer>();
-		startCol = _myRenderer.color;
-		_myRenderer.material.SetFloat("_FlashAmount", 0f);
-		_currentHealth = maxHealth;
+		_myDestructibleCollider = GetComponent<Collider>();
+		_myDestructibleRenderer = GetComponent<SpriteRenderer>();
+		startCol = _myDestructibleRenderer.color;
+		_myDestructibleRenderer.material.SetFloat("_FlashAmount", 0f);
+		_currentDestructibleHealth = maxDestructibleHealth;
 	
 	}
 
@@ -50,10 +50,17 @@ public class DestructibleItemS : MonoBehaviour {
 			whiteFrames --;
 			if (whiteFrames <= 0){
 				flashing = false;
-				_myRenderer.material.SetFloat("_FlashAmount", 0f);
-				_myRenderer.color = startCol;
+				_myDestructibleRenderer.material.SetFloat("_FlashAmount", 0f);
+				_myDestructibleRenderer.color = startCol;
 			}
 		}
+	}
+
+	void FixedUpdate(){
+		// just covering up enemy fixedupdate
+	}
+	void LateUpdate(){
+		// just covering up enemy lateupdate
 	}
 
 	private void SpawnBits(float zReference, Vector3 hitPos){
@@ -63,7 +70,6 @@ public class DestructibleItemS : MonoBehaviour {
 			numToSpawn = numToSpawnOnDestroy;
 		}
 
-		Vector3 bitForce = Vector3.zero;
 		Vector3 bitEuler = Vector3.zero;
 		GameObject newBit;
 		float dir = 1f;
@@ -89,27 +95,28 @@ public class DestructibleItemS : MonoBehaviour {
 		int currentLv = 0;
 		int updateSprite = 0;
 		foreach(float f in healthLevels){
-			if (_currentHealth <= f*maxHealth){
+			if (_currentDestructibleHealth <= f*maxDestructibleHealth){
 				updateSprite = currentLv;
 			}
 			currentLv++;
 		}
-		_myRenderer.sprite = destructionSprites[updateSprite];
-		_myRenderer.color = new Color(_myRenderer.color.r, _myRenderer.color.g, _myRenderer.color.b, 1f);
+		_myDestructibleRenderer.sprite = destructionSprites[updateSprite];
+		_myDestructibleRenderer.color = new Color(_myDestructibleRenderer.color.r, _myDestructibleRenderer.color.g, _myDestructibleRenderer.color.b, 1f);
 		whiteFrames = whiteFramesMax;
 		flashing = true;
-		_myRenderer.material.SetFloat("_FlashAmount", 1f);
+		_myDestructibleRenderer.material.SetFloat("_FlashAmount", 1f);
 
 	}
 
 	public void TakeDamage(float dmgAmt, float destructionRotation, Vector3 hitPos, int weaponNum){
 
 		if (onlyTakeDamageFromWeapon <= -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
-			_currentHealth -= dmgAmt;
+			_currentDestructibleHealth -= dmgAmt;
 
-			Debug.Log(_currentHealth);
-				if (_currentHealth <= 0){
-				myCollider.enabled = false;
+			Debug.Log(_currentDestructibleHealth);
+				if (_currentDestructibleHealth <= 0){
+				_myDestructibleCollider.enabled = false;
+				DestructibleDead();
 					CameraShakeS.C.SmallShake();
 					CameraShakeS.C.TimeSleep(destroySleepTime);
 					}else{

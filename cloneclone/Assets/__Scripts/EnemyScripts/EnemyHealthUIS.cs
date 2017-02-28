@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class EnemyHealthUIS : MonoBehaviour {
@@ -42,7 +43,10 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 	private float addedDamage = 0f;
 
-	private EnemyS myEnemy;
+	private List<EnemyS> myEnemies;
+	private float totalMaxHealth;
+	private float currentCombinedHealth;
+	private float numEnemiesDivider;
 	private bool showing = false;
 
 	private LockOnS _lockOnRef;
@@ -54,6 +58,8 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 		startBorderLength = borderImage.rectTransform.sizeDelta.x;
 		startBarLength = barBGImage.rectTransform.sizeDelta.x;
+
+		myEnemies = new List<EnemyS>();
 
 		borderStartColor = borderImage.color;
 		borderStartColor.a = borderMaxFade;
@@ -79,7 +85,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 				}
 			}
 			else if (fadingOut){
-				//currentFade -= Time.deltaTime;
+				currentFade -= Time.deltaTime;
 				if (currentFade <= 0f){
 					TurnOff();
 				}else{
@@ -146,9 +152,11 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 	public void NewTarget(EnemyS newEnemy, float addDamage = 0){
 
-		myEnemy = newEnemy;
-		myEnemy.SetUIReference(this);
-		enemyNameText.text = myEnemy.enemyName;
+		if (!myEnemies.Contains(newEnemy)){
+			myEnemies.Add(newEnemy);
+		}
+		newEnemy.SetUIReference(this);
+		enemyNameText.text = newEnemy.enemyName;
 
 		damageDecreasing = false;
 		currentFade = 0f;
@@ -177,18 +185,22 @@ public class EnemyHealthUIS : MonoBehaviour {
 		resetCol.a = barMaxFade;
 		barFullImage.color = resetCol;
 
+		totalMaxHealth = getCurrentMaxHealth();
+		currentCombinedHealth = getCurrentCombinedHealth();
+		numEnemiesDivider = getNumEnemiesDivider();
+
 		// resize ui elements
 		Vector2 resizeRect = borderImage.rectTransform.sizeDelta;
-		resizeRect.x = startBorderLength + lengthPerHealth*myEnemy.maxHealth;
+		resizeRect.x = startBorderLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth;
 		borderImage.rectTransform.sizeDelta = resizeRect;
 
 		resizeRect = barBGImage.rectTransform.sizeDelta;
-		resizeRect.x = startBarLength + lengthPerHealth*myEnemy.maxHealth;
+		resizeRect.x = startBarLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth;
 		barBGImage.rectTransform.sizeDelta = resizeRect;
 
 		resizeRect = barDamageImage.rectTransform.sizeDelta;
 		damageTargetLength = resizeRect.x = 
-			(startBarLength + lengthPerHealth*myEnemy.maxHealth)*(myEnemy.currentHealth/myEnemy.maxHealth);
+			(startBarLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth)*(currentCombinedHealth/totalMaxHealth);
 		barDamageImage.rectTransform.sizeDelta = barFullImage.rectTransform.sizeDelta = resizeRect;
 
 		
@@ -207,34 +219,74 @@ public class EnemyHealthUIS : MonoBehaviour {
 		}
 	}
 
+	float getCurrentMaxHealth(){
+		float newMaxHealth = 0f;
+		for (int i = 0; i< myEnemies.Count; i++){
+			newMaxHealth += myEnemies[i].maxHealth;
+		}
+		return newMaxHealth;
+	}
+
+	float getCurrentCombinedHealth(){
+		float combinedHealth = 0f;
+		for (int i = 0; i < myEnemies.Count; i++){
+			combinedHealth += myEnemies[i].currentHealth;
+		}
+		return combinedHealth;
+	}
+
+	float getNumEnemiesDivider(){
+		float div = 1f;
+		if (myEnemies.Count <= 0){
+			return div;
+		}else{
+			div = myEnemies.Count*1f;
+			return div;
+		}
+	}
+
+	void CheckFadeOut(){
+		if (currentCombinedHealth <= 0f){
+			currentFade = fadeTimeMax;
+			fadingOut = true;
+		}else{
+			fadingOut = false;
+		}
+	}
+
 	public void ResizeForDamage(bool extraShake = false){
 
-		if (myEnemy != null){
+		if (myEnemies.Count > 0){
 
 			ShakeBar(extraShake);
 	
 			Vector2 resizeRect = barFullImage.rectTransform.sizeDelta;
+
+			currentCombinedHealth = getCurrentCombinedHealth();
+			totalMaxHealth = getCurrentMaxHealth();
+			numEnemiesDivider = getNumEnemiesDivider();
 	
 			if (addedDamage > 0){
 				resizeRect.x = 
-					startBarLength+(myEnemy.currentHealth+addedDamage)/myEnemy.maxHealth*(lengthPerHealth*myEnemy.maxHealth);
+					startBarLength+(currentCombinedHealth+addedDamage)/totalMaxHealth*
+						(lengthPerHealth/numEnemiesDivider*totalMaxHealth);
 			}
 
 			if (damageDecreasing || addedDamage > 0){
 				barDamageImage.rectTransform.sizeDelta = resizeRect;
 			}
 
-			float healthMult = myEnemy.currentHealth/myEnemy.maxHealth;
+			float healthMult = currentCombinedHealth/totalMaxHealth;
 			if (healthMult < 0f){
 				healthMult = 0f;
 			}
 		
 			resizeRect = barFullImage.rectTransform.sizeDelta;
-			resizeRect.x = (startBarLength + lengthPerHealth*myEnemy.maxHealth)*healthMult;
+			resizeRect.x = (startBarLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth)*healthMult;
 			barFullImage.rectTransform.sizeDelta = resizeRect;
 					
 			damageDecreasing = false;
-			if (myEnemy.currentHealth > 0){
+			if (currentCombinedHealth > 0){
 			decreaseDelay = startDecreaseDelay;
 			}else{
 				decreaseDelay = 0f;
@@ -242,6 +294,8 @@ public class EnemyHealthUIS : MonoBehaviour {
 			}
 			tookDamage = true;
 			addedDamage = 0f;
+
+			CheckFadeOut();
 		}
 			
 	}
@@ -249,16 +303,16 @@ public class EnemyHealthUIS : MonoBehaviour {
 	public void EndLockOn(){
 
 		currentFade = fadeTimeMax;
-		fadingOut = true;
+		//fadingOut = true;
 
 	}
 
 	public void TurnOff(){
 
-		if (myEnemy != null){
+		/*if (myEnemy != null){
 			myEnemy.RemoveUIReference();
 			myEnemy = null;
-		}
+		}**/
 
 		currentFade = 0f;
 		fadingOut = false;
