@@ -79,12 +79,15 @@ public class InGameCinematicS : MonoBehaviour {
 		currentCountdown = 0f;
 
 		bool cinematicDone = true;
-		foreach (InGameCinemaTextS t in cinemaDialogues){
-			if (t.myCinemaStep == currentStep){
-				cinematicDone = false;
-				t.gameObject.SetActive(true);
+		if (cinemaDialogues != null){
+			foreach (InGameCinemaTextS t in cinemaDialogues){
+				if (t.myCinemaStep == currentStep){
+					cinematicDone = false;
+					t.gameObject.SetActive(true);
+				}
 			}
 		}
+		if (cinemaCameraMoves != null){
 		foreach (InGameCinemaCameraS c in cinemaCameraMoves){
 			if (c.myCinemaStep == currentStep){
 				cinematicDone = false;
@@ -97,6 +100,8 @@ public class InGameCinematicS : MonoBehaviour {
 				}
 			}
 		}
+		}
+		if (cinemaMoveObj != null){
 		foreach (InGameCinemaMoveObjS c in cinemaMoveObj){
 			if (c.myCinemaStep == currentStep){
 				cinematicDone = false;
@@ -109,6 +114,8 @@ public class InGameCinematicS : MonoBehaviour {
 				}
 			}
 		}
+		}
+		if (cinemaOnOff != null){
 		foreach (InGameCinemaActivateS a in cinemaOnOff){
 			if (a.myCinemaStep == currentStep){
 				cinematicDone = false;
@@ -121,6 +128,8 @@ public class InGameCinematicS : MonoBehaviour {
 				}
 			}
 		}
+		}
+		if (cinemaWait != null){
 		foreach (InGameCinemaWaitS w in cinemaWait){
 			if (w.myCinemaStep == currentStep){
 				cinematicDone = false;
@@ -131,6 +140,7 @@ public class InGameCinematicS : MonoBehaviour {
 					}
 				}
 			}
+		}
 		}
 
 		return cinematicDone;

@@ -7,13 +7,15 @@ public class EffectSpawnManagerS : MonoBehaviour {
 	public GameObject playerDashEffectPrefab;
 	private List<GameObject> playerDashes = new List<GameObject>();
 
+	public GameObject enemyHealthPrefab;
+	private List<GameObject> enemyHealthBars = new List<GameObject>();
+
+	public static EffectSpawnManagerS E;
+
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+	void Awake () {
+
+		E = this;
 	
 	}
 
@@ -36,6 +38,27 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		return spawnObj;
 	}
 
+	public GameObject SpawnEnemyHealthBar(EnemyS enemyTarget){
+
+		GameObject spawnObj;
+		if (enemyHealthBars.Count > 0){
+			spawnObj = enemyHealthBars[0];
+			enemyHealthBars.Remove(spawnObj);
+			spawnObj.transform.position = enemyTarget.transform.position + enemyTarget.healthBarOffset;
+			//spawnObj.transform.parent = enemyTarget.transform;
+			spawnObj.SetActive(true);
+		}else{
+			spawnObj = Instantiate(enemyHealthPrefab, enemyTarget.transform.position + enemyTarget.healthBarOffset, 
+			                       enemyHealthPrefab.transform.rotation) as GameObject;
+			//spawnObj.transform.parent = enemyTarget.transform;
+		}
+
+		spawnObj.GetComponent<EnemyHealthBarS>().SetEnemyHealthBar(this, 2, enemyTarget);
+		
+		return spawnObj;
+
+	}
+
 	public void Despawn(GameObject target, int spawnCode){
 
 		target.SetActive(false);
@@ -43,6 +66,9 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 		if (spawnCode == 1){
 			playerDashes.Add(target);
+		}
+		if (spawnCode == 2){
+			enemyHealthBars.Add(target);
 		}
 
 	}

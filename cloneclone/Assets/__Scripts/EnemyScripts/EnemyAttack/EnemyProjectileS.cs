@@ -323,7 +323,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					
 					hitEnemy.TakeDamage
 						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
-						 damage, 1f, 1.5f);
+						 damage, 1f, 1.5f, 0f, true);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);

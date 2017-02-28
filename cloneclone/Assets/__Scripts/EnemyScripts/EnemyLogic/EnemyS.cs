@@ -19,8 +19,12 @@ public class EnemyS : MonoBehaviour {
 	[Header("Enemy Properties")]
 	public string enemyName = "sickman";
 	public bool isFriendly = false;
+	[Header ("Health Properties")]
 	public float maxHealth;
 	public bool showHealth;
+	public Vector3 healthBarOffset = new Vector3(0f,1.5f,1f);
+	public float healthBarXSize = 2f;
+	[Header ("Death Properties")]
 	public int sinAmt;
 	public Color bloodColor = Color.red;
 	public float knockbackTime;
@@ -43,6 +47,7 @@ public class EnemyS : MonoBehaviour {
 	private Collider _myCollider;
 
 	private EnemyHealthUIS healthUIReference;
+	private EnemyHealthBarS healthBarReference;
 
 	private Vector3 startSize;
 
@@ -273,6 +278,7 @@ public class EnemyS : MonoBehaviour {
 		if (!_isDead){
 			_currentHealth = maxHealth;
 			_isActive = false;
+			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
 		}
 
 		startSize = transform.localScale;
@@ -351,6 +357,10 @@ public class EnemyS : MonoBehaviour {
 		CheckStates(false);
 		if (showHealth){
 			healthUIReference.NewTarget(this);
+		}
+
+		if (healthBarReference != null){
+			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
 		}
 
 	}
@@ -660,7 +670,7 @@ public class EnemyS : MonoBehaviour {
 		canBeParried = false;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f){
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f, bool fromFriendly = false){
 
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
@@ -696,7 +706,9 @@ public class EnemyS : MonoBehaviour {
 			_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
 			
 			CameraShakeS.C.SmallShake();
-			CameraShakeS.C.SmallSleep();
+			if (!fromFriendly){
+				CameraShakeS.C.SmallSleep();
+			}
 
 
 			if (sTime != 0f){
@@ -757,7 +769,7 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown = knockbackTime;
 		}
 
-
+		healthBarReference.ResizeForDamage();
 
 	}
 
@@ -795,6 +807,10 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetTargetReference(Vector3 setMe){
 		_currentTarget = setMe;
+	}
+
+	public void SetHealthBar(EnemyHealthBarS newBar){
+		healthBarReference = newBar;
 	}
 
 }
