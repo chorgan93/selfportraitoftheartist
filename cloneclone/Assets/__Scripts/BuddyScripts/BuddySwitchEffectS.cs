@@ -142,6 +142,8 @@ public class BuddySwitchEffectS : MonoBehaviour {
 			transform.parent = null;
 		}
 
+		Debug.Log("Buddy Switch!");
+
 		Color resetCol = Color.white;
 		fadeColor = newCol;
 

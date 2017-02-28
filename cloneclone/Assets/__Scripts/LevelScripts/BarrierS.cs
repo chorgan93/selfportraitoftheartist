@@ -14,12 +14,16 @@ public class BarrierS : MonoBehaviour {
 
 	public float delayTurnOffTime = 0.4f;
 	public float turnOffTime = 0.9f;
+	public float extraCameraTime = 0f;
 	private float fadeRate = 0.8f;
 	private Color myColor;
 
 	bool turningOff = false;
 	private int flashFrames = 6;
 	public GameObject turnOffSound;
+
+	private ActivateOnBarrierOffS activateObj;
+	public GameObject overrideResetPOI;
 
 	public int turnOffAtProgression = -1;
 
@@ -31,6 +35,8 @@ public class BarrierS : MonoBehaviour {
 		_myRenderer = GetComponent<Renderer>();
 		myColor = _myRenderer.material.color;
 		startTexture = _myRenderer.material.GetTexture("_MainTex");
+
+		activateObj = GetComponent<ActivateOnBarrierOffS>();
 	
 	}
 	
@@ -61,6 +67,9 @@ public class BarrierS : MonoBehaviour {
 							_myRenderer.enabled = false;
 							barrierCollider.enabled = false;
 							activeBarriers--;
+							if (activateObj){
+								activateObj.OnOff();
+							}
 							}else{
 							_myRenderer.material.color = myColor;
 						}
@@ -97,8 +106,10 @@ public class BarrierS : MonoBehaviour {
 
 			activeBarriers++;
 
-			CameraFollowS.F.AddToQueue(gameObject, delayTurnOffTime+turnOffTime);
-
+			CameraFollowS.F.AddToQueue(gameObject, delayTurnOffTime+turnOffTime+extraCameraTime);
+			if (overrideResetPOI != null){
+				CameraFollowS.F.SetOverrideResetPOI(overrideResetPOI);
+			}
 
 			delayTurnOffTime = delayTurnOffTime*activeBarriers*1f + turnOffTime*((activeBarriers*1f)-1f);
 	

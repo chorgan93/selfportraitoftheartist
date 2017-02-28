@@ -15,6 +15,7 @@ public class CameraFollowS : MonoBehaviour {
 
 	private GameObject _poi;
 	private GameObject defaultPoi;
+	private GameObject overrideResetPoi;
 
 	private float startOrthoSize;
 	private float focusMult = 0.9f;
@@ -160,7 +161,14 @@ public class CameraFollowS : MonoBehaviour {
 					SetNewPOI(poiQueue[0]);
 					delayMoveTime = poiDelayTimes[0];
 				}else{
-					ResetPOI();
+					if (overrideResetPoi){
+						SetNewPOI(overrideResetPoi);
+						playerRef.SetTalking(true);
+						overrideResetPoi = null;
+						queueOver = true;
+					}else{
+						ResetPOI();
+					}
 				}
 
 			}
@@ -253,6 +261,9 @@ public class CameraFollowS : MonoBehaviour {
 		}
 
 		queueOver = false;
+	}
+	public void SetOverrideResetPOI(GameObject newOverride){
+		overrideResetPoi = newOverride;
 	}
 
 

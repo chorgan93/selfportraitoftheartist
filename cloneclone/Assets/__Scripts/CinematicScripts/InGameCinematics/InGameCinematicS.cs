@@ -9,6 +9,7 @@ public class InGameCinematicS : MonoBehaviour {
 	public InGameCinemaTextS[] cinemaDialogues;
 	public InGameCinemaCameraS[] cinemaCameraMoves;
 	public InGameCinemaActivateS[] cinemaOnOff;
+	public InGameCinemaMoveObjS[] cinemaMoveObj;
 	public InGameCinemaWaitS[] cinemaWait;
 
 	private int currentStep = 0;
@@ -96,6 +97,18 @@ public class InGameCinematicS : MonoBehaviour {
 				}
 			}
 		}
+		foreach (InGameCinemaMoveObjS c in cinemaMoveObj){
+			if (c.myCinemaStep == currentStep){
+				cinematicDone = false;
+				c.gameObject.SetActive(true);
+				if (c.moveTime > 0){
+					timedStep = true;
+					if (c.moveTime > currentCountdown){
+						currentCountdown = c.moveTime;
+					}
+				}
+			}
+		}
 		foreach (InGameCinemaActivateS a in cinemaOnOff){
 			if (a.myCinemaStep == currentStep){
 				cinematicDone = false;
@@ -128,7 +141,9 @@ public class InGameCinematicS : MonoBehaviour {
 
 		inGameCinematic = false;
 		pRef.SetTalking(false);
-		pRef.SetBuddy(true);
+		if (noBuddy){
+			pRef.SetBuddy(true);
+		}
 		Destroy(gameObject);
 
 	}
