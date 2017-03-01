@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
-	public static int currentBuddy = 0;
+	private int currentBuddy = 0;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private int prevChain = 0;
@@ -870,7 +870,8 @@ public class PlayerController : MonoBehaviour {
 		attackDelay -= Time.deltaTime;
 		allowParryCountdown -= Time.deltaTime;
 		// check if parry conditions are met before attack fires off
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack 
+		    && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
@@ -2035,11 +2036,11 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log("Look 3!");
 		}
 		else if (directionZ > 56.25f && directionZ <= 78.75f){
-			FaceUp();
+			//FaceUp();
 			//Debug.Log("Look 4!");
 		}
 		else if (directionZ > 78.75f && directionZ <= 101.25f) {
-			FaceUp();
+			//FaceUp();
 			//Debug.Log("Look 5!");
 		}
 		else if (directionZ > 101.25f && directionZ <= 123.75f) {
@@ -2067,11 +2068,11 @@ public class PlayerController : MonoBehaviour {
 			//Debug.Log("Look 11!");
 		}
 		else if (directionZ > 236.25f && directionZ <= 258.75f){
-			FaceDown();
+			//FaceDown();
 			//Debug.Log("Look 12!");
 		}
 		else if (directionZ > 258.75f && directionZ <= 281.25f)  {
-			FaceDown();
+			//FaceDown();
 			//Debug.Log("Look 13!");
 		}
 		else if (directionZ > 281.25f && directionZ <= 303.75f) {
@@ -2289,14 +2290,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public BuddyS EquippedBuddy(){
-		return (_myBuddy);
+		return equippedBuddies[currentBuddy].GetComponent<BuddyS>();
 	}
 	public BuddyS SubBuddy(){
 		if (equippedBuddies.Count > 1){
-			if (!altBuddyCreated){
-				return (equippedBuddies[_subParadigm].GetComponent<BuddyS>());
+			if (currentBuddy == 0){
+				return (equippedBuddies[1].GetComponent<BuddyS>());
 			}else{
-				return (_altBuddy);
+				return (equippedBuddies[0].GetComponent<BuddyS>());
 			}
 		}
 		else{

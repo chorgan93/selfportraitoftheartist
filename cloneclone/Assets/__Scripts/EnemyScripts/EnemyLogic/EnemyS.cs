@@ -47,7 +47,8 @@ public class EnemyS : MonoBehaviour {
 	private Collider _myCollider;
 
 	private EnemyHealthUIS healthUIReference;
-	private EnemyHealthBarS healthBarReference;
+	private EnemyHealthFeathersS healthFeatherReference;
+	//private EnemyHealthBarS healthBarReference;
 
 	private Vector3 startSize;
 
@@ -278,7 +279,7 @@ public class EnemyS : MonoBehaviour {
 		if (!_isDead){
 			_currentHealth = maxHealth;
 			_isActive = false;
-			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
+			//EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
 		}
 
 		startSize = transform.localScale;
@@ -324,6 +325,11 @@ public class EnemyS : MonoBehaviour {
 			healthUIReference.NewTarget(this);
 		}
 
+		healthFeatherReference = GetComponentInChildren<EnemyHealthFeathersS>();
+		if (healthFeatherReference){
+			healthFeatherReference.SetUpEnemy(this);
+		}
+
 	}
 
 	public void Reinitialize(){
@@ -359,9 +365,13 @@ public class EnemyS : MonoBehaviour {
 			healthUIReference.NewTarget(this);
 		}
 
-		if (healthBarReference != null){
-			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
+		if (healthFeatherReference){
+			healthFeatherReference.SetUpEnemy(this);
 		}
+
+		/*if (healthBarReference != null){
+			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
+		}**/
 
 	}
 
@@ -688,6 +698,10 @@ public class EnemyS : MonoBehaviour {
 			damageTaken += dmg;
 		}
 
+		if (healthFeatherReference){
+			healthFeatherReference.EnemyHit(damageTaken);
+		}
+
 		if (healthUIReference != null && showHealth){
 			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);
 		}else{
@@ -769,7 +783,7 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown = knockbackTime;
 		}
 
-		healthBarReference.ResizeForDamage();
+		//healthBarReference.ResizeForDamage();
 
 	}
 
@@ -810,7 +824,11 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	public void SetHealthBar(EnemyHealthBarS newBar){
-		healthBarReference = newBar;
+		//healthBarReference = newBar;
+	}
+
+	public void SetHealthDisplay(EnemyHealthFeathersS newFeather){
+		healthFeatherReference = newFeather;
 	}
 
 }

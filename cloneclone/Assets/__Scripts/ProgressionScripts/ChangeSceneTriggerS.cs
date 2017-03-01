@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ChangeSceneTriggerS : MonoBehaviour {
 
@@ -89,7 +90,12 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	void StartNextScene(){
 
-		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, pRef.equippedBuddies);
+		List<int> saveBuddyList = new List<int>();
+		saveBuddyList.Add(pRef.EquippedBuddy().buddyNum);
+		if (pRef.SubBuddy()){
+			saveBuddyList.Add(pRef.SubBuddy().buddyNum);
+		}
+		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 
 		if (setProgressOnActivate > -1 && setProgressOnActivate > StoryProgressionS.storyProgress){
 			StoryProgressionS.storyProgress = setProgressOnActivate;

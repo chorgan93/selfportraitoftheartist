@@ -208,10 +208,13 @@ public class PlayerInventoryS : MonoBehaviour {
 		_iManager.RefreshUI();
 	}
 
-	public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<GameObject> equipBuds){
+	public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<int> equipBuds){
 		equippedWeapons = wepList;
 		subWeapons = subList;
-		equippedBuddies = equipBuds;
+		equippedBuddies = new List<GameObject>();
+		for (int i = 0; i < equipBuds.Count; i++){
+			equippedBuddies.Add(masterLoadoutList.masterBuddyList[equipBuds[i]].gameObject);
+		}
 	}
 	public List<PlayerWeaponS> EquippedWeapons(){
 		return equippedWeapons;
@@ -253,11 +256,10 @@ public class PlayerInventoryS : MonoBehaviour {
 		SetUpStartTech();
 		PlayerStatsS.healOnStart = true;
 		PlayerController._currentParadigm = 0;
-		PlayerController.currentBuddy = 0;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
-		List<GameObject> buddyList = new List<GameObject>();
-		buddyList.Add(unlockedBuddies[0].gameObject);
+		List<int> buddyList = new List<int>();
+		buddyList.Add(unlockedBuddies[0].buddyNum);
 		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
 		OverriteInventoryData();
 	}

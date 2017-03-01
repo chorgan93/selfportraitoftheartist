@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ExamineTriggerS : MonoBehaviour {
 
@@ -144,7 +145,10 @@ public class ExamineTriggerS : MonoBehaviour {
 								if (!fullRevive){
 									InfinityS.savedLastDifficulty = 1;
 								}
-								PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, pRef.equippedBuddies);
+									List<int> saveBuddyList = new List<int>();
+									saveBuddyList.Add(pRef.EquippedBuddy().buddyNum);
+									saveBuddyList.Add(pRef.SubBuddy().buddyNum);
+								PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 								CameraEffectsS.E.SetNextScene(teleportScene);
 								CameraEffectsS.E.FadeIn();
 							}

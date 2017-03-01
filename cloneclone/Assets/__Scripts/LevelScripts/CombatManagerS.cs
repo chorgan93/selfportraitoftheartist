@@ -30,14 +30,16 @@ public class CombatManagerS : MonoBehaviour {
 
 	void CheckForCompletion(){
 
-		defeatedEnemies = 0;
-		foreach (EnemySpawnerS e in enemies){
-			if (e.EnemiesDefeated()){
-				defeatedEnemies++;
+		if (!playerRef.myStats.PlayerIsDead()){
+			defeatedEnemies = 0;
+			foreach (EnemySpawnerS e in enemies){
+				if (e.EnemiesDefeated()){
+					defeatedEnemies++;
+				}
 			}
-		}
-		if (defeatedEnemies >= enemies.Length && !completed){
-			StartCoroutine(CompleteCombat());
+			if (defeatedEnemies >= enemies.Length && !completed){
+				StartCoroutine(CompleteCombat());
+			}
 		}
 
 	}

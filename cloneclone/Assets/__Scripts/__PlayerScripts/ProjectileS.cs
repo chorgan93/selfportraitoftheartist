@@ -149,7 +149,7 @@ public class ProjectileS : MonoBehaviour {
 
 	public void StartKnockback(PlayerController playerReference, Vector3 aimDirection){
 		if (startKnockbackSpeed > 0){
-			Vector3 startKForce = aimDirection.normalized*startKnockbackSpeed*Time.unscaledDeltaTime;
+			Vector3 startKForce = aimDirection.normalized*startKnockbackSpeed*Time.fixedDeltaTime;
 			if (playerReference.superCloseEnemyDetect.allEnemiesInRange.Count > 0){
 				startKForce *= 0.1f;
 			}
@@ -222,13 +222,13 @@ public class ProjectileS : MonoBehaviour {
 
 
 
-			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+			Vector3 shootForce = transform.right * shotSpeed * Time.fixedDeltaTime;
 
 
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
 
-		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(1f-1f)/(4f)) * knockbackMult *Time.deltaTime;
+		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(1f-1f)/(4f)) * knockbackMult *Time.fixedDeltaTime;
 
 
 		if (stopPlayer){
@@ -299,7 +299,7 @@ public class ProjectileS : MonoBehaviour {
 					currentStartPos.y = hitInfo.point.y;
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
-						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						                          dmg, stunMult, critDmg*SolAugMult());
 					}
 				}
@@ -407,7 +407,7 @@ public class ProjectileS : MonoBehaviour {
 				}
 	
 				hitEnemy.TakeDamage
-					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					 dmg, stunMult, critDmg*SolAugMult());
 
 				if (!hitEnemy.isDead){

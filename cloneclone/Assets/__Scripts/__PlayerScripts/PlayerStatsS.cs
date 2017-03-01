@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerStatsS : MonoBehaviour {
 
@@ -492,8 +493,13 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);
 
+					List<int> saveBuddyList = new List<int>();
+					saveBuddyList.Add(myPlayerController.EquippedBuddy().buddyNum);
+					if (myPlayerController.SubBuddy()){
+						saveBuddyList.Add(myPlayerController.SubBuddy().buddyNum);
+					}
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
-					                               myPlayerController.equippedBuddies);
+					                               saveBuddyList);
 					//_uiReference.cDisplay.DeathPenalty();
 
 					if (dontDoCountUp){

@@ -25,6 +25,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	public float attackSpawnDistance;
 	public float accuracyMult = 0f;
 	public bool stopBuddy = false;
+	public bool stopTime = false;
 	
 	[Header("Enemy Interaction")]
 	public bool isPiercing = false;
@@ -41,7 +42,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	private bool doFlashLogic;
 	private bool didFlashLogic = false;
 	
-	private float fadeThreshold = 0.1f;
+	public float fadeThreshold = 0.1f;
 	private Color fadeColor;
 	
 	private Collider myCollider;
@@ -127,7 +128,7 @@ public class BuddyProjectileS : MonoBehaviour {
 
 		Instantiate(muzzleFlash, transform.position, Quaternion.identity);
 		
-		Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+		Vector3 shootForce = transform.right * shotSpeed * Time.fixedDeltaTime;
 		
 		_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 		
@@ -137,7 +138,7 @@ public class BuddyProjectileS : MonoBehaviour {
 			transform.localScale = flipSize;
 		}
 		
-		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
+		Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.fixedDeltaTime;
 		
 		if (_myBuddy != null){
 			if (stopBuddy){
@@ -149,6 +150,9 @@ public class BuddyProjectileS : MonoBehaviour {
 		
 		
 		DoShake();
+		if (stopTime){
+			CameraShakeS.C.TimeSleep(0.1f);
+		}
 		
 		
 	}
@@ -234,7 +238,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	
 				
 				hitEnemy.TakeDamage
-					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.deltaTime, 
+					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					 damage, 1f, damage);
 				
 				if (!isPiercing){
@@ -303,6 +307,9 @@ public class BuddyProjectileS : MonoBehaviour {
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;
+
+		hitObjSpawn = transform.position;
+		hitObjSpawn.z -= 1f;
 
 		Instantiate(hitEffect, hitObjSpawn, Quaternion.identity);
 	}

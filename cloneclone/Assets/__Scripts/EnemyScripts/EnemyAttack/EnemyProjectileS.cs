@@ -144,7 +144,7 @@ public class EnemyProjectileS : MonoBehaviour {
 			transform.parent=_myEnemy.transform;
 		}else{
 			
-			Vector3 shootForce = transform.right * shotSpeed * Time.deltaTime;
+			Vector3 shootForce = transform.right * shotSpeed * Time.fixedDeltaTime;
 			
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 	
@@ -154,7 +154,7 @@ public class EnemyProjectileS : MonoBehaviour {
 				transform.localScale = flipSize;
 			}
 	
-			Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.deltaTime;
+			Vector3 knockbackForce = -(aimDirection).normalized * shotSpeed * selfKnockbackMult *Time.fixedDeltaTime;
 	
 			if (_myEnemy != null){
 				if (stopEnemy){
@@ -251,11 +251,11 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (_myEnemy != null){
 					if (followEnemy){
 						playerRef.myStats.
-								TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+								TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
 						
 					}
 					else{
-							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
 
 					}
 				}
@@ -263,7 +263,7 @@ public class EnemyProjectileS : MonoBehaviour {
 			else{
 
 				playerRef.myStats.
-							TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.deltaTime, knockbackTime);
+							TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
 				
 
 				}
@@ -291,7 +291,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					
 					
 					hitEnemy.TakeDamage
-						(selfKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+						(selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						 0, 1f, 1.5f);
 					
 					if (hitSoundObj){
@@ -322,7 +322,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 					
 					hitEnemy.TakeDamage
-						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.deltaTime, 
+						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						 damage, 1f, 1.5f, 0f, true);
 					
 					if (hitSoundObj){
