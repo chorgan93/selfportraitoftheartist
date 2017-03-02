@@ -16,6 +16,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	public GameObject muzzleFlash;
 	public GameObject hitEffect;
 	public bool flipOnX = false;
+	public float hitEffectSizeMult = 1f;
 	
 	[Header("Attack Properties")]
 	public float range;
@@ -279,6 +280,7 @@ public class BuddyProjectileS : MonoBehaviour {
 		}else{
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*1.75f;
 		}
+		newHitObj.transform.localScale *= hitEffectSizeMult;
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;
@@ -304,6 +306,7 @@ public class BuddyProjectileS : MonoBehaviour {
 		}else{
 			newHitObj.transform.localScale = transform.localScale*transform.localScale.x*1.3f;
 		}
+		newHitObj.transform.localScale *= hitEffectSizeMult;
 		
 		hitObjSpawn += newHitObj.transform.up*Mathf.Abs(newHitObj.transform.localScale.x)/3f;
 		newHitObj.transform.position = hitObjSpawn;

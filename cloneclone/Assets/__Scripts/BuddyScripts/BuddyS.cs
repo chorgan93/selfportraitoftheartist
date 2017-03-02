@@ -54,6 +54,11 @@ public class BuddyS : MonoBehaviour {
 		shadowRenderer.color = shadowCol;
 		shadowRenderer.material.SetColor("_FlashColor", shadowColor);
 
+		if (InGameCinematicS.turnOffBuddies){
+			gameObject.SetActive(false);
+			Debug.Log("BUDDY TURN OFF!");
+		}
+
 	}
 
 	public virtual void FollowPlayer(){

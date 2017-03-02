@@ -21,6 +21,8 @@ public class InGameCinematicS : MonoBehaviour {
 	public bool wakeNextScene = true;
 	public bool noBuddy = false;
 
+	public static bool turnOffBuddies = false;
+
 	public static bool inGameCinematic = false;
 	
 
@@ -29,6 +31,9 @@ public class InGameCinematicS : MonoBehaviour {
 	
 		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 		inGameCinematic = true;
+		if(noBuddy){
+			turnOffBuddies = true;
+		}
 
 	}
 
@@ -36,9 +41,11 @@ public class InGameCinematicS : MonoBehaviour {
 
 		CheckCurrentStep();
 
-		if (noBuddy){
+		/*if (noBuddy){
 			_pRef.SetBuddy(false);
 		}
+		*/
+
 		_pRef.SetTalking(true);
 
 	}
@@ -67,6 +74,7 @@ public class InGameCinematicS : MonoBehaviour {
 				CameraEffectsS.E.SetNextScene(endCinemaScene);
 				CameraEffectsS.E.FadeIn(fadeRate);
 				PlayerController.doWakeUp = wakeNextScene;
+				turnOffBuddies = false;
 			}else{
 				EndCinematic();
 			}
@@ -150,6 +158,7 @@ public class InGameCinematicS : MonoBehaviour {
 	private void EndCinematic(){
 
 		inGameCinematic = false;
+		turnOffBuddies = false;
 		pRef.SetTalking(false);
 		if (noBuddy){
 			pRef.SetBuddy(true);

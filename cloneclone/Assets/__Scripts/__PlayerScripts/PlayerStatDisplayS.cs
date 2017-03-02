@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerStatDisplayS : MonoBehaviour {
 
 	private const float barAddSize = 3f;
-	private const float chargeAddSize = .3f;
+	private const float chargeAddSize = 3f;
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;

@@ -305,7 +305,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			equippedBuddies.Add(masterLoadoutList.masterBuddyList[inventoryData.equippedBuddies[i]].gameObject);
 		}
 
-		PlayerController._currentParadigm = PlayerController.currentBuddy = inventoryData.currentParadigm;
+		PlayerController._currentParadigm = inventoryData.currentParadigm;
 		
 		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
 		PlayerController.equippedUpgrades = inventoryData.equippedTech;

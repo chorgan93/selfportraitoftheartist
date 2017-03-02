@@ -186,7 +186,6 @@ public class PlayerController : MonoBehaviour {
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
-	public static int currentBuddy = 0;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private int prevChain = 0;
@@ -377,11 +376,7 @@ public class PlayerController : MonoBehaviour {
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}
 
-		if (currentBuddy > equippedBuddies.Count){
-			currentBuddy = equippedBuddies.Count;
-		}
-
-		GameObject startBuddy = Instantiate(equippedBuddies[currentBuddy], transform.position, Quaternion.identity)
+		GameObject startBuddy = Instantiate(equippedBuddies[_currentParadigm], transform.position, Quaternion.identity)
 			as GameObject;
 		startBuddy.transform.parent = transform;
 		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
@@ -1284,16 +1279,12 @@ public class PlayerController : MonoBehaviour {
 						_subParadigm = 0;
 					}
 					SwitchParadigm(_currentParadigm);
-
-					currentBuddy++;
-					if (currentBuddy > equippedBuddies.Count-1){
-						currentBuddy = 0;
-					}
 					
 					BuddyS tempSwap = _myBuddy;
 					if (!altBuddyCreated){
 						altBuddyCreated = true;
-						GameObject newBuddy = Instantiate(equippedBuddies[currentBuddy], transform.position,Quaternion.identity)
+						GameObject newBuddy = Instantiate(equippedBuddies[_currentParadigm], 
+						                                  transform.position,Quaternion.identity)
 							as GameObject;
 						newBuddy.transform.parent = transform;
 						_altBuddy = newBuddy.GetComponent<BuddyS>();
@@ -1420,7 +1411,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void BuddyLoad(int buddyIndex, GameObject buddyPrefab){
 
-		if (buddyIndex > 0){
+		if (buddyIndex == _subParadigm){
 			if (altBuddyCreated){
 				Destroy(_altBuddy.gameObject);
 				altBuddyCreated = false;
@@ -2253,12 +2244,12 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetBuddy(bool onOff){
 		if (!onOff){
-			if (EquippedBuddy() != null){
-				EquippedBuddy().gameObject.SetActive(false);
+			if (_myBuddy != null){
+				_myBuddy.gameObject.SetActive(false);
 			}
 		}else{
-			if (EquippedBuddy() != null){
-				EquippedBuddy().gameObject.SetActive(true);
+			if (_myBuddy != null){
+				_myBuddy.gameObject.SetActive(true);
 				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 			}
 		}
@@ -2294,17 +2285,25 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public BuddyS EquippedBuddy(){
-		return equippedBuddies[currentBuddy].GetComponent<BuddyS>();
+		return equippedBuddies[_currentParadigm].GetComponent<BuddyS>();
+	}
+	public BuddyS ParadigmIBuddy(){
+		return equippedBuddies[0].GetComponent<BuddyS>();
 	}
 	public BuddyS SubBuddy(){
 		if (equippedBuddies.Count > 1){
-			if (currentBuddy == 0){
-				return (equippedBuddies[1].GetComponent<BuddyS>());
-			}else{
-				return (equippedBuddies[0].GetComponent<BuddyS>());
-			}
+			return (equippedBuddies[_subParadigm].GetComponent<BuddyS>());
 		}
 		else{
+			return null;
+		}
+	}
+	public BuddyS ParadigmIIBuddy(){
+		if (equippedBuddies.Count > 1){
+
+			return equippedBuddies[1].GetComponent<BuddyS>();
+
+		}else{
 			return null;
 		}
 	}

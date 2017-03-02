@@ -91,9 +91,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	void StartNextScene(){
 
 		List<int> saveBuddyList = new List<int>();
-		saveBuddyList.Add(pRef.EquippedBuddy().buddyNum);
-		if (pRef.SubBuddy()){
-			saveBuddyList.Add(pRef.SubBuddy().buddyNum);
+		saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
+		if (pRef.ParadigmIIBuddy() != null){
+			saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
 		}
 		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 

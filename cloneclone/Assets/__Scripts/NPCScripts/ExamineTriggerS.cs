@@ -146,8 +146,10 @@ public class ExamineTriggerS : MonoBehaviour {
 									InfinityS.savedLastDifficulty = 1;
 								}
 									List<int> saveBuddyList = new List<int>();
-									saveBuddyList.Add(pRef.EquippedBuddy().buddyNum);
-									saveBuddyList.Add(pRef.SubBuddy().buddyNum);
+									saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
+									if (pRef.ParadigmIIBuddy() != null){
+										saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
+									}
 								PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 								CameraEffectsS.E.SetNextScene(teleportScene);
 								CameraEffectsS.E.FadeIn();

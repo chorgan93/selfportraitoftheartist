@@ -15,6 +15,7 @@ public class ShootBuddyS : BuddyS {
 	public float shotDelay = 0.08f;
 	private float shotDelayCountdown = 0f;
 	private bool shotTriggered = false;
+	public bool lookOnShoot = true;
 
 	private bool chargeButtonUp = true;
 
@@ -85,7 +86,9 @@ public class ShootBuddyS : BuddyS {
 			if (myRigid.velocity.x < 0){
 				fScale.x = sScale;
 			}
-			transform.localScale = fScale;
+			if (lookOnShoot){
+				transform.localScale = fScale;
+			}
 		}else{
 			base.FaceDirection();
 		}

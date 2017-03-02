@@ -374,7 +374,7 @@ public class PlayerStatsS : MonoBehaviour {
 					_addedMana++;
 				}
 				if (i == 2){
-					_addedCharge+=10f;
+					_addedCharge+=1f;
 				}
 				if (i == 3){
 					//_addedStrength++;
@@ -401,8 +401,8 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentMana++;
 		}
 		if (i == 2){
-			_currentCharge+=10f;
-			_addedCharge+=10f;
+			_currentCharge+=1f;
+			_addedCharge+=1f;
 		}
 		if (i == 3){
 			_addedStrength++;
@@ -494,9 +494,9 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetBool("IsDead", true);
 
 					List<int> saveBuddyList = new List<int>();
-					saveBuddyList.Add(myPlayerController.EquippedBuddy().buddyNum);
-					if (myPlayerController.SubBuddy()){
-						saveBuddyList.Add(myPlayerController.SubBuddy().buddyNum);
+					saveBuddyList.Add(myPlayerController.ParadigmIBuddy().buddyNum);
+					if (myPlayerController.ParadigmIIBuddy() != null){
+						saveBuddyList.Add(myPlayerController.ParadigmIIBuddy().buddyNum);
 					}
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               saveBuddyList);

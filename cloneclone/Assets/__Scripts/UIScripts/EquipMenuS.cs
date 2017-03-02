@@ -265,7 +265,7 @@ public class EquipMenuS : MonoBehaviour {
 					}else if (currentWeaponSelected == 1){
 						pRef.subWeapons[pRef.currentParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}else{
-						pRef.BuddyLoad(0, allBuddyItems[currentPos-3].buddyInstance);
+						pRef.BuddyLoad(pRef.currentParadigm, allBuddyItems[currentPos-3].buddyInstance);
 						UpdateBuddyDisplay();
 					}
 
@@ -364,7 +364,7 @@ public class EquipMenuS : MonoBehaviour {
 						pRef.subWeapons[pRef.subParadigm] = allMantraItems[currentPos-3].WeaponRefForSwitch();
 					}
 					else{
-						pRef.BuddyLoad(1, allBuddyItems[currentPos-3].buddyInstance);
+						pRef.BuddyLoad(pRef.subParadigm, allBuddyItems[currentPos-3].buddyInstance);
 						UpdateBuddyDisplay();
 					}
 
@@ -773,7 +773,7 @@ public class EquipMenuS : MonoBehaviour {
 		int nextAvail = startPt-3;
 
 		if (dir > 0){
-			if (startPt+3 < allBuddyItems.Length){
+			if (startPt < allBuddyItems.Length){
 				for (int i = startPt-3; i < allBuddyItems.Length; i++){
 					if (allBuddyItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;
