@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 	public int currentParadigm { get { return _currentParadigm; } }
 	private static int _subParadigm = 1;
 	public int subParadigm { get { return _subParadigm; } }
-	private int currentBuddy = 0;
+	public static int currentBuddy = 0;
 	private ProjectileS currentAttackS;
 	private int currentChain = 0;
 	private int prevChain = 0;
@@ -375,6 +375,10 @@ public class PlayerController : MonoBehaviour {
 
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
+		}
+
+		if (currentBuddy > equippedBuddies.Count){
+			currentBuddy = equippedBuddies.Count;
 		}
 
 		GameObject startBuddy = Instantiate(equippedBuddies[currentBuddy], transform.position, Quaternion.identity)
