@@ -197,14 +197,15 @@ public class PlayerController : MonoBehaviour {
 	private float allowParryCountdown = 0f;
 
 	private Vector3 capturedShootDirection;
-	private EnemyDetectS enemyDetect;
 	[Header ("Enemy Detection References")]
+	public EnemyDetectS enemyDetect;
 	public EnemyDetectS lockOnEnemyDetect;
 	public EnemyDetectS superCloseEnemyDetect;
 	public EnemyDetectS dontWalkIntoEnemiesCheck;
 	public EnemyDetectS dontGetStuckInEnemiesCheck;
 	private PlayerDashEffectS attackEffectRef;
 	private EnemyS currentTargetEnemy;
+	public EnemyS targetEnemy { get { return currentTargetEnemy; } }
 
 	private List<EnemyS> enemiesHitByLastAttack;
 	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
@@ -337,7 +338,7 @@ public class PlayerController : MonoBehaviour {
 	void InitializePlayer(){
 
 		_myRigidbody = GetComponent<Rigidbody>();
-		enemyDetect = GetComponentInChildren<EnemyDetectS>();
+		//enemyDetect = GetComponentInChildren<EnemyDetectS>();
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();

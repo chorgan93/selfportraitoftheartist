@@ -21,6 +21,11 @@ public class EquipTechItemS : MonoBehaviour {
 
 	private bool _techEquipped = false;
 
+	public PlayerStatDisplayS statUIRef;
+	public EnemyHealthUIS bossUIRef;
+	public ResetUIS resetUIRef;
+	public VerseDisplayS verseUIRef;
+
 	public void Initialize(PlayerInventoryS i){
 
 		inventoryRef = i;
@@ -59,11 +64,36 @@ public class EquipTechItemS : MonoBehaviour {
 			if (!PlayerController.equippedUpgrades.Contains(techNum)){
 				PlayerController.equippedUpgrades.Add(techNum);
 				techText.color = textOnColor;
+
+				if (techNum == 0){
+					statUIRef.EnableUI();
+				}
+				if (techNum == 1){
+					
+				}
+				if (techNum == 2){
+					
+				}
+				if (techNum == 3){
+					verseUIRef.Show();
+				}
 			}
 		}else{
 			if (PlayerController.equippedUpgrades.Contains(techNum)){
 				PlayerController.equippedUpgrades.Remove(techNum);
 				techText.color = textOffColor;
+				if (techNum == 0){
+					statUIRef.DisableUI();
+				}
+				if (techNum == 1){
+
+				}
+				if (techNum == 2){
+					
+				}
+				if (techNum == 3){
+					verseUIRef.Hide();
+				}
 			}
 		}
 	}

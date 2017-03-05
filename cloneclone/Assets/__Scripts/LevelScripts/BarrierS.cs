@@ -59,7 +59,6 @@ public class BarrierS : MonoBehaviour {
 							
 							if (turnOffSound){
 								Instantiate(turnOffSound);
-								Debug.Log("Played off sound!");
 							}
 						}
 						myColor.a -= fadeRate*Time.deltaTime;

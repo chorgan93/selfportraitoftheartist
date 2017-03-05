@@ -19,6 +19,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public static bool healOnStart = false;
 
 	private PlayerController myPlayerController;
+	public PlayerController pRef { get { return myPlayerController; } }
 
 	public static bool godMode = false;
 	public static bool dontDoCountUp = false;

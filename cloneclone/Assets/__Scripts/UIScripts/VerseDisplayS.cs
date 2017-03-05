@@ -7,6 +7,7 @@ public class VerseDisplayS : MonoBehaviour {
 	public Image verseBorder;
 	public Image verseIcon;
 	public Text verseTitle;
+	private string currentVerse;
 
 	public float fadeRate = 0.5f;
 	private Color currentCol;
@@ -15,6 +16,7 @@ public class VerseDisplayS : MonoBehaviour {
 	private bool fadingOut = false;
 
 	public static VerseDisplayS V;
+	private bool _isShowing = true;
 
 	void Awake(){
 
@@ -35,12 +37,17 @@ public class VerseDisplayS : MonoBehaviour {
 		verseIcon.enabled = false;
 		verseBorder.enabled = false;
 		verseTitle.text = "";
+
+		if (!PlayerController.equippedUpgrades.Contains(3)){
+			_isShowing  = false;
+		}
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		if (_isShowing){
 		if (verseBorder.enabled){
 			if (fadingOut){
 				currentCol = verseBorder.color;
@@ -64,6 +71,7 @@ public class VerseDisplayS : MonoBehaviour {
 				verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
 			}
 		}
+		}
 	
 	}
 
@@ -72,19 +80,41 @@ public class VerseDisplayS : MonoBehaviour {
 	}
 	private IEnumerator EndVerseCoroutine(){
 
+		currentVerse = "";
 		yield return new WaitForSeconds(1.6f);
 		fadingIn = false;
 		fadingOut = true;
 	}
 
 	public void NewVerse(string verseString){
-		verseTitle.text = verseString;
+		verseTitle.text = currentVerse = verseString;
 		fadingIn = true;
 		fadingOut = false;
 		currentCol = verseBorder.color;
 		currentCol.a = 0f;
 		verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
-		verseIcon.enabled = true;
-		verseBorder.enabled = true;
+		if (_isShowing){
+			verseIcon.enabled = true;
+			verseBorder.enabled = true;
+		}else{
+			verseTitle.text = "";
+		}
+	}
+
+	public void Show(){
+		_isShowing = true;
+		if (currentVerse != ""){
+			verseIcon.enabled = true;
+			verseBorder.enabled = true;
+			verseTitle.text = currentVerse;
+		}
+	}
+	public void Hide(){
+		_isShowing = false;
+		if (currentVerse != ""){
+			verseIcon.enabled = false;
+			verseBorder.enabled = false;
+			verseTitle.text = "";
+		}
 	}
 }

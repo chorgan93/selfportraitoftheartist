@@ -56,7 +56,6 @@ public class BuddyS : MonoBehaviour {
 
 		if (InGameCinematicS.turnOffBuddies){
 			gameObject.SetActive(false);
-			Debug.Log("BUDDY TURN OFF!");
 		}
 
 	}

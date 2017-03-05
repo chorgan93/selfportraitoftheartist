@@ -123,6 +123,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		UpdateMaxSizes();
 		UpdateFills();
 
+		if (!PlayerController.equippedUpgrades.Contains(0)){
+			DisableUI ();
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -135,7 +139,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			TurnOnAll();
 		//UpdateMaxSizes();
 		UpdateFills();
-			UpdateText();
+			//UpdateText();
 		}
 	
 	}
@@ -390,5 +394,17 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		refillingCharge = true;
 
 
+	}
+
+	public void DisableUI(){
+		for (int i = 0; i < transform.childCount; i++){
+			transform.GetChild(i).gameObject.SetActive(false);
+		}
+	}
+
+	public void EnableUI(){
+		for (int i = 0; i < transform.childCount; i++){
+			transform.GetChild(i).gameObject.SetActive(true);
+		}
 	}
 }

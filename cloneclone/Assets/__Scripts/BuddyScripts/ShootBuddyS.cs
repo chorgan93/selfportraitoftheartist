@@ -54,7 +54,19 @@ public class ShootBuddyS : BuddyS {
 			myEnemyDetect = playerRef.myDetect;
 		}
 
-		if (playerRef.myLockOn.myEnemy != null && charging){
+		if (playerRef.targetEnemy != null && charging){
+			Vector3 fScale = transform.localScale;
+			if (playerRef.targetEnemy.transform.position.x > transform.position.x){
+				fScale.x = sScale;
+			}
+			
+			if (playerRef.targetEnemy.transform.position.x < transform.position.x){
+				fScale.x = -sScale;
+			}
+			transform.localScale = fScale;
+			
+		}
+		else if (playerRef.myDetect.closestEnemy != null && charging){
 			Vector3 fScale = transform.localScale;
 			if (playerRef.myLockOn.myEnemy.transform.position.x > transform.position.x){
 				fScale.x = sScale;
@@ -145,7 +157,11 @@ public class ShootBuddyS : BuddyS {
 
 		Vector3 aimDir = Vector3.zero;
 
-		if (playerRef.myLockOn.myEnemy != null){
+		if (playerRef.targetEnemy != null){
+			aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
+		}
+		else if (playerRef.myLockOn.myEnemy != null){
 			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
 			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
 		}

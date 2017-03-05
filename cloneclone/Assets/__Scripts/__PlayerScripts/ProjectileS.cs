@@ -246,7 +246,6 @@ public class ProjectileS : MonoBehaviour {
 
 			if (tooCloseForKnockback && knockbackMult < 0){
 				knockbackForce *= 0.1f;
-				Debug.Log("ATTACK TOO CLOSE FOR KNOCKBACK!");
 			}
 
 			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
