@@ -18,6 +18,7 @@ public class CinematicHandlerS : MonoBehaviour {
 	private ControlManagerS _controller;
 	public Text skipText;
 	public Text loadText;
+	public Image skipScreen;
 	private Color skipCol;
 	private float skipFadeRate = 3f;
 	private float skipCount = 0f;
@@ -45,6 +46,8 @@ public class CinematicHandlerS : MonoBehaviour {
 		skipCol.a = 0;
 		loadText.color = skipText.color = skipCol;
 
+		skipScreen.gameObject.SetActive(false);
+
 		loadText.enabled = false;
 
 		Time.timeScale = 1f;
@@ -71,6 +74,7 @@ public class CinematicHandlerS : MonoBehaviour {
 				skipCount += Time.deltaTime;
 				if (skipCount >= skipRequireTime){
 					skipActivated = true;
+					skipScreen.gameObject.SetActive(true);
 				}
 			}else{
 				skipCount = 0f;

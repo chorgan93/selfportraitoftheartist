@@ -358,6 +358,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (PlayerController.doWakeUp || healOnStart){
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
+			PlayerInventoryS.I.RefreshRechargeables();
 			healOnStart = false;
 		}
 		_currentDefense = maxDefense;
