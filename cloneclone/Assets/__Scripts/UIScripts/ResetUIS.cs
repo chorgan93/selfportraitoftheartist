@@ -13,6 +13,7 @@ public class ResetUIS : MonoBehaviour {
 	public Image instructHolder;
 
 	private InventoryManagerS inventoryRef;
+	private bool isShowing = true;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,11 @@ public class ResetUIS : MonoBehaviour {
 			instruction.text = "LB";
 		}else{
 			instruction.text = "R";
+		}
+		if (PlayerController.equippedUpgrades.Contains(2)){
+			Show ();
+		}else{
+			Hide ();
 		}
 	
 	}
@@ -39,7 +45,7 @@ public class ResetUIS : MonoBehaviour {
 	}
 
 	public void UpdateUI(){
-		if (PlayerInventoryS.I.CheckForItem(0)){
+		if (PlayerInventoryS.I.CheckForItem(0) && isShowing){
 			itemIcon.enabled = true;
 			itemHolder.enabled = true;
 			countHolderLeft.enabled = true;
@@ -63,5 +69,15 @@ public class ResetUIS : MonoBehaviour {
 			instruction.enabled = false;
 			instructHolder.enabled = false;
 		}
+	}
+
+	public void Show(){
+		isShowing = true;
+		UpdateUI();
+	}
+
+	public void Hide(){
+		isShowing = false;
+		UpdateUI();
 	}
 }

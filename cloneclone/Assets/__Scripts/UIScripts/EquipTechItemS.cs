@@ -48,8 +48,10 @@ public class EquipTechItemS : MonoBehaviour {
 			techBG.enabled = true;
 			if (PlayerController.equippedUpgrades.Contains(techNum)){
 				techText.color = textOnColor;
+				_techEquipped = true;
 			}else{
 				techText.color = textOffColor;
+				_techEquipped = false;
 			}
 			techText.text = techName;
 
@@ -69,10 +71,10 @@ public class EquipTechItemS : MonoBehaviour {
 					statUIRef.EnableUI();
 				}
 				if (techNum == 1){
-					
+					bossUIRef.Show();
 				}
 				if (techNum == 2){
-					
+					resetUIRef.Show();
 				}
 				if (techNum == 3){
 					verseUIRef.Show();
@@ -86,10 +88,10 @@ public class EquipTechItemS : MonoBehaviour {
 					statUIRef.DisableUI();
 				}
 				if (techNum == 1){
-
+					bossUIRef.Hide();
 				}
 				if (techNum == 2){
-					
+					resetUIRef.Hide();
 				}
 				if (techNum == 3){
 					verseUIRef.Hide();

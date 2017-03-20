@@ -203,13 +203,14 @@ public class EnemyHealthUIS : MonoBehaviour {
 			(startBarLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth)*(currentCombinedHealth/totalMaxHealth);
 		barDamageImage.rectTransform.sizeDelta = barFullImage.rectTransform.sizeDelta = resizeRect;
 
-		
+		if (PlayerController.equippedUpgrades.Contains(1)){
 		// turn on ui elements
 		borderImage.gameObject.SetActive(true);
 		barBGImage.gameObject.SetActive(true);
 		barDamageImage.gameObject.SetActive(true);
 		barFullImage.gameObject.SetActive(true);
 		enemyNameText.gameObject.SetActive(true);
+		}
 
 		showing = true;
 
@@ -327,6 +328,23 @@ public class EnemyHealthUIS : MonoBehaviour {
 		showing = false;
 	}
 
+	void HideAll(){
+		borderImage.gameObject.SetActive(false);
+		barBGImage.gameObject.SetActive(false);
+		barDamageImage.gameObject.SetActive(false);
+		barFullImage.gameObject.SetActive(false);
+		enemyNameText.gameObject.SetActive(false);
+	}
+	void ShowAll(){
+		if (showing){
+			borderImage.gameObject.SetActive(true);
+			barBGImage.gameObject.SetActive(true);
+			barDamageImage.gameObject.SetActive(true);
+			barFullImage.gameObject.SetActive(true);
+			enemyNameText.gameObject.SetActive(true);
+		}
+	}
+
 	private void ShakeBar(bool extra){
 
 		shaking = true;
@@ -342,5 +360,12 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 	public void SetLockOnRef(LockOnS newRef){
 		_lockOnRef = newRef;
+	}
+	
+	public void Show(){
+		ShowAll();
+	}
+	public void Hide(){
+		HideAll();
 	}
 }
