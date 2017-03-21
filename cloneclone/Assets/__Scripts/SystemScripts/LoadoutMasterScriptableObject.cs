@@ -8,4 +8,5 @@ public class LoadoutMasterScriptableObject : ScriptableObject {
 	public List<PlayerWeaponS> masterWeaponList;
 	public List<BuddyS> masterBuddyList;
 	public List<LevelUpS> levelUpList;
+	public List<LockedLevelUpS> lockedUpList;
 }

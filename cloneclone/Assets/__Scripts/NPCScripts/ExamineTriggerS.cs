@@ -34,6 +34,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public BuddyS buddyToGive;
 	public bool forceBuddySwitch = false;
 	public PlayerWeaponS mantraToGive;
+	public int virtueToGive = -1;
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
@@ -51,7 +52,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void Start () {
 
-		if (inventoryNum >= 0 || buddyToGive || (mantraToGive != null)){
+		if (inventoryNum >= 0 || virtueToGive > 0 || buddyToGive || (mantraToGive != null)){
 			CheckInventory();
 		}
 
@@ -222,6 +223,11 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 		if (buddyToGive){
 			if (PlayerInventoryS.I.unlockedBuddies.Contains(buddyToGive)){
+				gameObject.SetActive(false);
+			}
+		}
+		if (virtueToGive > 0){
+			if (PlayerInventoryS.I._earnedVirtues.Contains(virtueToGive)){
 				gameObject.SetActive(false);
 			}
 		}

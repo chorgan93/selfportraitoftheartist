@@ -164,9 +164,15 @@ public class ProjectileS : MonoBehaviour {
 		_myPlayer = playerReference;
 		enemiesHit.Clear();
 		// powerLvl = dmg;
+
+		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
+
 		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
 			dmg*=enragedMult;
+		}
+		if (_myPlayer.playerAug.adaptiveAug){
+			dmg*=_myPlayer.adaptiveAugBonus;
 		}
 
 		weaponNum = _myPlayer.EquippedWeapon().weaponNum;
@@ -258,6 +264,7 @@ public class ProjectileS : MonoBehaviour {
 		currentRange = range;
 
 		transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
+
 
 
 

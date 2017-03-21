@@ -44,7 +44,11 @@ public class LevelUpItemS : MonoBehaviour {
 		_upgradeID = l.upgradeID;
 
 		upgradeNum = upgradeRef.upgradeID;
-		upgradeImage.sprite = upgradeRef.upgradeImg;
+		if (upgradeCost > PlayerCollectionS.currencyCollected){
+			upgradeImage.sprite = upgradeRef.upgradeImgLocked;
+		}else{
+			upgradeImage.sprite = upgradeRef.upgradeImg;
+		}
 		upgradeDescription = upgradeRef.upgradeDescription;
 		upgradeName = upgradeRef.upgradeName;
 		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel;
@@ -63,13 +67,16 @@ public class LevelUpItemS : MonoBehaviour {
 			numOwned = statRef.addedChargeLv;
 		}
 		if (_upgradeID == 3){
-			numOwned = statRef.addedDefense;
+			numOwned = statRef.addedVirtue;
 		}
 		if (_upgradeID == 4){
 			numOwned = statRef.currentChargeRecoverLv-1f;
 		}
 		if (_upgradeID == 5){
 			numOwned = statRef.addedRateLv*1f;
+		}
+		if (_upgradeID == 6){
+			numOwned = statRef.addedStrength;
 		}
 
 		if (numOwned > 0){
@@ -87,8 +94,10 @@ public class LevelUpItemS : MonoBehaviour {
 		
 		if (upgradeCost > PlayerCollectionS.currencyCollected){
 			SetTextColors(lockedTextColor);
+			upgradeNameText.text = upgradeName + " <color=#ff0000ff>(" + upgradeCost +  " la)</color>";
 		}else{
 			SetTextColors(Color.white);
+			upgradeNameText.text = upgradeName + " (" + upgradeCost +  " la)";
 		}
 
 		statDisplayRef.HighlightStat(upgradeNum);
@@ -115,7 +124,7 @@ public class LevelUpItemS : MonoBehaviour {
 				lvH.AddAvailableUpgrade(u);
 			}
 		}
-		lvH.NewNextLevelUps();
+		lvH.NewNextLevelUps(statRef.currentLevel);
 	}
 
 	public void TurnOffVisual(){

@@ -80,6 +80,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _baseStrength = 0.9f;
 	private float _addedStrength = 0; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
+	public float addedStrength { get { return _addedStrength; } }
 
 	
 	private float _baseCrit = 0;
@@ -89,6 +90,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________VIRTUE
 	private float _baseVirtue = 5f;
 	private float _addedVirtue = 0; // (upgradeable)
+	public float addedVirtue { get { return _addedVirtue; } }
 	private float _usedVirtue = 0;
 	public float usedVirtue {get {return _usedVirtue; } }
 	public float usedVirtuePercent {get { return _usedVirtue/(_baseVirtue+_addedVirtue); } }
@@ -478,7 +480,7 @@ public class PlayerStatsS : MonoBehaviour {
 				if(!godMode){
 					
 					if (_currentHealth > maxHealth*0.011f && _currentHealth-dmg <= 0 
-					    && myPlayerController.playerAug.secondChanceAug){
+					    && myPlayerController.playerAug.unstoppableAug){
 						_currentHealth = maxHealth*0.01f;
 					}else{
 						_currentHealth -= dmg;

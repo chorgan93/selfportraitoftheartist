@@ -120,6 +120,23 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public void AddToUpgrades(int i){
 		_earnedUpgrades.Add(i);
+
+		// account for upgrades that add virtues
+
+		// Add "Perceptive" virtue
+		if (i == 7){
+			AddEarnedVirtue(5);
+		}
+		// Add "Adaptive" virtue
+		if (i == 8){
+			AddEarnedVirtue(4);
+		}
+	}
+
+	public void AddEarnedVirtue(int i){
+		if (!_earnedVirtues.Contains(i)){
+			_earnedVirtues.Add(i);
+		}
 	}
 
 	public void AddClearedWall(int i){
@@ -313,13 +330,17 @@ public class PlayerInventoryS : MonoBehaviour {
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		List<LevelUpS> nLU = new List<LevelUpS>();
 		List<LevelUpS> aLU = new List<LevelUpS>();
+		List<LockedLevelUpS> lLU = new List<LockedLevelUpS>();
 		for (int i = 0; i < inventoryData.nextLevelUpgrades.Count; i++){
 			nLU.Add(masterLoadoutList.levelUpList[inventoryData.nextLevelUpgrades[i]]);
 		}
 		for (int i = 0; i < inventoryData.availableUpgrades.Count; i++){
 			aLU.Add(masterLoadoutList.levelUpList[inventoryData.availableUpgrades[i]]);
 		}
-		lHandler.LoadLists(nLU, aLU);
+		for (int i = 0; i < inventoryData.lockedUpgrades.Count; i++){
+			lLU.Add(masterLoadoutList.lockedUpList[inventoryData.lockedUpgrades[i]]);
+		}
+		lHandler.LoadLists(nLU, aLU, lLU);
 
 		
 		RefreshRechargeables();
@@ -380,6 +401,10 @@ public class PlayerInventoryS : MonoBehaviour {
 			for (int i = 0; i < lHandler.nextLevelUps.Count; i++){
 				inventoryData.nextLevelUpgrades.Add(lHandler.nextLevelUps[i].upgradeID);
 			}
+			inventoryData.lockedUpgrades = new List<int>();
+			for (int i = 0; i < lHandler.lockedLevelUps.Count; i++){
+				inventoryData.lockedUpgrades.Add(lHandler.lockedLevelUps[i].lockedUpgradeID);
+			}
 
 			inventoryData.currentParadigm = PlayerController._currentParadigm;
 
@@ -418,6 +443,7 @@ public class InventorySave {
 
 	public List<int> nextLevelUpgrades;
 	public List<int> availableUpgrades;
+	public List<int> lockedUpgrades;
 
 
 	public InventorySave(){
@@ -446,8 +472,9 @@ public class InventorySave {
 		equippedInventory = new List<int>();
 		currentParadigm = 0;
 
-		availableUpgrades = new List<int>();
-		nextLevelUpgrades = new List<int>();
+		availableUpgrades = new List<int>(){0,1,2,6};
+		nextLevelUpgrades = new List<int>(){4,5,3};
+		lockedUpgrades = new List<int>(){0,1};
 
 	}
 }

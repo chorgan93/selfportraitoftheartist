@@ -248,6 +248,10 @@ public class PlayerController : MonoBehaviour {
 
 	private float staggerBonusTimeMax = 1f;
 	private float staggerBonusTime;
+	private float _adaptiveAugBonus = 1f;
+	private float _adaptiveAugAdd = 0.1f;
+	private float _adaptiveAugCurrentShift = 0;
+	public float adaptiveAugBonus { get { return (_adaptiveAugBonus + _adaptiveAugAdd*_adaptiveAugCurrentShift); } }
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -389,6 +393,7 @@ public class PlayerController : MonoBehaviour {
 
 		currentChain = -1;
 		comboDuration = 0f;
+		_adaptiveAugCurrentShift = 0;
 
 		queuedAttacks = new List<GameObject>();
 		queuedAttackDelays = new List<float>();
@@ -829,6 +834,7 @@ public class PlayerController : MonoBehaviour {
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();
+				_adaptiveAugCurrentShift = 0;
 			}
 		}
 
@@ -1044,6 +1050,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (_myStats.currentMana <= 0){
 				comboDuration = 0f;
+				_adaptiveAugCurrentShift = 0;
 			}
 
 				if (myRenderer.transform.localScale.x > 0){
@@ -1482,7 +1489,7 @@ public class PlayerController : MonoBehaviour {
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}
-
+		_adaptiveAugCurrentShift+=1f;
 	}
 
 	private bool StaminaCheck(float cost, bool takeAway = true){

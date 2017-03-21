@@ -328,6 +328,7 @@ public class EnemyS : MonoBehaviour {
 		healthFeatherReference = GetComponentInChildren<EnemyHealthFeathersS>();
 		if (healthFeatherReference){
 			healthFeatherReference.SetUpEnemy(this);
+			healthFeatherReference.Hide();
 		}
 
 	}
@@ -367,6 +368,13 @@ public class EnemyS : MonoBehaviour {
 
 		if (healthFeatherReference){
 			healthFeatherReference.SetUpEnemy(this);
+			if (!GetPlayerReference()){
+				healthFeatherReference.Hide ();
+			}else{
+				if (GetPlayerReference().playerAug.perceptiveAug){
+					healthFeatherReference.Show();
+				}
+			}
 		}
 
 		/*if (healthBarReference != null){
@@ -421,6 +429,11 @@ public class EnemyS : MonoBehaviour {
 			if (!isFriendly){
 				if (activationDetect.PlayerInRange()){
 					_isActive = true;
+					if (healthFeatherReference && GetPlayerReference() != null){
+						if (GetPlayerReference().playerAug.perceptiveAug){
+							healthFeatherReference.Show ();
+						}
+					}
 				}
 			}else{
 				if (activationDetect.currentTarget != null){

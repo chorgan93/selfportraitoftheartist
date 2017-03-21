@@ -10,6 +10,7 @@ public class LevelUpS : MonoBehaviour {
 	public int upgradeCostPerLv;
 	public float expCostPerUpgradeOwned;
 	public Sprite upgradeImg;
+	public Sprite upgradeImgLocked;
 	public LevelUpS[] addUpgrades;
 	
 }

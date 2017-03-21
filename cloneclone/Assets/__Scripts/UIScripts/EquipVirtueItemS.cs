@@ -12,6 +12,8 @@ public class EquipVirtueItemS : MonoBehaviour {
 	public float virtueCost = 2f;
 
 	public string virtueDescription;
+	public Sprite virtueEquippedSprite;
+	public Sprite virtueUnequippedSprite;
 	private bool _unlocked = false;
 	public bool unlocked { get { return _unlocked; } }
 
@@ -57,10 +59,12 @@ public class EquipVirtueItemS : MonoBehaviour {
 
 	public void Equip(){
 		virtueEquip.enabled = true;
+		virtueImage.sprite = virtueEquippedSprite;
 	}
 
 	public void Unequip(){
 		virtueEquip.enabled = false;
+		virtueImage.sprite = virtueUnequippedSprite;
 	}
 
 

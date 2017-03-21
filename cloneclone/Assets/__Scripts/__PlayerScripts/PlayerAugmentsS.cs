@@ -6,7 +6,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// script handles all upgrades from sub-weapons and virtues
 	private PlayerController _playerReference;
 
-	// weapon augmentations
+	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
 	public bool lunaAug { get { return _lunaAug; } }
 	public const float lunaAugAmt = 1.5f;
@@ -30,18 +30,38 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _aeroAug = false;
 	public bool aeroAug { get { return _aeroAug; } }
 
-	// virtue augmentations
-	private bool _secondChanceAug = false;
-	public bool secondChanceAug { get { return _secondChanceAug; } }
-	
-	private bool _opportunisticAug = false;
+	//____________________________________________________________virtue augmentations
+	// index 0
+	private bool _unstoppableAug = false;
+	public bool unstoppableAug { get { return _unstoppableAug; } }
+
+	// NOT USED
+	private bool _opportunisticAug = false; // VIRTUE NOT USED
 	public bool opportunisticAug { get { return _opportunisticAug; } }
-	
-	private bool _dashAug = false;
+
+	// NOT USED
+	private bool _dashAug = false; // VIRTUE NOT USED
 	public bool dashAug { get { return _dashAug; } }
-	
+
+	// index 1
+	private bool _determinedAug = false;
+	public bool determinedAug { get { return _determinedAug; } }
+
+	// index 2
+	private bool _empoweredAug = false;
+	public bool empowered { get { return _empoweredAug; } }
+
+	// index 3
 	private bool _enragedAug = false;
 	public bool enragedAug { get { return _enragedAug; } }
+
+	// index 4
+	private bool _adaptiveAug = false;
+	public bool adaptiveAug { get { return _adaptiveAug; } }
+
+	// index 5
+	private bool _perceptiveAug = false;
+	public bool perceptiveAug { get { return _perceptiveAug; } }
 
 	private bool _initialized;
 
@@ -80,9 +100,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
-		_secondChanceAug = false;
+		_unstoppableAug = false;
 		_dashAug = false;
 		_enragedAug = false;
+		_determinedAug = false;
+		_empoweredAug = false;
+		_adaptiveAug = false;
+		_perceptiveAug = false;
 
 
 	}
@@ -130,16 +154,24 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private void TurnOnVirtueAugs(){
 
 		if (PlayerController.equippedVirtues.Contains(0)){
-			_secondChanceAug = true;
+			_unstoppableAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(1)){
-			_opportunisticAug = true;
+			//_opportunisticAug = true;
+			_determinedAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(2)){
-			_dashAug = true;
+			//_dashAug = true;
+			_empoweredAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(3)){
 			_enragedAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(4)){
+			_adaptiveAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(5)){
+			_perceptiveAug = true;
 		}
 
 	}

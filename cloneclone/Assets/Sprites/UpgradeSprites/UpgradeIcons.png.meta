@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c1532c04e74bc480d9b1dba4cce5154c
-timeCreated: 1476858343
+timeCreated: 1490059200
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,14 @@ TextureImporter:
     21300006: UpgradeIcons_3
     21300008: UpgradeIcons_4
     21300010: UpgradeIcons_5
+    21300012: UpgradeIcons_6
+    21300014: UpgradeIcons_7
+    21300016: UpgradeIcons_8
+    21300018: UpgradeIcons_9
+    21300020: UpgradeIcons_10
+    21300022: UpgradeIcons_11
+    21300024: UpgradeIcons_12
+    21300026: UpgradeIcons_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,7 +40,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -65,7 +73,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -75,7 +83,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -84,8 +92,8 @@ TextureImporter:
     - name: UpgradeIcons_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -94,8 +102,8 @@ TextureImporter:
     - name: UpgradeIcons_3
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -105,13 +113,93 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 128
         width: 64
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: UpgradeIcons_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UpgradeIcons_13
       rect:
         serializedVersion: 2
         x: 64

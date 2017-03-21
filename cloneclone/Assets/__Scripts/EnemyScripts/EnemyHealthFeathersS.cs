@@ -31,6 +31,8 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	private float floatTimeMax = 6f;
 	private float currentFloatT;
 	private float floatDir = 1f;
+	
+	private bool isShowing = true;
 
 	private EnemyS myEnemy;
 	public EnemyS enemyRef { get { return myEnemy; } }
@@ -158,6 +160,23 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 		for (int i = falseFeathers.Count-1; i >= 0; i--){
 			falseFeathers[i].SetTrigger("Destroy");
 			yield return new WaitForSeconds(deathFeatherTime);
+		}
+	}
+
+	public void Show(){
+		if (!isShowing){
+			isShowing = true;
+			for (int i = 0; i < myFeathers.Length; i++){
+				myFeathers[i].gameObject.SetActive(true);
+			}
+		}
+	}
+	public void Hide(){
+		if (isShowing){
+			isShowing = false;
+			for (int i = 0; i < myFeathers.Length; i++){
+				myFeathers[i].gameObject.SetActive(false);
+			}
 		}
 	}
 }
