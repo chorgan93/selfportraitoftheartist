@@ -44,14 +44,15 @@ public class LevelUpItemS : MonoBehaviour {
 		_upgradeID = l.upgradeID;
 
 		upgradeNum = upgradeRef.upgradeID;
+		upgradeDescription = upgradeRef.upgradeDescription;
+		upgradeName = upgradeRef.upgradeName;
+		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel;
+
 		if (upgradeCost > PlayerCollectionS.currencyCollected){
 			upgradeImage.sprite = upgradeRef.upgradeImgLocked;
 		}else{
 			upgradeImage.sprite = upgradeRef.upgradeImg;
 		}
-		upgradeDescription = upgradeRef.upgradeDescription;
-		upgradeName = upgradeRef.upgradeName;
-		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel;
 
 
 

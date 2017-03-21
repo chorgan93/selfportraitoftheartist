@@ -18,6 +18,7 @@ public class CombatManagerS : MonoBehaviour {
 
 	public GameObject[] turnOffOnEnd;
 	public GameObject[] turnOnOnEnd;
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -71,6 +72,8 @@ public class CombatManagerS : MonoBehaviour {
 	}
 
 	public void Initialize(bool itemReset = false){
+
+
 		foreach (EnemySpawnerS e in enemies){
 			if (e.gameObject.activeSelf){
 				e.RespawnEnemies();

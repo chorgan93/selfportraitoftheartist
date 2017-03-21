@@ -328,7 +328,9 @@ public class EnemyS : MonoBehaviour {
 		healthFeatherReference = GetComponentInChildren<EnemyHealthFeathersS>();
 		if (healthFeatherReference){
 			healthFeatherReference.SetUpEnemy(this);
-			healthFeatherReference.Hide();
+			if (!PlayerController.equippedVirtues.Contains(5)){
+				healthFeatherReference.Hide();
+			}
 		}
 
 	}

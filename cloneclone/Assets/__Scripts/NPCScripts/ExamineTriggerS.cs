@@ -188,6 +188,10 @@ public class ExamineTriggerS : MonoBehaviour {
 										StoryProgressionS.SaveProgress();
 									}
 							}
+
+								if (virtueToGive > 0){
+									PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
+								}
 	
 							if (unlocking){
 								turnOffBarrier.TurnOff();

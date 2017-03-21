@@ -79,6 +79,7 @@ public class EquipMenuS : MonoBehaviour {
 	public RectTransform[] selectorPositionsVirtues;
 	private int virtueCapacity = 4;
 	public Image virtueBarUsed;
+	public Image virtueBarFull;
 	public Text virtueBarAmtText;
 	private Vector2 virtueBarSizeDelta;
 	private float virtueBarMaxX;
@@ -131,7 +132,7 @@ public class EquipMenuS : MonoBehaviour {
 		}else{
 			playerLevel.text = "LV. " + pRef.myStats.currentLevel;
 		}
-		virtueBarMaxX = virtueBarUsed.rectTransform.sizeDelta.x;
+		virtueBarMaxX = virtueBarFull.rectTransform.sizeDelta.x-2;
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 
 		descriptionText.text = "";
@@ -434,7 +435,7 @@ public class EquipMenuS : MonoBehaviour {
 						}
 					}
 
-					
+				pRef.playerAug.RefreshAll();
 					
 					UpdateVirtueDisplay();
 
@@ -447,6 +448,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
 				virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
+				currentPos = 0;
 				SetSelector(2);
 				virtueSubscreen.gameObject.SetActive(false);
 				inventoryWhole.gameObject.SetActive(true);

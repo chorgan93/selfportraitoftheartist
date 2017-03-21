@@ -10,8 +10,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 
-	private const float DARKNESS_ADD_RATE = 0.0001f;
-	private const float DARKNESS_ADD_DEATH = 0.1f;
+	private const float DARKNESS_ADD_RATE = 0.001f;
+	private const float DARKNESS_ADD_DEATH = 2f/3f;
 	public const float DARKNESS_MAX = 100f;
 	
 	private const float VIRTUE_ADD_AMT = 2f;

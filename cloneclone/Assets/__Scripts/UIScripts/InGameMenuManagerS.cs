@@ -45,7 +45,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 		if (!_pRef.myStats.PlayerIsDead()){
 		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
-		    && !_pRef.talking){
+		    && !_pRef.talking && !_pRef._inCombat){
 
 				// TODO: turn back on once functional
 			if (allowMenuUse && _pRef.myControl.StartButton() && !equipMenuButtonDown){

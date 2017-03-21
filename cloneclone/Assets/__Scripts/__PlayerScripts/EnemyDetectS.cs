@@ -216,7 +216,7 @@ public class EnemyDetectS : MonoBehaviour {
 		bool parryInRange = false;
 		parryEnemies.Clear();
 		for (int i = 0; i < enemiesInRange.Count; i++){
-			if (enemiesInRange[i].canBeParried){
+			if (enemiesInRange[i].canBeParried && !enemiesInRange[i].isCritical){
 				parryInRange = true;
 				parryEnemies.Add(enemiesInRange[i]);
 			}
