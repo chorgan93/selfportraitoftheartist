@@ -62,6 +62,26 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 5
 	private bool _perceptiveAug = false;
 	public bool perceptiveAug { get { return _perceptiveAug; } }
+	
+	// index 6
+	private bool _agileAug = false;
+	public bool agileAug { get { return _agileAug; } }
+
+	// index 7
+	private bool _repellantAug = false;
+	public bool repellantAug { get { return _repellantAug; } }
+	
+	// index 8
+	private bool _trustingAug = false;
+	public bool trustingAug { get { return _trustingAug; } }
+
+	// index 9
+	private bool _drivenAug = false;
+	public bool drivenAug { get { return _drivenAug; } }
+	
+	// index 10
+	private bool _anxiousAug = false;
+	public bool anxiousAug { get { return _anxiousAug; } }
 
 	private bool _initialized;
 
@@ -107,6 +127,11 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_empoweredAug = false;
 		_adaptiveAug = false;
 		_perceptiveAug = false;
+		_agileAug = false;
+		_repellantAug = false;
+		_trustingAug = false;
+		_drivenAug = false;
+		_anxiousAug = false;
 
 
 	}
@@ -172,6 +197,21 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 		if (PlayerController.equippedVirtues.Contains(5)){
 			_perceptiveAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(6)){
+			_agileAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(7)){
+			_repellantAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(8)){
+			_trustingAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(9)){
+			_drivenAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(10)){
+			_anxiousAug = true;
 		}
 
 	}

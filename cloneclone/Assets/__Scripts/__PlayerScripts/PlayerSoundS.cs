@@ -11,6 +11,7 @@ public class PlayerSoundS : MonoBehaviour {
 	public GameObject[] footsteps;
 	public float footstepRate = 0.22f;
 	public float runningMult = 1.6f;
+	public float sprintingMult = 2.8f;
 	private float footstepCountdown;
 	private int footstepToUse = 0;
 	public GameObject footstepObj;
@@ -57,7 +58,10 @@ public class PlayerSoundS : MonoBehaviour {
 
 
 		if (_walking){
-			if (_running){
+			if (pRef.isSprinting){
+				footstepCountdown -= Time.deltaTime*sprintingMult;
+			}
+			else if (_running){
 				footstepCountdown -= Time.deltaTime*runningMult;
 			}else{
 				footstepCountdown -= Time.deltaTime;

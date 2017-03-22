@@ -237,7 +237,7 @@ public class ProjectileS : MonoBehaviour {
 		Vector3 knockbackForce = -(aimDirection).normalized * knockbackSpeed * (1f + maxKnockbackMult *(1f-1f)/(4f)) * knockbackMult *Time.fixedDeltaTime;
 
 
-		if (stopPlayer){
+		if (stopPlayer && !_myPlayer.isSprinting){
 			if (dashAttack){
 				_myPlayer.myRigidbody.velocity *= 0.6f;
 			}else{

@@ -10,6 +10,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 
+	private const float anxiousChargeRate = 0.1f;
+
 	private const float DARKNESS_ADD_RATE = 0.001f;
 	private const float DARKNESS_ADD_DEATH = 2f/3f;
 	public const float DARKNESS_MAX = 100f;
@@ -88,7 +90,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 	
 	//________________________________VIRTUE
-	private float _baseVirtue = 5f;
+	private float _baseVirtue = 6f;
 	private float _addedVirtue = 0; // (upgradeable)
 	public float addedVirtue { get { return _addedVirtue; } }
 	private float _usedVirtue = 0;
@@ -175,6 +177,7 @@ public class PlayerStatsS : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		ManaRecovery();
+		ChargeRecovery();
 		DarknessAdd();
 	}
 
@@ -266,6 +269,14 @@ public class PlayerStatsS : MonoBehaviour {
 	private void DarknessAdd(){
 		if (!PlayerIsDead() && !myPlayerController.talking){
 			_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE;
+		}
+	}
+
+	private void ChargeRecovery(){
+		if (myPlayerController.playerAug.anxiousAug){
+			if (_currentCharge < maxCharge){
+				RecoverCharge(anxiousChargeRate*Time.deltaTime);
+			}
 		}
 	}
 

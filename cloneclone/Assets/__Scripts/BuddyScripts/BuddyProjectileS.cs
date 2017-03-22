@@ -236,11 +236,14 @@ public class BuddyProjectileS : MonoBehaviour {
 			if (!hitEnemy.isDead && !hitEnemy.isFriendly){
 			
 				float actingKnockbackSpeed = shotSpeed*knockbackMult;
-	
+				float actingStunMult = 1f;
+				if (_myBuddy.playerRef.playerAug.trustingAug){
+					actingStunMult = 1.5f;
+				}
 				
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					 damage, 1f, damage);
+					 damage, actingStunMult, damage);
 				
 				if (!isPiercing){
 					

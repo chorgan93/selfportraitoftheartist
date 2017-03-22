@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
 	public float walkThreshold = 0.8f;
 	private bool _isSprinting = false;
 	public float sprintMult = 1.4f;
-	public float sprintDuration = 1f;
+	public float sprintStaminaRate = .75f;
 	private bool _isDoingMovement = false;
 	public bool isDoingMovement { get { return _isDoingMovement; } }
 
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.8f;
+	private float dashSprintAllowMult = 0.48f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -532,6 +533,7 @@ public class PlayerController : MonoBehaviour {
 			Vector2 input2 = Vector2.zero;
 			input2.x = controller.Horizontal();
 			input2.y = controller.Vertical();
+			input2 = input2.normalized;
 
 			if (input2.x != 0 || input2.y != 0){
 				savedDir.x = input2.x;
@@ -600,6 +602,7 @@ public class PlayerController : MonoBehaviour {
 							_myRigidbody.AddForce( moveVelocity*Time.deltaTime, ForceMode.Acceleration );
 						}
 					}
+
 				}
 		
 			}else{
@@ -673,7 +676,7 @@ public class PlayerController : MonoBehaviour {
 
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
-		_myRigidbody.velocity = Vector3.zero;
+		//_myRigidbody.velocity = Vector3.zero;
 		_triggerBlock = false;
 
 		FlashMana();
@@ -724,16 +727,21 @@ public class PlayerController : MonoBehaviour {
 			_isDashing = true;
 		}
 
+		_isSprinting = false;
+
 		SpawnDashPuff();
 
 	}
 
 	private void TriggerSprint(){
-		//CameraShakeS.C.SmallShake();
 		_isSprinting = true;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag;
+		
+		if (dontGetStuckInEnemiesCheck.NoEnemies()){
+			gameObject.layer = START_PHYSICS_LAYER;
+		}
 	}
 
 	private void DashControl(){
@@ -743,7 +751,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
-			if (myControl.DashTrigger() && CanInputDash() && _myStats.ManaCheck(1, false)){
+			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false)){
 
 				TriggerDash();
 				dashButtonUp = false;
@@ -763,6 +771,8 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 				dashButtonUp = false;
+			}else{
+				dashButtonUp = true;
 			}
 			
 			
@@ -780,6 +790,8 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
+			    (!chargingAttack && dashDurationTime >= dashDurationTimeMax*dashSprintAllowMult 
+			 && controller.DashTrigger() && !dashButtonUp) ||
 			    (chargingAttack && !_chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult) ||
 			    (controller.DashTrigger() && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
 				
@@ -803,8 +815,9 @@ public class PlayerController : MonoBehaviour {
 						_chargingAttack = false;
 						_myAnimator.SetBool("Charging", false);
 					}
-				}else if (controller.DashTrigger()){
-					//_triggerBlock = true;
+				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting 
+				          && _myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
+					TriggerSprint();
 				}
 			}
 		}
@@ -812,11 +825,17 @@ public class PlayerController : MonoBehaviour {
 		if (_isTalking){
 			dashButtonUp = false;
 			_triggerBlock = false;
+			_isSprinting = false;
 		}else{
 			if (!myControl.DashTrigger()){
 				dashButtonUp = true;
 				_triggerBlock = false;
 				_dashStickReset = true;
+				_isSprinting = false;
+			}else if (_isSprinting){
+				if (!_myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
+					_isSprinting = false;
+				}
 			}
 			if (!_dashStickReset){
 				if (Mathf.Abs(controller.Horizontal()) <= 0.1f && Mathf.Abs(controller.Vertical()) <= 0.1f){
@@ -1038,7 +1057,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			SpawnAttackPuff();
-
+			_isSprinting = false;
 
 				// subtract mana cost
 			if (_playerAug.gaeaAug){
@@ -1140,7 +1159,7 @@ public class PlayerController : MonoBehaviour {
 
 						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
 
-						_isSprinting = false;
+						//_isSprinting = false;
 						_doingDashAttack = true;
 
 							
@@ -2212,7 +2231,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool IsSliding(){
-		return (_isDashing && dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime);
+		return (_isDashing && dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime && !_playerAug.agileAug);
 	}
 
 	public Vector3 ShootPosition(){
