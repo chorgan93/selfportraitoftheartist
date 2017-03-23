@@ -911,7 +911,7 @@ public class PlayerController : MonoBehaviour {
 		attackDelay -= Time.deltaTime;
 		allowParryCountdown -= Time.deltaTime;
 		// check if parry conditions are met before attack fires off
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack 
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)
 		    && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
@@ -1119,7 +1119,7 @@ public class PlayerController : MonoBehaviour {
 				    || ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())){
 
 					// first, check for parry, then counter attack, then regular attack
-					if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack){
+					if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 						List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 						for (int i = 0; i < enemiesToParry.Count; i++){
 							enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
