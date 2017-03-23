@@ -22,10 +22,10 @@ public class LevelUpItemS : MonoBehaviour {
 
 	private PlayerStatsS statRef;
 
-	private Color lockedTextColor;
+	public Color lockedTextColor;
 
 	void Start(){
-		lockedTextColor = upgradeNameText.color;
+		//lockedTextColor = upgradeNameText.color;
 		statRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 	}
 

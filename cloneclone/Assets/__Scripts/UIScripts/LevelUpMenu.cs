@@ -16,7 +16,7 @@ public class LevelUpMenu : MonoBehaviour {
 	[Header("Main Menu Selections")]
 	public RectTransform[] mainMenuSelectPositions;
 	public Text[] mainMenuTextObjs;
-	private Color textStartColor;
+	public Color textStartColor;
 	private int textStartSize;
 	public float textSelectSizeMult = 1.2f;
 	public GameObject mainMenuObj;
@@ -318,7 +318,7 @@ public class LevelUpMenu : MonoBehaviour {
 			
 			pRef = GetComponentInParent<InGameMenuManagerS>().pRef;
 			myControl = pRef.myControl;
-			textStartColor = mainMenuTextObjs[0].color;
+			//textStartColor = mainMenuTextObjs[0].color;
 			textStartSize = mainMenuTextObjs[0].fontSize;
 			_initialized = true;
 			levelHandler = PlayerInventoryS.I.GetComponent<LevelUpHandlerS>();
