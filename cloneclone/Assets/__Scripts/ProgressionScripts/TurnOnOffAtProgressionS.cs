@@ -11,6 +11,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	public int turnOnOffAtItemInInventory = -1;
 	public PlayerWeaponS turnOnOffAtMantraInInventory;
 	public BuddyS turnOnOffAtBuddyInInventory;
+	public int turnOnOffAtTechEarned = -1;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,11 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 			if (PlayerInventoryS.I.unlockedBuddies.Contains(turnOnOffAtBuddyInInventory)){
 				TurnObjectsOnOff();
 			}
+		}
+		else if (turnOnOffAtTechEarned > -1){
+			if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned)){
+				TurnObjectsOnOff();
+			}	
 		}
 	
 	}

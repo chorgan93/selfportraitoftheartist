@@ -53,6 +53,8 @@ public class LevelUpMenu : MonoBehaviour {
 	[HideInInspector]
 	public bool sendExitMessage = false;
 
+	int currentTravelScene = -1;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -110,7 +112,6 @@ public class LevelUpMenu : MonoBehaviour {
 				}
 				
 				else if (currentPos == 1 && canTravel){
-					Debug.Log(PlayerInventoryS.I.CheckpointsReached());
 					TurnOnTravelMenu();
 				}
 
@@ -184,8 +185,12 @@ public class LevelUpMenu : MonoBehaviour {
 						currentPos = PlayerInventoryS.I.CheckpointsReached()-1;
 					}
 				}
-				
+
+				if (currentPos != currentTravelScene){
 				travelMenuChoices[currentPos].color = Color.white;
+				}else{
+					travelMenuChoices[currentPos].color = textStartColor;
+				}
 			}
 			
 			cursorObjTravel.anchoredPosition = travelMenuPositions[currentPos].anchoredPosition;
@@ -261,10 +266,12 @@ public class LevelUpMenu : MonoBehaviour {
 		travelMenuProper.gameObject.SetActive(true);
 		mainMenuObj.SetActive(false);
 		_canBeExited = false;
-		currentPos = PlayerInventoryS.I.ReturnCheckpointIndex(Application.loadedLevel);
+		currentPos = currentTravelScene = PlayerInventoryS.I.ReturnCheckpointIndex(Application.loadedLevel);
 		onTravelMenu = true;
 		//CameraFollowS.F.SetZoomIn(true);
 		_controlStickMoved = true;
+
+		travelMenuChoices[currentPos].color = textStartColor;
 		//UpdateAvailableLevelUps();
 		//pRef.TriggerResting();
 	}
@@ -393,16 +400,15 @@ public class LevelUpMenu : MonoBehaviour {
 		
 		int index = 0;
 		while (index < PlayerInventoryS.I.CheckpointsReached()){
-
+			
+			travelMenuChoices[index].color = textStartColor;
 			travelMenuChoices[index].enabled = true;
-			if (index == PlayerInventoryS.I.ReturnCheckpointIndex (Application.loadedLevel)){
-				travelMenuChoices[index].color = Color.white;
-			}
 			index++;
 			
 			yield return new WaitForSeconds(timeBetweenImageOn);
 			
 		}
 		doingEffect = false;
+
 	}
 }

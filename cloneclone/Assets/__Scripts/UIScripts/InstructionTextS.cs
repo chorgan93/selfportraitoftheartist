@@ -7,6 +7,7 @@ public class InstructionTextS : MonoBehaviour {
 	public float fadeRate = 1f;
 	private Text myText;
 	public Image bgText;
+	public Image altBgText;
 	private Color textColor;
 	private Color bgColor;
 
@@ -28,6 +29,9 @@ public class InstructionTextS : MonoBehaviour {
 		bgColor = bgText.color;
 		bgColor.a = 0;
 		bgText.color = bgColor;
+		if (altBgText){
+			altBgText.color = bgColor;
+		}
 
 		pRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 	
@@ -43,6 +47,9 @@ public class InstructionTextS : MonoBehaviour {
 				myText.color = textColor;
 				bgColor.a = textColor.a*0.8f;
 				bgText.color = bgColor;
+				if (altBgText){
+					altBgText.color = bgColor;
+				}
 			}else{
 				if (timedShowing){
 					showCountdown-=Time.deltaTime;
@@ -58,6 +65,9 @@ public class InstructionTextS : MonoBehaviour {
 				myText.color = textColor;
 				bgColor.a = textColor.a;
 				bgText.color = bgColor;
+				if (altBgText){
+					altBgText.color = bgColor;
+				}
 			}
 		}
 	

@@ -36,7 +36,9 @@ public class CameraFollowS : MonoBehaviour {
 	private bool queueOver = true;
 
 	private bool zoomingIn = false;
+	private bool dialogueZoom = false;
 	private float zoomMult = 0.5f;
+	private float dialogueZoomMult = 0.75f;
 
 	private PlayerController playerRef;
 
@@ -133,7 +135,11 @@ public class CameraFollowS : MonoBehaviour {
 		
 		if (_punchHangTime <= 0f){
 			if (zoomingIn){
-				myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+				if (dialogueZoom){
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult;
+				}else{
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+				}
 			}
 			else{
 				if (!CameraShakeS.C.isSleeping){
@@ -198,6 +204,14 @@ public class CameraFollowS : MonoBehaviour {
 
 	public void SetZoomIn(bool zoom){
 		zoomingIn = zoom;
+		dialogueZoom = false;
+	}
+	public void SetDialogueZoomIn(bool zoom){
+		zoomingIn = zoom;
+		dialogueZoom = zoom;
+	}
+	public void EndZoom(){
+		zoomingIn = dialogueZoom = false;
 	}
 
 	public void PunchCombatEnd(Vector3 targetPos){

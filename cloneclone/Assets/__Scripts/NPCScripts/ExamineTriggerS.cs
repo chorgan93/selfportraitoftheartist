@@ -35,6 +35,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool forceBuddySwitch = false;
 	public PlayerWeaponS mantraToGive;
 	public int virtueToGive = -1;
+	public int techToGive = -1;
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
@@ -52,7 +53,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void Start () {
 
-		if (inventoryNum >= 0 || virtueToGive > 0 || buddyToGive || (mantraToGive != null)){
+		if (inventoryNum >= 0 || techToGive > -1 || virtueToGive > 0 || buddyToGive || (mantraToGive != null)){
 			CheckInventory();
 		}
 
@@ -192,6 +193,9 @@ public class ExamineTriggerS : MonoBehaviour {
 								if (virtueToGive > 0){
 									PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
 								}
+								if (techToGive > -1){
+									PlayerInventoryS.I.AddEarnedTech(techToGive);
+								}
 	
 							if (unlocking){
 								turnOffBarrier.TurnOff();
@@ -232,6 +236,11 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 		if (virtueToGive > 0){
 			if (PlayerInventoryS.I._earnedVirtues.Contains(virtueToGive)){
+				gameObject.SetActive(false);
+			}
+		}
+		if (techToGive > -1){
+			if (PlayerInventoryS.I.earnedTech.Contains(techToGive)){
 				gameObject.SetActive(false);
 			}
 		}

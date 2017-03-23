@@ -174,6 +174,13 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 	}
 
+	public void AddEarnedTech(int i){
+		if (!_earnedTech.Contains(i)){
+			_earnedTech.Add(i);
+			PlayerController.equippedUpgrades.Add(i);
+		}
+	}
+
 	public void AddClearedWall(int i){
 		_clearedWalls.Add(i);
 	}
@@ -236,8 +243,8 @@ public class PlayerInventoryS : MonoBehaviour {
 				}
 			}
 			
-			_earnedTech = new List<int>(){0,1,2,3,6,7,8,9};
-			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,6,7};
+			_earnedTech = new List<int>(){0,1,2,3,7,8,9};
+			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,7};
 
 		}
 
@@ -320,8 +327,8 @@ public class PlayerInventoryS : MonoBehaviour {
 	}
 
 	void SetUpStartTech(){
-		_earnedTech = new List<int>(){0,1,2,3,6,7,8,9};
-		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,6,7};
+		_earnedTech = new List<int>(){0,1,2,3,7,8,9};
+		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,7};
 	}
 
 	void LoadInventoryData(){

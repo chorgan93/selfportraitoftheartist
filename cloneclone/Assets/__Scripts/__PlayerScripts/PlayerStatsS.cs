@@ -456,7 +456,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
-		if (!PlayerIsDead() && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack 
+		if (!PlayerIsDead() && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack && !myPlayerController.usingitem
 		    && !myPlayerController.delayWitchTime && (!myPlayerController.isDashing || (myPlayerController.isDashing && myPlayerController.IsSliding())) 
 		    && !myPlayerController.talking){
 			if (myPlayerController.isBlocking && _currentDefense > 0){

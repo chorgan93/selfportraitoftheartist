@@ -1240,7 +1240,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false)){
+					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
 					// charge attack
 
 						if (prevChain < 0){

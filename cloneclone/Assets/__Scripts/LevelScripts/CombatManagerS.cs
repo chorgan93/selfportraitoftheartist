@@ -154,7 +154,6 @@ public class CombatManagerS : MonoBehaviour {
 			return true;
 		}
 		else if (!onlyFightOnce || (onlyFightOnce && !PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(combatID))){
-			Debug.Log("Fight is allowed!");
 			return true;
 		}else{
 			if (!correctedFightOnce){
