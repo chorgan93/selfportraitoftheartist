@@ -21,7 +21,7 @@ public class GameDataS {
 		storyProgression = 0;
 	}
 
-	public void OverriteCurrent(){
+	public void OverwriteCurrent(){
 
 		currentReviveScene = GameOverS.reviveScene;
 		currentSpawnPos = GameOverS.revivePosition;
@@ -34,7 +34,7 @@ public class GameDataS {
 		currentLa = PlayerCollectionS.currencyCollected;
 
 		if (PlayerInventoryS.I != null){
-			PlayerInventoryS.I.OverriteInventoryData();
+			PlayerInventoryS.I.OverwriteInventoryData();
 			playerInventory = PlayerInventoryS.inventoryData;
 		}
 
@@ -43,7 +43,7 @@ public class GameDataS {
 	public void LoadCurrent(){
 
 		GameOverS.reviveScene = currentReviveScene;
-		GameOverS.revivePosition = currentSpawnPos;
+		SpawnPosManager.whereToSpawn = GameOverS.revivePosition = currentSpawnPos;
 		StoryProgressionS.storyProgress = storyProgression;
 		PlayerInventoryS.inventoryData = playerInventory;
 		InGameMenuManagerS.hasUsedMenu = hasUsedMenu;

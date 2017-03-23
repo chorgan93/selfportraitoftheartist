@@ -338,7 +338,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
-				if (myPlayerController.isDashing || myPlayerController.InAttack()
+				if (myPlayerController.isDashing || myPlayerController.isSprinting || myPlayerController.InAttack()
 				    || myPlayerController.chargingAttack){
 					canRecover = false;
 				}

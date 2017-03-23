@@ -7,6 +7,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private EquipMenuS equipMenu;
 	private LevelUpMenu levelUpMenu;
 
+
 	public LevelUpMenu levelMenu { get { return levelUpMenu; } }
 
 	private bool gameMenuActive = false;
@@ -131,7 +132,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	}
 
 	public void TurnOffLevelUpMenu(){
-		levelUpMenu.gameObject.SetActive(false);
+		levelUpMenu.TurnOff();
 		levelMenuActive = false;
 	}
 }

@@ -27,7 +27,7 @@ public class SaveLoadS : MonoBehaviour {
 		if (GameDataS.current == null){
 			GameDataS.current = new GameDataS();
 		}
-		GameDataS.current.OverriteCurrent();
+		GameDataS.current.OverwriteCurrent();
 		Save ();
 	}
 	

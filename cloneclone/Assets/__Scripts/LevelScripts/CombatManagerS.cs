@@ -16,9 +16,15 @@ public class CombatManagerS : MonoBehaviour {
 	private bool completed = false;
 	private bool activated = false;
 
+	public ActivateOnCombatS turnOnAtStart;
 	public GameObject[] turnOffOnEnd;
 	public GameObject[] turnOnOnEnd;
 
+	[Header("Fight Once Properties")]
+	public bool onlyFightOnce = false;
+	private bool correctedFightOnce = false;
+	public GameObject[] turnOnOnSkip;
+	public GameObject[] turnOffOnSkip;
 	
 	// Update is called once per frame
 	void Update () {
@@ -73,6 +79,9 @@ public class CombatManagerS : MonoBehaviour {
 
 	public void Initialize(bool itemReset = false){
 
+		if (turnOnAtStart != null){
+			turnOnAtStart.Activate();
+		}
 
 		foreach (EnemySpawnerS e in enemies){
 			if (e.gameObject.activeSelf){
@@ -94,6 +103,7 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}
+		
 	}
 	void TurnOnObjects(){
 		if (turnOnOnEnd != null){
@@ -108,6 +118,49 @@ public class CombatManagerS : MonoBehaviour {
 			for (int i = 0; i < turnOffOnEnd.Length; i++){
 				turnOffOnEnd[i].SetActive(false);
 			}
+		}
+	}
+
+	void TurnOnOnceObjects(){
+		if (turnOnOnSkip != null){
+			for (int i = 0; i < turnOnOnSkip.Length; i++){
+				turnOnOnSkip[i].SetActive(true);
+			}
+		}
+	}
+	
+	void TurnOffOnceObjects(){
+		if (turnOffOnSkip != null){
+			for (int i = 0; i < turnOffOnSkip.Length; i++){
+				turnOffOnSkip[i].SetActive(false);
+			}
+		}
+	}
+
+	void CorrectCompletedFight(){
+		if (darknessHolder != null){
+			darknessHolder.gameObject.SetActive(true);
+		}
+		for (int i = 0; i < barriers.Length; i++){
+			barriers[i].gameObject.SetActive(false);
+		}
+		TurnOnOnceObjects();
+		TurnOffOnceObjects();
+		correctedFightOnce = true;
+	}
+
+	public bool AllowCombat(){
+		if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce == null){
+			return true;
+		}
+		else if (!onlyFightOnce || (onlyFightOnce && !PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(combatID))){
+			Debug.Log("Fight is allowed!");
+			return true;
+		}else{
+			if (!correctedFightOnce){
+				CorrectCompletedFight();
+			}
+			return false;
 		}
 	}
 }

@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class LevelUpMenu : MonoBehaviour {
 
 	public RectTransform cursorObj;
 	public RectTransform cursorObjLvl;
+	public RectTransform cursorObjTravel;
 	private int currentPos = 0;
 
 	private PlayerController pRef;
@@ -19,12 +21,19 @@ public class LevelUpMenu : MonoBehaviour {
 	public float textSelectSizeMult = 1.2f;
 	public GameObject mainMenuObj;
 
+	[Header("Level Up Menu Selections")]
 	public GameObject levelMenuProper;
 	private bool onLevelMenu = false;
 	private bool onTravelMenu = false;
 	public LevelUpItemS[] levelMenuItems;
 	public Image[] levelMenuItemOutlines;
 	public RectTransform[] levelMenuPositions;
+	
+	[Header("Travel Menu Selections")]
+	public GameObject travelMenuProper;
+	public RectTransform[] travelMenuPositions;
+	public Text[] travelMenuChoices;
+	private bool travelStarted = false;
 
 	private float timeBetweenImageOn = 0.1f;
 	private bool doingEffect = false;
@@ -39,6 +48,7 @@ public class LevelUpMenu : MonoBehaviour {
 	private bool _initialized = false;
 
 	private LevelUpHandlerS levelHandler;
+	private bool canTravel = false;
 
 	[HideInInspector]
 	public bool sendExitMessage = false;
@@ -47,6 +57,11 @@ public class LevelUpMenu : MonoBehaviour {
 	void Start () {
 	
 		levelMenuProper.gameObject.SetActive(false);
+		travelMenuProper.gameObject.SetActive(false);
+
+		if (PlayerInventoryS.I.CheckpointsReached() > 1){
+			canTravel = true;
+		}
 
 	}
 	
@@ -77,9 +92,13 @@ public class LevelUpMenu : MonoBehaviour {
 					}
 				}
 
-				
-				mainMenuTextObjs[currentPos].fontSize = Mathf.RoundToInt(textStartSize*textSelectSizeMult);
-				mainMenuTextObjs[currentPos].color = Color.white;
+				if (currentPos != 1 || (currentPos == 1 && canTravel)){
+					mainMenuTextObjs[currentPos].fontSize = Mathf.RoundToInt(textStartSize*textSelectSizeMult);
+					mainMenuTextObjs[currentPos].color = Color.white;
+				}else{
+					mainMenuTextObjs[currentPos].fontSize = textStartSize;
+					mainMenuTextObjs[currentPos].color = textStartColor;
+				}
 			}
 
 			cursorObj.anchoredPosition = mainMenuSelectPositions[currentPos].anchoredPosition;
@@ -89,7 +108,13 @@ public class LevelUpMenu : MonoBehaviour {
 				if (currentPos == 0){
 					TurnOnLevelUpMenu();
 				}
-				if (currentPos == 2){
+				
+				else if (currentPos == 1 && canTravel){
+					Debug.Log(PlayerInventoryS.I.CheckpointsReached());
+					TurnOnTravelMenu();
+				}
+
+				else if (currentPos == 2){
 					TurnOff();
 					sendExitMessage = true;
 				}
@@ -139,6 +164,70 @@ public class LevelUpMenu : MonoBehaviour {
 			}
 		}
 
+		if (onTravelMenu){
+
+			if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
+			                            Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted){
+				_controlStickMoved = true;
+				
+				travelMenuChoices[currentPos].color = textStartColor;
+				
+				if (myControl.Horizontal() > 0f ||
+				    myControl.Vertical() < 0f){
+					currentPos++;
+					if (currentPos >= PlayerInventoryS.I.CheckpointsReached()){
+						currentPos = 0;
+					}
+				}else{
+					currentPos--;
+					if (currentPos < 0){
+						currentPos = PlayerInventoryS.I.CheckpointsReached()-1;
+					}
+				}
+				
+				travelMenuChoices[currentPos].color = Color.white;
+			}
+			
+			cursorObjTravel.anchoredPosition = travelMenuPositions[currentPos].anchoredPosition;
+
+			if (!_selectButtonDown && myControl.MenuSelectButton()){
+				_selectButtonDown = true;
+
+				// load level if we're not already there
+				if (PlayerInventoryS.I.ReturnCheckpointAtIndex(currentPos) != Application.loadedLevel && !travelStarted){
+
+					travelMenuProper.gameObject.SetActive(false);
+					travelStarted = true;
+					_canBeExited = false;
+
+					int nextSceneIndex = PlayerInventoryS.I.ReturnCheckpointAtIndex(currentPos);
+					int nextSceneSpawn = PlayerInventoryS.I.ReturnCheckpointSpawnAtIndex(currentPos);
+
+					List<int> saveBuddyList = new List<int>();
+					saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
+					if (pRef.ParadigmIIBuddy() != null){
+						saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
+					}
+					PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+					
+					CameraEffectsS.E.SetNextScene(nextSceneIndex);
+					CameraEffectsS.E.FadeIn();
+					
+					VerseDisplayS.V.EndVerse();
+					
+					SpawnPosManager.whereToSpawn = nextSceneSpawn;
+
+					pRef.TriggerResting();
+					PlayerController.doWakeUp = true;
+
+
+				}
+			}
+			if (!_exitButtonDown && myControl.ExitButton() && !travelStarted && !doingEffect){
+				TurnOffTravelMenu();
+			}
+		}
+
 		if (myControl.ExitButtonUp()){
 			_exitButtonDown = false;
 		}
@@ -165,6 +254,21 @@ public class LevelUpMenu : MonoBehaviour {
 		pRef.TriggerResting();
 	}
 
+	private void TurnOnTravelMenu(){
+		//pRef.myStats.uiReference.cDisplay.SetShowing (true);
+		cursorObj.gameObject.SetActive(false);
+		StartCoroutine(TurnOnTravelNames());
+		travelMenuProper.gameObject.SetActive(true);
+		mainMenuObj.SetActive(false);
+		_canBeExited = false;
+		currentPos = PlayerInventoryS.I.ReturnCheckpointIndex(Application.loadedLevel);
+		onTravelMenu = true;
+		//CameraFollowS.F.SetZoomIn(true);
+		_controlStickMoved = true;
+		//UpdateAvailableLevelUps();
+		//pRef.TriggerResting();
+	}
+
 	private void UpdateAvailableLevelUps(){
 		int i = 0;
 		foreach (LevelUpItemS l in levelMenuItems){
@@ -187,6 +291,18 @@ public class LevelUpMenu : MonoBehaviour {
 		onLevelMenu = false;
 		CameraFollowS.F.SetZoomIn(false);
 		pRef.TurnOffResting();
+	}
+
+	private void TurnOffTravelMenu(){
+		//pRef.myStats.uiReference.cDisplay.SetShowing (false);
+		cursorObj.gameObject.SetActive(true);
+		travelMenuProper.gameObject.SetActive(false);
+		mainMenuObj.SetActive(true);
+		_canBeExited = true;
+		currentPos = 1;
+		onTravelMenu = false;
+		//CameraFollowS.F.SetZoomIn(false);
+		//pRef.TurnOffResting();
 	}
 
 	public void TurnOn(){
@@ -221,14 +337,20 @@ public class LevelUpMenu : MonoBehaviour {
 		}
 	}
 
-	private void TurnOff(){
+	public void TurnOff(){
 		foreach(Text t in mainMenuTextObjs){
 			t.fontSize = textStartSize;
 			t.color = textStartColor;
 		}
-
+		currentPos = 0;
+		mainMenuTextObjs[0].color = Color.white;
+		mainMenuTextObjs[0].fontSize = Mathf.RoundToInt(textStartSize*textSelectSizeMult);
+		
+		mainMenuTextObjs[1].color = mainMenuTextObjs[2].color = textStartColor;
+		mainMenuTextObjs[1].fontSize = mainMenuTextObjs[2].fontSize = textStartSize;
 		gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(false);
+		travelMenuProper.gameObject.SetActive(false);
 	}
 
 	private void UpdateUpgradeEffect(){
@@ -255,6 +377,31 @@ public class LevelUpMenu : MonoBehaviour {
 			
 			yield return new WaitForSeconds(timeBetweenImageOn);
 
+		}
+		doingEffect = false;
+	}
+
+	private IEnumerator TurnOnTravelNames(){
+		doingEffect = true;
+
+		for (int i = 0; i < travelMenuChoices.Length; i++){
+			travelMenuChoices[i].enabled = false;
+			travelMenuChoices[i].color = textStartColor;
+		}
+		
+		yield return new WaitForSeconds(timeBetweenImageOn);
+		
+		int index = 0;
+		while (index < PlayerInventoryS.I.CheckpointsReached()){
+
+			travelMenuChoices[index].enabled = true;
+			if (index == PlayerInventoryS.I.ReturnCheckpointIndex (Application.loadedLevel)){
+				travelMenuChoices[index].color = Color.white;
+			}
+			index++;
+			
+			yield return new WaitForSeconds(timeBetweenImageOn);
+			
 		}
 		doingEffect = false;
 	}

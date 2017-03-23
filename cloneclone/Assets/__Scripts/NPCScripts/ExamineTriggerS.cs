@@ -84,7 +84,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 		if (playerInRange){
 
-			if (!pRef._inCombat){
+			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading){
 
 			if (!pRef.myControl.TalkButton()){
 				talkButtonDown = false;
@@ -93,7 +93,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (pRef.myControl.TalkButton() && !talkButtonDown){
 				talkButtonDown = true;
 
-				if (!talking && examineString != ""){
+				if (!talking && examineString != "" && !pRef.talking){
 					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading && !pRef.talking){
 
 						pRef.SetTalking(true);

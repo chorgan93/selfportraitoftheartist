@@ -16,6 +16,7 @@ public class FadeScreenUI : MonoBehaviour {
 	private Color _textColor;
 
 	private string destinationScene = "HellScene";
+	private int destinationSceneIndex = -1;
 	AsyncOperation async;
 	private bool startedLoading = false;
 
@@ -150,6 +151,9 @@ public class FadeScreenUI : MonoBehaviour {
 	public void SetNewDestination(string newScene){
 		destinationScene = newScene;
 	}
+	public void SetNewDestination(int newSceneIndex){
+		destinationSceneIndex = newSceneIndex;
+	}
 
 	private void StartLoading(){
 		StartCoroutine(LoadNextScene());
@@ -157,7 +161,11 @@ public class FadeScreenUI : MonoBehaviour {
 	}
 
 	private IEnumerator LoadNextScene(){
-		async = Application.LoadLevelAsync(destinationScene);
+		if (destinationSceneIndex > -1){
+			async = Application.LoadLevelAsync(destinationSceneIndex);
+		}else{
+			async = Application.LoadLevelAsync(destinationScene);
+		}
 		async.allowSceneActivation = false;
 		yield return async;
 	}

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 892065a3a37ff4daa8f9811c566951d9
-timeCreated: 1485821758
+timeCreated: 1490223888
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -48,6 +48,10 @@ TextureImporter:
     21300082: PC Movement Down Redesign_7
     21300084: PC Movement Down Redesign_8
     21300086: PC Movement Down Redesign_9
+    21300088: PC Movement Down Redesign_10
+    21300090: PC Movement Down Redesign_11
+    21300092: PC Movement Down Redesign_12
+    21300094: PC Movement Down Redesign_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -127,8 +131,8 @@ TextureImporter:
     - name: PC Movement Down Redesign_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -137,7 +141,7 @@ TextureImporter:
     - name: PC Movement Down Redesign_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -147,7 +151,7 @@ TextureImporter:
     - name: PC Movement Down Redesign_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -157,8 +161,8 @@ TextureImporter:
     - name: PC Movement Down Redesign_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -167,8 +171,8 @@ TextureImporter:
     - name: PC Movement Down Redesign_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -177,7 +181,7 @@ TextureImporter:
     - name: PC Movement Down Redesign_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -187,7 +191,47 @@ TextureImporter:
     - name: PC Movement Down Redesign_9
       rect:
         serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Down Redesign_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Down Redesign_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Down Redesign_12
+      rect:
+        serializedVersion: 2
         x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Down Redesign_13
+      rect:
+        serializedVersion: 2
+        x: 64
         y: 0
         width: 64
         height: 64

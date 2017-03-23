@@ -31,7 +31,12 @@ public class CheckpointS : MonoBehaviour {
 			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
 		}else{	
 			_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+			PlayerInventoryS.I.AddCheckpoint(Application.loadedLevel, spawnNum);
 		}
+
+		GameOverS.reviveScene = Application.loadedLevelName;
+		GameOverS.revivePosition = spawnNum;
+		StoryProgressionS.SaveProgress();
 	
 	}
 	
@@ -48,7 +53,7 @@ public class CheckpointS : MonoBehaviour {
 			}
 
 			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp
-			    && !_playerDetect.player.talking){
+			    && !_playerDetect.player.talking && !CameraEffectsS.E.isFading){
 				
 				if (fullCheckpoint){
 					_examining = true;

@@ -21,8 +21,10 @@ public class InstructionTrigger : MonoBehaviour {
 		}
 
 		if (turnedOffIfClearedCombat > -1){
-			if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(turnedOffIfClearedCombat)){
-				gameObject.SetActive(false);
+			if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce != null){
+				if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(turnedOffIfClearedCombat)){
+					gameObject.SetActive(false);
+				}
 			}
 		}
 

@@ -17,7 +17,7 @@ public class CombatTriggerS : MonoBehaviour {
 
 	
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player" && !activated){
+		if (other.gameObject.tag == "Player" && !activated && combatReference.AllowCombat()){
 			if (other.gameObject.GetComponent<PlayerController>() != null){
 				combatReference.SetPlayerRef(other.gameObject.GetComponent<PlayerController>());
 				other.gameObject.GetComponent<PlayerController>().SetCombatManager(combatReference);

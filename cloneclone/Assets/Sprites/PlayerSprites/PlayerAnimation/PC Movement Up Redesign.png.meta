@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aa424be9bdd0048ba8c075ad3d0caea4
-timeCreated: 1485823506
+timeCreated: 1490224239
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -49,6 +49,10 @@ TextureImporter:
     21300084: PC Movement Up Redesign_8
     21300086: PC Movement Up Redesign_9
     21300088: PC Movement Up Redesign_10
+    21300090: PC Movement Up Redesign_11
+    21300092: PC Movement Up Redesign_12
+    21300094: PC Movement Up Redesign_13
+    21300096: PC Movement Up Redesign_14
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -128,8 +132,8 @@ TextureImporter:
     - name: PC Movement Up Redesign_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -138,7 +142,7 @@ TextureImporter:
     - name: PC Movement Up Redesign_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -148,7 +152,7 @@ TextureImporter:
     - name: PC Movement Up Redesign_5
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -158,8 +162,8 @@ TextureImporter:
     - name: PC Movement Up Redesign_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -168,8 +172,8 @@ TextureImporter:
     - name: PC Movement Up Redesign_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -178,7 +182,7 @@ TextureImporter:
     - name: PC Movement Up Redesign_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -188,8 +192,8 @@ TextureImporter:
     - name: PC Movement Up Redesign_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -198,7 +202,47 @@ TextureImporter:
     - name: PC Movement Up Redesign_10
       rect:
         serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_13
+      rect:
+        serializedVersion: 2
         x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PC Movement Up Redesign_14
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 0
         width: 64
         height: 64

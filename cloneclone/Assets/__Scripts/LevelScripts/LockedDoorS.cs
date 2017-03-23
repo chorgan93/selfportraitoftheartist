@@ -50,11 +50,11 @@ public class LockedDoorS : MonoBehaviour {
 		}
 
 		if (playerInRange && pRef != null){
-			if (!pRef.inCombat){
+			if (!pRef.inCombat && !CameraEffectsS.E.isFading){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){
-					if (!isTalking && !fading){
+					if (!isTalking && !fading && !pRef.talking){
 						TriggerExamine();
 					}
 					else{

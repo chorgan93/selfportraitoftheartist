@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour {
 	private bool _isSprinting = false;
 	public float sprintMult = 1.4f;
 	public float sprintStaminaRate = .75f;
+	private float sprintNoDrainTime = 0f;
+	private float sprintNoDrainMax = 0.33f;
 	private bool _isDoingMovement = false;
 	public bool isDoingMovement { get { return _isDoingMovement; } }
 
@@ -446,6 +448,8 @@ public class PlayerController : MonoBehaviour {
 		
 		ManageFlash();
 		ManageAugments();
+
+		CurrentEnemyCheck();
 	}
 
 
@@ -698,6 +702,14 @@ public class PlayerController : MonoBehaviour {
 			inputDirection = -savedDir;
 		}
 
+		if (Mathf.Abs(inputDirection.x) <= 0.6f && inputDirection.y < 0){
+			FaceDown();
+		}else if (Mathf.Abs(inputDirection.x) <= 0.6f && inputDirection.y > 0){
+			FaceUp();
+		}else{
+			FaceLeftRight();
+		}
+
 		
 		dashDurationTime = 0;
 		
@@ -738,6 +750,8 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag;
+
+		sprintNoDrainTime = sprintNoDrainMax;
 		
 		if (dontGetStuckInEnemiesCheck.NoEnemies()){
 			gameObject.layer = START_PHYSICS_LAYER;
@@ -815,8 +829,7 @@ public class PlayerController : MonoBehaviour {
 						_chargingAttack = false;
 						_myAnimator.SetBool("Charging", false);
 					}
-				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting 
-				          && _myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
+				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting){
 					TriggerSprint();
 				}
 			}
@@ -833,7 +846,10 @@ public class PlayerController : MonoBehaviour {
 				_dashStickReset = true;
 				_isSprinting = false;
 			}else if (_isSprinting){
-				if (!_myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
+				if (sprintNoDrainTime > 0){
+					sprintNoDrainTime -= Time.deltaTime;
+				}
+				else if (!_myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
 					_isSprinting = false;
 				}
 			}
@@ -1629,6 +1645,14 @@ public class PlayerController : MonoBehaviour {
 			counterAttackTime -= Time.unscaledDeltaTime;
 			if (counterAttackTime <= 0){
 				_allowCounterAttack = false;
+			}
+		}
+	}
+
+	private void CurrentEnemyCheck(){
+		if (currentTargetEnemy != null){
+			if (currentTargetEnemy.isDead){
+				currentTargetEnemy = null;
 			}
 		}
 	}

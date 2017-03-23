@@ -35,6 +35,9 @@ public class PlayerInventoryS : MonoBehaviour {
 	private List<int> healNums;
 	private List<int> staminaNums;
 	private List<int> chargeNums;
+
+	private List<int> checkpointsReachedScenes;
+	private List<int> checkpointsReachedSpawns;
 	
 	private static List<GameObject> equippedBuddies;
 
@@ -57,6 +60,38 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void AddCheckpoint(int sceneIndex, int spawnN){
+		if (!checkpointsReachedScenes.Contains(sceneIndex)){
+			checkpointsReachedScenes.Add(sceneIndex);
+			checkpointsReachedSpawns.Add(spawnN);
+		}
+	}
+
+	public int ReturnCheckpointIndex(int scene){
+		int checkpointNum = 0;
+		if (checkpointsReachedScenes.Contains(scene)){
+			checkpointNum = checkpointsReachedScenes.IndexOf(scene);
+		}
+		return checkpointNum;
+	}
+	public int ReturnCheckpointAtIndex(int index){
+		int checkpointNum = -1;
+		if (checkpointsReachedScenes.Count > index){
+			checkpointNum = checkpointsReachedScenes[index];
+		}
+		return checkpointNum;
+	}
+	public int ReturnCheckpointSpawnAtIndex(int index){
+		int checkpointNum = -1;
+		if (checkpointsReachedScenes.Count > index){
+			checkpointNum = checkpointsReachedSpawns[index];
+		}
+		return checkpointNum;
+	}
+	public int CheckpointsReached(){
+		return checkpointsReachedScenes.Count;
 	}
 
 	public void AddKeyItem(int i){
@@ -176,6 +211,9 @@ public class PlayerInventoryS : MonoBehaviour {
 			equippedBuddies = pRef.equippedBuddies;
 			subWeapons = pRef.subWeapons;
 
+			checkpointsReachedScenes = new List<int>();
+			checkpointsReachedSpawns = new List<int>();
+
 			unlockedWeapons = new List<PlayerWeaponS>();
 			for (int i = 0; i < pRef.equippedWeapons.Count; i++){
 				if (i == 0){
@@ -278,7 +316,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		List<int> buddyList = new List<int>();
 		buddyList.Add(unlockedBuddies[0].buddyNum);
 		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
-		OverriteInventoryData();
+		OverwriteInventoryData();
 	}
 
 	void SetUpStartTech(){
@@ -298,6 +336,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls = inventoryData.clearedWalls;
 		_earnedVirtues = inventoryData.earnedVirtues;
 		_earnedTech = inventoryData.earnedTech;
+
+		_dManager.LoadCombatsCleared(inventoryData.combatClearedAtLeastOnce);
+
+		checkpointsReachedScenes = inventoryData.checkpointsReachedScenes;
+		checkpointsReachedSpawns = inventoryData.checkpointsReachedSpawns;
 
 
 		unlockedWeapons = new List<PlayerWeaponS>();
@@ -342,7 +385,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 		lHandler.LoadLists(nLU, aLU, lLU);
 
-		
+		GameOverS.revivePosition = inventoryData.currentSpawnPoint;
 		RefreshRechargeables();
 
 
@@ -350,7 +393,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_iManager.RefreshUI();
 	}
 	 
-	public void OverriteInventoryData(){
+	public void OverwriteInventoryData(){
 
 		inventoryData = new InventorySave();
 
@@ -367,6 +410,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData.clearedWalls = _clearedWalls;
 			inventoryData.earnedVirtues = _earnedVirtues;
 			inventoryData.earnedTech = _earnedTech;
+
+			inventoryData.checkpointsReachedScenes = checkpointsReachedScenes;
+			inventoryData.checkpointsReachedSpawns = checkpointsReachedSpawns;
+			inventoryData.currentSpawnPoint = GameOverS.revivePosition;
+
+			if (_dManager.combatClearedAtLeastOnce != null){
+				inventoryData.combatClearedAtLeastOnce = _dManager.combatClearedAtLeastOnce;
+			}
 
 
 			for (int i = 0; i < unlockedWeapons.Count; i++){
@@ -427,6 +478,8 @@ public class InventorySave {
 	public List<int> collectedItemCount;
 	public List<int> openedDoors;
 	public List<int> clearedWalls;
+
+	public List<int> combatClearedAtLeastOnce;
 	
 	public List<int> unlockedWeapons;
 	public List<int> unlockedBuddies;
@@ -445,6 +498,11 @@ public class InventorySave {
 	public List<int> availableUpgrades;
 	public List<int> lockedUpgrades;
 
+	
+	public List<int> checkpointsReachedSpawns;
+	public List<int> checkpointsReachedScenes;
+	public int currentSpawnPoint;
+
 
 	public InventorySave(){
 		earnedUpgrades = new List<int>();
@@ -459,6 +517,11 @@ public class InventorySave {
 		openedDoors = new List<int>();
 		clearedWalls = new List<int>();
 
+		combatClearedAtLeastOnce = new List<int>();
+
+		checkpointsReachedScenes = new List<int>();
+		checkpointsReachedSpawns = new List<int>();
+
 		unlockedWeapons = new List<int>();
 		unlockedBuddies = new List<int>();
 		equippedWeapons = new List<int>();
@@ -471,6 +534,7 @@ public class InventorySave {
 
 		equippedInventory = new List<int>();
 		currentParadigm = 0;
+		currentSpawnPoint = 0;
 
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};

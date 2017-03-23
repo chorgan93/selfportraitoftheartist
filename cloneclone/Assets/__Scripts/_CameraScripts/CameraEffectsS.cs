@@ -128,6 +128,9 @@ public class CameraEffectsS : MonoBehaviour {
 	public void SetNextScene(string newDestination){
 		fadeScreen.SetNewDestination(newDestination);
 	}
+	public void SetNextScene(int newDestinationIndex){
+		fadeScreen.SetNewDestination(newDestinationIndex);
+	}
 	public void VignetteDeathEffect(){
 		vignetteFading = true;
 		vignetteFade = vignetteSprites[0].color;

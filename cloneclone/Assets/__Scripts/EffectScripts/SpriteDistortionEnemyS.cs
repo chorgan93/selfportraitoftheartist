@@ -5,6 +5,8 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 
 	private SpriteRenderer mySprite;
 	private SpriteRenderer parentSprite;
+	private Color critColor = Color.gray;
+	private Color startColor;
 
 	public float changeRate = 0.12f;
 	private float changeCountdown = 0f;
@@ -13,6 +15,7 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 	private float changeRateCritMult = 3f;
 
 	private float deadChangeRate;
+	private bool inCritState = false;
 
 	private EnemyS enemyReference;
 
@@ -23,7 +26,8 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 
 		mySprite = GetComponent<SpriteRenderer>();
 		parentSprite = transform.parent.GetComponent<SpriteRenderer>();
-		mySprite.material.SetColor("_FlashColor", enemyReference.bloodColor);
+		startColor = enemyReference.bloodColor;
+		mySprite.material.SetColor("_FlashColor", startColor);
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
 
@@ -54,8 +58,16 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 
 	private void ChangeSize(){
 		if (enemyReference.isCritical && !enemyReference.isDead){
+			if (!inCritState){
+				mySprite.material.SetColor("_FlashColor", critColor);
+				inCritState = true;
+			}
 			transform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeCritMult;
 		}else{
+			if (inCritState){
+				inCritState = false;
+				mySprite.material.SetColor("_FlashColor", startColor);
+			}
 			transform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
 		}
 		changeCountdown = changeRate;
