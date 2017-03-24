@@ -14,13 +14,15 @@ public class InGameCinemaTextS : MonoBehaviour {
 	private bool advanceButtonDown = true;
 	private bool dialogueComplete = false;
 
+	public bool textZoom = false;
+
 	// Use this for initialization
 	void Start () {
 
 		_myHandler = GetComponentInParent<InGameCinematicS>();
 		_myControl = _myHandler.pRef.myControl;
 
-		DialogueManagerS.D.SetDisplayText(textStrings[currentString]);
+		DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
 	}
 	
 	// Update is called once per frame
@@ -35,7 +37,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 					_myHandler.AdvanceCinematic();
 						dialogueComplete = true;
 					}else{
-						DialogueManagerS.D.SetDisplayText(textStrings[currentString]);
+						DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
 					}
 				}else{
 					DialogueManagerS.D.CompleteText();

@@ -88,4 +88,8 @@ public class InstructionTextS : MonoBehaviour {
 		showing = true;
 		myText.text = newText;
 	}
+
+	public void SetTextSize(int newSize){
+		myText.fontSize = newSize;
+	}
 }

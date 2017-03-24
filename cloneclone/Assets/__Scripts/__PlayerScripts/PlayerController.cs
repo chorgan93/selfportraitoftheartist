@@ -176,6 +176,9 @@ public class PlayerController : MonoBehaviour {
 	private float blockPrepCountdown = 0;
 	private float timeInBlock;
 	private float blockPrepMax = 0.18f;
+
+	private InstructionTrigger tutorialRef;
+	public InstructionTrigger tutorialReference { get { return tutorialRef; } }
 		
 	// Attack Properties
 	//public GameObject[] attackChain;
@@ -743,6 +746,10 @@ public class PlayerController : MonoBehaviour {
 
 		SpawnDashPuff();
 
+		if (tutorialRef != null){
+			tutorialRef.AddDodge();
+		}
+
 	}
 
 	private void TriggerSprint(){
@@ -755,6 +762,10 @@ public class PlayerController : MonoBehaviour {
 		
 		if (dontGetStuckInEnemiesCheck.NoEnemies()){
 			gameObject.layer = START_PHYSICS_LAYER;
+		}
+
+		if (tutorialRef != null){
+			tutorialRef.AddSprint();
 		}
 	}
 
@@ -1237,6 +1248,14 @@ public class PlayerController : MonoBehaviour {
 					}
 
 					AttackAnimationTrigger(_doingHeavyAttack);
+
+						if (tutorialRef != null){
+							if (_doingHeavyAttack){
+								tutorialRef.AddHeavyAttack();
+							}else{
+								tutorialRef.AddLightAttack();
+							}
+						}
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
@@ -1343,6 +1362,10 @@ public class PlayerController : MonoBehaviour {
 					_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 
 					_playerAug.RefreshAll();
+
+					if (tutorialRef != null){
+						tutorialRef.AddShift();
+					}
 	
 				}
 			}
@@ -1716,6 +1739,10 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetTrigger("Item");
 		_usingItem = true;
 		usingItemTime = usingItemTimeMax;
+
+		if (tutorialRef != null){
+			tutorialRef.AddReset();
+		}
 	}
 
 	public void ResetCombat(){
@@ -2264,6 +2291,10 @@ public class PlayerController : MonoBehaviour {
 
 	public bool IsRunning(){
 		return (_myAnimator.GetFloat("Speed") > 0.8f);
+	}
+
+	public void SetTutorial(InstructionTrigger newT){
+		tutorialRef = newT;
 	}
 
 	public void SetCombat(bool combat){

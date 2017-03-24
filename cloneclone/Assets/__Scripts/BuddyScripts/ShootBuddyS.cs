@@ -137,6 +137,10 @@ public class ShootBuddyS : BuddyS {
 							}
 						}
 						chargeButtonUp = false;
+
+						if (playerRef.tutorialReference != null){
+							playerRef.tutorialReference.AddFamiliarAttack();
+						}
 					}
 				}
 			}else{

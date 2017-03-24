@@ -10,6 +10,8 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	private bool infiniteSpawn = true;
 
 	public GameObject spawnObject;
+	public GameObject[] spawnObjects;
+	private int currentSpawn = 0;
 	public float spawnObjectRadius = 2.5f;
 	public float spawnRadiusAdd = 0f;
 	public float spawnObjZ = 0f;
@@ -55,8 +57,16 @@ public class SpawnOnProjectileS : MonoBehaviour {
 				spawnPos += Random.insideUnitSphere*spawnObjectRadius;
 				spawnObjectRadius+=spawnRadiusAdd;
 				spawnPos.z = spawnObjZ;
-				GameObject newSpawn = Instantiate(spawnObject, spawnPos, spawnObject.transform.rotation)
-					as GameObject;
+				GameObject newSpawn;
+
+				if (spawnObject != null){
+					newSpawn = Instantiate(spawnObject, spawnPos, spawnObject.transform.rotation)
+						as GameObject;
+				}else{
+					newSpawn = Instantiate(spawnObjects[currentSpawn], spawnPos, spawnObjects[currentSpawn].transform.rotation)
+						as GameObject;
+					currentSpawn++;
+				}
 
 				if (chargeSpawner){
 					newSpawn.GetComponent<ChargeAttackS>().SetPlayer(playerRef);

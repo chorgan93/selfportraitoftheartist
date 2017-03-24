@@ -92,7 +92,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	private PlayerStatsS playerStats;
 
+	public bool hideInScene;
 	private bool allTurnedOn = false;
+	public bool statsAreOn { get { return allTurnedOn; } }
 
 	// Use this for initialization
 	void Start () {
@@ -123,7 +125,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		UpdateMaxSizes();
 		UpdateFills();
 
-		if (!PlayerController.equippedUpgrades.Contains(0)){
+		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene){
 			DisableUI ();
 		}
 
@@ -403,8 +405,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	}
 
 	public void EnableUI(){
+		if (!hideInScene){
 		for (int i = 0; i < transform.childCount; i++){
 			transform.GetChild(i).gameObject.SetActive(true);
+		}
 		}
 	}
 }

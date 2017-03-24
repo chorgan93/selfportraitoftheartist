@@ -19,6 +19,7 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool isLerping = false;
 	private bool isLerpingOut = false;
 	private PlayerStatDisplayS hideStats;
+	private bool statsOn;
 
 	public Image memoBG;
 	public Text memoText;
@@ -57,6 +58,9 @@ public class DialogueManagerS : MonoBehaviour {
 		boxTopHidePos.y += dialogueBox.rectTransform.sizeDelta.y;
 
 		hideStats = GetComponentInChildren<PlayerStatDisplayS>();
+		if (hideStats.gameObject.activeSelf){
+			statsOn = true;
+		}
 	
 	}
 	
@@ -106,7 +110,7 @@ public class DialogueManagerS : MonoBehaviour {
 	
 	}
 
-	public void SetDisplayText(string newText, bool isMemo = false){
+	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true){
 
 		if (!isMemo){
 			memoBG.enabled = false;
@@ -125,7 +129,9 @@ public class DialogueManagerS : MonoBehaviour {
 				hideStats.gameObject.SetActive(false);
 			}
 
-			CameraFollowS.F.SetDialogueZoomIn(true);
+			if (doZoom){
+				CameraFollowS.F.SetDialogueZoomIn(true);
+			}
 
 		dialogueText.text = currentDisplayString = "";
 		targetDisplayString = newText;
@@ -164,7 +170,9 @@ public class DialogueManagerS : MonoBehaviour {
 				showTime = showTimeMax/2f;
 
 		CameraFollowS.F.EndZoom();
-		hideStats.gameObject.SetActive(true);
+		if (statsOn){
+			hideStats.gameObject.SetActive(true);
+		}
 		
 		dialogueText.text = currentDisplayString = targetDisplayString = "";
 		

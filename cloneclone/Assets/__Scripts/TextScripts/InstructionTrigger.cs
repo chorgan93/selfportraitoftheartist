@@ -10,7 +10,17 @@ public class InstructionTrigger : MonoBehaviour {
 
 	[Header("Turn Off Conditions")]
 	public int turnedOffIfClearedCombat = -1;
-	public bool menuInstruction = false;
+
+	public enum TutorialType {Text, Attack, Reset, Dodge, ParadigmShift, Menu};
+	public TutorialType tutorialType = TutorialType.Text;
+	private int playerLightAttacks;
+	private int playerHeavyAttacks;
+	private int playerFamiliarAttacks;
+	private int playerDodges;
+	private int playerSprints;
+	private int playerResets;
+	private int playerShifts;
+	public int newTextSize = -1;
 
 	void Start(){
 
@@ -31,11 +41,40 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void Update(){
-		if (menuInstruction){
+		if (tutorialType == TutorialType.Menu){
 			if (InGameMenuManagerS.hasUsedMenu){
 				gameObject.SetActive(false);
 			}
 		}
+
+		if (tutorialType == TutorialType.Attack){
+			if (playerLightAttacks >= 3 && playerHeavyAttacks >= 1 && playerFamiliarAttacks >= 1){
+				gameObject.SetActive(false);
+			}
+		}
+
+		if (tutorialType == TutorialType.Reset){
+			if (playerResets >= 1){
+				gameObject.SetActive(false);
+			}
+		}
+
+		if (tutorialType == TutorialType.Dodge){
+			if (playerDodges >= 3 && playerSprints >= 1){
+				gameObject.SetActive(false);
+			}
+		}
+
+		if (tutorialType == TutorialType.ParadigmShift){
+			if (playerShifts >= 2){
+				gameObject.SetActive(false);
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.K)){
+			Debug.Log(playerFamiliarAttacks + " " + playerLightAttacks + " " + playerHeavyAttacks);
+		}
+
 	}
 
 	void OnDisable(){
@@ -51,6 +90,11 @@ public class InstructionTrigger : MonoBehaviour {
 			}else{
 				instructionRef.SetShowing(true, instructionString);
 			}
+
+			if (newTextSize > -1){
+				instructionRef.SetTextSize(newTextSize);
+			}
+			other.gameObject.GetComponent<PlayerController>().SetTutorial(this);
 			isShowing = true;
 		}
 	}
@@ -60,5 +104,27 @@ public class InstructionTrigger : MonoBehaviour {
 			instructionRef.SetShowing(false);
 			isShowing = false;
 		}
+	}
+
+				public void AddLightAttack(){
+					playerLightAttacks++;
+				}
+				public void AddHeavyAttack(){
+					playerHeavyAttacks++;
+				}
+	public void AddFamiliarAttack(){
+		playerFamiliarAttacks++;
+	}
+	public void AddDodge(){
+		playerDodges++;
+	}
+	public void AddSprint(){
+		playerSprints++;
+	}
+	public void AddReset(){
+		playerResets++;
+	}
+	public void AddShift(){
+		playerShifts++;
 	}
 }
