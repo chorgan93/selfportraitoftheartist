@@ -971,6 +971,7 @@ public class PlayerController : MonoBehaviour {
 			}else{
 
 					if (_doingHeavyAttack){
+						Debug.Log(allowChainHeavy);
 						if (allowChainHeavy){
 							currentChain++;
 						}else{
@@ -988,9 +989,7 @@ public class PlayerController : MonoBehaviour {
 						newProjectile = (GameObject)Instantiate(equippedWeapon.heavyChain[currentChain], 
 						                                        transform.position, 
 						                                        Quaternion.identity);
-						// for now, heavy attacks do not combo
 						prevChain = currentChain;
-						//currentChain = -1;
 					}
 					else{
 						if (allowChainLight){
@@ -1200,7 +1199,9 @@ public class PlayerController : MonoBehaviour {
 					}else{
 						int nextAttack = currentChain+1;
 						if (myControl.HeavyButton()){
-
+								if (!allowChainHeavy){
+									nextAttack = 0;
+								}
 							if (nextAttack > equippedWeapon.heavyChain.Length-1){
 								nextAttack = 0;
 							}
@@ -1211,6 +1212,9 @@ public class PlayerController : MonoBehaviour {
 							currentAttackS = equippedWeapon.heavyChain[nextAttack].GetComponent<ProjectileS>();
 							_doingHeavyAttack = true;
 						}else{
+								if (!allowChainLight){
+									nextAttack = 0;
+								}
 							if (nextAttack > equippedWeapon.attackChain.Length-1){
 								nextAttack = 0;
 							}
@@ -1771,6 +1775,9 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
 		}
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
+		if (heavy){
+			Debug.Log("Heavy Attack chain " + currentChain + " : " + currentAttackS.attackAnimationTrigger);
+		}
 		_myAnimator.SetBool("Attacking", true);
 		
 
