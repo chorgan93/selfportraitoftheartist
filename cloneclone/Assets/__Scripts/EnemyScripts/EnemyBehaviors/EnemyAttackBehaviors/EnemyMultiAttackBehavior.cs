@@ -14,6 +14,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	public float trackingTime = 0f;
 	private float trackingCountdown;
 	private bool foundTrackingTarget = false;
+	public float timeBetweenAttacks = -1;
 
 	[Header ("Behavior Physics")]
 	public GameObject[] attackPrefab;
@@ -42,17 +43,29 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			
 			attackTimeCountdown -= Time.deltaTime;
 
-			if (attackTimeCountdown <= 0){
-				currentAttack ++;
-				if (currentAttack > attackPrefab.Length-1){
-					EndAction();
-				}
-				else{
+			if (currentAttack < attackPrefab.Length-1){
+				if (attackTimeCountdown <= attackDuration-attackWarmup-timeBetweenAttacks){
+					currentAttack++;
 					if (!interruptIfOutOfRange || (interruptIfOutOfRange && AttackInRange())){
 						ResetAttack();
 					}
 					else{
 						EndAction();
+					}
+				}
+			}else{
+				if (attackTimeCountdown <= 0){
+					currentAttack ++;
+					if (currentAttack > attackPrefab.Length-1){
+						EndAction();
+					}
+					else{
+						if (!interruptIfOutOfRange || (interruptIfOutOfRange && AttackInRange())){
+							ResetAttack();
+						}
+						else{
+							EndAction();
+						}
 					}
 				}
 			}
@@ -108,6 +121,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	private void ResetAttack(){
 		launchedAttack = false;
 		attackTimeCountdown = attackDuration-attackWarmup;
+
 		if (retarget){
 			SetAttackDirection();
 		}

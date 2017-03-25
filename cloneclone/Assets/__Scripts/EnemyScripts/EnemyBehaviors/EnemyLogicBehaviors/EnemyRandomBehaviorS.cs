@@ -10,6 +10,7 @@ public class EnemyRandomBehaviorS : EnemyBehaviorS {
 
 		behaviorToExecute = Mathf.FloorToInt(Random.Range(0, possBehaviors.Length));
 		EndAction(false);
+		possBehaviors[behaviorToExecute].SetEnemy(myEnemyReference);
 		possBehaviors[behaviorToExecute].StartAction();
 
 	}

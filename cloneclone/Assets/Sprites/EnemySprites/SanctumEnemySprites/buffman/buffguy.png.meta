@@ -1,0 +1,591 @@
+fileFormatVersion: 2
+guid: ae6bd1570a9e34229b829bdd8e69acc6
+timeCreated: 1490423956
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Movement_0
+    21300002: PC Movement_1
+    21300004: PC Movement_2
+    21300006: PC Movement_3
+    21300008: PC Movement_4
+    21300010: PC Movement_5
+    21300012: PC Movement_6
+    21300014: PC Movement_7
+    21300016: PC Movement_8
+    21300018: PC Movement_9
+    21300020: PC Movement_10
+    21300022: PC Movement_11
+    21300024: PC Movement_12
+    21300026: PC Movement_13
+    21300028: PC Movement_14
+    21300030: PC Movement_15
+    21300032: PC Movement_16
+    21300034: sick_0
+    21300036: sick_1
+    21300038: sick_2
+    21300040: sick_3
+    21300042: sick_4
+    21300044: sick_5
+    21300046: sick_6
+    21300048: sick_7
+    21300050: sick_8
+    21300052: sick_9
+    21300054: sick_10
+    21300056: sick_11
+    21300058: sick_12
+    21300060: sick_13
+    21300062: sick_14
+    21300064: sick_15
+    21300066: sick_16
+    21300068: sick_17
+    21300070: sick_18
+    21300072: sick_19
+    21300074: sick_20
+    21300076: sick_21
+    21300078: sick_22
+    21300080: sick_23
+    21300082: sick_24
+    21300084: bleckman_0
+    21300086: bleckman_1
+    21300088: bleckman_2
+    21300090: bleckman_3
+    21300092: bleckman_4
+    21300094: bleckman_5
+    21300096: bleckman_6
+    21300098: bleckman_7
+    21300100: bleckman_8
+    21300102: bleckman_9
+    21300104: bleckman_10
+    21300106: bleckman_11
+    21300108: bleckman_12
+    21300110: bleckman_13
+    21300112: bleckman_14
+    21300114: bleckman_15
+    21300116: bleckman_16
+    21300118: bleckman_17
+    21300120: bleckman_18
+    21300122: bleckman_19
+    21300124: bleckman_20
+    21300126: bleckman_21
+    21300128: rollything_0
+    21300130: rollything_1
+    21300132: rollything_2
+    21300134: rollything_3
+    21300136: rollything_4
+    21300138: rollything_5
+    21300140: rollything_6
+    21300142: rollything_7
+    21300144: rollything_8
+    21300146: rollything_9
+    21300148: rollything_10
+    21300150: rollything_11
+    21300152: rollything_12
+    21300154: rollything_13
+    21300156: rollything_14
+    21300158: rollything_15
+    21300160: rollything_16
+    21300162: rollything_17
+    21300164: rollything_18
+    21300166: bigman_0
+    21300168: bigman_1
+    21300170: bigman_2
+    21300172: bigman_3
+    21300174: bigman_4
+    21300176: bigman_5
+    21300178: bigman_6
+    21300180: bigman_7
+    21300182: bigman_8
+    21300184: bigman_9
+    21300186: bigman_10
+    21300188: bigman_11
+    21300190: bigman_12
+    21300192: bigman_13
+    21300194: bigman_14
+    21300196: bigman_15
+    21300198: bigman_16
+    21300200: bigman_17
+    21300202: bigman_18
+    21300204: bigman_19
+    21300206: bigman_20
+    21300208: bigman_21
+    21300210: bigman_22
+    21300212: bigman_23
+    21300214: bigman_24
+    21300216: bigman_25
+    21300218: bigman_26
+    21300220: bigman_27
+    21300222: bigman_28
+    21300224: bigman_29
+    21300226: bigman_30
+    21300228: bigman_31
+    21300230: bigman_32
+    21300232: bigman_33
+    21300234: buffguy_0
+    21300236: buffguy_1
+    21300238: buffguy_2
+    21300240: buffguy_3
+    21300242: buffguy_4
+    21300244: buffguy_5
+    21300246: buffguy_6
+    21300248: buffguy_7
+    21300250: buffguy_8
+    21300252: buffguy_9
+    21300254: buffguy_10
+    21300256: buffguy_11
+    21300258: buffguy_12
+    21300260: buffguy_13
+    21300262: buffguy_14
+    21300264: buffguy_15
+    21300266: buffguy_16
+    21300268: buffguy_17
+    21300270: buffguy_18
+    21300272: buffguy_19
+    21300274: buffguy_20
+    21300276: buffguy_21
+    21300278: buffguy_22
+    21300280: buffguy_23
+    21300282: buffguy_24
+    21300284: buffguy_25
+    21300286: buffguy_26
+    21300288: buffguy_27
+    21300290: buffguy_28
+    21300292: buffguy_29
+    21300294: buffguy_30
+    21300296: buffguy_31
+    21300298: buffguy_32
+    21300300: buffguy_33
+    21300302: buffguy_34
+    21300304: buffguy_35
+    21300306: buffguy_36
+    21300308: buffguy_37
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: buffguy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_23
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_34
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_35
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buffguy_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

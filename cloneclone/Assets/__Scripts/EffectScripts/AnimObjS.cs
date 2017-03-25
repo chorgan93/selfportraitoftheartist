@@ -30,7 +30,7 @@ public class AnimObjS : MonoBehaviour {
 		animRateCountdown = animRate+firstFrameDelay;
 	
 		if (fadeObj){
-		spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
+		//spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
 		}
 	}
 	
@@ -62,6 +62,7 @@ public class AnimObjS : MonoBehaviour {
 					fadeObjSpawn.transform.parent = transform;
 					fadeObjSpawn.transform.localScale = Vector3.one;
 					fadeObjSpawn.transform.localRotation = Quaternion.identity;
+						fadeObjSpawn.transform.parent = null;
 				}
 			}
 
