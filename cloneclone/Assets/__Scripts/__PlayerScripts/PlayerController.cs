@@ -818,6 +818,7 @@ public class PlayerController : MonoBehaviour {
 			    (!chargingAttack && dashDurationTime >= dashDurationTimeMax*dashSprintAllowMult 
 			 && controller.DashTrigger() && !dashButtonUp) ||
 			    (chargingAttack && !_chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult) ||
+			    (chargingAttack && _chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax) ||
 			    (controller.DashTrigger() && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
 				
 				_myAnimator.SetBool("Evading", false);
@@ -839,6 +840,8 @@ public class PlayerController : MonoBehaviour {
 					}else{
 						_chargingAttack = false;
 						_myAnimator.SetBool("Charging", false);
+						_chargeAttackTriggered = false;
+						_isShooting = false;
 					}
 				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting){
 					TriggerSprint();
@@ -1776,7 +1779,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		if (heavy){
-			Debug.Log("Heavy Attack chain " + currentChain + " : " + currentAttackS.attackAnimationTrigger);
+			// Debug.Log("Heavy Attack chain " + currentChain + " : " + currentAttackS.attackAnimationTrigger);
 		}
 		_myAnimator.SetBool("Attacking", true);
 		
