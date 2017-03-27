@@ -22,13 +22,13 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 			    || (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
 			TurnObjectsOnOff();
 		}
-
+		}
 		else if (turnOnOffAtItemInInventory > -1){
 			if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory)){
 				TurnObjectsOnOff();
 			}	
 		}
-		}
+		
 
 		else if (turnOnOffAtMantraInInventory != null){
 		if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory)){

@@ -48,7 +48,8 @@ public class InstructionTrigger : MonoBehaviour {
 		}
 
 		if (tutorialType == TutorialType.Attack){
-			if (playerLightAttacks >= 3 && playerHeavyAttacks >= 1 && playerFamiliarAttacks >= 1){
+			if ((playerLightAttacks >= 3 || (playerLightAttacks >= 1 && playerHeavyAttacks >= 1)) 
+			    && playerFamiliarAttacks >= 1){
 				gameObject.SetActive(false);
 			}
 		}
@@ -60,7 +61,7 @@ public class InstructionTrigger : MonoBehaviour {
 		}
 
 		if (tutorialType == TutorialType.Dodge){
-			if (playerDodges >= 3 && playerSprints >= 1){
+			if (playerDodges >= 2 && playerSprints >= 1){
 				gameObject.SetActive(false);
 			}
 		}
