@@ -7,7 +7,7 @@ public class ProgressionTriggerS : MonoBehaviour {
 	private bool _activated = false;
 
 	void Start(){
-		if (StoryProgressionS.storyProgress > progressionSet){
+		if (StoryProgressionS.storyProgress.Contains(progressionSet)){
 			_activated = true;
 		}
 	}

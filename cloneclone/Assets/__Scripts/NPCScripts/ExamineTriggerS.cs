@@ -290,9 +290,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 		}
 
-		if (advanceProgress){
-			StoryProgressionS.AdvanceStory();
-		}else if (setProgress > -1){
+		if (setProgress > -1){
 			StoryProgressionS.SetStory(setProgress);
 		}
 		

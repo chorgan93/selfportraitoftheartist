@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 [System.Serializable]
 public class GameDataS { 
 	
 	public static GameDataS current;
 	public string currentReviveScene = "IntroCutscene";
 	public int currentSpawnPos = 0;
-	public int storyProgression = 0;
+	public List<int> storyProgression;
 	public InventorySave playerInventory;
 	public bool canUseMenu = false;
 	public bool hasUsedMenu = false;
@@ -18,7 +19,7 @@ public class GameDataS {
 
 		currentReviveScene = "IntroCutscene";
 		 currentSpawnPos = 0;
-		storyProgression = 0;
+		storyProgression = new List<int>();
 	}
 
 	public void OverwriteCurrent(){

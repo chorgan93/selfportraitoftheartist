@@ -97,8 +97,8 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		}
 		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 
-		if (setProgressOnActivate > -1 && setProgressOnActivate > StoryProgressionS.storyProgress){
-			StoryProgressionS.storyProgress = setProgressOnActivate;
+		if (setProgressOnActivate > -1){
+			StoryProgressionS.SetStory(setProgressOnActivate);
 		}
 
 		CameraEffectsS.E.SetNextScene(nextSceneString);

@@ -4,6 +4,7 @@ using System.Collections;
 public class TurnOnOffAtProgressionS : MonoBehaviour {
 
 	public int progressNum = -1;
+	public bool triggerIfContainsGreater = false;
 	public GameObject[] onAtProgressObjects;
 	public GameObject[] offAtProgressObjects;
 
@@ -16,7 +17,9 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (progressNum > -1 && StoryProgressionS.storyProgress >= progressNum){
+		if (progressNum > -1){
+			if (StoryProgressionS.storyProgress.Contains(progressNum) 
+			    || (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
 			TurnObjectsOnOff();
 		}
 
@@ -24,6 +27,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 			if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory)){
 				TurnObjectsOnOff();
 			}	
+		}
 		}
 
 		else if (turnOnOffAtMantraInInventory != null){
