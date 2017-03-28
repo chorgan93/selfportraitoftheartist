@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class StoryProgressionS : MonoBehaviour {
 
-	public static List<int> storyProgress;
-	private static List<int> savedProgress;
+	public static List<int> storyProgress = new List<int>();
+	private static List<int> savedProgress = new List<int>();
 
 
 	public static void SetStory(int newProgress){

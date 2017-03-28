@@ -13,6 +13,7 @@ public class NPCS : MonoBehaviour {
 	private int currentDialogue = 0;
 	private int currentDialogueIndex = 0;
 	public GameObject talkSound;
+	public float talkX = 0;
 
 	public GameObject newPoi;
 	
@@ -49,6 +50,8 @@ public class NPCS : MonoBehaviour {
 	private Vector3 _currentDestination = Vector3.zero;
 	private Vector3 startScale;
 	private Vector3 flipScale;
+	private Vector3 talkScale;
+	private Vector3 flipTalkScale;
 
 
 	
@@ -59,6 +62,15 @@ public class NPCS : MonoBehaviour {
 
 		startScale = flipScale = transform.localScale;
 		flipScale.x *= -1f;
+		if (talkX == 0){
+			talkScale = startScale;
+			flipTalkScale = flipScale;
+		}else{
+			talkScale = startScale;
+			talkScale.x *= talkX;
+			flipTalkScale = flipScale;
+			flipTalkScale.x *= talkX;
+		}
 
 		float whereToBegin = Random.Range(0,100);
 		if (whereToBegin > 50){
@@ -98,12 +110,15 @@ public class NPCS : MonoBehaviour {
 						}
 					talking = true;
 					_myRigid.velocity = Vector3.zero;
-					_myAnimator.SetBool(talkKey, true);
+					_myAnimator.ResetTrigger(idleKey);
+					_myAnimator.ResetTrigger(walkKey);
+					_myAnimator.SetTrigger(talkKey);
+					_myAnimator.ResetTrigger(idleKey);
 
-					if (pRef.transform.position.x < transform.position.x){
-						transform.localScale = startScale;
+					if (pRef.transform.position.x > transform.position.x){
+						transform.localScale = talkScale;
 					}else{
-						transform.localScale = flipScale;
+						transform.localScale = flipTalkScale;
 					}
 
 
@@ -130,8 +145,7 @@ public class NPCS : MonoBehaviour {
 									currentDialogue = dialogues.Length-1;
 								}
 							}
-							
-							_myAnimator.SetBool(talkKey, false);
+
 							if (isWaiting){
 								_myAnimator.SetTrigger(walkKey);
 							}else{
@@ -164,6 +178,7 @@ public class NPCS : MonoBehaviour {
 			if (isWaiting){
 				currentWaitTime -= Time.deltaTime;
 				if (currentWaitTime <= 0){
+					SetDestination();
 					TriggerWalk();
 				}
 			}else{

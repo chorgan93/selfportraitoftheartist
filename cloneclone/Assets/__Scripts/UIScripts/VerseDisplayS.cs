@@ -82,8 +82,10 @@ public class VerseDisplayS : MonoBehaviour {
 
 		currentVerse = "";
 		yield return new WaitForSeconds(1.6f);
-		fadingIn = false;
-		fadingOut = true;
+		if (!fadingIn){
+			fadingIn = false;
+			fadingOut = true;
+		}
 	}
 
 	public void NewVerse(string verseString){

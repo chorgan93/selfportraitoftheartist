@@ -166,4 +166,9 @@ public class CameraEffectsS : MonoBehaviour {
 			Instantiate(endCombatSound);
 		}
 	}
+
+	public void SetRaysColor(Color rayColor){
+		GetComponent<SunShafts>().sunColor = rayColor;
+		Debug.Log("sun color changed!");
+	}
 }
