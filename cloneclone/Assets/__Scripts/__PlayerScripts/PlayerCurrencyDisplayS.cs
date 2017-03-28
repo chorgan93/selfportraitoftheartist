@@ -29,6 +29,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	private bool fadingOut = false;
 
 	private bool showing = false;
+	private bool _isHiding = false;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,12 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		currencyDisplayAmt = currencyTotalAmt = PlayerCollectionS.currencyCollected;
 		totalDisplay.text = currencyDisplayAmt.ToString();
 		beingAddedDisplay.text = "";
+
+		if (PlayerController.equippedUpgrades.Contains(1)){
+			Show();
+		}else{
+			Hide ();
+		}
 	
 	}
 
@@ -154,5 +161,21 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		}else{
 			fadingOut = false;
 		}
+	}
+
+	public void Show(){
+		_isHiding = false;
+		totalDisplay.enabled = true;
+		beingAddedDisplay.enabled = true;
+		borderDisplay.enabled = true;
+		iconDisplay.enabled = true;
+
+	}
+	public void Hide(){
+		_isHiding = true;
+		totalDisplay.enabled = false;
+		beingAddedDisplay.enabled = false;
+		borderDisplay.enabled = false;
+		iconDisplay.enabled = false;
 	}
 }

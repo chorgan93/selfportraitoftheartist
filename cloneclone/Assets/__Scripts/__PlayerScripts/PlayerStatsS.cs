@@ -401,6 +401,9 @@ public class PlayerStatsS : MonoBehaviour {
 				if (i == 5){
 					_addedRateLv++;
 				}
+				if (i == 6){
+					_addedStrength++;
+				}
 				_addedLevel++;
 			}
 		}
@@ -420,13 +423,17 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedCharge+=1f;
 		}
 		if (i == 3){
-			_addedStrength++;
+			//_addedStrength++;
+			_addedVirtue += VIRTUE_ADD_AMT;
 		}
 		if (i == 4){
 			_currentChargeRecoverLv++;
 		}
 		if (i == 5){
 			_addedRateLv++;
+		}
+		if (i == 6){
+			_addedStrength ++;
 		}
 		_addedLevel++;
 	}

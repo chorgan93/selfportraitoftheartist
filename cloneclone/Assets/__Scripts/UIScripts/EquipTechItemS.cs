@@ -23,6 +23,7 @@ public class EquipTechItemS : MonoBehaviour {
 
 	public PlayerStatDisplayS statUIRef;
 	public EnemyHealthUIS bossUIRef;
+	public PlayerCurrencyDisplayS currencyUIRef;
 	public ResetUIS resetUIRef;
 	public VerseDisplayS verseUIRef;
 
@@ -72,6 +73,7 @@ public class EquipTechItemS : MonoBehaviour {
 				}
 				if (techNum == 1){
 					bossUIRef.Show();
+					currencyUIRef.Show();
 				}
 				if (techNum == 2){
 					resetUIRef.Show();
@@ -89,6 +91,7 @@ public class EquipTechItemS : MonoBehaviour {
 				}
 				if (techNum == 1){
 					bossUIRef.Hide();
+					currencyUIRef.Hide();
 				}
 				if (techNum == 2){
 					resetUIRef.Hide();
