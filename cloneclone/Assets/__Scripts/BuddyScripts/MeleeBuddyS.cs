@@ -49,7 +49,7 @@ public class MeleeBuddyS : BuddyS {
 
 		base.Initialize();
 
-		myEnemyDetect = playerRef.myDetect;
+		myEnemyDetect = playerRef.enemyDetect;
 		myRender = GetComponent<SpriteRenderer>();
 		flashFramesMax = flashFrames;
 		myRender.material.SetFloat("_FlashAmount", 0);

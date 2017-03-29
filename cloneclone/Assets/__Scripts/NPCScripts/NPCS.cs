@@ -64,7 +64,7 @@ public class NPCS : MonoBehaviour {
 		flipScale.x *= -1f;
 		if (talkX == 0){
 			talkScale = startScale;
-			flipTalkScale = flipScale;
+			flipTalkScale = startScale;
 		}else{
 			talkScale = startScale;
 			talkScale.x *= talkX;
@@ -96,7 +96,7 @@ public class NPCS : MonoBehaviour {
 				talkButtonDown = true;
 				
 				if (!talking){
-						
+						if (!pRef.talking){
 						pRef.SetTalking(true);
 						if (newPoi){
 							CameraFollowS.F.SetNewPOI(newPoi);
@@ -122,7 +122,7 @@ public class NPCS : MonoBehaviour {
 					}
 
 
-					
+					}
 				}else{
 
 						if (talkSound != null){

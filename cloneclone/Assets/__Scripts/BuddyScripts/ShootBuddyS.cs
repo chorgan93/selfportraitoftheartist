@@ -8,6 +8,7 @@ public class ShootBuddyS : BuddyS {
 	private float effectDir = 1f;
 
 	private EnemyDetectS myEnemyDetect;
+	public SimpleEnemyDetectS shootDetect;
 
 	public float shootRate;
 	private float shootCountdown;
@@ -43,8 +44,8 @@ public class ShootBuddyS : BuddyS {
 	public override void Initialize(){
 
 		base.Initialize();
-
-		myEnemyDetect = playerRef.myDetect;
+		myEnemyDetect = playerRef.enemyDetect;
+		shootDetect = GetComponentInChildren<SimpleEnemyDetectS>();
 	}
 
 	public override void FaceDirection(){
@@ -161,9 +162,9 @@ public class ShootBuddyS : BuddyS {
 
 		Vector3 aimDir = Vector3.zero;
 
-		if (playerRef.enemyDetect.closestEnemy != null){
-			aimDir.x = playerRef.enemyDetect.closestEnemy.transform.position.x - transform.position.x;
-			aimDir.y = playerRef.enemyDetect.closestEnemy.transform.position.y - transform.position.y;
+		if (shootDetect.closestEnemy != null){
+			aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
 		}
 		else if (playerRef.myLockOn.myEnemy != null){
 			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;

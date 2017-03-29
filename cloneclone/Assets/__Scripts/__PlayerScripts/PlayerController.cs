@@ -974,7 +974,6 @@ public class PlayerController : MonoBehaviour {
 			}else{
 
 					if (_doingHeavyAttack){
-						Debug.Log(allowChainHeavy);
 						if (allowChainHeavy){
 							currentChain++;
 						}else{
