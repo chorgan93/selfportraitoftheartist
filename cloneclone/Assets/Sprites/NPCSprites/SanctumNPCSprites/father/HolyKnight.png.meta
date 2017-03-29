@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 660609c93be7f40068f062ac459194c3
+timeCreated: 1490822098
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: deadguy_0
+    21300002: deadguy_1
+    21300004: deadguy_2
+    21300006: deadguy_3
+    21300008: deadguy_4
+    21300010: deadguy_5
+    21300012: deadguy_6
+    21300014: deadguy_7
+    21300016: deadguy_8
+    21300018: deadguy_9
+    21300020: deadguy_10
+    21300022: deadguy_11
+    21300024: Christian (No Wing)_0
+    21300026: Christian (No Wing)_1
+    21300028: Christian (No Wing)_2
+    21300030: Christian (No Wing)_3
+    21300032: Christian (No Wing)_4
+    21300034: Christian (No Wing)_5
+    21300036: Christian (No Wing)_6
+    21300038: Christian (No Wing)_7
+    21300040: Christian (No Wing)_8
+    21300042: Christian (No Wing)_9
+    21300044: Christian (No Wing)_10
+    21300046: Christian (No Wing)_11
+    21300048: Christian (No Wing)_12
+    21300050: Christian (No Wing)_13
+    21300052: Christian (No Wing)_14
+    21300054: HolyKnight_0
+    21300056: HolyKnight_1
+    21300058: HolyKnight_2
+    21300060: HolyKnight_3
+    21300062: HolyKnight_4
+    21300064: HolyKnight_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: HolyKnight_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HolyKnight_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HolyKnight_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HolyKnight_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HolyKnight_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: HolyKnight_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

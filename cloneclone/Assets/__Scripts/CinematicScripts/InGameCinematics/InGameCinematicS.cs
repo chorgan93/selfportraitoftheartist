@@ -20,6 +20,7 @@ public class InGameCinematicS : MonoBehaviour {
 	public float fadeRate = 0.4f;
 	public bool wakeNextScene = true;
 	public bool noBuddy = false;
+	public bool resetPOIOnEnd = false;
 
 	public static bool turnOffBuddies = false;
 
@@ -162,6 +163,9 @@ public class InGameCinematicS : MonoBehaviour {
 		pRef.SetTalking(false);
 		if (noBuddy){
 			pRef.SetBuddy(true);
+		}
+		if (resetPOIOnEnd){
+			CameraFollowS.F.ResetPOI();
 		}
 		Destroy(gameObject);
 

@@ -13,6 +13,7 @@ public class CinematicHandlerS : MonoBehaviour {
 
 	[Header("Where to go next:")]
 	public string loadSceneString;
+	public int loadSceneSpawnPos = -1;
 	private bool startedLoading = false;
 
 	private ControlManagerS _controller;
@@ -27,7 +28,10 @@ public class CinematicHandlerS : MonoBehaviour {
 	private bool skipActivated = false;
 	public static bool inCutscene = false;
 
+	[Header("Next Scene Properties")]
 	public bool loadPlayerDown = false;
+	public int setProgress = -1;
+	public bool noFade = false;
 
 	AsyncOperation async;
 
@@ -140,6 +144,13 @@ public class CinematicHandlerS : MonoBehaviour {
 	}
 
 	private IEnumerator LoadNextScene(){
+		FadeScreenUI.NoFade = noFade;
+		if (loadSceneSpawnPos > -1){
+			SpawnPosManager.whereToSpawn = loadSceneSpawnPos;
+		}
+		if (setProgress > -1){
+			StoryProgressionS.SetStory(setProgress);
+		}
 		async = Application.LoadLevelAsync(loadSceneString);
 		async.allowSceneActivation = false;
 		yield return async;

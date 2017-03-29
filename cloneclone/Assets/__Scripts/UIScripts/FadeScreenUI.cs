@@ -27,6 +27,7 @@ public class FadeScreenUI : MonoBehaviour {
 	private float addLetterCountdown;
 
 	private DarknessPercentUIS darknessTracker;
+	public static bool NoFade = false;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +38,13 @@ public class FadeScreenUI : MonoBehaviour {
 		_textColor.a = 0f;
 		loadingText.color = _textColor;
 		loadingText.text = loadingString;
+
+		if (NoFade){
+			_myColor.a = 0f;
+			_myRenderer.color = _myColor;
+			_fadingOut = false;
+			NoFade = false;
+		}
 
 		darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
 	
