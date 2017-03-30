@@ -30,6 +30,7 @@ public class CinematicHandlerS : MonoBehaviour {
 
 	[Header("Next Scene Properties")]
 	public bool loadPlayerDown = false;
+	public bool healPlayer = false;
 	public int setProgress = -1;
 	public bool noFade = false;
 
@@ -41,6 +42,10 @@ public class CinematicHandlerS : MonoBehaviour {
 			PlayerController.doWakeUp = true;
 		}
 		PlayerStatsS.PlayerCantDie = false;
+
+		if (healPlayer){
+			PlayerStatsS.healOnStart = true;
+		}
 	}
 
 	// Use this for initialization

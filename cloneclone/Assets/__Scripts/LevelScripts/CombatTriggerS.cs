@@ -6,6 +6,7 @@ public class CombatTriggerS : MonoBehaviour {
 	public CombatManagerS combatReference;
 	private bool activated = false;
 	public string verseTitle;
+	public bool preventDeath = false;
 
 	void Start(){
 		if (combatReference.combatID > -1){
@@ -27,6 +28,10 @@ public class CombatTriggerS : MonoBehaviour {
 				}
 				VerseDisplayS.V.NewVerse(verseTitle);
 				activated = true;
+				
+				if (preventDeath){
+					PlayerStatsS.PlayerCantDie = true;
+				}
 			}
 		}
 	}

@@ -48,6 +48,9 @@ public class EnemyS : MonoBehaviour {
 	private Animator _myAnimator;
 	private Collider _myCollider;
 
+	private float _enemyActiveTime = 0f;
+	public float enemyActiveTime { get { return _enemyActiveTime; } }
+
 	private EnemyHealthUIS healthUIReference;
 	private EnemyHealthFeathersS healthFeatherReference;
 	//private EnemyHealthBarS healthBarReference;

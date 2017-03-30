@@ -12,6 +12,8 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	public PlayerDetectS minDistance; // null = any distance, otherwise = PlayerDetectS state
 
 	public float minHealthPercentage = -1f; // -1 = not health dependent, otherwise 1-100 (inclusive)
+	public float activateAtEnemyActiveTime = -1f;
+	public float activateAtPlayerHealth = -1f;
 
 	public bool onlyActOnce = false;
 	private bool _doNotActAgain = false;
@@ -45,6 +47,18 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 		if (minHealthPercentage > 0 && myEnemy.currentHealth/myEnemy.maxHealth*100f <= minHealthPercentage){
 			active = false;
+		}
+
+		// the following are special activation triggers for first messiah fight ending
+		if (activateAtEnemyActiveTime > -1f && activateAtPlayerHealth > -1){
+			if (activateAtEnemyActiveTime > myEnemy.enemyActiveTime){
+				active = false;
+			}
+			else if (myEnemy.GetPlayerReference() != null){
+				if (activateAtPlayerHealth < myEnemy.GetPlayerReference().myStats.currentHealth){
+					active = false;
+				}
+			}
 		}
 
 		// after all checks, if active = true && immediate == true, force mode switch
