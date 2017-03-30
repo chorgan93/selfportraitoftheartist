@@ -40,6 +40,7 @@ public class CinematicHandlerS : MonoBehaviour {
 		if (loadPlayerDown){
 			PlayerController.doWakeUp = true;
 		}
+		PlayerStatsS.PlayerCantDie = false;
 	}
 
 	// Use this for initialization

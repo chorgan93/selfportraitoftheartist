@@ -26,6 +26,8 @@ public class PlayerStatsS : MonoBehaviour {
 	public static bool godMode = false;
 	public static bool dontDoCountUp = false;
 
+	public static bool PlayerCantDie = false;
+
 	//________________________________LEVEL
 	private int _startLevel = 1;
 	private int _addedLevel = 0;
@@ -502,6 +504,9 @@ public class PlayerStatsS : MonoBehaviour {
 						_currentHealth = maxHealth*0.01f;
 					}else{
 						_currentHealth -= dmg;
+					}
+					if (PlayerCantDie && _currentHealth <= 0){
+						_currentHealth = 0.1f;
 					}
 					CameraShakeS.C.CancelSloMo();
 					//ChargeCheck(10f);

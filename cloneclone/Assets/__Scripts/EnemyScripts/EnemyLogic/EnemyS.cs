@@ -22,6 +22,8 @@ public class EnemyS : MonoBehaviour {
 	[Header ("Health Properties")]
 	public float maxHealth;
 	public bool showHealth;
+	public bool cantDie = false;
+	public float damageMultiplier = 1f;
 	public Vector3 healthBarOffset = new Vector3(0f,1.5f,1f);
 	public float healthBarXSize = 2f;
 	[Header ("Death Properties")]
@@ -706,11 +708,15 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (_isCritical){
-			_currentHealth -= dmg*critDmg;
-			damageTaken+=dmg*critDmg;
+			_currentHealth -= dmg*critDmg*damageMultiplier;
+			damageTaken+=dmg*critDmg*damageMultiplier;
 		}else{
-			_currentHealth -= dmg;
-			damageTaken += dmg;
+			_currentHealth -= dmg*damageMultiplier;
+			damageTaken += dmg*damageMultiplier;
+		}
+
+		if (cantDie && _currentHealth < 1f){
+			_currentHealth = 1f;
 		}
 
 		if (healthFeatherReference){

@@ -17,6 +17,9 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 	private float deadChangeRate;
 	private bool inCritState = false;
 
+	[Header("Special Cases")]
+	public float shadowAlphaMult = 1f;
+
 	private EnemyS enemyReference;
 
 	// Use this for initialization
@@ -27,6 +30,7 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 		mySprite = GetComponent<SpriteRenderer>();
 		parentSprite = transform.parent.GetComponent<SpriteRenderer>();
 		startColor = enemyReference.bloodColor;
+		startColor.a *= shadowAlphaMult;
 		mySprite.material.SetColor("_FlashColor", startColor);
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
