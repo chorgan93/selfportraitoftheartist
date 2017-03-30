@@ -16,6 +16,8 @@ public class InGameCinemaTextS : MonoBehaviour {
 
 	public bool textZoom = false;
 
+	private bool textAfter = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,6 +25,8 @@ public class InGameCinemaTextS : MonoBehaviour {
 		_myControl = _myHandler.pRef.myControl;
 
 		DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
+
+		CheckForDialogueAfter();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +37,9 @@ public class InGameCinemaTextS : MonoBehaviour {
 			if (DialogueManagerS.D.doneScrolling){
 				currentString++;
 				if (currentString > textStrings.Length-1){
-					DialogueManagerS.D.EndText();
+						if (!textAfter){
+							DialogueManagerS.D.EndText();
+						}
 					_myHandler.AdvanceCinematic();
 						dialogueComplete = true;
 					}else{
@@ -51,5 +57,13 @@ public class InGameCinemaTextS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	private void CheckForDialogueAfter(){
+		for (int i = 0; i < _myHandler.cinemaDialogues.Length; i++){
+			if (_myHandler.cinemaDialogues[i].myCinemaStep == myCinemaStep+1){
+				textAfter = true;
+			}
+		}
 	}
 }

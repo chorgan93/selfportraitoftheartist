@@ -34,6 +34,8 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool _doneScrolling = true;
 	public bool doneScrolling { get { return _doneScrolling; } }
 
+	private bool _freezeText = false;
+
 	public static DialogueManagerS D;
 
 	void Awake(){
@@ -67,7 +69,7 @@ public class DialogueManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!_doneScrolling){
+		if (!_doneScrolling && !_freezeText){
 
 			scrollCountdown -= Time.deltaTime;
 			if (scrollCountdown <= 0){
@@ -179,5 +181,9 @@ public class DialogueManagerS : MonoBehaviour {
 		scrollCountdown = 0f;
 		currentChar = 0;
 
+	}
+
+	public void FreezeDialogue(){
+		_freezeText = true;
 	}
 }

@@ -134,10 +134,15 @@ public class ExamineTriggerS : MonoBehaviour {
 						}
 	
 						if (DialogueManagerS.D.doneScrolling){
+								if (!teleportItem){
 							pRef.SetTalking(false);
 							CameraFollowS.F.ResetPOI();
 							DialogueManagerS.D.EndText();
 							talking = false;
+								}else{
+									DialogueManagerS.D.SetDisplayText("");
+									DialogueManagerS.D.FreezeDialogue();
+								}
 	
 							if (inInfiniteMode){
 								parentInfinite.AddClear();
