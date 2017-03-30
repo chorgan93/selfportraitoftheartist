@@ -30,7 +30,6 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	public bool isActive(){
 
-		Debug.Log("Checking state: " +stateName);
 		bool active = true;
 
 		// do checks for all conditions
@@ -67,9 +66,6 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 			myEnemy.ForceBehaviorState(this);
 		}
 
-		if (active){
-			Debug.Log("State " + stateName + " is active!");
-		}
 
 		return active;
 
