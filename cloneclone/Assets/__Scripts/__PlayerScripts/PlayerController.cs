@@ -1181,7 +1181,8 @@ public class PlayerController : MonoBehaviour {
 							}
 						CameraShakeS.C.CancelSloMo();
 
-						attackEffectRef.StartAttackEffect(equippedWeapon.swapColor, equippedWeapon.flashSubColor);
+							// removing attack effect because it needs optimization, otherwise chance of memory leak in build
+						//attackEffectRef.StartAttackEffect(equippedWeapon.swapColor, equippedWeapon.flashSubColor);
 					}
 					else if ((_isDashing || _isSprinting) && _allowDashAttack){
 
