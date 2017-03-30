@@ -10,6 +10,8 @@ public class ActivateOnPlayerHealthS : MonoBehaviour {
 	public List<GameObject> turnOnObjects;
 	public List<GameObject> turnOffObjects;
 
+	public List<EnemySpawnerS> turnOffEnemies;
+
 	private bool turnedOn = false;
 
 	void Update(){
@@ -27,6 +29,10 @@ public class ActivateOnPlayerHealthS : MonoBehaviour {
 		}
 		foreach (GameObject bleh in turnOffObjects){
 			bleh.SetActive(false);
+		}
+
+		for (int i = 0; i < turnOffEnemies.Count; i++){
+			turnOffEnemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
 		}
 
 			turnedOn = false;

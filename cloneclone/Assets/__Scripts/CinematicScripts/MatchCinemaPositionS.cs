@@ -4,8 +4,13 @@ using System.Collections;
 public class MatchCinemaPositionS : MonoBehaviour {
 
 	public Transform targetPos;
+	public EnemySpawnerS targetEnemy;
 
 	void Start(){
-		transform.position = targetPos.transform.position;
+		if (targetEnemy){
+			transform.position = targetEnemy.currentSpawnedEnemy.transform.position;
+		}else if (targetPos){
+			transform.position = targetPos.transform.position;
+		}
 	}
 }

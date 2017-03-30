@@ -4,9 +4,10 @@ using System.Collections;
 public class ZoomOnStartS : MonoBehaviour {
 
 	public bool setZoom = true;
+	public bool setSlowZoom = false;
 	// Use this for initialization
 	void Start () {
-		CameraFollowS.F.SetDialogueZoomIn(setZoom);
+		CameraFollowS.F.SetZoomIn(setZoom, setSlowZoom);
 	}
 
 }

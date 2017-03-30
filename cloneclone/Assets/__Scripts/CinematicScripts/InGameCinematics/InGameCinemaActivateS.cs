@@ -8,6 +8,7 @@ public class InGameCinemaActivateS : MonoBehaviour {
 
 	public GameObject[] onObjects;
 	public GameObject[] offObjects;
+	public PlayerController turnOffBuddy;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,12 @@ public class InGameCinemaActivateS : MonoBehaviour {
 
 		foreach (GameObject off in offObjects){
 			off.SetActive(false);
+		}
+
+		if (turnOffBuddy != null){
+			if (turnOffBuddy.myBuddy != null){
+				turnOffBuddy.myBuddy.gameObject.SetActive(false);
+			}
 		}
 	
 	}

@@ -6,6 +6,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	private bool _enemySpawned = false;
 	public bool enemySpawned { get { return _enemySpawned; } }
 	private EnemyS currentEnemyReference;
+	public EnemyS currentSpawnedEnemy { get { return currentEnemyReference; } }
 
 	public float enemySpawnDelay = 0f;
 	public float chanceToSpawn = 1f;

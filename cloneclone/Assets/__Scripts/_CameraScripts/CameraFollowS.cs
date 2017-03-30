@@ -9,6 +9,8 @@ public class CameraFollowS : MonoBehaviour {
 	private float _camEasing = 0.1f;
 	private Vector3 _camPosOffset = new Vector3(0,0,-10);
 
+	private float slowZoomMult = 0.1f;
+
 	private Vector3 _currentPos;
 
 	//__________________________________________________INSTANCE PROPERTIES
@@ -37,6 +39,7 @@ public class CameraFollowS : MonoBehaviour {
 
 	private bool zoomingIn = false;
 	private bool dialogueZoom = false;
+	private bool slowerZoom = false;
 	private float zoomMult = 0.5f;
 	private float dialogueZoomMult = 0.75f;
 
@@ -135,10 +138,20 @@ public class CameraFollowS : MonoBehaviour {
 		
 		if (_punchHangTime <= 0f){
 			if (zoomingIn){
-				if (dialogueZoom){
-					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult;
+				if (!slowerZoom){
+					if (dialogueZoom){
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult;
+					}else{
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+					}
 				}else{
-					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+					if (dialogueZoom){
+						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize 
+							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult;
+					}else{
+						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize 
+							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult;
+					}
 				}
 			}
 			else{
@@ -202,16 +215,18 @@ public class CameraFollowS : MonoBehaviour {
 
 	}
 
-	public void SetZoomIn(bool zoom){
+	public void SetZoomIn(bool zoom, bool slowZoom = false){
 		zoomingIn = zoom;
 		dialogueZoom = false;
+		slowerZoom = slowZoom;
 	}
 	public void SetDialogueZoomIn(bool zoom){
 		zoomingIn = zoom;
 		dialogueZoom = zoom;
+		slowerZoom = false;
 	}
 	public void EndZoom(){
-		zoomingIn = dialogueZoom = false;
+		zoomingIn = dialogueZoom = slowerZoom = false;
 	}
 
 	public void PunchCombatEnd(Vector3 targetPos){
