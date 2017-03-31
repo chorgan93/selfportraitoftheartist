@@ -42,7 +42,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 		if (!doingAttackEffect){
 		if (!myController.myStats.PlayerIsDead() && !myController.isBlocking && 
-		    (myController.isDashing)){
+		    myController.isDashing && !myController.InAttack()){
 			//if (currentShadow < maxShadows || !myController.isDashing){
 			currentDashPos.x = myController.transform.position.x;
 			currentDashPos.y = myController.transform.position.y;
@@ -68,10 +68,10 @@ public class PlayerDashEffectS : MonoBehaviour {
 			newDash = true;
 			}}
 		else{
-			attackEffectCountdown -= Time.deltaTime;
+			/*attackEffectCountdown -= Time.deltaTime;
 			if (attackEffectCountdown <= 0){
 				SpawnShadow();
-			}
+			}**/
 		}
 	
 	}
@@ -97,6 +97,7 @@ public class PlayerDashEffectS : MonoBehaviour {
 			useAltColor = !useAltColor;
 			attackEffectCountdown = attackEffectTime;
 			newSpawn.transform.localScale*=1.25f;
+
 		}
 		else{
 			newSprite.material.SetColor("_FlashColor", myController.EquippedWeapon().flashSubColor);
@@ -107,11 +108,13 @@ public class PlayerDashEffectS : MonoBehaviour {
 	}
 
 	public void StartAttackEffect(Color mCol, Color aCol){
-		attackEffectCountdown = 0f;
-		useAltColor = false;
-		mainCol = mCol;
-		altCol = aCol;
-		doingAttackEffect = true;
+		if (!doingAttackEffect){
+			/*attackEffectCountdown = 0f;
+			useAltColor = false;
+			mainCol = mCol;
+			altCol = aCol;**/
+			doingAttackEffect = true;
+		}
 	}
 
 	public void EndAttackEffect(){
