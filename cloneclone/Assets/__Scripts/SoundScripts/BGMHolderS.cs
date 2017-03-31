@@ -86,6 +86,7 @@ public class BGMHolderS : MonoBehaviour {
 
 	public void EndAllLayers(bool instant, bool destroy){
 		if (transform.childCount > 0){
+			// Debug.Log("Ending music!");
 			for (int i = 0; i < transform.childCount; i++){
 				if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null){
 					transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().FadeOut(instant, destroy);

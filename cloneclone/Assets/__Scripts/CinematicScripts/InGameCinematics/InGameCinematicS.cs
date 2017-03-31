@@ -30,7 +30,6 @@ public class InGameCinematicS : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 	
-		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 		inGameCinematic = true;
 		if(noBuddy){
 			turnOffBuddies = true;
@@ -42,11 +41,8 @@ public class InGameCinematicS : MonoBehaviour {
 
 		CheckCurrentStep();
 
-		/*if (noBuddy){
-			_pRef.SetBuddy(false);
-		}
-		*/
-
+		
+		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 		_pRef.SetTalking(true);
 
 	}

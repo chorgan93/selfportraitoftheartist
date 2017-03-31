@@ -5,6 +5,7 @@ public class SpawnPosManager : MonoBehaviour {
 
 	public static int whereToSpawn = 0;
 	public static bool spawningFromDeath = false;
+	public static bool spawningFromTeleport = false;
 	private GameObject pRef;
 
 	public CheckpointS sceneCheckpoint;
@@ -27,9 +28,11 @@ public class SpawnPosManager : MonoBehaviour {
 	void Start(){
 
 		if (sceneCheckpoint){
-			if (spawningFromDeath){
+			if (spawningFromDeath || spawningFromTeleport){
 				sceneCheckpoint.ActivateMusic();
 			}
+			spawningFromTeleport = false;
+			spawningFromDeath = false;
 			GameOverS.reviveScene = Application.loadedLevelName;
 			GameOverS.revivePosition = sceneCheckpoint.spawnNum;
 			SaveLoadS.OverriteCurrentSave();

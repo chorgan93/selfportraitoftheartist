@@ -224,7 +224,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 					pRef.TriggerResting();
 					PlayerController.doWakeUp = true;
-
+					SpawnPosManager.spawningFromTeleport = true;
 
 				}
 			}
