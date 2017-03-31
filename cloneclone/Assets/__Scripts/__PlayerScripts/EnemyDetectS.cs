@@ -3,100 +3,100 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class EnemyDetectS : MonoBehaviour {
-
+	
 	private PlayerController playerReference;
-
+	
 	public float inputRange;
 	private EnemyS _closestEnemy;
 	public EnemyS closestEnemy { get { return _closestEnemy; } }
-
+	
 	private List<EnemyS> enemiesInRange;
 	public List<EnemyS> allEnemiesInRange { get { return enemiesInRange; } }
 	private Vector3 _enemyCenterpoint;
 	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
-
+	
 	private float lowestX;
 	private float lowestY;
 	private float largestX;
 	private float largestY;
-
+	
 	private List<EnemyS> parryEnemies = new List<EnemyS>();
-
+	
 	public bool faceVector = false;
 	private Vector3 currentRotation = Vector3.zero;
-
+	
 	void Start(){
-
-
+		
+		
 		playerReference = GetComponentInParent<PlayerController>();
 		playerReference.SetDetect(this);
-
+		
 		enemiesInRange = new List<EnemyS>();
-
+		
 	}
-
+	
 	void FixedUpdate(){
-
+		
 		if (inputRange > 0){
 			UpdatePosition();
 		}
 		UpdateEnemyPosition();
-
+		
 	}
-
+	
 	void LateUpdate(){
-
+		
 		CleanEnemyList();
 		FindClosestEnemy();
-
+		
 	}
-
+	
 	private void UpdatePosition(){
-
+		
 		if (playerReference.ShootPosition().x != 0 && playerReference.ShootPosition().y != 0){
-		Vector3 updatePos = playerReference.ShootPosition().normalized;
-		updatePos*=inputRange;
-		updatePos.z = transform.localPosition.z;
-
-		transform.localPosition = updatePos;
-
-		if (faceVector){
-			RotateToDirection(transform.localPosition.normalized);
+			Vector3 updatePos = playerReference.ShootPosition().normalized;
+			updatePos*=inputRange;
+			updatePos.z = transform.localPosition.z;
+			
+			transform.localPosition = updatePos;
+			
+			if (faceVector){
+				RotateToDirection(transform.localPosition.normalized);
+			}
 		}
-		}
-
+		
 	}
-
+	
 	private void UpdateEnemyPosition(){
-
+		
 		_enemyCenterpoint = Vector3.zero;
-
+		
 		if (enemiesInRange.Count > 0){
 			lowestX = lowestY = largestX = largestY = 0f;
-			foreach (EnemyS e in enemiesInRange){
-				if (e.transform.position.x < lowestX || lowestX == 0f){
-					lowestX = e.transform.position.x;
+			for (int i = 0; i < enemiesInRange.Count; i++){
+				if (enemiesInRange[i].transform.position.x < lowestX || lowestX == 0f){
+					lowestX = enemiesInRange[i].transform.position.x;
 				}
-				if (e.transform.position.x > largestX || largestX == 0f){
-					largestX = e.transform.position.x;
+				if (enemiesInRange[i].transform.position.x > largestX || largestX == 0f){
+					largestX = enemiesInRange[i].transform.position.x;
 				}
-				if (e.transform.position.y < lowestY || lowestY == 0f){
-					lowestY = e.transform.position.y;
+				if (enemiesInRange[i].transform.position.y < lowestY || lowestY == 0f){
+					lowestY = enemiesInRange[i].transform.position.y;
 				}
-				if (e.transform.position.y > largestX || largestY == 0f){
-					largestY = e.transform.position.y;
+				if (enemiesInRange[i].transform.position.y > largestX || largestY == 0f){
+					largestY = enemiesInRange[i].transform.position.y;
 				}
 			}
 			_enemyCenterpoint.x = (lowestX+largestX)/2f;
 			_enemyCenterpoint.y = (lowestY+largestY)/2f;
 		}
-
+		
 	}
-
+	
 	private void CleanEnemyList(){
-
+		
 		for (int i = 0; i < enemiesInRange.Count; i++){
-
+			
 			if (enemiesInRange[i] == null){
 				enemiesInRange.RemoveAt(i);
 			}else{
@@ -104,36 +104,36 @@ public class EnemyDetectS : MonoBehaviour {
 					enemiesInRange.RemoveAt(i);
 				}
 			}
-
+			
 		}
-
+		
 	}
-
+	
 	private void FindClosestEnemy(){
-
+		
 		_closestEnemy = null;
-
+		
 		if (enemiesInRange.Count > 0){
 			Vector2 closestEnemyPosition = Vector2.zero;
 			Vector2 otherEnemyPosition = Vector2.zero;
-
+			
 			float closestDistance = 0;
-
+			
 			foreach (EnemyS enemy in enemiesInRange){
 				if (_closestEnemy == null){
-
+					
 					_closestEnemy = enemy;
 					closestEnemyPosition.x = _closestEnemy.transform.position.x;
 					closestEnemyPosition.y = _closestEnemy.transform.position.y;
-
+					
 					closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 				}
 				else{
-
+					
 					otherEnemyPosition.x = enemy.transform.position.x;
 					otherEnemyPosition.y = enemy.transform.position.y;
 					float newDistance = Vector2.SqrMagnitude(otherEnemyPosition-playerPosition2D());
-
+					
 					if (newDistance < closestDistance){
 						_closestEnemy = enemy;
 						closestEnemyPosition.x = _closestEnemy.transform.position.x;
@@ -141,33 +141,33 @@ public class EnemyDetectS : MonoBehaviour {
 						
 						closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 					}
-
+					
 				}
 			}
 		}
-
+		
 	}
-
+	
 	private Vector2 playerPosition2D(){
-
+		
 		return new Vector2(playerReference.transform.position.x, playerReference.transform.position.y);
-
+		
 	}
-
+	
 	void OnTriggerEnter(Collider other){
-
+		
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
-
+			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
-
+			
 			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
 				enemiesInRange.Add(otherEnemy);
 			}
-
+			
 		}
-
+		
 	}
-
+	
 	void OnTriggerExit(Collider other){
 		
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
@@ -181,7 +181,7 @@ public class EnemyDetectS : MonoBehaviour {
 		}
 		
 	}
-
+	
 	void RotateToDirection(Vector3 aimDir){
 		float rotateZ = 0;
 		
@@ -207,11 +207,11 @@ public class EnemyDetectS : MonoBehaviour {
 		currentRotation.z = rotateZ+90f;
 		transform.rotation = Quaternion.Euler(currentRotation);
 	}
-
+	
 	public bool NoEnemies(){
 		return (enemiesInRange.Count <= 0);
 	}
-
+	
 	bool parryEnemyInRange(){
 		bool parryInRange = false;
 		parryEnemies.Clear();
@@ -223,7 +223,7 @@ public class EnemyDetectS : MonoBehaviour {
 		}
 		return parryInRange;
 	}
-
+	
 	public List<EnemyS> EnemyToParry(){
 		if (!NoEnemies()){
 			if (parryEnemyInRange()){
@@ -235,7 +235,7 @@ public class EnemyDetectS : MonoBehaviour {
 			return null;
 		}
 	}
-
+	
 	public EnemyS ReturnClosestAngleEnemy(Vector3 refVector){
 		EnemyS closestEnemyToAngle = null;
 		float lowestAngle = -9999;

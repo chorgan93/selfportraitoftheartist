@@ -3,19 +3,19 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class CinematicHandlerS : MonoBehaviour {
-
+	
 	[Header("What to do here:")]
 	public GameObject[] cinemaObjects;
 	public float[] cinemaTimings;
-
+	
 	private float currentCountdown;
 	private int currentStep;
-
+	
 	[Header("Where to go next:")]
 	public string loadSceneString;
 	public int loadSceneSpawnPos = -1;
 	private bool startedLoading = false;
-
+	
 	private ControlManagerS _controller;
 	public Text skipText;
 	public Text loadText;
@@ -24,54 +24,57 @@ public class CinematicHandlerS : MonoBehaviour {
 	private float skipFadeRate = 3f;
 	private float skipCount = 0f;
 	private float skipRequireTime = 1.25f;
-
+	
 	private bool skipActivated = false;
 	public static bool inCutscene = false;
-
+	
 	[Header("Next Scene Properties")]
 	public bool loadPlayerDown = false;
 	public bool healPlayer = false;
 	public int setProgress = -1;
 	public bool noFade = false;
-
+	
 	AsyncOperation async;
-
+	
 	void Awake(){
+		
+		Application.targetFrameRate = 60;
+		
 		inCutscene = true;
 		if (loadPlayerDown){
 			PlayerController.doWakeUp = true;
 		}
 		PlayerStatsS.PlayerCantDie = false;
-
+		
 		if (healPlayer){
 			PlayerStatsS.healOnStart = true;
 		}
 	}
-
+	
 	// Use this for initialization
 	void Start () {
-
+		
 		_controller = GetComponent<ControlManagerS>();
 		skipCol = skipText.color;
 		skipCol.a = 0;
 		loadText.color = skipText.color = skipCol;
-
+		
 		skipScreen.gameObject.SetActive(false);
-
+		
 		loadText.enabled = false;
-
+		
 		Time.timeScale = 1f;
-
+		
 		currentStep = 0;
 		ActivateStep();
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 		if (!startedLoading){
-
+			
 			if (_controller.StartButton() && !skipActivated){
 				if (skipCol.a < 1f){
 					skipCol = skipText.color;
@@ -97,13 +100,13 @@ public class CinematicHandlerS : MonoBehaviour {
 					skipText.color = skipCol;
 				}
 			}
-
+			
 			currentCountdown -= Time.deltaTime;
-
+			
 			if (skipActivated){
 				currentCountdown = 0f;
 			}
-
+			
 			if (currentCountdown <= 0){
 				if (currentStep > cinemaObjects.Length-1){
 					StartNextLoad();
@@ -124,9 +127,9 @@ public class CinematicHandlerS : MonoBehaviour {
 				async.allowSceneActivation = true;
 			}
 		}
-	
+		
 	}
-
+	
 	private void ActivateStep(){
 		currentCountdown = cinemaTimings[currentStep];
 		cinemaObjects[currentStep].SetActive(true);
@@ -137,7 +140,7 @@ public class CinematicHandlerS : MonoBehaviour {
 		}
 		currentStep++;
 	}
-
+	
 	private void StartNextLoad(){
 		if (skipActivated){
 			if (cinemaObjects[currentStep-1] != null){
@@ -148,7 +151,7 @@ public class CinematicHandlerS : MonoBehaviour {
 		StartCoroutine(LoadNextScene());
 		startedLoading = true;
 	}
-
+	
 	private IEnumerator LoadNextScene(){
 		FadeScreenUI.NoFade = noFade;
 		if (loadSceneSpawnPos > -1){
