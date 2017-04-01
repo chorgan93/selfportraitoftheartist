@@ -172,7 +172,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 						//Application.OpenURL(twitterLink);
 					}*/
 					if (currentSelection == 2){
-						Application.OpenURL(twitterLinkII);
+						//Application.OpenURL(twitterLinkII);
 					}
 				}
 			}

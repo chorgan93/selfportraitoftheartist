@@ -100,6 +100,9 @@ public class PlayerController : MonoBehaviour {
 	private Vector2 _inputDirectionLast;
 	private Vector2 _inputDirectionCurrent;
 
+	private ProjectilePoolS _projectilePool;
+	public ProjectilePoolS projectilePool {get { return _projectilePool; } }
+
 	
 	//_________________________________________INSTANCE PROPERTIES
 
@@ -355,6 +358,8 @@ public class PlayerController : MonoBehaviour {
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
 
+		_projectilePool = GetComponent<ProjectilePoolS>();
+
 		PlayerInventoryS.I.dManager.SpawnBlood();
 		//_specialFlash = CameraEffectsS.E.specialFlash;
 
@@ -488,28 +493,28 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashDamage(){
-		flashDamageFrames = 5;
-		myRenderer.material = damageFlashMat;
+		/*flashDamageFrames = 5;
+		myRenderer.material = damageFlashMat;**/
 	}
 
 	public void FlashHeal(){
-		flashHealFrames = 8;
+		/*flashHealFrames = 8;
 		myRenderer.material = healFlashMat;
-		VignetteEffectS.V.Flash(healFlashMat.color);
+		VignetteEffectS.V.Flash(healFlashMat.color);**/
 	}
 
 	public void FlashMana(bool doEffect = false){
-		flashManaFrames = 10;
+		/*flashManaFrames = 10;
 		myRenderer.material = manaFlashMat;
 		myRenderer.material.SetColor("_FlashColor", equippedWeapon.flashSubColor);
 		if (doEffect){
 			VignetteEffectS.V.Flash(manaFlashMat.color);
-		}
+		}**/
 	}
 	public void FlashCharge(){
-		flashChargeFrames = 5;
+		/*flashChargeFrames = 5;
 		myRenderer.material = chargeFlashMat;
-		VignetteEffectS.V.Flash(chargeFlashMat.color);
+		VignetteEffectS.V.Flash(chargeFlashMat.color);**/
 	}
 
 	public void WitchTime(EnemyS targetEnemy, bool fromParry = false){
@@ -948,8 +953,13 @@ public class PlayerController : MonoBehaviour {
 					momsEyeMult*=-1f;
 				}
 				newAttack = false;
-				newProjectile = Instantiate(queuedAttacks[0], transform.position, Quaternion.identity)
-					as GameObject;
+				if (_projectilePool.ContainsProjectileID(currentAttackS.projectileID)){
+					newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+						transform.position, Quaternion.identity).gameObject;
+				}else{
+					newProjectile = Instantiate(queuedAttacks[0], transform.position, Quaternion.identity)
+						as GameObject;
+				}
 				queuedAttacks.RemoveAt(0);
 			}
 			else{
@@ -957,20 +967,37 @@ public class PlayerController : MonoBehaviour {
 				momsEyeMult = 1f;
 				if (_doingCounterAttack){
 					if (_doingHeavyAttack){
+						if (_projectilePool.ContainsProjectileID
+							(currentAttackS.projectileID)){
+							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+								transform.position, Quaternion.identity).gameObject;
+						}else{
 						newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttackHeavy, 
 						                                        transform.position, 
 						                                        Quaternion.identity);
+						}
 					}else{
+						if (_projectilePool.ContainsProjectileID
+							(currentAttackS.projectileID)){
+							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+								transform.position, Quaternion.identity).gameObject;
+						}else{
 					newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttack, 
 					                                        transform.position, 
 					                                        Quaternion.identity);
+						}
 					}
 				}
 			else if (_doingDashAttack){
-				
+					if (_projectilePool.ContainsProjectileID
+						(currentAttackS.projectileID)){
+						newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+							transform.position, Quaternion.identity).gameObject;
+					}else{
 				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
 				                                        transform.position, 
 				                                        Quaternion.identity);
+					}
 			}else{
 
 					if (_doingHeavyAttack){
@@ -988,9 +1015,15 @@ public class PlayerController : MonoBehaviour {
 							currentChain = equippedWeapon.heavyChain.Length-1;
 						}
 
+						if (_projectilePool.ContainsProjectileID
+							(currentAttackS.projectileID)){
+							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+								transform.position,Quaternion.identity).gameObject;
+						}else{
 						newProjectile = (GameObject)Instantiate(equippedWeapon.heavyChain[currentChain], 
 						                                        transform.position, 
 						                                        Quaternion.identity);
+						}
 						prevChain = currentChain;
 					}
 					else{
@@ -1007,9 +1040,16 @@ public class PlayerController : MonoBehaviour {
 						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
 							currentChain = equippedWeapon.attackChain.Length-1;
 						}
-				newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
-				                                        transform.position, 
-						                                        Quaternion.identity);
+
+						if (_projectilePool.ContainsProjectileID
+							(currentAttackS.projectileID)){
+							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
+								transform.position, Quaternion.identity).gameObject;
+						}else{
+							newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
+								transform.position, 
+								Quaternion.identity);
+						}
 						prevChain = currentChain;
 					}
 				

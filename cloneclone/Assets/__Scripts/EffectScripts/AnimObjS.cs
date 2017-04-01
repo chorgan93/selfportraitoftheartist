@@ -7,6 +7,7 @@ public class AnimObjS : MonoBehaviour {
 	public Sprite[] animFrames;
 	public float animRate;
 	public float firstFrameDelay = 0f;
+	private float maxFirstFrameDelay;
 	private float animRateCountdown;
 	private int currentFrame;
 
@@ -21,6 +22,9 @@ public class AnimObjS : MonoBehaviour {
 
 	private EffectSpawnManagerS spawnManager;
 
+	private bool _initialized = false;
+	public bool initialize { get { return _initialized; } }
+
 	// Use this for initialization
 	void Start () {
 
@@ -28,10 +32,9 @@ public class AnimObjS : MonoBehaviour {
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
 		animRateCountdown = animRate+firstFrameDelay;
+		maxFirstFrameDelay = firstFrameDelay;
+		_initialized = true;
 	
-		if (fadeObj){
-		//spawnManager = GameObject.Find("EffectsManager").GetComponent<EffectSpawnManagerS>();
-		}
 	}
 	
 	// Update is called once per frame
@@ -85,7 +88,7 @@ public class AnimObjS : MonoBehaviour {
 
 				if (destroyOnEnd){
 					Destroy(gameObject);
-				}
+					}
 			}
 			
 			mySprite.sprite = animFrames[currentFrame];
@@ -97,5 +100,14 @@ public class AnimObjS : MonoBehaviour {
 
 	public void EndAnimation(){
 		endAnim = true;
+	}
+
+	public void ResetAnimation(){
+		endAnim = false;
+		currentFrame = 0;
+		mySprite.sprite = animFrames[currentFrame];
+		firstFrameDelay = maxFirstFrameDelay;
+		animRateCountdown = animRate+firstFrameDelay;
+		gameObject.SetActive(true);
 	}
 }

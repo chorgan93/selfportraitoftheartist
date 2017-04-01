@@ -68,6 +68,9 @@ public class BloodS : MonoBehaviour {
 						bloodColorCountdown = bloodColorRate;
 						currentColor++;
 						myRenderer.color = bloodColors[currentColor];
+						if (currentColor == bloodColors.Length-1){
+							enabled = false;
+						}
 					}                                       
 				}
 			}

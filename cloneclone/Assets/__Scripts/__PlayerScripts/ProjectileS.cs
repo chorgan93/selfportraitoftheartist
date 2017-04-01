@@ -6,6 +6,7 @@ public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
 	private float enragedMult = 1.75f;
+	public int projectileID = -1;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -47,6 +48,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool dashAttack = false;
 	public bool delayAttack = false;
 	public float dmg = 1;
+	private float startDmg;
 	public float stunMult = 1f;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
@@ -111,6 +113,11 @@ public class ProjectileS : MonoBehaviour {
 	private int weaponNum = 0;
 	private List<EnemyS> enemiesHit = new List<EnemyS>();
 
+	private bool firedOnce = false;
+	private AnimObjS[] allAnimators;
+	private ProjectilePoolS myPool;
+	private Vector3 startScale;
+
 
 	void FixedUpdate () {
 
@@ -138,8 +145,11 @@ public class ProjectileS : MonoBehaviour {
 
 		if (currentRange <= 0){
 
-
+			if (projectileID < 0){
 			Destroy(gameObject);
+			}else{
+				myPool.AddProjectile(this);	
+			}
 
 		}
 
@@ -158,10 +168,18 @@ public class ProjectileS : MonoBehaviour {
 	}
 
 	public void Fire(bool tooCloseForKnockback, Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true){
-		
+
+		if (!firedOnce){
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
-		_myPlayer = playerReference;
+			_myPlayer = playerReference;
+			myPool = _myPlayer.projectilePool;
+			weaponNum = _myPlayer.EquippedWeapon().weaponNum;
+			startDmg = dmg;
+		}else{
+			dmg = startDmg;
+			transform.localScale = startScale;
+		}
 		enemiesHit.Clear();
 		// powerLvl = dmg;
 
@@ -175,7 +193,6 @@ public class ProjectileS : MonoBehaviour {
 			dmg*=_myPlayer.adaptiveAugBonus;
 		}
 
-		weaponNum = _myPlayer.EquippedWeapon().weaponNum;
 
 		if (soundObj){
 			Instantiate(soundObj);
@@ -262,8 +279,13 @@ public class ProjectileS : MonoBehaviour {
 		//}
 
 		currentRange = range;
+		InitializeSprites();
 
-		transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
+		if (!firedOnce){
+			transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
+			startScale = transform.localScale;
+			firedOnce = true;
+		}
 
 
 
@@ -502,4 +524,19 @@ public class ProjectileS : MonoBehaviour {
 		}
 
 	}
+
+	private void InitializeSprites(){
+		if (!firedOnce){
+			allAnimators = transform.GetComponentsInChildren<AnimObjS>();
+			for (int i = 0; i < allAnimators.Length; i++){
+				allAnimators[i].destroyOnEnd = false;
+			}
+		}else{
+			for (int i = 0; i < allAnimators.Length; i++){
+				allAnimators[i].ResetAnimation();
+			}
+		}
+	}
+
+
 }

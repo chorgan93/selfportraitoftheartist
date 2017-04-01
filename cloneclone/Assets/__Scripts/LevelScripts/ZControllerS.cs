@@ -44,23 +44,24 @@ public class ZControllerS : MonoBehaviour {
 		currentList.Clear();
 
 		bool zPlaced = false;
-		foreach (ZControlTargetS z in allTargets){
+		for (int j = 0; j < allTargets.Count; j++){ 
 			zPlaced = false;
 			if (currentList.Count > 0){
 				for (int i = 0; i < currentList.Count; i++){
-					if (currentList[i].transform.position.y < z.myTargetRef.position.y){
+					if (currentList[i].transform.position.y < allTargets[j].myTargetRef.position.y){
 						if (i == currentList.Count-1 && !zPlaced){
-							currentList.Add(z);
+							currentList.Add(allTargets[j]);
+							zPlaced = true;
 						}
 					}else{
 						if (!zPlaced){
-							currentList.Insert(i, z);
+							currentList.Insert(i, allTargets[j]);
 							zPlaced = true;
 						}
 					}
 				}
 			}else{
-				currentList.Add(z);
+				currentList.Add(allTargets[j]);
 			}
 		}
 
@@ -77,6 +78,8 @@ public class ZControllerS : MonoBehaviour {
 	}
 
 	public void AddTarget(ZControlTargetS zTarget){
-		allTargets.Add(zTarget);
+		if (!allTargets.Contains(zTarget)){
+			allTargets.Add(zTarget);
+		}
 	}
 }

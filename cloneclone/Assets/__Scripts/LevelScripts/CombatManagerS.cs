@@ -65,6 +65,7 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID);
 		}
+		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();
 	}
@@ -160,6 +161,12 @@ public class CombatManagerS : MonoBehaviour {
 				CorrectCompletedFight();
 			}
 			return false;
+		}
+	}
+
+	void TurnOffEnemies(){
+		for (int i = 0; i < enemies.Length; i++){
+			enemies[i].currentSpawnedEnemy.enabled = false;
 		}
 	}
 }
