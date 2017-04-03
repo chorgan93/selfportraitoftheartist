@@ -83,7 +83,9 @@ public class PlayerDestructionS : MonoBehaviour {
 	
 	public void ClearAllSaved(){
 		ClearAll();
-		_combatClearedAtLeastOnce.Clear();
+		if (_combatClearedAtLeastOnce != null){
+			_combatClearedAtLeastOnce.Clear();
+		}
 	}
 	
 	public void AddClearedCombat(int newI){

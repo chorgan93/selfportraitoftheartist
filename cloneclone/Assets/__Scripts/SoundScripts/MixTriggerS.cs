@@ -41,7 +41,7 @@ public class MixTriggerS : MonoBehaviour {
 	void OnTriggerEnter (Collider other) {
 	
 		if (other.gameObject.tag == "Player"){
-			if ((activateOnce && !activated) || !activateOnce){
+			if (((activateOnce && !activated) || !activateOnce) && targetLayer != null){
 				if (fadeIn){
 					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
 						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);

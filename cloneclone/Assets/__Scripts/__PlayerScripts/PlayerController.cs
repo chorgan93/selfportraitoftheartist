@@ -303,6 +303,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		Cursor.visible = false;
 		InitializePlayer();
 
 	}
@@ -311,10 +312,17 @@ public class PlayerController : MonoBehaviour {
 
 		PlayerUpdate();
 
-		if (myControl.ControllerAttached()){
-			Cursor.visible = false;
-		}else{
-			Cursor.visible = true;
+		if (!myControl.ControllerAttached()){
+			if (!Cursor.visible){
+				if (Input.GetKeyDown(KeyCode.Escape) && !_isTalking){
+					Cursor.visible = true;
+				}
+			}else{
+				if (Input.GetMouseButtonDown(0)){
+					Cursor.visible = false;
+				}
+			}
+				
 		}
 
 	}
@@ -543,8 +551,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (CanInputMovement()){
 			Vector2 input2 = Vector2.zero;
-			input2.x = controller.Horizontal();
-			input2.y = controller.Vertical();
+			input2.x = controller.HorizontalMovement();
+			input2.y = controller.VerticalMovement();
 			input2 = input2.normalized;
 
 			if (input2.x != 0 || input2.y != 0){
@@ -703,8 +711,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		inputDirection = Vector3.zero;
-		inputDirection.x = controller.Horizontal();
-		inputDirection.y = controller.Vertical();
+		inputDirection.x = controller.HorizontalMovement();
+		inputDirection.y = controller.VerticalMovement();
 
 		if (inputDirection.x == 0 && inputDirection.y == 0){
 			inputDirection = -savedDir;
@@ -795,7 +803,7 @@ public class PlayerController : MonoBehaviour {
 			if (controller.DashTrigger()){
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
-					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+					if ((controller.HorizontalMovement() != 0 || controller.VerticalMovement() != 0)){
 						TriggerDash();
 						_dashStickReset = false;
 					}
@@ -1392,6 +1400,9 @@ public class PlayerController : MonoBehaviour {
 					BuddyS tempSwap = _myBuddy;
 					if (!altBuddyCreated){
 						altBuddyCreated = true;
+						if (equippedBuddies.Count < 2){
+							equippedBuddies.Add(equippedBuddies[0]);
+						}
 						GameObject newBuddy = Instantiate(equippedBuddies[_currentParadigm], 
 						                                  transform.position,Quaternion.identity)
 							as GameObject;
@@ -1413,6 +1424,7 @@ public class PlayerController : MonoBehaviour {
 					if (tutorialRef != null){
 						tutorialRef.AddShift();
 					}
+					switchButtonUp = false;
 	
 				}
 			}
@@ -1990,13 +2002,13 @@ public class PlayerController : MonoBehaviour {
 		Vector3 inputDirection = Vector3.zero;
 
 		// read left analogue input
-		if (Input.GetJoystickNames().Length > 0 || moveOverride){
+		//if (Input.GetJoystickNames().Length > 0 || moveOverride){
 		inputDirection.x = controller.Horizontal();
 		inputDirection.y = controller.Vertical();
-		}
+		/*}
 		else{
 			inputDirection = GetMouseDirection();
-		}
+		}**/
 
 		// first, do lock on
 		/*if (_myLockOn.lockedOn){

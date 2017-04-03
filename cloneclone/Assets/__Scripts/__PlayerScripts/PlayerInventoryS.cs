@@ -317,6 +317,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 		SetUpStartTech();
 		PlayerStatsS.healOnStart = true;
+		PlayerStatsS._currentDarkness = 0f;
+		PlayerCollectionS.currencyCollected = 0;
 		PlayerController._currentParadigm = 0;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;

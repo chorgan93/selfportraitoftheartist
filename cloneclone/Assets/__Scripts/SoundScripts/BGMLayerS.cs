@@ -71,15 +71,19 @@ public class BGMLayerS : MonoBehaviour {
 	}
 
 	public void FadeOut(bool instant, bool dOnFade = false){
+		destroyOnFade = dOnFade;
 		if (!instant){
 			fadingOut = true;
 			fadingIn = false;
 		}else{
-			fadingOut = false;
-			fadingIn = false;
-			mySource.volume = 0f;
+			if (destroyOnFade){
+				Destroy(gameObject);
+			}else{
+				fadingOut = false;
+				fadingIn = false;
+				mySource.volume = 0f;
+			}
 		}
-		destroyOnFade = dOnFade;
 	}
 
 	public void StopLayer(){

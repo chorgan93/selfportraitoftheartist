@@ -37,7 +37,7 @@ public class InventoryManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!CinematicHandlerS.inCutscene){
+		if (!CinematicHandlerS.inCutscene && !MainMenuNavigationS.inMain){
 			if (!_pRef){
 				_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 				_interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();

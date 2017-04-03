@@ -104,6 +104,42 @@ public class ControlManagerS : MonoBehaviour {
 
 	}
 
+	public float HorizontalMovement(){
+
+		if (GetPlatform() == "Mobile"){
+			float moveHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
+
+			return moveHorizontal;
+		}
+		else{
+			if (ControllerAttached()){
+				return Input.GetAxis("HorizontalController");
+			}
+			else{
+				return Input.GetAxis("HorizontalKeys");
+			}
+		}
+
+	}
+
+	public float VerticalMovement(){
+
+		if (GetPlatform() == "Mobile"){
+			float moveVertical = CrossPlatformInputManager.GetAxis("Vertical");
+
+			return moveVertical;
+		}
+		else{
+			if (ControllerAttached()){
+				return Input.GetAxis("VerticalController");
+			}
+			else{
+				return Input.GetAxis("VerticalKeys");
+			}
+		}
+
+	}
+
 	public float RightHorizontal(){
 		
 		return Input.GetAxis("RightHorizontalController" + platformType);
@@ -136,7 +172,8 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetButton("ShootButton"+platformType));
 			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
-			return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+			//return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+			return (Input.GetKey(KeyCode.C));
 		}
 
 	}
@@ -217,7 +254,8 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetMouseButton(0));
+			//return (Input.GetMouseButton(0));
+			return (Input.GetKey(KeyCode.X));
 
 		}
 		
@@ -231,7 +269,9 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetMouseButton(1));
+			//return (Input.GetMouseButton(1));
+
+			return (Input.GetKey(KeyCode.Z));
 			
 		}
 		
@@ -299,7 +339,8 @@ public class ControlManagerS : MonoBehaviour {
 			//return (Input.GetButton("SwitchButton"+platformType));
 		}
 		else{
-			return(Input.GetKey(KeyCode.Q));
+			//return(Input.GetKey(KeyCode.Q));
+			return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 		}
 		
 	}
@@ -354,7 +395,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			return (Input.GetButton("BackButton"+platformType));
 		}else{
-			return (Input.GetKey(KeyCode.Escape));
+			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Q));
 		}
 	}
 

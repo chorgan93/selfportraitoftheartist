@@ -47,16 +47,22 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	private string cheatString = "";
 	private bool allowCheats = false; // TURN OFF FOR DEMO
+
+	public static bool inMain = false;
 	
 	private bool startedLoading;
 	AsyncOperation async;
 	
 	public InfiniteBGM startMusic;
+
+	void Awake(){
+		inMain = true;
+	}
 	
 	// Use this for initialization
 	void Start () {
 		
-		//Cursor.visible = false;
+		Cursor.visible = false;
 		PlayerStatsS.godMode = false;
 		
 		fadeOnZoom.gameObject.SetActive(false);
@@ -87,8 +93,22 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void Update () {
 		
 		//CheckCheats();
-		
+
+		if (!loading){
+			// check for cursor
+			if (!Cursor.visible){
+				if (Input.GetKeyDown(KeyCode.Escape)){
+					Cursor.visible = true;
+				}
+			}else{
+				if (Input.GetMouseButtonDown(0)){
+					Cursor.visible = false;
+				}
+			}
+		}
+
 		if (!started){
+
 			allowStartTime -= Time.deltaTime;
 			if (allowStartTime <= 0 && (myController.TalkButton() || Input.GetKeyDown(KeyCode.Return))){
 				started = true;
@@ -156,11 +176,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 						loadBlackScreen.gameObject.SetActive(true);
 						loading = true;
 						selectOrb.SetActive(false);
+						Cursor.visible = false;
 						if (currentSelection == 0){
 							StoryProgressionS.NewGame(); // reset for new game progress
 						}else{
 							SaveLoadS.Load();
 							newGameScene = GameOverS.reviveScene;
+							PlayerController.doWakeUp = true;
 						}
 						PlayerStatsS.healOnStart = true;
 						StartNextLoad();
@@ -179,6 +201,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 		}else{
 			if (loadBlackScreen.color.a >= 1f){
 				if (async.progress >= 0.9f){
+					inMain = false;
 					async.allowSceneActivation = true;
 				}
 			}

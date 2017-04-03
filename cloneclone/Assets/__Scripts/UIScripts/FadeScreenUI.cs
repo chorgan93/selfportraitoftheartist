@@ -26,6 +26,8 @@ public class FadeScreenUI : MonoBehaviour {
 	private float addLetterRate = 0.1f;
 	private float addLetterCountdown;
 
+	public static bool dontAllowReset = false;
+
 	private DarknessPercentUIS darknessTracker;
 	public static bool NoFade = false;
 
@@ -103,6 +105,7 @@ public class FadeScreenUI : MonoBehaviour {
 					}
 				}
 				InGameCinematicS.inGameCinematic = false;
+				dontAllowReset = false;
 				async.allowSceneActivation = true;
 			}
 		}
@@ -165,6 +168,7 @@ public class FadeScreenUI : MonoBehaviour {
 
 	private void StartLoading(){
 		StartCoroutine(LoadNextScene());
+		dontAllowReset = true;
 		startedLoading = true;
 	}
 
