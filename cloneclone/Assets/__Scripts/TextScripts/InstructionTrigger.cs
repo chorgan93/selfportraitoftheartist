@@ -72,10 +72,6 @@ public class InstructionTrigger : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.K)){
-			Debug.Log(playerFamiliarAttacks + " " + playerLightAttacks + " " + playerHeavyAttacks);
-		}
-
 	}
 
 	void OnDisable(){

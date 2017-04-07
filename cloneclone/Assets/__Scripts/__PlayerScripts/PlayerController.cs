@@ -550,8 +550,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (CanInputMovement()){
 			Vector2 input2 = Vector2.zero;
-			input2.x = controller.HorizontalMovement();
-			input2.y = controller.VerticalMovement();
+			input2.x = controller.Horizontal();
+			input2.y = controller.Vertical();
 			input2 = input2.normalized;
 
 			if (input2.x != 0 || input2.y != 0){
@@ -710,8 +710,8 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		inputDirection = Vector3.zero;
-		inputDirection.x = controller.HorizontalMovement();
-		inputDirection.y = controller.VerticalMovement();
+		inputDirection.x = controller.Horizontal();
+		inputDirection.y = controller.Vertical();
 
 		if (inputDirection.x == 0 && inputDirection.y == 0){
 			inputDirection = -savedDir;
@@ -802,7 +802,7 @@ public class PlayerController : MonoBehaviour {
 			if (controller.DashTrigger()){
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
-					if ((controller.HorizontalMovement() != 0 || controller.VerticalMovement() != 0)){
+					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
 						_dashStickReset = false;
 					}
