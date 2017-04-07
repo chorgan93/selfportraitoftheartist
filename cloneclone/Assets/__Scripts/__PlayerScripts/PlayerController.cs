@@ -257,10 +257,9 @@ public class PlayerController : MonoBehaviour {
 
 	private float staggerBonusTimeMax = 1f;
 	private float staggerBonusTime;
-	private float _adaptiveAugBonus = 1f;
-	private float _adaptiveAugAdd = 0.1f;
-	private float _adaptiveAugCurrentShift = 0;
-	public float adaptiveAugBonus { get { return (_adaptiveAugBonus + _adaptiveAugAdd*_adaptiveAugCurrentShift); } }
+	private float _adaptiveCountdown = 0f;
+	private float _adaptiveTimeMax = 1.5f;
+	public bool adaptiveAugBonus { get { return (_adaptiveCountdown > 0); } }
 
 	
 	//_________________________________________GETTERS AND SETTERS
@@ -387,6 +386,7 @@ public class PlayerController : MonoBehaviour {
 
 		equippedWeapon = equippedWeapons[_currentParadigm];
 
+
 		if (equippedVirtues == null){
 			equippedVirtues = new List<int>();
 			equippedVirtues.Add(0);
@@ -412,7 +412,6 @@ public class PlayerController : MonoBehaviour {
 
 		currentChain = -1;
 		comboDuration = 0f;
-		_adaptiveAugCurrentShift = 0;
 
 		queuedAttacks = new List<GameObject>();
 		queuedAttackDelays = new List<float>();
@@ -896,7 +895,6 @@ public class PlayerController : MonoBehaviour {
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();
-				_adaptiveAugCurrentShift = 0;
 			}
 		}
 
@@ -1145,7 +1143,6 @@ public class PlayerController : MonoBehaviour {
 
 			if (_myStats.currentMana <= 0){
 				comboDuration = 0f;
-				_adaptiveAugCurrentShift = 0;
 			}
 
 				if (myRenderer.transform.localScale.x > 0){
@@ -1580,6 +1577,9 @@ public class PlayerController : MonoBehaviour {
 		Instantiate(_myBuddy.buddySound);
 		tempSwap.gameObject.SetActive(false);*/
 
+		if (_playerAug.adaptiveAug){
+			_adaptiveCountdown = _adaptiveTimeMax;
+		}
 		
 		// switchWeapon
 		equippedWeapon = equippedWeapons[_currentParadigm];
@@ -1603,10 +1603,13 @@ public class PlayerController : MonoBehaviour {
 		weaponSwitchIndicator.Flash(equippedWeapon);
 		myRenderer.color = equippedWeapon.swapColor;
 
+		if (_currentCombatManager && _inCombat){
+			_currentCombatManager.ChangeFeatherCols(equippedWeapon.swapColor);
+		}
+
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
 		}
-		_adaptiveAugCurrentShift+=1f;
 	}
 
 	private bool StaminaCheck(float cost, bool takeAway = true){

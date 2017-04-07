@@ -10,6 +10,7 @@ public class CombatManagerS : MonoBehaviour {
 	int defeatedEnemies = 0;
 
 	PlayerController playerRef;
+	public PlayerController pRef { get { return playerRef; } }
 	private Vector3 _resetPos;
 	public Vector3 resetPos { get { return _resetPos; } }
 
@@ -85,6 +86,7 @@ public class CombatManagerS : MonoBehaviour {
 		}
 
 		foreach (EnemySpawnerS e in enemies){
+			e.myManager = this;
 			if (e.gameObject.activeSelf){
 				e.RespawnEnemies();
 			}else{
@@ -104,6 +106,8 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}
+
+		ChangeFeatherCols(playerRef.EquippedWeapon().swapColor);
 		
 	}
 	void TurnOnObjects(){
@@ -167,6 +171,14 @@ public class CombatManagerS : MonoBehaviour {
 	void TurnOffEnemies(){
 		for (int i = 0; i < enemies.Length; i++){
 			enemies[i].currentSpawnedEnemy.enabled = false;
+		}
+	}
+
+	public void ChangeFeatherCols(Color newCol){
+		for (int i = 0; i < enemies.Length; i++){
+			if (enemies[i].currentSpawnedEnemy != null){
+				enemies[i].currentSpawnedEnemy.ChangeFeatherColor(newCol);
+			}
 		}
 	}
 }

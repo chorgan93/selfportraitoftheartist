@@ -179,4 +179,14 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 			}
 		}
 	}
+
+	public void ChangeFeatherColor(Color newCol){
+		for (int i = 0; i < featherSprites.Count; i++){
+			featherSprites[i].ChangeCurrentColor(newCol);
+		}
+		for (int i = 0; i < falseFeathers.Count; i++){
+			newCol.a = 0.3f;
+			falseFeathers[i].GetComponent<SpriteRenderer>().color = newCol;
+		}
+	}
 }

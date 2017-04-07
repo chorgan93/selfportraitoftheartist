@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class EnemyS : MonoBehaviour {
 
+	public const float DAMAGE_VARIANCE = 0.15f;
+
 	private const string DEAD_LAYER = "EnemyColliderDead";
 	private const int FLASH_FRAME_COUNT = 3;
 
@@ -92,6 +94,9 @@ public class EnemyS : MonoBehaviour {
 	[Header("Sound Properties")]
 	public GameObject hitSound;
 	public GameObject deathSound;
+
+	[HideInInspector]
+	public EnemySpawnerS mySpawner;
 
 
 	//____________________________________ENEMY STATES
@@ -333,6 +338,9 @@ public class EnemyS : MonoBehaviour {
 		healthFeatherReference = GetComponentInChildren<EnemyHealthFeathersS>();
 		if (healthFeatherReference){
 			healthFeatherReference.SetUpEnemy(this);
+			if (mySpawner){
+				healthFeatherReference.ChangeFeatherColor(mySpawner.myManager.pRef.EquippedWeapon().swapColor);
+			}
 			if (!PlayerController.equippedVirtues.Contains(5)){
 				healthFeatherReference.Hide();
 			}
@@ -807,6 +815,8 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown = knockbackTime;
 		}
 
+		EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, true, false, damageTaken, transform);
+
 		//healthBarReference.ResizeForDamage();
 
 	}
@@ -853,6 +863,11 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetHealthDisplay(EnemyHealthFeathersS newFeather){
 		healthFeatherReference = newFeather;
+	}
+
+	public void ChangeFeatherColor(Color newCol){
+		if (healthFeatherReference)
+			healthFeatherReference.ChangeFeatherColor(newCol);
 	}
 
 }

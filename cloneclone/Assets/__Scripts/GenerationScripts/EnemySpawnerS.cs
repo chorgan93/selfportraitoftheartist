@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemySpawnerS : MonoBehaviour {
 
+	[HideInInspector]
+	public CombatManagerS myManager;
+
 	private bool _enemySpawned = false;
 	public bool enemySpawned { get { return _enemySpawned; } }
 	private EnemyS currentEnemyReference;
@@ -70,6 +73,7 @@ public class EnemySpawnerS : MonoBehaviour {
 			savedSpawnPt = transform.position;
 	
 			currentEnemyReference = newEnemy.GetComponent<EnemyS>();
+			currentEnemyReference.mySpawner = this;
 	
 			//newEnemy.transform.parent = transform;
 

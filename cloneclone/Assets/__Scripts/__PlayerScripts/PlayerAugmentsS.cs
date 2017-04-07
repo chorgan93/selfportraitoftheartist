@@ -6,6 +6,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// script handles all upgrades from sub-weapons and virtues
 	private PlayerController _playerReference;
 
+	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
+	public const float ENRAGED_DAMAGE_BOOST = 1.75f;
+
 	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
 	public bool lunaAug { get { return _lunaAug; } }

@@ -10,6 +10,9 @@ public class EffectSpawnManagerS : MonoBehaviour {
 	public GameObject enemyHealthPrefab;
 	private List<GameObject> enemyHealthBars = new List<GameObject>();
 
+	public GameObject damageNumberPrefab;
+	private List<GameObject> damageNumbers = new List<GameObject>();
+
 	public static EffectSpawnManagerS E;
 
 	// Use this for initialization
@@ -59,6 +62,29 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 	}
 
+	public GameObject SpawnDamangeNum(Vector3 spawnPos, bool isE, bool playerHit, float dmgAmt, Transform newParent = null){
+
+		GameObject spawnObj = null;
+
+		if (PlayerController.equippedUpgrades.Contains(1) && dmgAmt > 0){
+		spawnPos.y += 1f;
+		spawnPos.z -= 1f;
+		if (damageNumbers.Count > 0){
+			spawnObj = damageNumbers[0];
+			damageNumbers.Remove(spawnObj);
+			spawnObj.transform.position = spawnPos;
+			spawnObj.SetActive(true);
+		}else{
+			spawnObj = Instantiate(damageNumberPrefab, spawnPos, Quaternion.identity) as GameObject;
+		}
+
+		spawnObj.GetComponent<DamageNumberS>().Initialize(isE, dmgAmt, playerHit);
+		spawnObj.transform.parent = null;
+		}
+
+		return spawnObj;
+	}
+
 	public void Despawn(GameObject target, int spawnCode){
 
 		target.SetActive(false);
@@ -69,6 +95,9 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		}
 		if (spawnCode == 2){
 			enemyHealthBars.Add(target);
+		}
+		if (spawnCode == 3){
+			damageNumbers.Add(target);
 		}
 
 	}

@@ -113,7 +113,6 @@ public class DestructibleItemS : EnemyS {
 		if (onlyTakeDamageFromWeapon <= -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
 			_currentDestructibleHealth -= dmgAmt;
 
-			Debug.Log(_currentDestructibleHealth);
 				if (_currentDestructibleHealth <= 0){
 				_myDestructibleCollider.enabled = false;
 				DestructibleDead();

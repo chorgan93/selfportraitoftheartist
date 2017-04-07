@@ -199,13 +199,15 @@ public class PlayerInventoryS : MonoBehaviour {
 			LoadInventoryData();
 
 		}else{
-
+			
 			PlayerController pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
 
 			_earnedUpgrades = new List<int>();
 			_earnedVirtues = new List<int>();
 			_earnedVirtues.Add(0);
+			PlayerController.equippedVirtues = new List<int>();
+			PlayerController.equippedVirtues.Add(0);
 			_collectedItems = new List<int>();
 			healNums = new List<int>();
 			staminaNums = new List<int>();
@@ -244,7 +246,8 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 			
 			_earnedTech = new List<int>(){0,1,2,3,7,8,9};
-			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,7};
+			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
+
 
 		}
 
@@ -306,9 +309,6 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls.Clear();
 		_openedDoors.Clear();
 		healNums.Clear();
-		PlayerInventoryS.I._earnedUpgrades.Clear();
-		PlayerInventoryS.I._earnedVirtues.Clear();
-		PlayerInventoryS.I._earnedVirtues.Add(0);
 		if (unlockedWeapons.Count > 1){
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
 		}
@@ -329,8 +329,14 @@ public class PlayerInventoryS : MonoBehaviour {
 	}
 
 	void SetUpStartTech(){
-		_earnedTech = new List<int>(){0,1,2,3,7,8,9};
-		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,7};
+
+		PlayerInventoryS.I._earnedUpgrades.Clear();
+		PlayerInventoryS.I._earnedVirtues.Clear();
+		PlayerInventoryS.I._earnedVirtues.Add(0);
+		PlayerController.equippedVirtues = new List<int>();
+		PlayerController.equippedVirtues.Add(0);
+		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
+		_earnedTech =  new List<int>{0,1,2,3,4,7};
 	}
 
 	void LoadInventoryData(){
@@ -405,7 +411,6 @@ public class PlayerInventoryS : MonoBehaviour {
 	public void OverwriteInventoryData(){
 
 		inventoryData = new InventorySave();
-
 
 		if (initialized){
 		inventoryData.earnedUpgrades = _earnedUpgrades;

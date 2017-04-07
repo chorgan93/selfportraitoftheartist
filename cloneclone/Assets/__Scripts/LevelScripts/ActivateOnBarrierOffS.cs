@@ -14,6 +14,5 @@ public class ActivateOnBarrierOffS : MonoBehaviour {
 		for (int i = 0; i < offObjects.Length; i++){
 			offObjects[i].SetActive(false);
 		}
-		Debug.Log("Barrier on off activate!");
 	}
 }

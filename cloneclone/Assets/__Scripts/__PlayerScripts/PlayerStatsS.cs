@@ -496,6 +496,7 @@ public class PlayerStatsS : MonoBehaviour {
 				myPlayerController.myAnimator.SetTrigger("Hurt");
 				myPlayerController.FlashDamage();
 
+				EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, false, true, dmg);
 					
 				if(!godMode){
 					

@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class ProjectileS : MonoBehaviour {
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
-	private float enragedMult = 1.75f;
 	public int projectileID = -1;
+
+	private const float damageVariance = 0.2f;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -185,12 +186,13 @@ public class ProjectileS : MonoBehaviour {
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
+		dmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 
 		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
-			dmg*=enragedMult;
+			dmg*= PlayerAugmentsS.ENRAGED_DAMAGE_BOOST;
 		}
-		if (_myPlayer.playerAug.adaptiveAug){
-			dmg*=_myPlayer.adaptiveAugBonus;
+		if (_myPlayer.adaptiveAugBonus){
+			dmg*= PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
 		}
 
 

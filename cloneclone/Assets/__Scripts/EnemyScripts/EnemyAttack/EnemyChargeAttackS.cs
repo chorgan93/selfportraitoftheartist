@@ -184,13 +184,15 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
+			float actingDamage = dmg*Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
+
 			if (myEnemy){
 			other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
-				(myEnemy, dmg, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+				(myEnemy, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
 			}
 			else{
 				other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
-					(null, dmg, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+				(null, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
 			}
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);

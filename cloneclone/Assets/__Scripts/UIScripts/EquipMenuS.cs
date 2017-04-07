@@ -423,10 +423,9 @@ public class EquipMenuS : MonoBehaviour {
 
 					// swap actual virtue equip & update display
 					if (PlayerController.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
-						PlayerController.equippedVirtues.Remove(allVirtueItems[currentPos].virtueNum);
+							PlayerController.equippedVirtues.Remove(allVirtueItems[currentPos].virtueNum);
 						pRef.myStats.ChangeVirtue(-allVirtueItems[currentPos].virtueCost);
 					allVirtueItems[currentPos].Unequip();
-						
 					}else{
 						if (pRef.myStats.usedVirtue + allVirtueItems[currentPos].virtueCost <= pRef.myStats.virtueAmt){
 							PlayerController.equippedVirtues.Add (allVirtueItems[currentPos].virtueNum);

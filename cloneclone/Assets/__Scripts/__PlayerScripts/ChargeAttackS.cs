@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ChargeAttackS : MonoBehaviour {
 
+	private const float damageVariance = 0.1f;
 
 	private Renderer _myRenderer;
 	private Collider _myCollider;
@@ -214,6 +215,15 @@ public class ChargeAttackS : MonoBehaviour {
 			knockBackDir.z = 1f;
 
 			float actingDmg = dmg*myPlayer.myStats.strengthAmt;
+
+				actingDmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
+
+				if (myPlayer.playerAug.enragedAug){
+					actingDmg*=PlayerAugmentsS.ENRAGED_DAMAGE_BOOST;
+				}
+				if (myPlayer.playerAug.adaptiveAug){
+					actingDmg*=PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
+				}
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 

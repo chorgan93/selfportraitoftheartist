@@ -164,6 +164,8 @@ public class EnemyProjectileS : MonoBehaviour {
 				_myEnemy.AttackKnockback(knockbackForce);
 			}
 		}
+
+		damage *= Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
 			
 		
 		DoShake();

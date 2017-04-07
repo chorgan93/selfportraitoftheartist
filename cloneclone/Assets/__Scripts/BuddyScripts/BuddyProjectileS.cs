@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class BuddyProjectileS : MonoBehaviour {
-	
+
+	private const float DAMAGE_VARIANCE = 0.125f;
 	
 	private Rigidbody _rigidbody;
 	private SpriteRenderer _myRenderer;
@@ -148,8 +149,9 @@ public class BuddyProjectileS : MonoBehaviour {
 			
 			_myBuddy.myRigid.AddForce(knockbackForce, ForceMode.Impulse);
 		}
-		
-		
+
+		damage *= Random.Range(1f - DAMAGE_VARIANCE, 1f + DAMAGE_VARIANCE);
+
 		DoShake();
 		if (stopTime){
 			CameraShakeS.C.TimeSleep(0.1f);
@@ -243,7 +245,7 @@ public class BuddyProjectileS : MonoBehaviour {
 				
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					 damage, actingStunMult, damage);
+					 damage, actingStunMult, 2f);
 				
 				if (!isPiercing){
 					

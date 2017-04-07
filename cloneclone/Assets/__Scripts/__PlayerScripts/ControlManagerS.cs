@@ -173,7 +173,7 @@ public class ControlManagerS : MonoBehaviour {
 			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
 			//return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-			return (Input.GetKey(KeyCode.C));
+			return (Input.GetKey(KeyCode.D));
 		}
 
 	}
@@ -255,7 +255,7 @@ public class ControlManagerS : MonoBehaviour {
 		else{
 			
 			//return (Input.GetMouseButton(0));
-			return (Input.GetKey(KeyCode.X));
+			return (Input.GetKey(KeyCode.S));
 
 		}
 		
@@ -271,7 +271,7 @@ public class ControlManagerS : MonoBehaviour {
 			
 			//return (Input.GetMouseButton(1));
 
-			return (Input.GetKey(KeyCode.Z));
+			return (Input.GetKey(KeyCode.A));
 			
 		}
 		

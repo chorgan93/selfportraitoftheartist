@@ -6,7 +6,7 @@ public class EnemyHealthFeatherColorS : MonoBehaviour {
 	private SpriteRenderer myRenderer;
 	private EnemyS myEnemy;
 	private Color currentColor;
-	private float ambientAlpha = 0.5f;
+	private float ambientAlpha = 0.8f;
 
 	private float maxWhiteTime = 0.12f;
 	private float currentWhiteTime = 0f;
@@ -94,5 +94,13 @@ public class EnemyHealthFeatherColorS : MonoBehaviour {
 			currentWhiteTime *= 1.6f;
 		}
 		flashing = true;
+	}
+
+	public void ChangeCurrentColor(Color newC){
+		currentColor = newC;
+		currentColor.a = ambientAlpha;
+		if (!flashing){
+			myRenderer.color = currentColor;
+		}
 	}
 }

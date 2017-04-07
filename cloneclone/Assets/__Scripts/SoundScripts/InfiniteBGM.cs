@@ -29,6 +29,7 @@ public class InfiniteBGM : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		}
+			
 
 	}
 
