@@ -67,8 +67,8 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		GameObject spawnObj = null;
 
 		if (PlayerController.equippedUpgrades.Contains(1) && dmgAmt > 0){
-		spawnPos.y += 1f;
-		spawnPos.z -= 1f;
+		spawnPos.y += 0.8f;
+		spawnPos.z = -8f;
 		if (damageNumbers.Count > 0){
 			spawnObj = damageNumbers[0];
 			damageNumbers.Remove(spawnObj);

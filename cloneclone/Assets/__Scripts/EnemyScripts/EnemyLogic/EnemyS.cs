@@ -773,14 +773,21 @@ public class EnemyS : MonoBehaviour {
 					_isCritical = true;
 					_critScreen.Flash();
 					GetPlayerReference().SendCritMessage();
-				}
+				
+					// spawn break object on parry
+					if (dmg <= 0){
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
 				EnemyBreakS breakRef = critBreak.GetComponent<EnemyBreakS>();
 				breakRef.transformRef = transform;
 				breakRef.pieceColor = bloodColor;
-				breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
-				vulnerableCountdown = criticalRecoverTime;
+						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
+						vulnerableCountdown = criticalRecoverTime*2f;
+					}
+				}
+				if (vulnerableCountdown < criticalRecoverTime){
+					vulnerableCountdown = criticalRecoverTime;
+				}
 
 				Stun(criticalRecoverTime,true);
 			}

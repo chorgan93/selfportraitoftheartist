@@ -311,7 +311,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			
-			return (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3) || (Input.GetKey(KeyCode.Q)));
+			return (Input.GetKey(KeyCode.Alpha3) || Input.GetKey(KeyCode.Keypad3));
 			
 		}
 	}
@@ -395,7 +395,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			return (Input.GetButton("BackButton"+platformType));
 		}else{
-			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Q));
+			return (Input.GetKey(KeyCode.Escape));
 		}
 	}
 
@@ -419,7 +419,8 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			return (WeaponButtonB() || WeaponButtonC());
 		}else{
-			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete));
+			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete)
+				|| Input.GetKey(KeyCode.Q));
 		}
 	}
 
@@ -429,7 +430,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			return (!WeaponButtonB() && !WeaponButtonC());
 		}else{
-			return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete));
+			return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
 		}
 	}
 

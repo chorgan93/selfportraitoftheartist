@@ -43,7 +43,7 @@ public class EnemyBreakS : MonoBehaviour {
 		if (startSpeed > 0){
 
 			foreach (Renderer piece in pieces){
-				piece.transform.position += piece.transform.right*startSpeed*Time.unscaledDeltaTime;
+				piece.transform.position += piece.transform.up*startSpeed*Time.unscaledDeltaTime;
 				if (!colorAssigned && flashFrames <= 0){
 					Color newPieceCol = pieceColor;
 					newPieceCol.a = 0.6f;

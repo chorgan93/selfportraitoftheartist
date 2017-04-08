@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MainMenuNavigationS : MonoBehaviour {
+
+	private const string currentVer = "— v. 0.2.1 —";
 	
 	private ControlManagerS myController;
-	
+
+	public Text versionText;
 	public float allowStartTime = 3f;
 	private bool started = false;
 	
@@ -56,6 +60,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public InfiniteBGM startMusic;
 
 	void Awake(){
+		versionText.text = currentVer;
 		inMain = true;
 	}
 	
