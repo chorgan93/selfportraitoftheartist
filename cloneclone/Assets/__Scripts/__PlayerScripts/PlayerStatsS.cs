@@ -56,6 +56,10 @@ public class PlayerStatsS : MonoBehaviour {
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
 
+	private float _overchargeMana;
+	public float overchargeMana { get { return _overchargeMana; } }
+	private float overchargePenalty = 0.4f;
+
 	//________________________________CHARGE
 	private float _baseCharge = 5f;
 	private float _addedCharge = 0;
@@ -121,7 +125,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.2f;
+	private float _recoveryCooldownBase = 0.5f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.5f*_recoveryCooldownMultiplier*(currentRecovery-1f))));}}
@@ -201,6 +205,10 @@ public class PlayerStatsS : MonoBehaviour {
 			}else{
 				_currentManaUsed += _currentMana;
 
+						_overchargeMana = useAmount-_currentMana;
+						if (_overchargeMana > maxMana){
+							_overchargeMana = maxMana;
+						}
 				_currentMana = 0;
 
 			}
@@ -208,6 +216,7 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentCooldownTimer = recoveryCooldownMax;
 
 			currentRegenCountdown = GetRegenTime();
+
 			}
 
 			return true;
@@ -228,7 +237,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		bool canUse =  (_currentCharge > 0);
 
-		if (useCharge && canUse){
+		/*if (useCharge && canUse){
 			if (reqCharge > _currentCharge){
 				reqCharge = _currentCharge;
 			}
@@ -238,12 +247,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentCharge < 0f){
 			_currentCharge = 0f;
-		}
+		}**/
 		return canUse;
 	}
 
 	public void RecoverCharge(float addPercent, bool itemEffect = false){
-		float amtAdded = addPercent*maxCharge*currentChargeRecover;
+		// add to charge (old)
+		/*float amtAdded = addPercent*maxCharge*currentChargeRecover;
 		if (_currentCharge + amtAdded > maxCharge){
 			amtAdded = maxCharge-_currentCharge;
 		}
@@ -259,6 +269,34 @@ public class PlayerStatsS : MonoBehaviour {
 			CameraShakeS.C.TimeSleep(0.08f);
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		
+		}**/
+
+		// add to stamina (new)
+		float amtAdded = addPercent*maxMana*currentChargeRecover;
+		if (_overchargeMana > 0){
+			if (_overchargeMana - amtAdded <= 0){
+				amtAdded -= _overchargeMana;
+				_overchargeMana = 0;
+			}else{
+				_overchargeMana -= amtAdded;
+				amtAdded = 0;
+			}
+		}
+		if (_currentMana + amtAdded > maxMana){
+			amtAdded = maxMana-_currentMana;
+		}
+		//_uiReference.ChargeAddEffect(amtAdded);
+		_currentMana += amtAdded;
+		if (_currentMana > maxMana){
+			_currentMana = maxMana;
+		}
+		if (itemEffect){
+
+			myPlayerController.FlashCharge();
+			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+			CameraShakeS.C.TimeSleep(0.08f);
+			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
+
 		}
 	}
 
@@ -320,8 +358,12 @@ public class PlayerStatsS : MonoBehaviour {
 				}else{
 					recoverRateIncrease+=recoverRateAccel*Time.deltaTime;
 				}
+				if (_overchargeMana <= 0){
 					_currentMana+=actingRecoverRate*Time.deltaTime;
 				_currentManaUsed-=actingRecoverRate*Time.deltaTime;
+				}else{
+					_overchargeMana -= actingRecoverRate*Time.deltaTime*overchargePenalty;
+				}
 
 				if (_currentMana > maxMana){
 					_currentMana = maxMana;
@@ -443,6 +485,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public void ResetStamina(){
 
 		_currentMana = maxMana;
+		_overchargeMana = 0f;
 		_currentCooldownTimer = 0f;
 		_currentManaUsed = 0f;
 		myPlayerController.FlashMana(true);
@@ -617,6 +660,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public void FullRecover(){
 		_currentHealth = maxHealth;
 		_currentCharge = maxCharge;
+		_overchargeMana = 0f;
 		_currentMana = maxMana;
 	}
 

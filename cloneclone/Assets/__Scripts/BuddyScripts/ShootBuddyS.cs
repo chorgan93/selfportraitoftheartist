@@ -127,7 +127,7 @@ public class ShootBuddyS : BuddyS {
 					chargeButtonUp = true;
 				}else{
 					if (chargeButtonUp){
-						if (shootCountdown <= 0 && playerRef.myStats.ChargeCheck(costPerUse)){
+						if (shootCountdown <= 0 && playerRef.myStats.ManaCheck(costPerUse)){
 							myAnimator.SetTrigger(fireAnimatorTrigger);
 							if (shotDelay <= 0){
 								FireProjectile();

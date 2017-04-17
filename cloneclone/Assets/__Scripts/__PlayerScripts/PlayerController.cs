@@ -914,7 +914,7 @@ public class PlayerController : MonoBehaviour {
 				SpawnAttackPuff();
 
 				_myStats.ManaCheck(_chargeAttackCost);
-				_myStats.ChargeCheck(_chargeAttackCost);
+				//_myStats.ChargeCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();
@@ -1134,10 +1134,12 @@ public class PlayerController : MonoBehaviour {
 			_isSprinting = false;
 
 				// subtract mana cost
-			if (_playerAug.gaeaAug){
-				_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
-			}else{
-				_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
+			if (_doingHeavyAttack || _doingDashAttack){
+				if (_playerAug.gaeaAug){
+					_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
+				}else{
+					_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
+				}
 			}
 				FlashMana();
 
@@ -1172,7 +1174,8 @@ public class PlayerController : MonoBehaviour {
 			attackDuration -= Time.deltaTime;
 
 		if (CanInputShoot()){
-				if ((ShootInputPressed() && StaminaCheck(1f, false) && shootButtonUp && !counterQueued && !_delayWitchTime) 
+				if ((ShootInputPressed() && ((controller.HeavyButton() && StaminaCheck(1f, false)) || (!controller.HeavyButton())) 
+					&& shootButtonUp && !counterQueued && !_delayWitchTime) 
 				    || ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())){
 
 					// first, check for parry, then counter attack, then regular attack
@@ -1311,7 +1314,8 @@ public class PlayerController : MonoBehaviour {
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
+					//if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
+					if (_myStats.ManaCheck(1, false) && equippedUpgrades.Contains(6)){
 					// charge attack
 
 						if (prevChain < 0){

@@ -31,6 +31,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float staminaStartYMult;
 	private Vector2 staminaBarCurrentSize;
 	public Image staminaBar;
+
+	private Vector2 overchargeBarCurrentSize;
+	public Image overchargeBar;
 	
 	private Vector2 recoveryBarMaxSize;
 	private Vector2 recoveryStartPos;
@@ -197,6 +200,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		reposition.y = backgroundCurrentSize.y*staminaStartYMult;
 		staminaBar.rectTransform.anchoredPosition = reposition;
 
+		overchargeBar.rectTransform.anchoredPosition = reposition;
+		overchargeBarCurrentSize = staminaBarCurrentSize;
+		overchargeBarCurrentSize.x = 0;
+		overchargeBar.rectTransform.sizeDelta = overchargeBarCurrentSize;
+
 		// charge stuff
 		chargeBarCurrentSize = chargeBarMaxSize*ScreenMultiplier();
 		chargeBarCurrentSize.x = playerStats.addedCharge*barAddSize;
@@ -235,7 +243,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		fillSize = staminaBarMaxSize;
 		fillSize.y = recoveryBarMaxSize.y;
-		if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead()){
+		if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead() && playerStats.overchargeMana <= 0){
 			fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
 				playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
 			if (playerStats.currentCooldownTimer < playerStats.recoveryCooldownMax){
@@ -251,6 +259,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		borderSize = staminaBorderMaxSize;
 		borderSize.x += playerStats.addedMana*barAddSize;
 		staminaBorder.rectTransform.sizeDelta = staminaBorderBG.rectTransform.sizeDelta = borderSize;
+
+		fillSize = staminaBarMaxSize;
+		if (playerStats.overchargeMana > 0){
+			fillSize.x *= playerStats.overchargeMana/playerStats.maxMana;
+		}else{
+			fillSize.x = 0;
+		}
+		overchargeBar.rectTransform.sizeDelta = overchargeBarCurrentSize = fillSize;
 
 		// charge fill
 		updateChargeFills();
