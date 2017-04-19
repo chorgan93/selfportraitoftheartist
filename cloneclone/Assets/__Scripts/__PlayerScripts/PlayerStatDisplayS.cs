@@ -72,6 +72,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image healthBorder;
 	public Image healthBorderBG;
 	public Image healthFill;
+	public Image savedHealthFill;
 	private Vector2 healthBorderMaxSize;
 
 	public Image staminaFill;
@@ -267,6 +268,21 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//	healthFill.color = staminaExhaustedColor;
 		//}
 
+		if (playerStats.pRef.inCombat && PlayerInventoryS.I.GetItemCount(0) > 0){
+			fillSize.x = healthBarMaxSize.x;
+			fillSize.x += playerStats.addedHealth*barAddSize;
+			fillSize.x *= playerStats.savedHealth/playerStats.maxHealth;
+			fillSize.y = savedHealthFill.rectTransform.sizeDelta.y;
+			savedHealthFill.rectTransform.sizeDelta = fillSize;
+			if (!savedHealthFill.enabled){
+				savedHealthFill.enabled = true;
+			}
+		}else{
+			if (savedHealthFill.enabled){
+				savedHealthFill.enabled = false;
+			}
+		}
+
 		Vector2 borderSize = healthBorderMaxSize;
 		borderSize.y = healthBorder.rectTransform.sizeDelta.y;
 		borderSize.x += playerStats.addedHealth*barAddSize;
@@ -403,7 +419,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBarCurrentSize.x += playerStats.addedCharge*chargeAddSize;
 			chargeBarCurrentSize.x *= playerStats.currentCharge/playerStats.maxCharge;
 			chargeBarCurrentSize.y = chargeFill.rectTransform.sizeDelta.y;
-			chargeFill.rectTransform.sizeDelta = rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
+			chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize;
+			chargeBarCurrentSize.y = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+			chargeBarCurrentSize.x = 0f;
+			rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
 			chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 		}else{
 			if (rechargeTime > 0){
@@ -414,6 +433,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 					refillingCharge = false;
 					chargeBarCurrentSize.x = rechargeRecoveryBar.rectTransform.sizeDelta.x;
 				}
+				chargeBarCurrentSize.y = chargeFill.rectTransform.sizeDelta.y;
 				chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize;
 				chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, chargeBarCurrentSize.x/chargeBarMaxSize.x);
 			}
@@ -424,7 +444,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeBarCurrentSize = chargeBarMaxSize;
 		chargeBarCurrentSize.x += playerStats.addedCharge*chargeAddSize;
 		chargeBarCurrentSize.x *= playerStats.currentCharge/playerStats.maxCharge;
-		chargeFill.rectTransform.sizeDelta = rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
+		chargeFill.rectTransform.sizeDelta =  chargeBarCurrentSize;
+		chargeBarCurrentSize.y = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+		rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 	}
 
@@ -462,10 +484,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		Vector2 fillSize = chargeBarMaxSize;
 		fillSize.x += playerStats.addedCharge*chargeAddSize;
 		fillSize.x *= (playerStats.currentCharge+chargeAdded)/playerStats.maxCharge;
+		fillSize.y = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 		rechargeRecoveryBar.rectTransform.sizeDelta = fillSize;
 
 		fillSize.x -= fillSize.x*(chargeAdded/playerStats.maxCharge);
-
+		fillSize.y = chargeFill.rectTransform.sizeDelta.y;
 		chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 

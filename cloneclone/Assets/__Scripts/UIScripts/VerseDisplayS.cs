@@ -5,9 +5,14 @@ using UnityEngine.UI;
 public class VerseDisplayS : MonoBehaviour {
 
 	public Image verseBorder;
+	public Image borderBG;
 	public Image verseIcon;
+	public Image iconBG;
 	public Text verseTitle;
+	public Text verseTitleBg;
 	private string currentVerse;
+
+	private float savedFade = 0f;
 
 	public float fadeRate = 0.5f;
 	private Color currentCol;
@@ -33,10 +38,24 @@ public class VerseDisplayS : MonoBehaviour {
 
 		currentCol = verseBorder.color;
 		currentCol.a = 0f;
-		verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
-		verseIcon.enabled = false;
-		verseBorder.enabled = false;
-		verseTitle.text = "";
+		verseBorder.color = verseIcon.color = currentCol;
+
+		currentCol = verseTitle.color;
+		currentCol.a = 0f;
+		verseTitle.color = currentCol;
+		currentCol = borderBG.color;
+		currentCol.a = 0f;
+		borderBG.color = currentCol;
+		currentCol = verseTitleBg.color;
+		currentCol.a = 0f;
+		verseTitleBg.color = currentCol;
+		currentCol = iconBG.color;
+		currentCol.a = 0f;
+		iconBG.color = currentCol;
+
+		verseIcon.enabled = iconBG.enabled = false;
+		verseBorder.enabled = borderBG.enabled = false;
+		verseTitle.text = verseTitleBg.text = "";
 
 		if (!PlayerController.equippedUpgrades.Contains(3)){
 			_isShowing  = false;
@@ -55,11 +74,25 @@ public class VerseDisplayS : MonoBehaviour {
 				if (currentCol.a <= 0){
 					fadingOut = false;
 					currentCol.a = 0;
-					verseIcon.enabled = false;
-					verseBorder.enabled = false;
-					verseTitle.text = "";
+						verseIcon.enabled = iconBG.enabled = false;
+						verseBorder.enabled = borderBG.enabled = false;
+						verseTitle.text = verseTitleBg.text = "";
 				}
-				verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
+					verseBorder.color =  verseIcon.color = currentCol;
+					savedFade = currentCol.a;
+
+					currentCol = verseTitle.color;
+					currentCol.a = savedFade;
+					verseTitle.color = currentCol;
+					currentCol = borderBG.color;
+					currentCol.a = savedFade;
+					borderBG.color = currentCol;
+					currentCol = verseTitleBg.color;
+					currentCol.a = savedFade;
+					verseTitleBg.color = currentCol;
+					currentCol = iconBG.color;
+					currentCol.a = savedFade;
+					iconBG.color = currentCol;
 			}
 			if (fadingIn){
 				currentCol = verseBorder.color;
@@ -68,7 +101,21 @@ public class VerseDisplayS : MonoBehaviour {
 					fadingIn = false;
 					currentCol.a = 1f;
 				}
-				verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
+					verseBorder.color =  verseIcon.color = currentCol;
+					savedFade = currentCol.a;
+
+					currentCol = verseTitle.color;
+					currentCol.a = savedFade;
+					verseTitle.color = currentCol;
+					currentCol = borderBG.color;
+					currentCol.a = savedFade;
+					borderBG.color = currentCol;
+					currentCol = verseTitleBg.color;
+					currentCol.a = savedFade;
+					verseTitleBg.color = currentCol;
+					currentCol = iconBG.color;
+					currentCol.a = savedFade;
+					iconBG.color = currentCol;
 			}
 		}
 		}
@@ -89,15 +136,29 @@ public class VerseDisplayS : MonoBehaviour {
 	}
 
 	public void NewVerse(string verseString){
-		verseTitle.text = currentVerse = verseString;
+		verseTitle.text = verseTitleBg.text = currentVerse = verseString;
 		fadingIn = true;
 		fadingOut = false;
 		currentCol = verseBorder.color;
 		currentCol.a = 0f;
-		verseBorder.color = verseIcon.color = verseTitle.color = currentCol;
+		verseBorder.color = verseIcon.color = currentCol;
+
+		currentCol = verseTitle.color;
+		currentCol.a = 0f;
+		verseTitle.color = currentCol;
+		currentCol = borderBG.color;
+		currentCol.a = 0f;
+		borderBG.color = currentCol;
+		currentCol = verseTitleBg.color;
+		currentCol.a = 0f;
+		verseTitleBg.color = currentCol;
+		currentCol = iconBG.color;
+		currentCol.a = 0f;
+		iconBG.color = currentCol;
+
 		if (_isShowing){
-			verseIcon.enabled = true;
-			verseBorder.enabled = true;
+			verseIcon.enabled = iconBG.enabled = true;
+			verseBorder.enabled = borderBG.enabled = true;
 		}else{
 			verseTitle.text = "";
 		}
@@ -106,16 +167,16 @@ public class VerseDisplayS : MonoBehaviour {
 	public void Show(){
 		_isShowing = true;
 		if (currentVerse != ""){
-			verseIcon.enabled = true;
-			verseBorder.enabled = true;
+			verseIcon.enabled = iconBG.enabled = true;
+			verseBorder.enabled = borderBG.enabled = true;
 			verseTitle.text = currentVerse;
 		}
 	}
 	public void Hide(){
 		_isShowing = false;
 		if (currentVerse != ""){
-			verseIcon.enabled = false;
-			verseBorder.enabled = false;
+			verseIcon.enabled = iconBG.enabled = false;
+			verseBorder.enabled = borderBG.enabled = false;
 			verseTitle.text = "";
 		}
 	}

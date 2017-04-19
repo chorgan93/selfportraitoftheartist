@@ -10,7 +10,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
 	private const float CAN_USE_MANA = 0.25f;
-	private const float BREAK_STAMINA_PENALTY = 2f;
+	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	private const float anxiousChargeRate = 0.1f;
 
@@ -44,6 +44,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentHealth { get { return _currentHealth; } }
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
+	public float savedHealth { get { return _savedHealth; } }
 
 	public static float _currentDarkness = 0f;
 	public float currentDarkness {get { return _currentDarkness; } }
@@ -131,7 +132,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.3f;
+	private float _recoveryCooldownBase = 0.2f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.5f*_recoveryCooldownMultiplier*(currentRecovery-1f))));}}
