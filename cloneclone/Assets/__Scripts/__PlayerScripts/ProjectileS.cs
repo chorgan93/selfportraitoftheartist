@@ -406,7 +406,6 @@ public class ProjectileS : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "Destructible"){
-			Debug.Log("Hit destructible!");
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, weaponNum);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);

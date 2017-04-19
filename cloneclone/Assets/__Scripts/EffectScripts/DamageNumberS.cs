@@ -87,7 +87,7 @@ public class DamageNumberS : MonoBehaviour {
 			//myColor = playerHitColor;
 			myColor = enemyColor;
 			bgColor = playerColor;
-			myRenderer.text = Mathf.RoundToInt(dmgNum*50f).ToString();
+			myRenderer.text = Mathf.RoundToInt(dmgNum*20f).ToString();
 		}
 		else if (_isEnemy){
 			myColor = enemyColor;

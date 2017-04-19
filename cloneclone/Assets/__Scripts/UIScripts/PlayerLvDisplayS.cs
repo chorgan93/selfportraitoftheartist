@@ -79,7 +79,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			mnStat.color = highlightColor;
 			break;
 		case (3):
-			vtStat.text = (playerStatRef.virtueAmt+2f).ToString();
+			vtStat.text = (playerStatRef.virtueAmt+4f).ToString();
 			vtStat.color = highlightColor;
 			break;
 		case (4):

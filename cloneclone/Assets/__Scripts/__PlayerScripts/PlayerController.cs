@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 	private float dashEffectThreshold = 0.2f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
-	private float _dodgeCost = 1.75f;
+	private float _dodgeCost = 1f;
 	public GameObject dashObj;
 	private bool _allowCounterAttack = false;
 	public bool allowCounterAttack { get { return _allowCounterAttack; } }
@@ -788,7 +788,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
-			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && _myStats.ManaCheck(1, false)){
+			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && StaminaCheck(1f, false)){
 
 				TriggerDash();
 				dashButtonUp = false;
@@ -801,7 +801,7 @@ public class PlayerController : MonoBehaviour {
 			// allow for second dash
 			if (controller.DashTrigger()){
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
-				                     && CanInputDash() && _myStats.ManaCheck(1, false))){
+				                     && CanInputDash())){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
 						_dashStickReset = false;
@@ -913,8 +913,12 @@ public class PlayerController : MonoBehaviour {
 				                                           ShootDirection(), ShootDirection(), this);
 				SpawnAttackPuff();
 
-				_myStats.ManaCheck(_chargeAttackCost);
-				//_myStats.ChargeCheck(_chargeAttackCost);
+				if(_playerAug.gaeaAug){
+					_myStats.ManaCheck(_chargeAttackCost*PlayerAugmentsS.gaeaAugAmt);
+				}else{
+					_myStats.ManaCheck(_chargeAttackCost);
+				}
+				_myStats.ChargeCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();
@@ -1134,13 +1138,12 @@ public class PlayerController : MonoBehaviour {
 			_isSprinting = false;
 
 				// subtract mana cost
-			if (_doingHeavyAttack || _doingDashAttack){
 				if (_playerAug.gaeaAug){
 					_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
 				}else{
 					_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
 				}
-			}
+
 				FlashMana();
 
 			if (_myStats.currentMana <= 0){
@@ -1174,9 +1177,11 @@ public class PlayerController : MonoBehaviour {
 			attackDuration -= Time.deltaTime;
 
 		if (CanInputShoot()){
-				if ((ShootInputPressed() && ((controller.HeavyButton() && StaminaCheck(1f, false)) || (!controller.HeavyButton())) 
-					&& shootButtonUp && !counterQueued && !_delayWitchTime) 
-				    || ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())){
+				if (
+					ShootInputPressed() && shootButtonUp && !counterQueued && !_delayWitchTime
+					&& (StaminaCheck(1f, false))
+					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
+				){
 
 					// first, check for parry, then counter attack, then regular attack
 					if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
@@ -1314,8 +1319,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					//if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
-					if (_myStats.ManaCheck(1, false) && equippedUpgrades.Contains(6)){
+					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
 					// charge attack
 
 						if (prevChain < 0){
@@ -1373,7 +1377,7 @@ public class PlayerController : MonoBehaviour {
 						_chargeAttackTime = 0;
 						_myAnimator.SetBool("Charging", false);
 					}
-				}}
+			}}
 		}
 
 	}
@@ -2343,6 +2347,14 @@ public class PlayerController : MonoBehaviour {
 
 	public bool InAttack(){
 		if (attackTriggered || attackDuration > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public bool InSpecialAttack(){
+		if ((attackTriggered || attackDuration > 0) && (_doingHeavyAttack || _doingDashAttack)){
 			return true;
 		}
 		else{

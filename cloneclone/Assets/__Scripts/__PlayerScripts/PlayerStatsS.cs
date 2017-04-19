@@ -9,6 +9,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DEATH_KNOCKBACK_MULT = 2f;
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
+	private const float CAN_USE_MANA = 0.25f;
+	private const float BREAK_STAMINA_PENALTY = 2f;
 
 	private const float anxiousChargeRate = 0.1f;
 
@@ -16,7 +18,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DARKNESS_ADD_DEATH = 2f/3f;
 	public const float DARKNESS_MAX = 100f;
 	
-	private const float VIRTUE_ADD_AMT = 2f;
+	private const float VIRTUE_ADD_AMT = 4f;
 
 	public static bool healOnStart = false;
 
@@ -47,11 +49,13 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentDarkness {get { return _currentDarkness; } }
 	
 	//________________________________MANA
-	private float _baseMana = 5;
+	private float _baseMana = 4;
 	private float _addedMana = 0; // max 16 (for 20 total)
 	public float addedMana { get { return _addedMana; } }
 	private float _currentMana;
 	private RefreshDisplayS myRefresh;
+
+	private float _savedMana = 5;
 	
 	public float maxMana { get { return (_baseMana+_addedMana);}}
 	public float currentMana { get { return (_currentMana);}}
@@ -72,12 +76,14 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentCharge { get { return _currentCharge;}}
 	private float _savedCharge = 50f;
 
+	private bool _exhausted = false;
+
 	
 	//________________________________CHARGE RECOVERY
 
 	private int _currentChargeRecoverLv = 1;
-	private float _baseChargeRecover = 1f;
-	private float _addedChargeRecoverPerLevel = .5f;
+	private float _baseChargeRecover = 0.8f;
+	private float _addedChargeRecoverPerLevel = .175f;
 	public float currentChargeRecover  { get { return 
 			_baseChargeRecover+_addedChargeRecoverPerLevel*(_currentChargeRecoverLv*1f-1f); } }
 
@@ -85,7 +91,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________ATTACK
-	private float _baseStrength = 0.9f;
+	private float _baseStrength = 0.6f;
 	private float _addedStrength = 0; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
 	public float addedStrength { get { return _addedStrength; } }
@@ -125,7 +131,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.5f;
+	private float _recoveryCooldownBase = 0.3f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.5f*_recoveryCooldownMultiplier*(currentRecovery-1f))));}}
@@ -134,7 +140,7 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 4f;
+	private float _recoverRateMin = 2f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 
 	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
@@ -183,6 +189,7 @@ public class PlayerStatsS : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		ManaRecovery();
+		//FakeManaRecovery();
 		ChargeRecovery();
 		DarknessAdd();
 	}
@@ -193,6 +200,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (godMode){
 			return true;
+		}else if (!ManaUnlocked()){
+			return false;
 		}
 		else{
 		if (_currentMana > 0){
@@ -209,11 +218,17 @@ public class PlayerStatsS : MonoBehaviour {
 						if (_overchargeMana > maxMana){
 							_overchargeMana = maxMana;
 						}
+						// taking out overcharge for a bit
+						_overchargeMana = 0;
 				_currentMana = 0;
+						_exhausted = true;
 
 			}
 
 			_currentCooldownTimer = recoveryCooldownMax;
+					if (_currentMana <= 0){
+						_currentCooldownTimer*=BREAK_STAMINA_PENALTY;
+					}
 
 			currentRegenCountdown = GetRegenTime();
 
@@ -237,7 +252,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		bool canUse =  (_currentCharge > 0);
 
-		/*if (useCharge && canUse){
+		if (useCharge && canUse){
 			if (reqCharge > _currentCharge){
 				reqCharge = _currentCharge;
 			}
@@ -247,13 +262,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (_currentCharge < 0f){
 			_currentCharge = 0f;
-		}**/
+		}
 		return canUse;
 	}
 
 	public void RecoverCharge(float addPercent, bool itemEffect = false){
 		// add to charge (old)
-		/*float amtAdded = addPercent*maxCharge*currentChargeRecover;
+		float amtAdded = addPercent*maxCharge*currentChargeRecover;
 		if (_currentCharge + amtAdded > maxCharge){
 			amtAdded = maxCharge-_currentCharge;
 		}
@@ -269,10 +284,10 @@ public class PlayerStatsS : MonoBehaviour {
 			CameraShakeS.C.TimeSleep(0.08f);
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		
-		}**/
+		}
 
 		// add to stamina (new)
-		float amtAdded = addPercent*maxMana*currentChargeRecover;
+		/*float amtAdded = addPercent*maxMana*currentChargeRecover;
 		if (_overchargeMana > 0){
 			if (_overchargeMana - amtAdded <= 0){
 				amtAdded -= _overchargeMana;
@@ -297,7 +312,7 @@ public class PlayerStatsS : MonoBehaviour {
 			CameraShakeS.C.TimeSleep(0.08f);
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 
-		}
+		}**/
 	}
 
 	public void AddUIReference(PlayerStatDisplayS sd){
@@ -320,6 +335,21 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
+	private void FakeManaRecovery(){
+		if (RecoveryCheck()){
+
+			// first burn down cooldown, then recover
+			if (_currentCooldownTimer > 0){
+				_currentCooldownTimer -= Time.deltaTime;
+				if (_currentCooldownTimer < 0){
+
+					_currentCooldownTimer = 0;
+				}
+				recoverRateIncrease = 0f;
+			}
+		}
+	}
+
 	private void ManaRecovery(){
 
 		if (RecoveryCheck()){
@@ -336,21 +366,6 @@ public class PlayerStatsS : MonoBehaviour {
 			else{
 
 				float actingRecoverRate = recoverRate + recoverRateIncrease;
-				// OLD WAY
-				/*if (myPlayerController.isBlocking){
-				currentRegenCountdown -= actingRecoverRate*(blockRecoverMult+0.1f*(currentRecovery-1f)/4f)*Time.deltaTime;
-				}
-				else{
-					currentRegenCountdown -= actingRecoverRate*Time.deltaTime;
-				}
-				if (currentRegenCountdown <= 0){
-					_currentMana++;
-					_currentManaUsed--;
-					//myRefresh.DoFlash();
-					if (_currentMana < maxMana){
-						currentRegenCountdown = GetRegenTime();
-					}
-				}**/
 
 				// new way (simple)
 				if (myPlayerController.isBlocking){
@@ -363,6 +378,12 @@ public class PlayerStatsS : MonoBehaviour {
 				_currentManaUsed-=actingRecoverRate*Time.deltaTime;
 				}else{
 					_overchargeMana -= actingRecoverRate*Time.deltaTime*overchargePenalty;
+				}
+
+				if (_exhausted){
+					if (_currentMana >= maxMana*CAN_USE_MANA){
+						_exhausted = false;
+					}
 				}
 
 				if (_currentMana > maxMana){
@@ -383,6 +404,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
 				if (myPlayerController.isDashing || myPlayerController.isSprinting || myPlayerController.InAttack()
+				//if (myPlayerController.InSpecialAttack()
 				    || myPlayerController.chargingAttack){
 					canRecover = false;
 				}
@@ -397,6 +419,14 @@ public class PlayerStatsS : MonoBehaviour {
 
 		return canRecover;
 
+	}
+
+	public bool ManaUnlocked(){
+		bool canUseMana = true;
+		if (RecoveryCheck() && _exhausted && _currentMana < maxMana*CAN_USE_MANA){
+			canUseMana = false;
+		}
+		return canUseMana;
 	}
 
 	private void Initialize(){
@@ -632,6 +662,10 @@ public class PlayerStatsS : MonoBehaviour {
 		myRefresh = newBlock;
 	}
 
+	public float OverCooldownMult(){
+		return (_currentCooldownTimer/(recoveryCooldownMax*BREAK_STAMINA_PENALTY));
+	}
+
 	//__________________________________STAT UPGRADES
 	public void AddStamina(float numToAdd = 1){
 		_addedMana+=numToAdd;
@@ -668,9 +702,11 @@ public class PlayerStatsS : MonoBehaviour {
 	{
 		_savedHealth = _currentHealth;
 		_savedCharge = _currentCharge;
+		//_savedMana = _currentMana;
 	}
 	public void ResetCombatStats(){
 		_currentHealth = _savedHealth;
 		_currentCharge = _savedCharge;
+		//_currentMana = _savedMana;
 	}
 }

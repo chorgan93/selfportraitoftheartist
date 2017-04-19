@@ -11,6 +11,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Color healthEmptyColor;
 	public Color staminaFullColor;
 	public Color staminaEmptyColor;
+	public Color staminaRecoveryColor = Color.yellow;
+	public Color staminaExhaustedColor = Color.red;
 	public Color chargeFullColor;
 	public Color chargeEmptyColor;
 
@@ -74,8 +76,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	public Image staminaFill;
 	public Image staminaBorder;
-	public Image staminaBorderBG;
 	private Vector2 staminaBorderMaxSize;
+
+	public Vector2 staminaOffset = new Vector2(0,-1f);
+	Vector2 viewportPosition;
+	Vector2 proportionalPosition;
 
 	public Image recoveryFill;
 	
@@ -94,6 +99,12 @@ public class PlayerStatDisplayS : MonoBehaviour {
 //	public Text chargeText;
 
 	private PlayerStatsS playerStats;
+	private SpriteRenderer playerRender;
+	private Transform playerTransform;
+	private RectTransform parentRect;
+
+	private Camera followRef;
+	private float orthoRef;
 
 	public bool hideInScene;
 	private bool allTurnedOn = false;
@@ -124,6 +135,13 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 		playerStats.AddUIReference(this);
+		playerTransform = playerStats.transform;
+		playerRender = playerStats.pRef.myRenderer;
+
+		followRef = Camera.main;
+		orthoRef = followRef.orthographicSize;
+
+		parentRect = transform.parent.GetComponent<RectTransform>();
 
 		UpdateMaxSizes();
 		UpdateFills();
@@ -144,6 +162,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			TurnOnAll();
 		//UpdateMaxSizes();
 		UpdateFills();
+			//PositionStamina();
 			//UpdateText();
 		}
 	
@@ -159,6 +178,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	}
 
+	private void PositionStamina(){
+		viewportPosition = Camera.main.WorldToViewportPoint(playerTransform.position);
+		proportionalPosition =new Vector2(
+			((viewportPosition.x*parentRect.sizeDelta.x)-(parentRect.sizeDelta.x*0.5f)),
+			((viewportPosition.y*parentRect.sizeDelta.y)-(parentRect.sizeDelta.y*0.5f)));
+		staminaBorder.rectTransform.anchoredPosition = proportionalPosition+staminaOffset*(orthoRef/followRef.orthographicSize);
+	}
+
 	private void UpdateMaxSizes(){
 
 		Vector2 reposition = Vector2.zero;
@@ -171,6 +198,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		// recover stuff
 		recoveryBarCurrentSize = recoveryBarMaxSize;
 		recoveryBarCurrentSize.x = playerStats.addedMana*barAddSize;
+		recoveryBarCurrentSize.y = recoveryBar.rectTransform.sizeDelta.y;
 		recoveryBar.rectTransform.sizeDelta=recoveryBarCurrentSize;
 
 		
@@ -184,21 +212,25 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		healthBarCurrentSize.x = playerStats.addedHealth*barAddSize;
 		healthBar.rectTransform.sizeDelta=healthBarCurrentSize;
 
+		healthBorder.rectTransform.sizeDelta= healthBorderBG.rectTransform.sizeDelta 
+			=new Vector2(healthBorderMaxSize.x+playerStats.addedHealth*barAddSize, healthBorderMaxSize.y);
+
 		
-		reposition = healthBar.rectTransform.anchoredPosition;
+		/*reposition = healthBar.rectTransform.anchoredPosition;
 		reposition.x = healthStartPos.x*ScreenMultiplier();
 		reposition.y = backgroundCurrentSize.y*healthStartYMult;
-		healthBar.rectTransform.anchoredPosition = reposition;
+		healthBar.rectTransform.anchoredPosition = reposition;**/
 
 		// stamina stuff
 		staminaBarCurrentSize = staminaBarMaxSize*ScreenMultiplier();
 		staminaBarCurrentSize.x = playerStats.addedMana*barAddSize;
+		staminaBarCurrentSize.y = staminaFill.rectTransform.sizeDelta.y;
 		staminaBar.rectTransform.sizeDelta=staminaBarCurrentSize;
 
-		reposition = staminaBar.rectTransform.anchoredPosition;
+		/*reposition = staminaBar.rectTransform.anchoredPosition;
 		reposition.x = staminaStartPos.x*ScreenMultiplier();
 		reposition.y = backgroundCurrentSize.y*staminaStartYMult;
-		staminaBar.rectTransform.anchoredPosition = reposition;
+		staminaBar.rectTransform.anchoredPosition = reposition;**/
 
 		overchargeBar.rectTransform.anchoredPosition = reposition;
 		overchargeBarCurrentSize = staminaBarCurrentSize;
@@ -210,10 +242,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeBarCurrentSize.x = playerStats.addedCharge*barAddSize;
 		chargeBar.rectTransform.sizeDelta=chargeBarCurrentSize;
 
-		reposition = chargeBar.rectTransform.anchoredPosition;
+
+		chargeBorder.rectTransform.sizeDelta= chargeBorderBG.rectTransform.sizeDelta 
+			=new Vector2(chargeBorderMaxSize.x+playerStats.addedCharge*chargeAddSize, chargeBorderMaxSize.y);
+
+		/*reposition = chargeBar.rectTransform.anchoredPosition;
 		reposition.x = chargeStartPos.x*ScreenMultiplier();
 		reposition.y = backgroundCurrentSize.y*chargeStartYMult;
-		chargeBar.rectTransform.anchoredPosition = reposition;
+		chargeBar.rectTransform.anchoredPosition = reposition;**/
 
 	}
 
@@ -223,10 +259,16 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		Vector2 fillSize = healthBarMaxSize;
 		fillSize.x += playerStats.addedHealth*barAddSize;
 		fillSize.x *= playerStats.currentHealth/playerStats.maxHealth;
+		fillSize.y = healthFill.rectTransform.sizeDelta.y;
 		healthFill.rectTransform.sizeDelta = fillSize;
-		healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
+		//if (playerStats.currentHealth > playerStats.maxHealth*0.3f){
+			healthFill.color = Color.Lerp(healthEmptyColor, healthFullColor, playerStats.currentHealth/playerStats.maxHealth);
+		//}else{
+		//	healthFill.color = staminaExhaustedColor;
+		//}
 
 		Vector2 borderSize = healthBorderMaxSize;
+		borderSize.y = healthBorder.rectTransform.sizeDelta.y;
 		borderSize.x += playerStats.addedHealth*barAddSize;
 		healthBorder.rectTransform.sizeDelta = healthBorderBG.rectTransform.sizeDelta = borderSize;
 
@@ -234,20 +276,35 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		fillSize = staminaBarMaxSize;
 		fillSize.x += playerStats.addedMana*barAddSize;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
+		fillSize.y = staminaFill.rectTransform.sizeDelta.y;
 		staminaFill.rectTransform.sizeDelta = fillSize;
+		if(playerStats.ManaUnlocked() && playerStats.currentMana > 0){
 		staminaFill.color = Color.Lerp(staminaEmptyColor, staminaFullColor, playerStats.currentMana/playerStats.maxMana);
+			//staminaFill.color = playerRender.color;
+			recoveryFill.color = staminaRecoveryColor;
+		}else{
+			staminaFill.color = recoveryFill.color = staminaExhaustedColor;
+		}
+
+		if (playerStats.currentMana <= 0){
+			recoveryFill.color = staminaExhaustedColor;
+		}
 
 		if (playerStats.currentCooldownTimer <= 0){
 			prevStaminaSize = fillSize.x;
 		}
 
 		fillSize = staminaBarMaxSize;
-		fillSize.y = recoveryBarMaxSize.y;
-		if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead() && playerStats.overchargeMana <= 0){
-			fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
-				playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
-			if (playerStats.currentCooldownTimer < playerStats.recoveryCooldownMax){
-				prevStaminaSize = fillSize.x + staminaFill.rectTransform.sizeDelta.x;
+		fillSize.y = recoveryFill.rectTransform.sizeDelta.y;
+		if (playerStats.currentCooldownTimer > 0 && !playerStats.PlayerIsDead()){
+			if (playerStats.currentMana > 0){
+				fillSize.x = (prevStaminaSize-staminaFill.rectTransform.sizeDelta.x)*
+					playerStats.currentCooldownTimer/playerStats.recoveryCooldownMax;
+				if (playerStats.currentCooldownTimer < playerStats.recoveryCooldownMax){
+					prevStaminaSize = fillSize.x + staminaFill.rectTransform.sizeDelta.x;
+				}
+			}else{
+				fillSize.x = staminaBarMaxSize.x*(playerStats.OverCooldownMult());
 			}
 		}
 		else{
@@ -258,11 +315,12 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		borderSize = staminaBorderMaxSize;
 		borderSize.x += playerStats.addedMana*barAddSize;
-		staminaBorder.rectTransform.sizeDelta = staminaBorderBG.rectTransform.sizeDelta = borderSize;
+		staminaBorder.rectTransform.sizeDelta =  borderSize;
 
 		fillSize = staminaBarMaxSize;
 		if (playerStats.overchargeMana > 0){
 			fillSize.x *= playerStats.overchargeMana/playerStats.maxMana;
+			fillSize.y *= 3f/4f;
 		}else{
 			fillSize.x = 0;
 		}
@@ -273,6 +331,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		
 		borderSize = chargeBorderMaxSize;
 		borderSize.x += playerStats.addedCharge*chargeAddSize;
+		borderSize.y = chargeBorder.rectTransform.sizeDelta.y;
 		chargeBorder.rectTransform.sizeDelta = chargeBorderBG.rectTransform.sizeDelta = borderSize;
 
 
@@ -343,6 +402,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBarCurrentSize = chargeBarMaxSize;
 			chargeBarCurrentSize.x += playerStats.addedCharge*chargeAddSize;
 			chargeBarCurrentSize.x *= playerStats.currentCharge/playerStats.maxCharge;
+			chargeBarCurrentSize.y = chargeFill.rectTransform.sizeDelta.y;
 			chargeFill.rectTransform.sizeDelta = rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
 			chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);
 		}else{
