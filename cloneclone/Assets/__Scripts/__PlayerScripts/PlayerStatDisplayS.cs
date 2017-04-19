@@ -487,7 +487,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		fillSize.y = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 		rechargeRecoveryBar.rectTransform.sizeDelta = fillSize;
 
-		fillSize.x -= fillSize.x*(chargeAdded/playerStats.maxCharge);
+		fillSize =chargeBarMaxSize;
+		fillSize.x += playerStats.addedCharge*chargeAddSize;
+		fillSize.x *= (playerStats.currentCharge)/playerStats.maxCharge;
 		fillSize.y = chargeFill.rectTransform.sizeDelta.y;
 		chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize = fillSize;
 		chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge/playerStats.maxCharge);

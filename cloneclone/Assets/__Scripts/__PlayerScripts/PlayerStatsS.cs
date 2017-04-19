@@ -83,7 +83,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________CHARGE RECOVERY
 
 	private int _currentChargeRecoverLv = 1;
-	private float _baseChargeRecover = 0.8f;
+	private float _baseChargeRecover = 1f;
 	private float _addedChargeRecoverPerLevel = .175f;
 	public float currentChargeRecover  { get { return 
 			_baseChargeRecover+_addedChargeRecoverPerLevel*(_currentChargeRecoverLv*1f-1f); } }
