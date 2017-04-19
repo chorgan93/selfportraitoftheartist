@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/Area00(Forest)Scenes/Area00_17_TheNest.unity
   isLoaded: 1
   isActive: 1

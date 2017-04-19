@@ -133,8 +133,11 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public int GetItemCount(int i){
 		int count = 0;
-		if (_collectedItems.Contains(i)){
-			count = _collectedItemCount[_collectedItems.IndexOf(i)];
+		if (_collectedItems != null){
+			
+			if (_collectedItems.Contains(i)){
+				count = _collectedItemCount[_collectedItems.IndexOf(i)];
+			}
 		}
 		return count;
 	}

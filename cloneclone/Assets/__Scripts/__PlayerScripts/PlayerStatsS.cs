@@ -172,6 +172,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________OTHER
 	private PlayerStatDisplayS _uiReference;
 	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
+	private WarningManagerS warningReference;
 
 	private ItemEffectS _itemEffect;
 	public ItemEffectS itemEffect { get { return _itemEffect; } }
@@ -212,6 +213,11 @@ public class PlayerStatsS : MonoBehaviour {
 				
 				_currentManaUsed += useAmount;
 
+						if (_currentMana < maxMana*CAN_USE_MANA*0.5f){
+
+							warningReference.NewMessage("— Stamina LOW —", Color.cyan, Color.grey, true, 1);
+						}
+
 			}else{
 				_currentManaUsed += _currentMana;
 
@@ -223,6 +229,8 @@ public class PlayerStatsS : MonoBehaviour {
 						_overchargeMana = 0;
 				_currentMana = 0;
 						_exhausted = true;
+
+						warningReference.NewMessage("! ! STAMINA OUT ! !", Color.cyan, Color.red, true, 1);
 
 			}
 
@@ -261,8 +269,17 @@ public class PlayerStatsS : MonoBehaviour {
 			_uiReference.ChargeUseEffect(reqCharge);
 		}
 
-		if (_currentCharge < 0f){
+		if (_currentCharge <= 0f){
 			_currentCharge = 0f;
+
+			if (canUse && useCharge){
+				warningReference.NewMessage("! CHARGE OUT !", Color.cyan, Color.magenta, false, 1);
+			}
+		}else if (_currentCharge < maxCharge*0.2f){
+
+			if (canUse && useCharge){
+				warningReference.NewMessage("— Charge LOW —", Color.white, Color.magenta, false, 0);
+			}
 		}
 		return canUse;
 	}
@@ -275,8 +292,13 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		_uiReference.ChargeAddEffect(amtAdded);
 		_currentCharge += amtAdded;
+		warningReference.EndShow("! Charge OUT !");
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
+		}
+		if (_currentCharge >= maxCharge*0.2f){
+
+			warningReference.EndShow("— Charge LOW —");
 		}
 		if (itemEffect){
 			
@@ -382,9 +404,17 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 
 				if (_exhausted){
+
+					if (_currentMana >=  maxMana*CAN_USE_MANA/2f){
+						warningReference.EndShow("! ! STAMINA OUT ! !");
+					}
 					if (_currentMana >= maxMana*CAN_USE_MANA){
 						_exhausted = false;
 					}
+				}
+
+				if (_currentMana >=  maxMana*CAN_USE_MANA*0.4f){
+					warningReference.EndShow("— Stamina LOW —");
 				}
 
 				if (_currentMana > maxMana){
@@ -450,6 +480,8 @@ public class PlayerStatsS : MonoBehaviour {
 			healOnStart = false;
 		}
 		_currentDefense = maxDefense;
+
+		warningReference = GameObject.Find("WarningText").GetComponent<WarningManagerS>();
 
 	}
 
@@ -524,6 +556,10 @@ public class PlayerStatsS : MonoBehaviour {
 		CameraShakeS.C.TimeSleep(0.08f);
 		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 
+		warningReference.EndShow("— Stamina LOW —");
+
+		warningReference.EndShow("! ! STAMINA OUT ! !");
+
 	}
 
 	public void Heal(float healAmt){
@@ -535,6 +571,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
+		warningReference.EndShow("! ! HEALTH LOW ! !");
 	}
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
@@ -585,6 +622,7 @@ public class PlayerStatsS : MonoBehaviour {
 					}
 					CameraShakeS.C.CancelSloMo();
 					//ChargeCheck(10f);
+
 				}
 				if (_currentHealth <= 0){
 					myPlayerController.playerSound.PlayDeathSound();
@@ -618,11 +656,17 @@ public class PlayerStatsS : MonoBehaviour {
 					GetComponent<BleedingS>().StartDeath();
 
 					CameraFollowS.F.RemoveLimits();
+					warningReference.EndAll();
 					}
 				else{
 					_hurtFlash.Flash();
 					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
+
+					if(_currentHealth<maxHealth*0.33f){
+
+						warningReference.NewMessage("! ! HEALTH LOW ! !", Color.white, Color.red, false, 2);
+					}
 					}
 				//}
 
@@ -697,6 +741,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentCharge = maxCharge;
 		_overchargeMana = 0f;
 		_currentMana = maxMana;
+		warningReference.EndAll();
 	}
 
 	public void SaveStats ()
@@ -709,5 +754,12 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentHealth = _savedHealth;
 		_currentCharge = _savedCharge;
 		//_currentMana = _savedMana;
+		warningReference.EndAll();
+		if (PlayerInventoryS.I.GetItemCount(0) == 1){
+			warningReference.NewMessage("— Resets LOW —",  warningReference.resetGreen, Color.white, false);
+		}
+		if (PlayerInventoryS.I.GetItemCount(0) == 0){
+			warningReference.NewMessage("! RESETS OUT !",  warningReference.resetGreen,Color.red, false, 1);
+		}
 	}
 }

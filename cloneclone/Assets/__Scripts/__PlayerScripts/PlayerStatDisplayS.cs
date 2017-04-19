@@ -101,6 +101,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	private PlayerStatsS playerStats;
 	private SpriteRenderer playerRender;
+	private PlayerController pController;
 	private Transform playerTransform;
 	private RectTransform parentRect;
 
@@ -137,14 +138,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		playerStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
 		playerStats.AddUIReference(this);
 		playerTransform = playerStats.transform;
-		playerRender = playerStats.pRef.myRenderer;
+		pController = playerStats.GetComponent<PlayerController>();
+		playerRender = pController.myRenderer;
 
 		followRef = Camera.main;
 		orthoRef = followRef.orthographicSize;
 
 		parentRect = transform.parent.GetComponent<RectTransform>();
 
-		UpdateMaxSizes();
+		//UpdateMaxSizes();
 		UpdateFills();
 
 		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene){
@@ -268,7 +270,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//	healthFill.color = staminaExhaustedColor;
 		//}
 
-		if (playerStats.pRef.inCombat && PlayerInventoryS.I.GetItemCount(0) > 0){
+		if (pController._inCombat && PlayerInventoryS.I.GetItemCount(0) > 0){
 			fillSize.x = healthBarMaxSize.x;
 			fillSize.x += playerStats.addedHealth*barAddSize;
 			fillSize.x *= playerStats.savedHealth/playerStats.maxHealth;
