@@ -384,6 +384,10 @@ public class PlayerController : MonoBehaviour {
 			equippedBuddies = PlayerInventoryS.I.EquippedBuddies();
 		}
 
+		if (_currentParadigm > 1){
+			_currentParadigm = 1;
+		}
+
 		equippedWeapon = equippedWeapons[_currentParadigm];
 
 
@@ -427,6 +431,10 @@ public class PlayerController : MonoBehaviour {
 
 		if (doWakeUp){
 			TriggerWakeUp();
+		}
+		_subParadigm=_currentParadigm+1;
+		if (_subParadigm>1){
+			_subParadigm=0;
 		}
 
 		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();

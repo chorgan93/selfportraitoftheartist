@@ -12,6 +12,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float CAN_USE_MANA = 0.25f;
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
+	public const float STAMINA_ADD_PER_LVL = 0.5f;
+
 	private const float anxiousChargeRate = 0.1f;
 
 	private const float DARKNESS_ADD_RATE = 0.001f;
@@ -57,8 +59,9 @@ public class PlayerStatsS : MonoBehaviour {
 	private RefreshDisplayS myRefresh;
 
 	private float _savedMana = 5;
-	
-	public float maxMana { get { return (_baseMana+_addedMana);}}
+
+	public float manaLevel { get { return (_baseMana+_addedMana);} }
+	public float maxMana { get { return (_baseMana+_addedMana*STAMINA_ADD_PER_LVL);}}
 	public float currentMana { get { return (_currentMana);}}
 
 	private float _overchargeMana;
@@ -103,7 +106,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 	
 	//________________________________VIRTUE
-	private float _baseVirtue = 6f;
+	private float _baseVirtue = 5f;
 	private float _addedVirtue = 0; // (upgradeable)
 	public float addedVirtue { get { return _addedVirtue; } }
 	private float _usedVirtue = 0;
@@ -523,7 +526,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		if (i == 1){
 			_addedMana++;
-			_currentMana++;
+			_currentMana+=STAMINA_ADD_PER_LVL;
 		}
 		if (i == 2){
 			_currentCharge+=1f;
@@ -714,7 +717,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//__________________________________STAT UPGRADES
 	public void AddStamina(float numToAdd = 1){
 		_addedMana+=numToAdd;
-		_currentMana+=numToAdd;
+		_currentMana=maxMana;
 		_addedLevel++;
 	}
 
