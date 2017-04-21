@@ -159,7 +159,11 @@ public class MeleeBuddyS : BuddyS {
 
 		Vector3 aimDir = Vector3.zero;
 
-		if (playerRef.myLockOn.myEnemy != null){
+		if (shootDetect.closestEnemy != null){
+			aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
+		}
+		else if (playerRef.myLockOn.myEnemy != null){
 			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
 			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
 		}
@@ -187,7 +191,11 @@ public class MeleeBuddyS : BuddyS {
 
 		myRigid.velocity = Vector3.zero;
 
-		if (playerRef.myLockOn.myEnemy != null){
+		if (shootDetect.closestEnemy != null){
+			aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
+		}
+		else if (playerRef.myLockOn.myEnemy != null){
 			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
 			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
 		}

@@ -14,6 +14,8 @@ public class CheckpointS : MonoBehaviour {
 
 	private InstructionTextS instructionText;
 
+	public int[] addToCompletedFights;
+
 
 	private string healMessage = "Health restored. Progress saved.";
 	private string healMessageWithItem =  "Health restored. Progress saved.\nREWINDs restored.";
@@ -32,6 +34,12 @@ public class CheckpointS : MonoBehaviour {
 		}else{	
 			_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
 			PlayerInventoryS.I.AddCheckpoint(Application.loadedLevel, spawnNum);
+		}
+
+		if (addToCompletedFights.Length > 0){
+			for (int i = 0; i<addToCompletedFights.Length;i++){
+				PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i]);
+			}
 		}
 
 		GameOverS.reviveScene = Application.loadedLevelName;
@@ -125,10 +133,10 @@ public class CheckpointS : MonoBehaviour {
 					BGMHolderS.BG.GetLayerWithClip(musicAtPoint[i].sourceRef.clip).FadeIn();
 				}else{
 					musicAtPoint[i].transform.parent = BGMHolderS.BG.transform;
-					if (musicAtPoint[i].matchTimeStamp){
+					if (musicAtPoint[i].matchTimeStamp && musicAtPoint[i].sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
 						musicAtPoint[i].sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
-						musicAtPoint[i].FadeIn();
 					}
+					musicAtPoint[i].FadeIn();
 				}
 			}
 

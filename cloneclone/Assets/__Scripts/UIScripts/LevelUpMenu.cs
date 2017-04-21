@@ -33,7 +33,9 @@ public class LevelUpMenu : MonoBehaviour {
 	public GameObject travelMenuProper;
 	public RectTransform[] travelMenuPositions;
 	public Text[] travelMenuChoices;
+	public int[] travelMenuSceneNums;
 	private bool travelStarted = false;
+	private List<int> openTravelChoices = new List<int>();
 
 	private float timeBetweenImageOn = 0.1f;
 	private bool doingEffect = false;
@@ -175,18 +177,12 @@ public class LevelUpMenu : MonoBehaviour {
 				
 				if (myControl.Horizontal() > 0f ||
 				    myControl.Vertical() < 0f){
-					currentPos++;
-					if (currentPos >= PlayerInventoryS.I.CheckpointsReached()){
-						currentPos = 0;
-					}
+					AdvanceTravelPos(1);
 				}else{
-					currentPos--;
-					if (currentPos < 0){
-						currentPos = PlayerInventoryS.I.CheckpointsReached()-1;
-					}
+					AdvanceTravelPos(-1);
 				}
 
-				if (currentPos != currentTravelScene){
+				if (travelMenuSceneNums[currentPos] != currentTravelScene){
 				travelMenuChoices[currentPos].color = Color.white;
 				}else{
 					travelMenuChoices[currentPos].color = textStartColor;
@@ -199,14 +195,14 @@ public class LevelUpMenu : MonoBehaviour {
 				_selectButtonDown = true;
 
 				// load level if we're not already there
-				if (PlayerInventoryS.I.ReturnCheckpointAtIndex(currentPos) != Application.loadedLevel && !travelStarted){
+				if (travelMenuSceneNums[currentPos] != Application.loadedLevel && !travelStarted){
 
 					travelMenuProper.gameObject.SetActive(false);
 					travelStarted = true;
 					_canBeExited = false;
 
-					int nextSceneIndex = PlayerInventoryS.I.ReturnCheckpointAtIndex(currentPos);
-					int nextSceneSpawn = PlayerInventoryS.I.ReturnCheckpointSpawnAtIndex(currentPos);
+					int nextSceneIndex = travelMenuSceneNums[currentPos];
+					int nextSceneSpawn = PlayerInventoryS.I.ReturnCheckpointSpawnAtScene(travelMenuSceneNums[currentPos]);
 
 					List<int> saveBuddyList = new List<int>();
 					saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
@@ -266,7 +262,12 @@ public class LevelUpMenu : MonoBehaviour {
 		travelMenuProper.gameObject.SetActive(true);
 		mainMenuObj.SetActive(false);
 		_canBeExited = false;
-		currentPos = currentTravelScene = PlayerInventoryS.I.ReturnCheckpointIndex(Application.loadedLevel);
+		currentTravelScene = Application.loadedLevel;
+		for (int i = 0; i < travelMenuSceneNums.Length; i++){
+			if(travelMenuSceneNums[i] == currentTravelScene){
+				currentPos = i;
+			}
+		}
 		onTravelMenu = true;
 		//CameraFollowS.F.SetZoomIn(true);
 		_controlStickMoved = true;
@@ -390,25 +391,45 @@ public class LevelUpMenu : MonoBehaviour {
 
 	private IEnumerator TurnOnTravelNames(){
 		doingEffect = true;
-
+		openTravelChoices.Clear();
 		for (int i = 0; i < travelMenuChoices.Length; i++){
 			travelMenuChoices[i].enabled = false;
 			travelMenuChoices[i].color = textStartColor;
 		}
 		
 		yield return new WaitForSeconds(timeBetweenImageOn);
-		
-		int index = 0;
-		while (index < PlayerInventoryS.I.CheckpointsReached()){
-			
-			travelMenuChoices[index].color = textStartColor;
-			travelMenuChoices[index].enabled = true;
-			index++;
-			
-			yield return new WaitForSeconds(timeBetweenImageOn);
+
+		for (int i = 0; i < travelMenuChoices.Length; i++){
+
+			if (PlayerInventoryS.I.HasReachedScene(travelMenuSceneNums[i])){
+				travelMenuChoices[i].color = textStartColor;
+				travelMenuChoices[i].enabled = true;
+				openTravelChoices.Add(i);
+				yield return new WaitForSeconds(timeBetweenImageOn);
+			}
 			
 		}
 		doingEffect = false;
 
+	}
+
+	void AdvanceTravelPos(int direction){
+		int nextPos = currentPos;
+		if (direction > 0){
+			for (int i = 0; i < openTravelChoices.Count; i++){
+				if (openTravelChoices[i] > currentPos &&
+					((currentPos == nextPos) || (currentPos != nextPos && openTravelChoices[i] < nextPos)) ){
+					nextPos = openTravelChoices[i];
+				}
+			}
+		}else{
+			for (int i = 0; i < openTravelChoices.Count; i++){
+				if (openTravelChoices[i] < currentPos &&
+					((currentPos == nextPos) || (currentPos != nextPos && openTravelChoices[i] > nextPos)) ){
+					nextPos = openTravelChoices[i];
+				}
+			}
+		}
+		currentPos = nextPos;
 	}
 }

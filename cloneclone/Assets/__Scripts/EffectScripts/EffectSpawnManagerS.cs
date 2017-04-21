@@ -13,6 +13,11 @@ public class EffectSpawnManagerS : MonoBehaviour {
 	public GameObject damageNumberPrefab;
 	private List<GameObject> damageNumbers = new List<GameObject>();
 
+	public GameObject projectileTrailPrefab;
+	private List<GameObject> projectileTrails = new List<GameObject>();
+
+	private FadeSpriteObjectS fadeRef;
+
 	public static EffectSpawnManagerS E;
 
 	// Use this for initialization
@@ -37,6 +42,31 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 		spawnObj.transform.parent = null;
 		spawnObj.GetComponent<FadeSpriteObjectS>().SetManager(this, 1);
+
+		return spawnObj;
+	}
+
+	public GameObject SpawnProjectileFade(Vector3 spawnPos, Color newCol, Quaternion newRot, float dSpeed){
+
+		GameObject spawnObj;
+
+		if (projectileTrails.Count > 0){
+			spawnObj = projectileTrails[0];
+			projectileTrails.Remove(spawnObj);
+			spawnObj.transform.position = spawnPos;
+			spawnObj.transform.rotation = newRot;
+			spawnObj.SetActive(true);
+		}else{
+			spawnObj = Instantiate(projectileTrailPrefab, spawnPos, newRot) as GameObject;
+		}
+
+		spawnObj.transform.parent = null;
+
+		fadeRef = spawnObj.GetComponent<FadeSpriteObjectS>();
+		fadeRef.startFadeAlpha = newCol.a;
+		spawnObj.GetComponent<SpriteRenderer>().color = newCol;
+		fadeRef.SetManager(this, 4);
+		fadeRef.SetDrift(dSpeed);
 
 		return spawnObj;
 	}
@@ -98,6 +128,9 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		}
 		if (spawnCode == 3){
 			damageNumbers.Add(target);
+		}
+		if (spawnCode == 4){
+			projectileTrails.Add(target);
 		}
 
 	}

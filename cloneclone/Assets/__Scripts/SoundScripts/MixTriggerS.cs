@@ -21,7 +21,7 @@ public class MixTriggerS : MonoBehaviour {
 					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
 				}else{
 					targetLayer.transform.parent = BGMHolderS.BG.transform;
-					if (targetLayer.matchTimeStamp){
+					if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
 						targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
 					}
 					targetLayer.FadeIn(instant);
@@ -47,7 +47,7 @@ public class MixTriggerS : MonoBehaviour {
 						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
 					}else{
 						targetLayer.transform.parent = BGMHolderS.BG.transform;
-						if (targetLayer.matchTimeStamp){
+						if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
 							targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
 						}
 							targetLayer.FadeIn(instant);

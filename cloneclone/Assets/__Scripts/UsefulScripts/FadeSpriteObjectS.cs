@@ -25,6 +25,11 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	private float loopDelayCountdown;
 	public float loopAlphaReset;
 
+	private float maxDrift = 0;
+	private float maxYDrift = 0;
+	private float currentDrift;
+	private bool drifting = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -49,6 +54,12 @@ public class FadeSpriteObjectS : MonoBehaviour {
 		if (!stopFading){
 		if (delayFadeTime > 0){
 			delayFadeTime -= Time.deltaTime;
+				if (drifting){
+					currentDrift = maxDrift*0.5f;
+					transform.position += currentDrift*Time.deltaTime*transform.up;
+					currentDrift = maxYDrift*0.5f;
+					transform.position += currentDrift*Time.deltaTime*transform.right;
+				}
 		}
 		else{
 			currentCol = myRenderer.color;
@@ -65,7 +76,14 @@ public class FadeSpriteObjectS : MonoBehaviour {
 					currentCol.a = 0f;
 					}
 					stopFading = true;
-			}
+				}else{
+					if (drifting){
+						currentDrift = maxDrift;
+						transform.position += currentDrift*Time.deltaTime*transform.up;
+						currentDrift = maxYDrift;
+						transform.position += currentDrift*Time.deltaTime*transform.right;
+					}
+				}
 			myRenderer.color = currentCol;
 		}
 		}else{
@@ -102,5 +120,31 @@ public class FadeSpriteObjectS : MonoBehaviour {
 		_myManager = e;
 		_spawnCode = sCode;
 		Reinitialize();
+	}
+
+	public void SetDrift(float newDrift){
+		if (newDrift != 0){
+			drifting = true;
+			maxDrift = currentDrift = newDrift;
+			//if (transform.localScale.x < 0){
+			//	maxDrift*=-1f;
+			//	currentDrift = maxDrift;
+			//}
+		}else{
+			drifting = false;
+		}
+	}
+
+	public void SetYDrift(float newDrift){
+		if (newDrift != 0){
+			drifting = true;
+			maxYDrift = currentDrift = newDrift;
+			//if (transform.localScale.x < 0){
+			//	maxDrift*=-1f;
+			//	currentDrift = maxDrift;
+			//}
+		}else{
+			drifting = false;
+		}
 	}
 }

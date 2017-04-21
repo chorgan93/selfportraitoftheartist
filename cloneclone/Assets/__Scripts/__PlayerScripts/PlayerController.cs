@@ -167,6 +167,11 @@ public class PlayerController : MonoBehaviour {
 	public Transform buddyPosLower;
 	private BuddySwitchEffectS _buddyEffect;
 
+	// Buddy Garden Properties
+	private float embraceOutTime = 0.5f;
+	private float embraceOutCount;
+	private bool embracing = false;
+
 	// Virtue Properties
 	public static List<int> equippedVirtues;
 	public static List<int> equippedUpgrades; // tech
@@ -347,6 +352,17 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void StartEmbrace(){
+		SetTalking(true);
+		_myAnimator.SetTrigger("Embrace");
+		_myAnimator.SetBool("Embracing", true);
+	}
+	public void EndEmbrace(){
+		embracing = true;
+		embraceOutCount = embraceOutTime;
+		_myAnimator.SetBool("Embracing", false);
+	}
+
 	public void AddEnemyHit(EnemyS newEnemy){
 		if (!enemiesHitByLastAttack.Contains(newEnemy)){
 			enemiesHitByLastAttack.Add(newEnemy);
@@ -409,7 +425,9 @@ public class PlayerController : MonoBehaviour {
 		startBuddy.transform.parent = transform;
 		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
 		_myBuddy.SetPositions(buddyPos, buddyPosLower);
-		_myBuddy.gameObject.SetActive(true);
+		if (!InGameCinematicS.turnOffBuddies){
+			_myBuddy.gameObject.SetActive(true);
+		}
 		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
 
 		_buddyEffect = GetComponentInChildren<BuddySwitchEffectS>();
@@ -560,7 +578,10 @@ public class PlayerController : MonoBehaviour {
 			Vector2 input2 = Vector2.zero;
 			input2.x = controller.Horizontal();
 			input2.y = controller.Vertical();
-			input2 = input2.normalized;
+
+			if (input2.magnitude > 1f){
+				input2 = input2.normalized;
+			}
 
 			if (input2.x != 0 || input2.y != 0){
 				savedDir.x = input2.x;
@@ -1425,8 +1446,10 @@ public class PlayerController : MonoBehaviour {
 					_altBuddy.SetPositions(buddyPos, buddyPosLower);
 					_myBuddy = _altBuddy;
 					_myBuddy.transform.position = tempSwap.transform.position;
-					_myBuddy.gameObject.SetActive(true);
-					Instantiate(_myBuddy.buddySound);
+					if (!InGameCinematicS.turnOffBuddies){
+						_myBuddy.gameObject.SetActive(true);
+						Instantiate(_myBuddy.buddySound);
+					}
 					_altBuddy = tempSwap;
 					_altBuddy.gameObject.SetActive(false);
 					
@@ -1722,6 +1745,14 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		if (embracing){
+			embraceOutCount -= Time.deltaTime;
+			if (embraceOutCount <= 0){
+				embracing = false;
+				SetTalking(false);
+			}
+		}
+
 
 	}
 
@@ -1914,7 +1945,7 @@ public class PlayerController : MonoBehaviour {
 		_playerSound.SetWalking(false);
 	}
 
-	private void FaceDown(){
+	public void FaceDown(){
 		if (!_isBlocking){
 		_myAnimator.SetLayerWeight(1, 1f);
 		_myAnimator.SetLayerWeight(2, 0f);
@@ -2419,7 +2450,7 @@ public class PlayerController : MonoBehaviour {
 				_myBuddy.gameObject.SetActive(false);
 			}
 		}else{
-			if (_myBuddy != null){
+			if (_myBuddy != null && !InGameCinematicS.turnOffBuddies){
 				_myBuddy.gameObject.SetActive(true);
 				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 			}

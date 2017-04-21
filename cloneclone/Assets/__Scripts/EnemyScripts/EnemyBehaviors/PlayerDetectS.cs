@@ -20,9 +20,11 @@ public class PlayerDetectS : MonoBehaviour {
 
 	void Start(){
 
-		if (transform.parent.GetComponent<EnemyS>() != null){
-			if (transform.parent.GetComponent<EnemyS>().isFriendly){
-				keepTrackOfEnemies = true;
+		if (transform.parent != null){
+			if (transform.parent.GetComponent<EnemyS>() != null){
+				if (transform.parent.GetComponent<EnemyS>().isFriendly){
+					keepTrackOfEnemies = true;
+				}
 			}
 		}
 

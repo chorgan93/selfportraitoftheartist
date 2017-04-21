@@ -132,6 +132,7 @@ public class EquipMenuS : MonoBehaviour {
 		}else{
 			playerLevel.text = "LV. " + pRef.myStats.currentLevel;
 		}
+		pRef.FaceDown();
 		virtueBarMaxX = virtueBarFull.rectTransform.sizeDelta.x-2;
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 

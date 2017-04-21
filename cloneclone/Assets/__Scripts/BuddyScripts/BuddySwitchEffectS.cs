@@ -138,30 +138,32 @@ public class BuddySwitchEffectS : MonoBehaviour {
 
 	public void ChangeEffect(Color newCol, Transform newFollow){
 
-		if (!standalone){
-			transform.parent = null;
+		if (!InGameCinematicS.turnOffBuddies){
+			if (!standalone){
+				transform.parent = null;
+			}
+	
+			Color resetCol = Color.white;
+			fadeColor = newCol;
+	
+			for (int i = 0; i < effectLayers.Length; i++){
+				//resetCol.a = startAlphas[i];
+				effectLayers[i].material.color = resetCol;
+				effectLayers[i].material.SetTexture("_MainTex", flashTexture);
+				effectLayers[i].transform.localRotation = Quaternion.Euler(startRotations[i]);
+				effectLayers[i].enabled = true;
+			}
+	
+			changeRateCountdown = 0f;
+			fadeCountdown = fadeTime;
+	
+			flashCountdown = flashFrames;
+			flashing = true;
+			showing = true;
+	
+			followTransform = newFollow;
+			rotationDir *= -1f;
 		}
-
-		Color resetCol = Color.white;
-		fadeColor = newCol;
-
-		for (int i = 0; i < effectLayers.Length; i++){
-			//resetCol.a = startAlphas[i];
-			effectLayers[i].material.color = resetCol;
-			effectLayers[i].material.SetTexture("_MainTex", flashTexture);
-			effectLayers[i].transform.localRotation = Quaternion.Euler(startRotations[i]);
-			effectLayers[i].enabled = true;
-		}
-
-		changeRateCountdown = 0f;
-		fadeCountdown = fadeTime;
-
-		flashCountdown = flashFrames;
-		flashing = true;
-		showing = true;
-
-		followTransform = newFollow;
-		rotationDir *= -1f;
 
 	}
 }

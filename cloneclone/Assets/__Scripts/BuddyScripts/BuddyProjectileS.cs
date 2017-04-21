@@ -21,6 +21,8 @@ public class BuddyProjectileS : MonoBehaviour {
 	
 	[Header("Attack Properties")]
 	public float range;
+	private float _maxRange;
+	public float maxRange { get { return _maxRange; } }
 	public float turnOffColliderTime = 0.1f;
 	public float shotSpeed;
 	public float selfKnockbackMult;
@@ -48,7 +50,10 @@ public class BuddyProjectileS : MonoBehaviour {
 	private Color fadeColor;
 	
 	private Collider myCollider;
-	
+
+	void Start(){
+		_maxRange = range;
+	}
 	
 	// Update is called once per frame
 	void Update(){
@@ -99,6 +104,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	
 	public void Fire(Vector3 aimDirection, BuddyS buddyReference){
 
+		_maxRange = range;
 		if (soundObj){
 			Instantiate(soundObj);
 		}

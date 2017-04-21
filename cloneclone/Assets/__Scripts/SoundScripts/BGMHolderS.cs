@@ -68,11 +68,11 @@ public class BGMHolderS : MonoBehaviour {
 
 			bool foundOnList = false;
 
-			for (int i = 0; i < transform.childCount; i++){
+			for (int i = transform.childCount-1; i >= 0; i--){
 				if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null){
 					foundOnList = false;
 					for (int j = 0; j < layers.Length; j++){
-						if (layers[j].sourceRef.clip == transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().sourceRef.clip){
+						if (!foundOnList && layers[j].sourceRef.clip == transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().sourceRef.clip){
 							foundOnList = true;
 						}
 					}

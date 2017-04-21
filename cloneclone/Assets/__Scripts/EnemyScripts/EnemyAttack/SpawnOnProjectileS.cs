@@ -9,14 +9,26 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	public int maxSpawns = -1;
 	private bool infiniteSpawn = true;
 
+	[Header("Prefab-based Spawning")]
 	public GameObject spawnObject;
 	public GameObject[] spawnObjects;
+
+	[Header("Trail-based Spawning")]
+	public bool useSpawnPool = false;
+	public Color trailColor = Color.red;
+	public float driftSpeed = 0f;
+	private EffectSpawnManagerS effectManager;
+	public ProjectileS taperBasedOnLifetime;
+	public EnemyProjectileS taperBasedOnLifetimeEnemy;
+	public BuddyProjectileS taperBasedOnLifetimeBuddy;
+
 	private int currentSpawn = 0;
 	public float spawnObjectRadius = 2.5f;
 	public float spawnRadiusAdd = 0f;
 	public float spawnObjZ = 0f;
 
 	private Vector3 spawnPos;
+	private Vector3 spawnPosAdd = Vector3.zero;
 
 	public bool chargeSpawner = false;
 	private PlayerController playerRef;
@@ -39,6 +51,8 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		if (chargeSpawner || spawnOnHitEnemies){
 			playerRef = GetComponent<ProjectileS>().myPlayer;
 		}
+
+		effectManager = EffectSpawnManagerS.E;
 	
 	}
 	
@@ -54,12 +68,29 @@ public class SpawnOnProjectileS : MonoBehaviour {
 				}
 
 				spawnPos = transform.position;
-				spawnPos += Random.insideUnitSphere*spawnObjectRadius;
+
+				spawnPosAdd = Random.insideUnitSphere*spawnObjectRadius;
+
+				if (taperBasedOnLifetime){
+					spawnPosAdd *= 1-(taperBasedOnLifetime.rangeRef/taperBasedOnLifetime.range);
+				}
+				if (taperBasedOnLifetimeEnemy){
+					spawnPosAdd *= 1-(taperBasedOnLifetimeEnemy.range/taperBasedOnLifetimeEnemy.maxRange);
+				}
+				if (taperBasedOnLifetimeBuddy){
+					spawnPosAdd *= 1-(taperBasedOnLifetimeBuddy.range/taperBasedOnLifetimeBuddy.maxRange);
+				}
+
+				spawnPos += spawnPosAdd;
 				spawnObjectRadius+=spawnRadiusAdd;
+
 				spawnPos.z = spawnObjZ;
 				GameObject newSpawn;
 
-				if (spawnObject != null){
+				if (useSpawnPool){
+					newSpawn = effectManager.SpawnProjectileFade(spawnPos, trailColor, transform.rotation, driftSpeed);
+				}
+				else if (spawnObject != null){
 					newSpawn = Instantiate(spawnObject, spawnPos, spawnObject.transform.rotation)
 						as GameObject;
 				}else{

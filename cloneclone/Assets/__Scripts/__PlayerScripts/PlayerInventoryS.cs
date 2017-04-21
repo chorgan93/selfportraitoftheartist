@@ -90,8 +90,27 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 		return checkpointNum;
 	}
+	public int ReturnCheckpointSpawnAtScene(int sceneIndex){
+		int checkpointNum = -1;
+		if (ReturnCheckpointIndex(sceneIndex) > -1){
+			checkpointNum = ReturnCheckpointSpawnAtIndex(ReturnCheckpointIndex(sceneIndex));
+		}
+		return checkpointNum;
+	}
 	public int CheckpointsReached(){
 		return checkpointsReachedScenes.Count;
+	}
+
+	public bool HasReachedScene(int checkpointSceneIndex){
+		bool hasReached = false;
+		if (checkpointsReachedScenes != null){
+			for (int i = 0; i < checkpointsReachedScenes.Count; i++){
+				if (checkpointsReachedScenes[i] == checkpointSceneIndex){
+					hasReached = true;
+				}
+			}
+		}
+		return hasReached;
 	}
 
 	public void AddKeyItem(int i){

@@ -18,6 +18,8 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	[Header("Attack Properties")]
 	public float range;
+	private float _maxRange;
+	public float maxRange { get { return _maxRange; } }
 	public float turnOffColliderTime = 0.1f;
 	public float shotSpeed;
 	public float selfKnockbackMult;
@@ -51,6 +53,9 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	private Collider myCollider;
 
+	void Start(){
+		_maxRange = range;
+	}
 
 	// Update is called once per frame
 	void Update(){
@@ -108,7 +113,8 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (soundObj){
 			Instantiate(soundObj);
 		}
-		
+
+		_maxRange = range;
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 			myCollider = GetComponent<Collider>();

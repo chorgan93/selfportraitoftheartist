@@ -7,11 +7,20 @@ public class ActivateOnTouchS : MonoBehaviour {
 	public List<GameObject> turnOnObjects;
 	public List<GameObject> turnOffObjects;
 
+	public int[] onlyActivateIfEnemyDefeated;
+	private bool didCombatCheck = false;
+	private bool doNotTrigger = false;
+
 	private bool turnedOn = false;
 
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player" && !turnedOn){
+
+		if (!didCombatCheck && onlyActivateIfEnemyDefeated != null){
+			CombatCheck();
+		}
+		
+		if (other.gameObject.tag == "Player" && !turnedOn && !doNotTrigger){
 
 			foreach (GameObject eh in turnOnObjects){
 				eh.SetActive(true);
@@ -22,5 +31,19 @@ public class ActivateOnTouchS : MonoBehaviour {
 
 			turnedOn = true;
 		}
+	}
+
+	void CombatCheck(){
+		doNotTrigger = true;
+		if (onlyActivateIfEnemyDefeated.Length > 0){
+			for (int i = 0; i < onlyActivateIfEnemyDefeated.Length; i++){
+				if (PlayerInventoryS.I.dManager.enemiesDefeated.Contains(onlyActivateIfEnemyDefeated[i])){
+					doNotTrigger = false;
+				}
+			}
+		}else{
+			doNotTrigger = false;
+		}
+		didCombatCheck = true;
 	}
 }
