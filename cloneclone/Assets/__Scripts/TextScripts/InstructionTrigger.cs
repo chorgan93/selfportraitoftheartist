@@ -8,6 +8,10 @@ public class InstructionTrigger : MonoBehaviour {
 	private InstructionTextS instructionRef;
 	private bool isShowing = false;
 
+	[Header("Instruction Objects (Optional)")]
+	public InstructionFloatS[] instructionObjs;
+	private bool useInstructionObjs = false;
+
 	[Header("Turn Off Conditions")]
 	public int turnedOffIfClearedCombat = -1;
 
@@ -24,10 +28,18 @@ public class InstructionTrigger : MonoBehaviour {
 
 	void Start(){
 
-		instructionRef = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
-		instructionString = instructionString.Replace("NEWLINE", "\n");
-		if (noControllerInstructionString != ""){
-			noControllerInstructionString = noControllerInstructionString.Replace("NEWLINE", "\n");
+		if (instructionObjs != null){
+			if (instructionObjs.Length > 0){
+				useInstructionObjs = true;
+			}
+		}
+
+		if(!useInstructionObjs){
+			instructionRef = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
+			instructionString = instructionString.Replace("NEWLINE", "\n");
+			if (noControllerInstructionString != ""){
+				noControllerInstructionString = noControllerInstructionString.Replace("NEWLINE", "\n");
+			}
 		}
 
 		if (turnedOffIfClearedCombat > -1){
@@ -75,21 +87,34 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void OnDisable(){
+		if (!useInstructionObjs){
 		if (isShowing){
 			instructionRef.SetShowing(false);
+		}
+		}else{
+			for (int i = 0; i < instructionObjs.Length; i++){
+				instructionObjs[i].HideInstruction();
+			}
 		}
 	}
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player"){
-			if (noControllerInstructionString != "" && !other.GetComponent<PlayerController>().myControl.ControllerAttached()){
-				instructionRef.SetShowing(true, noControllerInstructionString);
+			if (useInstructionObjs){
+				for (int i = 0; i < instructionObjs.Length; i++){
+					instructionObjs[i].ShowInstruction(other.transform, other.GetComponent<PlayerController>().myControl.ControllerAttached());
+				}
 			}else{
-				instructionRef.SetShowing(true, instructionString);
-			}
+				if (noControllerInstructionString != "" && !other.GetComponent<PlayerController>().myControl.ControllerAttached()){
+					instructionRef.SetShowing(true, noControllerInstructionString);
+				}else{
+					instructionRef.SetShowing(true, instructionString);
+				}
+			
 
-			if (newTextSize > -1){
-				instructionRef.SetTextSize(newTextSize);
+				if (newTextSize > -1){
+					instructionRef.SetTextSize(newTextSize);
+				}
 			}
 			other.gameObject.GetComponent<PlayerController>().SetTutorial(this);
 			isShowing = true;
@@ -98,7 +123,13 @@ public class InstructionTrigger : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){
-			instructionRef.SetShowing(false);
+			if (useInstructionObjs){
+				for (int i = 0; i < instructionObjs.Length; i++){
+					instructionObjs[i].HideInstruction();
+				}
+			}else{
+				instructionRef.SetShowing(false);
+			}
 			isShowing = false;
 		}
 	}
