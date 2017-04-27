@@ -9,17 +9,12 @@ public class ControlManagerS : MonoBehaviour {
 	private float triggerSensitivity = 0.1f;
 
 	private string platformType;
+	private string controllerType;
 
 	// Use this for initialization
 	void Start () {
 
 		platformType = GetPlatform();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	
 	}
 

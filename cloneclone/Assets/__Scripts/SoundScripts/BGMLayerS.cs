@@ -23,6 +23,11 @@ public class BGMLayerS : MonoBehaviour {
 
 		mySource = GetComponent<AudioSource>();
 		mySource.volume = startVolume;
+
+		// for recording only, delete after
+		//Debug.Log("ATTN Colin delete the folowing lines:");
+		//mySource.volume = 0f;
+		//startVolume = maxVolume = 0f;
 	
 	}
 	
