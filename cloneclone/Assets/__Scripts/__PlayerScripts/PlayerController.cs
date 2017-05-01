@@ -516,6 +516,7 @@ public class PlayerController : MonoBehaviour {
 		_chargeAttackTime = 0f;
 		_myAnimator.SetBool("Charging", false);
 		TurnOffAttackAnimation();
+		_isSprinting = false;
 	}
 
 	public void AttackDuration(float aTime){
@@ -1761,7 +1762,7 @@ public class PlayerController : MonoBehaviour {
 		_counterNormal = (targetEnemy.transform.position-transform.position).normalized;
 		parryDelayWitchCountdown = parryDelayWitchTime;
 		_dodgeEffectRef.FireEffect(true);
-		_blockRef.FireParryEffect();
+		_blockRef.FireParryEffect(targetEnemy.transform.position);
 		FlashMana();
 	}
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 68126cde5778346e89e474449b940d8d
-timeCreated: 1492815826
+timeCreated: 1493433201
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -32,6 +32,8 @@ TextureImporter:
     21300050: Icons_25
     21300052: Icons_26
     21300054: Icons_27
+    21300056: Icons_28
+    21300058: Icons_29
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -407,6 +409,30 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_29
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 0
         width: 32
         height: 32
