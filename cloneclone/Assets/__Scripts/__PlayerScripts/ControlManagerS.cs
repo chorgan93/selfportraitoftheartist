@@ -81,7 +81,11 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				return Input.GetAxis("HorizontalController");
+				if (controlProfile == 0){
+					return Input.GetAxis("HorizontalController");
+				}else{
+					return Input.GetAxis("Horizontal");
+				}
 			}
 			else{
 				return Input.GetAxis("Horizontal");
@@ -99,7 +103,11 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				return Input.GetAxis("VerticalController");
+				if (controlProfile == 0){
+					return Input.GetAxis("VerticalController");
+				}else{
+					return Input.GetAxis("Vertical");
+				}
 			}
 			else{
 				return Input.GetAxis("Vertical");
@@ -159,7 +167,11 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				return Input.GetAxis("HorizontalController");
+				if (controlProfile == 0){
+					return Input.GetAxis("HorizontalController");
+				}else{
+					return Input.GetAxis("HorizontalKeys");
+				}
 			}
 			else{
 				return Input.GetAxis("HorizontalKeys");
@@ -177,7 +189,11 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				return Input.GetAxis("VerticalController");
+				if (controlProfile == 0){
+					return Input.GetAxis("VerticalController");
+				}else{
+					return Input.GetAxis("VerticalKeys");
+				}
 			}
 			else{
 				return Input.GetAxis("VerticalKeys");
@@ -215,11 +231,21 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			if (controlProfile == 0){
 			return (Input.GetButton("ShootButton"+platformType));
+			}else if (controlProfile == 1){
+				return (Input.GetMouseButton(2));
+			}else{
+				return (Input.GetKey(KeyCode.J));
+			}
 			//return (Input.GetButton("ReloadButton"+platformType));
 		}else{
 			//return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
-			return (Input.GetKey(KeyCode.J));
+			if (controlProfile == 1){
+				return (Input.GetMouseButton(2));
+			}else{
+				return (Input.GetKey(KeyCode.J));
+			}
 		}
 
 	}
@@ -251,7 +277,11 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 			//return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			if (controlProfile == 0){
 			return (Input.GetButton("SwitchBuddyButton" + platformType));
+			}else{
+				return ( Input.GetKey(KeyCode.Space));
+			}
 		}
 		else{
 			return ( Input.GetKey(KeyCode.Space));
@@ -263,7 +293,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ShootTrigger(){
 
 		if (ControllerAttached()){
-			
+
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 
 		}
@@ -279,7 +309,11 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			
 			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
+			if (controlProfile == 0){
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			}else {
+				return (Input.GetKey(KeyCode.Space));
+			}
 			//return (Input.GetButton("DashButton"+platformType));
 			
 		}
@@ -294,8 +328,14 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ShootButton(){
 
 		if (ControllerAttached()){
-			
+
+			if (controlProfile == 0){
 			return (Input.GetButton("SwitchButton"+platformType+"Alt"));
+			}else if (controlProfile == 1){
+				return (Input.GetMouseButton(0));
+			}else{
+				return (Input.GetKey(KeyCode.K));
+					}
 
 		}
 		else{
@@ -309,15 +349,24 @@ public class ControlManagerS : MonoBehaviour {
 	public bool HeavyButton(){
 		
 		if (ControllerAttached()){
-			
+
+			if (controlProfile == 0){
 			return (Input.GetButton("ReloadButton"+platformType));
+			}else if (controlProfile == 1){
+				return (Input.GetMouseButton(1));
+			}else{
+				return (Input.GetKey(KeyCode.L));
+			}
 			
 		}
 		else{
 			
 			//return (Input.GetMouseButton(1));
-
-			return (Input.GetKey(KeyCode.L));
+			if (controlProfile == 1){
+				return (Input.GetMouseButton(1));
+			}else{
+				return (Input.GetKey(KeyCode.L));
+			}
 			
 		}
 		
@@ -365,8 +414,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool TalkButton(){
 		if (ControllerAttached()){
-			
+
+			if (controlProfile == 0){
 			return (Input.GetButton("DashButton"+platformType));
+			}else{
+				return (Input.GetKey(KeyCode.E));
+			}
 			
 		}
 		else{
@@ -381,7 +434,11 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			}else{
+				return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
+			}
 			//return (Input.GetButton("SwitchButton"+platformType));
 		}
 		else{
@@ -432,14 +489,22 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool StartButton(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (Input.GetButton("StartButton"+platformType));
+			}else{
+				return(Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return));
+			}
 		}else{
 			return (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return));
 		}
 	}
 	public bool BackButton(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (Input.GetButton("BackButton"+platformType));
+			}else{
+				return (Input.GetKey(KeyCode.Escape));
+			}
 		}else{
 			return (Input.GetKey(KeyCode.Escape));
 		}
@@ -447,7 +512,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (WeaponButtonA() || TalkButton());
+			}else{
+				return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
+			}
 		}else{
 			return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
 		}
@@ -455,7 +524,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (!WeaponButtonA() && !TalkButton());
+			}else{
+				return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
+			}
 		}else{
 			return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
 		}
@@ -463,7 +536,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool ExitButton(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (WeaponButtonB() || WeaponButtonC());
+			}else{
+				return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete)
+					|| Input.GetKey(KeyCode.Q));	
+			}
 		}else{
 			return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete)
 				|| Input.GetKey(KeyCode.Q));
@@ -474,7 +552,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool ExitButtonUp(){
 		if (ControllerAttached()){
+			if (controlProfile == 0){
 			return (!WeaponButtonB() && !WeaponButtonC());
+			}else{
+				return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
+			}
 		}else{
 			return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
 		}
@@ -484,8 +566,11 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 		
-			
+			if (controlProfile == 0){
 			return (Input.GetButton("SwitchBuddyButton"+platformType));
+			}else{
+				return (Input.GetKey(KeyCode.R));
+			}
 		}else{
 			return (Input.GetKey(KeyCode.R));
 		}
