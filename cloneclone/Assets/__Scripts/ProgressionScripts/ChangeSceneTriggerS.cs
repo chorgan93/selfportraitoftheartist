@@ -10,6 +10,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	public int doorNum = -1;
 	public string examineString = "";
 	public string examineStringNoController = "";
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public Sprite openedSprite;
 	private SpriteRenderer _myRender;
 	private bool loading = false;
@@ -35,9 +36,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
 				if (pRef.myControl.ControllerAttached() || examineStringNoController == ""){
-				pRef.SetExamining(true, examineString);
+					pRef.SetExamining(true, examinePos, examineString);
 				}else{
-					pRef.SetExamining(true, examineStringNoController);
+					pRef.SetExamining(true, examinePos, examineStringNoController);
 				}
 			}
 
@@ -68,9 +69,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			}else{
 				if (pRef.myDetect.allEnemiesInRange.Count <= 0){
 					if (pRef.myControl.ControllerAttached() || examineStringNoController == ""){
-						pRef.SetExamining(true, examineString);
+						pRef.SetExamining(true, examinePos, examineString);
 					}else{
-						pRef.SetExamining(true, examineStringNoController);
+						pRef.SetExamining(true, examinePos, examineStringNoController);
 					}
 				}
 				examining = true;
@@ -82,7 +83,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	void OnTriggerExit(Collider other){
 		if (requireExamine){
 			if (other.gameObject.tag == "Player"){
-				pRef.SetExamining(false);
+				pRef.SetExamining(false, examinePos);
 				examining = false;
 			}
 		}

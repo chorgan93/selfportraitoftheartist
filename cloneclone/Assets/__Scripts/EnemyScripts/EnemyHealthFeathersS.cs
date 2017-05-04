@@ -99,7 +99,7 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	public void SetUpEnemy(EnemyS newEnemy){
 		newEnemy.SetHealthDisplay(this);
 		myEnemy = newEnemy;
-		currentHealthInterval = currentMaxHealthInterval = myEnemy.maxHealth/(myFeathers.Length*1f);
+		currentHealthInterval = currentMaxHealthInterval = myEnemy.actingMaxHealth/(myFeathers.Length*1f);
 		currentHealthFeather = myFeathers.Length-1;
 
 		featherSprites = new List<EnemyHealthFeatherColorS>();

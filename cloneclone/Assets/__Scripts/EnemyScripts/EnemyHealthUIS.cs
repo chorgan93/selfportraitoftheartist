@@ -223,7 +223,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 	float getCurrentMaxHealth(){
 		float newMaxHealth = 0f;
 		for (int i = 0; i< myEnemies.Count; i++){
-			newMaxHealth += myEnemies[i].maxHealth;
+			newMaxHealth += myEnemies[i].actingMaxHealth;
 		}
 		return newMaxHealth;
 	}

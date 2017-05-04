@@ -31,14 +31,23 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	public Transform[] menuSelections;
 	public TextMesh[] menuSelectionsText;
+	public TextMesh[] controlTexts;
 	private int currentSelection = 0;
 	public GameObject selectOrb;
 	public GameObject credits;
+	public Color continueDisableColor;
+
+	public Transform[] newGameSelections;
+	public TextMesh[] newGameOverrideText;
+	private bool selectingOverride = false;
+	public GameObject showOnOverride;
+	public GameObject hideOnOverride;
 	
 	private Vector3 selectionScale;
 	private Color selectionStartColor;
 	
 	private bool stickReset = false;
+	private bool selectReset = false;
 	
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
@@ -56,6 +65,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	private bool startedLoading;
 	AsyncOperation async;
+
+	private bool canContinue = false;
 	
 	public InfiniteBGM startMusic;
 
@@ -91,6 +102,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 		selectionStartColor = menuSelectionsText[0].color;
 		
 		startMusic.FadeIn();
+
+		if (SaveLoadS.SaveFileExists()){
+			currentSelection = 1;
+			canContinue = true;
+		}else{
+			menuSelectionsText[1].color = continueDisableColor;
+		}
 		
 	}
 	
@@ -117,6 +135,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 			allowStartTime -= Time.deltaTime;
 			if (allowStartTime <= 0 && (myController.TalkButton() || Input.GetKeyDown(KeyCode.Return))){
 				started = true;
+				selectReset = false;
 				foreach (GameObject t in textTurnOff){
 					t.SetActive(false);
 				}
@@ -144,17 +163,79 @@ public class MainMenuNavigationS : MonoBehaviour {
 					credits.SetActive(true);
 				}
 			}else{
-				
-				if (Mathf.Abs(myController.Vertical()) < 0.1f){
+
+				if (!Input.GetKeyDown(KeyCode.Return) && !myController.TalkButton() && !Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.Backspace)
+					&& !Input.GetKeyDown(KeyCode.Delete) && !Input.GetKeyDown(KeyCode.Escape) && !myController.HeavyButton() && !Input.GetKeyDown(KeyCode.E)){
+					selectReset = true;
+				}
+
+				if (Mathf.Abs(myController.VerticalMenu()) < 0.05f && Mathf.Abs(myController.HorizontalMenu()) < 0.05f){
 					stickReset = true;
 				}
-				
-				// go down
-				if (myController.Vertical() < -0.1f && stickReset){
-					if (myController.Vertical() < -0.1f){
-						stickReset = false;
+
+				if (selectingOverride){
+
+					if (selectReset && ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Backspace)
+						|| Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Escape) || myController.HeavyButton()))){
+						selectReset = false;
+						selectingOverride = false;
+						currentSelection = 0;
+						showOnOverride.gameObject.SetActive(false);
+						hideOnOverride.gameObject.SetActive(true);
+						SetSelection();
 					}
+
+					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton())){
+						if (currentSelection == 0){
+							startMusic.FadeOut();
+							loadBlackScreen.gameObject.SetActive(true);
+							loading = true;
+							selectOrb.SetActive(false);
+							Cursor.visible = false;
+							hideOnOverride.gameObject.SetActive(false);
+							showOnOverride.gameObject.SetActive(false);
+							selectReset = false;
+							StoryProgressionS.NewGame(); // reset for new game progress
+							
+							PlayerStatsS.healOnStart = true;
+							StartNextLoad();
+						}else{
+							selectReset = false;
+							selectingOverride = false;
+							currentSelection = 0;
+							showOnOverride.gameObject.SetActive(false);
+							hideOnOverride.gameObject.SetActive(true);
+							SetSelection();
+						}
+					}
+						
+					if (myController.HorizontalMenu() > 0.1f && stickReset){
+						currentSelection++;
+						if (currentSelection > 1){
+							currentSelection = 0;
+						}
+						stickReset = false;
+						SetSelection();
+					}
+					if (myController.HorizontalMenu() < -0.1f && stickReset){
+						currentSelection--;
+						if (currentSelection < 0){
+							currentSelection = 1;
+						}
+						stickReset = false;
+						SetSelection();
+					}
+				}else{
+
+				// go down
+				if (myController.VerticalMenu() < -0.1f && stickReset){
+					
+					stickReset = false;
+					
 					currentSelection ++;
+					if (currentSelection == 1 && !canContinue){
+						currentSelection = 2;
+					}
 					if (currentSelection > menuSelections.Length-1){
 						currentSelection = 0;
 					}
@@ -163,25 +244,48 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 				
 				// go up
-				if ((myController.Vertical() > 0.1f && stickReset)){
-					if (myController.Vertical() > 0.1f){
-						stickReset = false;
-					}
+				if (myController.VerticalMenu() > 0.1f && stickReset){
+						
+					stickReset = false;
+					
 					currentSelection --;
+					if (currentSelection == 1 && !canContinue){
+						currentSelection = 0;
+					}
 					if (currentSelection < 0){
 						currentSelection = menuSelections.Length-1;
 					}
 					
 					SetSelection();
 				}
+
+				// control settings
+				if (currentSelection == 2){
+						if ((myController.HorizontalMenu() > 0.1f && stickReset) || 
+							(selectReset && (myController.TalkButton() || Input.GetKeyDown(KeyCode.KeypadEnter) 
+								|| Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)))){
+						myController.ChangeControlProfile(1);
+						SetControlSelection();
+						stickReset = false;
+							selectReset = false;
+					}
+					if (myController.HorizontalMenu() < -0.1f && stickReset){
+						myController.ChangeControlProfile(-1);
+						SetControlSelection();
+						stickReset = false;
+					}
+				}
 				
-				if ((Input.GetKeyDown(KeyCode.Return) || myController.TalkButton()) && !loading){
-					if (currentSelection == 0 || currentSelection == 1){
+					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) && !loading){
+						if (currentSelection == 1 || (currentSelection == 0 && !canContinue)){
 						startMusic.FadeOut();
 						loadBlackScreen.gameObject.SetActive(true);
 						loading = true;
+							selectReset = false;
 						selectOrb.SetActive(false);
 						Cursor.visible = false;
+							hideOnOverride.gameObject.SetActive(false);
+							showOnOverride.gameObject.SetActive(false);
 						if (currentSelection == 0){
 							StoryProgressionS.NewGame(); // reset for new game progress
 						}else{
@@ -192,14 +296,17 @@ public class MainMenuNavigationS : MonoBehaviour {
 						PlayerStatsS.healOnStart = true;
 						StartNextLoad();
 					}
-					//if (currentSelection == 1){
-					//	Application.OpenURL(facebookLink);
-					//}
-					/*if (currentSelection == 1){
-						//Application.OpenURL(twitterLink);
-					}*/
-					if (currentSelection == 2){
+						else if (currentSelection == 0 && canContinue){
+							selectingOverride = true;
+							currentSelection = 1;
+							selectReset = false;
+							showOnOverride.gameObject.SetActive(true);
+							hideOnOverride.gameObject.SetActive(false);
+							SetSelection();
+						}
+					else if (currentSelection == 2){
 						//Application.OpenURL(twitterLinkII);
+						}
 					}
 				}
 			}
@@ -217,26 +324,60 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void SetSelection(){
 		
 		Color correctCol = Color.white;
-		for (int i = 0; i < menuSelections.Length; i++){
-			if (i == currentSelection){
-				//menuSelections[i].localScale = selectionScale*1.2f;
-				selectOrb.transform.position = menuSelections[i].position;
-				correctCol = Color.white;
-				correctCol.a = menuSelectionsText[i].color.a;
-				menuSelectionsText[i].color = correctCol;;
-			}else{
-				//menuSelections[i].localScale = selectionScale;
-				correctCol = selectionStartColor;
-				correctCol.a = menuSelectionsText[i].color.a;
-				menuSelectionsText[i].color = correctCol;
+		if (selectingOverride){
+			for (int i = 0; i < newGameSelections.Length; i++){
+				if (i == currentSelection){
+					//menuSelections[i].localScale = selectionScale*1.2f;
+					selectOrb.transform.position = newGameSelections[i].position;
+					correctCol = Color.white;
+					correctCol.a = newGameOverrideText[i].color.a;
+					newGameOverrideText[i].color = correctCol;;
+				}else{
+						correctCol = selectionStartColor;
+					correctCol.a = newGameOverrideText[i].color.a;
+					newGameOverrideText[i].color = correctCol;
+				}
+			}
+		}else{
+			for (int i = 0; i < menuSelections.Length; i++){
+				if (i == currentSelection){
+					//menuSelections[i].localScale = selectionScale*1.2f;
+					selectOrb.transform.position = menuSelections[i].position;
+					correctCol = Color.white;
+					correctCol.a = menuSelectionsText[i].color.a;
+					menuSelectionsText[i].color = correctCol;;
+				}else{
+					//menuSelections[i].localScale = selectionScale;
+					if (i != 1 || (i == 1 && canContinue)){
+						correctCol = selectionStartColor;
+						correctCol.a = menuSelectionsText[i].color.a;
+						menuSelectionsText[i].color = correctCol;
+					}
+				}
 			}
 		}
 		
 	}
+
+	void SetControlSelection(){
+
+		string controlType = "Gamepad";
+		if (ControlManagerS.controlProfile == 1){
+			controlType = "Keyboard & Mouse";
+		}
+		if (ControlManagerS.controlProfile == 2){
+			controlType = "Keyboard (No Mouse)";
+		}
+
+		for (int i = 0; i < controlTexts.Length; i++){
+			controlTexts[i].text = controlType;
+		}
+
+	}
 	
 	private void CheckCheats(){
 		
-		if (Input.GetKeyDown(KeyCode.Escape)){
+		if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
 			Application.Quit();
 		}
 		

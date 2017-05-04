@@ -335,7 +335,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
 		}
 		if (unlockedBuddies.Count > 1){
-			unlockedBuddies.RemoveRange(1, unlockedWeapons.Count-1);
+			unlockedBuddies.RemoveRange(1, unlockedBuddies.Count-1);
 		}
 		SetUpStartTech();
 		PlayerStatsS.healOnStart = true;
@@ -425,6 +425,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		GameOverS.revivePosition = inventoryData.currentSpawnPoint;
 		RefreshRechargeables();
 
+		DifficultyS.SetDifficultiesFromInt(inventoryData.sinLevel, inventoryData.punishLevel);
 
 		_iManager.LoadInventory(inventoryData.equippedInventory);
 		_iManager.RefreshUI();
@@ -495,6 +496,9 @@ public class PlayerInventoryS : MonoBehaviour {
 
 			inventoryData.currentParadigm = PlayerController._currentParadigm;
 
+			inventoryData.sinLevel = DifficultyS.GetSinInt();
+			inventoryData.punishLevel = DifficultyS.GetPunishInt();
+
 
 
 		}
@@ -539,6 +543,9 @@ public class InventorySave {
 	public List<int> checkpointsReachedScenes;
 	public int currentSpawnPoint;
 
+	public int sinLevel;
+	public int punishLevel;
+
 
 	public InventorySave(){
 		earnedUpgrades = new List<int>();
@@ -575,6 +582,9 @@ public class InventorySave {
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1};
+
+		punishLevel = 1;
+		sinLevel = 1;
 
 	}
 }

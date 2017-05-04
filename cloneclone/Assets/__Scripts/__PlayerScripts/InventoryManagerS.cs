@@ -94,6 +94,8 @@ public class InventoryManagerS : MonoBehaviour {
 	private IEnumerator ResetFunction(){
 		_pRef.TriggerItemAnimation();
 		_pRef.myStats.itemEffect.Flash(Color.white);
+		yield return new WaitForSeconds(0.1f);
+		CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.7f, 0.2f);
 		yield return new WaitForSeconds(useItemTime);
 		_pRef.ResetCombat();
 	}

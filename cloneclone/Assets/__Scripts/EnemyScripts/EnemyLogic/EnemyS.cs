@@ -23,6 +23,8 @@ public class EnemyS : MonoBehaviour {
 	public bool isFriendly = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
+	[HideInInspector]
+	public float actingMaxHealth;
 	public bool showHealth;
 	public bool cantDie = false;
 	public float damageMultiplier = 1f;
@@ -286,8 +288,10 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
+		actingMaxHealth = maxHealth*DifficultyS.GetSinMult();
+
 		if (!_isDead){
-			_currentHealth = maxHealth;
+			_currentHealth = actingMaxHealth;
 			_isActive = false;
 			//EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
 		}
@@ -358,7 +362,7 @@ public class EnemyS : MonoBehaviour {
 		_isActive = false;
 		
 		_myAnimator.SetBool("Death", false);
-			_currentHealth = maxHealth;
+		_currentHealth = actingMaxHealth;
 			_isActive = false;
 
 		_myCollider.enabled = true;

@@ -6,6 +6,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public string examineLabel = "";
 	public string examineLabelNoController = "";
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public string examineString;
 	public string unlockString;
 	public int costToExamine = -1;
@@ -78,7 +79,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (!turnOffBarrier.gameObject.activeSelf){
 				gameObject.SetActive(false);
 				if (playerInRange){
-					pRef.SetExamining(false);
+					pRef.SetExamining(false, examinePos);
 				}
 			}
 		}
@@ -204,12 +205,12 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 							if (unlocking){
 								turnOffBarrier.TurnOff();
-								pRef.SetExamining(false);
+									pRef.SetExamining(false, examinePos);
 								Destroy(gameObject);
 							}
 	
 							if (consumable){
-								pRef.SetExamining(false);
+									pRef.SetExamining(false, examinePos);
 								Destroy(gameObject);
 							}
 						}else{
@@ -220,7 +221,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 			}else{
 				if (pRef.examining){
-					pRef.SetExamining(false);
+					pRef.SetExamining(false, examinePos);
 				}
 			}
 		}
@@ -323,12 +324,12 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
 				if (examineLabelNoController != ""){
 					if (!pRef.myControl.ControllerAttached()){
-						pRef.SetExamining(true, examineLabelNoController);
+						pRef.SetExamining(true, examinePos, examineLabelNoController);
 					}else{
-						pRef.SetExamining(true, examineLabel);
+						pRef.SetExamining(true, examinePos, examineLabel);
 					}
 				}else{
-					pRef.SetExamining(true, examineLabel);
+					pRef.SetExamining(true, examinePos, examineLabel);
 				}
 			}
 			playerInRange = true;
@@ -337,7 +338,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			playerInRange = false;
 		}
 	}

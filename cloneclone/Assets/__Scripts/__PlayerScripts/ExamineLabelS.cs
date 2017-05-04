@@ -7,12 +7,36 @@ public class ExamineLabelS : MonoBehaviour {
 	private TextMesh myMesh;
 	private string startString;
 
+
+	public SpriteRenderer examineButtonSprite;
+	public SpriteRenderer examineKeySprite;
+
+	private bool buttonSet = false;
+	private Vector3 floatPos;
+	private Vector3 wanderPos;
+	private float wanderMultX = 0.2f;
+	private float wanderMultY = 0.4f;
+	private float wanderSpeed = 0.05f;
+	private float wanderCount;
+	private float wanderChangeMin = 0.5f;
+	private float wanderChangeMax = 1f;
+
+	private float buttonSetDelay = 0.1f;
+	private float currentButtonSet;
+
 	// Use this for initialization
 	void Start () {
 
 		myRef = GetComponentInParent<PlayerController>();
 		myMesh = GetComponent<TextMesh>();
 		startString = myMesh.text;
+		myMesh.text = "";
+
+		examineButtonSprite.gameObject.SetActive(false);
+		examineKeySprite.gameObject.SetActive(false);
+		buttonSet = false;
+
+		currentButtonSet = buttonSetDelay;
 	
 	}
 	
@@ -20,14 +44,70 @@ public class ExamineLabelS : MonoBehaviour {
 	void Update () {
 
 		if (myRef.examining && !myRef.talking){
-			if (myRef.overrideExamineString != ""){
-				myMesh.text = myRef.overrideExamineString;
-			}else{
-				myMesh.text = startString;
+
+			if (!buttonSet){
+
+
+				if (currentButtonSet > 0f){
+					currentButtonSet -= Time.deltaTime;
+				}else{
+
+					wanderPos = Random.insideUnitSphere;
+					wanderPos.z = 0f;
+					wanderPos.x *= wanderMultX;
+					wanderPos.y *= wanderMultY;
+					wanderCount = Random.Range(wanderChangeMin, wanderChangeMax);
+					floatPos = Vector3.zero;
+					transform.localPosition = myRef.examineStringPos+floatPos;
+
+				if (myRef.myControl.ControllerAttached()){
+					examineButtonSprite.gameObject.SetActive(true);
+				}else{
+					examineKeySprite.gameObject.SetActive(true);
+				}
+			
+				if (myRef.overrideExamineString != ""){
+					if (myRef.overrideExamineString.Contains("A Button")){ 
+						myMesh.text = myRef.overrideExamineString.Replace("A Button", "");
+					}
+					if (myRef.overrideExamineString.Contains("E Key")){ 
+						myMesh.text = myRef.overrideExamineString.Replace("E Key", "");
+					}
+				}else{
+					myMesh.text = startString;
+				}
+				buttonSet = true;
+				}
 			}
+			Float();
+
 		}else{
-			myMesh.text = "";
+			if (buttonSet || currentButtonSet < buttonSetDelay){
+				buttonSet = false;
+				examineButtonSprite.gameObject.SetActive(false);
+				examineKeySprite.gameObject.SetActive(false);
+				myMesh.text = "";
+				floatPos = Vector3.zero;
+				currentButtonSet = buttonSetDelay;
+			}
 		}
 	
+	}
+
+	void Float(){
+		wanderCount -= Time.deltaTime;
+
+		if (wanderCount <= 0){
+			wanderPos = Random.insideUnitSphere;
+			wanderPos.z = 0f;
+			wanderPos.x *= wanderMultX;
+			wanderPos.y *= wanderMultY;
+			wanderCount = Random.Range(wanderChangeMin, wanderChangeMax);
+		}
+
+		floatPos += (wanderPos-floatPos).normalized*wanderSpeed*Time.deltaTime;
+
+		transform.localPosition = myRef.examineStringPos+floatPos;
+
 	}
 }

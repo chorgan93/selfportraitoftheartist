@@ -45,7 +45,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 			}
 		}
 
-		if (minHealthPercentage > 0 && myEnemy.currentHealth/myEnemy.maxHealth*100f <= minHealthPercentage){
+		if (minHealthPercentage > 0 && myEnemy.currentHealth/myEnemy.actingMaxHealth*100f <= minHealthPercentage){
 			active = false;
 		}
 

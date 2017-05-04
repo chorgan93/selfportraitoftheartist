@@ -7,6 +7,7 @@ public class LockedDoorS : MonoBehaviour {
 	public string unlockString;
 	public string examineLabel;
 	public string examineLabelNoController;
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public int keyID;
 
 	private bool isTalking = false;
@@ -76,7 +77,7 @@ public class LockedDoorS : MonoBehaviour {
 			}
 			}else{
 				if (pRef.examining){
-					pRef.SetExamining(false);
+					pRef.SetExamining(false, examinePos);
 				}
 			}
 		}
@@ -92,7 +93,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void TriggerUnlock(){
 		pRef.SetTalking(true);
-		pRef.SetExamining(true);
+		pRef.SetExamining(true, examinePos);
 		isTalking = true;
 		unlocking = true;
 		DialogueManagerS.D.SetDisplayText(unlockString);
@@ -111,7 +112,7 @@ public class LockedDoorS : MonoBehaviour {
 		}
 		else{
 			pRef.SetTalking(true);
-			pRef.SetExamining(true);
+			pRef.SetExamining(true, examinePos);
 			isTalking = true;
 			DialogueManagerS.D.SetDisplayText(lockString);
 		}
@@ -120,7 +121,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void TurnOff(){
 		if (playerInRange){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			pRef.SetTalking(false);
 		}
 		gameObject.SetActive(false);
@@ -128,7 +129,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void TurnOffFade(){
 		if (playerInRange){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			pRef.SetTalking(false);
 		}
 		isTalking = false;
@@ -138,7 +139,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void EndExamine(){
 		pRef.SetTalking(false);
-		pRef.SetExamining(false);
+		pRef.SetExamining(false, examinePos);
 		isTalking = false;
 	}
 
@@ -150,12 +151,12 @@ public class LockedDoorS : MonoBehaviour {
 			}
 			if (examineLabelNoController != ""){
 				if (!pRef.myControl.ControllerAttached()){
-					pRef.SetExamining(true, examineLabelNoController);
+					pRef.SetExamining(true, examinePos, examineLabelNoController);
 				}else{
-					pRef.SetExamining(true, examineLabel);
+					pRef.SetExamining(true, examinePos, examineLabel);
 				}
 			}else{
-				pRef.SetExamining(true, examineLabel);
+				pRef.SetExamining(true, examinePos, examineLabel);
 			}
 			interactRef.AddDoor(this);
 			playerInRange = true;
@@ -164,7 +165,7 @@ public class LockedDoorS : MonoBehaviour {
 	
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			playerInRange = false;
 			interactRef.RemoveDoor(this);
 		}

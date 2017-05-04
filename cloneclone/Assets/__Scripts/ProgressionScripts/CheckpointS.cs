@@ -6,6 +6,7 @@ public class CheckpointS : MonoBehaviour {
 	public bool fullCheckpoint = true;
 	private PlayerDetectS _playerDetect;
 	private bool _examining = false;
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 
 	private InGameMenuManagerS _menuManager;
 
@@ -55,9 +56,9 @@ public class CheckpointS : MonoBehaviour {
 
 			
 			if (_playerDetect.player.myControl.ControllerAttached() || _playerDetect.examineStringNoController == ""){
-				_playerDetect.player.SetExamining(true, _playerDetect.examineString);
+				_playerDetect.player.SetExamining(true, examinePos, _playerDetect.examineString);
 			}else{
-				_playerDetect.player.SetExamining(true, _playerDetect.examineStringNoController);
+				_playerDetect.player.SetExamining(true, examinePos, _playerDetect.examineStringNoController);
 			}
 
 			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp
@@ -67,7 +68,7 @@ public class CheckpointS : MonoBehaviour {
 					_examining = true;
 						_menuManager.TurnOnLevelUpMenu();
 					_playerDetect.player.SetTalking(true);
-					_playerDetect.player.SetExamining(true, "");
+					_playerDetect.player.SetExamining(true, examinePos, "");
 
 				}
 				else{
@@ -77,7 +78,7 @@ public class CheckpointS : MonoBehaviour {
 					}else{
 						instructionText.SetTimedMessage(healMessage, 1.4f);
 					}
-					_playerDetect.player.SetExamining(true, "");
+					_playerDetect.player.SetExamining(true, examinePos, "");
 					//Debug.Log("YEAH");
 			}
 				// set revive pos

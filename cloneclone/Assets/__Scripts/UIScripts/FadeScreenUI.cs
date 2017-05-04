@@ -48,7 +48,9 @@ public class FadeScreenUI : MonoBehaviour {
 			NoFade = false;
 		}
 
-		darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
+		if (GameObject.Find("In Game UI")){
+			darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
+		}
 	
 	}
 	
@@ -96,7 +98,7 @@ public class FadeScreenUI : MonoBehaviour {
 				}
 				loadingText.text = currentLoadingString;
 			}*/
-
+			if (darknessTracker){
 			if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && darknessTracker.allowAdvance){	
 				if (destinationScene == GameOverS.reviveScene){
 					if (PlayerInventoryS.I != null){
@@ -107,6 +109,19 @@ public class FadeScreenUI : MonoBehaviour {
 				InGameCinematicS.inGameCinematic = false;
 				dontAllowReset = false;
 				async.allowSceneActivation = true;
+			}
+			}else{
+				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){	
+					if (destinationScene == GameOverS.reviveScene){
+						if (PlayerInventoryS.I != null){
+							// this is reviving from game over, reset inventory
+							PlayerInventoryS.I.RefreshRechargeables();
+						}
+					}
+					InGameCinematicS.inGameCinematic = false;
+					dontAllowReset = false;
+					async.allowSceneActivation = true;
+				}
 			}
 		}
 	

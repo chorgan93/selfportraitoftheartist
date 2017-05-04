@@ -19,6 +19,7 @@ public class BuddyNPCS : MonoBehaviour {
 	[Header("Examine Properties")]
 	public string examineString;
 	public string examineStringNoController;
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 
 	[Header("Movement Properties")]
 	public float moveTime;
@@ -222,12 +223,12 @@ public class BuddyNPCS : MonoBehaviour {
 		if (myDetect.PlayerInRange()){
 			if (messageOn){
 				if (myDetect.player.myControl.ControllerAttached() || examineStringNoController == ""){
-					myDetect.player.SetExamining(true, examineString);
+					myDetect.player.SetExamining(true, examinePos, examineString);
 				}else{
-					myDetect.player.SetExamining(true, examineStringNoController);
+					myDetect.player.SetExamining(true, examinePos, examineStringNoController);
 				}
 			}else{
-				myDetect.player.SetExamining(false);
+				myDetect.player.SetExamining(false, examinePos);
 			}
 		}
 	}

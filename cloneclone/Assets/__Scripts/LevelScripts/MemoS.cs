@@ -8,6 +8,7 @@ public class MemoS : MonoBehaviour {
 	public int endMemoIndex;
 	public string examineLabel;
 	public string examineLabelNoController = "";
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public int memoID;
 	private int currentStep = 0;
 
@@ -65,7 +66,7 @@ public class MemoS : MonoBehaviour {
 	private void TriggerExamine(){
 		
 		pRef.SetTalking(true);
-		pRef.SetExamining(true);
+		pRef.SetExamining(true, examinePos);
 		isTalking = true;
 		currentStep = 0;
 		DialogueManagerS.D.SetDisplayText(examineStrings[currentStep]);
@@ -74,7 +75,7 @@ public class MemoS : MonoBehaviour {
 
 	private void TurnOff(){
 		if (playerInRange){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			pRef.SetTalking(false);
 		}
 		gameObject.SetActive(false);
@@ -82,7 +83,7 @@ public class MemoS : MonoBehaviour {
 
 	private void EndExamine(){
 		pRef.SetTalking(false);
-		pRef.SetExamining(false);
+		pRef.SetExamining(false, examinePos);
 		PlayerInventoryS.I.AddKeyItem(memoID);
 		isTalking = false;
 		TurnOff();
@@ -95,12 +96,12 @@ public class MemoS : MonoBehaviour {
 			}
 			if (examineLabelNoController != ""){
 				if (!pRef.myControl.ControllerAttached()){
-					pRef.SetExamining(true, examineLabelNoController);
+					pRef.SetExamining(true, examinePos, examineLabelNoController);
 				}else{
-					pRef.SetExamining(true, examineLabel);
+					pRef.SetExamining(true, examinePos, examineLabel);
 				}
 			}else{
-				pRef.SetExamining(true, examineLabel);
+				pRef.SetExamining(true, examinePos, examineLabel);
 			}
 			playerInRange = true;
 		}
@@ -108,7 +109,7 @@ public class MemoS : MonoBehaviour {
 	
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			playerInRange = false;
 		}
 	}

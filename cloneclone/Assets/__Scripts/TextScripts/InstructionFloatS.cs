@@ -9,7 +9,9 @@ public class InstructionFloatS : MonoBehaviour {
 	bool isShowing = false;
 
 	public SpriteRenderer buttonSprite;
+	public SpriteRenderer keySprite;
 	private Color currentSpriteCol;
+	private Color currentKeyCol;
 	public TextMesh examineString;
 	public TextMesh buttonString;
 	private Color currentTextCol;
@@ -34,6 +36,10 @@ public class InstructionFloatS : MonoBehaviour {
 		currentSpriteCol = buttonSprite.color;
 		currentSpriteCol.a = 0f;
 		buttonSprite.color = currentSpriteCol;
+
+		currentKeyCol = keySprite.color;
+		currentKeyCol.a = 0f;
+		keySprite.color = currentKeyCol;
 
 		currentTextCol = examineString.color;
 		currentTextCol.a = 0f;
@@ -61,13 +67,15 @@ public class InstructionFloatS : MonoBehaviour {
 
 			if (fadingIn || fadingOut){
 				currentSpriteCol = buttonSprite.color;
+				currentKeyCol = keySprite.color;
 				currentTextCol = examineString.color;
 				if (fadingIn){
 
 					currentSpriteCol.a += Time.deltaTime*fadeInRate;
+					currentKeyCol.a += Time.deltaTime*fadeInRate;
 					currentTextCol.a += Time.deltaTime*fadeInRate;
 					if (currentSpriteCol.a >= 1){
-						currentSpriteCol.a = currentTextCol.a = 1f;
+						currentSpriteCol.a = currentKeyCol.a = currentTextCol.a = 1f;
 						fadingIn = false;
 					}
 					
@@ -75,14 +83,16 @@ public class InstructionFloatS : MonoBehaviour {
 				if (fadingOut){
 					currentSpriteCol.a -= Time.deltaTime*fadeOutRate;
 					currentTextCol.a -= Time.deltaTime*fadeOutRate;
+					currentKeyCol.a -= Time.deltaTime*fadeOutRate;
 					if (currentSpriteCol.a <= 0){
-						currentSpriteCol.a = currentTextCol.a = 0f;
+						currentSpriteCol.a = currentTextCol.a = currentKeyCol.a = 0f;
 						fadingOut = false;
 						isShowing = false;
 					}
 				}
 
 				buttonSprite.color = currentSpriteCol;
+				keySprite.color = currentKeyCol;
 				examineString.color = buttonString.color = currentTextCol;
 			}
 		}
@@ -107,6 +117,13 @@ public class InstructionFloatS : MonoBehaviour {
 		wanderCount = Random.Range(wanderChangeMin, wanderChangeMax);
 
 		currentPos = followTransform.position+InstructionOffset;
+		if (useController){
+			buttonSprite.gameObject.SetActive(true);
+			keySprite.gameObject.SetActive(false);
+		}else{
+			buttonSprite.gameObject.SetActive(false);
+			keySprite.gameObject.SetActive(true);
+		}
 		gameObject.SetActive(true);
 
 	}

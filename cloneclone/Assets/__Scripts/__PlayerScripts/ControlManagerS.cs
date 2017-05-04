@@ -11,10 +11,19 @@ public class ControlManagerS : MonoBehaviour {
 	private string platformType;
 	private string controllerType;
 
+	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard
+
 	// Use this for initialization
 	void Start () {
 
 		platformType = GetPlatform();
+		if (controlProfile < 0){
+			if (ControllerAttached()){
+				controlProfile = 0;
+			}else{
+				controlProfile = 1;
+			}
+		}
 	
 	}
 
@@ -96,6 +105,48 @@ public class ControlManagerS : MonoBehaviour {
 				return Input.GetAxis("Vertical");
 			}
 		}
+
+	}
+
+	public float HorizontalMenu(){
+
+		// return all possible input types
+
+		float horizontal = 0f;
+
+		if (ControllerAttached()){
+			if(Mathf.Abs(Input.GetAxis("HorizontalController")) > 0){
+				horizontal = Input.GetAxis("HorizontalController");
+			}else{
+				horizontal = Input.GetAxis("Horizontal");
+			}
+		}
+		else{
+			horizontal = Input.GetAxis("Horizontal");
+		}
+
+		return horizontal;
+
+	}
+
+	public float VerticalMenu(){
+
+		// return all possible input types
+
+		float vertical = 0f;
+
+			if (ControllerAttached()){
+			if(Mathf.Abs(Input.GetAxis("VerticalController")) > 0){
+				vertical = Input.GetAxis("VerticalController");
+			}else{
+				vertical = Input.GetAxis("Vertical");
+			}
+		}
+			else{
+				vertical = Input.GetAxis("Vertical");
+			}
+
+		return vertical;
 
 	}
 
@@ -461,6 +512,30 @@ public class ControlManagerS : MonoBehaviour {
 			}
 		}else{
 			return false;
+		}
+	}
+
+	public void ChangeControlProfile(int dir){
+		if (dir > 0){
+			controlProfile ++;
+			if (controlProfile > 2){
+				if (ControllerAttached()){
+					controlProfile = 0;
+				}else{
+					controlProfile = 1;
+				}
+			}
+		}else{
+			controlProfile --;
+			if (ControllerAttached()){
+				if (controlProfile < 0){
+					controlProfile = 2;
+				}
+			}else{
+				if (controlProfile < 1){
+					controlProfile = 2;
+				}
+			}
 		}
 	}
 }

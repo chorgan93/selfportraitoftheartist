@@ -90,14 +90,14 @@ public class EnemyHealthBarS : MonoBehaviour {
 	}
 
 	public void ResizeForDamage(){
-		currentFillSize.x = currentFullSize.x * (currentEnemy.currentHealth/currentEnemy.maxHealth);
+		currentFillSize.x = currentFullSize.x * (currentEnemy.currentHealth/currentEnemy.actingMaxHealth);
 		if (currentFillSize.x <= 0f){
 			currentEnemy.SetHealthBar(null);
 			mySpawner.Despawn(gameObject, spawnCode);
 		}else{
 			barFill.transform.localScale = currentFillSize;
 			currentFillPos = barBG.transform.localPosition;
-			currentFillPos.x -= 0.16f * (1f-(currentEnemy.currentHealth/currentEnemy.maxHealth));
+			currentFillPos.x -= 0.16f * (1f-(currentEnemy.currentHealth/currentEnemy.actingMaxHealth));
 			currentFillPos.z -= 1f;
 			barFill.transform.localPosition = currentFillPos;
 		}

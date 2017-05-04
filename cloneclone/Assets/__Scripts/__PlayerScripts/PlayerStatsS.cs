@@ -579,6 +579,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
+		dmg*=DifficultyS.GetPunishMult();
+		if (dmg > maxHealth){
+			dmg = maxHealth;
+		}
+
 		if (!PlayerIsDead() && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack && !myPlayerController.usingitem
 		    && !myPlayerController.delayWitchTime && (!myPlayerController.isDashing || (myPlayerController.isDashing && myPlayerController.IsSliding())) 
 		    && !myPlayerController.talking){

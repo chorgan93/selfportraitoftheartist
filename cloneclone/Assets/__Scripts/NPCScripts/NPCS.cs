@@ -9,6 +9,7 @@ public class NPCS : MonoBehaviour {
 	[Header("Talk Properties")]
 	public string talkLabel = "";
 	public string talkLabelNoController = "";
+	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public NPCDialogueSet[] dialogues;
 	private int currentDialogue = 0;
 	private int currentDialogueIndex = 0;
@@ -281,9 +282,9 @@ public class NPCS : MonoBehaviour {
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
 			if (pRef.myControl.ControllerAttached() || talkLabelNoController == ""){
-				pRef.SetExamining(true, talkLabel);
+				pRef.SetExamining(true, examinePos, talkLabel);
 			}else{
-				pRef.SetExamining(true, talkLabelNoController);
+				pRef.SetExamining(true, examinePos, talkLabelNoController);
 			}
 			playerInRange = true;
 		}
@@ -295,7 +296,7 @@ public class NPCS : MonoBehaviour {
 	
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){
-			pRef.SetExamining(false);
+			pRef.SetExamining(false, examinePos);
 			playerInRange = false;
 		}
 	}

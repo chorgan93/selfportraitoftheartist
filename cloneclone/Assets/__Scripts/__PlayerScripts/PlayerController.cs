@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour {
 	public bool allowCounterAttack { get { return _allowCounterAttack; } }
 	private float counterAttackTime;
 	private float counterAttackTimeMax = 0.5f;
-	private float parryDelayWitchTime = 0.2f;
+	private float parryDelayWitchTime = 0.3f;
 	private float parryDelayWitchCountdown = 0f;
 	private bool _delayWitchTime = false;
 	public bool delayWitchTime { get { return _delayWitchTime; } }
@@ -236,6 +236,8 @@ public class PlayerController : MonoBehaviour {
 	public bool _inCombat = true;
 	private bool _examining = false;
 	private string _overrideExamineString = "";
+	private Vector3 _examineStringPos;
+	public Vector3 examineStringPos { get { return _examineStringPos; } }
 	private bool _isTalking = false;
 	private float delayTurnOffTalk;
 	private bool delayTalkTriggered = false;
@@ -506,10 +508,12 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void CancelAttack(){
+	private void CancelAttack(bool allowChain = false){
 		attackTriggered = false;
 		attackDuration = 0f;
-		currentChain = 0;
+		if (!allowChain){
+			currentChain = 0;
+		}
 		_chargingAttack = false;
 		allowChargeAttack = false;
 		_chargeAttackTriggered = false;
@@ -727,6 +731,10 @@ public class PlayerController : MonoBehaviour {
 		TurnOffBlockAnimation();
 		//_myRigidbody.velocity = Vector3.zero;
 		_triggerBlock = false;
+
+		if (attackTriggered){
+			CancelAttack(true);
+		}
 
 		FlashMana();
 
@@ -1990,7 +1998,7 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && !attackTriggered && !_isStunned && !_delayWitchTime
+		if (!_isTalking && !_isStunned && !_delayWitchTime
 		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
 			dashAllow = true;
 		}
@@ -2430,9 +2438,10 @@ public class PlayerController : MonoBehaviour {
 		_myStats.SaveStats();
 	}
 
-	public void SetExamining(bool nEx, string newExString = ""){
-		_examining = nEx;
+	public void SetExamining(bool nEx, Vector3 newExaminePos, string newExString = ""){
 		_overrideExamineString = newExString;
+		_examineStringPos = newExaminePos;
+		_examining = nEx;
 	}
 
 	public void SetTalking(bool nEx){
