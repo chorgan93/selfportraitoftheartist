@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 68126cde5778346e89e474449b940d8d
-timeCreated: 1493881349
+timeCreated: 1494051432
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -46,6 +46,9 @@ TextureImporter:
     21300078: Icons_39
     21300080: Icons_40
     21300082: Icons_41
+    21300084: Icons_42
+    21300086: Icons_43
+    21300088: Icons_44
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -168,8 +171,8 @@ TextureImporter:
       name: Icons_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 160
+        x: 192
+        y: 192
         width: 32
         height: 32
       alignment: 0
@@ -180,7 +183,7 @@ TextureImporter:
       name: Icons_7
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 160
         width: 32
         height: 32
@@ -192,7 +195,7 @@ TextureImporter:
       name: Icons_8
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 160
         width: 32
         height: 32
@@ -204,7 +207,7 @@ TextureImporter:
       name: Icons_9
       rect:
         serializedVersion: 2
-        x: 96
+        x: 64
         y: 160
         width: 32
         height: 32
@@ -216,7 +219,7 @@ TextureImporter:
       name: Icons_10
       rect:
         serializedVersion: 2
-        x: 128
+        x: 96
         y: 160
         width: 32
         height: 32
@@ -228,7 +231,7 @@ TextureImporter:
       name: Icons_11
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 160
         width: 32
         height: 32
@@ -240,8 +243,8 @@ TextureImporter:
       name: Icons_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 160
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -252,8 +255,8 @@ TextureImporter:
       name: Icons_13
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
+        x: 192
+        y: 160
         width: 32
         height: 32
       alignment: 0
@@ -264,7 +267,7 @@ TextureImporter:
       name: Icons_14
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 128
         width: 32
         height: 32
@@ -276,7 +279,7 @@ TextureImporter:
       name: Icons_15
       rect:
         serializedVersion: 2
-        x: 96
+        x: 32
         y: 128
         width: 32
         height: 32
@@ -288,7 +291,7 @@ TextureImporter:
       name: Icons_16
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 128
         width: 32
         height: 32
@@ -300,7 +303,7 @@ TextureImporter:
       name: Icons_17
       rect:
         serializedVersion: 2
-        x: 160
+        x: 96
         y: 128
         width: 32
         height: 32
@@ -312,8 +315,8 @@ TextureImporter:
       name: Icons_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 128
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -324,8 +327,8 @@ TextureImporter:
       name: Icons_19
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 160
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -336,8 +339,8 @@ TextureImporter:
       name: Icons_20
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 192
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -348,7 +351,7 @@ TextureImporter:
       name: Icons_21
       rect:
         serializedVersion: 2
-        x: 96
+        x: 0
         y: 96
         width: 32
         height: 32
@@ -360,7 +363,7 @@ TextureImporter:
       name: Icons_22
       rect:
         serializedVersion: 2
-        x: 128
+        x: 32
         y: 96
         width: 32
         height: 32
@@ -372,7 +375,7 @@ TextureImporter:
       name: Icons_23
       rect:
         serializedVersion: 2
-        x: 160
+        x: 64
         y: 96
         width: 32
         height: 32
@@ -384,8 +387,8 @@ TextureImporter:
       name: Icons_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 96
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -396,8 +399,8 @@ TextureImporter:
       name: Icons_25
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -408,8 +411,8 @@ TextureImporter:
       name: Icons_26
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 160
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -420,8 +423,8 @@ TextureImporter:
       name: Icons_27
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 192
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -432,7 +435,7 @@ TextureImporter:
       name: Icons_28
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -444,7 +447,7 @@ TextureImporter:
       name: Icons_29
       rect:
         serializedVersion: 2
-        x: 160
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -456,8 +459,8 @@ TextureImporter:
       name: Icons_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -468,8 +471,8 @@ TextureImporter:
       name: Icons_31
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -480,8 +483,8 @@ TextureImporter:
       name: Icons_32
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
+        x: 128
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -492,8 +495,8 @@ TextureImporter:
       name: Icons_33
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
+        x: 160
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -504,8 +507,8 @@ TextureImporter:
       name: Icons_34
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
+        x: 192
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -516,7 +519,7 @@ TextureImporter:
       name: Icons_35
       rect:
         serializedVersion: 2
-        x: 160
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -528,6 +531,78 @@ TextureImporter:
       name: Icons_36
       rect:
         serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_38
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_39
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_41
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Icons_42
+      rect:
+        serializedVersion: 2
         x: 0
         y: 0
         width: 32
@@ -537,7 +612,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Icons_37
+      name: Icons_43
       rect:
         serializedVersion: 2
         x: 32
@@ -549,46 +624,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Icons_38
+      name: Icons_44
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Icons_39
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Icons_40
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Icons_41
-      rect:
-        serializedVersion: 2
-        x: 160
         y: 0
         width: 32
         height: 32

@@ -2455,7 +2455,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetExamining(bool nEx, Vector3 newExaminePos, string newExString = ""){
 		_overrideExamineString = newExString;
+		if (newExaminePos != Vector3.zero){
 		_examineStringPos = newExaminePos;
+		}
 		_examining = nEx;
 	}
 

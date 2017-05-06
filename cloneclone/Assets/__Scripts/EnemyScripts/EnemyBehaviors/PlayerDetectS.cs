@@ -80,9 +80,9 @@ public class PlayerDetectS : MonoBehaviour {
 
 			if (playerReference != null && examineString != ""){
 				if (playerReference.myControl.ControllerAttached() || examineStringNoController == ""){
-					playerReference.SetExamining(true, playerReference.examineStringPos, examineString);
+					playerReference.SetExamining(true, Vector3.zero, examineString);
 				}else{
-					playerReference.SetExamining(true, playerReference.examineStringPos, examineStringNoController);
+					playerReference.SetExamining(true, Vector3.zero, examineStringNoController);
 				}
 			}
 		}
@@ -101,7 +101,7 @@ public class PlayerDetectS : MonoBehaviour {
 			playerList.Remove(other.gameObject);
 
 			if (playerReference != null && examineString != ""){
-				playerReference.SetExamining(false, playerReference.examineStringPos, "");
+				playerReference.SetExamining(false, Vector3.zero, "");
 			}
 		}
 

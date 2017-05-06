@@ -10,6 +10,7 @@ public class InstructionFloatS : MonoBehaviour {
 
 	public SpriteRenderer buttonSprite;
 	public SpriteRenderer keySprite;
+	public SpriteRenderer mouseSprite;
 	private Color currentSpriteCol;
 	private Color currentKeyCol;
 	public TextMesh examineString;
@@ -39,11 +40,12 @@ public class InstructionFloatS : MonoBehaviour {
 
 		currentKeyCol = keySprite.color;
 		currentKeyCol.a = 0f;
-		keySprite.color = currentKeyCol;
+		mouseSprite.color = keySprite.color = currentKeyCol;
 
 		currentTextCol = examineString.color;
 		currentTextCol.a = 0f;
 		examineString.color = buttonString.color = currentTextCol;
+
 	}
 	
 	// Update is called once per frame
@@ -92,7 +94,7 @@ public class InstructionFloatS : MonoBehaviour {
 				}
 
 				buttonSprite.color = currentSpriteCol;
-				keySprite.color = currentKeyCol;
+				mouseSprite.color = keySprite.color = currentKeyCol;
 				examineString.color = buttonString.color = currentTextCol;
 			}
 		}
@@ -117,12 +119,19 @@ public class InstructionFloatS : MonoBehaviour {
 		wanderCount = Random.Range(wanderChangeMin, wanderChangeMax);
 
 		currentPos = followTransform.position+InstructionOffset;
-		if (useController){
+		if (useController && ControlManagerS.controlProfile == 0){
 			buttonSprite.gameObject.SetActive(true);
 			keySprite.gameObject.SetActive(false);
+			mouseSprite.gameObject.SetActive(false);
 		}else{
 			buttonSprite.gameObject.SetActive(false);
-			keySprite.gameObject.SetActive(true);
+			mouseSprite.gameObject.SetActive(false);
+			keySprite.gameObject.SetActive(false);
+			if (ControlManagerS.controlProfile == 1){
+				mouseSprite.gameObject.SetActive(true);
+			}else{
+				keySprite.gameObject.SetActive(true);
+			}
 		}
 		gameObject.SetActive(true);
 

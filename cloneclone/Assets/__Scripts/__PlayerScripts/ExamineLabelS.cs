@@ -21,7 +21,7 @@ public class ExamineLabelS : MonoBehaviour {
 	private float wanderChangeMin = 0.5f;
 	private float wanderChangeMax = 1f;
 
-	private float buttonSetDelay = 0.1f;
+	private float buttonSetDelay = 0.04f;
 	private float currentButtonSet;
 
 	// Use this for initialization
@@ -60,7 +60,7 @@ public class ExamineLabelS : MonoBehaviour {
 					floatPos = Vector3.zero;
 					transform.localPosition = myRef.examineStringPos+floatPos;
 
-				if (myRef.myControl.ControllerAttached()){
+					if (myRef.myControl.ControllerAttached() && ControlManagerS.controlProfile == 0){
 					examineButtonSprite.gameObject.SetActive(true);
 				}else{
 					examineKeySprite.gameObject.SetActive(true);
