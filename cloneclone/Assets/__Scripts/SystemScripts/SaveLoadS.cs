@@ -48,7 +48,6 @@ public class SaveLoadS : MonoBehaviour {
 
 	public static bool SaveFileExists(){
 		if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
-			Debug.Log("Save exists");
 			return true;
 		}else{
 			Debug.Log("Save does not exist");

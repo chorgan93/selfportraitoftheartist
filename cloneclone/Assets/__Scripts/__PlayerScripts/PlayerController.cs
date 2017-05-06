@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour {
 	// Status Properties
 	private bool _isStunned = false;
 	private bool attackTriggered;
+	//private PlayerWeaponS weaponTriggered;
 	private float stunTime;
 	private List<GameObject> queuedAttacks;
 	private List<float> queuedAttackDelays;
@@ -309,7 +310,11 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Cursor.visible = false;
+		if (ControlManagerS.controlProfile != 1){
+			Cursor.visible = false;
+		}else{
+			Cursor.visible = true;
+		}
 		InitializePlayer();
 
 	}
@@ -324,7 +329,7 @@ public class PlayerController : MonoBehaviour {
 					Cursor.visible = true;
 				}
 			}else{
-				if (Input.GetMouseButtonDown(0)){
+				if (Input.GetMouseButtonDown(0) && ControlManagerS.controlProfile != 1){
 					Cursor.visible = false;
 				}
 			}
@@ -514,6 +519,9 @@ public class PlayerController : MonoBehaviour {
 		if (!allowChain){
 			currentChain = 0;
 		}
+		queuedAttackDelays.Clear();
+		queuedAttacks.Clear();
+		attackDelay = 0;
 		_chargingAttack = false;
 		allowChargeAttack = false;
 		_chargeAttackTriggered = false;
@@ -521,6 +529,7 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Charging", false);
 		TurnOffAttackAnimation();
 		_isSprinting = false;
+
 	}
 
 	public void AttackDuration(float aTime){
@@ -1337,6 +1346,7 @@ public class PlayerController : MonoBehaviour {
 						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					}
 					attackTriggered = true;
+						//weaponTriggered = equippedWeapon;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
 						allowChargeAttack = true;
@@ -1762,6 +1772,10 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		if (attackTriggered && _isTalking){
+			CancelAttack();
+		}
+
 
 	}
 
@@ -2062,12 +2076,12 @@ public class PlayerController : MonoBehaviour {
 
 		// read left analogue input
 		//if (Input.GetJoystickNames().Length > 0 || moveOverride){
-		inputDirection.x = controller.Horizontal();
-		inputDirection.y = controller.Vertical();
-		/*}
-		else{
+		if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 2){
+			inputDirection.x = controller.Horizontal();
+			inputDirection.y = controller.Vertical();
+		}else {
 			inputDirection = GetMouseDirection();
-		}**/
+		}
 
 		// first, do lock on
 		/*if (_myLockOn.lockedOn){
@@ -2430,6 +2444,7 @@ public class PlayerController : MonoBehaviour {
 		_inCombat = combat;
 		if (combat = false){
 			_currentCombatManager = null;
+			CancelAttack();
 		}
 	}
 
@@ -2451,6 +2466,7 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetFloat("Speed", 0f);
 			_myAnimator.SetBool("Attacking", false);
 			_playerSound.SetWalking(false);
+			CancelAttack();
 		}
 	}
 

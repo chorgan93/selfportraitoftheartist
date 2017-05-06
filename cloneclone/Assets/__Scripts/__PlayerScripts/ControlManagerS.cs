@@ -234,7 +234,7 @@ public class ControlManagerS : MonoBehaviour {
 			if (controlProfile == 0){
 			return (Input.GetButton("ShootButton"+platformType));
 			}else if (controlProfile == 1){
-				return (Input.GetMouseButton(2));
+				return (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl));
 			}else{
 				return (Input.GetKey(KeyCode.J));
 			}
@@ -242,7 +242,7 @@ public class ControlManagerS : MonoBehaviour {
 		}else{
 			//return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 			if (controlProfile == 1){
-				return (Input.GetMouseButton(2));
+				return (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl));
 			}else{
 				return (Input.GetKey(KeyCode.J));
 			}
@@ -339,9 +339,13 @@ public class ControlManagerS : MonoBehaviour {
 
 		}
 		else{
-			
-			//return (Input.GetMouseButton(0));
-			return (Input.GetKey(KeyCode.K));
+
+
+			if (controlProfile == 1){
+				return (Input.GetMouseButton(0));
+			}else{
+				return (Input.GetKey(KeyCode.K));
+			}
 
 		}
 		

@@ -195,9 +195,9 @@ public class CameraShakeS : MonoBehaviour {
 		
 	}
 
-	public void MicroShake(){
+	public void MicroShake(float shakeAlt = 1f){
 		
-		StartShake (_smallShakeIntensity/2f, _smallShakeDuration/2f, 1);
+		StartShake (_smallShakeIntensity/2f*shakeAlt, _smallShakeDuration/2f, 1);
 		
 	}
 

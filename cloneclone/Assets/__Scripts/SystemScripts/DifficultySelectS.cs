@@ -50,6 +50,8 @@ public class DifficultySelectS : MonoBehaviour {
 	public FadeSpriteObjectS[] airLines;
 	public float lineActivateTime = 0.1f;
 	private float lineActivateCountdown;
+	public float cameraShakeTriggerTime = 0.2f;
+	private float cameraShakeTriggerCount;
 
 	private float fadeTimeMax = 1f;
 	private float fadeCount;
@@ -70,6 +72,8 @@ public class DifficultySelectS : MonoBehaviour {
 	public GameObject controllerInstructions;
 	public GameObject keybordInstructions;
 	private bool usingController = false;
+
+	private float minLoadTime = 3f;
 
 	//________________LOADING VARIABLES
 	private int destinationSceneIndex = 15;
@@ -95,6 +99,8 @@ public class DifficultySelectS : MonoBehaviour {
 		                                               fallingSprite.transform.position.y+fallY,
 		                                               fallingSprite.transform.position.z);
 
+		cameraShakeTriggerCount = cameraShakeTriggerTime;
+
 	//	turnOffAllText();
 	//	setText();
 
@@ -112,10 +118,18 @@ public class DifficultySelectS : MonoBehaviour {
 				airLines[lineToActivate].gameObject.SetActive(true);
 				airLines[lineToActivate].Reinitialize();
 			}
+
+			cameraShakeTriggerCount -= Time.deltaTime;
+			if (cameraShakeTriggerCount <= 0){
+				cameraShakeTriggerCount = cameraShakeTriggerTime;
+				CameraShakeS.C.MicroShake(0.4f);
+			}
 		}
 
 		if (startedLoading){
-			if (async.progress >= 0.9f){
+			if (minLoadTime > 0){
+				minLoadTime -= Time.deltaTime;
+			}else if (async.progress >= 0.9f){
 				async.allowSceneActivation = true;
 			}
 		}
@@ -225,7 +239,7 @@ public class DifficultySelectS : MonoBehaviour {
 	IEnumerator difficultySelectSequence(){
 
 		if (currentState == SelectState.Intro){
-			yield return new WaitForSeconds(2f);
+			yield return new WaitForSeconds(1f);
 
 			while (fallTimeCount <= fallTime){
 				fallTimeCount+=Time.deltaTime;
@@ -262,7 +276,7 @@ public class DifficultySelectS : MonoBehaviour {
 				if (!controller.MenuSelectButton()){
 					selectButtonUp = true;
 				}
-				if (!controller.BackButton()){
+				if (!controller.ExitButton()){
 					cancelButtonUp = true;
 				}
 
@@ -276,6 +290,9 @@ public class DifficultySelectS : MonoBehaviour {
 				}
 
 				if (choosingSin){
+					if (controller.ExitButton() && cancelButtonUp){
+						cancelButtonUp = false;
+					}
 					if (controller.MenuSelectButton() && selectButtonUp){
 						choosingPunishment = true;
 						choosingSin = false;
@@ -319,7 +336,7 @@ public class DifficultySelectS : MonoBehaviour {
 					}
 				}
 				else if (choosingPunishment){
-					if (controller.BackButton() && cancelButtonUp){
+					if (controller.ExitButton() && cancelButtonUp){
 						choosingPunishment = false;
 						choosingSin = true;
 						cancelButtonUp = false;

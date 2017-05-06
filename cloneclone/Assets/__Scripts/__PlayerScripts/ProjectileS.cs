@@ -110,6 +110,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Extend Properties")]
 	public Collider extraRangeCollider;
 	public GameObject extraRangeSprite;
+	private AnimObjS extraRangeAnim;
 
 	private int weaponNum = 0;
 	private List<EnemyS> enemiesHit = new List<EnemyS>();
@@ -177,6 +178,10 @@ public class ProjectileS : MonoBehaviour {
 			myPool = _myPlayer.projectilePool;
 			weaponNum = _myPlayer.EquippedWeapon().weaponNum;
 			startDmg = dmg;
+
+			if (extraRangeSprite != null){
+				extraRangeAnim = extraRangeSprite.GetComponent<AnimObjS>();
+			}
 		}else{
 			dmg = startDmg;
 			transform.localScale = startScale;
@@ -206,6 +211,7 @@ public class ProjectileS : MonoBehaviour {
 				myCollider.enabled = false;
 				extraRangeCollider.enabled = true;
 			}else{
+				myCollider.enabled = true;
 				extraRangeCollider.enabled = false;
 				extraRangeSprite.SetActive(false);
 			}
@@ -281,7 +287,7 @@ public class ProjectileS : MonoBehaviour {
 		//}
 
 		currentRange = range;
-		InitializeSprites();
+		InitializeSprites(_myPlayer.playerAug.aeroAug);
 
 		if (!firedOnce){
 			transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
@@ -526,7 +532,7 @@ public class ProjectileS : MonoBehaviour {
 
 	}
 
-	private void InitializeSprites(){
+	private void InitializeSprites(bool aeroOn = false){
 		if (!firedOnce){
 			allAnimators = transform.GetComponentsInChildren<AnimObjS>();
 			for (int i = 0; i < allAnimators.Length; i++){
@@ -534,7 +540,13 @@ public class ProjectileS : MonoBehaviour {
 			}
 		}else{
 			for (int i = 0; i < allAnimators.Length; i++){
-				allAnimators[i].ResetAnimation();
+				if (allAnimators[i] == extraRangeAnim){
+					if (aeroOn){
+						allAnimators[i].ResetAnimation();
+					}
+				}else{
+					allAnimators[i].ResetAnimation();
+				}
 			}
 		}
 	}

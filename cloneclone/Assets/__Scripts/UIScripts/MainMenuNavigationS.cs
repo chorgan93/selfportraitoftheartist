@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
@@ -22,6 +23,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private bool onNewScreen = false;
 	
 	public GameObject secondScreenObject;
+
+	private BlurOptimized blurEffect;
+	private float blurEffectTimeMax = 5f;
+	private float blurEffectTime;
+	private float blurT;
+	private bool blurEnabled = true;
+	private float blurSizeMax = 9.99f;
 	
 	private Camera myCam;
 	private float startOrtho;
@@ -80,6 +88,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 		
 		Cursor.visible = false;
 		PlayerStatsS.godMode = false;
+
+		blurEffect = GetComponent<BlurOptimized>();
 		
 		fadeOnZoom.gameObject.SetActive(false);
 		firstScreenTurnOff.SetActive(true);
@@ -89,7 +99,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 		}
 		
 		myController = GetComponent<ControlManagerS>();
-		
+		if (myController.ControllerAttached()){
+			ControlManagerS.controlProfile = 0;
+		}else{
+			ControlManagerS.controlProfile = 1;
+		}
+		SetControlSelection();
+
 		myCam = GetComponent<Camera>();
 		startOrtho = myCam.orthographicSize;
 		
@@ -133,9 +149,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 		if (!started){
 
 			allowStartTime -= Time.deltaTime;
+
+			HandleBlur();
+
 			if (allowStartTime <= 0 && (myController.TalkButton() || Input.GetKeyDown(KeyCode.Return))){
 				started = true;
 				selectReset = false;
+				CancelBlur();
 				foreach (GameObject t in textTurnOff){
 					t.SetActive(false);
 				}
@@ -408,5 +428,28 @@ public class MainMenuNavigationS : MonoBehaviour {
 		async = Application.LoadLevelAsync(newGameScene);
 		async.allowSceneActivation = false;
 		yield return async;
+	}
+
+	void HandleBlur(){
+		if (blurEffect.enabled){
+			if (blurEffectTime < blurEffectTimeMax){
+				blurEffectTime += Time.deltaTime;
+				blurT = blurEffectTime / blurEffectTimeMax;
+				//blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
+				blurT = 1f - Mathf.Cos(blurT * Mathf.PI * 0.5f);
+				blurEffect.blurSize = Mathf.Lerp(blurSizeMax, 0, blurT);
+				blurEffect.blurIterations = Mathf.FloorToInt(Mathf.Lerp(4, 0, blurT));
+				blurEffect.downsample = Mathf.FloorToInt(Mathf.Lerp(2, 0, blurT));
+
+
+
+			}else{
+				blurEffect.enabled = false;
+			}
+		}
+	}
+
+	void CancelBlur(){
+		blurEffect.enabled = false;
 	}
 }
