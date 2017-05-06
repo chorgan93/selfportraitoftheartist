@@ -11,8 +11,8 @@ public class DifficultyS : MonoBehaviour {
 
 	public const float sinMultEasy = 0.75f;
 	public const float sinMultNormal = 0.9f;
-	public const float sinMultHard = 1.2f;
-	public const float sinMultChallenge = 1.5f;
+	public const float sinMultHard = 1.1f;
+	public const float sinMultChallenge = 1.25f;
 
 
 	public const float punishMultEasy = 0.7f;

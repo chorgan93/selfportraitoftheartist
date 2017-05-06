@@ -108,14 +108,15 @@ public class EnemyProjectileS : MonoBehaviour {
 		
 	}
 	
-	public void Fire(Vector3 aimDirection, EnemyS enemyReference){
+	public void Fire(Vector3 aimDirection, EnemyS enemyReference, float difficultyModifier = 1f){
 
 		if (soundObj){
 			Instantiate(soundObj);
 		}
 
-		_maxRange = range;
+		_maxRange = range/difficultyModifier;
 		_rigidbody = GetComponent<Rigidbody>();
+
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 			myCollider = GetComponent<Collider>();
 		if (noCollider){
@@ -151,6 +152,11 @@ public class EnemyProjectileS : MonoBehaviour {
 		}else{
 			
 			Vector3 shootForce = transform.right * shotSpeed * Time.fixedDeltaTime;
+
+			// if drag = 0, this is a projectile, modify the speed
+			if (_rigidbody.drag <= 0){
+				shootForce *= difficultyModifier;
+			}
 			
 			_rigidbody.AddForce(shootForce, ForceMode.Impulse);
 	

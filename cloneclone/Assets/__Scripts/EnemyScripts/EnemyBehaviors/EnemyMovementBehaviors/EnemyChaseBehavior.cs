@@ -60,6 +60,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 			currentchaseSpeed = Random.Range(chaseSpeedMin, chaseSpeedMax);
 		}
 
+		currentchaseSpeed*=currentDifficultyMult;
 
 		
 		if (chaseDragAmt > 0){

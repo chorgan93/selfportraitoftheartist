@@ -124,10 +124,10 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 					recenterCountdown = Random.Range(recenterMin,recenterMax);
 				}
 				myEnemyReference.myRigidbody.AddForce((recenterTarget
-				                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
+					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
 			}else{
 			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
-			                                       -transform.position).normalized*currentchaseSpeed*Time.deltaTime);
+					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
 			}
 		}
 		

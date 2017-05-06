@@ -37,7 +37,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 
 			DoMovement();
 
-			wanderTimeCountdown -= Time.deltaTime;
+			wanderTimeCountdown -= Time.deltaTime*currentDifficultyMult;
 			if (wanderTimeCountdown <= 0){
 				EndAction();
 			}
@@ -69,6 +69,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 		else{
 			currentWanderSpeed = Random.Range(wanderSpeedMin, wanderSpeedMax);
 		}
+		currentWanderSpeed*=currentDifficultyMult;
 
 		changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
 		

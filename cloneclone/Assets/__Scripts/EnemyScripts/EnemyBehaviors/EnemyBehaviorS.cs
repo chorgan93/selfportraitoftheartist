@@ -16,6 +16,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 	[Header("Behavior Properties")]
 	public string behaviorName; // mostly for editor legibility
 	public string animationKey = "";
+	public float[] difficultyMult = new float[]{0.9f,1f,1.1f,1.2f};
+	[HideInInspector]
+	public float currentDifficultyMult;
 	public GameObject soundObj;
 
 	[Header("Status Properties")]
@@ -43,6 +46,9 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetFaceStatus(facePlayer);
 
 		behaviorActTime = 0f;
+
+		currentDifficultyMult = difficultyMult[DifficultyS.GetSinInt()];
+		myEnemy.myAnimator.SetFloat("DifficultySpeed", currentDifficultyMult);
 
 		if (animationKey != "" && setAnimTrigger){
 			myEnemy.myAnimator.SetTrigger(animationKey);

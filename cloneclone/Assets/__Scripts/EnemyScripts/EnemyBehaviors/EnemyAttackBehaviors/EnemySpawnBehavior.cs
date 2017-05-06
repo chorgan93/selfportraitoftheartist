@@ -29,7 +29,7 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 
 			DoSpawns();
 
-			behaviorCountdown -= Time.deltaTime;
+			behaviorCountdown -= Time.deltaTime*currentDifficultyMult;
 			if (behaviorCountdown <= 0){
 				EndAction();
 			}
@@ -52,7 +52,7 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 	private void DoSpawns(){
 
 		if (currentSpawnStep < spawnReferences.Length){
-			currentSpawnDelay -= Time.deltaTime;
+			currentSpawnDelay -= Time.deltaTime*currentDifficultyMult;
 			if (currentSpawnDelay <= 0){
 				currentSpawnDelay = timeBetweenSpawns;
 				currentSpawnObject = 

@@ -33,7 +33,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				EndAction();
 			}
 
-			attackTimeCountdown -= Time.deltaTime;
+			attackTimeCountdown -= Time.deltaTime*currentDifficultyMult;
 			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)){
 				SetAttackDirection();
 				foundTarget = true;
@@ -43,7 +43,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				GameObject attackObj = Instantiate(attackPrefab, transform.position, attackPrefab.transform.rotation)
 					as GameObject;
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
-				projectileRef.Fire(attackDirection, myEnemyReference);
+				projectileRef.Fire(attackDirection, myEnemyReference, currentDifficultyMult);
 				launchedAttack = true;
 
 				myEnemyReference.SetBreakState(9999f,0f);

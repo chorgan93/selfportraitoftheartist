@@ -38,6 +38,8 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 			waitTimeCountdown = Random.Range(waitTimeMin, waitTimeMax);
 		}
 
+		waitTimeCountdown/=currentDifficultyMult;
+
 		if (waitDragAmt > 0){
 			myEnemyReference.myRigidbody.drag = waitDragAmt;
 		}

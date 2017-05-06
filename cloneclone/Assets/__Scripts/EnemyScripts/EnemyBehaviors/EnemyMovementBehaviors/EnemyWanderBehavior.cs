@@ -53,6 +53,8 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 			wanderTimeCountdown = Random.Range(wanderTimeMin, wanderTimeMax);
 		}
 
+		wanderTimeCountdown/=currentDifficultyMult;
+
 		if (wanderSpeedFixed > 0){
 			currentWanderSpeed = wanderSpeedFixed;
 		}

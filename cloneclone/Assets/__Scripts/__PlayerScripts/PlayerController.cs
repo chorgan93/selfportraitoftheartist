@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 	private float dashEffectThreshold = 0.2f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
-	private float _dodgeCost = 1f;
+	private float _dodgeCost = 0.75f;
 	public GameObject dashObj;
 	private bool _allowCounterAttack = false;
 	public bool allowCounterAttack { get { return _allowCounterAttack; } }
@@ -738,7 +738,7 @@ public class PlayerController : MonoBehaviour {
 
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
-		//_myRigidbody.velocity = Vector3.zero;
+		_myRigidbody.velocity = Vector3.zero;
 		_triggerBlock = false;
 
 		if (attackTriggered){
