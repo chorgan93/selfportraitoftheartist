@@ -86,6 +86,8 @@ public class DifficultySelectS : MonoBehaviour {
 		controller = GetComponent<ControlManagerS>();
 		usingController = controller.ControllerAttached();
 
+		DifficultyS.SetDifficultiesFromInt(1,1);
+
 		loadingText.enabled = false;
 
 		bgAlpha = difficultyBG.color.a;

@@ -4,10 +4,10 @@ using System.Collections;
 public class DifficultyS : MonoBehaviour {
 	
 	public enum SinState {Easy, Normal, Hard, Challenge};
-	public static SinState selectedSinState = SinState.Normal;
+	public static SinState selectedSinState = SinState.Easy;
 	
 	public enum PunishState {Easy, Normal, Hard, Challenge};
-	public static PunishState selectedPunishState = PunishState.Normal;
+	public static PunishState selectedPunishState = PunishState.Easy;
 
 	public const float sinMultEasy = 0.75f;
 	public const float sinMultNormal = 0.9f;

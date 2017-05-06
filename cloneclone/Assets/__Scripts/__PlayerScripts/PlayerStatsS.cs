@@ -52,7 +52,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentDarkness {get { return _currentDarkness; } }
 	
 	//________________________________MANA
-	private float _baseMana = 4;
+	private float _baseMana = 3;
 	private float _addedMana = 0; // max 16 (for 20 total)
 	public float addedMana { get { return _addedMana; } }
 	private float _currentMana;
@@ -95,9 +95,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________ATTACK
-	private float _baseStrength = 0.6f;
+	private float _baseStrength = 0.7f;
 	private float _addedStrength = 0; // (upgradeable)
-	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
+	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.15f);}}
 	public float addedStrength { get { return _addedStrength; } }
 
 	
@@ -135,10 +135,10 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.2f;
+	private float _recoveryCooldownBase = 0.3f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
-			                                                                        (0.5f*_recoveryCooldownMultiplier*(currentRecovery-1f))));}}
+			                                                                        (0.5f*_recoveryCooldownMultiplier)));}}
 	private float _currentCooldownTimer;
 	public float currentCooldownTimer { get { return _currentCooldownTimer; } }
 	
@@ -146,13 +146,14 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private float _recoverRateMin = 2f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
+	private float recoverRateAddPerLevel = 0.2f;
 
-	public float recoverRate { get { return (_recoverRateMin*_recoverRateMultiplier);}}
+	public float recoverRate { get { return (_recoverRateMin*(_recoverRateMultiplier+recoverRateAddPerLevel*(currentRecoverRateLv-1)));}}
 
 	private float recoverRateIncrease;
-	private float recoverRateAccelBase = 4f;
-	private float recoverRateAccelAddPerLevel = 0.25f;
-	private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(_recoverRateLv*1f-1f); } }
+	private float recoverRateAccelBase = 5f;
+	private float recoverRateAccelAddPerLevel = 0.15f;
+		private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(currentRecoverRateLv-1); } }
 	private int _recoverRateLv = 1;
 	private int _addedRateLv = 0;
 	public int currentRecoverRateLv { get { return _recoverRateLv+_addedRateLv; } }
