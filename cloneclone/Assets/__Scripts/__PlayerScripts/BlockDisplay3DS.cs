@@ -134,9 +134,9 @@ public class BlockDisplay3DS : MonoBehaviour {
 	}
 
 	public void FireParryEffect(Vector3 enemyPosition){
-		transform.localScale = startSize;
-		parryEffect = true;
-		parryEffectTime = parryEffectTimeMax;
+		//transform.localScale = startSize;
+		//parryEffect = true;
+		//parryEffectTime = parryEffectTimeMax;
 
 		if (parryEffectPrefab){
 			Vector3 spawnPos = (enemyPosition + transform.position)/2f;

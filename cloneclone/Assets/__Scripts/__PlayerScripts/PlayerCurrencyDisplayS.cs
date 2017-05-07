@@ -87,7 +87,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			if (subtractTimer > 0){
 				subtractTimer -= Time.deltaTime;
 			}else{
-				if (Mathf.Abs(beingAddedAmt) > 10){
+				if (Mathf.Abs(beingAddedAmt) > 100){
 					if (beingAddedAmt > 0){
 						beingAddedAmt = Mathf.RoundToInt((beingAddedAmt*1f)-Time.deltaTime*subtractRate);
 					}else{
