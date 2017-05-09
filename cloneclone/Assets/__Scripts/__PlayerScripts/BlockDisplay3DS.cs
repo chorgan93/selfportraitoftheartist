@@ -134,13 +134,13 @@ public class BlockDisplay3DS : MonoBehaviour {
 	}
 
 	public void FireParryEffect(Vector3 enemyPosition){
-		//transform.localScale = startSize;
-		//parryEffect = true;
-		//parryEffectTime = parryEffectTimeMax;
+		transform.localScale = startSize;
+		parryEffect = true;
+		parryEffectTime = parryEffectTimeMax;
 
 		if (parryEffectPrefab){
 			Vector3 spawnPos = (enemyPosition + transform.position)/2f;
-			spawnPos.z = -2f;
+			spawnPos.z = +1f;
 			GameObject newEffect = Instantiate(parryEffectPrefab, spawnPos, parryEffectPrefab.transform.rotation)
 				as GameObject;
 				newEffect.GetComponent<ParryEffectS>().FireParry(transform.position, enemyPosition, myPlayer.EquippedWeapon().swapColor,

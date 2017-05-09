@@ -97,7 +97,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________ATTACK
 	private float _baseStrength = 0.7f;
 	private float _addedStrength = 0; // (upgradeable)
-	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.15f);}}
+	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
 	public float addedStrength { get { return _addedStrength; } }
 
 	
@@ -174,6 +174,8 @@ public class PlayerStatsS : MonoBehaviour {
 	private BlockDisplay3DS myBlocker;
 
 	//________________________________________OTHER
+	public GameObject hurtPrefab;
+
 	private PlayerStatDisplayS _uiReference;
 	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
 	private WarningManagerS warningReference;
@@ -578,6 +580,19 @@ public class PlayerStatsS : MonoBehaviour {
 		warningReference.EndShow("! ! HEALTH LOW ! !");
 	}
 
+	public void DamageEffect(float dmgAngle){
+		Vector3 spawnPos = transform.position;
+		spawnPos.z -= 2f;
+		GameObject newDamageEffect = Instantiate(hurtPrefab, spawnPos, Quaternion.identity)
+			as GameObject;
+		newDamageEffect.transform.Rotate(new Vector3(0,0,dmgAngle+Random.insideUnitCircle.x*30f)); 
+		if (Random.Range(0f,1f) < 0.5f){
+			Vector3 scaleFlip = newDamageEffect.transform.localScale;
+			scaleFlip.x *= -1f;
+			newDamageEffect.transform.localScale = scaleFlip;
+		}
+	}
+
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
 		dmg*=DifficultyS.GetPunishMult();
@@ -681,15 +696,15 @@ public class PlayerStatsS : MonoBehaviour {
 
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleepBigPunch(0.4f);
+					CameraShakeS.C.TimeSleepBigPunch(0.5f);
 					CameraShakeS.C.DeathTimeEffect();
 				}
 				else if (_currentHealth <= 1){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleep(0.12f, true);
+					CameraShakeS.C.TimeSleep(0.24f, true);
 				}else{
 					CameraShakeS.C.SpecialAttackShake();
-					CameraShakeS.C.TimeSleep(0.08f);
+					CameraShakeS.C.TimeSleep(0.16f, true);
 				}
 	
 			}

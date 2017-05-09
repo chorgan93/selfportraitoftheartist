@@ -19,6 +19,8 @@ public class AnimObjS : MonoBehaviour {
 
 	public GameObject fadeObj;
 	private bool endAnim = false;
+	public bool affectedByDifficulty = false;
+	private float[] difficultyMults = new float[4]{0.9f, 1f, 1.05f, 1.1f};
 
 	private EffectSpawnManagerS spawnManager;
 
@@ -31,8 +33,8 @@ public class AnimObjS : MonoBehaviour {
 		mySprite = GetComponent<SpriteRenderer>();
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
-		animRateCountdown = animRate+firstFrameDelay;
-		maxFirstFrameDelay = firstFrameDelay;
+		animRateCountdown = animRate+firstFrameDelay/DifficultyMult();
+		maxFirstFrameDelay = firstFrameDelay/DifficultyMult();
 		_initialized = true;
 	
 	}
@@ -41,7 +43,7 @@ public class AnimObjS : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (delayingLoop){
-			loopTime -= Time.deltaTime;
+			loopTime -= Time.deltaTime*DifficultyMult();
 			if (loopTime <= 0){
 				delayingLoop = false;
 				currentFrame = 0;
@@ -49,7 +51,7 @@ public class AnimObjS : MonoBehaviour {
 			}
 		}else{
 		if (!endAnim){
-			animRateCountdown -= Time.deltaTime;
+				animRateCountdown -= Time.deltaTime*DifficultyMult();
 		}
 
 		if (animRateCountdown <= 0){
@@ -69,7 +71,7 @@ public class AnimObjS : MonoBehaviour {
 				}
 			}
 
-			animRateCountdown = animRate;
+				animRateCountdown = animRate/DifficultyMult();
 			currentFrame ++;
 
 			if (currentFrame > animFrames.Length-1){
@@ -106,8 +108,16 @@ public class AnimObjS : MonoBehaviour {
 		endAnim = false;
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
-		firstFrameDelay = maxFirstFrameDelay;
-		animRateCountdown = animRate+firstFrameDelay;
+		firstFrameDelay = maxFirstFrameDelay/DifficultyMult();
+		animRateCountdown = animRate+firstFrameDelay/DifficultyMult();
 		gameObject.SetActive(true);
+	}
+
+	private float DifficultyMult(){
+		if (affectedByDifficulty){
+			return difficultyMults[DifficultyS.GetSinInt()];
+		}else{
+			return 1f;
+		}
 	}
 }

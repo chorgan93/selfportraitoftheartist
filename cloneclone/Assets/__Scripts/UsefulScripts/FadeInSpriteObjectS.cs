@@ -14,6 +14,8 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 
 	private bool stopFading = false;
 	public bool destroyOnFadeIn = false;
+	public bool affectedByDifficulty = false;
+	private float[] difficultyMults = new float[4]{0.9f, 1f, 1.05f, 1.1f};
 
 	public float fadeIncrement = -1f;
 	private float fadeIncrementCountdown;
@@ -30,7 +32,7 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 		currentCol.a = startFadeAlpha;
 		myRenderer.color = currentCol;
 
-		startDelayFadeTime = delayFadeTime;
+		startDelayFadeTime = delayFadeTime/DifficultyMult();
 
 		if (fadeIncrement > 0){
 			fadeIncrementCountdown = fadeIncrement;
@@ -45,15 +47,15 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 	
 
 		if (delayFadeTime > 0){
-			delayFadeTime -= Time.deltaTime;
+			delayFadeTime -= Time.deltaTime*DifficultyMult();
 		}
 		else{
 			if (!stopFading){
 				if (fadeIncrementCountdown > 0){
-					fadeIncrementCountdown -= Time.deltaTime;
+					fadeIncrementCountdown -= Time.deltaTime*DifficultyMult();
 				}else{
 			currentCol = myRenderer.color;
-			currentCol.a += Time.deltaTime*fadeRate;
+					currentCol.a += Time.deltaTime*fadeRate*DifficultyMult();
 			if (currentCol.a >= maxFade){
 			
 					currentCol.a = maxFade;
@@ -74,5 +76,13 @@ public class FadeInSpriteObjectS : MonoBehaviour {
 		}
 
 	
+	}
+
+	private float DifficultyMult(){
+		if (affectedByDifficulty){
+			return difficultyMults[DifficultyS.GetSinInt()];
+		}else{
+			return 1f;
+		}
 	}
 }

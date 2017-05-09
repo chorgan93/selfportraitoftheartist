@@ -288,6 +288,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 			if (!playerRef.isDashing && !playerRef.isBlocking){
 				HitEffect(other.gameObject, other.transform.position,playerRef.myStats.currentHealth<=1f);
+						playerRef.myStats.DamageEffect(_myRenderer.transform.rotation.eulerAngles.z);
 			}
 
 				if (!isPiercing){
