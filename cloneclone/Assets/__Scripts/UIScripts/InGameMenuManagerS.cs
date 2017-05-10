@@ -110,15 +110,14 @@ public class InGameMenuManagerS : MonoBehaviour {
 						equipMenuButtonDown = true;
 						gamePausedScreen.gameObject.SetActive(true);
 						CameraShakeS.C.PauseGame();
-						Debug.Log("Game paused!");
 					}
 				}
 		}
 
 			if (gamePaused){
 				if ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
-					|| (_pRef.myControl.StartButton() && !equipMenuButtonDown)){
-					Debug.Log("Game unpaused!");
+					|| (_pRef.myControl.StartButton() && !equipMenuButtonDown) ||
+					(_pRef.myControl.ExitButton() && !exitButtonDown)){
 					gamePaused = false;
 					gameMenuButtonDown = true;
 					equipMenuButtonDown = true;

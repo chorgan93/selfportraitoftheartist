@@ -21,6 +21,9 @@ public class GameMenuS : MonoBehaviour {
 	public string confirmCheckpointString;
 	public string confirmMenuString;
 
+	private int fontSizeStart = -1;
+	private int fontSizeSelected;
+
 	public Text[] confirmTexts;
 	public RectTransform[] confirmPositions;
 
@@ -97,10 +100,12 @@ public class GameMenuS : MonoBehaviour {
 	void SetSelection(int newSelection){
 		currentSelection = newSelection;
 		for (int i = 0; i < selectTexts.Length; i++){
-			if (i == currentSelection){
+			if (i == currentSelection && (i != 1 || (i == 1 && InGameMenuManagerS.allowFastTravel))){
 				selectTexts[i].color = textSelectColor;
+				selectTexts[i].fontSize = fontSizeSelected;
 				selector.anchoredPosition = selectPositions[i].anchoredPosition;
 			}else{
+				selectTexts[i].fontSize = fontSizeStart;
 				selectTexts[i].color = textDefaultColor;
 			}
 		}
@@ -125,6 +130,10 @@ public class GameMenuS : MonoBehaviour {
 		inOptionsMenu = false;
 		inConfirmation = false;
 		cancelButtonUp = false;
+		if (fontSizeStart <= 0){
+			fontSizeStart = 60;
+			fontSizeSelected = Mathf.CeilToInt(fontSizeStart*1.05f);
+		}
 		SetSelection(0);
 		gameObject.SetActive(true);
 		

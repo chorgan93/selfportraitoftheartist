@@ -144,14 +144,14 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 2f;
+	private float _recoverRateMin = 1f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
-	private float recoverRateAddPerLevel = 0.2f;
+	private float recoverRateAddPerLevel = 0.02f;
 
 	public float recoverRate { get { return (_recoverRateMin*(_recoverRateMultiplier+recoverRateAddPerLevel*(currentRecoverRateLv-1)));}}
 
 	private float recoverRateIncrease;
-	private float recoverRateAccelBase = 5f;
+	private float recoverRateAccelBase = .5f;
 	private float recoverRateAccelAddPerLevel = 0.15f;
 		private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(currentRecoverRateLv-1); } }
 	private int _recoverRateLv = 1;
@@ -403,10 +403,10 @@ public class PlayerStatsS : MonoBehaviour {
 					recoverRateIncrease+=recoverRateAccel*Time.deltaTime;
 				}
 				if (_overchargeMana <= 0){
-					_currentMana+=actingRecoverRate*Time.deltaTime;
-				_currentManaUsed-=actingRecoverRate*Time.deltaTime;
+					_currentMana+=actingRecoverRate*Time.deltaTime*maxMana;
+					_currentManaUsed-=actingRecoverRate*Time.deltaTime*maxMana;
 				}else{
-					_overchargeMana -= actingRecoverRate*Time.deltaTime*overchargePenalty;
+					_overchargeMana -= actingRecoverRate*maxMana*Time.deltaTime*overchargePenalty;
 				}
 
 				if (_exhausted){

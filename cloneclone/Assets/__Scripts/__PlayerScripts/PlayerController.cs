@@ -154,8 +154,8 @@ public class PlayerController : MonoBehaviour {
 	private float _chargeAnimationSpeed;
 	//private ChargeAttackS _chargeCollider;
 	private GameObject _chargePrefab;
-	private bool _chargeAttackTriggered = false;
-	private bool allowChargeAttack = true;
+	private bool _chargeAttackTriggered = false; 
+	private bool allowChargeAttack = false;
 	private float _chargeAttackCost = 5f;
 
 	// Buddy Properties
@@ -470,7 +470,6 @@ public class PlayerController : MonoBehaviour {
 
 	void PlayerFixedUpdate(){
 
-		ButtonCheck();
 		StatusCheck();
 
 		// Control Methods
@@ -493,6 +492,7 @@ public class PlayerController : MonoBehaviour {
 
 	void PlayerUpdate(){
 
+		ButtonCheck();
 		ManageCounterTimer();
 		
 		ManageFlash();
@@ -1689,8 +1689,11 @@ public class PlayerController : MonoBehaviour {
 			allowChargeAttack = false;
 		}
 
-		if (!controller.ShootButton() && !controller.HeavyButton() && !_isTalking){
+		if (!controller.ShootButton() && !controller.HeavyButton()){
 			shootButtonUp = true;
+			allowChargeAttack = false;
+		}else{
+			shootButtonUp = false;
 		}
 
 
@@ -2042,7 +2045,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool CanUseItem(){
-		if (CanInputShoot() && !_isDashing && !_isTalking){
+		if (CanInputShoot() && !_isDashing && !_isTalking && Time.timeScale != 0){
 			return true;
 		}else{
 			return false;

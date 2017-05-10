@@ -628,7 +628,6 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 
-		Debug.Log(GetNumberOfActiveBehaviors());
 	}
 
 	private void EndAllBehaviors(){
