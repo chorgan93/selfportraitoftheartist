@@ -23,6 +23,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 	public static bool allowMenuUse = false;
 	public static bool hasUsedMenu = false;
+	public static bool allowFastTravel = false;
 
 	private float holdEscapeTime = 3f;
 	private float holdEscapeCount = 0f;
@@ -31,6 +32,9 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 	private PlayerController _pRef;
 	public PlayerController pRef { get { return _pRef; } }
+
+	public GameObject gamePausedScreen;
+	private bool gamePaused = false;
 
 	// Use this for initialization
 	void Start () {
@@ -41,9 +45,12 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
-		gameMenu.gameObject.SetActive(false);
+		gameMenu.SetManager(this);
+
+		gameMenu.TurnOff();
 		equipMenu.gameObject.SetActive(false);
 		levelUpMenu.gameObject.SetActive(false);
+		gamePausedScreen.gameObject.SetActive(false);
 
 		escapeText.enabled = false;
 	
@@ -52,7 +59,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (holdingEscape){
+		/*if (holdingEscape){
 			if (!Input.GetKey(KeyCode.Escape)){
 				holdingEscape = false;
 				holdEscapeCount = 0f;
@@ -63,12 +70,18 @@ public class InGameMenuManagerS : MonoBehaviour {
 					Application.Quit();
 				}
 			}
-		}
+		}**/
 
 		if (!_pRef.myStats.PlayerIsDead()){
-		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
-		    && !_pRef.talking && !_pRef._inCombat){
 
+			if (!_pRef.myControl.BackButton()){
+				gameMenuButtonDown = false;
+			}
+
+		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
+		    && !_pRef.talking){
+
+				if (!_pRef.inCombat){
 				// TODO: turn back on once functional
 			if (allowMenuUse && _pRef.myControl.StartButton() && !equipMenuButtonDown){
 				equipMenuActive = true;
@@ -77,25 +90,48 @@ public class InGameMenuManagerS : MonoBehaviour {
 				equipMenuButtonDown = true;
 					hasUsedMenu = true;
 			}
-			/*if (_pRef.myControl.BackButton() && !gameMenuButtonDown){
+			if (allowMenuUse && _pRef.myControl.BackButton() && !gameMenuButtonDown){
 				gameMenuActive = true;
 				gameMenuButtonDown = true;
-				gameMenu.gameObject.SetActive(true);
+					gameMenu.TurnOn();
 				_pRef.SetTalking(true);
-			}**/
-				if (Input.GetKeyDown(KeyCode.Escape) && !holdingEscape && !exitButtonDown){
+			}
+				/*if (Input.GetKeyDown(KeyCode.Escape) && !holdingEscape && !exitButtonDown){
 					//Application.Quit();
 					holdingEscape = true;
 					escapeText.enabled = true;
 					Debug.Log("Show text!");
+				}**/
+				}else{
+					if (!gamePaused && ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
+						|| (_pRef.myControl.StartButton() && !equipMenuButtonDown))){
+						gamePaused = true;
+						gameMenuButtonDown = true;
+						equipMenuButtonDown = true;
+						gamePausedScreen.gameObject.SetActive(true);
+						CameraShakeS.C.PauseGame();
+						Debug.Log("Game paused!");
+					}
 				}
 		}
+
+			if (gamePaused){
+				if ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
+					|| (_pRef.myControl.StartButton() && !equipMenuButtonDown)){
+					Debug.Log("Game unpaused!");
+					gamePaused = false;
+					gameMenuButtonDown = true;
+					equipMenuButtonDown = true;
+					gamePausedScreen.gameObject.SetActive(false);
+					CameraShakeS.C.UnpauseGame();
+				}
+			}
 
 		if (gameMenuActive){
 			if (_pRef.myControl.BackButton() && !gameMenuButtonDown){
 				gameMenuActive = false;
 				gameMenuButtonDown = true;
-				gameMenu.gameObject.SetActive(false);
+				gameMenu.TurnOff();
 				_pRef.SetTalking(false);
 			}
 		}
@@ -125,9 +161,10 @@ public class InGameMenuManagerS : MonoBehaviour {
 		}else{
 			if (!playerDead){
 				gameMenuActive = false;
-				gameMenu.gameObject.SetActive(false);
+				gameMenu.TurnOff();
 				equipMenuActive = false;
 				equipMenu.TurnOff();
+				gamePausedScreen.gameObject.SetActive(false);
 				playerDead = true;
 			}
 		}
@@ -139,8 +176,9 @@ public class InGameMenuManagerS : MonoBehaviour {
 		if (!_pRef.myControl.StartButton()){
 			equipMenuButtonDown = false;
 		}
-		if (!_pRef.myControl.BackButton()){
-			gameMenuButtonDown = false;
+
+		if (_pRef.myControl.BackButton()){
+			gameMenuButtonDown = true;
 		}
 	
 		if (_pRef.myControl.ExitButtonUp()){
@@ -158,5 +196,12 @@ public class InGameMenuManagerS : MonoBehaviour {
 	public void TurnOffLevelUpMenu(){
 		levelUpMenu.TurnOff();
 		levelMenuActive = false;
+	}
+
+	public void TurnOffFromGameMenu(){
+
+		gameMenuActive = false;
+		gameMenuButtonDown = true;
+		_pRef.SetTalking(false);
 	}
 }

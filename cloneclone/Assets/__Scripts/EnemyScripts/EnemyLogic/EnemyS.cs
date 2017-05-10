@@ -21,6 +21,7 @@ public class EnemyS : MonoBehaviour {
 	[Header("Enemy Properties")]
 	public string enemyName = "sickman";
 	public bool isFriendly = false;
+	public bool debugMark = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
 	[HideInInspector]
@@ -106,6 +107,7 @@ public class EnemyS : MonoBehaviour {
 	private bool _initialized;
 
 	private bool _isActive;
+	private bool allowActivation = true;
 	private bool behaviorSet;
 	private PlayerDetectS activationDetect;
 
@@ -200,6 +202,14 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
+	public void SetActiveState(bool newActive){
+		_isActive = allowActivation = newActive;
+		if (!_isActive){
+			_currentBehavior.EndAction(false);
+		}
+		CheckBehaviorStateSwitch(false);
+	}
+
 	public void SetActing(bool newActingState){
 		_isActing = newActingState;
 	}
@@ -235,6 +245,14 @@ public class EnemyS : MonoBehaviour {
 		if (!_isDead){
 			ManageFacing();
 		//	ManageZ();
+
+			#if UNITY_EDITOR
+			if (debugMark){
+				if (Input.GetKeyDown(KeyCode.Alpha9)){
+					Debug.Log(GetNumberOfActiveBehaviors());
+				} 
+			}
+			#endif
 		}
 		FlashFrameManager();
 
@@ -270,7 +288,7 @@ public class EnemyS : MonoBehaviour {
 	private void AliveLateUpdate(){
 
 		if (!_isDead){
-			CheckStatus();
+			//CheckStatus();
 		}
 
 	}
@@ -357,7 +375,9 @@ public class EnemyS : MonoBehaviour {
 		_isDead = false;
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 
-		EndAllBehaviors();
+		//EndAllBehaviors();
+
+		//CheckBehaviorStateSwitch(false);
 
 		_isActive = false;
 		
@@ -378,8 +398,9 @@ public class EnemyS : MonoBehaviour {
 		foreach (EnemyBehaviorStateS bState in _behaviorStates){
 			bState.SetEnemy(this);
 		}
-			
-		
+
+		CancelBehaviors();
+		//EndAllBehaviors();
 		CheckStates(false);
 		if (showHealth){
 			healthUIReference.NewTarget(this);
@@ -444,10 +465,11 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 		// first, check active state
-		if (!_isActive){
+		if (!_isActive && allowActivation){
 			if (!isFriendly){
 				if (activationDetect.PlayerInRange()){
 					_isActive = true;
+					CheckBehaviorStateSwitch(false);
 					if (healthFeatherReference && GetPlayerReference() != null){
 						if (GetPlayerReference().playerAug.perceptiveAug){
 							healthFeatherReference.Show ();
@@ -560,6 +582,8 @@ public class EnemyS : MonoBehaviour {
 			else{
 				_currentState.NextBehavior();
 			}
+
+
 		}
 
 
@@ -592,10 +616,38 @@ public class EnemyS : MonoBehaviour {
 		_flashCol = Color.white;
 	}
 
+	private void CancelBehaviors(){
+
+		_currentState = null;
+		_currentBehavior = null;
+		for (int i = 0; i < behaviorStates.Count; i++){
+			for (int j = 0; j < _behaviorStates[i].behaviorSet.Length; j++){
+				
+				_behaviorStates[i].behaviorSet[j].EndAction(false);
+
+			}
+		}
+
+		Debug.Log(GetNumberOfActiveBehaviors());
+	}
+
 	private void EndAllBehaviors(){
+		
 		if (_currentState != null){
 		_currentState.EndBehavior();
 		}
+	}
+
+	private int GetNumberOfActiveBehaviors(){
+		int numToReturn = 0;
+		for (int i = 0; i < behaviorStates.Count; i++){
+			for (int j = 0; j < _behaviorStates[i].behaviorSet.Length; j++){
+				if (_behaviorStates[i].behaviorSet[j].BehaviorActing()){
+					numToReturn++;
+				}
+			}
+		}
+		return numToReturn;
 	}
 
 	private void FlashFrameManager(){

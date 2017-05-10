@@ -18,7 +18,9 @@ public class ForceTrigger : MonoBehaviour {
 	void FixedUpdate(){
 		if (playersInRange.Count > 0){
 			for (int i = 0; i < playersInRange.Count; i++){
-				playersInRange[i].myRigidbody.AddForce(forceToApply*Time.deltaTime, ForceMode.Acceleration);
+				if (!playersInRange[i].myStats.PlayerIsDead()){
+					playersInRange[i].myRigidbody.AddForce(forceToApply*Time.deltaTime, ForceMode.Acceleration);
+				}
 			}
 		}
 	}

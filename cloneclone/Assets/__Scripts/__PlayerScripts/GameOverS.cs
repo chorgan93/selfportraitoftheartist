@@ -13,6 +13,8 @@ public class GameOverS : MonoBehaviour {
 	public static string reviveScene = "";
 	public static int revivePosition = 0;
 
+	private bool triggerRespawn = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -26,10 +28,11 @@ public class GameOverS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (playerReference.PlayerIsDead() && !gameOver){
+		if ((playerReference.PlayerIsDead() || triggerRespawn) && !gameOver){
 			gameOver = true;
-
-			delayFadeTime = delayFadeTimeMax;
+			if (!triggerRespawn){
+				delayFadeTime = delayFadeTimeMax;
+			}
 			PlayerStatsS.healOnStart = true;
 		}
 
@@ -51,4 +54,14 @@ public class GameOverS : MonoBehaviour {
 		}
 	
 	}
+
+	public void FakeDeath(bool returnToMain = false){
+		triggerRespawn = true;
+		if( returnToMain){
+			BGMHolderS.BG.EndAllLayers(false,true);
+			reviveScene = "MenuScene";
+			MainMenuNavigationS.inMain = true;
+		}
+	}
+
 }

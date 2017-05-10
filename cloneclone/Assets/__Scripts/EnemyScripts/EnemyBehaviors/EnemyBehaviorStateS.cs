@@ -80,6 +80,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	public void NextBehavior(){
 
+		behaviorSet[currentActingBehavior].EndAction(false);
 		currentActingBehavior++;
 		if (currentActingBehavior > behaviorSet.Length-1){
 			if (onlyActOnce){
@@ -97,7 +98,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	}
 
 	public void EndBehavior(){
-		behaviorSet[currentActingBehavior].EndAction(false);
+		behaviorSet[currentActingBehavior].EndAction(true);
 	}
 
 	public void SetEnemy(EnemyS enemy){

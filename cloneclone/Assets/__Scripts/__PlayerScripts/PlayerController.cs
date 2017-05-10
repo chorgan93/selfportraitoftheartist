@@ -303,6 +303,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Awake(){
 
+		MainMenuNavigationS.inMain = false;
 		CinematicHandlerS.inCutscene = false;
 
 	}

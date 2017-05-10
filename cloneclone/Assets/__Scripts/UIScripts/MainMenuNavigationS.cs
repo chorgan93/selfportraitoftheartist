@@ -333,7 +333,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 		}else{
 			if (loadBlackScreen.color.a >= 1f){
 				if (async.progress >= 0.9f){
-					inMain = false;
+					//inMain = false;
 					async.allowSceneActivation = true;
 				}
 			}

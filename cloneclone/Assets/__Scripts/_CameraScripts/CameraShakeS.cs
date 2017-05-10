@@ -23,6 +23,8 @@ public class CameraShakeS : MonoBehaviour {
 	private float 				_increaseTimeRate = 0.5f;
 
 	private int					_shakePriority = 0;
+
+	public static float 		OPTIONS_SHAKE_MULTIPLIER = 1f;
 	
 
 	//_______________________________________INSTANCE VARIABLES
@@ -47,6 +49,9 @@ public class CameraShakeS : MonoBehaviour {
 	private bool 				dodgeSloMo;
 	private bool 				doDeathTime = false;
 
+	private bool 				timePaused = false;
+	private float 				capturedTimeScale = 1f;
+
 	//_________________________________________________GETTERS AND SETTERS
 
 	public bool	isShaking				{ get { return _isShaking; } }
@@ -70,8 +75,10 @@ public class CameraShakeS : MonoBehaviour {
 
 	void Update () {
 
-		ExecuteSleep();
-		ExecuteShake();
+		if (!timePaused){
+			ExecuteSleep();
+			ExecuteShake();
+		}
 
 	}
 	
@@ -155,7 +162,7 @@ public class CameraShakeS : MonoBehaviour {
 				_delayShakeTime -= Time.unscaledDeltaTime;
 			}
 			else{
-				_shakeOffset = Random.insideUnitSphere*_shake_intensity;
+				_shakeOffset = Random.insideUnitSphere*_shake_intensity*OPTIONS_SHAKE_MULTIPLIER;
 				_shakeOffset.y *= 0.7f;
 				_shakeOffset.z = 0;
 	
@@ -336,6 +343,21 @@ public class CameraShakeS : MonoBehaviour {
 		_delayTimeIncreaseCountdown = _delayTimeIncreaseMax;
 		_addDeathTimeScale = 0f;
 
+	}
+
+	public void PauseGame(){
+		if (!timePaused){
+			capturedTimeScale = Time.timeScale;
+			Time.timeScale = 0f;
+			timePaused = true;
+		}
+	}
+
+	public void UnpauseGame(){
+		if (timePaused){
+			Time.timeScale = capturedTimeScale;
+			timePaused = false;
+		}
 	}
 
 

@@ -701,10 +701,10 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 				else if (_currentHealth <= 1){
 					CameraShakeS.C.LargeShake();
-					CameraShakeS.C.TimeSleep(0.24f, true);
+					CameraShakeS.C.TimeSleep(0.28f, true);
 				}else{
 					CameraShakeS.C.SpecialAttackShake();
-					CameraShakeS.C.TimeSleep(0.16f, true);
+					CameraShakeS.C.TimeSleep(0.24f, true);
 				}
 	
 			}
