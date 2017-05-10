@@ -27,6 +27,14 @@ public class ControlManagerS : MonoBehaviour {
 	
 	}
 
+	void Update(){
+
+		if (Input.GetKeyDown(KeyCode.B)){
+			Debug.Log("current control type: " + controlProfile); 
+		}
+
+	}
+
 	string GetPlatform(){
 
 		// assume pc, check for mac/linux

@@ -1692,8 +1692,6 @@ public class PlayerController : MonoBehaviour {
 		if (!controller.ShootButton() && !controller.HeavyButton()){
 			shootButtonUp = true;
 			allowChargeAttack = false;
-		}else{
-			shootButtonUp = false;
 		}
 
 

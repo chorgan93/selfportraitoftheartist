@@ -36,8 +36,8 @@ public class BGMLayerS : MonoBehaviour {
 
 		if (fadingIn){
 			mySource.volume += fadeInRate*Time.unscaledDeltaTime;
-			if (mySource.volume >= maxVolume){
-				mySource.volume = maxVolume;
+			if (mySource.volume >= maxVolume*BGMHolderS.volumeMult){
+				mySource.volume = maxVolume*BGMHolderS.volumeMult;
 				fadingIn = false;
 			}
 		}
@@ -102,4 +102,17 @@ public class BGMLayerS : MonoBehaviour {
 		}
 		return iP;
 	}
+
+	public void UpdateBasedOnSetting(int dir){
+		if (mySource.isPlaying){
+			if (dir < 0 && !fadingOut){
+				mySource.volume = maxVolume*BGMHolderS.volumeMult;
+			}
+			if (dir > 0 && !fadingIn){
+	
+					fadingIn = true;
+			}
+		}
+	}
+
 }
