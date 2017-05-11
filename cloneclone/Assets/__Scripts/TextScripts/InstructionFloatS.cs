@@ -31,6 +31,11 @@ public class InstructionFloatS : MonoBehaviour {
 	private float wanderChangeMin = 0.5f;
 	private float wanderChangeMax = 1f;
 
+	[Header("Really niche fix for start/select buttons")]
+	public TextMesh subString;
+	public string changeSubKeyString = "";
+	public string changeSubMouseString = "";
+
 	// Use this for initialization
 	void Start () {
 
@@ -45,6 +50,9 @@ public class InstructionFloatS : MonoBehaviour {
 		currentTextCol = examineString.color;
 		currentTextCol.a = 0f;
 		examineString.color = buttonString.color = currentTextCol;
+
+		changeSubKeyString = changeSubKeyString.Replace("NEWLINE", "\n");
+		changeSubMouseString = changeSubMouseString.Replace("NEWLINE", "\n");
 
 	}
 	
@@ -129,8 +137,14 @@ public class InstructionFloatS : MonoBehaviour {
 			keySprite.gameObject.SetActive(false);
 			if (ControlManagerS.controlProfile == 1){
 				mouseSprite.gameObject.SetActive(true);
+				if (changeSubMouseString != ""){
+					subString.text = changeSubMouseString;
+				}
 			}else{
 				keySprite.gameObject.SetActive(true);
+				if (changeSubKeyString != ""){
+					subString.text = changeSubKeyString;
+				}
 			}
 		}
 		gameObject.SetActive(true);
