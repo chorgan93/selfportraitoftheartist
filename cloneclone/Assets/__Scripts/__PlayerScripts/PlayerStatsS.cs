@@ -38,7 +38,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public int currentLevel { get { return _startLevel+_addedLevel; } }
 
 	//________________________________HEALTH
-	private float _baseHealth = 8;
+	private float _baseHealth = 6;
 	private float _addedHealth = 0; // max 8 (for 12 total)
 	public float addedHealth { get { return _addedHealth; } }
 	private static float _currentHealth;

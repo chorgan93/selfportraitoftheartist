@@ -20,6 +20,10 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 	public float moveTargetRange = 5f;
 	public float moveTargetChangeMin;
 	public float moveTargetChangeMax;
+
+	[Header("Buddy Variables")]
+	public float chanceToTriggerBuddy = -1f;
+	public EnemyBuddyS[] buddiesToUse;
 	
 	private float wanderTimeCountdown;
 	private float changeWanderTargetCountdown;
@@ -70,7 +74,20 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 		if (wanderDragAmt > 0){
 			myEnemyReference.myRigidbody.drag = wanderDragAmt;
 		}
+
+		TriggerBuddyEffect();
 		
+	}
+
+	void TriggerBuddyEffect(){
+		if (chanceToTriggerBuddy > 0 && buddiesToUse.Length > 0){
+			float buddyChance = Random.Range(0,1f);
+			if (buddyChance <= chanceToTriggerBuddy){
+				for (int i = 0; i < buddiesToUse.Length;i++){
+					buddiesToUse[i].TriggerAction();
+				}
+			}
+		}
 	}
 
 	private void DoMovement(){

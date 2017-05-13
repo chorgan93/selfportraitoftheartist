@@ -11,6 +11,8 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 	private Vector3 _enemyCenterpoint;
 	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
 
+	private EnemyS targetEnemy;
+
 	private float lowestX;
 	private float lowestY;
 	private float largestX;
@@ -122,5 +124,18 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 			
 		}
 		
+	}
+
+
+	public void SetTargetEnemy(EnemyS nTargetEnemy){
+		targetEnemy = nTargetEnemy;
+	}
+
+	public bool TargetEnemyInRange(){
+		if (enemiesInRange.Count > 0 && targetEnemy != null){
+			return (enemiesInRange.Contains(targetEnemy));
+		}else{
+			return false;
+		}
 	}
 }
