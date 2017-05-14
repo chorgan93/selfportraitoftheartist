@@ -4,6 +4,8 @@ using System.Collections;
 public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	public PlayerDetectS rangeCheck;
+	public EnemyDodgeBehaviorS dodgeCheck;
+	private bool doDodge = false;
 
 	[Header("Behavior Properties")]
 	public float attackDuration = 3f;
@@ -35,8 +37,15 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 	private void InitializeAction(){
 
 		if (AttackInRange()){
+			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			attackTimeCountdown = attackDuration;
 			attackCollider.TurnOn(attackWarmup);
+		}
+		else if (doDodge){
+
+			EndAction(false);
+			dodgeCheck.SetEnemy(myEnemyReference);
+			dodgeCheck.StartAction();
 		}
 		else{
 			EndAction();
@@ -47,6 +56,15 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 	private bool AttackInRange(){
 
 		bool canContinue = true;
+		doDodge = false;
+
+		// check for dodge in beginning
+		if (dodgeCheck != null){
+			if (myEnemyReference.GetPlayerReference().InAttack()){
+				canContinue = false;
+				doDodge = true;
+			}
+		}
 
 		if (rangeCheck != null){
 			if (!rangeCheck.PlayerInRange()){
@@ -67,6 +85,8 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	public override void EndAction (bool doNextAction = true)
 	{
+		
 		base.EndAction (doNextAction);
+		
 	}
 }

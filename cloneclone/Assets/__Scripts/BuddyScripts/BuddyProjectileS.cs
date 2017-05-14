@@ -241,7 +241,7 @@ public class BuddyProjectileS : MonoBehaviour {
 			
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (!hitEnemy.isDead && !hitEnemy.isFriendly){
+			if (!hitEnemy.isDead && !hitEnemy.isFriendly && !hitEnemy.invulnerable){
 			
 				float actingKnockbackSpeed = shotSpeed*knockbackMult;
 				float actingStunMult = 1f;

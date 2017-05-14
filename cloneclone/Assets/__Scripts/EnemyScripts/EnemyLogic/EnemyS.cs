@@ -69,6 +69,9 @@ public class EnemyS : MonoBehaviour {
 	private bool _hitStunned;
 	private bool _facePlayer;
 
+	private bool _invulnerable = false;
+	public bool invulnerable { get { return _invulnerable; } }
+
 	private bool _isVulnerable = false;
 	private bool _isCritical = false;
 	private bool vulnerableEffectEnded = false;
@@ -122,6 +125,7 @@ public class EnemyS : MonoBehaviour {
 	public List<GameObject> behaviorStates;
 	private EnemyBehaviorStateS[] _behaviorStates;
 	private EnemyBehaviorStateS _currentState;
+	public EnemyBehaviorStateS currentState { get { return _currentState; } }
 
 	private Vector3 _currentTarget;
 	public Vector3 currentTarget { get { return _currentTarget; } }
@@ -931,5 +935,9 @@ public class EnemyS : MonoBehaviour {
 		if (healthFeatherReference)
 			healthFeatherReference.ChangeFeatherColor(newCol);
 	}
+
+	public void SetInvulnerable(bool newI){
+		_invulnerable = newI;
+	} 
 
 }

@@ -302,7 +302,7 @@ public class EnemyProjectileS : MonoBehaviour {
 				
 				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 				
-				if (hitEnemy.isFriendly && !hitEnemy.isDead){
+				if (hitEnemy.isFriendly && !hitEnemy.isDead && !hitEnemy.invulnerable){
 					
 					
 					hitEnemy.TakeDamage
@@ -333,7 +333,7 @@ public class EnemyProjectileS : MonoBehaviour {
 				
 				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 				
-				if (!hitEnemy.isFriendly && !hitEnemy.isDead){
+				if (!hitEnemy.isFriendly && !hitEnemy.isDead && !hitEnemy.invulnerable){
 
 					
 					hitEnemy.TakeDamage

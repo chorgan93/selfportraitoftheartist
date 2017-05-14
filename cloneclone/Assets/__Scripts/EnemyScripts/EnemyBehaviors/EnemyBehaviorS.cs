@@ -44,6 +44,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetStunStatus(allowStun);
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
+		myEnemy.SetInvulnerable(false);
 
 		behaviorActTime = 0f;
 
@@ -73,7 +74,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public virtual void BehaviorUpdate(){
 		if (_behaviorActing){
 			behaviorActTime += Time.deltaTime;
-			if (behaviorActTime >= allowParryStartTime && behaviorActTime <= allowParryEndTime && !myEnemy.isCritical){
+			if (behaviorActTime >= allowParryStartTime/currentDifficultyMult && behaviorActTime <= allowParryEndTime/currentDifficultyMult 
+				&& !myEnemy.isCritical){
 				myEnemy.canBeParried = true;
 			}else{
 				myEnemy.canBeParried = false;

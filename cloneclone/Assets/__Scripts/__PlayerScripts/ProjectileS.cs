@@ -421,7 +421,7 @@ public class ProjectileS : MonoBehaviour {
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (!hitEnemy.isFriendly && !enemiesHit.Contains(hitEnemy)){
+			if (!hitEnemy.isFriendly && !enemiesHit.Contains(hitEnemy) && !hitEnemy.invulnerable){
 
 				if (stopOnEnemyContact && _myPlayer != null){
 					if (!_myPlayer.myStats.PlayerIsDead()){

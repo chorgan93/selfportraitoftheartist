@@ -7,7 +7,7 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 	private EnemyS _closestEnemy;
 	public EnemyS closestEnemy { get { return _closestEnemy; } }
 
-	private List<EnemyS> enemiesInRange;
+	private List<EnemyS> enemiesInRange = new List<EnemyS>();
 	private Vector3 _enemyCenterpoint;
 	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
 

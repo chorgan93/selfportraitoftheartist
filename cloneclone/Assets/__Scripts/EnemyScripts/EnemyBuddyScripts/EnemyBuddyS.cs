@@ -6,6 +6,12 @@ public class EnemyBuddyS : MonoBehaviour {
 	private EnemyS _enemyRef;
 	public EnemyS enemyRef { get { return _enemyRef; } }
 
+	[Header("Difficulty Properties")]
+	public float[] difficultyMult = new float[]{0.9f,1f,1.1f,1.2f};
+	[HideInInspector]
+	public float currentDifficultyMult;
+
+	[Header("Movement Properties")]
 	public Transform _buddyPos;
 	public Transform _buddyPosLower;
 	public GameObject buddySound;
@@ -18,6 +24,7 @@ public class EnemyBuddyS : MonoBehaviour {
 	private SimpleEnemyDetectS _myDetect;
 	public SimpleEnemyDetectS myDetect { get { return _myDetect; } }
 
+	[Header("Visual Properties")]
 	public SpriteRenderer shadowRenderer;
 	public Color shadowColor;
 
@@ -51,6 +58,9 @@ public class EnemyBuddyS : MonoBehaviour {
 		shadowCol.a = shadowRenderer.color.a;
 		shadowRenderer.color = shadowCol;
 		shadowRenderer.material.SetColor("_FlashColor", shadowColor);
+
+		currentDifficultyMult = difficultyMult[DifficultyS.GetSinInt()];
+		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyMult);
 
 
 	}

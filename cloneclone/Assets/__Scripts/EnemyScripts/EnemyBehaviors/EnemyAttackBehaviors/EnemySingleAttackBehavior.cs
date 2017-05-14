@@ -4,6 +4,8 @@ using System.Collections;
 public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	public PlayerDetectS rangeCheck;
+	public EnemyDodgeBehaviorS dodgeCheck;
+	private bool doDodge = false;
 
 	[Header("Behavior Duration")]
 	public float trackingTime = 0f;
@@ -78,6 +80,11 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			}
 		}
+		/*else if (doDodge){
+			EndAction(false);
+			dodgeCheck.SetEnemy(myEnemyReference);
+			dodgeCheck.StartAction();
+		}**/
 		else{
 			myEnemyReference.myAnimator.SetTrigger("Idle");
 			EndAction();
@@ -88,6 +95,14 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	private bool AttackInRange(){
 
 		bool canContinue = true;
+		doDodge = false;
+
+		/*if (dodgeCheck != null){
+			if (myEnemyReference.GetPlayerReference().InAttack()){
+				canContinue = false;
+				doDodge = true;
+			}
+		}**/
 
 		if (rangeCheck != null){
 			if (!rangeCheck.currentTarget){
@@ -121,6 +136,20 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	public override void EndAction (bool doNextAction = true)
 	{
-		base.EndAction (doNextAction);
+		doDodge = false;
+		if (dodgeCheck != null){
+			if (myEnemyReference.GetPlayerReference().InAttack()){
+				doDodge = true;
+			}
+		}
+		if (doDodge){
+
+			base.EndAction(false);
+			dodgeCheck.SetEnemy(myEnemyReference);
+			dodgeCheck.StartAction();
+		}
+		else{
+			base.EndAction (doNextAction);
+		}
 	}
 }
