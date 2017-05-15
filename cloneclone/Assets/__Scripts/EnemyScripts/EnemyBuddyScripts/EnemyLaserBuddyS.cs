@@ -22,9 +22,9 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 	public SpriteRenderer targetingVisual;
 	private Color targetingCol;
 	private float maxTargetCol;
-	private float targetingT;
-	public float visualRange;
-	private Vector3 targetingObjPos;
+	//private float targetingT;
+	private Vector3 targetingObjScale;
+	private float targetingObjXScaleMax;
 	public float muzzleRange = 1f;
 	public float accuracyMult = 5f;
 
@@ -33,7 +33,7 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 	// Use this for initialization
 	void Start () {
 		Initialize();
-		//visualRange = targetingVisual.transform.localScale.x/2f;
+		targetingObjXScaleMax = targetingVisual.transform.localScale.x;
 		targetingCol = targetingVisual.color;
 		maxTargetCol = targetingCol.a;
 		targetingCol.a = 0f;
@@ -67,9 +67,9 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 
 			}
 
-			/*if (actionCount < shootTime/currentDifficultyMult){
+			if (actionCount < shootTime/currentDifficultyMult){
 				SetTargetingVisual();
-			}**/
+			}
 
 			if (actionCount >= shootTime/currentDifficultyMult && !shotLaser){
 				shotLaser = true;
@@ -105,24 +105,18 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 
 	void SetTargetingVisual(){
 
-		// set position
-		if (!setTarget){
-			currentTargetDir = enemyRef.GetTargetReference().position-transform.position;
-		}else{
-			currentTargetDir = trackedTarget-transform.position;
-		}
-		currentTargetDir = currentTargetDir.normalized;
-
-		targetingObjPos = visualRange*currentTargetDir;
-		targetingObjPos.z = transform.position.z+2f;
-		targetingVisual.transform.localPosition = targetingObjPos;
-		targetingVisual.transform.rotation = Quaternion.Euler(RotateToTarget(currentTargetDir));
 
 		// set color
-		targetingT = actionTime/(shootTime/currentDifficultyMult);
-		targetingT = Mathf.Sin(targetingT * Mathf.PI * 0.5f);
-		targetingCol.a = Mathf.Lerp(0f, maxTargetCol, targetingT);
+		//targetingT = actionCount/(shootTime/currentDifficultyMult);
+		//targetingT = Mathf.Sin(targetingT * Mathf.PI * 0.5f);
+		//targetingCol.a = Mathf.Lerp(0f, maxTargetCol, targetingT);
+		targetingCol.a = getVisualEasing(actionCount, 0, maxTargetCol, shootTime/currentDifficultyMult);
 		targetingVisual.color = targetingCol;
+
+		targetingObjScale = targetingVisual.transform.localScale;
+		//targetingObjScale.x = Mathf.Lerp(targetingObjXScaleMax, 0f, targetingT);
+		targetingObjScale.x = getVisualEasing(actionCount, targetingObjXScaleMax, -targetingObjXScaleMax, shootTime/currentDifficultyMult);
+		targetingVisual.transform.localScale = targetingObjScale;
 	}
 
 	public override void TriggerAction(){
@@ -137,7 +131,7 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 			setTarget = false;
 
 			SetTargetingVisual();
-			//targetingVisual.gameObject.SetActive(true);
+			targetingVisual.gameObject.SetActive(true);
 		}
 
 	}
@@ -205,5 +199,9 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 		rotateEuler.z = rotateZ;
 
 		return rotateEuler;
+	}
+
+	float getVisualEasing(float time, float startValue, float changeValue, float duration){
+		return changeValue * Mathf.Pow( 2, 10 * (time/duration - 1) ) + startValue;
 	}
 }
