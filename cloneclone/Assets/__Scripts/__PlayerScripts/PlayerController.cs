@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour {
 	// Status Properties
 	private bool _isStunned = false;
 	private bool attackTriggered;
+	private bool allowItemUse = true;
 	//private PlayerWeaponS weaponTriggered;
 	private float stunTime;
 	private List<GameObject> queuedAttacks;
@@ -2042,8 +2043,12 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void SetAllowItem(bool newI){
+		allowItemUse = newI;
+	}
+
 	public bool CanUseItem(){
-		if (CanInputShoot() && !_isDashing && !_isTalking && Time.timeScale != 0){
+		if (CanInputShoot() && !_isDashing && !_isTalking && Time.timeScale != 0 && allowItemUse){
 			return true;
 		}else{
 			return false;

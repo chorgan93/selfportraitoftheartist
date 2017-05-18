@@ -69,7 +69,7 @@ public class BGMLayerS : MonoBehaviour {
 			mySource.Play();
 			fadingIn = false;
 			fadingOut = false;
-			mySource.volume = maxVolume;
+			mySource.volume = maxVolume*BGMHolderS.volumeMult;
 		}
 
 		destroyOnFade = false;

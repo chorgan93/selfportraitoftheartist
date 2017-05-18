@@ -5,13 +5,15 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private const string currentVer = "— v. 0.2.1 —";
+	private const string currentVer = "— v. 0.2.2 —";
+	private static bool hasSeenMainMenu = false;
 	
 	private ControlManagerS myController;
 
 	public Text versionText;
 	public float allowStartTime = 3f;
 	private bool started = false;
+	private bool quitting = false;
 	
 	public SpriteRenderer fadeOnZoom;
 	public float fadeTime = 1f;
@@ -86,7 +88,6 @@ public class MainMenuNavigationS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		Cursor.visible = false;
 		PlayerStatsS.godMode = false;
 
 		blurEffect = GetComponent<BlurOptimized>();
@@ -99,10 +100,20 @@ public class MainMenuNavigationS : MonoBehaviour {
 		}
 		
 		myController = GetComponent<ControlManagerS>();
-		if (myController.ControllerAttached()){
-			ControlManagerS.controlProfile = 0;
+		if (!hasSeenMainMenu){
+			if (myController.ControllerAttached()){
+				ControlManagerS.controlProfile = 0;
+				Cursor.visible = false;
+			}else{
+				ControlManagerS.controlProfile = 1;
+				Cursor.visible = true;
+			}
 		}else{
-			ControlManagerS.controlProfile = 1;
+			if (ControlManagerS.controlProfile == 1){
+				Cursor.visible = true;
+			}else{
+				Cursor.visible = false;
+			}
 		}
 		SetControlSelection();
 
@@ -123,19 +134,22 @@ public class MainMenuNavigationS : MonoBehaviour {
 			currentSelection = 1;
 			canContinue = true;
 		}else{
+			continueDisableColor.a = 0f;
 			menuSelectionsText[1].color = continueDisableColor;
 		}
+
+		hasSeenMainMenu = true;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		//CheckCheats();
+		CheckCheats();
 
 		if (!loading){
 			// check for cursor
-			if (!Cursor.visible){
+			/*if (!Cursor.visible){
 				if (Input.GetKeyDown(KeyCode.Escape)){
 					Cursor.visible = true;
 				}
@@ -143,7 +157,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 				if (Input.GetMouseButtonDown(0)){
 					Cursor.visible = false;
 				}
-			}
+			}**/
 		}
 
 		if (!started){
@@ -296,7 +310,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 				}
 				
-					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) && !loading){
+					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) 
+						&& !loading && !quitting){
 						if (currentSelection == 1 || (currentSelection == 0 && !canContinue)){
 						startMusic.FadeOut();
 						loadBlackScreen.gameObject.SetActive(true);
@@ -324,8 +339,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 							hideOnOverride.gameObject.SetActive(false);
 							SetSelection();
 						}
-					else if (currentSelection == 2){
-						//Application.OpenURL(twitterLinkII);
+					else if (currentSelection == 3){
+							Application.Quit();
+							quitting = true;
 						}
 					}
 				}
@@ -363,12 +379,22 @@ public class MainMenuNavigationS : MonoBehaviour {
 				if (i == currentSelection){
 					//menuSelections[i].localScale = selectionScale*1.2f;
 					selectOrb.transform.position = menuSelections[i].position;
-					correctCol = Color.white;
-					correctCol.a = menuSelectionsText[i].color.a;
-					menuSelectionsText[i].color = correctCol;;
+					if (i == 1 && !canContinue){
+						correctCol = continueDisableColor;
+						correctCol.a = menuSelectionsText[i].color.a;
+						menuSelectionsText[i].color = correctCol;
+					}else{
+						correctCol = Color.white;
+						correctCol.a = menuSelectionsText[i].color.a;
+						menuSelectionsText[i].color = correctCol;
+					}
 				}else{
 					//menuSelections[i].localScale = selectionScale;
-					if (i != 1 || (i == 1 && canContinue)){
+					if (i == 1 && !canContinue){
+						correctCol = continueDisableColor;
+						correctCol.a = menuSelectionsText[i].color.a;
+						menuSelectionsText[i].color = correctCol;
+					}else{
 						correctCol = selectionStartColor;
 						correctCol.a = menuSelectionsText[i].color.a;
 						menuSelectionsText[i].color = correctCol;
@@ -382,11 +408,18 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void SetControlSelection(){
 
 		string controlType = "Gamepad";
+
+		Cursor.visible = false;
+
 		if (ControlManagerS.controlProfile == 1){
 			controlType = "Keyboard & Mouse";
+
+			Cursor.visible = true;
 		}
 		if (ControlManagerS.controlProfile == 2){
 			controlType = "Keyboard (No Mouse)";
+
+			Cursor.visible = false;
 		}
 
 		for (int i = 0; i < controlTexts.Length; i++){
@@ -398,7 +431,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private void CheckCheats(){
 		
 		if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
-			Application.Quit();
+			//Application.Quit();
+			currentSelection = 3;
+			SetSelection();
 		}
 		
 		if (allowCheats){

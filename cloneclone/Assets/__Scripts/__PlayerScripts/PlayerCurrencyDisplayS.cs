@@ -16,6 +16,8 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	private int currencyTotalAmt;
 	private int beingAddedAmt = 0;
 
+	public static bool CanGetXP = true;
+
 	private float fadeMax = 0.8f;
 
 	private float subtractTimerMax = 1f;
@@ -42,7 +44,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		totalDisplay.text = currencyDisplayAmt.ToString();
 		beingAddedDisplay.text = "";
 
-		if (PlayerController.equippedUpgrades.Contains(1)){
+		if (PlayerController.equippedUpgrades.Contains(0)){
 			Show();
 		}else{
 			Hide ();
@@ -87,7 +89,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			if (subtractTimer > 0){
 				subtractTimer -= Time.deltaTime;
 			}else{
-				if (Mathf.Abs(beingAddedAmt) > 100){
+				if (Mathf.Abs(beingAddedAmt) > 59){
 					if (beingAddedAmt > 0){
 						beingAddedAmt = Mathf.RoundToInt((beingAddedAmt*1f)-Time.deltaTime*subtractRate);
 					}else{
@@ -129,6 +131,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	}
 
 	public void AddCurrency (int currencyToAdd){
+		if (CanGetXP){
 		PlayerCollectionS.currencyCollected += currencyToAdd;
 		currencyTotalAmt = PlayerCollectionS.currencyCollected;
 
@@ -151,6 +154,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 			}else{
 				fadingIn = true;
 			}
+		}
 		}
 	}
 

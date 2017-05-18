@@ -17,7 +17,8 @@ public class CheckpointS : MonoBehaviour {
 
 	public int[] addToCompletedFights;
 
-
+	private string infiniteMessage = "Health Restored.";
+	private string infiniteMessageWithItem = "Health Restored.\nREWINDs restored.";
 	private string healMessage = "Health restored. Progress saved.";
 	private string healMessageWithItem =  "Health restored. Progress saved.\nREWINDs restored.";
 	public int spawnNum = 0;
@@ -43,9 +44,11 @@ public class CheckpointS : MonoBehaviour {
 			}
 		}
 
-		GameOverS.reviveScene = Application.loadedLevelName;
-		GameOverS.revivePosition = spawnNum;
-		StoryProgressionS.SaveProgress();
+		if (!SceneManagerS.inInfiniteScene){
+			GameOverS.reviveScene = Application.loadedLevelName;
+			GameOverS.revivePosition = spawnNum;
+			StoryProgressionS.SaveProgress();
+		}
 	
 	}
 	
@@ -74,17 +77,27 @@ public class CheckpointS : MonoBehaviour {
 				else{
 					_playerDetect.player.TriggerResting(3f);
 					if (PlayerInventoryS.I.CheckForItem(0)){
+						if (SceneManagerS.inInfiniteScene){
+							instructionText.SetTimedMessage(infiniteMessageWithItem, 1.4f);
+						}else{
 						instructionText.SetTimedMessage(healMessageWithItem, 1.4f);
+						}
 					}else{
-						instructionText.SetTimedMessage(healMessage, 1.4f);
+						if (SceneManagerS.inInfiniteScene){
+							instructionText.SetTimedMessage(infiniteMessage, 1.4f);
+						}else{
+							instructionText.SetTimedMessage(healMessage, 1.4f);
+						}
 					}
 					_playerDetect.player.SetExamining(true, examinePos, "");
 					//Debug.Log("YEAH");
 			}
 				// set revive pos
-				GameOverS.reviveScene = Application.loadedLevelName;
-				GameOverS.revivePosition = spawnNum;
-				StoryProgressionS.SaveProgress();
+				if (!SceneManagerS.inInfiniteScene){
+					GameOverS.reviveScene = Application.loadedLevelName;
+					GameOverS.revivePosition = spawnNum;
+					StoryProgressionS.SaveProgress();
+				}
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
 				PlayerInventoryS.I.dManager.ClearAll();

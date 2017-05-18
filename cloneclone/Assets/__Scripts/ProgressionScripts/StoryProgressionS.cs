@@ -15,6 +15,12 @@ public class StoryProgressionS : MonoBehaviour {
 		}
 	}
 
+	public static void RemoveProgress(int targetProgress){
+		if (storyProgress.Contains(targetProgress)){
+			storyProgress.Remove(targetProgress);
+		}
+	}
+
 	public static void SaveProgress(){
 		savedProgress = storyProgress;
 		SaveLoadS.OverriteCurrentSave();

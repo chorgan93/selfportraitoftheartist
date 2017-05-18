@@ -50,20 +50,24 @@ public class GameMenuS : MonoBehaviour {
 	private int fontSizeOptionSelected;
 
 	private GameOverS respawnManager;
+	private bool initialized = false;
 
-	// Use this for initialization
-	void Start () {
+	[Header("Build Debug")]
+	public Text debugStick;
+	public Text debugActive;
+	private bool showDebug = false;
 
-		textDefaultColor = selectTexts[0].color;
-		SetSelection(0);
-
-	}
 
 	// Update is called once per frame
-	void Update () {
+	public void GameMenuUpdate () {
 
-		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f){
+		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f){
 			stickReset = true;
+		}
+		if (showDebug){
+			debugStick.text = "Stick Reset? " + stickReset 
+				+"\nH:" + Mathf.Abs(myControl.HorizontalMenu()) + " V:"+Mathf.Abs(myControl.VerticalMenu());
+			debugActive.text = "Menu active? " + myManager.gMenuActive;
 		}
 
 		if (myControl.MenuSelectUp()){
@@ -186,12 +190,14 @@ public class GameMenuS : MonoBehaviour {
 				}
 			}
 		}else{
-		for (int i = 0; i < selectTexts.Length; i++){
+			for (int i = 0; i < selectTexts.Length; i++){
+				if (i == currentSelection){
+					selector.anchoredPosition = selectPositions[i].anchoredPosition;
+				}
 				if (i == currentSelection && (((i != 1 || (i == 1 && InGameMenuManagerS.allowFastTravel)))
-					|| (i != 3 || (i == 3 && InGameMenuManagerS.allowFastTravel)))){
+					&& (i != 3 || (i == 3 && InGameMenuManagerS.allowFastTravel)))){
 				selectTexts[i].color = textSelectColor;
 				selectTexts[i].fontSize = fontSizeSelected;
-				selector.anchoredPosition = selectPositions[i].anchoredPosition;
 			}else{
 				selectTexts[i].fontSize = fontSizeStart;
 				selectTexts[i].color = textDefaultColor;
@@ -216,6 +222,21 @@ public class GameMenuS : MonoBehaviour {
 	}
 
 	public void TurnOn(){
+		if (!initialized){
+
+			textDefaultColor = selectTexts[0].color;
+			SetSelection(0);
+			initialized = true;
+
+			if (showDebug){
+				debugStick.text = "Stick Reset? " + stickReset 
+					+"\nH:" + Mathf.Abs(myControl.HorizontalMenu()) + " V:"+Mathf.Abs(myControl.VerticalMenu());
+				debugActive.text = "Menu active? " + myManager.gMenuActive;
+			}else{
+				debugStick.enabled = false;
+				debugActive.enabled = false;
+			}
+		}
 		inOptionsMenu = false;
 		optionsMenuProper.gameObject.SetActive(false);
 		inConfirmation = false;
@@ -228,6 +249,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 		SetSelection(0);
 		gameObject.SetActive(true);
+		//Debug.Log("game menu turn ON");
 		
 	}
 	public void TurnOff(){
@@ -235,12 +257,13 @@ public class GameMenuS : MonoBehaviour {
 		inConfirmation = false;
 		optionsMenuProper.gameObject.SetActive(false);
 		gameObject.SetActive(false);
+		//Debug.LogError("game menu turn OFF");
 		
 	}
 
 	public void SetManager(InGameMenuManagerS mm){
 		myManager = mm;
-				myControl = myManager.pRef.myControl;
+		myControl = GetComponent<ControlManagerS>();
 		respawnManager = myManager.pRef.GetComponent<GameOverS>();
 	}
 
@@ -289,12 +312,15 @@ public class GameMenuS : MonoBehaviour {
 	void UpdateControlSettingText(){
 		if (ControlManagerS.controlProfile == 0){
 			controlText.text = "Gamepad";
+			Cursor.visible = false;
 		}
 		else if (ControlManagerS.controlProfile == 1){
 			controlText.text = "Keyboard & Mouse";
+			Cursor.visible = true;
 		}
 		else if (ControlManagerS.controlProfile == 2){
 			controlText.text = "Keyboard (No Mouse)";
+			Cursor.visible = false;
 		}
 	}
 
@@ -502,5 +528,12 @@ public class GameMenuS : MonoBehaviour {
 		}
 		musicText.text = BGMHolderS.volumeMult*100f + "%";
 		sfxText.text = SFXObjS.volumeSetting*100f + "%";
+	}
+
+	public static void ResetOptions(){
+		DifficultyS.SetDifficultiesFromInt(0,0);
+		BGMHolderS.volumeMult = 1f;
+		SFXObjS.volumeSetting = 1f;
+		CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
 	}
 }

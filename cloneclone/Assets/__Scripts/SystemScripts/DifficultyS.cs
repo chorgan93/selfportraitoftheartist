@@ -3,11 +3,13 @@ using System.Collections;
 
 public class DifficultyS : MonoBehaviour {
 	
-	public enum SinState {Easy, Normal, Hard, Challenge};
+	public enum SinState {Easy, Normal, Hard, Challenge, None};
 	public static SinState selectedSinState = SinState.Easy;
+	public static SinState sinStateOverride = SinState.None;
 	
-	public enum PunishState {Easy, Normal, Hard, Challenge};
+	public enum PunishState {Easy, Normal, Hard, Challenge, None};
 	public static PunishState selectedPunishState = PunishState.Easy;
+	public static PunishState punishStateOverride = PunishState.None;
 
 	public const float sinMultEasy = 0.75f;
 	public const float sinMultNormal = 0.9f;
@@ -22,6 +24,23 @@ public class DifficultyS : MonoBehaviour {
 
 	public static float GetSinMult(){
 
+		if (sinStateOverride != SinState.None){
+			if (sinStateOverride == SinState.Easy){
+				return sinMultEasy;
+			}
+			else if (sinStateOverride == SinState.Normal){
+				return sinMultNormal;
+			}
+			else if (sinStateOverride == SinState.Hard){
+				return sinMultHard;
+			}
+			else if (sinStateOverride == SinState.Challenge){
+				return sinMultChallenge;
+			}
+			else{
+				return sinMultNormal;
+			}
+		}else{
 		if (selectedSinState == SinState.Easy){
 			return sinMultEasy;
 		}
@@ -37,10 +56,29 @@ public class DifficultyS : MonoBehaviour {
 		else{
 			return sinMultNormal;
 		}
+		}
 	}
 
 	public static int GetSinInt(){
 
+
+		if (sinStateOverride != SinState.None){
+			if (sinStateOverride == SinState.Easy){
+				return 0;
+			}
+			else if (sinStateOverride == SinState.Normal){
+				return 1;
+			}
+			else if (sinStateOverride == SinState.Hard){
+				return 2;
+			}
+			else if (sinStateOverride == SinState.Challenge){
+				return 3;
+			}
+			else{
+				return 1;
+			}
+		}else{
 		if (selectedSinState == SinState.Easy){
 			return 0;
 		}
@@ -56,10 +94,29 @@ public class DifficultyS : MonoBehaviour {
 		else{
 			return 1;
 		}
+		}
 	}
 
 	public static float GetPunishMult(){
 
+		if (punishStateOverride != PunishState.None){
+			if (punishStateOverride == PunishState.Easy){
+				return punishMultEasy;
+			}
+			else if (punishStateOverride == PunishState.Normal){
+				return punishMultNormal;
+			}
+			else if (punishStateOverride == PunishState.Hard){
+				return punishMultHard;
+			}
+			else if (punishStateOverride == PunishState.Challenge){
+				return punishMultChallenge;
+			}
+			else{
+				return punishMultNormal;
+			}
+		}
+		else{
 		if (selectedPunishState == PunishState.Easy){
 			return punishMultEasy;
 		}
@@ -75,9 +132,28 @@ public class DifficultyS : MonoBehaviour {
 		else{
 			return punishMultNormal;
 		}
+		}
 	}
 
 	public static int GetPunishInt(){
+		if (punishStateOverride != PunishState.None){
+			if (punishStateOverride == PunishState.Easy){
+				return 0;
+			}
+			else if (punishStateOverride == PunishState.Normal){
+				return 1;
+			}
+			else if (punishStateOverride == PunishState.Hard){
+				return 2;
+			}
+			else if (punishStateOverride == PunishState.Challenge){
+				return 3;
+			}
+			else{
+				return 1;
+			}
+		}
+		else{
 		if (selectedPunishState == PunishState.Easy){
 			return 0;
 		}
@@ -92,6 +168,7 @@ public class DifficultyS : MonoBehaviour {
 		}
 		else{
 			return 1;
+		}
 		}
 	}
 

@@ -81,7 +81,7 @@ public class EnemyWanderBehavior : EnemyBehaviorS {
 
 	void TriggerBuddyEffect(){
 		if (chanceToTriggerBuddy > 0 && buddiesToUse.Length > 0){
-			float buddyChance = Random.Range(0,1f)*currentDifficultyMult;
+			float buddyChance = Random.Range(0,1f);
 			if (buddyChance <= chanceToTriggerBuddy){
 				for (int i = 0; i < buddiesToUse.Length;i++){
 					buddiesToUse[i].TriggerAction();

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/AreaXX_AscensionScenes/AreaXX_00_Checkpoint.unity
   isLoaded: 1
   isActive: 1

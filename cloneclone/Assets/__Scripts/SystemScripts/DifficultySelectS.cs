@@ -69,6 +69,7 @@ public class DifficultySelectS : MonoBehaviour {
 	private float selectTimeCount;
 
 	[Header("Control References")]
+	public Text difficultyDisclaimer;
 	public GameObject controllerInstructions;
 	public GameObject keybordInstructions;
 	private bool usingController = false;
@@ -154,6 +155,7 @@ public class DifficultySelectS : MonoBehaviour {
 		sinChosenText.enabled = false;
 
 		selector.gameObject.SetActive(false);
+		difficultyDisclaimer.gameObject.SetActive(false);
 
 		//controllerInstructions.SetActive(false);
 		//keybordInstructions.SetActive(false);
@@ -196,6 +198,7 @@ public class DifficultySelectS : MonoBehaviour {
 		punishmentChosenText.enabled = true;
 		
 		punishSelectorLeft.enabled = punishSelectorRight.enabled = true;
+		difficultyDisclaimer.gameObject.SetActive(true);
 	}
 
 	void updateSelectors(){
@@ -273,6 +276,7 @@ public class DifficultySelectS : MonoBehaviour {
 		}
 
 		if (currentState == SelectState.selectDifficulties){
+			difficultyDisclaimer.gameObject.SetActive(true);
 			while (choosingSin || choosingPunishment){
 				
 				if (!controller.MenuSelectButton()){
@@ -391,6 +395,7 @@ public class DifficultySelectS : MonoBehaviour {
 
 			}
 			SetDifficulties();
+			difficultyDisclaimer.gameObject.SetActive(false);
 			currentState = SelectState.End;
 		}
 		if (currentState == SelectState.End){
@@ -410,7 +415,7 @@ public class DifficultySelectS : MonoBehaviour {
 		fadeColor = sinTitleText.color;
 		fadeColor.a = fadeT;
 		sinTitleText.color = punishmentTitleText.color = sinChosenText.color = punishmentChosenText.color = sinDescriptionText.color = 
-			punishmentDescriptionText.color = fadeColor;
+			punishmentDescriptionText.color = difficultyDisclaimer.color = fadeColor;
 
 		fadeColor = sinSelectorLeft.color;
 		fadeColor.a = fadeT;

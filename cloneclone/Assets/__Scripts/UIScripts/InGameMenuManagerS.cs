@@ -12,6 +12,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 	public LevelUpMenu levelMenu { get { return levelUpMenu; } }
 
 	private bool gameMenuActive = false;
+	public bool gMenuActive { get { return gameMenuActive; } }
 	private bool equipMenuActive = false;
 	private bool levelMenuActive = false;
 
@@ -78,41 +79,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 				gameMenuButtonDown = false;
 			}
 
-		if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
-		    && !_pRef.talking){
-
-				if (!_pRef.inCombat){
-				// TODO: turn back on once functional
-			if (allowMenuUse && _pRef.myControl.StartButton() && !equipMenuButtonDown){
-				equipMenuActive = true;
-				equipMenu.TurnOn();
-				_pRef.SetTalking(true);
-				equipMenuButtonDown = true;
-					hasUsedMenu = true;
-			}
-			if (allowMenuUse && _pRef.myControl.BackButton() && !gameMenuButtonDown){
-				gameMenuActive = true;
-				gameMenuButtonDown = true;
-					gameMenu.TurnOn();
-				_pRef.SetTalking(true);
-			}
-				/*if (Input.GetKeyDown(KeyCode.Escape) && !holdingEscape && !exitButtonDown){
-					//Application.Quit();
-					holdingEscape = true;
-					escapeText.enabled = true;
-					Debug.Log("Show text!");
-				}**/
-				}else{
-					if (!gamePaused && ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
-						|| (_pRef.myControl.StartButton() && !equipMenuButtonDown))){
-						gamePaused = true;
-						gameMenuButtonDown = true;
-						equipMenuButtonDown = true;
-						gamePausedScreen.gameObject.SetActive(true);
-						CameraShakeS.C.PauseGame();
-					}
-				}
-		}
+		
 
 			if (gamePaused){
 				if ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
@@ -133,6 +100,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 				gameMenu.TurnOff();
 				_pRef.SetTalking(false);
 			}
+				gameMenu.GameMenuUpdate();
 		}
 
 		if (equipMenuActive){
@@ -157,6 +125,41 @@ public class InGameMenuManagerS : MonoBehaviour {
 				}
 			}
 		}
+			if (!levelMenuActive && !gameMenuActive && !equipMenuActive && !_pRef.InAttack() && !_pRef.isBlocking && !_pRef.isDashing
+				&& !_pRef.talking){
+
+				if (!_pRef.inCombat){
+					// TODO: turn back on once functional
+					if (allowMenuUse && _pRef.myControl.StartButton() && !equipMenuButtonDown){
+						equipMenuActive = true;
+						equipMenu.TurnOn();
+						_pRef.SetTalking(true);
+						equipMenuButtonDown = true;
+						hasUsedMenu = true;
+					}
+					if (allowMenuUse && _pRef.myControl.BackButton() && !gameMenuButtonDown){
+						gameMenuActive = true;
+						gameMenuButtonDown = true;
+						gameMenu.TurnOn();
+						_pRef.SetTalking(true);
+					}
+					/*if (Input.GetKeyDown(KeyCode.Escape) && !holdingEscape && !exitButtonDown){
+					//Application.Quit();
+					holdingEscape = true;
+					escapeText.enabled = true;
+					Debug.Log("Show text!");
+				}**/
+				}else{
+					if (!gamePaused && ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
+						|| (_pRef.myControl.StartButton() && !equipMenuButtonDown))){
+						gamePaused = true;
+						gameMenuButtonDown = true;
+						equipMenuButtonDown = true;
+						gamePausedScreen.gameObject.SetActive(true);
+						CameraShakeS.C.PauseGame();
+					}
+				}
+			}
 		}else{
 			if (!playerDead){
 				gameMenuActive = false;

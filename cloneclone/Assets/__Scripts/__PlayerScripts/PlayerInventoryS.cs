@@ -346,7 +346,10 @@ public class PlayerInventoryS : MonoBehaviour {
 		GameOverS.revivePosition = 0;
 		List<int> buddyList = new List<int>();
 		buddyList.Add(unlockedBuddies[0].buddyNum);
-		SaveLoadout(unlockedWeapons, unlockedWeapons, buddyList);
+		equippedWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
+		subWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
+		SaveLoadout(equippedWeapons, subWeapons, buddyList);
+		GameMenuS.ResetOptions();
 		OverwriteInventoryData();
 	}
 

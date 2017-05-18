@@ -70,10 +70,10 @@ public class EquipTechItemS : MonoBehaviour {
 
 				if (techNum == 0){
 					statUIRef.EnableUI();
+					currencyUIRef.Show();
 				}
 				if (techNum == 1){
 					bossUIRef.Show();
-					currencyUIRef.Show();
 				}
 				if (techNum == 2){
 					resetUIRef.Show();
@@ -88,10 +88,10 @@ public class EquipTechItemS : MonoBehaviour {
 				techText.color = textOffColor;
 				if (techNum == 0){
 					statUIRef.DisableUI();
+					currencyUIRef.Hide();
 				}
 				if (techNum == 1){
 					bossUIRef.Hide();
-					currencyUIRef.Hide();
 				}
 				if (techNum == 2){
 					resetUIRef.Hide();

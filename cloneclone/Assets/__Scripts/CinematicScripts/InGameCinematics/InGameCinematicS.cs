@@ -17,6 +17,7 @@ public class InGameCinematicS : MonoBehaviour {
 	private bool timedStep = false;
 
 	public string endCinemaScene = "";
+	public bool resetInventoryStats = false;
 	public float fadeRate = 0.4f;
 	public bool wakeNextScene = true;
 	public bool noBuddy = false;
@@ -68,6 +69,9 @@ public class InGameCinematicS : MonoBehaviour {
 
 		if (CheckCurrentStep()){
 			if (endCinemaScene != ""){
+				if (resetInventoryStats){
+					pRef.GetComponent<GameOverS>().PrepareForRespawn();
+				}
 				CameraEffectsS.E.SetNextScene(endCinemaScene);
 				CameraEffectsS.E.FadeIn(fadeRate);
 				PlayerController.doWakeUp = wakeNextScene;

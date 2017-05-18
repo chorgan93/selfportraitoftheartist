@@ -26,6 +26,7 @@ public class CombatManagerS : MonoBehaviour {
 	private bool correctedFightOnce = false;
 	public GameObject[] turnOnOnSkip;
 	public GameObject[] turnOffOnSkip;
+	public bool clearBloodOnComplete = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,6 +70,10 @@ public class CombatManagerS : MonoBehaviour {
 		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();
+
+		if (clearBloodOnComplete){
+			PlayerInventoryS.I.dManager.ClearBattleBlood();
+		}
 	}
 
 	public void SetPlayerRef(PlayerController p){
@@ -105,6 +110,10 @@ public class CombatManagerS : MonoBehaviour {
 			}
 			playerRef.transform.position = _resetPos;
 
+		}else{
+			if (clearBloodOnComplete){
+				PlayerInventoryS.I.dManager.SetBattleBlood();
+			}
 		}
 
 		ChangeFeatherCols(playerRef.EquippedWeapon().swapColor);

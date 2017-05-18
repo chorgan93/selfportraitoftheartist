@@ -42,17 +42,21 @@ public class GameOverS : MonoBehaviour {
 
 			if (delayFadeTime <= 0 && !startedFade){
 				startedFade = true;
-				PlayerInventoryS.I.dManager.ClearAll();
-				PlayerInventoryS.I.dManager.ClearCompletedCombat();
-				StoryProgressionS.ResetToSavedProgress();
-				SpawnPosManager.whereToSpawn = revivePosition;
-				SpawnPosManager.spawningFromDeath = true;
-				CameraEffectsS.E.SetNextScene(reviveScene);
-				CameraEffectsS.E.FadeIn();
+				PrepareForRespawn();
 			}
 
 		}
 	
+	}
+
+	public void PrepareForRespawn(){
+		PlayerInventoryS.I.dManager.ClearAll();
+		PlayerInventoryS.I.dManager.ClearCompletedCombat();
+		StoryProgressionS.ResetToSavedProgress();
+		SpawnPosManager.whereToSpawn = revivePosition;
+		SpawnPosManager.spawningFromDeath = true;
+		CameraEffectsS.E.SetNextScene(reviveScene);
+		CameraEffectsS.E.FadeIn();
 	}
 
 	public void FakeDeath(bool returnToMain = false){

@@ -29,6 +29,8 @@ public class PlayerDestructionS : MonoBehaviour {
 	
 	public Sprite[] bloodSprites;
 	public GameObject oldBlood;
+
+	private int savedBloodCount;
 	
 	// Use this for initialization
 	void Awake () {
@@ -103,5 +105,24 @@ public class PlayerDestructionS : MonoBehaviour {
 	public void LoadCombatsCleared(List<int> newCombat){
 		_combatClearedAtLeastOnce = newCombat;
 	}
-	
+
+	public void SetBattleBlood(){
+		savedBloodCount = _bloodIds.Count;
+	}
+
+	public void ClearBattleBlood(){
+		if (_bloodIds.Count > savedBloodCount){
+			for (int i = _bloodIds.Count-1; i > savedBloodCount; i--){
+				_bloodIds.RemoveAt(i);
+				_bloodSpriteNums.RemoveAt(i);
+				_bloodSpriteNums.RemoveAt(i);
+			}
+		}
+		if (currentlySpawnedBlood.Count > 0){
+			for (int i = 0; i < currentlySpawnedBlood.Count; i++){
+				currentlySpawnedBlood[0].SetActive(false);
+			}
+			currentlySpawnedBlood.Clear();
+		}
+	}
 }
