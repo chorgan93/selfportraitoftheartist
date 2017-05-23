@@ -4,6 +4,7 @@ using System.Collections;
 public class TurnOnOffAtProgressionS : MonoBehaviour {
 
 	public int progressNum = -1;
+	public bool triggerOnAwake = false;
 	public bool triggerIfContainsGreater = false;
 	public GameObject[] onAtProgressObjects;
 	public GameObject[] offAtProgressObjects;
@@ -15,24 +16,36 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	public int turnOnOffAtTechEarned = -1;
 
 	// Use this for initialization
+	void Awake(){
+		if (triggerOnAwake){
+			TriggerLogic();
+		}
+	}
 	void Start () {
 
+		if (!triggerOnAwake){
+		TriggerLogic();
+		}
+	
+	}
+
+	void TriggerLogic(){
 		if (progressNum > -1){
 			if (StoryProgressionS.storyProgress.Contains(progressNum) 
-			    || (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
-			TurnObjectsOnOff();
-		}
+				|| (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
+				TurnObjectsOnOff();
+			}
 		}
 		else if (turnOnOffAtItemInInventory > -1){
 			if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory)){
 				TurnObjectsOnOff();
 			}	
 		}
-		
+
 
 		else if (turnOnOffAtMantraInInventory != null){
-		if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory)){
-			TurnObjectsOnOff();
+			if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory)){
+				TurnObjectsOnOff();
 			}
 		}
 
@@ -46,7 +59,6 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 				TurnObjectsOnOff();
 			}	
 		}
-	
 	}
 
 	void TurnObjectsOnOff(){

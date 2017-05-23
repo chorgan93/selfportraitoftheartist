@@ -31,6 +31,11 @@ public class FadeScreenUI : MonoBehaviour {
 	private DarknessPercentUIS darknessTracker;
 	public static bool NoFade = false;
 
+	private float _delayFadeIn = 0f;
+	private bool _delayWakeUp = false;
+	private bool _triggeredWakeUp = false;
+	private PlayerController pRef;
+
 	// Use this for initialization
 	void Start () {
 
@@ -51,6 +56,10 @@ public class FadeScreenUI : MonoBehaviour {
 		if (GameObject.Find("In Game UI")){
 			darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
 		}
+
+		if (_delayWakeUp){
+			pRef = darknessTracker.pStatRef.pRef;
+		}
 	
 	}
 	
@@ -58,15 +67,24 @@ public class FadeScreenUI : MonoBehaviour {
 	void Update () {
 
 		if (_fadingOut){
-			
-			_myColor = _myRenderer.color;
-			_myColor.a -= fadeRate*Time.deltaTime;
 
-			if (_myColor.a <= 0){
-				_myColor.a = 0;
-				_fadingOut = false;
+			if (_delayFadeIn > 0){
+				_delayFadeIn -= Time.deltaTime;
+			}else{
+				if (_delayWakeUp && !_triggeredWakeUp){
+					pRef.TriggerWakeUp();
+					_triggeredWakeUp = true;
+				}
+			
+				_myColor = _myRenderer.color;
+				_myColor.a -= fadeRate*Time.deltaTime;
+	
+				if (_myColor.a <= 0){
+					_myColor.a = 0;
+					_fadingOut = false;
+				}
+				_myRenderer.color = _myColor;
 			}
-			_myRenderer.color = _myColor;
 		}
 
 		if (_fadingIn){
@@ -195,5 +213,10 @@ public class FadeScreenUI : MonoBehaviour {
 		}
 		async.allowSceneActivation = false;
 		yield return async;
+	}
+
+	public void ChangeFadeTime(float delayFadeTime, bool delayWakeUp){
+		_delayWakeUp = delayWakeUp;
+		_delayFadeIn = delayFadeTime;
 	}
 }

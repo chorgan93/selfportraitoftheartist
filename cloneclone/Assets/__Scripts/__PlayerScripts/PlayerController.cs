@@ -1868,7 +1868,8 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void TriggerWakeUp(){
+	public void TriggerWakeUp(){
+		_playerSound.SetWalking(false);
 			_isTalking = true;
 			wakingUp = true;
 			wakeUpCountdown = wakeUpTime;

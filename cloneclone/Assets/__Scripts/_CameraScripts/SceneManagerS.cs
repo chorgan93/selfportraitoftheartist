@@ -6,6 +6,7 @@ public class SceneManagerS : MonoBehaviour {
 	public static bool inInfiniteScene = false;
 
 	public bool lockBuddy = false;
+	public bool preMenuScene = false;
 	public bool lockMenus = false;
 	public bool allowFastTravel = true;
 
@@ -17,7 +18,13 @@ public class SceneManagerS : MonoBehaviour {
 
 	void Awake(){
 		InGameCinematicS.turnOffBuddies = lockBuddy;
-		InGameMenuManagerS.allowMenuUse = !lockMenus;
+		if (preMenuScene){
+			if (InGameMenuManagerS.hasUsedMenu){
+				InGameMenuManagerS.allowMenuUse = true;
+			}
+		}else{
+			InGameMenuManagerS.allowMenuUse = !lockMenus;
+		}
 		InGameMenuManagerS.allowFastTravel = allowFastTravel;
 		inInfiniteScene = isInfiniteScene;
 		PlayerCurrencyDisplayS.CanGetXP = !preventEXPGain;

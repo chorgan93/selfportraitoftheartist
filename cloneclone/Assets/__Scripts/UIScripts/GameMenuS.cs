@@ -112,11 +112,11 @@ public class GameMenuS : MonoBehaviour {
 				optionsMenuProper.gameObject.SetActive(true);
 			}
 
-			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 1 && InGameMenuManagerS.allowFastTravel){
+			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
 				RespawnAtLastCheckpoint();
 			}
 
-			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 3 && InGameMenuManagerS.allowFastTravel){
+			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
 				RespawnAtLastCheckpoint(true);
 			}
 		}else{
@@ -194,8 +194,8 @@ public class GameMenuS : MonoBehaviour {
 				if (i == currentSelection){
 					selector.anchoredPosition = selectPositions[i].anchoredPosition;
 				}
-				if (i == currentSelection && (((i != 1 || (i == 1 && InGameMenuManagerS.allowFastTravel)))
-					&& (i != 3 || (i == 3 && InGameMenuManagerS.allowFastTravel)))){
+				if (i == currentSelection && (((i != 1 || (i == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0)))
+					&& (i != 3 || (i == 3 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0)))){
 				selectTexts[i].color = textSelectColor;
 				selectTexts[i].fontSize = fontSizeSelected;
 			}else{

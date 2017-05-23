@@ -226,6 +226,7 @@
 'Assets/__Scripts/SystemScripts/SaveLoadS.cs'
 'Assets/__Scripts/TextScripts/ApplicationManager.cs'
 'Assets/__Scripts/TextScripts/ChapterTrigger.cs'
+'Assets/__Scripts/TextScripts/DelayFadeS.cs'
 'Assets/__Scripts/TextScripts/ForceTrigger.cs'
 'Assets/__Scripts/TextScripts/InstructionFloatS.cs'
 'Assets/__Scripts/TextScripts/InstructionTrigger.cs'

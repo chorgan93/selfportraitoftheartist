@@ -70,6 +70,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private bool adjustingNum;
 
 	private PlayerStatsS pStats;
+	public PlayerStatsS pStatRef { get { return pStats; } }
 
 	private float delayFadeInTime = 1.2f;
 	private float delayFadeOutTime = 1.4f;
