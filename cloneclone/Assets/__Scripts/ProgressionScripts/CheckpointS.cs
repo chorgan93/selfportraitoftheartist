@@ -76,6 +76,7 @@ public class CheckpointS : MonoBehaviour {
 				}
 				else{
 					_playerDetect.player.TriggerResting(3f);
+					if (!PlayerStatDisplayS.RECORD_MODE){
 					if (PlayerInventoryS.I.CheckForItem(0)){
 						if (SceneManagerS.inInfiniteScene){
 							instructionText.SetTimedMessage(infiniteMessageWithItem, 1.4f);
@@ -88,6 +89,7 @@ public class CheckpointS : MonoBehaviour {
 						}else{
 							instructionText.SetTimedMessage(healMessage, 1.4f);
 						}
+					}
 					}
 					_playerDetect.player.SetExamining(true, examinePos, "");
 					//Debug.Log("YEAH");

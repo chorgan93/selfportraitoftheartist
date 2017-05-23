@@ -99,7 +99,7 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && !PlayerStatDisplayS.RECORD_MODE){
 			if (useInstructionObjs){
 				for (int i = 0; i < instructionObjs.Length; i++){
 					instructionObjs[i].ShowInstruction(other.transform, other.GetComponent<PlayerController>().myControl.ControllerAttached());
@@ -122,7 +122,7 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && !PlayerStatDisplayS.RECORD_MODE){
 			if (useInstructionObjs){
 				for (int i = 0; i < instructionObjs.Length; i++){
 					instructionObjs[i].HideInstruction();

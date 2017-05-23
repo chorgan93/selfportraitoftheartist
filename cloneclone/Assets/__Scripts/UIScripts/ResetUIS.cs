@@ -26,7 +26,7 @@ public class ResetUIS : MonoBehaviour {
 		}else{
 			instruction.text = "R";
 		}
-		if (PlayerController.equippedUpgrades.Contains(2)){
+		if (PlayerController.equippedUpgrades.Contains(2) && !PlayerStatDisplayS.RECORD_MODE){
 			Show ();
 		}else{
 			Hide ();

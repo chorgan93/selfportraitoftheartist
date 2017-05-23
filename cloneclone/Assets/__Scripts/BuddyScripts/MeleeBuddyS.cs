@@ -115,7 +115,7 @@ public class MeleeBuddyS : BuddyS {
 			canSwitch = false;
 			shotDelayCountdown -= Time.deltaTime;
 			if (shotDelayCountdown <= 0 || (shootDetect.closestEnemy != null && shotDelayCountdown < shotDelay*0.5f)){
-			
+
 				FireProjectile();
 				shotTriggered = false;
 				shotDelayCountdown = 0;

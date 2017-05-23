@@ -13,6 +13,8 @@ public class CameraFollowS : MonoBehaviour {
 
 	private Vector3 _currentPos;
 
+	private float RECORD_MODE_ORTHO_MULT = 0.9f;
+
 	//__________________________________________________INSTANCE PROPERTIES
 
 	private GameObject _poi;
@@ -66,6 +68,10 @@ public class CameraFollowS : MonoBehaviour {
 
 		myCam = GetComponent<Camera>();
 		startOrthoSize = myCam.orthographicSize;
+		if (PlayerStatDisplayS.RECORD_MODE){
+			startOrthoSize*=RECORD_MODE_ORTHO_MULT;
+			myCam.orthographicSize = startOrthoSize;
+		}
 
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
@@ -196,6 +202,10 @@ public class CameraFollowS : MonoBehaviour {
 	}
 
 	//__________________________________________________PUBLIC METHODS
+	public void CutTo(Vector3 newPos){
+		newPos.z = transform.position.z;
+		transform.position = newPos;
+	}
 	public void PunchIn(){
 
 		myCam.orthographicSize =  startOrthoSize * punchInMult;

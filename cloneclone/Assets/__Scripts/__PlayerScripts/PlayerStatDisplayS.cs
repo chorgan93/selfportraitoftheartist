@@ -6,6 +6,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	private const float barAddSize = 3f;
 	private const float chargeAddSize = 3f;
+
+	public const bool RECORD_MODE = false;
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;
@@ -149,7 +151,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//UpdateMaxSizes();
 		UpdateFills();
 
-		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene){
+		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene || RECORD_MODE){
 			DisableUI ();
 		}
 

@@ -86,6 +86,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private Color fadeColorWhite;
 	private float fadeWhiteMaxAlpha;
 
+	private bool inRecordMode = false;
+
 	private bool _allowAdvance = true;
 	public bool allowAdvance { get { return _allowAdvance; } }
 
@@ -109,12 +111,18 @@ public class DarknessPercentUIS : MonoBehaviour {
 		barOffsetCountdown = barChangeTime;
 
 		StartShake();
+
+		inRecordMode = PlayerStatDisplayS.RECORD_MODE;
+		if (inRecordMode){
+			TurnOffCornerDisplay();
+		}
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+		if (!inRecordMode){
 		if (!fadeOutRegNumbers){
 			SetText();
 			BarOffset();
@@ -163,6 +171,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 			SetMainSizeAdjustNum();
 			TextShake();
 
+		}
 		}
 
 		if (fadeInDeathNumbers){
@@ -369,5 +378,19 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 		fadeCount = 0f;
 
+	}
+
+	void TurnOffCornerDisplay(){
+
+		mainBarDisplay.enabled =
+			redBarDisplay.enabled =
+				purpleBarDisplay.enabled =
+					wholeDisplay.enabled =
+						displayBG.enabled =
+							wholeNumDisplay.enabled =
+								displayBGForNum.enabled =
+									mainTextDisplay.enabled =
+		redTextDisplay.enabled =
+		purpleTextDisplay.enabled = false;
 	}
 }

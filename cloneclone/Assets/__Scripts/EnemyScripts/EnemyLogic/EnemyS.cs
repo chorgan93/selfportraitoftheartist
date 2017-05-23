@@ -41,6 +41,8 @@ public class EnemyS : MonoBehaviour {
 	public Material flashMaterial;
 	private Material startMaterial;
 
+	private float currentDifficultyMult;
+
 	private float startDrag;
 
 	//____________________________________INSTANCE PROPERTIES
@@ -310,7 +312,8 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
-		actingMaxHealth = maxHealth*DifficultyS.GetSinMult();
+		currentDifficultyMult = DifficultyS.GetSinMult();
+		actingMaxHealth = maxHealth*currentDifficultyMult;
 
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
@@ -841,14 +844,14 @@ public class EnemyS : MonoBehaviour {
 				breakRef.transformRef = transform;
 				breakRef.pieceColor = bloodColor;
 						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
-						vulnerableCountdown = criticalRecoverTime*2f;
+						vulnerableCountdown = criticalRecoverTime*2f/currentDifficultyMult;
 					}
 				}
-				if (vulnerableCountdown < criticalRecoverTime){
-					vulnerableCountdown = criticalRecoverTime;
+				if (vulnerableCountdown < criticalRecoverTime/currentDifficultyMult){
+					vulnerableCountdown = criticalRecoverTime/currentDifficultyMult;
 				}
 
-				Stun(criticalRecoverTime,true);
+				Stun(criticalRecoverTime/currentDifficultyMult,true);
 			}
 		}
 		else{
@@ -873,6 +876,8 @@ public class EnemyS : MonoBehaviour {
 			ResetMaterial();
 
 			GetComponent<BleedingS>().StartDeath();
+
+			CameraPOIS.POI.JumpToMidpoint(transform.position, GetPlayerReference().transform.position);
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep();

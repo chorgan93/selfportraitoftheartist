@@ -24,6 +24,8 @@ public class ExamineLabelS : MonoBehaviour {
 	private float buttonSetDelay = 0.04f;
 	private float currentButtonSet;
 
+	private bool dontShow = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -37,13 +39,14 @@ public class ExamineLabelS : MonoBehaviour {
 		buttonSet = false;
 
 		currentButtonSet = buttonSetDelay;
+		dontShow = PlayerStatDisplayS.RECORD_MODE;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if (myRef.examining && !myRef.talking){
+		if (myRef.examining && !myRef.talking && !dontShow){
 
 			if (!buttonSet){
 

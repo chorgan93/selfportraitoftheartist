@@ -694,6 +694,11 @@ public class PlayerStatsS : MonoBehaviour {
 					}
 				//}
 
+				if (damageSource != null){
+					CameraPOIS.POI.JumpToMidpoint(transform.position, damageSource.transform.position);
+				}else{
+					CameraPOIS.POI.JumpToPoint(transform.position);
+				}
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
 					CameraShakeS.C.TimeSleepBigPunch(0.5f);

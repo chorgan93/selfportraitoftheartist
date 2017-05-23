@@ -568,6 +568,11 @@ public class PlayerController : MonoBehaviour {
 
 	public void WitchTime(EnemyS targetEnemy, bool fromParry = false){
 		if (!_allowCounterAttack && !_doingCounterAttack && !counterQueued && !_delayWitchTime){
+			if (targetEnemy != null){
+				CameraPOIS.POI.JumpToMidpoint(transform.position, targetEnemy.transform.position);
+			}else{
+				CameraPOIS.POI.JumpToPoint(transform.position);
+			}
 			if (!fromParry){
 				if (targetEnemy != null){
 					_counterNormal = (targetEnemy.transform.position-transform.position).normalized;
@@ -1784,6 +1789,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void DelayWitchTimeActivate(EnemyS targetEnemy){
 		_delayWitchTime = true;
+		_counterTarget = targetEnemy;
 		_counterNormal = (targetEnemy.transform.position-transform.position).normalized;
 		parryDelayWitchCountdown = parryDelayWitchTime;
 		_dodgeEffectRef.FireEffect(true);
@@ -1884,6 +1890,7 @@ public class PlayerController : MonoBehaviour {
 		if (_currentCombatManager != null){
 			_currentCombatManager.Initialize(true);
 			FlashMana();
+			CameraPOIS.POI.JumpToPoint(transform.position);
 			CameraEffectsS.E.ResetEffect();
 			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 			CameraShakeS.C.TimeSleep(0.08f);
@@ -2461,10 +2468,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void SetExamining(bool nEx, Vector3 newExaminePos, string newExString = ""){
+
 		_overrideExamineString = newExString;
 		if (newExaminePos != Vector3.zero){
 		_examineStringPos = newExaminePos;
 		}
+		
 		_examining = nEx;
 	}
 

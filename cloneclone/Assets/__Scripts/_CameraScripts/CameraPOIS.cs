@@ -18,6 +18,18 @@ public class CameraPOIS : MonoBehaviour {
 
 	private Vector3 currentPosition;
 
+	//private float subtleLookAmt = 1f;
+
+	public static CameraPOIS POI;
+
+	void Awake(){
+		if (POI != null){
+			Destroy(gameObject);
+		}else{
+			POI = this; 
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 
@@ -39,7 +51,11 @@ public class CameraPOIS : MonoBehaviour {
 			if (!controlRef){
 				controlRef = playerReference.myControl;
 			}
-			
+
+			// experiment - was pretty nauseating
+			//lookVector.x = controlRef.RightHorizontal() + controlRef.Horizontal()*subtleLookAmt;
+			//lookVector.y = controlRef.RightVertical() + controlRef.Vertical()*subtleLookAmt;
+
 			lookVector.x = controlRef.RightHorizontal();
 			lookVector.y = controlRef.RightVertical();
 			lookVector.z = 0;
@@ -78,5 +94,18 @@ public class CameraPOIS : MonoBehaviour {
 
 		}
 
+	}
+
+	public void JumpToPoint(Vector3 newPoint){
+		Vector3 newPos = newPoint;
+		newPos.z = transform.position.z;
+		transform.position = newPos;
+		CameraFollowS.F.CutTo(transform.position);
+	}
+	public void JumpToMidpoint(Vector3 positionA, Vector3 positionB){
+		Vector3 newPos = (positionA+positionB)/2f;
+		newPos.z = transform.position.z;
+		transform.position = newPos;
+		CameraFollowS.F.CutTo(transform.position);
 	}
 }

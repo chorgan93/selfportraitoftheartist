@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BGMLayerS : MonoBehaviour {
 
+	private const bool NO_MUSIC = false;
+
 	public bool matchTimeStamp = true;
 	public float startVolume;
 	public float maxVolume;
@@ -57,6 +59,7 @@ public class BGMLayerS : MonoBehaviour {
 
 	public void FadeIn(bool instant = false){
 
+		if (!PlayerStatDisplayS.RECORD_MODE && !NO_MUSIC){
 		if (!mySource.isPlaying){
 			mySource.Play();
 		}
@@ -70,6 +73,7 @@ public class BGMLayerS : MonoBehaviour {
 			fadingIn = false;
 			fadingOut = false;
 			mySource.volume = maxVolume*BGMHolderS.volumeMult;
+		}
 		}
 
 		destroyOnFade = false;
