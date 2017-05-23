@@ -10,7 +10,7 @@ public class DelayFadeS : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		if (stopAtProgression <= -1 || (stopAtProgression > -1 && StoryProgressionS.storyProgress.Contains(stopAtProgression))){
+		if (stopAtProgression <= -1 || (stopAtProgression > -1 && !StoryProgressionS.storyProgress.Contains(stopAtProgression))){
 			fadeTarget.ChangeFadeTime(delayFade, delayWake);
 		}
 	}

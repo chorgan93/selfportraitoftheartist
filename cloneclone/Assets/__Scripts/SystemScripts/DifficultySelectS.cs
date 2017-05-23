@@ -125,7 +125,7 @@ public class DifficultySelectS : MonoBehaviour {
 			cameraShakeTriggerCount -= Time.deltaTime;
 			if (cameraShakeTriggerCount <= 0){
 				cameraShakeTriggerCount = cameraShakeTriggerTime;
-				CameraShakeS.C.MicroShake(0.4f);
+				CameraShakeS.C.MicroShake(0.6f);
 			}
 		}
 

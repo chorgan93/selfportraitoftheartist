@@ -91,7 +91,7 @@ public class BarrierS : MonoBehaviour {
 		}
 
 		if (turnOffAtProgression > -1){
-			if (StoryProgressionS.ReturnHighestProgress() >= turnOffAtProgression){
+			if (StoryProgressionS.storyProgress.Contains(turnOffAtProgression)){
 				gameObject.SetActive(false);
 				barrierCollider.enabled = false;
 			}
