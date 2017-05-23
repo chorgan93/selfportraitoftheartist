@@ -48,6 +48,11 @@ public class CameraFollowS : MonoBehaviour {
 	private PlayerController playerRef;
 
 	public static CameraFollowS F;
+	public static float ZOOM_LEVEL = 1f;
+	public static int zoomInt = 0;
+	private const float zoomLevelDiff = 0.004f;
+	private const int zoomLevelMin = -2;
+	private const int zoomLevelMax = 2;
 	
 	//_________________________________________________GETTERS AND SETTERS
 	
@@ -70,8 +75,8 @@ public class CameraFollowS : MonoBehaviour {
 		startOrthoSize = myCam.orthographicSize;
 		if (PlayerStatDisplayS.RECORD_MODE){
 			startOrthoSize*=RECORD_MODE_ORTHO_MULT;
-			myCam.orthographicSize = startOrthoSize;
 		}
+		myCam.orthographicSize = startOrthoSize*ZOOM_LEVEL;
 
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
@@ -146,24 +151,24 @@ public class CameraFollowS : MonoBehaviour {
 			if (zoomingIn){
 				if (!slowerZoom){
 					if (dialogueZoom){
-						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult;
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL;
 					}else{
-						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult;
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult*ZOOM_LEVEL;
 					}
 				}else{
 					if (dialogueZoom){
-						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize 
-							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult;
+						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
+							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL;
 					}else{
-						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize 
-							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult;
+						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
+							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL;
 					}
 				}
 			}
 			else{
 				if (!CameraShakeS.C.isSleeping){
 	
-					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*focusMult;
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*startOrthoSize*focusMult*ZOOM_LEVEL;
 				
 	
 				}
@@ -208,20 +213,20 @@ public class CameraFollowS : MonoBehaviour {
 	}
 	public void PunchIn(){
 
-		myCam.orthographicSize =  startOrthoSize * punchInMult;
+		myCam.orthographicSize =  (startOrthoSize * punchInMult)*ZOOM_LEVEL;
 
 	}
 
 	public void PunchInCustom(float punchMult, float punchHangTime){
 		
-		myCam.orthographicSize =  startOrthoSize * punchMult;
+		myCam.orthographicSize =  (startOrthoSize * punchMult)*ZOOM_LEVEL;
 		_punchHangTime = punchHangTime;
 		
 	}
 
 	public void PunchInBig(){
 
-		myCam.orthographicSize =  startOrthoSize * punchInMultDeath;
+		myCam.orthographicSize =  (startOrthoSize * punchInMultDeath)*ZOOM_LEVEL;
 
 	}
 
@@ -303,6 +308,26 @@ public class CameraFollowS : MonoBehaviour {
 	}
 	public void SetOverrideResetPOI(GameObject newOverride){
 		overrideResetPoi = newOverride;
+	}
+
+	//_____________________________OPTIONS METHODS
+	public static void ChangeZoomLevel(int dir){
+		if (dir > 0){
+			if (zoomInt < zoomLevelMax){
+				zoomInt++;
+				ZOOM_LEVEL = 1f+zoomInt*zoomLevelDiff;
+			}
+		}else{
+			if (zoomInt > zoomLevelMin){
+				zoomInt--;
+				ZOOM_LEVEL = 1f+zoomInt*zoomLevelDiff;
+			}
+		}
+	}
+
+	public static void ResetZoomLevel(){
+		zoomInt = 0;
+		ZOOM_LEVEL = 1f;
 	}
 
 

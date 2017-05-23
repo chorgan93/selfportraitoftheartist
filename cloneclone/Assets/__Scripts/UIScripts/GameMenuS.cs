@@ -43,6 +43,7 @@ public class GameMenuS : MonoBehaviour {
 	public Text musicText;
 	public Text sfxText;
 	public Text shakeText;
+	public Text zoomText;
 	public RectTransform optionsSelector;
 
 
@@ -138,7 +139,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 6)){
+			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 7)){
 
 				selectButtonUp = false;
 				cancelButtonUp = false;
@@ -171,6 +172,11 @@ public class GameMenuS : MonoBehaviour {
 			// screenshake set
 			if (currentSelection == 5){
 				HandleShakeOption();
+			}
+
+			// zoom set
+			if (currentSelection == 6){
+				HandleZoomOption();
 			}
 		}
 
@@ -516,6 +522,39 @@ public class GameMenuS : MonoBehaviour {
 
 	}
 
+	void HandleZoomOption(){
+
+		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+			stickReset = false;
+			CameraFollowS.ChangeZoomLevel(1);
+			UpdateCameraZoomSettingText();
+		}
+		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+			stickReset = false;
+			CameraFollowS.ChangeZoomLevel(-1);
+			UpdateCameraZoomSettingText();
+		}
+
+		// exit options
+		if (selectButtonUp && myControl.MenuSelectButton()){
+			selectButtonUp = false;
+			CameraFollowS.ChangeZoomLevel(1);
+			UpdateCameraZoomSettingText();
+
+		}
+
+	}
+
+	void UpdateCameraZoomSettingText(){
+		if (CameraFollowS.zoomInt == 0){
+			zoomText.text = "+/- " + CameraFollowS.zoomInt.ToString();
+		}else if (CameraFollowS.zoomInt > 0){
+			zoomText.text = "+ " + CameraFollowS.zoomInt.ToString();
+		}else{
+			zoomText.text = CameraFollowS.zoomInt.ToString();
+		}
+	}
+
 	void MatchOptionsText(){
 
 		UpdateControlSettingText();
@@ -526,6 +565,7 @@ public class GameMenuS : MonoBehaviour {
 		}else{
 			shakeText.text = "OFF";
 		}
+		UpdateCameraZoomSettingText();
 		musicText.text = BGMHolderS.volumeMult*100f + "%";
 		sfxText.text = SFXObjS.volumeSetting*100f + "%";
 	}
@@ -535,5 +575,6 @@ public class GameMenuS : MonoBehaviour {
 		BGMHolderS.volumeMult = 1f;
 		SFXObjS.volumeSetting = 1f;
 		CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+		CameraFollowS.ResetZoomLevel();
 	}
 }
