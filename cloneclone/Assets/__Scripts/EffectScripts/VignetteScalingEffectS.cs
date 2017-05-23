@@ -31,7 +31,7 @@ public class VignetteScalingEffectS : MonoBehaviour {
 			if (scaleChangeCountdown <= 0){
 				scaleChangeCountdown = scaleChangeTime;
 	
-				newScale = originalScale;
+				newScale = originalScale*CameraFollowS.ZOOM_LEVEL;
 				newScale.x += Random.insideUnitCircle.x * xChangeAmt;
 				newScale.y += Random.insideUnitCircle.y * yChangeAmt;
 				transform.localScale = newScale;
