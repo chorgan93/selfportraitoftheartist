@@ -12,12 +12,16 @@ public class ChapterTrigger : MonoBehaviour {
 
 	private bool activated = false;
 
+	public int addToProgression = -1;
+
 	void Start(){
 
 		chapterRef = GameObject.Find("ChapterText").GetComponent<InstructionTextS>();
 		chapterString = chapterString.Replace("NEWLINE", "\n");
 
-
+		if (addToProgression > -1){
+			StoryProgressionS.SetStory(addToProgression);
+		}
 	}
 
 	void Update(){

@@ -222,6 +222,7 @@ public class PlayerStatsS : MonoBehaviour {
 						if (_currentMana < maxMana*CAN_USE_MANA*0.5f){
 
 							warningReference.NewMessage("— Stamina LOW —", Color.cyan, Color.grey, true, 1);
+							//warningReference.NewMessage("— T H A N K _ Y O U ! ! —", Color.black, Color.cyan, true, 1);
 						}
 
 			}else{
@@ -237,6 +238,7 @@ public class PlayerStatsS : MonoBehaviour {
 						_exhausted = true;
 
 						warningReference.NewMessage("! ! STAMINA OUT ! !", Color.cyan, Color.red, true, 1);
+						//warningReference.NewMessage("— T H A N K _ Y O U ! ! —", Color.black, Color.magenta, true, 1);
 
 			}
 

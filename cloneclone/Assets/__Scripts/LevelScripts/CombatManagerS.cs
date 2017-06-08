@@ -54,6 +54,7 @@ public class CombatManagerS : MonoBehaviour {
 	}
 
 	IEnumerator CompleteCombat(){
+		CameraFollowS.F.ClearStunnedEnemies();
 		CameraShakeS.C.TimeSleepEndCombat(0.12f);
 		completed = true;
 		CameraEffectsS.E.ResetSound();

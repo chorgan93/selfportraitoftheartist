@@ -14,6 +14,7 @@ public class CameraFollowS : MonoBehaviour {
 	private Vector3 _currentPos;
 
 	private float RECORD_MODE_ORTHO_MULT = 0.9f;
+	private const float STUN_ORTHO_MULT = 0.9f;
 
 	//__________________________________________________INSTANCE PROPERTIES
 
@@ -21,12 +22,17 @@ public class CameraFollowS : MonoBehaviour {
 	private GameObject defaultPoi;
 	private GameObject overrideResetPoi;
 
+	public Vector3 offsetPos = Vector3.zero;
+	public float followSpeedMultiplier = 1f;
+
 	private float startOrthoSize;
 	private float focusMult = 0.9f;
 	private float punchInMult = 0.7f;
 	private float punchInMultDeath = 0.4f;
 	private Camera myCam;
 	private float _punchHangTime = 0f;
+
+	private float stunOrthoSize;
 
 	private float minX;
 	private float maxX;
@@ -53,6 +59,9 @@ public class CameraFollowS : MonoBehaviour {
 	private const float zoomLevelDiff = 0.004f;
 	private const int zoomLevelMin = -2;
 	private const int zoomLevelMax = 2;
+
+	private List<EnemyS> stunnedEnemies;
+
 	
 	//_________________________________________________GETTERS AND SETTERS
 	
@@ -77,6 +86,7 @@ public class CameraFollowS : MonoBehaviour {
 			startOrthoSize*=RECORD_MODE_ORTHO_MULT;
 		}
 		myCam.orthographicSize = startOrthoSize*ZOOM_LEVEL;
+		stunOrthoSize = startOrthoSize*STUN_ORTHO_MULT;
 
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
@@ -85,12 +95,10 @@ public class CameraFollowS : MonoBehaviour {
 			playerRef = GameObject.Find("Player").GetComponent<PlayerController>();
 		}
 
-			
+		stunnedEnemies = new List<EnemyS>();
 			Vector3 camPos = poi.transform.position+_camPosOffset;
 			_currentPos = transform.position;
 			transform.position = camPos;
-
-
 	
 	}
 	
@@ -112,15 +120,18 @@ public class CameraFollowS : MonoBehaviour {
 
 	//____________________________________________________PRIVATE METHODS
 
+
 	private void FollowPOI(){
 
 
-		Vector3 camPos = poi.transform.position+_camPosOffset;
+		Vector3 camPos = poi.transform.position+_camPosOffset+offsetPos;
 
 	
 			_currentPos = transform.position;
-			_currentPos.x = (1-_camEasing)*_currentPos.x + _camEasing*camPos.x;
-			_currentPos.y = (1-_camEasing)*_currentPos.y + _camEasing*camPos.y;
+
+		_currentPos.x = (1-_camEasing*followSpeedMultiplier)*_currentPos.x + followSpeedMultiplier*_camEasing*camPos.x;
+		_currentPos.y = (1-_camEasing*followSpeedMultiplier)*_currentPos.y + followSpeedMultiplier*_camEasing*camPos.y;
+	
 	
 			if (CameraShakeS.C.isShaking){
 				_currentPos += CameraShakeS.C.shakeOffset;
@@ -164,11 +175,13 @@ public class CameraFollowS : MonoBehaviour {
 							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL;
 					}
 				}
+			}else if (stunnedEnemies.Count > 0){
+				myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize
+					+ _camEasing*stunOrthoSize*ZOOM_LEVEL;
 			}
 			else{
 				if (!CameraShakeS.C.isSleeping){
-	
-					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*startOrthoSize*focusMult*ZOOM_LEVEL;
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*startOrthoSize*ZOOM_LEVEL;
 				
 	
 				}
@@ -328,6 +341,20 @@ public class CameraFollowS : MonoBehaviour {
 	public static void ResetZoomLevel(){
 		zoomInt = 0;
 		ZOOM_LEVEL = 1f;
+	}
+
+	public void AddStunnedEnemy(EnemyS newEnemy){
+		if (!stunnedEnemies.Contains(newEnemy)){
+			stunnedEnemies.Add(newEnemy);
+		}
+	}
+	public void RemoveStunnedEnemy(EnemyS newEnemy){
+		if (stunnedEnemies.Contains(newEnemy)){
+			stunnedEnemies.Remove(newEnemy);
+		}
+	}
+	public void ClearStunnedEnemies(){
+		stunnedEnemies.Clear();
 	}
 
 

@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private const string currentVer = "— v. 0.2.2 —";
+	private const string currentVer = "— v. 0.2.3 —";
 	private static bool hasSeenMainMenu = false;
 	
 	private ControlManagerS myController;

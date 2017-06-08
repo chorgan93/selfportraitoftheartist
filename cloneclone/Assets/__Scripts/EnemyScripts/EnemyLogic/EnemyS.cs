@@ -15,6 +15,7 @@ public class EnemyS : MonoBehaviour {
 
 	private const float VULN_EFFECT_RATE = 0.083f;
 	private const float VULN_EFFECT_AMT = 0.9f;
+
 	
 	//____________________________________ENEMY PROPERTIES
 
@@ -24,6 +25,8 @@ public class EnemyS : MonoBehaviour {
 	public bool debugMark = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
+	public float maxCritDamage = 9999f;
+	private float currentCritDamage;
 	[HideInInspector]
 	public float actingMaxHealth;
 	public bool showHealth;
@@ -314,6 +317,7 @@ public class EnemyS : MonoBehaviour {
 
 		currentDifficultyMult = DifficultyS.GetSinMult();
 		actingMaxHealth = maxHealth*currentDifficultyMult;
+		maxCritDamage *= DifficultyS.GetSinMult();
 
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
@@ -381,6 +385,9 @@ public class EnemyS : MonoBehaviour {
 
 		_isDead = false;
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
+		CameraFollowS.F.RemoveStunnedEnemy(this);
+
+		currentCritDamage = 0;
 
 		//EndAllBehaviors();
 
@@ -438,6 +445,7 @@ public class EnemyS : MonoBehaviour {
 				vulnerableCountdown -= Time.deltaTime;
 				if (vulnerableCountdown <= 0){
 					_isCritical = false;
+					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 
 					_myAnimator.SetBool("Crit", false);
@@ -783,6 +791,24 @@ public class EnemyS : MonoBehaviour {
 		if (_isCritical){
 			_currentHealth -= dmg*critDmg*damageMultiplier;
 			damageTaken+=dmg*critDmg*damageMultiplier;
+			currentCritDamage += dmg*critDmg*damageMultiplier;
+			if (currentCritDamage > maxCritDamage){
+				vulnerableCountdown = 0;
+					_isCritical = false;
+					CameraFollowS.F.RemoveStunnedEnemy(this);
+					_isVulnerable = false;
+
+					_myAnimator.SetBool("Crit", false);
+
+					if (!_hitStunned){
+						_myAnimator.SetLayerWeight(1, 0f);
+					}
+
+					// reset whichever state should be active
+					_currentBehavior.EndAction(false);
+					_currentState.StartActions();
+
+			}
 		}else{
 			_currentHealth -= dmg*damageMultiplier;
 			damageTaken += dmg*damageMultiplier;
@@ -833,6 +859,8 @@ public class EnemyS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.2f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.7f, 0.1f);
 					_isCritical = true;
+					currentCritDamage = 0;
+					CameraFollowS.F.AddStunnedEnemy(this);
 					_critScreen.Flash();
 					GetPlayerReference().SendCritMessage();
 				
@@ -860,6 +888,7 @@ public class EnemyS : MonoBehaviour {
 			}
 			_killScreen.Flash();
 			_isDead = true;
+			CameraFollowS.F.RemoveStunnedEnemy(this);
 			Stun (0);
 			EndAllBehaviors();
 			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);

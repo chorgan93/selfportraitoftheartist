@@ -5,16 +5,21 @@ public class ProgressionTriggerS : MonoBehaviour {
 	
 	public int progressionSet = -1;
 	private bool _activated = false;
+	public bool activateOnStart = false;
 
 	void Start(){
 		if (StoryProgressionS.storyProgress.Contains(progressionSet)){
 			_activated = true;
 		}
+		if (!_activated && activateOnStart){
+
+			StoryProgressionS.SetStory(progressionSet);
+		}
 	}
 
 	void OnTriggerEnter(Collider other){
 
-		if (other.gameObject.tag == "Player" && !_activated){
+		if (other.gameObject.tag == "Player" && !_activated && !activateOnStart){
 			StoryProgressionS.SetStory(progressionSet);
 		}
 

@@ -24,6 +24,8 @@ public class InGameCinemaTextS : MonoBehaviour {
 		_myHandler = GetComponentInParent<InGameCinematicS>();
 		_myControl = _myHandler.pRef.myControl;
 
+		AddNewlines();
+
 		DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
 
 		CheckForDialogueAfter();
@@ -64,6 +66,12 @@ public class InGameCinemaTextS : MonoBehaviour {
 			if (_myHandler.cinemaDialogues[i].myCinemaStep == myCinemaStep+1){
 				textAfter = true;
 			}
+		}
+	}
+
+	void AddNewlines(){
+		for (int i = 0; i < textStrings.Length; i++){
+			textStrings[i] = textStrings[i].Replace("NEWLINE","\n");
 		}
 	}
 }

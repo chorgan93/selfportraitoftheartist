@@ -58,7 +58,7 @@ public class FadeScreenUI : MonoBehaviour {
 		}
 
 		if (_delayWakeUp){
-			pRef = darknessTracker.pStatRef.pRef;
+			pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 		}
 	
 	}

@@ -17,6 +17,7 @@ public class CameraPOIS : MonoBehaviour {
 	private float lookWeight = 1f;
 
 	private Vector3 currentPosition;
+	private bool CAMERA_LOCK = false;
 
 	//private float subtleLookAmt = 1f;
 
@@ -40,6 +41,12 @@ public class CameraPOIS : MonoBehaviour {
 		lookVector = Vector3.zero;
 	
 	}
+
+	#if UNITY_EDITOR_OSX || UNITY_EDITOR || UNITY_EDITOR_64
+	void Update(){
+		CheckLock();
+	}
+	#endif
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -90,10 +97,19 @@ public class CameraPOIS : MonoBehaviour {
 				newPos += lookVector*lookAmt;
 			}
 
-			transform.position = newPos;
+			if (!CAMERA_LOCK){
+				transform.position = newPos;
+			}
 
 		}
 
+	}
+
+	void CheckLock(){
+
+		if (Input.GetKeyDown(KeyCode.Alpha8)){
+			CAMERA_LOCK = !CAMERA_LOCK;
+		}
 	}
 
 	public void JumpToPoint(Vector3 newPoint){

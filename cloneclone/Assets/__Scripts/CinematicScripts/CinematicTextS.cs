@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class CinematicTextS : MonoBehaviour {
 
 	public Text myText;
+	public Text subText;
 	public string targetString;
 	private string displayString;
 
@@ -15,6 +16,11 @@ public class CinematicTextS : MonoBehaviour {
 	public float readTime = 1.4f; // time after completion of scroll before destroying
 	private bool _doneScrolling = false;
 
+	[Header("Sound Prefab")]
+	public GameObject sfxObj;
+	public int soundRate = 1;
+	private int soundCountdown;
+
 	// Use this for initialization
 	void Start () {
 
@@ -23,6 +29,10 @@ public class CinematicTextS : MonoBehaviour {
 		currentChar = 0;
 
 		targetString = targetString.Replace("/n", "\n");
+		soundCountdown = soundRate;
+		if (subText){
+			subText.text = myText.text;
+		}
 
 	
 	}
@@ -39,8 +49,18 @@ public class CinematicTextS : MonoBehaviour {
 				displayString += targetString[currentChar];
 				currentChar++;
 				myText.text = displayString;
+				if (subText){
+					subText.text = myText.text;
+				}
 				if (currentChar >= targetString.Length){
 					_doneScrolling = true;
+				}
+				if (sfxObj){
+					soundCountdown--;
+					if (soundCountdown <= 0){
+					Instantiate(sfxObj);
+						soundCountdown = soundRate;
+					}
 				}
 			}
 			
@@ -48,6 +68,9 @@ public class CinematicTextS : MonoBehaviour {
 			readTime -= Time.deltaTime;
 			if (readTime <= 0){
 				myText.text = "";
+				if (subText){
+					subText.text = "";
+				}
 				Destroy(gameObject);
 			}
 		}
