@@ -11,6 +11,8 @@ public class VignetteScalingEffectS : MonoBehaviour {
 	public float yChangeAmt = 0f;
 	private Vector3 newScale;
 	private Vector3 originalScale;
+	private float bigFOVScalar = 1.1f;
+	private float smallFOVScalar = 0.97f;
 
 	// Use this for initialization
 	void Start () {
@@ -31,10 +33,18 @@ public class VignetteScalingEffectS : MonoBehaviour {
 			if (scaleChangeCountdown <= 0){
 				scaleChangeCountdown = scaleChangeTime;
 	
-				newScale = originalScale*CameraFollowS.ZOOM_LEVEL;
+				newScale = originalScale;
 				newScale.x += Random.insideUnitCircle.x * xChangeAmt;
 				newScale.y += Random.insideUnitCircle.y * yChangeAmt;
+				newScale*=CameraFollowS.ZOOM_LEVEL;
+				if (CameraFollowS.ZOOM_LEVEL > 1){
+					newScale*=bigFOVScalar;
+				}
+				if (CameraFollowS.ZOOM_LEVEL < 1){
+					newScale*=smallFOVScalar;
+				}
 				transform.localScale = newScale;
+
 			}
 		}
 	
