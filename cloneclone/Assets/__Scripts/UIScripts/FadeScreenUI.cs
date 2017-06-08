@@ -26,6 +26,9 @@ public class FadeScreenUI : MonoBehaviour {
 	private float addLetterRate = 0.1f;
 	private float addLetterCountdown;
 
+	private Vector3 loadingTextPos;
+	private float loadingTextSize;
+
 	public static bool dontAllowReset = false;
 
 	private DarknessPercentUIS darknessTracker;
@@ -45,6 +48,8 @@ public class FadeScreenUI : MonoBehaviour {
 		_textColor.a = 0f;
 		loadingText.color = _textColor;
 		loadingText.text = loadingString;
+		loadingTextPos = loadingText.transform.position;
+		loadingTextSize = loadingText.fontSize;
 
 		if (NoFade){
 			_myColor.a = 0f;
@@ -203,6 +208,14 @@ public class FadeScreenUI : MonoBehaviour {
 		StartCoroutine(LoadNextScene());
 		dontAllowReset = true;
 		startedLoading = true;
+		SetText();
+	}
+
+	void SetText(){
+		loadingText.fontSize = Mathf.RoundToInt(loadingTextSize*CameraFollowS.ZOOM_LEVEL);
+		loadingTextPos.x*=CameraFollowS.ZOOM_LEVEL;
+		loadingTextPos.y*=CameraFollowS.ZOOM_LEVEL;
+		loadingText.transform.position = loadingTextPos;
 	}
 
 	private IEnumerator LoadNextScene(){
