@@ -348,6 +348,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		buddyList.Add(unlockedBuddies[0].buddyNum);
 		equippedWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
 		subWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
+		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
+		lHandler.ResetUpgrades();
 		SaveLoadout(equippedWeapons, subWeapons, buddyList);
 		GameMenuS.ResetOptions();
 		OverwriteInventoryData();

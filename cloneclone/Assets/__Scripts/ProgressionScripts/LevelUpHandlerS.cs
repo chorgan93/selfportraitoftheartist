@@ -7,20 +7,44 @@ public class LevelUpHandlerS : MonoBehaviour {
 	// place this on collection handler and make sure to load along with collection
 
 	public List<LevelUpS> nextLevelUps = new List<LevelUpS>();
+	private List<LevelUpS> nextLevelUpsReset = new List<LevelUpS>();
 
 	public List<LevelUpS> availableLevelUps = new List<LevelUpS>();
+	private List<LevelUpS> availableLevelUpsReset = new List<LevelUpS>();
 
 	public List<LockedLevelUpS> lockedLevelUps = new List<LockedLevelUpS>();
+	private List<LockedLevelUpS> lockedLevelUpsReset = new List<LockedLevelUpS>();
 
 	private int currentPlayerLvl = 0;
+
+	private bool initialized = false;
 
 
 	public void LoadLists(List<LevelUpS> nLU, List<LevelUpS> aLU, List<LockedLevelUpS> lLU){
 
+		if (!initialized){
+			SetDefaults();
+			initialized = true;
+		}
 		nextLevelUps = nLU;
 		availableLevelUps = aLU;
 		lockedLevelUps = lLU;
 	
+	}
+
+	void SetDefaults(){
+		nextLevelUpsReset.Clear();
+		availableLevelUpsReset.Clear();
+		lockedLevelUpsReset.Clear();
+		for (int i = 0; i < nextLevelUps.Count; i++){
+			nextLevelUpsReset.Add(nextLevelUps[i]);
+		}
+		for (int i = 0; i < availableLevelUps.Count; i++){
+			availableLevelUpsReset.Add(availableLevelUps[i]);
+		}
+		for (int i = 0; i < lockedLevelUps.Count; i++){
+			lockedLevelUpsReset.Add(lockedLevelUps[i]);
+		}
 	}
 
 	public void NewNextLevelUps(int newL){
@@ -53,6 +77,23 @@ public class LevelUpHandlerS : MonoBehaviour {
 
 	public void AddAvailableUpgrade(LevelUpS nextLvU){
 		availableLevelUps.Add(nextLvU);
+	}
+
+	public void ResetUpgrades(){
+		
+		nextLevelUps.Clear();
+		availableLevelUps.Clear();
+		lockedLevelUps.Clear();
+
+		for (int i = 0; i < nextLevelUpsReset.Count; i++){
+			nextLevelUps.Add(nextLevelUpsReset[i]);
+		}
+		for (int i = 0; i < availableLevelUpsReset.Count; i++){
+			availableLevelUps.Add(availableLevelUpsReset[i]);
+		}
+		for (int i = 0; i < lockedLevelUpsReset.Count; i++){
+			lockedLevelUps.Add(lockedLevelUpsReset[i]);
+		}
 	}
 
 }

@@ -857,7 +857,7 @@ public class EnemyS : MonoBehaviour {
 				if (!_isCritical){
 					_myAnimator.SetBool("Hit", true);
 					CameraShakeS.C.TimeSleep(0.2f);
-					CameraShakeS.C.SloAndPunch(0.1f, 0.7f, 0.1f);
+					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
 					currentCritDamage = 0;
 					CameraFollowS.F.AddStunnedEnemy(this);
@@ -910,7 +910,7 @@ public class EnemyS : MonoBehaviour {
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep();
-			CameraShakeS.C.SloAndPunch(0.3f, 0.7f, 0.2f);
+			CameraShakeS.C.SloAndPunch(0.3f, 0.8f, 0.2f);
 			
 			currentKnockbackCooldown = knockbackTime;
 		}

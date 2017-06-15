@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 356a777fca0cf49cfbeb42a9936eafab
-timeCreated: 1473195723
+timeCreated: 1497505743
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,6 +39,29 @@ TextureImporter:
     21300064: occultthing_32
     21300066: occultthing_33
     21300068: occultthing_34
+    21300070: occultthing_35
+    21300072: occultthing_36
+    21300074: occultthing_37
+    21300076: occultthing_38
+    21300078: occultthing_39
+    21300080: occultthing_40
+    21300082: occultthing_41
+    21300084: occultthing_42
+    21300086: occultthing_43
+    21300088: occultthing_44
+    21300090: occultthing_45
+    21300092: occultthing_46
+    21300094: occultthing_47
+    21300096: occultthing_48
+    21300098: occultthing_49
+    21300100: occultthing_50
+    21300102: occultthing_51
+    21300104: occultthing_52
+    21300106: occultthing_53
+    21300108: occultthing_54
+    21300110: occultthing_55
+    21300112: occultthing_56
+    21300114: occultthing_57
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,7 +75,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -72,20 +95,213 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: occultthing_0
+    - serializedVersion: 2
+      name: occultthing_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_15
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_16
       rect:
         serializedVersion: 2
         x: 0
@@ -95,7 +311,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_1
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_17
       rect:
         serializedVersion: 2
         x: 128
@@ -105,7 +323,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_2
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_18
       rect:
         serializedVersion: 2
         x: 256
@@ -115,7 +335,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_3
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_19
       rect:
         serializedVersion: 2
         x: 384
@@ -125,7 +347,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_4
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_20
       rect:
         serializedVersion: 2
         x: 512
@@ -135,7 +359,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_5
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_21
       rect:
         serializedVersion: 2
         x: 640
@@ -145,7 +371,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_6
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_22
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_23
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_24
       rect:
         serializedVersion: 2
         x: 0
@@ -155,7 +407,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_7
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_25
       rect:
         serializedVersion: 2
         x: 128
@@ -165,7 +419,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_8
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_26
       rect:
         serializedVersion: 2
         x: 256
@@ -175,7 +431,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_9
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_27
       rect:
         serializedVersion: 2
         x: 384
@@ -185,7 +443,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_10
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_28
       rect:
         serializedVersion: 2
         x: 512
@@ -195,7 +455,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_11
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_29
       rect:
         serializedVersion: 2
         x: 640
@@ -205,7 +467,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_12
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_31
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_32
       rect:
         serializedVersion: 2
         x: 0
@@ -215,7 +503,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_13
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_33
       rect:
         serializedVersion: 2
         x: 128
@@ -225,7 +515,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_14
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_34
       rect:
         serializedVersion: 2
         x: 256
@@ -235,7 +527,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_15
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_35
       rect:
         serializedVersion: 2
         x: 384
@@ -245,7 +539,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_16
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_36
       rect:
         serializedVersion: 2
         x: 512
@@ -255,7 +551,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_17
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_37
       rect:
         serializedVersion: 2
         x: 640
@@ -265,7 +563,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_18
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_38
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_39
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_40
       rect:
         serializedVersion: 2
         x: 0
@@ -275,7 +599,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_19
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_41
       rect:
         serializedVersion: 2
         x: 128
@@ -285,7 +611,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_20
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_42
       rect:
         serializedVersion: 2
         x: 256
@@ -295,7 +623,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_21
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_43
       rect:
         serializedVersion: 2
         x: 384
@@ -305,7 +635,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_22
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_44
       rect:
         serializedVersion: 2
         x: 512
@@ -315,7 +647,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_23
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_45
       rect:
         serializedVersion: 2
         x: 640
@@ -325,7 +659,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_24
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_46
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_47
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_48
       rect:
         serializedVersion: 2
         x: 0
@@ -335,7 +695,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_25
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_49
       rect:
         serializedVersion: 2
         x: 128
@@ -345,7 +707,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_26
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_50
       rect:
         serializedVersion: 2
         x: 256
@@ -355,7 +719,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_27
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_51
       rect:
         serializedVersion: 2
         x: 384
@@ -365,7 +731,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_28
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_52
       rect:
         serializedVersion: 2
         x: 512
@@ -375,7 +743,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_29
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_53
       rect:
         serializedVersion: 2
         x: 640
@@ -385,7 +755,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_30
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_54
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_55
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_56
       rect:
         serializedVersion: 2
         x: 0
@@ -395,7 +791,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_31
+      outline: []
+    - serializedVersion: 2
+      name: occultthing_57
       rect:
         serializedVersion: 2
         x: 128
@@ -405,36 +803,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_32
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_33
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: occultthing_34
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -787,10 +787,10 @@ public class PlayerStatsS : MonoBehaviour {
 		//_currentMana = _savedMana;
 		warningReference.EndAll();
 		if (PlayerInventoryS.I.GetItemCount(0) == 1){
-			warningReference.NewMessage("— Resets LOW —",  warningReference.resetGreen, Color.white, false);
+			warningReference.NewMessage("— REWINDs LOW —",  warningReference.resetGreen, Color.white, false);
 		}
 		if (PlayerInventoryS.I.GetItemCount(0) == 0){
-			warningReference.NewMessage("! RESETS OUT !",  warningReference.resetGreen,Color.red, false, 1);
+			warningReference.NewMessage("! REWINDS OUT !",  warningReference.resetGreen,Color.red, false, 1);
 		}
 	}
 }

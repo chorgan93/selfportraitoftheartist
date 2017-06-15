@@ -187,6 +187,8 @@ public class MeleeBuddyS : BuddyS {
 		canSwitch = true;
 		myAnimator.SetTrigger(fireAnimatorTrigger);
 
+		CameraShakeS.C.SloAndPunch(0.1f, 0.95f, 0.08f);
+
 		Vector3 aimDir = Vector3.zero;
 
 		myRigid.velocity = Vector3.zero;
