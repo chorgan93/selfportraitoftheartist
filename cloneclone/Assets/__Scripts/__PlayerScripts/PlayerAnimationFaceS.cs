@@ -9,6 +9,8 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 	private PlayerController myController;
 	private EnemyDetectS enemyDetect;
 
+	private bool dontFace = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -31,7 +33,7 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 			rigidReference = GetComponentInParent<PlayerController>().myRigidbody;
 		}
 
-		if (Time.timeScale != 0){
+		if (Time.timeScale != 0 && !dontFace){
 		currentSize = transform.localScale;
 
 		if (myController.facingUp){
@@ -78,5 +80,12 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		transform.localScale = currentSize;
 		}
 	
+	}
+
+	public void AllowFace(){
+		dontFace = false;
+	}
+	public void StopFace(){
+		dontFace = true;
 	}
 }

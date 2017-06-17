@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour {
 	private int flashChargeFrames;
 	private int flashDamageFrames;
 
+	private PlayerAnimationFaceS _myFace;
+
 	private float startDrag;
 
 	private Vector3 inputDirection;
@@ -361,6 +363,14 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void SetFace(bool newFace){
+		if (newFace){
+			_myFace.StopFace();
+		}else{
+			_myFace.AllowFace();
+		}
+	}
+
 	public void StartEmbrace(){
 		SetTalking(true);
 		_myAnimator.SetTrigger("Embrace");
@@ -386,6 +396,7 @@ public class PlayerController : MonoBehaviour {
 		//enemyDetect = GetComponentInChildren<EnemyDetectS>();
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
+		_myFace = myRenderer.GetComponent<PlayerAnimationFaceS>();
 		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
@@ -1963,6 +1974,7 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("HeavyAttacking", false);
 		attackEffectRef.EndAttackEffect();
+		_myFace.AllowFace();
 	}
 
 	public void TurnOffResting(){

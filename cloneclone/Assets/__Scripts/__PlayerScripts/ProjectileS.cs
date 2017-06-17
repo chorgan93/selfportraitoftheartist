@@ -28,6 +28,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Control Type")]
 	public bool lock4Directional = false;
 	public bool lock8Directional = false;
+	public bool lockFaceDirection = false;
 
 	[Header("Shot Stats")]
 	public float delayShotTime = 0.8f;
@@ -188,6 +189,8 @@ public class ProjectileS : MonoBehaviour {
 		}
 		enemiesHit.Clear();
 		// powerLvl = dmg;
+
+		playerReference.SetFace(lockFaceDirection);
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
