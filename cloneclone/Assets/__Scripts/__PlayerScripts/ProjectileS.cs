@@ -120,6 +120,7 @@ public class ProjectileS : MonoBehaviour {
 	private AnimObjS[] allAnimators;
 	private ProjectilePoolS myPool;
 	private Vector3 startScale;
+	public ChargeProjectileS chargeProjectileRef;
 
 
 	void FixedUpdate () {
@@ -215,8 +216,10 @@ public class ProjectileS : MonoBehaviour {
 				extraRangeCollider.enabled = true;
 			}else{
 				myCollider.enabled = true;
-				extraRangeCollider.enabled = false;
-				extraRangeSprite.SetActive(false);
+				if (!chargeProjectileRef){
+					extraRangeCollider.enabled = false;
+					extraRangeSprite.SetActive(false);
+				}
 			}
 		
 
@@ -418,6 +421,10 @@ public class ProjectileS : MonoBehaviour {
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, weaponNum);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
+
+			if (chargeProjectileRef != null){
+				chargeProjectileRef.TriggerHit();
+			}
 		}
 
 		if (other.gameObject.tag == "Enemy"){
@@ -446,7 +453,7 @@ public class ProjectileS : MonoBehaviour {
 	
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					 dmg, stunMult, critDmg*SolAugMult());
+					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*SolAugMult());
 
 				if (!hitEnemy.isDead){
 					_myPlayer.AddEnemyHit(hitEnemy);
@@ -468,6 +475,9 @@ public class ProjectileS : MonoBehaviour {
 					_myPlayer.myStats.RecoverCharge(absorbPercent);
 				}
 	
+				if (chargeProjectileRef != null){
+					chargeProjectileRef.TriggerHit();
+				}
 				enemiesHit.Add(hitEnemy);
 				HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			}

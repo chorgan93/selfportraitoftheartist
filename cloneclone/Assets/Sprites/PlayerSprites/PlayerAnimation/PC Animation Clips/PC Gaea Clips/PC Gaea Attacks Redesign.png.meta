@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3801597a936364a05a8e9e06e06f7306
-timeCreated: 1497657223
+timeCreated: 1497734977
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -122,6 +122,21 @@ TextureImporter:
     21300230: PC Gaea Attacks Redesign_57
     21300232: PC Gaea Attacks Redesign_58
     21300234: PC Gaea Attacks Redesign_59
+    21300236: PC Gaea Attacks Redesign_60
+    21300238: PC Gaea Attacks Redesign_61
+    21300240: PC Gaea Attacks Redesign_62
+    21300242: PC Gaea Attacks Redesign_63
+    21300244: PC Gaea Attacks Redesign_64
+    21300246: PC Gaea Attacks Redesign_65
+    21300248: PC Gaea Attacks Redesign_66
+    21300250: PC Gaea Attacks Redesign_67
+    21300252: PC Gaea Attacks Redesign_68
+    21300254: PC Gaea Attacks Redesign_69
+    21300256: PC Gaea Attacks Redesign_70
+    21300258: PC Gaea Attacks Redesign_71
+    21300260: PC Gaea Attacks Redesign_72
+    21300262: PC Gaea Attacks Redesign_73
+    21300264: PC Gaea Attacks Redesign_74
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -173,7 +188,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -185,7 +200,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 78
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -197,7 +212,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 156
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -209,7 +224,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 234
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -221,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 312
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -233,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 390
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -245,7 +260,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 468
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -257,7 +272,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 546
-        y: 546
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -268,8 +283,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 468
+        x: 624
+        y: 624
         width: 78
         height: 78
       alignment: 0
@@ -280,8 +295,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_9
       rect:
         serializedVersion: 2
-        x: 78
-        y: 468
+        x: 0
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -292,8 +307,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_10
       rect:
         serializedVersion: 2
-        x: 156
-        y: 468
+        x: 78
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -304,8 +319,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_11
       rect:
         serializedVersion: 2
-        x: 234
-        y: 468
+        x: 156
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -316,8 +331,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_12
       rect:
         serializedVersion: 2
-        x: 312
-        y: 468
+        x: 234
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -328,8 +343,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_13
       rect:
         serializedVersion: 2
-        x: 390
-        y: 468
+        x: 312
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -340,8 +355,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_14
       rect:
         serializedVersion: 2
-        x: 468
-        y: 468
+        x: 390
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -352,8 +367,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_15
       rect:
         serializedVersion: 2
-        x: 546
-        y: 468
+        x: 468
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -364,8 +379,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 390
+        x: 546
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -376,8 +391,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_17
       rect:
         serializedVersion: 2
-        x: 78
-        y: 390
+        x: 624
+        y: 546
         width: 78
         height: 78
       alignment: 0
@@ -388,8 +403,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_18
       rect:
         serializedVersion: 2
-        x: 156
-        y: 390
+        x: 0
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -400,8 +415,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_19
       rect:
         serializedVersion: 2
-        x: 234
-        y: 390
+        x: 78
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -412,8 +427,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_20
       rect:
         serializedVersion: 2
-        x: 312
-        y: 390
+        x: 156
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -424,8 +439,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_21
       rect:
         serializedVersion: 2
-        x: 390
-        y: 390
+        x: 234
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -436,8 +451,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_22
       rect:
         serializedVersion: 2
-        x: 468
-        y: 390
+        x: 312
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -448,8 +463,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_23
       rect:
         serializedVersion: 2
-        x: 546
-        y: 390
+        x: 390
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -460,8 +475,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 312
+        x: 468
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -472,8 +487,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_25
       rect:
         serializedVersion: 2
-        x: 78
-        y: 312
+        x: 546
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -484,8 +499,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_26
       rect:
         serializedVersion: 2
-        x: 156
-        y: 312
+        x: 624
+        y: 468
         width: 78
         height: 78
       alignment: 0
@@ -496,8 +511,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_27
       rect:
         serializedVersion: 2
-        x: 234
-        y: 312
+        x: 0
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -508,8 +523,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_28
       rect:
         serializedVersion: 2
-        x: 312
-        y: 312
+        x: 78
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -520,8 +535,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_29
       rect:
         serializedVersion: 2
-        x: 390
-        y: 312
+        x: 156
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -532,8 +547,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_30
       rect:
         serializedVersion: 2
-        x: 468
-        y: 312
+        x: 234
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -544,8 +559,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_31
       rect:
         serializedVersion: 2
-        x: 546
-        y: 312
+        x: 312
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -556,8 +571,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_32
       rect:
         serializedVersion: 2
-        x: 0
-        y: 234
+        x: 390
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -568,8 +583,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_33
       rect:
         serializedVersion: 2
-        x: 78
-        y: 234
+        x: 468
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -580,8 +595,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_34
       rect:
         serializedVersion: 2
-        x: 156
-        y: 234
+        x: 546
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -592,8 +607,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_35
       rect:
         serializedVersion: 2
-        x: 234
-        y: 234
+        x: 624
+        y: 390
         width: 78
         height: 78
       alignment: 0
@@ -604,8 +619,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_36
       rect:
         serializedVersion: 2
-        x: 312
-        y: 234
+        x: 0
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -616,8 +631,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_37
       rect:
         serializedVersion: 2
-        x: 390
-        y: 234
+        x: 78
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -628,8 +643,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_38
       rect:
         serializedVersion: 2
-        x: 468
-        y: 234
+        x: 156
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -640,8 +655,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_39
       rect:
         serializedVersion: 2
-        x: 546
-        y: 234
+        x: 234
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -652,8 +667,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_40
       rect:
         serializedVersion: 2
-        x: 0
-        y: 156
+        x: 312
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -664,8 +679,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_41
       rect:
         serializedVersion: 2
-        x: 78
-        y: 156
+        x: 390
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -676,8 +691,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_42
       rect:
         serializedVersion: 2
-        x: 156
-        y: 156
+        x: 468
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -688,8 +703,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_43
       rect:
         serializedVersion: 2
-        x: 234
-        y: 156
+        x: 546
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -700,8 +715,8 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_44
       rect:
         serializedVersion: 2
-        x: 312
-        y: 156
+        x: 624
+        y: 312
         width: 78
         height: 78
       alignment: 0
@@ -712,6 +727,174 @@ TextureImporter:
       name: PC Gaea Attacks Redesign_45
       rect:
         serializedVersion: 2
+        x: 0
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_46
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_47
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_48
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_49
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_50
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_51
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_52
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_53
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_55
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_56
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_57
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_58
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_59
+      rect:
+        serializedVersion: 2
         x: 390
         y: 156
         width: 78
@@ -721,7 +904,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_46
+      name: PC Gaea Attacks Redesign_60
       rect:
         serializedVersion: 2
         x: 468
@@ -733,7 +916,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_47
+      name: PC Gaea Attacks Redesign_61
       rect:
         serializedVersion: 2
         x: 546
@@ -745,7 +928,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_48
+      name: PC Gaea Attacks Redesign_62
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_63
       rect:
         serializedVersion: 2
         x: 0
@@ -757,7 +952,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_49
+      name: PC Gaea Attacks Redesign_64
       rect:
         serializedVersion: 2
         x: 78
@@ -769,7 +964,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_50
+      name: PC Gaea Attacks Redesign_65
       rect:
         serializedVersion: 2
         x: 156
@@ -781,7 +976,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_51
+      name: PC Gaea Attacks Redesign_66
       rect:
         serializedVersion: 2
         x: 234
@@ -793,7 +988,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_52
+      name: PC Gaea Attacks Redesign_67
       rect:
         serializedVersion: 2
         x: 312
@@ -805,7 +1000,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_53
+      name: PC Gaea Attacks Redesign_68
       rect:
         serializedVersion: 2
         x: 390
@@ -817,7 +1012,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_54
+      name: PC Gaea Attacks Redesign_69
       rect:
         serializedVersion: 2
         x: 468
@@ -829,7 +1024,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_55
+      name: PC Gaea Attacks Redesign_70
       rect:
         serializedVersion: 2
         x: 546
@@ -841,7 +1036,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_56
+      name: PC Gaea Attacks Redesign_71
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Gaea Attacks Redesign_72
       rect:
         serializedVersion: 2
         x: 0
@@ -853,7 +1060,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_57
+      name: PC Gaea Attacks Redesign_73
       rect:
         serializedVersion: 2
         x: 78
@@ -865,22 +1072,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_58
+      name: PC Gaea Attacks Redesign_74
       rect:
         serializedVersion: 2
         x: 156
-        y: 0
-        width: 78
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Gaea Attacks Redesign_59
-      rect:
-        serializedVersion: 2
-        x: 234
         y: 0
         width: 78
         height: 78

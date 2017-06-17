@@ -30,6 +30,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	public bool gaeaAug { get { return _gaeaAug; } }
 	public const float gaeaAugAmt = 0.75f;
 
+	private bool _realGaeaAug = false;
+	public bool realGaeaAug { get { return _gaeaAug; } }
+	public const float realGaeaAugAmt = 1.5f;
+
 	private bool _aeroAug = false;
 	public bool aeroAug { get { return _aeroAug; } }
 
@@ -120,6 +124,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_gaeaAug = false;
 		_aeroAug = false;
 		_thanaAug = false;
+		_realGaeaAug = false;
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
@@ -177,6 +182,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (_playerReference.EquippedWeaponAug().weaponNum == 5){
 			_solAug = true;
 		}
+		if (_playerReference.EquippedWeaponAug().weaponNum == 6){
+			_realGaeaAug = true;
+		}
 	}
 
 	private void TurnOnVirtueAugs(){
@@ -217,5 +225,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 			_anxiousAug = true;
 		}
 
+	}
+
+	public float GetGaeaAug(){
+		if (_realGaeaAug){
+			return realGaeaAugAmt;
+		}else{
+			return 1f;
+		}
 	}
 }
