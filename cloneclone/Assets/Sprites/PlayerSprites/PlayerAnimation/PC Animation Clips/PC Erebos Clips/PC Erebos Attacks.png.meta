@@ -1,0 +1,957 @@
+fileFormatVersion: 2
+guid: 773505817dfb04e03b525f3b8e77613c
+timeCreated: 1497844889
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Gaea Attacks Redesign_0
+    21300118: PC Gaea Attacks Redesign_1
+    21300120: PC Gaea Attacks Redesign_2
+    21300122: PC Gaea Attacks Redesign_3
+    21300124: PC Gaea Attacks Redesign_4
+    21300126: PC Gaea Attacks Redesign_5
+    21300128: PC Gaea Attacks Redesign_6
+    21300130: PC Gaea Attacks Redesign_7
+    21300132: PC Gaea Attacks Redesign_8
+    21300134: PC Gaea Attacks Redesign_9
+    21300136: PC Gaea Attacks Redesign_10
+    21300138: PC Gaea Attacks Redesign_11
+    21300140: PC Gaea Attacks Redesign_12
+    21300142: PC Gaea Attacks Redesign_13
+    21300144: PC Gaea Attacks Redesign_14
+    21300146: PC Gaea Attacks Redesign_15
+    21300148: PC Gaea Attacks Redesign_16
+    21300150: PC Gaea Attacks Redesign_17
+    21300152: PC Gaea Attacks Redesign_18
+    21300154: PC Gaea Attacks Redesign_19
+    21300156: PC Gaea Attacks Redesign_20
+    21300158: PC Gaea Attacks Redesign_21
+    21300160: PC Gaea Attacks Redesign_22
+    21300162: PC Gaea Attacks Redesign_23
+    21300164: PC Gaea Attacks Redesign_24
+    21300166: PC Gaea Attacks Redesign_25
+    21300168: PC Gaea Attacks Redesign_26
+    21300170: PC Gaea Attacks Redesign_27
+    21300172: PC Gaea Attacks Redesign_28
+    21300174: PC Gaea Attacks Redesign_29
+    21300176: PC Gaea Attacks Redesign_30
+    21300178: PC Gaea Attacks Redesign_31
+    21300180: PC Gaea Attacks Redesign_32
+    21300182: PC Gaea Attacks Redesign_33
+    21300184: PC Gaea Attacks Redesign_34
+    21300186: PC Gaea Attacks Redesign_35
+    21300188: PC Gaea Attacks Redesign_36
+    21300190: PC Gaea Attacks Redesign_37
+    21300192: PC Gaea Attacks Redesign_38
+    21300194: PC Gaea Attacks Redesign_39
+    21300196: PC Gaea Attacks Redesign_40
+    21300198: PC Gaea Attacks Redesign_41
+    21300200: PC Gaea Attacks Redesign_42
+    21300202: PC Gaea Attacks Redesign_43
+    21300204: PC Gaea Attacks Redesign_44
+    21300206: PC Gaea Attacks Redesign_45
+    21300208: PC Gaea Attacks Redesign_46
+    21300210: PC Gaea Attacks Redesign_47
+    21300212: PC Gaea Attacks Redesign_48
+    21300214: PC Gaea Attacks Redesign_49
+    21300216: PC Gaea Attacks Redesign_50
+    21300218: PC Gaea Attacks Redesign_51
+    21300220: PC Gaea Attacks Redesign_52
+    21300222: PC Gaea Attacks Redesign_53
+    21300224: PC Gaea Attacks Redesign_54
+    21300226: PC Gaea Attacks Redesign_55
+    21300228: PC Gaea Attacks Redesign_56
+    21300230: PC Gaea Attacks Redesign_57
+    21300232: PC Gaea Attacks Redesign_58
+    21300234: PC Gaea Attacks Redesign_59
+    21300236: PC Gaea Attacks Redesign_60
+    21300238: PC Gaea Attacks Redesign_61
+    21300240: PC Gaea Attacks Redesign_62
+    21300242: PC Gaea Attacks Redesign_63
+    21300244: PC Gaea Attacks Redesign_64
+    21300246: PC Gaea Attacks Redesign_65
+    21300248: PC Gaea Attacks Redesign_66
+    21300250: PC Gaea Attacks Redesign_67
+    21300252: PC Gaea Attacks Redesign_68
+    21300254: PC Gaea Attacks Redesign_69
+    21300256: PC Gaea Attacks Redesign_70
+    21300258: PC Gaea Attacks Redesign_71
+    21300260: PC Gaea Attacks Redesign_72
+    21300262: PC Gaea Attacks Redesign_73
+    21300264: PC Gaea Attacks Redesign_74
+    21300266: PC Erebos Attacks_0
+    21300268: PC Erebos Attacks_1
+    21300270: PC Erebos Attacks_2
+    21300272: PC Erebos Attacks_3
+    21300274: PC Erebos Attacks_4
+    21300276: PC Erebos Attacks_5
+    21300278: PC Erebos Attacks_6
+    21300280: PC Erebos Attacks_7
+    21300282: PC Erebos Attacks_8
+    21300284: PC Erebos Attacks_9
+    21300286: PC Erebos Attacks_10
+    21300288: PC Erebos Attacks_11
+    21300290: PC Erebos Attacks_12
+    21300292: PC Erebos Attacks_13
+    21300294: PC Erebos Attacks_14
+    21300296: PC Erebos Attacks_15
+    21300298: PC Erebos Attacks_16
+    21300300: PC Erebos Attacks_17
+    21300302: PC Erebos Attacks_18
+    21300304: PC Erebos Attacks_19
+    21300306: PC Erebos Attacks_20
+    21300308: PC Erebos Attacks_21
+    21300310: PC Erebos Attacks_22
+    21300312: PC Erebos Attacks_23
+    21300314: PC Erebos Attacks_24
+    21300316: PC Erebos Attacks_25
+    21300318: PC Erebos Attacks_26
+    21300320: PC Erebos Attacks_27
+    21300322: PC Erebos Attacks_28
+    21300324: PC Erebos Attacks_29
+    21300326: PC Erebos Attacks_30
+    21300328: PC Erebos Attacks_31
+    21300330: PC Erebos Attacks_32
+    21300332: PC Erebos Attacks_33
+    21300334: PC Erebos Attacks_34
+    21300336: PC Erebos Attacks_35
+    21300338: PC Erebos Attacks_36
+    21300340: PC Erebos Attacks_37
+    21300342: PC Erebos Attacks_38
+    21300344: PC Erebos Attacks_39
+    21300346: PC Erebos Attacks_40
+    21300348: PC Erebos Attacks_41
+    21300350: PC Erebos Attacks_42
+    21300352: PC Erebos Attacks_43
+    21300354: PC Erebos Attacks_44
+    21300356: PC Erebos Attacks_45
+    21300358: PC Erebos Attacks_46
+    21300360: PC Erebos Attacks_47
+    21300362: PC Erebos Attacks_48
+    21300364: PC Erebos Attacks_49
+    21300366: PC Erebos Attacks_50
+    21300368: PC Erebos Attacks_51
+    21300370: PC Erebos Attacks_52
+    21300372: PC Erebos Attacks_53
+    21300374: PC Erebos Attacks_54
+    21300376: PC Erebos Attacks_55
+    21300378: PC Erebos Attacks_56
+    21300380: PC Erebos Attacks_57
+    21300382: PC Erebos Attacks_58
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Erebos Attacks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_10
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_11
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_13
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_14
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_15
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_17
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_18
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_19
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_20
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_21
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_22
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_23
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_25
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_26
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_27
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_28
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_29
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_30
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_31
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_33
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_34
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_35
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_36
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_37
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_38
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_39
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_41
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_42
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_43
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_44
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_45
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_46
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_47
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_49
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_50
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_51
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_52
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_53
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_54
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_55
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_57
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_58
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

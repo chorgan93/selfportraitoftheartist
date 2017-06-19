@@ -130,7 +130,7 @@ public class ProjectileS : MonoBehaviour {
 
 		delayColliderTimeCountdown -= Time.deltaTime;
 		if (delayColliderTimeCountdown <= 0 && !colliderTurnedOn && dmg > 0){
-			if (_myPlayer.playerAug.aeroAug){
+			if (_myPlayer.playerAug.aeroAug && extraRangeCollider){
 				extraRangeCollider.enabled = true;
 			}else{
 				myCollider.enabled = true;
@@ -211,9 +211,13 @@ public class ProjectileS : MonoBehaviour {
 
 		if (dmg > 0){ // exclude charge spawners
 			if (_myPlayer.playerAug.aeroAug){
+				if (extraRangeSprite){
 				extraRangeSprite.SetActive(true);
+				}
 				myCollider.enabled = false;
-				extraRangeCollider.enabled = true;
+				if (extraRangeCollider){
+					extraRangeCollider.enabled = true;
+				}
 			}else{
 				myCollider.enabled = true;
 				if (!chargeProjectileRef){
@@ -234,7 +238,7 @@ public class ProjectileS : MonoBehaviour {
 			colliderTurnedOn = false;
 			delayColliderTimeCountdown = delayColliderTime;
 		}else{
-			if (_myPlayer.playerAug.aeroAug){
+				if (_myPlayer.playerAug.aeroAug && extraRangeCollider){
 				extraRangeCollider.enabled = true;
 			}else{
 				myCollider.enabled = true;
