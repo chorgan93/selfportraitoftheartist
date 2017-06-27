@@ -815,7 +815,7 @@ public class EquipMenuS : MonoBehaviour {
 		int nextAvail = startPt-3;
 		
 		if (dir > 0){
-			if (startPt+3 < allMantraItems.Length){
+			if (startPt+3 <= allMantraItems.Length){
 				for (int i = startPt-3; i < allMantraItems.Length; i++){
 					if (allMantraItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;
@@ -830,7 +830,7 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 		}else{
-			if (startPt-3 > 0){
+			if (startPt-3 >= 0){
 				for (int j = startPt-3; j >= 0; j--){
 					if (allMantraItems[j].unlocked && nextAvail == startPt-3){
 						nextAvail = j;
@@ -845,7 +845,7 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 		}
-		
+
 		return nextAvail+3;
 		
 	}

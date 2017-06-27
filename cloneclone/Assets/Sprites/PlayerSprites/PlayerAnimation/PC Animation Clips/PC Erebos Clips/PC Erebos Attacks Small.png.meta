@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 878adab0f5d654d8ca0b43a13ca909f4
-timeCreated: 1497901953
+timeCreated: 1497917256
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -267,6 +267,17 @@ TextureImporter:
     21300520: PC Erebos Attacks Small_68
     21300522: PC Erebos Attacks Small_69
     21300524: PC Erebos Attacks Small_70
+    21300526: PC Erebos Attacks Small_71
+    21300528: PC Erebos Attacks Small_72
+    21300530: PC Erebos Attacks Small_73
+    21300532: PC Erebos Attacks Small_74
+    21300534: PC Erebos Attacks Small_75
+    21300536: PC Erebos Attacks Small_76
+    21300538: PC Erebos Attacks Small_77
+    21300540: PC Erebos Attacks Small_78
+    21300542: PC Erebos Attacks Small_79
+    21300544: PC Erebos Attacks Small_80
+    21300546: PC Erebos Attacks Small_81
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -318,7 +329,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -330,7 +341,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -342,7 +353,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -354,7 +365,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -366,7 +377,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -378,7 +389,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -390,7 +401,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -402,7 +413,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 448
-        y: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -413,8 +424,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 448
+        x: 512
+        y: 576
         width: 64
         height: 64
       alignment: 0
@@ -425,8 +436,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_9
       rect:
         serializedVersion: 2
-        x: 64
-        y: 448
+        x: 0
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -437,8 +448,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_10
       rect:
         serializedVersion: 2
-        x: 128
-        y: 448
+        x: 64
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -449,8 +460,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_11
       rect:
         serializedVersion: 2
-        x: 192
-        y: 448
+        x: 128
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -461,8 +472,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_12
       rect:
         serializedVersion: 2
-        x: 256
-        y: 448
+        x: 192
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -473,8 +484,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_13
       rect:
         serializedVersion: 2
-        x: 320
-        y: 448
+        x: 256
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -485,8 +496,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_14
       rect:
         serializedVersion: 2
-        x: 384
-        y: 448
+        x: 320
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -497,8 +508,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_15
       rect:
         serializedVersion: 2
-        x: 448
-        y: 448
+        x: 384
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -509,8 +520,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -521,8 +532,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_17
       rect:
         serializedVersion: 2
-        x: 64
-        y: 384
+        x: 512
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -533,8 +544,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_18
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
+        x: 0
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -545,8 +556,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_19
       rect:
         serializedVersion: 2
-        x: 192
-        y: 384
+        x: 64
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -557,8 +568,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_20
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
+        x: 128
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -569,8 +580,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_21
       rect:
         serializedVersion: 2
-        x: 320
-        y: 384
+        x: 192
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -581,8 +592,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_22
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
+        x: 256
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -593,8 +604,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_23
       rect:
         serializedVersion: 2
-        x: 448
-        y: 384
+        x: 320
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -605,8 +616,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 384
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -617,8 +628,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_25
       rect:
         serializedVersion: 2
-        x: 64
-        y: 320
+        x: 448
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -629,8 +640,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_26
       rect:
         serializedVersion: 2
-        x: 128
-        y: 320
+        x: 512
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -641,8 +652,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_27
       rect:
         serializedVersion: 2
-        x: 192
-        y: 320
+        x: 0
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -653,8 +664,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_28
       rect:
         serializedVersion: 2
-        x: 256
-        y: 320
+        x: 64
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -665,8 +676,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_29
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
+        x: 128
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -677,8 +688,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_30
       rect:
         serializedVersion: 2
-        x: 384
-        y: 320
+        x: 192
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -689,8 +700,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_31
       rect:
         serializedVersion: 2
-        x: 448
-        y: 320
+        x: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -701,8 +712,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_32
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -713,8 +724,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_33
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 384
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -725,8 +736,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_34
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 448
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -737,8 +748,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_35
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
+        x: 512
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -749,8 +760,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_36
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 0
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -761,8 +772,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_37
       rect:
         serializedVersion: 2
-        x: 320
-        y: 256
+        x: 64
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -773,8 +784,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_38
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -785,8 +796,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_39
       rect:
         serializedVersion: 2
-        x: 448
-        y: 256
+        x: 192
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -797,8 +808,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_40
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -809,8 +820,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_41
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -821,8 +832,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_42
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 384
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -833,8 +844,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_43
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 448
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -845,8 +856,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_44
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 512
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -857,8 +868,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_45
       rect:
         serializedVersion: 2
-        x: 320
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -869,8 +880,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_46
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -881,8 +892,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_47
       rect:
         serializedVersion: 2
-        x: 448
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -893,8 +904,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_48
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -905,8 +916,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_49
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -917,8 +928,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_50
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 320
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -929,8 +940,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_51
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 384
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -941,8 +952,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_52
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 448
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -953,8 +964,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_53
       rect:
         serializedVersion: 2
-        x: 320
-        y: 128
+        x: 512
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -965,8 +976,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_54
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
+        x: 0
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -977,8 +988,8 @@ TextureImporter:
       name: PC Erebos Attacks Small_55
       rect:
         serializedVersion: 2
-        x: 448
-        y: 128
+        x: 64
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -989,6 +1000,198 @@ TextureImporter:
       name: PC Erebos Attacks Small_56
       rect:
         serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_57
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_59
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_60
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_61
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_62
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_65
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_67
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_68
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_69
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_70
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_71
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_72
+      rect:
+        serializedVersion: 2
         x: 0
         y: 64
         width: 64
@@ -998,7 +1201,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_57
+      name: PC Erebos Attacks Small_73
       rect:
         serializedVersion: 2
         x: 64
@@ -1010,7 +1213,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_58
+      name: PC Erebos Attacks Small_74
       rect:
         serializedVersion: 2
         x: 128
@@ -1022,7 +1225,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_59
+      name: PC Erebos Attacks Small_75
       rect:
         serializedVersion: 2
         x: 192
@@ -1034,7 +1237,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_60
+      name: PC Erebos Attacks Small_76
       rect:
         serializedVersion: 2
         x: 256
@@ -1046,7 +1249,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_61
+      name: PC Erebos Attacks Small_77
       rect:
         serializedVersion: 2
         x: 320
@@ -1058,7 +1261,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_62
+      name: PC Erebos Attacks Small_78
       rect:
         serializedVersion: 2
         x: 384
@@ -1070,7 +1273,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_63
+      name: PC Erebos Attacks Small_79
       rect:
         serializedVersion: 2
         x: 448
@@ -1082,82 +1285,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks Small_64
+      name: PC Erebos Attacks Small_80
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks Small_81
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_65
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_66
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_67
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_68
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_69
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks Small_70
-      rect:
-        serializedVersion: 2
-        x: 384
         y: 0
         width: 64
         height: 64

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 773505817dfb04e03b525f3b8e77613c
-timeCreated: 1497844889
+timeCreated: 1497922612
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -196,6 +196,29 @@ TextureImporter:
     21300378: PC Erebos Attacks_56
     21300380: PC Erebos Attacks_57
     21300382: PC Erebos Attacks_58
+    21300384: PC Erebos Attacks_59
+    21300386: PC Erebos Attacks_60
+    21300388: PC Erebos Attacks_61
+    21300390: PC Erebos Attacks_62
+    21300392: PC Erebos Attacks_63
+    21300394: PC Erebos Attacks_64
+    21300396: PC Erebos Attacks_65
+    21300398: PC Erebos Attacks_66
+    21300400: PC Erebos Attacks_67
+    21300402: PC Erebos Attacks_68
+    21300404: PC Erebos Attacks_69
+    21300406: PC Erebos Attacks_70
+    21300408: PC Erebos Attacks_71
+    21300410: PC Erebos Attacks_72
+    21300412: PC Erebos Attacks_73
+    21300414: PC Erebos Attacks_74
+    21300416: PC Erebos Attacks_75
+    21300418: PC Erebos Attacks_76
+    21300420: PC Erebos Attacks_77
+    21300422: PC Erebos Attacks_78
+    21300424: PC Erebos Attacks_79
+    21300426: PC Erebos Attacks_80
+    21300428: PC Erebos Attacks_81
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -247,7 +270,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -259,7 +282,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 72
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -271,7 +294,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -283,7 +306,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 216
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -295,7 +318,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -307,7 +330,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 360
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -319,7 +342,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 432
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -331,7 +354,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 504
-        y: 504
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -342,8 +365,8 @@ TextureImporter:
       name: PC Erebos Attacks_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 432
+        x: 576
+        y: 648
         width: 72
         height: 72
       alignment: 0
@@ -354,8 +377,8 @@ TextureImporter:
       name: PC Erebos Attacks_9
       rect:
         serializedVersion: 2
-        x: 72
-        y: 432
+        x: 0
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -366,8 +389,8 @@ TextureImporter:
       name: PC Erebos Attacks_10
       rect:
         serializedVersion: 2
-        x: 144
-        y: 432
+        x: 72
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -378,8 +401,8 @@ TextureImporter:
       name: PC Erebos Attacks_11
       rect:
         serializedVersion: 2
-        x: 216
-        y: 432
+        x: 144
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -390,8 +413,8 @@ TextureImporter:
       name: PC Erebos Attacks_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 432
+        x: 216
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -402,8 +425,8 @@ TextureImporter:
       name: PC Erebos Attacks_13
       rect:
         serializedVersion: 2
-        x: 360
-        y: 432
+        x: 288
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -414,8 +437,8 @@ TextureImporter:
       name: PC Erebos Attacks_14
       rect:
         serializedVersion: 2
-        x: 432
-        y: 432
+        x: 360
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -426,8 +449,8 @@ TextureImporter:
       name: PC Erebos Attacks_15
       rect:
         serializedVersion: 2
-        x: 504
-        y: 432
+        x: 432
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -438,8 +461,8 @@ TextureImporter:
       name: PC Erebos Attacks_16
       rect:
         serializedVersion: 2
-        x: 0
-        y: 360
+        x: 504
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -450,8 +473,8 @@ TextureImporter:
       name: PC Erebos Attacks_17
       rect:
         serializedVersion: 2
-        x: 72
-        y: 360
+        x: 576
+        y: 576
         width: 72
         height: 72
       alignment: 0
@@ -462,8 +485,8 @@ TextureImporter:
       name: PC Erebos Attacks_18
       rect:
         serializedVersion: 2
-        x: 144
-        y: 360
+        x: 0
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -474,8 +497,8 @@ TextureImporter:
       name: PC Erebos Attacks_19
       rect:
         serializedVersion: 2
-        x: 216
-        y: 360
+        x: 72
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -486,8 +509,8 @@ TextureImporter:
       name: PC Erebos Attacks_20
       rect:
         serializedVersion: 2
-        x: 288
-        y: 360
+        x: 144
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -498,8 +521,8 @@ TextureImporter:
       name: PC Erebos Attacks_21
       rect:
         serializedVersion: 2
-        x: 360
-        y: 360
+        x: 216
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -510,8 +533,8 @@ TextureImporter:
       name: PC Erebos Attacks_22
       rect:
         serializedVersion: 2
-        x: 432
-        y: 360
+        x: 288
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -522,8 +545,8 @@ TextureImporter:
       name: PC Erebos Attacks_23
       rect:
         serializedVersion: 2
-        x: 504
-        y: 360
+        x: 360
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -534,8 +557,8 @@ TextureImporter:
       name: PC Erebos Attacks_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 288
+        x: 432
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -546,8 +569,8 @@ TextureImporter:
       name: PC Erebos Attacks_25
       rect:
         serializedVersion: 2
-        x: 72
-        y: 288
+        x: 504
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -558,8 +581,8 @@ TextureImporter:
       name: PC Erebos Attacks_26
       rect:
         serializedVersion: 2
-        x: 144
-        y: 288
+        x: 576
+        y: 504
         width: 72
         height: 72
       alignment: 0
@@ -570,8 +593,8 @@ TextureImporter:
       name: PC Erebos Attacks_27
       rect:
         serializedVersion: 2
-        x: 216
-        y: 288
+        x: 0
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -582,8 +605,8 @@ TextureImporter:
       name: PC Erebos Attacks_28
       rect:
         serializedVersion: 2
-        x: 288
-        y: 288
+        x: 72
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -594,8 +617,8 @@ TextureImporter:
       name: PC Erebos Attacks_29
       rect:
         serializedVersion: 2
-        x: 360
-        y: 288
+        x: 144
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -606,8 +629,8 @@ TextureImporter:
       name: PC Erebos Attacks_30
       rect:
         serializedVersion: 2
-        x: 432
-        y: 288
+        x: 216
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -618,8 +641,8 @@ TextureImporter:
       name: PC Erebos Attacks_31
       rect:
         serializedVersion: 2
-        x: 504
-        y: 288
+        x: 288
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -630,8 +653,8 @@ TextureImporter:
       name: PC Erebos Attacks_32
       rect:
         serializedVersion: 2
-        x: 0
-        y: 216
+        x: 360
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -642,8 +665,8 @@ TextureImporter:
       name: PC Erebos Attacks_33
       rect:
         serializedVersion: 2
-        x: 72
-        y: 216
+        x: 432
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -654,8 +677,8 @@ TextureImporter:
       name: PC Erebos Attacks_34
       rect:
         serializedVersion: 2
-        x: 144
-        y: 216
+        x: 504
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -666,8 +689,8 @@ TextureImporter:
       name: PC Erebos Attacks_35
       rect:
         serializedVersion: 2
-        x: 216
-        y: 216
+        x: 576
+        y: 432
         width: 72
         height: 72
       alignment: 0
@@ -678,8 +701,8 @@ TextureImporter:
       name: PC Erebos Attacks_36
       rect:
         serializedVersion: 2
-        x: 288
-        y: 216
+        x: 0
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -690,8 +713,8 @@ TextureImporter:
       name: PC Erebos Attacks_37
       rect:
         serializedVersion: 2
-        x: 360
-        y: 216
+        x: 72
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -702,8 +725,8 @@ TextureImporter:
       name: PC Erebos Attacks_38
       rect:
         serializedVersion: 2
-        x: 432
-        y: 216
+        x: 144
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -714,8 +737,8 @@ TextureImporter:
       name: PC Erebos Attacks_39
       rect:
         serializedVersion: 2
-        x: 504
-        y: 216
+        x: 216
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -726,8 +749,8 @@ TextureImporter:
       name: PC Erebos Attacks_40
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
+        x: 288
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -738,8 +761,8 @@ TextureImporter:
       name: PC Erebos Attacks_41
       rect:
         serializedVersion: 2
-        x: 72
-        y: 144
+        x: 360
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -750,8 +773,8 @@ TextureImporter:
       name: PC Erebos Attacks_42
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
+        x: 432
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -762,8 +785,8 @@ TextureImporter:
       name: PC Erebos Attacks_43
       rect:
         serializedVersion: 2
-        x: 216
-        y: 144
+        x: 504
+        y: 360
         width: 72
         height: 72
       alignment: 0
@@ -774,6 +797,282 @@ TextureImporter:
       name: PC Erebos Attacks_44
       rect:
         serializedVersion: 2
+        x: 576
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_46
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_47
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_48
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_49
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_50
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_51
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_52
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_53
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_55
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_56
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_57
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_58
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_59
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_60
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_61
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_62
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_64
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_65
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_66
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_67
+      rect:
+        serializedVersion: 2
         x: 288
         y: 144
         width: 72
@@ -783,7 +1082,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_45
+      name: PC Erebos Attacks_68
       rect:
         serializedVersion: 2
         x: 360
@@ -795,7 +1094,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_46
+      name: PC Erebos Attacks_69
       rect:
         serializedVersion: 2
         x: 432
@@ -807,7 +1106,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_47
+      name: PC Erebos Attacks_70
       rect:
         serializedVersion: 2
         x: 504
@@ -819,7 +1118,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_48
+      name: PC Erebos Attacks_71
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_72
       rect:
         serializedVersion: 2
         x: 0
@@ -831,7 +1142,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_49
+      name: PC Erebos Attacks_73
       rect:
         serializedVersion: 2
         x: 72
@@ -843,7 +1154,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_50
+      name: PC Erebos Attacks_74
       rect:
         serializedVersion: 2
         x: 144
@@ -855,7 +1166,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_51
+      name: PC Erebos Attacks_75
       rect:
         serializedVersion: 2
         x: 216
@@ -867,7 +1178,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_52
+      name: PC Erebos Attacks_76
       rect:
         serializedVersion: 2
         x: 288
@@ -879,7 +1190,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_53
+      name: PC Erebos Attacks_77
       rect:
         serializedVersion: 2
         x: 360
@@ -891,7 +1202,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_54
+      name: PC Erebos Attacks_78
       rect:
         serializedVersion: 2
         x: 432
@@ -903,7 +1214,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_55
+      name: PC Erebos Attacks_79
       rect:
         serializedVersion: 2
         x: 504
@@ -915,34 +1226,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Erebos Attacks_56
+      name: PC Erebos Attacks_80
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Erebos Attacks_81
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 72
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks_57
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 72
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: PC Erebos Attacks_58
-      rect:
-        serializedVersion: 2
-        x: 144
         y: 0
         width: 72
         height: 72

@@ -457,7 +457,7 @@ public class ProjectileS : MonoBehaviour {
 	
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*SolAugMult());
+					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug());
 
 				if (!hitEnemy.isDead){
 					_myPlayer.AddEnemyHit(hitEnemy);
