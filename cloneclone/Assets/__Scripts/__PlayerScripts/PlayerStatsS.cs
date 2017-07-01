@@ -13,6 +13,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
+	public const float HEALTH_ADD_AMT = 1.5f;
 
 	private const float anxiousChargeRate = 0.1f;
 
@@ -498,7 +499,7 @@ public class PlayerStatsS : MonoBehaviour {
 			foreach(int i in PlayerInventoryS.I.earnedUpgrades){
 				// count mana
 				if (i == 0){
-					_addedHealth++;
+					_addedHealth+= HEALTH_ADD_AMT;
 				}
 				if (i == 1){
 					_addedMana++;
@@ -526,8 +527,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void AddStat(int i){
 		if (i == 0){
-			_addedHealth++;
-			_currentHealth++;
+			_addedHealth+= HEALTH_ADD_AMT;
+			_currentHealth+= HEALTH_ADD_AMT;
 		}
 		if (i == 1){
 			_addedMana++;

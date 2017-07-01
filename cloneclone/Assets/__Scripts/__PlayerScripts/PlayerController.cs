@@ -1765,6 +1765,10 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+		if (_adaptiveCountdown > 0){
+			_adaptiveCountdown -= Time.deltaTime;
+		}
+
 		if (_usingItem){
 			usingItemTime -= Time.deltaTime;
 			if (usingItemTime <= 0){

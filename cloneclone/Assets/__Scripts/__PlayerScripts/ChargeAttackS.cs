@@ -222,7 +222,7 @@ public class ChargeAttackS : MonoBehaviour {
 				if (myPlayer.playerAug.enragedAug){
 					actingDmg*=PlayerAugmentsS.ENRAGED_DAMAGE_BOOST;
 				}
-				if (myPlayer.playerAug.adaptiveAug){
+				if (myPlayer.adaptiveAugBonus){
 					actingDmg*=PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
 				}
 
