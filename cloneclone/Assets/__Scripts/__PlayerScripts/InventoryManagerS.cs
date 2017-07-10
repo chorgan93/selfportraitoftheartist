@@ -54,7 +54,7 @@ public class InventoryManagerS : MonoBehaviour {
 	private void InitializeInventory(){
 
 		// create inventory list
-		_equippedInventory = new List<int>(4){-1,-1,-1,-1};
+		_equippedInventory = new List<int>(4){0,0,0,0};
 		// load from save data
 
 	}
@@ -123,7 +123,6 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private void UseItem(int itemID){
-
 
 		if (itemID >= 0 && _inventoryRef.GetItemCount(itemID) > 0){
 			bool consumeItem = false;

@@ -2614,4 +2614,16 @@ public class PlayerController : MonoBehaviour {
 		attackEffect.transform.GetChild(1).GetComponent<SpriteRenderer>().color = myRenderer.color;
 	}
 
+	public void AnimationStop(float stopTime){
+		StartCoroutine(HitStopRoutine(stopTime));
+	}
+
+	IEnumerator HitStopRoutine(float sTime){
+		
+		_myAnimator.enabled = false;
+		yield return new WaitForSeconds(sTime);
+		_myAnimator.enabled = true;
+		
+	}
+
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	public const float DAMAGE_VARIANCE = 0.15f;
+	public const float KNOCKBACK_DELAY = 0.1f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
 	private const int FLASH_FRAME_COUNT = 3;
@@ -837,20 +838,24 @@ public class EnemyS : MonoBehaviour {
 			if (hitSound){
 				Instantiate(hitSound);
 			}
-			_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
+			//_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
+
+			StartCoroutine(KnockbackRoutine(knockbackForce, ForceMode.VelocityChange));
 			
 			CameraShakeS.C.SmallShake();
+
+
 			if (!fromFriendly){
 				CameraShakeS.C.SmallSleep();
 			}
 
 
 			if (sTime != 0f){
-				currentKnockbackCooldown = sTime;
-				Stun(sTime);
+				currentKnockbackCooldown = sTime+KNOCKBACK_DELAY;
+				Stun(sTime+KNOCKBACK_DELAY);
 			}else{
-				currentKnockbackCooldown = knockbackTime;
-				Stun(knockbackTime);
+				currentKnockbackCooldown = knockbackTime+KNOCKBACK_DELAY;
+				Stun(knockbackTime+KNOCKBACK_DELAY);
 			}
 
 			if (_isVulnerable || _behaviorBroken){
@@ -898,7 +903,7 @@ public class EnemyS : MonoBehaviour {
 			//_myCollider.enabled = false;
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
-			_myRigidbody.AddForce(knockbackForce*1.5f, ForceMode.VelocityChange);
+			StartCoroutine(KnockbackRoutine(knockbackForce*1.5f, ForceMode.VelocityChange));
 			transform.position = new Vector3(transform.position.x, transform.position.y, 
 			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
 
@@ -919,6 +924,14 @@ public class EnemyS : MonoBehaviour {
 
 		//healthBarReference.ResizeForDamage();
 
+	}
+
+	IEnumerator KnockbackRoutine(Vector3 forceAmt, ForceMode fMode){
+
+		yield return new WaitForSeconds(KNOCKBACK_DELAY);
+
+		_myRigidbody.AddForce(forceAmt, fMode);
+		
 	}
 
 	public void KillWithoutXP(){

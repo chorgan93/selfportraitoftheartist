@@ -122,9 +122,15 @@ public class ProjectileS : MonoBehaviour {
 	private Vector3 startScale;
 	public ChargeProjectileS chargeProjectileRef;
 
+	// hitStopTest
+	bool isStopped = false;
+	float stopTime = 0f;
+	Vector3 savedVelocity;
+
 
 	void FixedUpdate () {
 
+		if (!isStopped){
 		currentRange -= Time.deltaTime;
 
 
@@ -156,6 +162,14 @@ public class ProjectileS : MonoBehaviour {
 			}
 
 		}
+		}else{
+			stopTime -= Time.deltaTime;
+			if (stopTime <= 0){
+				isStopped = false;
+				_rigidbody.velocity = savedVelocity;
+				SetAnimationEnable(true);
+			}
+		}
 
 
 	
@@ -180,6 +194,8 @@ public class ProjectileS : MonoBehaviour {
 			myPool = _myPlayer.projectilePool;
 			weaponNum = _myPlayer.EquippedWeapon().weaponNum;
 			startDmg = dmg;
+			stopTime = 0f;
+			isStopped = false;
 
 			if (extraRangeSprite != null){
 				extraRangeAnim = extraRangeSprite.GetComponent<AnimObjS>();
@@ -423,6 +439,7 @@ public class ProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Destructible"){
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
+			//DoShake();
 			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, weaponNum);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
 
@@ -454,10 +471,14 @@ public class ProjectileS : MonoBehaviour {
 				else if (isDashAttack){
 					actingKnockbackSpeed *= dashAttackKnockbackMult;
 				}
-	
+
+				//DoShake();
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug());
+
+				StartMoveStop(EnemyS.KNOCKBACK_DELAY);
+				_myPlayer.AnimationStop(EnemyS.KNOCKBACK_DELAY);
 
 				if (!hitEnemy.isDead){
 					_myPlayer.AddEnemyHit(hitEnemy);
@@ -488,6 +509,16 @@ public class ProjectileS : MonoBehaviour {
 
 		}
 
+	}
+
+	void StartMoveStop(float sTime){
+		if (!isStopped){
+			SetAnimationEnable(false);
+			savedVelocity = _rigidbody.velocity;
+		}
+		isStopped = true;
+		_rigidbody.velocity = Vector3.zero;
+		stopTime = sTime;
 	}
 
 	void HitEffect(EnemyS enemyRef, Vector3 spawnPos, Color bloodCol,bool bigBlood = false){
@@ -565,6 +596,12 @@ public class ProjectileS : MonoBehaviour {
 					allAnimators[i].ResetAnimation();
 				}
 			}
+		}
+	}
+
+	private void SetAnimationEnable(bool newEnable){
+		for (int i = 0; i < allAnimators.Length; i++){
+			allAnimators[i].enabled = newEnable;
 		}
 	}
 

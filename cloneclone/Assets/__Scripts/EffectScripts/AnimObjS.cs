@@ -28,6 +28,12 @@ public class AnimObjS : MonoBehaviour {
 	public bool initialize { get { return _initialized; } }
 
 	// Use this for initialization
+	void Awake(){
+
+		mySprite = GetComponent<SpriteRenderer>();
+		currentFrame = 0;
+		mySprite.sprite = animFrames[currentFrame];
+	}
 	void Start () {
 
 		mySprite = GetComponent<SpriteRenderer>();
