@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	public const float DAMAGE_VARIANCE = 0.15f;
-	public const float KNOCKBACK_DELAY = 0.1f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
 	private const int FLASH_FRAME_COUNT = 3;
@@ -101,6 +100,8 @@ public class EnemyS : MonoBehaviour {
 	private Color fadeInColor;
 	private float fadeRate = 1f;
 	private bool fadedIn = false;
+
+	private float knockbackDelay = 0.1f;
 
 	
 	[Header("Sound Properties")]
@@ -779,10 +780,12 @@ public class EnemyS : MonoBehaviour {
 		canBeParried = false;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float sTime = 0f, bool fromFriendly = false){
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false){
 
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
+
+		knockbackDelay = hitStopAmt;
 
 
 		if (_breakAmt >= _breakThreshold){
@@ -845,23 +848,24 @@ public class EnemyS : MonoBehaviour {
 			CameraShakeS.C.SmallShake();
 
 
-			if (!fromFriendly){
+			/*if (!fromFriendly){
 				CameraShakeS.C.SmallSleep();
-			}
+			}**/
 
 
 			if (sTime != 0f){
-				currentKnockbackCooldown = sTime+KNOCKBACK_DELAY;
-				Stun(sTime+KNOCKBACK_DELAY);
+				currentKnockbackCooldown = sTime+knockbackDelay;
+				Stun(sTime+knockbackDelay);
 			}else{
-				currentKnockbackCooldown = knockbackTime+KNOCKBACK_DELAY;
-				Stun(knockbackTime+KNOCKBACK_DELAY);
+				currentKnockbackCooldown = knockbackTime+knockbackDelay;
+				Stun(knockbackTime+knockbackDelay);
 			}
 
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
 					_myAnimator.SetBool("Hit", true);
-					CameraShakeS.C.TimeSleep(0.2f);
+					//CameraShakeS.C.TimeSleep(0.2f);
+					CameraShakeS.C.TimeSleep(0.1f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
 					currentCritDamage = 0;
@@ -928,7 +932,7 @@ public class EnemyS : MonoBehaviour {
 
 	IEnumerator KnockbackRoutine(Vector3 forceAmt, ForceMode fMode){
 
-		yield return new WaitForSeconds(KNOCKBACK_DELAY);
+		yield return new WaitForSeconds(knockbackDelay);
 
 		_myRigidbody.AddForce(forceAmt, fMode);
 		

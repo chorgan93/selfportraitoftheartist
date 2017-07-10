@@ -39,6 +39,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public float absorbPercent = 0.1f;
 	private Vector3 knockBackDir;
 	public int shakeAmt = 1;
+	public float hitStopTime = 0.2f;
 
 	private bool _firstSpawned = false;
 
@@ -228,7 +229,8 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-				 actingDmg, stunMult, 2f);
+					actingDmg, stunMult, 2f, hitStopTime);
+				myPlayer.AnimationStop(hitStopTime);
 
 				/*if (myPlayer.playerAug.lunaAug){
 					myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);

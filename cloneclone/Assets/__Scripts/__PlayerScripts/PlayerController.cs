@@ -135,6 +135,9 @@ public class PlayerController : MonoBehaviour {
 	private bool switchBuddyButtonUp;
 	private bool lockInputReset = false;
 
+	private Vector3 savedHitVelocity;
+	private bool hitStopped = false;
+
 	private float momsEyeMult = 1f;
 
 	// Status Properties
@@ -1239,7 +1242,9 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 		else{
+			if (!hitStopped){
 			attackDuration -= Time.deltaTime;
+			}
 
 		if (CanInputShoot()){
 				if (
@@ -1759,9 +1764,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		if (_isStunned){
+			if (!hitStopped){
 			stunTime -= Time.deltaTime;
 			if (stunTime <= 0){
 				_isStunned = false;
+			}
 			}
 		}
 
@@ -2040,7 +2047,8 @@ public class PlayerController : MonoBehaviour {
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
 		if (!_isTalking && !_isStunned && !_delayWitchTime
-		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
+		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD
+			&& !hitStopped){
 			dashAllow = true;
 		}
 
@@ -2615,14 +2623,23 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void AnimationStop(float stopTime){
+		if (!_isDashing && !_isSprinting){
 		StartCoroutine(HitStopRoutine(stopTime));
+		}
 	}
 
 	IEnumerator HitStopRoutine(float sTime){
-		
-		_myAnimator.enabled = false;
+
+		if (!hitStopped){
+			_myAnimator.enabled = false;
+			savedHitVelocity = _myRigidbody.velocity;
+		}
+		hitStopped = true;
+		_myRigidbody.velocity = Vector3.zero;
 		yield return new WaitForSeconds(sTime);
 		_myAnimator.enabled = true;
+		_myRigidbody.velocity = savedHitVelocity;
+		hitStopped = false;
 		
 	}
 

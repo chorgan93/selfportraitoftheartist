@@ -24,6 +24,7 @@ public class ProjectileS : MonoBehaviour {
 	public float comboDuration = 0.5f;
 	public float chainAllow = 0.18f;
 	public bool momsEye = false;
+	public float hitStopAmt = 0.1f;
 
 	[Header("Control Type")]
 	public bool lock4Directional = false;
@@ -362,7 +363,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						                          dmg, stunMult, critDmg*SolAugMult());
+							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt);
 					}
 				}
 			}
@@ -477,8 +478,8 @@ public class ProjectileS : MonoBehaviour {
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug());
 
-				StartMoveStop(EnemyS.KNOCKBACK_DELAY);
-				_myPlayer.AnimationStop(EnemyS.KNOCKBACK_DELAY);
+				StartMoveStop(hitStopAmt);
+				_myPlayer.AnimationStop(hitStopAmt);
 
 				if (!hitEnemy.isDead){
 					_myPlayer.AddEnemyHit(hitEnemy);

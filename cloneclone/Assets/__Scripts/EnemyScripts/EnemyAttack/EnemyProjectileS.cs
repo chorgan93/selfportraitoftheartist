@@ -15,6 +15,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
 	public bool flipOnX = false;
+	public float hitStopAmount = 0.2f;
 
 	[Header("Attack Properties")]
 	public float range;
@@ -338,7 +339,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					
 					hitEnemy.TakeDamage
 						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						 damage, 1f, 1.5f, 0f, true);
+						damage, 1f, 1.5f, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);
