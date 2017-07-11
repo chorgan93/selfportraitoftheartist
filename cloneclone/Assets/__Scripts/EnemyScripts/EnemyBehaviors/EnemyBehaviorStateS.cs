@@ -119,4 +119,8 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		}
 
 	}
+
+	public void SetActingBehaviorNum(int newB){
+		currentActingBehavior = newB;
+	}
 }

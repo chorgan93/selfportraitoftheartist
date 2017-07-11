@@ -151,6 +151,7 @@
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyLogicBehaviors/EnemyRandomBehaviorS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyLogicBehaviors/EnemyReorderBehaviorS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyChaseBehavior.cs'
+'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyDefendBehavior.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemySeekBehavior.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyWaitBehavior.cs'
 'Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyWanderBehavior.cs'

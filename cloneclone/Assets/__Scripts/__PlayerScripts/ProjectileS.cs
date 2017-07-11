@@ -75,6 +75,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Knockback Stats")]
 	public bool stopPlayer = false;
 	public bool stopOnEnemyContact = false;
+	public float reduceHitVelocityMult = 0.5f;
 	public float startKnockbackSpeed = 1200f;
 	public float knockbackSpeed = 1200f;
 	public float knockbackMult = 1.25f;
@@ -515,7 +516,7 @@ public class ProjectileS : MonoBehaviour {
 	void StartMoveStop(float sTime){
 		if (!isStopped){
 			SetAnimationEnable(false);
-			savedVelocity = _rigidbody.velocity;
+			savedVelocity = _rigidbody.velocity*reduceHitVelocityMult;
 		}
 		isStopped = true;
 		_rigidbody.velocity = Vector3.zero;

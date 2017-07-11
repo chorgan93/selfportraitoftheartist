@@ -74,6 +74,9 @@ public class EnemyS : MonoBehaviour {
 	private bool _hitStunned;
 	private bool _facePlayer;
 
+	private float currentDefenseMult = 1f;
+	private float currentStunResistMult = 1f;
+
 	private bool _invulnerable = false;
 	public bool invulnerable { get { return _invulnerable; } }
 
@@ -136,6 +139,9 @@ public class EnemyS : MonoBehaviour {
 
 	private Vector3 _currentTarget;
 	public Vector3 currentTarget { get { return _currentTarget; } }
+
+	private int _numAttacksTakenInBehavior = 0;
+	public int numAttacksTaken { get { return _numAttacksTakenInBehavior; } }
 
 	//_____________________________________________GETTERS AND SETTERS
 
@@ -814,8 +820,12 @@ public class EnemyS : MonoBehaviour {
 
 			}
 		}else{
-			_currentHealth -= dmg*damageMultiplier;
-			damageTaken += dmg*damageMultiplier;
+			_currentHealth -= dmg*damageMultiplier*currentDefenseMult;
+			damageTaken += dmg*damageMultiplier*currentDefenseMult;
+		}
+
+		if (damageTaken > 0){
+			_numAttacksTakenInBehavior++;
 		}
 
 		if (cantDie && _currentHealth < 1f){
@@ -990,5 +1000,14 @@ public class EnemyS : MonoBehaviour {
 	public void SetInvulnerable(bool newI){
 		_invulnerable = newI;
 	} 
+
+	public void SetStateDefenses(float dMult, float sMult){
+		currentDefenseMult = dMult;
+		currentStunResistMult = sMult;
+	}
+
+	public void ResetAttackCount(){
+		_numAttacksTakenInBehavior = 0;
+	}
 
 }

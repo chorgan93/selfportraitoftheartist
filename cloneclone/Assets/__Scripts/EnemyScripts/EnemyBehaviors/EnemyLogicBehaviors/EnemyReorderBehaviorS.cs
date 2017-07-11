@@ -12,6 +12,7 @@ public class EnemyReorderBehaviorS : EnemyBehaviorS {
 		EndAction(false);
 		myEnemyReference.currentState.behaviorSet[behaviorToExecute].SetEnemy(myEnemyReference);
 		myEnemyReference.currentState.behaviorSet[behaviorToExecute].StartAction();
+		myEnemyReference.currentState.SetActingBehaviorNum(behaviorToExecute);
 
 	}
 }
