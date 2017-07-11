@@ -24,7 +24,10 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 	public int nextActionEnd = 0;
 	public int nextActionOutOfRange = 0;
 
+	private float limitReachedTime = 0.3f;
+
 	private bool limitReached = false;
+	private bool switchTriggered = false;
 
 	private float defendTimeCountdown;
 	
@@ -35,11 +38,14 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 			
 			BehaviorUpdate();
 
+			if (!limitReached && myEnemyReference.numAttacksTaken >= currentBreak){
+				limitReached = true;
+				defendTimeCountdown = limitReachedTime;
+			}
+
 			defendTimeCountdown -= Time.deltaTime;
-			if (defendTimeCountdown <= 0 || myEnemyReference.numAttacksTaken >= currentBreak){
-				if (myEnemyReference.numAttacksTaken >= currentBreak){
-					limitReached = true;
-				}
+			if (defendTimeCountdown <= 0 && !switchTriggered){
+				switchTriggered = true;
 				EndAction();
 			}
 		}
@@ -49,6 +55,7 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 	private void InitializeAction(){
 
 		limitReached = false;
+		switchTriggered = false;
 		if (rangeDetect.PlayerInRange()){
 
 		if (defendTimeFixed > 0){
@@ -74,7 +81,7 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 		}
 		}else{
-			base.EndAction (false);
+			base.CancelAction();
 			myEnemyReference.currentState.behaviorSet[nextActionOutOfRange].SetEnemy(myEnemyReference);
 			myEnemyReference.currentState.behaviorSet[nextActionOutOfRange].StartAction();
 			myEnemyReference.currentState.SetActingBehaviorNum(nextActionOutOfRange);
@@ -85,13 +92,14 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 	public override void StartAction (bool useAnimTrigger = true)
 	{
 		base.StartAction ();
-
 		InitializeAction();
+
 	}
 
 	public override void EndAction (bool doNextAction = true)
 	{
-		base.EndAction (false);
+
+		base.CancelAction();
 		if (myEnemyReference.currentState != null){
 		if (limitReached){
 			myEnemyReference.currentState.behaviorSet[nextActionCounter].SetEnemy(myEnemyReference);

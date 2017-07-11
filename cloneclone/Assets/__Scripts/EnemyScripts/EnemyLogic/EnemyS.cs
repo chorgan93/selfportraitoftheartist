@@ -210,11 +210,12 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetBehavior(EnemyBehaviorS newBehavior){
 		_currentBehavior = newBehavior;
+		behaviorSet = true;
 	}
 
 	public void ForceBehaviorState(EnemyBehaviorStateS newState){
 
-		_currentBehavior.EndAction(false);
+		_currentBehavior.CancelAction();
 		_currentState = newState;
 
 	}
@@ -266,7 +267,7 @@ public class EnemyS : MonoBehaviour {
 			#if UNITY_EDITOR
 			if (debugMark){
 				if (Input.GetKeyDown(KeyCode.Alpha9)){
-					Debug.Log(GetNumberOfActiveBehaviors());
+					Debug.Log(enemyName + " : " + GetNumberOfActiveBehaviors(), gameObject);
 				} 
 			}
 			#endif
@@ -463,7 +464,7 @@ public class EnemyS : MonoBehaviour {
 					}
 
 					// reset whichever state should be active
-					_currentBehavior.EndAction(false);
+					_currentState.CancelAllActions();
 					_currentState.StartActions();
 				}
 			}else{
@@ -572,13 +573,13 @@ public class EnemyS : MonoBehaviour {
 			
 	}
 
-	private void CheckStates(bool allowStateChange){
+	private void CheckStates(bool dontAllowStateChange){
 
 		if (!_isDead){
 
 			behaviorSet = false;
 
-			bool dontChange = allowStateChange;
+			bool dontChange = dontAllowStateChange;
 
 			if (!dontChange){
 	
@@ -646,10 +647,11 @@ public class EnemyS : MonoBehaviour {
 		for (int i = 0; i < behaviorStates.Count; i++){
 			for (int j = 0; j < _behaviorStates[i].behaviorSet.Length; j++){
 				
-				_behaviorStates[i].behaviorSet[j].EndAction(false);
+				_behaviorStates[i].behaviorSet[j].CancelAction();
 
 			}
 		}
+		behaviorSet = false;
 
 	}
 
@@ -660,7 +662,7 @@ public class EnemyS : MonoBehaviour {
 		}
 	}
 
-	private int GetNumberOfActiveBehaviors(){
+	public int GetNumberOfActiveBehaviors(){
 		int numToReturn = 0;
 		for (int i = 0; i < behaviorStates.Count; i++){
 			for (int j = 0; j < _behaviorStates[i].behaviorSet.Length; j++){
@@ -670,6 +672,18 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 		return numToReturn;
+	}
+
+	public string GetNamesOfActiveBehaviors(){
+		string stringToReturn = "";
+		for (int i = 0; i < behaviorStates.Count; i++){
+			for (int j = 0; j < _behaviorStates[i].behaviorSet.Length; j++){
+				if (_behaviorStates[i].behaviorSet[j].BehaviorActing()){
+					stringToReturn += _behaviorStates[i].behaviorSet[j].behaviorName + " (" + _behaviorStates[i].stateName + ")\n";
+				}
+			}
+		}
+		return stringToReturn;
 	}
 
 	private void FlashFrameManager(){
@@ -804,7 +818,7 @@ public class EnemyS : MonoBehaviour {
 			currentCritDamage += dmg*critDmg*damageMultiplier;
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
-					_isCritical = false;
+					/*_isCritical = false;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 
@@ -815,8 +829,8 @@ public class EnemyS : MonoBehaviour {
 					}
 
 					// reset whichever state should be active
-					_currentBehavior.EndAction(false);
-					_currentState.StartActions();
+				_currentBehavior.CancelAction();
+					_currentState.StartActions();**/
 
 			}
 		}else{
@@ -909,7 +923,7 @@ public class EnemyS : MonoBehaviour {
 			_isDead = true;
 			CameraFollowS.F.RemoveStunnedEnemy(this);
 			Stun (0);
-			EndAllBehaviors();
+			CancelBehaviors();
 			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
@@ -957,7 +971,7 @@ public class EnemyS : MonoBehaviour {
 		_currentHealth = 0;
 		_isDead = true;
 		Stun (0);
-		EndAllBehaviors();
+		CancelBehaviors();
 		_myAnimator.SetLayerWeight(1, 0f);
 		_myAnimator.SetBool("Death", true);
 		_myAnimator.SetFloat("DeathSpeed", 10f);

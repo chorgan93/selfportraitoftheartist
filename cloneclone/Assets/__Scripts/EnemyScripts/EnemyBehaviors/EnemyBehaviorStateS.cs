@@ -98,7 +98,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	}
 
 	public void EndBehavior(){
-		behaviorSet[currentActingBehavior].EndAction(true);
+		behaviorSet[currentActingBehavior].EndAction();
 	}
 
 	public void SetEnemy(EnemyS enemy){
@@ -122,5 +122,13 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	public void SetActingBehaviorNum(int newB){
 		currentActingBehavior = newB;
+	}
+
+	public void CancelAllActions(){
+		for (int i = 0; i < behaviorSet.Length; i++){
+			if (behaviorSet[i].behaviorActive){
+				behaviorSet[i].CancelAction();
+			}
+		}
 	}
 }

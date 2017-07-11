@@ -8,10 +8,12 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public EnemyS myEnemyReference { get {return myEnemy;}}
 
 	private EnemyBehaviorStateS myBehaviorState;
+	public EnemyBehaviorStateS stateRef { get { return myBehaviorState; } }
 
 	private float behaviorActTime = 0f;
 
 	private bool _behaviorActing = false;
+	public bool behaviorActive { get { return _behaviorActing; } }
 
 	[Header("Behavior Properties")]
 	public string behaviorName; // mostly for editor legibility
@@ -72,6 +74,15 @@ public class EnemyBehaviorS : MonoBehaviour {
 			}
 
 		}
+			
+		#if UNITY_EDITOR
+		if (myEnemy.debugMark){
+			string debugString = myEnemyReference.enemyName + " " + behaviorName + " behavior set!"
+				+"\nCurrent Behavior Set: " + myEnemyReference.currentState.stateName + "\nActive Behaviors: " 
+				+ myEnemyReference.GetNumberOfActiveBehaviors() + "\n" + myEnemyReference.GetNamesOfActiveBehaviors();
+			Debug.Log(debugString, myEnemy.gameObject);
+		}
+		#endif
 
 
 	}
@@ -101,6 +112,13 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 		}
 
+	}
+
+	public virtual void CancelAction(){
+		_behaviorActing = false;
+		myEnemy.SetActing(false);
+		//myEnemy.SetBehavior(null);
+		myEnemy.canBeParried = false;
 	}
 
 	public virtual void SetEnemy(EnemyS newEnemy){

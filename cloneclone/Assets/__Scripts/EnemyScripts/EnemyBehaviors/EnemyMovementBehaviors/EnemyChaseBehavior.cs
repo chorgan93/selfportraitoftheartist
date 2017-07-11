@@ -18,6 +18,8 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	private float currentchaseSpeed;
 	
 	private float chaseTimeCountdown;
+	private float minChaseTime;
+	private float minChaseMult = 0.8f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -32,8 +34,8 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 			chaseTimeCountdown -= Time.deltaTime;
 
 			if (chaseEndRange != null){
-				if (chaseEndRange.currentTarget!=null){
-					EndAction();
+				if (chaseEndRange.currentTarget!=null && chaseTimeCountdown<=minChaseTime){
+					chaseTimeCountdown = 0;
 				}
 			}
 
@@ -52,6 +54,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 		else{
 			chaseTimeCountdown = Random.Range(chaseTimeMin, chaseTimeMax);
 		}
+		minChaseTime = chaseTimeCountdown*minChaseMult;
 		
 		if (chaseSpeedFixed > 0){
 			currentchaseSpeed = chaseSpeedFixed;
@@ -86,8 +89,8 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction ();
-		
 		InitializeAction();
+
 	}
 	
 	public override void EndAction (bool doNextAction = true)

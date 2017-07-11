@@ -86,7 +86,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			dodgeCheck.StartAction();
 		}**/
 		else{
-			myEnemyReference.myAnimator.SetTrigger("Idle");
+			//myEnemyReference.myAnimator.SetTrigger("Idle");
 			EndAction();
 		}
 
@@ -130,7 +130,6 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction (false);
-
 		InitializeAction();
 	}
 

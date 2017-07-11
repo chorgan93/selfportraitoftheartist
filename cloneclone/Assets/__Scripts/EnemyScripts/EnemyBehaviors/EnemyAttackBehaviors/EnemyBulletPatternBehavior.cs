@@ -103,8 +103,8 @@ public class EnemyBulletPatternBehavior: EnemyBehaviorS {
 	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction (false);
-
 		InitializeAction();
+
 	}
 
 	public override void EndAction (bool doNextAction = true)

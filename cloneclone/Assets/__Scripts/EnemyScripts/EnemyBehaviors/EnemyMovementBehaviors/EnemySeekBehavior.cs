@@ -107,8 +107,8 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction ();
-		
 		InitializeAction();
+
 	}
 	
 	public override void EndAction (bool doNextAction = true)
