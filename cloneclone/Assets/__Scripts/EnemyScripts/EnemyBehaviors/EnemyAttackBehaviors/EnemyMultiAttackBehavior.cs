@@ -34,14 +34,14 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			BehaviorUpdate();
 
 			if (!foundTrackingTarget){
-				trackingCountdown -= Time.deltaTime;
+				trackingCountdown -= Time.deltaTime*currentDifficultyMult;
 				if (trackingCountdown <= 0){
 					SetAttackDirection();
 					foundTrackingTarget = true;
 				}
 			}
 			
-			attackTimeCountdown -= Time.deltaTime;
+			attackTimeCountdown -= Time.deltaTime*currentDifficultyMult;
 
 			if (currentAttack < attackPrefab.Length-1){
 				if (attackTimeCountdown <= attackDuration-attackWarmup-timeBetweenAttacks){
