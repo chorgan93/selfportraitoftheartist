@@ -96,6 +96,13 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 				Instantiate(soundObj);
 			}
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
+			if (signalObj != null){
+				Vector3 signalPos =  transform.position;
+				signalPos.z = transform.position.z+1f;
+				GameObject signal = Instantiate(signalObj, signalPos, Quaternion.identity)
+					as GameObject;
+				signal.transform.parent = myEnemyReference.transform;
+			}
 
 			if (trackingTime <= 0){
 				foundTrackingTarget = true;
