@@ -89,6 +89,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	public override void StartAction (bool setAnimTrigger = true)
 	{
 		base.StartAction ();
+		//Debug.Log("Attempting to animate chase");
 		InitializeAction();
 
 	}

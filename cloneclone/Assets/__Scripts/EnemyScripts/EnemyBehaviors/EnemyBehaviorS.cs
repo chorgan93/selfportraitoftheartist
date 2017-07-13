@@ -60,6 +60,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 		if (animationKey != "" && setAnimTrigger){
 			myEnemy.myAnimator.SetTrigger(animationKey);
+			//Debug.Log("Behavior " + behaviorName + " is attempting to send trigger " + animationKey + " through base.StartAction()");
 			
 			if (soundObj){
 				Instantiate(soundObj);
@@ -105,6 +106,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetActing(false);
 
 		myEnemy.canBeParried = false;
+		myEnemy.OverrideSpacingRequirement = false;
 
 		if (doNextAction){
 
@@ -119,6 +121,11 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetActing(false);
 		//myEnemy.SetBehavior(null);
 		myEnemy.canBeParried = false;
+		myEnemy.OverrideSpacingRequirement = false;
+	}
+
+	public void SetBehaviorActing(bool newAct){
+		_behaviorActing = newAct;
 	}
 
 	public virtual void SetEnemy(EnemyS newEnemy){

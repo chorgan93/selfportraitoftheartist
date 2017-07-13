@@ -21,7 +21,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 			
 			BehaviorUpdate();
 
-			waitTimeCountdown -= Time.deltaTime;
+			waitTimeCountdown -= Time.deltaTime*currentDifficultyMult;
 			if (waitTimeCountdown <= 0){
 				EndAction();
 			}
@@ -38,7 +38,6 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 			waitTimeCountdown = Random.Range(waitTimeMin, waitTimeMax);
 		}
 
-		waitTimeCountdown/=currentDifficultyMult;
 
 		if (waitDragAmt > 0){
 			myEnemyReference.myRigidbody.drag = waitDragAmt;

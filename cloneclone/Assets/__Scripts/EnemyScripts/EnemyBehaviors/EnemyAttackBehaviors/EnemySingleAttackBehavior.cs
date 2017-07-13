@@ -56,13 +56,14 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	private void InitializeAction(){
 
-		if (AttackInRange()){
+		if (AttackInRange() || myEnemyReference.OverrideSpacingRequirement){
 
 			launchedAttack = false;
 			attackTimeCountdown = attackDuration/currentDifficultyMult;
 			SetAttackDirection();
 			
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
+			//Debug.Log("Attempting to animate single attack!");
 			if (signalObj != null){
 				Vector3 signalPos =  transform.position;
 				signalPos.z = transform.position.z+1f;

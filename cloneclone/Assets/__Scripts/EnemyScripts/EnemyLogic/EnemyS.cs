@@ -114,6 +114,9 @@ public class EnemyS : MonoBehaviour {
 	[HideInInspector]
 	public EnemySpawnerS mySpawner;
 
+	[HideInInspector]
+	public bool OverrideSpacingRequirement = false;
+
 
 	//____________________________________ENEMY STATES
 

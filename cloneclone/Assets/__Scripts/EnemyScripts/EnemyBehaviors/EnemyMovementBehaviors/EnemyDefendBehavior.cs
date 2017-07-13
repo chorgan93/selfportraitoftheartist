@@ -28,6 +28,7 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 
 	private bool limitReached = false;
 	private bool switchTriggered = false;
+	private bool outOfRange = false;
 
 	private float defendTimeCountdown;
 	
@@ -56,8 +57,25 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 
 		limitReached = false;
 		switchTriggered = false;
-		if (rangeDetect.PlayerInRange()){
+		outOfRange = false;
+		if (rangeDetect.PlayerInRange() || myEnemyReference.OverrideSpacingRequirement){
+			if (animationKey != ""){
+				myEnemyReference.myAnimator.SetTrigger(animationKey);
+				//Debug.Log("Attempting to set Defend animation trigger!");
 
+				if (soundObj){
+					Instantiate(soundObj);
+				}
+
+				if (signalObj != null){
+					Vector3 signalPos =  transform.position;
+					signalPos.z = transform.position.z+1f;
+					GameObject signal = Instantiate(signalObj, signalPos, Quaternion.identity)
+						as GameObject;
+					signal.transform.parent = myEnemyReference.transform;
+				}
+
+			}
 		if (defendTimeFixed > 0){
 			defendTimeCountdown = defendTimeFixed;
 		}
@@ -81,17 +99,16 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 		}
 		}else{
-			base.CancelAction();
-			myEnemyReference.currentState.behaviorSet[nextActionOutOfRange].SetEnemy(myEnemyReference);
-			myEnemyReference.currentState.behaviorSet[nextActionOutOfRange].StartAction();
-			myEnemyReference.currentState.SetActingBehaviorNum(nextActionOutOfRange);
+			outOfRange = true;
+			EndAction();
+
 		}
 
 	}
 
 	public override void StartAction (bool useAnimTrigger = true)
 	{
-		base.StartAction ();
+		base.StartAction (false);
 		InitializeAction();
 
 	}
@@ -99,17 +116,24 @@ public class EnemyDefendBehavior : EnemyBehaviorS {
 	public override void EndAction (bool doNextAction = true)
 	{
 
-		base.CancelAction();
 		if (myEnemyReference.currentState != null){
+
+			base.EndAction(false);
 		if (limitReached){
-			myEnemyReference.currentState.behaviorSet[nextActionCounter].SetEnemy(myEnemyReference);
-			myEnemyReference.currentState.behaviorSet[nextActionCounter].StartAction();
-			myEnemyReference.currentState.SetActingBehaviorNum(nextActionCounter);
-		}else{
-			myEnemyReference.currentState.behaviorSet[nextActionEnd].SetEnemy(myEnemyReference);
-			myEnemyReference.currentState.behaviorSet[nextActionEnd].StartAction();
-			myEnemyReference.currentState.SetActingBehaviorNum(nextActionEnd);
+				stateRef.behaviorSet[nextActionCounter].SetEnemy(myEnemyReference);
+				stateRef.behaviorSet[nextActionCounter].StartAction();
+				stateRef.SetActingBehaviorNum(nextActionCounter);
+			}else if (outOfRange){
+				stateRef.behaviorSet[nextActionOutOfRange].SetEnemy(myEnemyReference);
+				stateRef.behaviorSet[nextActionOutOfRange].StartAction();
+				stateRef.SetActingBehaviorNum(nextActionOutOfRange);
+			}else{
+				stateRef.behaviorSet[nextActionEnd].SetEnemy(myEnemyReference);
+				stateRef.behaviorSet[nextActionEnd].StartAction();
+				stateRef.SetActingBehaviorNum(nextActionEnd);
 		}
+		}else{
+			base.EndAction();
 		}
 	}
 }

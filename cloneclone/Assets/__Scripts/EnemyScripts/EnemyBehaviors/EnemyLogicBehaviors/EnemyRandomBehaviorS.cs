@@ -9,7 +9,6 @@ public class EnemyRandomBehaviorS : EnemyBehaviorS {
 	public override void StartAction(bool setAnimTrigger=true){
 
 		behaviorToExecute = Mathf.FloorToInt(Random.Range(0, possBehaviors.Length));
-		EndAction(false);
 		possBehaviors[behaviorToExecute].SetEnemy(myEnemyReference);
 		possBehaviors[behaviorToExecute].StartAction();
 
