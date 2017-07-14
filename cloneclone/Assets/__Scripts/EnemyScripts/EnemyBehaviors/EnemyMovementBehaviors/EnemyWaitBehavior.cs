@@ -23,7 +23,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 
 			waitTimeCountdown -= Time.deltaTime*currentDifficultyMult;
 			if (waitTimeCountdown <= 0){
-				Debug.Log(behaviorName +" ended bc of time out!" + waitTimeCountdown);
+				//Debug.Log(behaviorName +" ended bc of time out!" + waitTimeCountdown);
 				EndAction();
 			}
 		}
@@ -38,7 +38,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 		else{
 			waitTimeCountdown = Random.Range(waitTimeMin, waitTimeMax);
 		}
-		Debug.Log(behaviorName +" action started! " + waitTimeCountdown);
+		//Debug.Log(behaviorName +" action started! " + waitTimeCountdown);
 
 		if (waitDragAmt > 0){
 			myEnemyReference.myRigidbody.drag = waitDragAmt;

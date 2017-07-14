@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	public const float DAMAGE_VARIANCE = 0.15f;
+	private const float BOUNCE_MULT = 0.9f;
+	private const float WALL_STICK_TIME = 0.08f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
 	private const int FLASH_FRAME_COUNT = 3;
@@ -117,6 +119,10 @@ public class EnemyS : MonoBehaviour {
 	[HideInInspector]
 	public bool OverrideSpacingRequirement = false;
 
+	private Vector3 hitVelocity;
+	private bool touchingWall = false;
+	private Vector3 currentWallNormal;
+
 
 	//____________________________________ENEMY STATES
 
@@ -206,6 +212,27 @@ public class EnemyS : MonoBehaviour {
 		if (_isDead){
 			_myAnimator.SetLayerWeight(2,1f);
 			myShadow.enabled = false;
+		}
+	}
+
+	void OnCollisionEnter(Collision other){
+		if (other.gameObject.tag == "Wall"){
+			touchingWall = true;
+			if (currentKnockbackCooldown > 0){
+				WallBounce(other.contacts[0].normal);
+			}
+		}
+	}
+
+	void OnCollisionStay(Collision other){
+		if (other.gameObject.tag == "Wall"){
+			currentWallNormal = other.contacts[0].normal;
+		}
+	}
+
+	void OnCollisionExit(Collision other){
+		if (other.gameObject.tag == "Wall"){
+			touchingWall = false;
 		}
 	}
 
@@ -331,6 +358,8 @@ public class EnemyS : MonoBehaviour {
 		actingMaxHealth = maxHealth*currentDifficultyMult;
 		maxCritDamage *= DifficultyS.GetSinMult();
 
+		touchingWall = false;
+
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
 			_isActive = false;
@@ -398,6 +427,8 @@ public class EnemyS : MonoBehaviour {
 		_isDead = false;
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 		CameraFollowS.F.RemoveStunnedEnemy(this);
+
+		touchingWall = false;
 
 		currentCritDamage = 0;
 
@@ -742,6 +773,23 @@ public class EnemyS : MonoBehaviour {
 		myRenderer.color = fadeInColor;
 	}
 
+	IEnumerator WallBounce(Vector3 contactNormal, bool fromKnockback = false){
+
+		if (!fromKnockback){
+			_myRigidbody.velocity = Vector3.zero;
+			yield return new WaitForSeconds(WALL_STICK_TIME);
+		}
+
+		Vector3 bounceVelocity = Vector3.Reflect(hitVelocity, contactNormal);
+		if (!_isDead){
+			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT, ForceMode.Impulse);
+		}else{
+			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT/2f, ForceMode.Impulse);
+		}
+		Debug.Log(enemyName + " bounced off wall! " + bounceVelocity);
+		
+	}
+
 
 	//_______________________________________________PUBLIC METHODS
 	public void CheckBehaviorStateSwitch(bool dont){
@@ -961,7 +1009,12 @@ public class EnemyS : MonoBehaviour {
 
 		yield return new WaitForSeconds(knockbackDelay);
 
-		_myRigidbody.AddForce(forceAmt, fMode);
+		hitVelocity = forceAmt;
+		if (!touchingWall){
+			_myRigidbody.AddForce(forceAmt, fMode);
+		}else{
+			StartCoroutine(WallBounce(currentWallNormal, true));
+		}
 		
 	}
 
