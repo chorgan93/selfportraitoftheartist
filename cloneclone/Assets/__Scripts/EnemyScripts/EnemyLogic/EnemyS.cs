@@ -786,7 +786,6 @@ public class EnemyS : MonoBehaviour {
 		}else{
 			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT/2f, ForceMode.Impulse);
 		}
-		Debug.Log(enemyName + " bounced off wall! " + bounceVelocity);
 		
 	}
 
@@ -935,6 +934,7 @@ public class EnemyS : MonoBehaviour {
 				currentKnockbackCooldown = knockbackTime+knockbackDelay;
 				Stun(knockbackTime+knockbackDelay);
 			}
+			currentKnockbackCooldown*=1.2f/currentDifficultyMult;
 
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){

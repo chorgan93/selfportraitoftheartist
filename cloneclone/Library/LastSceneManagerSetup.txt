@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area01(Sanctum)Scenes/Area01_06_SubI_Sin.unity
+- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
   isLoaded: 1
   isActive: 1
