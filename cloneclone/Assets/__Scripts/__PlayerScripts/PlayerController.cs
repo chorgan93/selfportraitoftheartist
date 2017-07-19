@@ -1921,6 +1921,15 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void ItemHeal(){
+				CameraPOIS.POI.JumpToPoint(transform.position);
+				CameraEffectsS.E.HealEffect();
+				CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+				CameraShakeS.C.TimeSleep(0.08f);
+				_myStats.ResetCombatStats();
+
+	}
+
 	private void AttackAnimationTrigger(bool heavy = false){
 
 		if (heavy){

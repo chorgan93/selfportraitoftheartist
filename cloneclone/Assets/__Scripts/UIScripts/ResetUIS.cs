@@ -12,6 +12,9 @@ public class ResetUIS : MonoBehaviour {
 	public Image countHolderRight;
 	public Image instructHolder;
 
+	public Sprite healItemSprite;
+	private Sprite rewindItemSprite;
+
 	private InventoryManagerS inventoryRef;
 	private bool isShowing = true;
 
@@ -20,6 +23,8 @@ public class ResetUIS : MonoBehaviour {
 
 		inventoryRef = PlayerInventoryS.I.iManager;
 		UpdateUI ();
+
+		rewindItemSprite = itemIcon.sprite;
 
 		if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
 			instruction.text = "LB";
@@ -53,12 +58,20 @@ public class ResetUIS : MonoBehaviour {
 			instructHolder.enabled = true;
 			resetCount.enabled = true;
 			instruction.enabled = true;
-			if (InventoryManagerS.infiniteResets){
-				resetCount.enabled = false;
-				countHolderLeft.enabled = false;
-				countHolderRight.enabled = false;
+			if (PlayerInventoryS.I.iManager.equippedInventory[PlayerInventoryS.I.iManager.currentSelection] == 0){
+				itemIcon.sprite = rewindItemSprite;
+				if (InventoryManagerS.infiniteResets){
+					resetCount.enabled = false;
+					countHolderLeft.enabled = false;
+					countHolderRight.enabled = false;
+				}else{
+					resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
+				}
 			}else{
-				resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
+				itemIcon.sprite = healItemSprite;
+
+				resetCount.text = PlayerInventoryS.I.GetItemCount(1).ToString();
+
 			}
 		}else{
 			resetCount.enabled = false;

@@ -587,6 +587,19 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetKey(KeyCode.R));
 		}
 	}
+	public bool ToggleItemButton(){
+
+		if (ControllerAttached()){
+
+			if (controlProfile == 0){
+				return (Input.GetButton("SwitchButton"+platformType));
+			}else{
+				return (Input.GetKey(KeyCode.Tab));
+			}
+		}else{
+			return (Input.GetKey(KeyCode.Tab));
+		}
+	}
 	public bool ScrollItemLeftButton(){
 		//TODO add functionality for keyboard/mouse and linux
 		if (ControllerAttached()){

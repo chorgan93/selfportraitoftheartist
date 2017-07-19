@@ -18,6 +18,10 @@ public class CheckpointS : MonoBehaviour {
 	public int[] addToCompletedFights;
 
 	private string infiniteMessage = "Health Restored.";
+
+	private string infiniteMessageWithHeal = "Health Restored.\nHEALTH ESSENCES and REWINDs restored.";
+	private string healMessageWithHeal =  "Health restored. Progress saved.\nHEALTH ESSENCE and REWINDs restored.";
+
 	private string infiniteMessageWithItem = "Health Restored.\nREWINDs restored.";
 	private string healMessage = "Health restored. Progress saved.";
 	private string healMessageWithItem =  "Health restored. Progress saved.\nREWINDs restored.";
@@ -77,7 +81,15 @@ public class CheckpointS : MonoBehaviour {
 				else{
 					_playerDetect.player.TriggerResting(3f);
 					if (!PlayerStatDisplayS.RECORD_MODE){
-					if (PlayerInventoryS.I.CheckForItem(0)){
+						if (PlayerInventoryS.I.CheckForItem(1)){
+							if (SceneManagerS.inInfiniteScene){
+								instructionText.SetTimedMessage(infiniteMessageWithHeal, 1.4f);
+							}else{
+								instructionText.SetTimedMessage(healMessageWithHeal, 1.4f);
+							}
+						}
+
+					else if (PlayerInventoryS.I.CheckForItem(0)){
 						if (SceneManagerS.inInfiniteScene){
 							instructionText.SetTimedMessage(infiniteMessageWithItem, 1.4f);
 						}else{

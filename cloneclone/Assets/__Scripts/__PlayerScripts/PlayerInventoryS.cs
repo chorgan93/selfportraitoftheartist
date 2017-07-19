@@ -122,9 +122,15 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public void AddToInventory(int i, bool isKey = false){
 		if (!_collectedItems.Contains(i)){
-			_collectedItems.Add(i);
-			_collectedItemCount.Add(1);
-			_iManager.AddNextAvailable(i);
+			if (i != 1){
+				_collectedItems.Add(i);
+				_collectedItemCount.Add(1);
+				_iManager.AddNextAvailable(i);
+			}else{
+				_collectedItems.Insert(1, i);
+				_collectedItemCount.Insert(1, i);
+				_iManager.AddAt(1, i);
+			}
 			if (isKey){
 				_collectedKeyItems.Add(i);
 			}
@@ -287,10 +293,10 @@ public class PlayerInventoryS : MonoBehaviour {
 			_collectedItemCount[_collectedItems.IndexOf(0)]=healNums.Count;
 		}
 		if (CheckForItem(1)){
-			_collectedItemCount[_collectedItems.IndexOf(1)]=staminaNums.Count;
+			_collectedItemCount[_collectedItems.IndexOf(1)]=chargeNums.Count;
 		}
 		if (CheckForItem(2)){
-			_collectedItemCount[_collectedItems.IndexOf(2)]=chargeNums.Count;
+			_collectedItemCount[_collectedItems.IndexOf(2)]=staminaNums.Count;
 		}
 		_iManager.RefreshUI();
 	}

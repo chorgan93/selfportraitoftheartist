@@ -30,12 +30,16 @@ public class CameraEffectsS : MonoBehaviour {
 	private bool blurEnabled = true;
 	private float blurSizeMax = 9.99f;
 
+	private float staticMaxAlpha = 1f;
+
 	public SpriteRenderer resetStatic;
 	public Color resetColor;
+	public Color healColor = Color.magenta;
 	public Color endCombatColor;
 	private bool endCombatEffect;
 	Color staticCol;
 	public GameObject staticSound;
+	public GameObject healSound;
 	public GameObject endCombatSound;
 
 	// Use this for initialization
@@ -101,7 +105,7 @@ public class CameraEffectsS : MonoBehaviour {
 						blurT = blurEffectTime / blurEffectTimeMax*0.4f;
 						blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
 						staticCol = resetStatic.color;
-						staticCol.a = Mathf.Lerp(1f, 0f, blurT);
+						staticCol.a = Mathf.Lerp(staticMaxAlpha, 0f, blurT);
 						resetStatic.color = staticCol;
 					}
 					else{
@@ -139,6 +143,25 @@ public class CameraEffectsS : MonoBehaviour {
 			f.color = vignetteFade;
 		}
 	}
+	public void HealEffect(){
+		blurEnabled = true;
+		blurEffect.enabled = true;
+		blurEffectTime = blurEffectTimeMax/2f;
+		blurT = 0;
+
+
+		staticCol = healColor;
+
+
+		endCombatEffect = false;
+		staticCol.a = staticMaxAlpha = 0.7f;
+		resetStatic.color = staticCol;
+		resetStatic.gameObject.SetActive(true);
+
+		if (healSound){
+			Instantiate(healSound);
+		}
+	}
 	public void ResetEffect(bool endCombat = false){
 		blurEnabled = true;
 		blurEffect.enabled = true;
@@ -152,7 +175,7 @@ public class CameraEffectsS : MonoBehaviour {
 		}
 
 		endCombatEffect = endCombat;
-		staticCol.a = 1f;
+		staticCol.a = staticMaxAlpha = 1f;
 		resetStatic.color = staticCol;
 		resetStatic.gameObject.SetActive(true);
 

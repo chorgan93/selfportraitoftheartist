@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a80e881e625144e54887d9ceb938b91f
-timeCreated: 1481400930
+timeCreated: 1500434012
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -21,6 +21,7 @@ TextureImporter:
     21300028: Consumables_6
     21300030: Consumables_7
     21300032: Consumables_8
+    21300034: Consumables_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,7 +35,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -54,12 +55,11 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -71,8 +71,46 @@ TextureImporter:
     compressionQuality: 50
     allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Consumables_0
+    - serializedVersion: 2
+      name: Consumables_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_3
       rect:
         serializedVersion: 2
         x: 0
@@ -82,7 +120,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_1
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_4
       rect:
         serializedVersion: 2
         x: 32
@@ -92,7 +132,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_2
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_5
       rect:
         serializedVersion: 2
         x: 64
@@ -102,7 +144,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_3
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_6
       rect:
         serializedVersion: 2
         x: 0
@@ -112,7 +156,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_4
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_7
       rect:
         serializedVersion: 2
         x: 32
@@ -122,7 +168,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_5
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_8
       rect:
         serializedVersion: 2
         x: 64
@@ -132,7 +180,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_6
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_9
       rect:
         serializedVersion: 2
         x: 0
@@ -142,26 +192,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_7
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Consumables_8
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -17,6 +17,7 @@ public class InventoryManagerS : MonoBehaviour {
 	private PlayerInteractCheckS _interactRef;
 
 	private bool useItemButtonDown = false;
+	private bool toggleItemButtonDown = false;
 	private bool scrollItemButtonDown = false;
 
 	private bool _updateUICall = false;
@@ -54,7 +55,7 @@ public class InventoryManagerS : MonoBehaviour {
 	private void InitializeInventory(){
 
 		// create inventory list
-		_equippedInventory = new List<int>(4){0,0,0,0};
+		_equippedInventory = new List<int>(1){0};
 		// load from save data
 
 	}
@@ -82,6 +83,21 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private void UseItemControl(){
+		if (equippedInventory.Contains(0) && equippedInventory.Contains(1)){
+			if (!toggleItemButtonDown && _pRef.myControl.ToggleItemButton()){
+			_currentSelection++;
+			if (_currentSelection > 1){
+				_currentSelection = 0;
+			}
+			_updateUICall = true;
+			toggleItemButtonDown = true;
+				Debug.Log("TOGGLED ITEMS");
+		}
+		}
+
+		if (toggleItemButtonDown && !_pRef.myControl.ToggleItemButton()){
+			toggleItemButtonDown = false;
+		}
 		if (!useItemButtonDown && _pRef.myControl.UseItemButton() && !_pRef.usingitem && _pRef.CanUseItem()){
 			UseItem(_equippedInventory[_currentSelection]);
 			useItemButtonDown = true;
@@ -103,8 +119,12 @@ public class InventoryManagerS : MonoBehaviour {
 	private IEnumerator HealFunction(){
 
 		_pRef.TriggerItemAnimation();
+		_pRef.myStats.itemEffect.Flash(Color.white);
+		yield return new WaitForSeconds(0.1f);
+		CameraShakeS.C.DodgeSloMo(0.12f, 0.06f, 0.9f, 0.1f);
 		yield return new WaitForSeconds(useItemTime);
-		_pRef.myStats.Heal(20f);
+		CameraEffectsS.E.HealEffect();
+		_pRef.myStats.Heal(_pRef.myStats.maxHealth);
 
 	}
 	private IEnumerator RecoverStaminaFunction(){
@@ -148,9 +168,15 @@ public class InventoryManagerS : MonoBehaviour {
 					rechargeable = true;
 				}
 				break;
+			case 1:
+					StartCoroutine(HealFunction());
+						consumeItem = true;
+					rechargeable = true;
+
+				break;
 
 			// stamina recharge
-			case 1:
+			/*case 3:
 				StartCoroutine(RecoverStaminaFunction());
 				consumeItem = true;
 				rechargeable = true;
@@ -161,7 +187,7 @@ public class InventoryManagerS : MonoBehaviour {
 				StartCoroutine(RecoverChargeFunction());
 				consumeItem = true;
 				rechargeable = true;
-				break;
+				break;**/
 		}
 			if (consumeItem){
 			_inventoryRef.RemoveFromInventory(itemID, rechargeable);
@@ -176,8 +202,8 @@ public class InventoryManagerS : MonoBehaviour {
 
 	private void RemoveItemAt(int itemIndex){
 		_equippedInventory[itemIndex] = -1;
-		ShiftItems(_currentSelection);
-		_currentSelection = NextAvailableItemSlot();
+		//ShiftItems(_currentSelection);
+		//_currentSelection = NextAvailableItemSlot();
 	}
 
 	private void ShiftItems(int startPt){
@@ -222,6 +248,16 @@ public class InventoryManagerS : MonoBehaviour {
 		}
 		_updateUICall = true;
 	}
+	public void AddAt(int index, int j){
+		bool itemAdded = false;
+		if (_equippedInventory.Count > index){
+			equippedInventory.Insert(index, j);
+		}else{
+			equippedInventory.Add(j);
+		}
+		_updateUICall = true;
+	}
+
 
 	public void LoadInventory(List<int> newInventory){
 		_equippedInventory = newInventory;
