@@ -32,9 +32,12 @@ public class StoryProgressionS : MonoBehaviour {
 
 	public static void NewGame(){
 		storyProgress = savedProgress = new List<int>();
+		storyProgress.Clear();
+		savedProgress.Clear();
+		Debug.Log(storyProgress.Count);
+		Debug.Log(savedProgress.Count);
 		//SaveLoadS.Load();
 		InGameMenuManagerS.allowMenuUse = false;
-
 		InGameMenuManagerS.hasUsedMenu = false;
 		if (PlayerInventoryS.I != null){
 			PlayerInventoryS.I.NewGame();

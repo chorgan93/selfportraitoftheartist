@@ -30,6 +30,9 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	}
 
 	void TriggerLogic(){
+		for (int i = 0; i < StoryProgressionS.storyProgress.Count; i++){
+			Debug.Log(StoryProgressionS.storyProgress[i]);
+		}
 		if (progressNum > -1){
 			if (StoryProgressionS.storyProgress.Contains(progressNum) 
 				|| (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){

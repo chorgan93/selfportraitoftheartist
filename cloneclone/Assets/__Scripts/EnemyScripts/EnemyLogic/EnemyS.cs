@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	public const float DAMAGE_VARIANCE = 0.15f;
-	private const float BOUNCE_MULT = 0.9f;
+	private const float BOUNCE_MULT = 1.1f;
 	private const float WALL_STICK_TIME = 0.08f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
@@ -868,7 +868,7 @@ public class EnemyS : MonoBehaviour {
 			currentCritDamage += dmg*critDmg*damageMultiplier;
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
-					/*_isCritical = false;
+					_isCritical = false;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 
@@ -880,7 +880,7 @@ public class EnemyS : MonoBehaviour {
 
 					// reset whichever state should be active
 				_currentBehavior.CancelAction();
-					_currentState.StartActions();**/
+					_currentState.StartActions();
 
 			}
 		}else{
@@ -956,14 +956,14 @@ public class EnemyS : MonoBehaviour {
 				breakRef.transformRef = transform;
 				breakRef.pieceColor = bloodColor;
 						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
-						vulnerableCountdown = criticalRecoverTime*2f/currentDifficultyMult;
+						vulnerableCountdown = criticalRecoverTime*2f;
 					}
 				}
-				if (vulnerableCountdown < criticalRecoverTime/currentDifficultyMult){
-					vulnerableCountdown = criticalRecoverTime/currentDifficultyMult;
+				if (vulnerableCountdown < criticalRecoverTime){
+					vulnerableCountdown = criticalRecoverTime;
 				}
 
-				Stun(criticalRecoverTime/currentDifficultyMult,true);
+				Stun(criticalRecoverTime,true);
 			}
 		}
 		else{

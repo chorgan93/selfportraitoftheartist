@@ -438,7 +438,7 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		DifficultyS.SetDifficultiesFromInt(inventoryData.sinLevel, inventoryData.punishLevel);
 
-		_iManager.LoadInventory(inventoryData.equippedInventory);
+		_iManager.LoadInventory(inventoryData.equippedInventory, inventoryData.currentSelection);
 		_iManager.RefreshUI();
 	}
 	 
@@ -490,6 +490,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 
 			inventoryData.equippedInventory = _iManager.equippedInventory;
+			inventoryData.currentSelection = _iManager.currentSelection;
 
 			LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 			inventoryData.availableUpgrades = new List<int>();
@@ -544,6 +545,7 @@ public class InventorySave {
 	public int currentParadigm;
 
 	public List<int> equippedInventory;
+	public int currentSelection = 0;
 
 	public List<int> nextLevelUpgrades;
 	public List<int> availableUpgrades;
@@ -586,6 +588,7 @@ public class InventorySave {
 		
 		equippedBuddies = new List<int>();
 
+		currentSelection = 0;
 		equippedInventory = new List<int>();
 		currentParadigm = 0;
 		currentSpawnPoint = 0;

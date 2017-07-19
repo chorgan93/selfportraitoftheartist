@@ -22,9 +22,9 @@ public class ResetUIS : MonoBehaviour {
 	void Start () {
 
 		inventoryRef = PlayerInventoryS.I.iManager;
+		rewindItemSprite = itemIcon.sprite;
 		UpdateUI ();
 
-		rewindItemSprite = itemIcon.sprite;
 
 		if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
 			instruction.text = "LB";

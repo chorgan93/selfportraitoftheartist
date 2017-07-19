@@ -115,6 +115,11 @@ public class CheckpointS : MonoBehaviour {
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
 				PlayerInventoryS.I.dManager.ClearAll();
+				if (addToCompletedFights.Length > 0){
+					for (int i = 0; i<addToCompletedFights.Length;i++){
+						PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i]);
+					}
+				}
 				PlayerInventoryS.I.RefreshRechargeables();
 			_talkButtonUp = false;
 			}
