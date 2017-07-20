@@ -77,7 +77,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 		currentMoveTarget.z = transform.position.z;
 
 		if (wanderDragAmt > 0){
-			myEnemyReference.myRigidbody.drag = wanderDragAmt;
+			myEnemyReference.myRigidbody.drag = wanderDragAmt*EnemyS.FIX_DRAG_MULT;
 		}
 		
 	}

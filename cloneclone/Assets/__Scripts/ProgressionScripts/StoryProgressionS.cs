@@ -34,8 +34,6 @@ public class StoryProgressionS : MonoBehaviour {
 		storyProgress = savedProgress = new List<int>();
 		storyProgress.Clear();
 		savedProgress.Clear();
-		Debug.Log(storyProgress.Count);
-		Debug.Log(savedProgress.Count);
 		//SaveLoadS.Load();
 		InGameMenuManagerS.allowMenuUse = false;
 		InGameMenuManagerS.hasUsedMenu = false;

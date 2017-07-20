@@ -41,7 +41,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 		//Debug.Log(behaviorName +" action started! " + waitTimeCountdown);
 
 		if (waitDragAmt > 0){
-			myEnemyReference.myRigidbody.drag = waitDragAmt;
+			myEnemyReference.myRigidbody.drag = waitDragAmt*EnemyS.FIX_DRAG_MULT;
 		}
 
 		if (setVelocityToZeroOnStart){

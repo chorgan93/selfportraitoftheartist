@@ -579,7 +579,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 		
 			if (controlProfile == 0){
-			return (Input.GetButton("SwitchBuddyButton"+platformType));
+			return (Input.GetButton("SwitchButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.R));
 			}
@@ -592,7 +592,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 
 			if (controlProfile == 0){
-				return (Input.GetButton("SwitchButton"+platformType));
+				return (Input.GetButton("SwitchBuddyButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.Tab));
 			}

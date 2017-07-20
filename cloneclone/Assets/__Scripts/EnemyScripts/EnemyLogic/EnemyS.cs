@@ -5,8 +5,10 @@ using System.Collections.Generic;
 public class EnemyS : MonoBehaviour {
 
 	public const float DAMAGE_VARIANCE = 0.15f;
-	private const float BOUNCE_MULT = 1.1f;
+	private const float BOUNCE_MULT = 1.5f;
 	private const float WALL_STICK_TIME = 0.08f;
+
+	public const float FIX_DRAG_MULT = 1.5f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
 	private const int FLASH_FRAME_COUNT = 3;
@@ -388,7 +390,7 @@ public class EnemyS : MonoBehaviour {
 			fadedIn = true;
 		}
 
-		startDrag = _myRigidbody.drag;
+		startDrag = _myRigidbody.drag*FIX_DRAG_MULT;
 
 		if (!_initialized){
 			_initialized = true;
@@ -448,7 +450,7 @@ public class EnemyS : MonoBehaviour {
 		spawnedDeathObj = false;
 		deathFrameDelay = 3;
 		
-		startDrag = _myRigidbody.drag;
+		startDrag = _myRigidbody.drag*FIX_DRAG_MULT;
 
 		_behaviorStates = GetBehaviorStates();
 			

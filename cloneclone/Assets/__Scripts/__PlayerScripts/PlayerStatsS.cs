@@ -13,7 +13,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
-	public const float HEALTH_ADD_AMT = 1.5f;
+	public const float HEALTH_ADD_AMT = 2f;
 
 	private const float anxiousChargeRate = 0.1f;
 

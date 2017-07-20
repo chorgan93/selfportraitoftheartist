@@ -112,7 +112,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			
 	
 			if (attackDragAmt > 0){
-				myEnemyReference.myRigidbody.drag = attackDragAmt;
+				myEnemyReference.myRigidbody.drag = attackDragAmt*EnemyS.FIX_DRAG_MULT;
 			}
 	
 			if (setVelocityToZeroOnStart){

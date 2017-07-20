@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f4e55ed4d1b6e4e1a9b07609f3fecd62
-timeCreated: 1499989610
+timeCreated: 1500505699
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -145,6 +145,9 @@ TextureImporter:
     21300276: ratthing_43
     21300278: ratthing_44
     21300280: ratthing_45
+    21300282: ratthing_46
+    21300284: ratthing_47
+    21300286: ratthing_48
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -736,6 +739,42 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: ratthing_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: ratthing_47
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: ratthing_48
+      rect:
+        serializedVersion: 2
+        x: 384
         y: 0
         width: 64
         height: 64
