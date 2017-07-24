@@ -52,6 +52,9 @@ public class CameraShakeS : MonoBehaviour {
 	private bool 				timePaused = false;
 	private float 				capturedTimeScale = 1f;
 
+	[HideInInspector]
+	public bool lockXShake = false;
+
 	//_________________________________________________GETTERS AND SETTERS
 
 	public bool	isShaking				{ get { return _isShaking; } }
@@ -163,6 +166,9 @@ public class CameraShakeS : MonoBehaviour {
 			}
 			else{
 				_shakeOffset = Random.insideUnitSphere*_shake_intensity*OPTIONS_SHAKE_MULTIPLIER;
+				if (lockXShake){
+					_shakeOffset.x = 0f;
+				}
 				_shakeOffset.y *= 0.7f;
 				_shakeOffset.z = 0;
 	

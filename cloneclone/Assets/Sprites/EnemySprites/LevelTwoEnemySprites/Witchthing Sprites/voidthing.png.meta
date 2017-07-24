@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 74694b8cb1e814f92a95e329c6a3076b
-timeCreated: 1473192514
+timeCreated: 1500927274
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -28,6 +28,21 @@ TextureImporter:
     21300042: voidthing_21
     21300044: voidthing_22
     21300046: voidthing_23
+    21300048: voidthing_24
+    21300050: voidthing_25
+    21300052: voidthing_26
+    21300054: voidthing_27
+    21300056: voidthing_28
+    21300058: voidthing_29
+    21300060: voidthing_30
+    21300062: voidthing_31
+    21300064: voidthing_32
+    21300066: voidthing_33
+    21300068: voidthing_34
+    21300070: voidthing_35
+    21300072: voidthing_36
+    21300074: voidthing_37
+    21300076: voidthing_38
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -41,7 +56,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -61,20 +76,165 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: voidthing_0
+    - serializedVersion: 2
+      name: voidthing_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_12
       rect:
         serializedVersion: 2
         x: 0
@@ -84,7 +244,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_1
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_13
       rect:
         serializedVersion: 2
         x: 128
@@ -94,7 +256,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_2
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_14
       rect:
         serializedVersion: 2
         x: 256
@@ -104,7 +268,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_3
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_15
       rect:
         serializedVersion: 2
         x: 384
@@ -114,7 +280,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_4
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_16
       rect:
         serializedVersion: 2
         x: 512
@@ -124,7 +292,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_5
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_18
       rect:
         serializedVersion: 2
         x: 0
@@ -134,7 +316,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_6
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_19
       rect:
         serializedVersion: 2
         x: 128
@@ -144,7 +328,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_7
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_20
       rect:
         serializedVersion: 2
         x: 256
@@ -154,7 +340,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_8
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_21
       rect:
         serializedVersion: 2
         x: 384
@@ -164,7 +352,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_9
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_22
       rect:
         serializedVersion: 2
         x: 512
@@ -174,7 +364,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_10
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_23
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_24
       rect:
         serializedVersion: 2
         x: 0
@@ -184,7 +388,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_11
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_25
       rect:
         serializedVersion: 2
         x: 128
@@ -194,7 +400,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_12
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_26
       rect:
         serializedVersion: 2
         x: 256
@@ -204,7 +412,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_13
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_27
       rect:
         serializedVersion: 2
         x: 384
@@ -214,7 +424,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_14
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_28
       rect:
         serializedVersion: 2
         x: 512
@@ -224,7 +436,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_15
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_30
       rect:
         serializedVersion: 2
         x: 0
@@ -234,7 +460,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_16
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_31
       rect:
         serializedVersion: 2
         x: 128
@@ -244,7 +472,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_17
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_32
       rect:
         serializedVersion: 2
         x: 256
@@ -254,7 +484,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_18
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_33
       rect:
         serializedVersion: 2
         x: 384
@@ -264,7 +496,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_19
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_34
       rect:
         serializedVersion: 2
         x: 512
@@ -274,7 +508,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_20
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_35
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_36
       rect:
         serializedVersion: 2
         x: 0
@@ -284,7 +532,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_21
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_37
       rect:
         serializedVersion: 2
         x: 128
@@ -294,7 +544,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_22
+      outline: []
+    - serializedVersion: 2
+      name: voidthing_38
       rect:
         serializedVersion: 2
         x: 256
@@ -304,16 +556,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: voidthing_23
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
