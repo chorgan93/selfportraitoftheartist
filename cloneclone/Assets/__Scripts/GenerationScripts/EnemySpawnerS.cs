@@ -52,11 +52,17 @@ public class EnemySpawnerS : MonoBehaviour {
 			if (parentClear){
 				parentClear.AddClear();
 			}
-			if (enemySpawnID > -1){
+			/*if (enemySpawnID > -1){
 				PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID, currentEnemyReference.transform.position);
-			}
+			}**/
 		}
 	
+	}
+
+	public void SaveEnemyDefeated(){
+		if (enemySpawnID > -1){
+			PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID, currentEnemyReference.transform.position);
+		}
 	}
 
 	private void SpawnEnemy(){

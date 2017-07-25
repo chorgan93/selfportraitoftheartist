@@ -12,6 +12,8 @@ public class CombatTriggerS : MonoBehaviour {
 		if (combatReference.combatID > -1){
 			if (PlayerInventoryS.I.dManager.clearedCombatTriggers.Contains(combatReference.combatID)){
 				activated = true;
+				combatReference.TurnOnOnceObjects();
+				combatReference.TurnOffOnceObjects();
 			}
 		}
 	}

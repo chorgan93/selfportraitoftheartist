@@ -41,8 +41,8 @@ public class CombatManagerS : MonoBehaviour {
 
 		if (!playerRef.myStats.PlayerIsDead()){
 			defeatedEnemies = 0;
-			foreach (EnemySpawnerS e in enemies){
-				if (e.EnemiesDefeated()){
+			for (int i = 0; i <  enemies.Length; i++){
+				if (enemies[i].EnemiesDefeated()){
 					defeatedEnemies++;
 				}
 			}
@@ -54,6 +54,7 @@ public class CombatManagerS : MonoBehaviour {
 	}
 
 	IEnumerator CompleteCombat(){
+		AddDefeatedEnemies();
 		CameraFollowS.F.ClearStunnedEnemies();
 		CameraShakeS.C.TimeSleepEndCombat(0.12f);
 		completed = true;
@@ -74,6 +75,12 @@ public class CombatManagerS : MonoBehaviour {
 
 		if (clearBloodOnComplete){
 			PlayerInventoryS.I.dManager.ClearBattleBlood();
+		}
+	}
+
+	void AddDefeatedEnemies(){
+		for (int i = 0; i < enemies.Length; i++){
+			enemies[i].SaveEnemyDefeated();
 		}
 	}
 
@@ -136,7 +143,7 @@ public class CombatManagerS : MonoBehaviour {
 		}
 	}
 
-	void TurnOnOnceObjects(){
+	public void TurnOnOnceObjects(){
 		if (turnOnOnSkip != null){
 			for (int i = 0; i < turnOnOnSkip.Length; i++){
 				turnOnOnSkip[i].SetActive(true);
@@ -144,7 +151,7 @@ public class CombatManagerS : MonoBehaviour {
 		}
 	}
 	
-	void TurnOffOnceObjects(){
+	public void TurnOffOnceObjects(){
 		if (turnOffOnSkip != null){
 			for (int i = 0; i < turnOffOnSkip.Length; i++){
 				turnOffOnSkip[i].SetActive(false);
