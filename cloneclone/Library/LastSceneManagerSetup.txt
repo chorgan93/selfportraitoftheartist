@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_04_AvonStation.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_14_Defenders.unity
   isLoaded: 1
   isActive: 1

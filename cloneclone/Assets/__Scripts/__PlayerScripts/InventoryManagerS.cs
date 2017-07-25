@@ -91,7 +91,7 @@ public class InventoryManagerS : MonoBehaviour {
 			}
 			_updateUICall = true;
 			toggleItemButtonDown = true;
-				Debug.Log("TOGGLED ITEMS");
+				//Debug.Log("TOGGLED ITEMS");
 		}
 		}
 
