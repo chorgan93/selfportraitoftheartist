@@ -25,6 +25,13 @@ public class CameraShakeS : MonoBehaviour {
 	private int					_shakePriority = 0;
 
 	public static float 		OPTIONS_SHAKE_MULTIPLIER = 1f;
+
+	public static float 		turboMultiplier = 0.92f;
+	private float turboOff = 0.92f;
+	private float turboOn = 1f;
+	private float superTurbo = 1.075f;
+
+	private float debugScale = 1f;
 	
 
 	//_______________________________________INSTANCE VARIABLES
@@ -74,6 +81,12 @@ public class CameraShakeS : MonoBehaviour {
 
 		C = this;
 
+		#if UNITY_EDITOR || UNITY_EDITOR_OSX
+		Time.timeScale = turboMultiplier = debugScale;
+		#else
+			Time.timeScale = turboMultiplier;
+		#endif
+
 	}
 
 	void Update () {
@@ -122,8 +135,8 @@ public class CameraShakeS : MonoBehaviour {
 				_addDeathTimeScale += _increaseTimeRate*Time.unscaledDeltaTime;
 			}
 
-			if (Time.timeScale >= 1f){
-				Time.timeScale = 1f;
+			if (Time.timeScale >= turboMultiplier){
+				Time.timeScale = turboMultiplier;
 				doDeathTime = false;
 			}
 
@@ -132,17 +145,17 @@ public class CameraShakeS : MonoBehaviour {
 			if (_sloMoOn){
 
 				if (_dodgeSloMoStart){
-					Time.timeScale = 0.4f;
+					Time.timeScale = 0.4f*turboMultiplier;
 					_dodgeSloTime -= Time.unscaledDeltaTime;
 					if (_dodgeSloTime <= 0){
 						_dodgeSloMoStart = false;
 					}
 				}
 				else if (dodgeSloMo){
-					Time.timeScale = 0.7f;
+					Time.timeScale = 0.7f*turboMultiplier;
 					_slowTimeAmount -= Time.unscaledDeltaTime;
 				}else{
-					Time.timeScale = 0.5f;
+					Time.timeScale = 0.5f*turboMultiplier;
 					_slowTimeAmount -= Time.unscaledDeltaTime;
 				}
 
@@ -151,7 +164,7 @@ public class CameraShakeS : MonoBehaviour {
 				}
 			}
 			else{
-				Time.timeScale = 1f;
+				Time.timeScale = turboMultiplier;
 			}
 		}
 

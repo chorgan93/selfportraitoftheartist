@@ -848,7 +848,8 @@ public class EnemyS : MonoBehaviour {
 	public void AutoCrit(Vector3 knockback, float critTime){
 		_isVulnerable = true;
 		_breakAmt = _breakThreshold+1f;
-		TakeDamage(knockback, 0f, 0f, 0f, critTime);
+		_myRigidbody.velocity = Vector3.zero;
+		TakeDamage(knockback, 0f, 0f, 0f, 0.12f, critTime);
 		canBeParried = false;
 	}
 

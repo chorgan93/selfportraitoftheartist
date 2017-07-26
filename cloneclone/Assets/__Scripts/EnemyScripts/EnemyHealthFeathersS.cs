@@ -10,6 +10,8 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	public float maxStartInterval = 0.08f;
 	private float currentInterval;
 
+	private Vector3 falseFeatherScale = new Vector3 (0.65f, 0.65f, 1f);
+
 	private float destroyFeatherTime = 0.1f;
 	private float deathFeatherTime = 0.04f;
 
@@ -111,6 +113,7 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 			featherSprites[i].SetUpFeather(myEnemy.bloodColor);
 
 			falseFeathers.Add(featherSprites[i].transform.GetChild(0).GetComponent<Animator>());
+			featherSprites[i].transform.GetChild(0).localScale = falseFeatherScale;
 			falseFeathers[i].GetComponent<SpriteRenderer>().color = falseColor;
 		}
 

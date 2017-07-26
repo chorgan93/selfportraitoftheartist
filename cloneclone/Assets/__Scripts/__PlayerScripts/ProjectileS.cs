@@ -440,6 +440,11 @@ public class ProjectileS : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "Destructible"){
+			if (stopOnEnemyContact && _myPlayer != null){
+				if (!_myPlayer.myStats.PlayerIsDead() && !_myPlayer.isDashing && !_myPlayer.isStunned && !_myPlayer.isSprinting){
+					_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
+				}
+			}
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			//DoShake();
 			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, weaponNum);
@@ -451,6 +456,11 @@ public class ProjectileS : MonoBehaviour {
 		}
 
 		if (other.gameObject.tag == "Wall"){
+			if (stopOnEnemyContact && _myPlayer != null){
+				if (!_myPlayer.myStats.PlayerIsDead() && !_myPlayer.isDashing && !_myPlayer.isStunned && !_myPlayer.isSprinting){
+					_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
+				}
+			}
 			HitEffectDestructible(myRenderer, transform.position);
 			CameraShakeS.C.SmallShake();
 			if (hitSoundObj){
@@ -472,7 +482,7 @@ public class ProjectileS : MonoBehaviour {
 			if (!hitEnemy.isFriendly && !enemiesHit.Contains(hitEnemy) && !hitEnemy.invulnerable){
 
 				if (stopOnEnemyContact && _myPlayer != null){
-					if (!_myPlayer.myStats.PlayerIsDead()){
+					if (!_myPlayer.myStats.PlayerIsDead() && !_myPlayer.isDashing && !_myPlayer.isStunned && !_myPlayer.isSprinting){
 						_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
 					}
 				}

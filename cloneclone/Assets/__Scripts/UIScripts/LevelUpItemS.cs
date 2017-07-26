@@ -24,6 +24,8 @@ public class LevelUpItemS : MonoBehaviour {
 
 	public Color lockedTextColor;
 
+	private int flatAddPerLevel = 100;
+
 	void Start(){
 		//lockedTextColor = upgradeNameText.color;
 		statRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
@@ -46,7 +48,7 @@ public class LevelUpItemS : MonoBehaviour {
 		upgradeNum = upgradeRef.upgradeID;
 		upgradeDescription = upgradeRef.upgradeDescription;
 		upgradeName = upgradeRef.upgradeName;
-		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel;
+		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel + flatAddPerLevel*(statRef.currentLevel-1);
 
 		if (upgradeCost > PlayerCollectionS.currencyCollected){
 			upgradeImage.sprite = upgradeRef.upgradeImgLocked;

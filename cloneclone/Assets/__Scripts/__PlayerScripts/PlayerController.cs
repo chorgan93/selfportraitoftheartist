@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.8f;
-	private float dashSprintAllowMult = 0.48f;
+	private float dashSprintAllowMult = 0.525f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -125,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerAnimationFaceS _myFace;
 
 	private float startDrag;
+	private float sprintDragMult = 0.8f;
 
 	private Vector3 inputDirection;
 	private bool dashButtonUp = true;
@@ -556,8 +557,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashDamage(){
-		flashDamageFrames = 5;
-		myRenderer.material = damageFlashMat;
+		/*flashDamageFrames = 5;
+		myRenderer.material = damageFlashMat;**/
 	}
 
 	public void FlashHeal(){
@@ -567,12 +568,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashMana(bool doEffect = false){
-		flashManaFrames = 4;
+		/*flashManaFrames = 4;
 		myRenderer.material = manaFlashMat;
 		myRenderer.material.SetColor("_FlashColor", equippedWeapon.flashSubColor);
 		if (doEffect){
 			VignetteEffectS.V.Flash(manaFlashMat.color);
-		}
+		}**/
 	}
 	public void FlashCharge(){
 		/*flashChargeFrames = 5;
@@ -759,16 +760,18 @@ public class PlayerController : MonoBehaviour {
 
 
 		FlashMana();
+		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
 		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
-				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
+				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
 			}
 			_myStats.ManaCheck(_dodgeCost);
 			CameraShakeS.C.SmallShake();
 			CameraShakeS.C.SmallSleep();
+			CameraShakeS.C.SloAndPunch(0f, 0.7f, 0.2f);
 			DelayWitchTimeActivate(enemiesToParry[0]);
 			shootButtonUp = false;
 			PrepParryAnimation();
@@ -776,7 +779,6 @@ public class PlayerController : MonoBehaviour {
 		}else{
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
-		_myRigidbody.velocity = Vector3.zero;
 		_triggerBlock = false;
 
 		if (attackTriggered){
@@ -854,7 +856,7 @@ public class PlayerController : MonoBehaviour {
 		_isSprinting = true;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
-		_myRigidbody.drag = startDrag;
+		_myRigidbody.drag = startDrag*sprintDragMult;
 
 		sprintNoDrainTime = sprintNoDrainMax;
 		
@@ -951,18 +953,21 @@ public class PlayerController : MonoBehaviour {
 			dashButtonUp = false;
 			_triggerBlock = false;
 			_isSprinting = false;
+			_myRigidbody.drag = startDrag;
 		}else{
 			if (!myControl.DashTrigger()){
 				dashButtonUp = true;
 				_triggerBlock = false;
 				_dashStickReset = true;
 				_isSprinting = false;
+				_myRigidbody.drag = startDrag;
 			}else if (_isSprinting){
 				if (sprintNoDrainTime > 0){
 					sprintNoDrainTime -= Time.deltaTime;
 				}
 				else if (!_myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
 					_isSprinting = false;
+					_myRigidbody.drag = startDrag;
 				}
 			}
 			if (!_dashStickReset){
@@ -1222,6 +1227,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			SpawnAttackPuff();
 			_isSprinting = false;
+			_myRigidbody.drag = startDrag;
 
 				// subtract mana cost
 				if (_playerAug.gaeaAug){
@@ -1580,6 +1586,7 @@ public class PlayerController : MonoBehaviour {
 					if (myDetect.allEnemiesInRange.Count > 0){
 						_myLockOn.LockOn(myDetect.closestEnemy);
 						_isSprinting = false;
+					_myRigidbody.drag = startDrag;
 					}
 				}
 			}
@@ -2089,7 +2096,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputShoot(){
 
 		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
-		    && !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem){
+			&& !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem && !hitStopped){
 			return true;
 		}
 		else{
@@ -2611,7 +2618,16 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool AllowDodgeEffect(){
-		if (_isDashing && dashDurationTime <= dashEffectThreshold){
+		// as of JULY 25, I'm turning this off for balance testing purposes after the PARRY rework
+		/*if (_isDashing && dashDurationTime <= dashEffectThreshold){
+			return true;
+		}else{
+			return false;
+		}**/
+		return false;
+	}
+	public bool InWitchAnimation(){
+		if (parryDelayWitchCountdown > 0 || counterAttackTime > 0){
 			return true;
 		}else{
 			return false;
