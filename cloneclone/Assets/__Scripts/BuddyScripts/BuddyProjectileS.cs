@@ -221,6 +221,18 @@ public class BuddyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 
+		if (other.gameObject.tag == "Wall"){
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
+			HitEffectDestructible(_myRenderer, transform.position);
+			if (!isPiercing){
+				_rigidbody.velocity = Vector3.zero;
+				range = fadeThreshold;
+				myCollider.enabled = false;
+			}
+		}
+
 		if (other.gameObject.tag == "Destructible"){
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);

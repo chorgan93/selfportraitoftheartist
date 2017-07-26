@@ -82,6 +82,12 @@ public class EnemyProjectileS : MonoBehaviour {
 
 		if (followEnemy){
 			transform.localPosition = Vector3.zero;
+			if (_myEnemy != null){
+				if (_myEnemy.isDead || _myEnemy.isCritical){
+					myCollider.enabled = false;
+					range = 0;
+				}
+			}
 		}
 		
 		range -= Time.deltaTime;
@@ -239,6 +245,18 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	
 	void OnTriggerEnter(Collider other){
+
+		if (other.gameObject.tag == "Wall"){
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
+			HitEffectDestructible(_myRenderer, transform.position);
+			if (!isPiercing){
+				_rigidbody.velocity = Vector3.zero;
+				range = fadeThreshold;
+				myCollider.enabled = false;
+			}
+		}
 
 		if (other.gameObject.tag == "Destructible"){
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();

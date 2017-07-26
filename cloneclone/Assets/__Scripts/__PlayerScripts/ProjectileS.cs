@@ -450,6 +450,21 @@ public class ProjectileS : MonoBehaviour {
 			}
 		}
 
+		if (other.gameObject.tag == "Wall"){
+			HitEffectDestructible(myRenderer, transform.position);
+			CameraShakeS.C.SmallShake();
+			if (hitSoundObj){
+				Instantiate(hitSoundObj);
+			}
+			if (!isPiercing){
+				_rigidbody.velocity = Vector3.zero;
+				currentRange = 0f;
+				myCollider.enabled = false;
+			}else{
+				_rigidbody.velocity*=reduceHitVelocityMult;
+			}
+		}
+
 		if (other.gameObject.tag == "Enemy"){
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
@@ -458,7 +473,7 @@ public class ProjectileS : MonoBehaviour {
 
 				if (stopOnEnemyContact && _myPlayer != null){
 					if (!_myPlayer.myStats.PlayerIsDead()){
-						_myPlayer.myRigidbody.velocity *= 0.4f;
+						_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
 					}
 				}
 	

@@ -556,23 +556,23 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashDamage(){
-		/*flashDamageFrames = 5;
-		myRenderer.material = damageFlashMat;**/
+		flashDamageFrames = 5;
+		myRenderer.material = damageFlashMat;
 	}
 
 	public void FlashHeal(){
-		/*flashHealFrames = 8;
+		flashHealFrames = 6;
 		myRenderer.material = healFlashMat;
-		VignetteEffectS.V.Flash(healFlashMat.color);**/
+		VignetteEffectS.V.Flash(healFlashMat.color);
 	}
 
 	public void FlashMana(bool doEffect = false){
-		/*flashManaFrames = 10;
+		flashManaFrames = 4;
 		myRenderer.material = manaFlashMat;
 		myRenderer.material.SetColor("_FlashColor", equippedWeapon.flashSubColor);
 		if (doEffect){
 			VignetteEffectS.V.Flash(manaFlashMat.color);
-		}**/
+		}
 	}
 	public void FlashCharge(){
 		/*flashChargeFrames = 5;
@@ -757,6 +757,23 @@ public class PlayerController : MonoBehaviour {
 
 	private void TriggerDash(bool fullDash = false){
 
+
+		FlashMana();
+
+		// first, check for parry, otherwise dodge
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
+			for (int i = 0; i < enemiesToParry.Count; i++){
+				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
+			}
+			_myStats.ManaCheck(_dodgeCost);
+			CameraShakeS.C.SmallShake();
+			CameraShakeS.C.SmallSleep();
+			DelayWitchTimeActivate(enemiesToParry[0]);
+			shootButtonUp = false;
+			PrepParryAnimation();
+			_isDashing = false;
+		}else{
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_myRigidbody.velocity = Vector3.zero;
@@ -766,7 +783,6 @@ public class PlayerController : MonoBehaviour {
 			CancelAttack(true);
 		}
 
-		FlashMana();
 
 		_playerSound.PlayRollSound();
 
@@ -822,13 +838,15 @@ public class PlayerController : MonoBehaviour {
 			_isDashing = true;
 		}
 
+			if (tutorialRef != null){
+				tutorialRef.AddDodge();
+			}
+		}
+
 		_isSprinting = false;
 
 		SpawnDashPuff();
 
-		if (tutorialRef != null){
-			tutorialRef.AddDodge();
-		}
 
 	}
 
@@ -1008,7 +1026,7 @@ public class PlayerController : MonoBehaviour {
 		attackDelay -= Time.deltaTime;
 		allowParryCountdown -= Time.deltaTime;
 		// check if parry conditions are met before attack fires off
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)
+		/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)
 		    && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
@@ -1020,7 +1038,7 @@ public class PlayerController : MonoBehaviour {
 			shootButtonUp = false;
 			CancelAttack();
 			PrepParryAnimation();
-		}
+		}**/
 
 		if (attackDelay <= 0 && attackTriggered){
 
@@ -1254,7 +1272,7 @@ public class PlayerController : MonoBehaviour {
 				){
 
 					// first, check for parry, then counter attack, then regular attack
-					if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+					/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 						List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 						for (int i = 0; i < enemiesToParry.Count; i++){
 							enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
@@ -1265,7 +1283,7 @@ public class PlayerController : MonoBehaviour {
 						shootButtonUp = false;
 						PrepParryAnimation();
 					}
-					else if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
+					else**/ if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
 						if (controller.HeavyButton()){
 							heavyCounterQueued = true;
 						}
@@ -1815,7 +1833,11 @@ public class PlayerController : MonoBehaviour {
 		_counterNormal = (targetEnemy.transform.position-transform.position).normalized;
 		parryDelayWitchCountdown = parryDelayWitchTime;
 		_dodgeEffectRef.FireEffect(true);
-		_blockRef.FireParryEffect(targetEnemy.transform.position);
+		if (_blockRef){
+			_blockRef.ChangeColors(equippedWeapon.swapColor);
+		
+			_blockRef.FireParryEffect(targetEnemy.transform.position);
+		}
 		FlashMana();
 	}
 

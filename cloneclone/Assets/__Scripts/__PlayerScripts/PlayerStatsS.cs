@@ -17,8 +17,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float anxiousChargeRate = 0.1f;
 
-	private const float DARKNESS_ADD_RATE = 0.001f;
-	private const float DARKNESS_ADD_DEATH = 2f/3f;
+	private const float DARKNESS_ADD_RATE = 0.0001f;
+	private const float DARKNESS_ADD_DEATH = 1f/3f;
 	public const float DARKNESS_MAX = 100f;
 	
 	private const float VIRTUE_ADD_AMT = 4f;

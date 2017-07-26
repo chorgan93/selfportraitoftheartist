@@ -19,7 +19,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 	
 	private float chaseTimeCountdown;
 	private float minChaseTime;
-	private float minChaseMult = 0.8f;
+	private float minChaseMult = 0.9f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
