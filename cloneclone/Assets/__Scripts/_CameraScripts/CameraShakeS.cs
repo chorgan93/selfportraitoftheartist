@@ -27,9 +27,9 @@ public class CameraShakeS : MonoBehaviour {
 	public static float 		OPTIONS_SHAKE_MULTIPLIER = 1f;
 
 	public static float 		turboMultiplier = 0.92f;
-	private float turboOff = 0.92f;
+	private float turboOff = 0.91f;
 	private float turboOn = 1f;
-	private float superTurbo = 1.075f;
+	private float superTurbo = 1.09f;
 
 	private float debugScale = 1f;
 	
