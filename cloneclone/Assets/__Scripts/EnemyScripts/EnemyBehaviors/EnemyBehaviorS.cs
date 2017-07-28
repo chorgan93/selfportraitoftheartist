@@ -29,6 +29,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public bool dontAllowStateChange = false;
 	public float defenseMult = 1f;
 	public float stunResistMult = 1f;
+	public bool ignorePush = false;
 	
 	[Header ("Break Properties")]
 	public float breakAmt = 9999f;
@@ -49,6 +50,8 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
 		myEnemy.SetInvulnerable(false);
+
+		myEnemy.ignorePush = ignorePush;
 
 		myEnemy.SetStateDefenses(defenseMult, stunResistMult);
 		myEnemy.ResetAttackCount();

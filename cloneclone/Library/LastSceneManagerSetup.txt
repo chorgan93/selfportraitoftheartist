@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_17_MidUp.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_19_Triway.unity
   isLoaded: 1
   isActive: 1

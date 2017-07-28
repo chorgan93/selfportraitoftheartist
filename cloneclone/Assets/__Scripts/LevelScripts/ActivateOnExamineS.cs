@@ -32,7 +32,7 @@ public class ActivateOnExamineS : MonoBehaviour {
 			barrierCount++;
 		}
 
-			turnedOn = false;
+			//turnedOn = false;
 
 	}
 }

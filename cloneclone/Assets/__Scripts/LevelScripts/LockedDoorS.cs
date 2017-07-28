@@ -25,6 +25,8 @@ public class LockedDoorS : MonoBehaviour {
 	private bool fading = false;
 	private float fadeRate = 1f;
 
+	public ActivateOnDoorUnlockS unlockActivations;
+
 	// Use this for initialization
 	void Start () {
 
@@ -125,6 +127,8 @@ public class LockedDoorS : MonoBehaviour {
 			pRef.SetTalking(false);
 		}
 		gameObject.SetActive(false);
+
+		TriggerOnOff();
 	}
 
 	private void TurnOffFade(){
@@ -135,6 +139,14 @@ public class LockedDoorS : MonoBehaviour {
 		isTalking = false;
 		myCollider.enabled  =false;
 		fading = true;
+
+		TriggerOnOff();
+	}
+
+	void TriggerOnOff(){
+		if (unlockActivations != null){
+			unlockActivations.Activate();
+		}
 	}
 
 	private void EndExamine(){

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ed90de641947d40b78f32b9eb575bf85
-timeCreated: 1500586148
+timeCreated: 1501206101
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -89,6 +89,9 @@ TextureImporter:
     21300164: MetroEnvirons_56
     21300166: MetroEnvirons_57
     21300168: MetroEnvirons_58
+    21300170: MetroEnvirons_59
+    21300172: MetroEnvirons_60
+    21300174: MetroEnvirons_61
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -841,6 +844,42 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: MetroEnvirons_59
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: MetroEnvirons_60
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: MetroEnvirons_61
+      rect:
+        serializedVersion: 2
+        x: 320
         y: 0
         width: 64
         height: 64

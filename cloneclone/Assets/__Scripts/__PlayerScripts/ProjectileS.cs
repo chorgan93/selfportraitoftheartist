@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class ProjectileS : MonoBehaviour {
 
+	private const float stopAtWallMult = 0.5f;
+	private bool stopAtWallTime = false;
+	private Vector3 hitWallPos = Vector3.zero;
+	private bool touchingWall = false;
+
 	public static float EXTRA_FORCE_MULT = 2.2f;
 	public int projectileID = -1;
 
@@ -146,6 +151,12 @@ public class ProjectileS : MonoBehaviour {
 			colliderTurnedOn = true;
 		}
 
+			if (stopAtWallTime && currentRange <= range*stopAtWallMult){
+
+				HitWallEffect();
+
+			}
+
 
 		/*if (colliderTurnOffTime > 0){
 			if (currentRange <= colliderCutoff && !colliderTurnedOff){
@@ -206,6 +217,8 @@ public class ProjectileS : MonoBehaviour {
 			dmg = startDmg;
 			transform.localScale = startScale;
 		}
+		stopAtWallTime = false;
+		touchingWall = false;
 		enemiesHit.Clear();
 		// powerLvl = dmg;
 
@@ -456,22 +469,13 @@ public class ProjectileS : MonoBehaviour {
 		}
 
 		if (other.gameObject.tag == "Wall"){
-			if (stopOnEnemyContact && _myPlayer != null){
-				if (!_myPlayer.myStats.PlayerIsDead() && !_myPlayer.isDashing && !_myPlayer.isStunned && !_myPlayer.isSprinting){
-					_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
-				}
+			touchingWall = true;
+			hitWallPos = transform.position;
+			if (currentRange <= stopAtWallMult*range){
+				HitWallEffect();
 			}
-			HitEffectDestructible(myRenderer, transform.position);
-			CameraShakeS.C.SmallShake();
-			if (hitSoundObj){
-				Instantiate(hitSoundObj);
-			}
-			if (!isPiercing){
-				_rigidbody.velocity = Vector3.zero;
-				currentRange = 0f;
-				myCollider.enabled = false;
-			}else{
-				_rigidbody.velocity*=reduceHitVelocityMult;
+			else{
+				stopAtWallTime = true;
 			}
 		}
 
@@ -536,6 +540,37 @@ public class ProjectileS : MonoBehaviour {
 
 		}
 
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Wall"){
+			touchingWall = false;
+		}
+	}
+
+	void HitWallEffect(){
+		if (touchingWall){
+		if (stopOnEnemyContact && _myPlayer != null){
+			if (!_myPlayer.myStats.PlayerIsDead() && !_myPlayer.isDashing && !_myPlayer.isStunned && !_myPlayer.isSprinting){
+
+				_myPlayer.myRigidbody.velocity *= reduceHitVelocityMult;
+
+			}
+		}
+		HitEffectDestructible(myRenderer, hitWallPos);
+		CameraShakeS.C.SmallShake();
+		if (hitSoundObj){
+			Instantiate(hitSoundObj);
+		}
+		if (!isPiercing){
+			_rigidbody.velocity = Vector3.zero;
+			currentRange = 0f;
+			myCollider.enabled = false;
+		}else{
+			_rigidbody.velocity*=reduceHitVelocityMult;
+		}
+		}
+		stopAtWallTime = false;
 	}
 
 	void StartMoveStop(float sTime){

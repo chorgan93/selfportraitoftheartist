@@ -71,6 +71,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 					as GameObject;
 				signal.transform.parent = myEnemyReference.transform;
 			}
+			myEnemyReference.AttackFlashEffect();
 			
 	
 			if (attackDragAmt > 0){

@@ -161,6 +161,9 @@ public class TrainCarS : MonoBehaviour {
 	}
 
 	void SetSceneChanges(){
+		
+		currentStopString = trainStops[currentStop];
+
 		for (int i = 0; i < sceneChangeColliders.Count; i++){
 			sceneChangeColliders[i].nextSceneString = currentStopString;
 			sceneChangeColliders[i].whereToSpawn = stopSpawnPts[currentStop];

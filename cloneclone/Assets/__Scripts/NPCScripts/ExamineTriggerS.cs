@@ -11,6 +11,8 @@ public class ExamineTriggerS : MonoBehaviour {
 	public string unlockString;
 	public int costToExamine = -1;
 	public GameObject examineSound;
+	public float delayOnTime = 0f;
+	private float delayOnTimeStart;
 
 	public int keyInt = -1;
 	public BarrierS turnOffBarrier;
@@ -54,6 +56,8 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	void Start () {
 
+		delayOnTimeStart = delayOnTime;
+
 		if (inventoryNum >= 0 || techToGive > -1 || virtueToGive > 0 || buddyToGive || (mantraToGive != null)){
 			CheckInventory();
 		}
@@ -75,6 +79,10 @@ public class ExamineTriggerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (delayOnTime > 0){
+			delayOnTime -= Time.deltaTime;
+		}
+
 		if (turnOffBarrier){
 			if (!turnOffBarrier.gameObject.activeSelf){
 				gameObject.SetActive(false);
@@ -92,7 +100,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				talkButtonDown = false;
 			}
 
-			if (pRef.myControl.TalkButton() && !talkButtonDown){
+				if (pRef.myControl.TalkButton() && !talkButtonDown && delayOnTime <= 0f){
 				talkButtonDown = true;
 
 				if (!talking && examineString != "" && !pRef.talking){
@@ -334,6 +342,10 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 			playerInRange = true;
 		}
+	}
+
+	void OnEnable(){
+		delayOnTime = delayOnTimeStart;
 	}
 
 	void OnTriggerExit(Collider other){

@@ -11,7 +11,8 @@ public class EnemyS : MonoBehaviour {
 	public const float FIX_DRAG_MULT = 1.5f;
 
 	private const string DEAD_LAYER = "EnemyColliderDead";
-	private const int FLASH_FRAME_COUNT = 3;
+	private const int FLASH_FRAME_COUNT = 10;
+	private const int HURT_FRAME_COUNT = 6;
 
 	private const float Z_POS_BEHIND_PLAYER = 2f;
 	private const float ENEMY_DEATH_Z = 3f;
@@ -52,6 +53,9 @@ public class EnemyS : MonoBehaviour {
 
 	private float startDrag;
 
+	[HideInInspector]
+	public bool ignorePush = false;
+
 	//____________________________________INSTANCE PROPERTIES
 
 	private int ALIVE_LAYER;
@@ -72,6 +76,7 @@ public class EnemyS : MonoBehaviour {
 	private Vector3 startSize;
 
 	private int flashFrames;
+	public int flashReference { get { return flashFrames; } }
 
 	private float currentKnockbackCooldown;
 	private bool _canBeStunned;
@@ -519,7 +524,7 @@ public class EnemyS : MonoBehaviour {
 			vulnerableDelay -= Time.deltaTime;
 			if (vulnerableDelay <= 0 && vulnerableCountdown > 0){
 				_isVulnerable = true;
-				flashFrames = FLASH_FRAME_COUNT;
+				flashFrames = HURT_FRAME_COUNT;
 				myRenderer.material = flashMaterial;
 				myRenderer.material.SetColor("_FlashColor", Color.red);
 			}
@@ -559,14 +564,22 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
+	public void AttackFlashEffect(){
+
+		myRenderer.material = flashMaterial;
+		myRenderer.material.SetColor("_FlashColor", bloodColor);
+		myRenderer.material.SetFloat("_FlashAmount", 1f);
+		flashFrames = FLASH_FRAME_COUNT;
+	}
+
 	private void VulnerableEffect(){
 		vulnerableEffectEnded = false;
 		vulnEffectCountdown -= Time.deltaTime;
 		if (vulnEffectCountdown <= 0){
-			//myRenderer.material.SetFloat("_FlashAmount", VULN_EFFECT_AMT);
-			/*myRenderer.material.SetColor("_FlashColor", new Color(Random.Range(0.72f,1f),
+			myRenderer.material.SetFloat("_FlashAmount", VULN_EFFECT_AMT);
+			myRenderer.material.SetColor("_FlashColor", new Color(Random.Range(0.72f,1f),
 			                                                      Random.Range(0.72f,1f),
-			                                                      Random.Range(0.72f,1f)));*/
+			                                                      Random.Range(0.72f,1f)));
 			_flashAmt = VULN_EFFECT_AMT;
 			_flashCol = new Color(Random.Range(0.72f,1f),
 			                                                      Random.Range(0.72f,1f),
@@ -577,8 +590,8 @@ public class EnemyS : MonoBehaviour {
 
 	private void EndVulnerableEffect(){
 		if (!vulnerableEffectEnded && myRenderer.material == startMaterial){
-			/*myRenderer.material.SetFloat("_FlashAmount", 0f);
-			myRenderer.material.SetColor("_FlashColor", Color.white);*/
+			myRenderer.material.SetFloat("_FlashAmount", 0f);
+			myRenderer.material.SetColor("_FlashColor", Color.white);
 			_flashAmt = 0f;
 			_flashCol = Color.white;
 			vulnerableEffectEnded = true;
@@ -669,9 +682,9 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	private void ResetMaterial(){
-		//myRenderer.material = startMaterial;
-		//myRenderer.material.SetFloat("_FlashAmount", 0f);
-		//myRenderer.material.SetColor("_FlashColor", Color.white);
+		myRenderer.material = startMaterial;
+		myRenderer.material.SetFloat("_FlashAmount", 0f);
+		myRenderer.material.SetColor("_FlashColor", Color.white);
 		_flashAmt = 0f;
 		_flashCol = Color.white;
 	}

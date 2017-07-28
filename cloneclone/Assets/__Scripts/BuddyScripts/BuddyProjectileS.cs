@@ -4,6 +4,11 @@ using System.Collections;
 public class BuddyProjectileS : MonoBehaviour {
 
 	private const float DAMAGE_VARIANCE = 0.125f;
+
+	private const float stopAtWallMult = 0.5f;
+	private bool stopAtWallTime = false;
+	private Vector3 hitWallPos = Vector3.zero;
+	private bool touchingWall = false;
 	
 	private Rigidbody _rigidbody;
 	private SpriteRenderer _myRenderer;
@@ -83,6 +88,12 @@ public class BuddyProjectileS : MonoBehaviour {
 				myCollider.enabled = false;
 			}
 		}
+		if (stopAtWallTime && range <= maxRange*stopAtWallMult){
+
+			HitWallEffect();
+
+		}
+
 		
 		if (range < fadeThreshold){
 			if (_myRenderer){
@@ -108,6 +119,9 @@ public class BuddyProjectileS : MonoBehaviour {
 		if (soundObj){
 			Instantiate(soundObj);
 		}
+
+		touchingWall = false;
+		stopAtWallTime = false;
 		
 		_rigidbody = GetComponent<Rigidbody>();
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -222,14 +236,11 @@ public class BuddyProjectileS : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "Wall"){
-			if (hitSoundObj){
-				Instantiate(hitSoundObj);
-			}
-			HitEffectDestructible(_myRenderer, transform.position);
-			if (!isPiercing){
-				_rigidbody.velocity = Vector3.zero;
-				range = fadeThreshold;
-				myCollider.enabled = false;
+			touchingWall = true;
+			if (range <= stopAtWallMult*_maxRange){
+				HitWallEffect();
+			}else{
+				stopAtWallTime = true;
 			}
 		}
 
@@ -283,6 +294,25 @@ public class BuddyProjectileS : MonoBehaviour {
 			
 		}
 		
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Wall"){
+			touchingWall = false;
+		}
+	}
+
+	void HitWallEffect(){
+		if (hitSoundObj){
+			Instantiate(hitSoundObj);
+		}
+		HitEffectDestructible(_myRenderer, transform.position);
+		if (!isPiercing){
+			_rigidbody.velocity = Vector3.zero;
+			range = fadeThreshold;
+			myCollider.enabled = false;
+		}
+		stopAtWallTime = false;
 	}
 
 	void HitEffectDestructible(SpriteRenderer renderRef, Vector3 spawnPos,bool bigBlood = false){

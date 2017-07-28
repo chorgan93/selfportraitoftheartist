@@ -103,6 +103,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 					as GameObject;
 				signal.transform.parent = myEnemyReference.transform;
 			}
+			myEnemyReference.AttackFlashEffect();
 
 			if (trackingTime <= 0){
 				foundTrackingTarget = true;

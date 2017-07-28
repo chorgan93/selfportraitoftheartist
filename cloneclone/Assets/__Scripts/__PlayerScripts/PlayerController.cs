@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.8f;
-	private float dashSprintAllowMult = 0.525f;
+	private float dashSprintAllowMult = 0.725f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -564,14 +564,14 @@ public class PlayerController : MonoBehaviour {
 	public void FlashHeal(){
 		flashHealFrames = 6;
 		myRenderer.material = healFlashMat;
-		VignetteEffectS.V.Flash(healFlashMat.color);
+		//VignetteEffectS.V.Flash(healFlashMat.color);
 	}
 
 	public void FlashMana(bool doEffect = false){
-		/*flashManaFrames = 4;
+		flashManaFrames = 4;
 		myRenderer.material = manaFlashMat;
-		myRenderer.material.SetColor("_FlashColor", equippedWeapon.flashSubColor);
-		if (doEffect){
+		myRenderer.material.SetColor("_FlashColor", equippedWeapon.swapColor);
+		/*if (doEffect){
 			VignetteEffectS.V.Flash(manaFlashMat.color);
 		}**/
 	}
@@ -763,7 +763,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
@@ -776,6 +776,7 @@ public class PlayerController : MonoBehaviour {
 			shootButtonUp = false;
 			PrepParryAnimation();
 			_isDashing = false;
+			dashDurationTime = dashDurationTimeMax;
 		}else{
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
@@ -1875,24 +1876,24 @@ public class PlayerController : MonoBehaviour {
 	private void ManageFlash(){
 
 		if (flashDamageFrames > 0){
-			if (myRenderer.material != damageFlashMat){
-				myRenderer.material = damageFlashMat;
-			}
+			//if (myRenderer.material != damageFlashMat){
+			//	myRenderer.material = damageFlashMat;
+			//}
 		}
 		else if (flashHealFrames > 0){
-			if (myRenderer.material != healFlashMat){
-				myRenderer.material = healFlashMat;
-			}
+			//if (myRenderer.material != healFlashMat){
+			//	myRenderer.material = healFlashMat;
+			//}
 		}
 		else if (flashManaFrames > 0){
-			if (myRenderer.material != manaFlashMat){
-				myRenderer.material = manaFlashMat;
-			}
+			//if (myRenderer.material != manaFlashMat){
+			//	myRenderer.material = manaFlashMat;
+			//}
 
 		}else if (flashChargeFrames > 0){
-			if (myRenderer.material != chargeFlashMat){
-				myRenderer.material = chargeFlashMat;
-			}
+			//if (myRenderer.material != chargeFlashMat){
+			//	myRenderer.material = chargeFlashMat;
+			//}
 		}else{
 			if (myRenderer.material != startMat){
 				myRenderer.material = startMat;
@@ -1941,12 +1942,14 @@ public class PlayerController : MonoBehaviour {
 	public void ResetCombat(){
 		if (_currentCombatManager != null){
 			_currentCombatManager.Initialize(true);
-			FlashMana();
+			//FlashMana();
 			CameraPOIS.POI.JumpToPoint(transform.position);
 			CameraEffectsS.E.ResetEffect();
 			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 			CameraShakeS.C.TimeSleep(0.08f);
 			_myStats.ResetCombatStats();
+			_isStunned = false;
+			hitStopped = false;
 		}
 	}
 

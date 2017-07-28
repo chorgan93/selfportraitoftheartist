@@ -21,6 +21,7 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 	public float shadowAlphaMult = 1f;
 
 	private EnemyS enemyReference;
+	private bool matchingFlash = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +44,10 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 
 		if (enemyReference.isDead){
 			changeRate = deadChangeRate;
+			if (matchingFlash){
+				matchingFlash = false;
+				mySprite.material.SetColor("_FlashColor", startColor);
+			}
 		}
 
 		if (mySprite.enabled){
@@ -55,6 +60,21 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 			}
 			if (changeCountdown <= 0){
 				ChangeSize();
+			}
+
+			if (!enemyReference.isDead && !enemyReference.isCritical){
+				if (matchingFlash){
+					if (enemyReference.flashReference <= 0){
+						matchingFlash = false;
+						mySprite.material.SetColor("_FlashColor", startColor);
+					}
+					
+				}else{
+					if (enemyReference.flashReference > 0){
+						matchingFlash = true;
+						mySprite.material.SetColor("_FlashColor", enemyReference.myRenderer.material.GetColor("_FlashColor"));
+					}
+				}
 			}
 		}
 	

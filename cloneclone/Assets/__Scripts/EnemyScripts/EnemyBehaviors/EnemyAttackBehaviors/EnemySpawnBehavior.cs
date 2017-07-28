@@ -42,6 +42,7 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 		if (stopEnemy){
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 		}
+		myEnemyReference.AttackFlashEffect();
 
 		currentSpawnDelay = spawnDelay;
 		currentSpawnStep = 0;

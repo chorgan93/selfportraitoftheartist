@@ -60,6 +60,7 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 					as GameObject;
 				signal.transform.parent = myEnemyReference.transform;
 			}
+			myEnemyReference.AttackFlashEffect();
 		
 		if (chaseTimeFixed > 0){
 			chaseTimeCountdown = chaseTimeFixed;

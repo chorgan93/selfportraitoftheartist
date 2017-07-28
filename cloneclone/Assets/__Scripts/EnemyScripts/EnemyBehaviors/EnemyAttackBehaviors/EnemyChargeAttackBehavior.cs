@@ -40,6 +40,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			attackTimeCountdown = attackDuration;
 			attackCollider.TurnOn(attackWarmup);
+			myEnemyReference.AttackFlashEffect();
 		}
 		else if (doDodge){
 
