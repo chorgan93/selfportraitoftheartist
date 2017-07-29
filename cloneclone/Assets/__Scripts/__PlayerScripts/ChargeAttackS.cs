@@ -35,6 +35,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public float spawnRange = 1f;
 	public float knockbackForce = 1000f;
 	public float dmg = 5f;
+	public float killAtLessThan = 2f;
 	public float stunMult = 2f;
 	public float absorbPercent = 0.1f;
 	private Vector3 knockBackDir;
@@ -229,7 +230,7 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-					actingDmg, stunMult, 2f, hitStopTime);
+					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan);
 				myPlayer.AnimationStop(hitStopTime);
 
 				/*if (myPlayer.playerAug.lunaAug){

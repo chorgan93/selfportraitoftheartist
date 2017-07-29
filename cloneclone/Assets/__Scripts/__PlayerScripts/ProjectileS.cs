@@ -41,8 +41,6 @@ public class ProjectileS : MonoBehaviour {
 
 	public float shotSpeed = 1000f;
 	public float maxShotSpeed;
-	private float dashAttackSpeedMult = 1.4f;
-	private float delayAttackSpeedMult = 1.6f;
 	public float spawnRange = 1f;
 	public float range = 1f;
 	private float currentRange;
@@ -56,6 +54,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool dashAttack = false;
 	public bool delayAttack = false;
 	public float dmg = 1;
+	public float killAtLessThan = 0f;
 	private float startDmg;
 	public float stunMult = 1f;
 	public float critDmg = 2f;
@@ -86,11 +85,9 @@ public class ProjectileS : MonoBehaviour {
 	public float knockbackMult = 1.25f;
 	public float enemyKnockbackMult = 1.25f;
 	public float knockbackTime = 0.2f;
-	private float delayAttackKnockbackMult = 1.8f;
 	private float delayAttackEnemyKnockbackMult = 3.2f;
 	private float dashAttackKnockbackMult = 1.4f;
 	private bool colliderTurnedOn = false;
-	private bool colliderTurnedOff = false;
 
 	[Header("Effect Properties")]
 	public string attackAnimationTrigger;
@@ -377,7 +374,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt);
+							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt, 0f, false, killAtLessThan);
 					}
 				}
 			}
@@ -506,7 +503,8 @@ public class ProjectileS : MonoBehaviour {
 				//DoShake();
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug());
+					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), hitStopAmt, 0f,
+					false, killAtLessThan);
 
 				StartMoveStop(hitStopAmt);
 				_myPlayer.AnimationStop(hitStopAmt);

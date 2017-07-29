@@ -130,6 +130,8 @@ public class EnemyS : MonoBehaviour {
 	private bool touchingWall = false;
 	private Vector3 currentWallNormal;
 
+	private float killAtLessThan = 0f;
+
 
 	//____________________________________ENEMY STATES
 
@@ -388,6 +390,8 @@ public class EnemyS : MonoBehaviour {
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMaterial = myRenderer.material;
 
+		killAtLessThan = 0f;
+
 		if (myRenderer.color.a < 1f){
 			fadedIn = false;
 			fadeInColor = myRenderer.color;
@@ -438,6 +442,7 @@ public class EnemyS : MonoBehaviour {
 		touchingWall = false;
 
 		currentCritDamage = 0;
+		killAtLessThan = 0f;
 
 		//EndAllBehaviors();
 
@@ -866,13 +871,15 @@ public class EnemyS : MonoBehaviour {
 		canBeParried = false;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false){
+	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
+		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f){
 
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
 
 		knockbackDelay = hitStopAmt;
 
+		killAtLessThan = killAtLess;
 
 		if (_breakAmt >= _breakThreshold){
 			_behaviorBroken = true;
@@ -908,6 +915,9 @@ public class EnemyS : MonoBehaviour {
 			_numAttacksTakenInBehavior++;
 		}
 
+		if (!cantDie && _currentHealth <= killAtLessThan){
+			_currentHealth = 0f;
+		}
 		if (cantDie && _currentHealth < 1f){
 			_currentHealth = 1f;
 		}
