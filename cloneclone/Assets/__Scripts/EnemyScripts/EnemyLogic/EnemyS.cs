@@ -131,6 +131,7 @@ public class EnemyS : MonoBehaviour {
 	private Vector3 currentWallNormal;
 
 	private float killAtLessThan = 0f;
+	public float killAtLessThanRef { get { return killAtLessThan; } }
 
 
 	//____________________________________ENEMY STATES
@@ -909,6 +910,10 @@ public class EnemyS : MonoBehaviour {
 		}else{
 			_currentHealth -= dmg*damageMultiplier*currentDefenseMult;
 			damageTaken += dmg*damageMultiplier*currentDefenseMult;
+			if (_behaviorBroken){
+				_isCritical = true;
+				_currentBehavior.CancelAction();
+			}
 		}
 
 		if (damageTaken > 0){
@@ -916,15 +921,20 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (!cantDie && _currentHealth <= killAtLessThan){
-			_currentHealth = 0f;
-		}
-		if (cantDie && _currentHealth < 1f){
-			_currentHealth = 1f;
+			_currentHealth -= killAtLessThan;
+			damageTaken += killAtLessThan;
 		}
 
 		if (healthFeatherReference){
 			healthFeatherReference.EnemyHit(damageTaken);
 		}
+
+
+		if (cantDie && _currentHealth < 1f){
+			_currentHealth = 1f;
+		}
+
+
 
 		if (healthUIReference != null && showHealth){
 			healthUIReference.ResizeForDamage(_currentHealth <= 0 || _behaviorBroken || _isCritical);

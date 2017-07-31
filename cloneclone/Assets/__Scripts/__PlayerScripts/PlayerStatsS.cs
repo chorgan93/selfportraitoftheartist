@@ -13,12 +13,12 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
-	public const float HEALTH_ADD_AMT = 2f;
+	public const float HEALTH_ADD_AMT = 1f;
 
 	private const float anxiousChargeRate = 0.1f;
 
-	private const float DARKNESS_ADD_RATE = 0.0001f;
-	private const float DARKNESS_ADD_DEATH = 1f/3f;
+	private const float DARKNESS_ADD_RATE = 0.0005f;
+	private const float DARKNESS_ADD_DEATH = 1f/2f;
 	public const float DARKNESS_MAX = 100f;
 	
 	private const float VIRTUE_ADD_AMT = 4f;
@@ -132,11 +132,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 
 	//________________________________RECOVERY
-	private float _baseRecovery = 1f;
+	private float _baseRecovery = 0.75f;
 	private float _addedRecovery = 0f;
 	public float currentRecovery { get { return _baseRecovery+_addedRecovery; } }
 
-	private float _recoveryCooldownBase = 0.3f;
+	private float _recoveryCooldownBase = 0.4f;
 	private float _recoveryCooldownMultiplier = 1f; // higher = slower cooldown (upgradeable)
 	public float recoveryCooldownMax { get { return (_recoveryCooldownBase*(_recoveryCooldownMultiplier-
 			                                                                        (0.5f*_recoveryCooldownMultiplier)));}}
@@ -145,7 +145,7 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 1f;
+	private float _recoverRateMin = 0.75f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 	private float recoverRateAddPerLevel = 0.02f;
 
@@ -161,8 +161,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public int addedRateLv { get { return _addedRateLv; } }
 	
-	private float recoverBurdenMin = 0.08f;
-	private float recoverBurdenMax = 0.22f;
+	private float recoverBurdenMin = 0.1f;
+	private float recoverBurdenMax = 0.25f;
 	private float currentRegenCountdown;
 	public float currentRegenCount { get { return currentRegenCountdown; } }
 

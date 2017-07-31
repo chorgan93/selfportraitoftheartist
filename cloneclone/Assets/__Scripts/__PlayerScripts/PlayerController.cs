@@ -76,8 +76,8 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 _counterNormal = Vector3.zero;
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
-	private float dashChargeAllowMult = 0.8f;
-	private float dashSprintAllowMult = 0.725f;
+	private float dashChargeAllowMult = 0.75f;
+	private float dashSprintAllowMult = 0.45f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerAnimationFaceS _myFace;
 
 	private float startDrag;
-	private float sprintDragMult = 0.8f;
+	private float sprintDragMult = 0.9f;
 
 	private Vector3 inputDirection;
 	private bool dashButtonUp = true;
@@ -781,6 +781,11 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_triggerBlock = false;
+
+			_allowCounterAttack = false;
+			_delayWitchTime = false;
+			parryDelayWitchCountdown = 0f;
+			counterAttackTime = 0f;
 
 		if (attackTriggered){
 			CancelAttack(true);
@@ -2103,6 +2108,10 @@ public class PlayerController : MonoBehaviour {
 			return true;
 		}
 		else{
+			/*Debug.Log("Shoot check failed!\n" + 
+				!attackTriggered + " : " + !_isStunned + " : " + (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
+				+ " : " + !_triggerBlock + " : " + (attackDuration <= currentAttackS.chainAllow) + " : " + !_chargingAttack 
+				+ " : " + !_usingItem + " : " + !hitStopped);**/
 			return false;
 		}
 
