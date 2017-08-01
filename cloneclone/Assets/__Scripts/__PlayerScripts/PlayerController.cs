@@ -988,7 +988,7 @@ public class PlayerController : MonoBehaviour {
 	private void AttackControl(){
 
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
-			comboDuration -= Time.deltaTime;
+			comboDuration -= Time.deltaTime*0.3f;
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();

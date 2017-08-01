@@ -118,6 +118,7 @@ public class EnemyS : MonoBehaviour {
 	
 	[Header("Sound Properties")]
 	public GameObject hitSound;
+	public GameObject breakSound;
 	public GameObject deathSound;
 
 	[HideInInspector]
@@ -868,12 +869,12 @@ public class EnemyS : MonoBehaviour {
 		_isVulnerable = true;
 		_breakAmt = _breakThreshold+1f;
 		_myRigidbody.velocity = Vector3.zero;
-		TakeDamage(knockback, 0f, 0f, 0f, 0.12f, critTime);
+		TakeDamage(knockback, 0f, 0f, 0f, 0.12f, critTime, false, 0f, true);
 		canBeParried = false;
 	}
 
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
-		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f){
+		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f, bool fromParry = false){
 
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
@@ -911,7 +912,6 @@ public class EnemyS : MonoBehaviour {
 			_currentHealth -= dmg*damageMultiplier*currentDefenseMult;
 			damageTaken += dmg*damageMultiplier*currentDefenseMult;
 			if (_behaviorBroken){
-				_isCritical = true;
 				_currentBehavior.CancelAction();
 			}
 		}
@@ -948,8 +948,10 @@ public class EnemyS : MonoBehaviour {
 
 		if (_currentHealth > 0){
 
-			if (hitSound){
+			if (!fromParry && hitSound){
+					
 				Instantiate(hitSound);
+
 			}
 			//_myRigidbody.AddForce(knockbackForce, ForceMode.VelocityChange);
 
@@ -974,18 +976,23 @@ public class EnemyS : MonoBehaviour {
 
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
+
+					_myAnimator.SetBool("Crit", true);
 					_myAnimator.SetBool("Hit", true);
 					//CameraShakeS.C.TimeSleep(0.2f);
 					CameraShakeS.C.TimeSleep(0.1f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
+					if (breakSound){
+						Instantiate(breakSound);
+					}
 					currentCritDamage = 0;
 					CameraFollowS.F.AddStunnedEnemy(this);
 					_critScreen.Flash();
 					GetPlayerReference().SendCritMessage();
 				
 					// spawn break object on parry
-					if (dmg <= 0){
+					/*if (dmg <= 0){
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
 				EnemyBreakS breakRef = critBreak.GetComponent<EnemyBreakS>();
@@ -993,7 +1000,7 @@ public class EnemyS : MonoBehaviour {
 				breakRef.pieceColor = bloodColor;
 						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
 						vulnerableCountdown = criticalRecoverTime*2f;
-					}
+					}**/
 				}
 				if (vulnerableCountdown < criticalRecoverTime){
 					vulnerableCountdown = criticalRecoverTime;

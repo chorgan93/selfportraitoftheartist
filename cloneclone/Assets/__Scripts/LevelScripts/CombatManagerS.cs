@@ -63,6 +63,9 @@ public class CombatManagerS : MonoBehaviour {
 		foreach (BarrierS b in barriers){
 			b.TurnOff();
 		}
+		for (int i = 0; i <  enemies.Length; i++){
+			enemies[i].DropOnDefeat();
+		}
 		playerRef.SetCombat(false);
 		CameraEffectsS.E.ResetEffect(true);
 		VerseDisplayS.V.EndVerse();

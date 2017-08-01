@@ -23,6 +23,9 @@ public class EnemySpawnerS : MonoBehaviour {
 	private bool sentClearMessage = false;
 	public bool sentMessage { get { return sentClearMessage; } }
 
+	[Header("Item Properties")]
+	public GameObject dropOnDefeat;
+
 	private Vector3 savedSpawnPt;
 
 	// Use this for initialization
@@ -122,5 +125,13 @@ public class EnemySpawnerS : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void DropOnDefeat(){
+		if (dropOnDefeat){
+			Vector3 spawnPos = transform.position;
+			spawnPos.z = dropOnDefeat.transform.position.z;
+			Instantiate(dropOnDefeat, spawnPos, Quaternion.identity);
+		}
 	}
 }

@@ -137,7 +137,6 @@ public class BlockDisplay3DS : MonoBehaviour {
 		transform.localScale = startSize;
 		parryEffect = true;
 		parryEffectTime = parryEffectTimeMax;
-
 		if (parryEffectPrefab){
 			Vector3 spawnPos = (enemyPosition + transform.position)/2f;
 			spawnPos.z = +1f;
