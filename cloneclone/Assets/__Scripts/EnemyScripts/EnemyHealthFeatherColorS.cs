@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyHealthFeatherColorS : MonoBehaviour {
 
 	private SpriteRenderer myRenderer;
+	public SpriteRenderer rendererRef { get { return myRenderer; } }
 	private EnemyS myEnemy;
 	private Color currentColor;
 	private float ambientAlpha = 0.8f;

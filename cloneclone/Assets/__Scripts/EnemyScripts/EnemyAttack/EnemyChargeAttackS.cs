@@ -40,6 +40,14 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public bool standalone = false;
 	public float standaloneTurnOnTime = 0.6f;
 
+	[Header("Spawn Properties")]
+	public GameObject spawnOnCharge;
+	private Vector3 spawnPos;
+	public Vector3 spawnOffset;
+	public float spawnZ = 3f;
+	public float spawnRadius;
+	public int numToSpawn = 1;
+
 
 	// Use this for initialization
 	void Start () {
@@ -95,6 +103,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 					}else{
 					_myRenderer.material.SetTexture("_MainTex", startTexture);
 					_myCollider.enabled = true;
+							SpawnObjects();
 					}
 				}else{
 
@@ -232,5 +241,16 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			Instantiate(soundObj);
 		}
 
+	}
+
+	void SpawnObjects(){
+		if (spawnOnCharge){
+			for (int i = 0; i < numToSpawn; i++){
+				spawnPos = transform.position+spawnOffset;
+				spawnPos += Random.insideUnitSphere*spawnRadius;
+				spawnPos.z = spawnZ;
+				Instantiate(spawnOnCharge, spawnPos, Quaternion.identity);
+			}
+		}
 	}
 }

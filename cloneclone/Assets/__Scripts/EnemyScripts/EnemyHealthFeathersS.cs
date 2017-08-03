@@ -29,6 +29,8 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 
 	private Vector3 currentFloatPos;
 
+	private float onTransparency = 0.8f;
+
 	private float currentFloatTime;
 	private float floatTimeMax = 6f;
 	private float currentFloatT;
@@ -187,19 +189,21 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 				myFeathers[i].gameObject.SetActive(true);
 			}
 		}else if (showingOverride && isShowing){
-			for (int i = 0; i < myFeathers.Length; i++){
-				myFeathers[i].gameObject.SetActive(true);
-			}
+			SetTransparency(true);
 		}
 	}
 	public void Hide(bool showingOverride = false){
 		if (isShowing){
 			if (!showingOverride){
 				isShowing = false;
-			}
-			for (int i = 0; i < myFeathers.Length; i++){
-				myFeathers[i].gameObject.SetActive(false);
-			}
+				for (int i = 0; i < myFeathers.Length; i++){
+					myFeathers[i].gameObject.SetActive(false);
+				}
+				}else{
+				SetTransparency(false);
+				}
+
+
 		}
 	}
 
@@ -207,9 +211,32 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 		for (int i = 0; i < featherSprites.Count; i++){
 			featherSprites[i].ChangeCurrentColor(newCol);
 		}
+		onTransparency = newCol.a;
 		for (int i = 0; i < falseFeathers.Count; i++){
 			newCol.a = 0.3f;
 			falseFeathers[i].GetComponent<SpriteRenderer>().color = newCol;
 		}
+	}
+
+	void SetTransparency(bool showing){
+		Color newCol = Color.grey;
+		float newAlpha = onTransparency;
+		if (!showing){
+			newAlpha = 0f;
+		}
+			for (int i = 0; i < featherSprites.Count; i++){
+			newCol = featherSprites[i].rendererRef.color;
+			newCol.a = newAlpha;
+				featherSprites[i].ChangeCurrentColor(newCol);
+			}
+		if (showing){
+		newAlpha = 0.25f;
+		}
+			for (int i = 0; i < falseFeathers.Count; i++){
+				newCol.a = newAlpha;
+				falseFeathers[i].GetComponent<SpriteRenderer>().color = newCol;
+			}
+
+
 	}
 }

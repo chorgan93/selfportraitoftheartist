@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c40eab5808e2a45efb41b1a3fa41aadb
-timeCreated: 1501701953
+timeCreated: 1501784465
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -150,6 +150,20 @@ TextureImporter:
     21300286: slimething_82
     21300288: slimething_83
     21300290: slimething_84
+    21300292: slimething_85
+    21300294: slimething_86
+    21300296: slimething_87
+    21300298: slimething_88
+    21300300: slimething_89
+    21300302: slimething_90
+    21300304: slimething_91
+    21300306: slimething_92
+    21300308: slimething_93
+    21300310: slimething_94
+    21300312: slimething_95
+    21300314: slimething_96
+    21300316: slimething_97
+    21300318: slimething_98
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -308,8 +322,8 @@ TextureImporter:
       name: slimething_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1024
+        x: 1152
+        y: 1152
         width: 128
         height: 128
       alignment: 0
@@ -320,7 +334,7 @@ TextureImporter:
       name: slimething_10
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 1024
         width: 128
         height: 128
@@ -332,7 +346,7 @@ TextureImporter:
       name: slimething_11
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 1024
         width: 128
         height: 128
@@ -344,7 +358,7 @@ TextureImporter:
       name: slimething_12
       rect:
         serializedVersion: 2
-        x: 384
+        x: 256
         y: 1024
         width: 128
         height: 128
@@ -356,7 +370,7 @@ TextureImporter:
       name: slimething_13
       rect:
         serializedVersion: 2
-        x: 512
+        x: 384
         y: 1024
         width: 128
         height: 128
@@ -368,7 +382,7 @@ TextureImporter:
       name: slimething_14
       rect:
         serializedVersion: 2
-        x: 640
+        x: 512
         y: 1024
         width: 128
         height: 128
@@ -380,7 +394,7 @@ TextureImporter:
       name: slimething_15
       rect:
         serializedVersion: 2
-        x: 768
+        x: 640
         y: 1024
         width: 128
         height: 128
@@ -392,7 +406,7 @@ TextureImporter:
       name: slimething_16
       rect:
         serializedVersion: 2
-        x: 896
+        x: 768
         y: 1024
         width: 128
         height: 128
@@ -404,7 +418,7 @@ TextureImporter:
       name: slimething_17
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 896
         y: 1024
         width: 128
         height: 128
@@ -416,8 +430,8 @@ TextureImporter:
       name: slimething_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 896
+        x: 1024
+        y: 1024
         width: 128
         height: 128
       alignment: 0
@@ -428,8 +442,8 @@ TextureImporter:
       name: slimething_19
       rect:
         serializedVersion: 2
-        x: 128
-        y: 896
+        x: 1152
+        y: 1024
         width: 128
         height: 128
       alignment: 0
@@ -440,7 +454,7 @@ TextureImporter:
       name: slimething_20
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 896
         width: 128
         height: 128
@@ -452,7 +466,7 @@ TextureImporter:
       name: slimething_21
       rect:
         serializedVersion: 2
-        x: 384
+        x: 128
         y: 896
         width: 128
         height: 128
@@ -464,7 +478,7 @@ TextureImporter:
       name: slimething_22
       rect:
         serializedVersion: 2
-        x: 512
+        x: 256
         y: 896
         width: 128
         height: 128
@@ -476,7 +490,7 @@ TextureImporter:
       name: slimething_23
       rect:
         serializedVersion: 2
-        x: 640
+        x: 384
         y: 896
         width: 128
         height: 128
@@ -488,7 +502,7 @@ TextureImporter:
       name: slimething_24
       rect:
         serializedVersion: 2
-        x: 768
+        x: 512
         y: 896
         width: 128
         height: 128
@@ -500,7 +514,7 @@ TextureImporter:
       name: slimething_25
       rect:
         serializedVersion: 2
-        x: 896
+        x: 640
         y: 896
         width: 128
         height: 128
@@ -512,7 +526,7 @@ TextureImporter:
       name: slimething_26
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 768
         y: 896
         width: 128
         height: 128
@@ -524,8 +538,8 @@ TextureImporter:
       name: slimething_27
       rect:
         serializedVersion: 2
-        x: 0
-        y: 768
+        x: 896
+        y: 896
         width: 128
         height: 128
       alignment: 0
@@ -536,8 +550,8 @@ TextureImporter:
       name: slimething_28
       rect:
         serializedVersion: 2
-        x: 128
-        y: 768
+        x: 1024
+        y: 896
         width: 128
         height: 128
       alignment: 0
@@ -548,8 +562,8 @@ TextureImporter:
       name: slimething_29
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
+        x: 1152
+        y: 896
         width: 128
         height: 128
       alignment: 0
@@ -560,7 +574,7 @@ TextureImporter:
       name: slimething_30
       rect:
         serializedVersion: 2
-        x: 384
+        x: 0
         y: 768
         width: 128
         height: 128
@@ -572,7 +586,7 @@ TextureImporter:
       name: slimething_31
       rect:
         serializedVersion: 2
-        x: 512
+        x: 128
         y: 768
         width: 128
         height: 128
@@ -584,7 +598,7 @@ TextureImporter:
       name: slimething_32
       rect:
         serializedVersion: 2
-        x: 640
+        x: 256
         y: 768
         width: 128
         height: 128
@@ -596,7 +610,7 @@ TextureImporter:
       name: slimething_33
       rect:
         serializedVersion: 2
-        x: 768
+        x: 384
         y: 768
         width: 128
         height: 128
@@ -608,7 +622,7 @@ TextureImporter:
       name: slimething_34
       rect:
         serializedVersion: 2
-        x: 896
+        x: 512
         y: 768
         width: 128
         height: 128
@@ -620,7 +634,7 @@ TextureImporter:
       name: slimething_35
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 640
         y: 768
         width: 128
         height: 128
@@ -632,8 +646,8 @@ TextureImporter:
       name: slimething_36
       rect:
         serializedVersion: 2
-        x: 0
-        y: 640
+        x: 768
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -644,8 +658,8 @@ TextureImporter:
       name: slimething_37
       rect:
         serializedVersion: 2
-        x: 128
-        y: 640
+        x: 896
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -656,8 +670,8 @@ TextureImporter:
       name: slimething_38
       rect:
         serializedVersion: 2
-        x: 256
-        y: 640
+        x: 1024
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -668,8 +682,8 @@ TextureImporter:
       name: slimething_39
       rect:
         serializedVersion: 2
-        x: 384
-        y: 640
+        x: 1152
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -680,7 +694,7 @@ TextureImporter:
       name: slimething_40
       rect:
         serializedVersion: 2
-        x: 512
+        x: 0
         y: 640
         width: 128
         height: 128
@@ -692,7 +706,7 @@ TextureImporter:
       name: slimething_41
       rect:
         serializedVersion: 2
-        x: 640
+        x: 128
         y: 640
         width: 128
         height: 128
@@ -704,7 +718,7 @@ TextureImporter:
       name: slimething_42
       rect:
         serializedVersion: 2
-        x: 768
+        x: 256
         y: 640
         width: 128
         height: 128
@@ -716,7 +730,7 @@ TextureImporter:
       name: slimething_43
       rect:
         serializedVersion: 2
-        x: 896
+        x: 384
         y: 640
         width: 128
         height: 128
@@ -728,7 +742,7 @@ TextureImporter:
       name: slimething_44
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 512
         y: 640
         width: 128
         height: 128
@@ -740,8 +754,8 @@ TextureImporter:
       name: slimething_45
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
+        x: 640
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -752,8 +766,8 @@ TextureImporter:
       name: slimething_46
       rect:
         serializedVersion: 2
-        x: 128
-        y: 512
+        x: 768
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -764,8 +778,8 @@ TextureImporter:
       name: slimething_47
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
+        x: 896
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -776,8 +790,8 @@ TextureImporter:
       name: slimething_48
       rect:
         serializedVersion: 2
-        x: 384
-        y: 512
+        x: 1024
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -788,8 +802,8 @@ TextureImporter:
       name: slimething_49
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
+        x: 1152
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -800,7 +814,7 @@ TextureImporter:
       name: slimething_50
       rect:
         serializedVersion: 2
-        x: 640
+        x: 0
         y: 512
         width: 128
         height: 128
@@ -812,7 +826,7 @@ TextureImporter:
       name: slimething_51
       rect:
         serializedVersion: 2
-        x: 768
+        x: 128
         y: 512
         width: 128
         height: 128
@@ -824,7 +838,7 @@ TextureImporter:
       name: slimething_52
       rect:
         serializedVersion: 2
-        x: 896
+        x: 256
         y: 512
         width: 128
         height: 128
@@ -836,7 +850,7 @@ TextureImporter:
       name: slimething_53
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 384
         y: 512
         width: 128
         height: 128
@@ -848,8 +862,8 @@ TextureImporter:
       name: slimething_54
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 512
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -860,8 +874,8 @@ TextureImporter:
       name: slimething_55
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
+        x: 640
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -872,8 +886,8 @@ TextureImporter:
       name: slimething_56
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
+        x: 768
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -884,8 +898,8 @@ TextureImporter:
       name: slimething_57
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
+        x: 896
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -896,8 +910,8 @@ TextureImporter:
       name: slimething_58
       rect:
         serializedVersion: 2
-        x: 512
-        y: 384
+        x: 1024
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -908,8 +922,8 @@ TextureImporter:
       name: slimething_59
       rect:
         serializedVersion: 2
-        x: 640
-        y: 384
+        x: 1152
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -920,7 +934,7 @@ TextureImporter:
       name: slimething_60
       rect:
         serializedVersion: 2
-        x: 768
+        x: 0
         y: 384
         width: 128
         height: 128
@@ -932,7 +946,7 @@ TextureImporter:
       name: slimething_61
       rect:
         serializedVersion: 2
-        x: 896
+        x: 128
         y: 384
         width: 128
         height: 128
@@ -944,7 +958,7 @@ TextureImporter:
       name: slimething_62
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 256
         y: 384
         width: 128
         height: 128
@@ -956,8 +970,8 @@ TextureImporter:
       name: slimething_63
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 384
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -968,8 +982,8 @@ TextureImporter:
       name: slimething_64
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 512
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -980,8 +994,8 @@ TextureImporter:
       name: slimething_65
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 640
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -992,8 +1006,8 @@ TextureImporter:
       name: slimething_66
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
+        x: 768
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -1004,8 +1018,8 @@ TextureImporter:
       name: slimething_67
       rect:
         serializedVersion: 2
-        x: 512
-        y: 256
+        x: 896
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -1016,8 +1030,8 @@ TextureImporter:
       name: slimething_68
       rect:
         serializedVersion: 2
-        x: 640
-        y: 256
+        x: 1024
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -1028,8 +1042,8 @@ TextureImporter:
       name: slimething_69
       rect:
         serializedVersion: 2
-        x: 768
-        y: 256
+        x: 1152
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -1040,7 +1054,7 @@ TextureImporter:
       name: slimething_70
       rect:
         serializedVersion: 2
-        x: 896
+        x: 0
         y: 256
         width: 128
         height: 128
@@ -1052,7 +1066,7 @@ TextureImporter:
       name: slimething_71
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 128
         y: 256
         width: 128
         height: 128
@@ -1064,8 +1078,8 @@ TextureImporter:
       name: slimething_72
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 256
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1076,8 +1090,8 @@ TextureImporter:
       name: slimething_73
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 384
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1088,8 +1102,8 @@ TextureImporter:
       name: slimething_74
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 512
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1100,8 +1114,8 @@ TextureImporter:
       name: slimething_75
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
+        x: 640
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1112,8 +1126,8 @@ TextureImporter:
       name: slimething_76
       rect:
         serializedVersion: 2
-        x: 512
-        y: 128
+        x: 768
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1124,8 +1138,8 @@ TextureImporter:
       name: slimething_77
       rect:
         serializedVersion: 2
-        x: 640
-        y: 128
+        x: 896
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1136,8 +1150,8 @@ TextureImporter:
       name: slimething_78
       rect:
         serializedVersion: 2
-        x: 768
-        y: 128
+        x: 1024
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1148,8 +1162,8 @@ TextureImporter:
       name: slimething_79
       rect:
         serializedVersion: 2
-        x: 896
-        y: 128
+        x: 1152
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -1160,7 +1174,7 @@ TextureImporter:
       name: slimething_80
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 0
         y: 128
         width: 128
         height: 128
@@ -1172,6 +1186,114 @@ TextureImporter:
       name: slimething_81
       rect:
         serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_82
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_83
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_84
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_85
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_86
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_87
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_88
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_89
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_90
+      rect:
+        serializedVersion: 2
         x: 0
         y: 0
         width: 128
@@ -1181,7 +1303,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_82
+      name: slimething_91
       rect:
         serializedVersion: 2
         x: 128
@@ -1193,7 +1315,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_83
+      name: slimething_92
       rect:
         serializedVersion: 2
         x: 256
@@ -1205,10 +1327,70 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_84
+      name: slimething_93
       rect:
         serializedVersion: 2
         x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_94
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_95
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_96
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_97
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: slimething_98
+      rect:
+        serializedVersion: 2
+        x: 1024
         y: 0
         width: 128
         height: 128
