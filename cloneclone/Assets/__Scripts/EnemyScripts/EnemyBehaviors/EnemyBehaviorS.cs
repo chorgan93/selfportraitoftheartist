@@ -29,6 +29,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public bool dontAllowStateChange = false;
 	public float defenseMult = 1f;
 	public float stunResistMult = 1f;
+	public bool setInvincible = false;
 	public bool ignorePush = false;
 	
 	[Header ("Break Properties")]
@@ -49,7 +50,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetStunStatus(allowStun);
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
-		myEnemy.SetInvulnerable(false);
+		myEnemy.SetInvulnerable(setInvincible);
 
 		myEnemy.ignorePush = ignorePush;
 

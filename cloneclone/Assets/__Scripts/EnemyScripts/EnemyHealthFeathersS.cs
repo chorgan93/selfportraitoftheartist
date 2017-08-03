@@ -35,6 +35,7 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	private float floatDir = 1f;
 	
 	private bool isShowing = true;
+	private bool hidingInvulnerable = false;
 
 	private EnemyS myEnemy;
 	public EnemyS enemyRef { get { return myEnemy; } }
@@ -84,6 +85,17 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	}
 
 	void Float(){
+
+		if (isShowing){
+			if (myEnemy.invulnerable && !hidingInvulnerable){
+				Hide(true);
+				hidingInvulnerable = true;
+			}
+			if (!myEnemy.invulnerable && hidingInvulnerable){
+				Show(true);
+				hidingInvulnerable = false;
+			}
+		}
 
 		if (allFeathersStarted){
 			currentFloatTime += Time.deltaTime*floatDir;
@@ -166,17 +178,25 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 		}
 	}
 
-	public void Show(){
+	public void Show(bool showingOverride = false){
 		if (!isShowing){
-			isShowing = true;
+			if (!showingOverride){
+				isShowing = true;
+			}
+			for (int i = 0; i < myFeathers.Length; i++){
+				myFeathers[i].gameObject.SetActive(true);
+			}
+		}else if (showingOverride && isShowing){
 			for (int i = 0; i < myFeathers.Length; i++){
 				myFeathers[i].gameObject.SetActive(true);
 			}
 		}
 	}
-	public void Hide(){
+	public void Hide(bool showingOverride = false){
 		if (isShowing){
-			isShowing = false;
+			if (!showingOverride){
+				isShowing = false;
+			}
 			for (int i = 0; i < myFeathers.Length; i++){
 				myFeathers[i].gameObject.SetActive(false);
 			}

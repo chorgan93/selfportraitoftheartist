@@ -15,6 +15,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
 	public bool flipOnX = false;
+	public bool dontRotate = false;
 	public float hitStopAmount = 0.2f;
 
 	[Header("Attack Properties")]
@@ -50,12 +51,22 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float fadeThreshold = 0.1f;
 	private Color fadeColor;
 
+	private bool _fired = false;
+
 	private bool hitPlayer = false;
 
 	private Collider myCollider;
 
 	void Start(){
 		_maxRange = range;
+
+		if (!_fired){
+		_rigidbody = GetComponent<Rigidbody>();
+
+		_myRenderer = GetComponentInChildren<SpriteRenderer>();
+		myCollider = GetComponent<Collider>();
+
+		}
 	}
 
 	// Update is called once per frame
@@ -117,18 +128,20 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	public void Fire(Vector3 aimDirection, EnemyS enemyReference, float difficultyModifier = 1f){
 
+		_fired = true;
 		if (soundObj){
 			Instantiate(soundObj);
 		}
-
-		_maxRange = range/difficultyModifier;
 		_rigidbody = GetComponent<Rigidbody>();
 
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
-			myCollider = GetComponent<Collider>();
+		myCollider = GetComponent<Collider>();
 		if (noCollider){
 			myCollider.enabled = false;
 		}
+
+		_maxRange = range/difficultyModifier;
+
 		if (_myRenderer == null){
 			_myRenderer3D = GetComponentInChildren<Renderer>();
 			if (flashFrames > 0){
@@ -213,7 +226,8 @@ public class EnemyProjectileS : MonoBehaviour {
 	}
 	
 	private void FaceDirection(Vector3 direction){
-		
+
+
 		float rotateZ = 0;
 		
 		Vector3 targetDir = direction.normalized;
@@ -240,6 +254,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		
 		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ));
 
+		if (dontRotate){
+			_myRenderer.transform.rotation = Quaternion.Euler(new Vector3(0,0,-rotateZ));
+		}
+
 		
 	}
 
@@ -251,6 +269,12 @@ public class EnemyProjectileS : MonoBehaviour {
 				Instantiate(hitSoundObj);
 			}
 			HitEffectDestructible(_myRenderer, transform.position);
+			if (!_rigidbody){
+				_rigidbody = GetComponent<Rigidbody>();
+			}
+			if (!myCollider){
+				myCollider = GetComponent<Collider>();
+			}
 			if (!isPiercing){
 				_rigidbody.velocity = Vector3.zero;
 				range = fadeThreshold;
@@ -279,6 +303,10 @@ public class EnemyProjectileS : MonoBehaviour {
 
 
 			PlayerController playerRef = other.gameObject.GetComponent<PlayerController>();
+
+				if (!_rigidbody){
+					_rigidbody = GetComponent<Rigidbody>();
+				}
 
 			if (!playerRef.myStats.PlayerIsDead()){
 			if (_myEnemy != null){
@@ -388,6 +416,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (transform.localScale.y < 0){
 			newHitObj.transform.Rotate(new Vector3(0,0,180f));
 		}
+
+		if (!_myRenderer){
+			_myRenderer = GetComponentInChildren<SpriteRenderer>();
+		}
 		
 		p.GetComponent<BleedingS>().SpawnBlood(newHitObj.transform.up, bigBlood);
 		
@@ -438,7 +470,9 @@ public class EnemyProjectileS : MonoBehaviour {
 			newHitObj.transform.Rotate(new Vector3(0,0,180f));
 		}
 		
-		
+		if (!_myRenderer){
+			_myRenderer = GetComponentInChildren<SpriteRenderer>();
+		}
 		
 		if (bigBlood){
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x*2.25f;

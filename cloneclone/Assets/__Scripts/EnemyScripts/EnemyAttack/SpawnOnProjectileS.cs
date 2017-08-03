@@ -23,6 +23,8 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	public BuddyProjectileS taperBasedOnLifetimeBuddy;
 
 	private int currentSpawn = 0;
+	[Header("Spawn Positioning")]
+	public Vector3 spawnOffset = Vector3.zero;
 	public float spawnObjectRadius = 2.5f;
 	public float spawnRadiusAdd = 0f;
 	public float spawnObjZ = 0f;
@@ -67,7 +69,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 					maxSpawns --;
 				}
 
-				spawnPos = transform.position;
+				spawnPos = transform.position+spawnOffset;
 
 				spawnPosAdd = Random.insideUnitSphere*spawnObjectRadius;
 

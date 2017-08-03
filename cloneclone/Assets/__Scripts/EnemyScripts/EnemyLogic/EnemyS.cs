@@ -97,6 +97,9 @@ public class EnemyS : MonoBehaviour {
 	[HideInInspector]
 	public bool canBeParried = false;
 
+	[HideInInspector]
+	public bool isInvincible = false;
+
 	private float vulnerableDelay;
 	private float vulnerableCountdown;
 	private float _flashAmt;
@@ -371,6 +374,8 @@ public class EnemyS : MonoBehaviour {
 
 		touchingWall = false;
 
+		_invulnerable = false;
+
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
 			_isActive = false;
@@ -440,6 +445,8 @@ public class EnemyS : MonoBehaviour {
 		_isDead = false;
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 		CameraFollowS.F.RemoveStunnedEnemy(this);
+
+		_invulnerable = false;
 
 		touchingWall = false;
 
