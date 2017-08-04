@@ -88,7 +88,7 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 
 	void Float(){
 
-		if (isShowing){
+		/*if (isShowing){
 			if (myEnemy.invulnerable && !hidingInvulnerable){
 				Hide(true);
 				hidingInvulnerable = true;
@@ -97,7 +97,7 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 				Show(true);
 				hidingInvulnerable = false;
 			}
-		}
+		}**/
 
 		if (allFeathersStarted){
 			currentFloatTime += Time.deltaTime*floatDir;

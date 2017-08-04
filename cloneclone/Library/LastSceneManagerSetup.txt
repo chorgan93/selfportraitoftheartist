@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_00_Brooksvale.unity
+- path: Assets/_Scenes/Area01(Sanctum)Scenes/Area01_03_Messiah.unity
   isLoaded: 1
   isActive: 1

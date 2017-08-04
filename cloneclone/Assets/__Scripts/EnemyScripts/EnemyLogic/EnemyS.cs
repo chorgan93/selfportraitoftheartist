@@ -132,6 +132,7 @@ public class EnemyS : MonoBehaviour {
 
 	private Vector3 hitVelocity;
 	private bool touchingWall = false;
+	public bool hitWall { get { return touchingWall; } }
 	private Vector3 currentWallNormal;
 
 	private float killAtLessThan = 0f;

@@ -25,6 +25,9 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	private float wanderTimeCountdown;
 	private float changeWanderTargetCountdown;
 	private Vector3 currentMoveTarget;
+
+
+	private bool didWallRedirect = false;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -47,6 +50,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	
 	private void InitializeAction(){
 
+		didWallRedirect  = false;
 		if (poi == null || poi == myEnemyReference.gameObject){
 			if (myEnemyReference.GetTargetReference() != null){
 				poi = myEnemyReference.GetTargetReference().gameObject;
@@ -93,6 +97,9 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 
 	private void DetermineTarget(){
 
+		if (myEnemyReference.hitWall && !didWallRedirect){
+			WallRedirect();
+		}
 		changeWanderTargetCountdown -= Time.deltaTime;
 
 		if (changeWanderTargetCountdown <= 0){
@@ -100,6 +107,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 
 			currentMoveTarget = poi.transform.position + Random.insideUnitSphere*moveTargetRange;
 			currentMoveTarget.z = transform.position.z;
+			didWallRedirect = false;
 		}
 
 	}
@@ -114,5 +122,16 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	public override void EndAction (bool doNextAction = true)
 	{
 		base.EndAction (doNextAction);
+	}
+
+	void WallRedirect(){
+		Vector3 wallRedirect = Vector3.zero;
+		float targetDistance = (currentMoveTarget-transform.position).magnitude;
+		wallRedirect = Quaternion.Euler(0,0,180f)*(currentMoveTarget-transform.position).normalized;
+		wallRedirect*=targetDistance;
+		wallRedirect.z = transform.position.z;
+		currentMoveTarget = wallRedirect;
+		Debug.Log(myEnemyReference.enemyName + " did Wall Redirect!", myEnemyReference.gameObject);
+		didWallRedirect =  true;
 	}
 }

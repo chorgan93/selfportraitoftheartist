@@ -26,6 +26,17 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	private float currentchaseSpeed;
 	
 	private float chaseTimeCountdown;
+
+	private bool didWallRedirect = false;
+	private float preventRedirectTime = 0.3f;
+	private float preventRedirectCountdown = 0f;
+	private bool redirecting = false;
+	private float redirectTime = 0.4f;
+	private float redirectCountdown;
+	private Vector3 redirectTarget;
+
+	private bool initialFace;
+
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -50,8 +61,12 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	
 	private void InitializeAction(){
 
+
+		initialFace = facePlayer;
 		if (AttackInRange()){
-			
+			preventRedirectCountdown = preventRedirectTime;
+			didWallRedirect = false;
+			redirecting = false;
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 			if (signalObj != null){
 				Vector3 signalPos =  transform.position;
@@ -116,13 +131,29 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	}
 	
 	private void DoMovement(){
-		
+
+		if (myEnemyReference.hitWall && !didWallRedirect && preventRedirectCountdown <= 0f){
+			WallRedirect();
+		}
+
 		if (!myEnemyReference.hitStunned){
+			preventRedirectCountdown -= Time.deltaTime;
+			if (redirecting){
+				redirectCountdown -= Time.deltaTime;
+				if (redirectCountdown <= 0){
+					redirecting = false;
+					myEnemyReference.SetFaceStatus(initialFace);
+					didWallRedirect = false;
+				}
+				myEnemyReference.myRigidbody.AddForce((redirectTarget
+					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
+			}else{
 			if (recenterMin > 0){
 				recenterCountdown -= Time.deltaTime;
 				if (recenterCountdown <= 0){
 					recenterTarget = myEnemyReference.GetTargetReference().transform.position;
 					recenterCountdown = Random.Range(recenterMin,recenterMax);
+					didWallRedirect = false;
 				}
 				myEnemyReference.myRigidbody.AddForce((recenterTarget
 					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
@@ -130,6 +161,7 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
 					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
 			}
+		}
 		}
 		
 	}
@@ -147,5 +179,18 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 			Destroy(currentAttackPrefab);
 		}
 		base.EndAction (doNextAction);
+	}
+
+	void WallRedirect(){
+		redirectTarget = Vector3.zero;
+		float targetDistance = (recenterTarget-transform.position).magnitude;
+		redirectTarget = Quaternion.Euler(0,0,180f)*(recenterTarget-transform.position).normalized;
+		redirectTarget*=targetDistance;
+		redirectTarget.z = transform.position.z;
+		Debug.Log(myEnemyReference.enemyName + " did Wall Redirect!", myEnemyReference.gameObject);
+		didWallRedirect =  true;
+		redirecting = true;
+		redirectCountdown = redirectTime;
+		myEnemyReference.SetFaceStatus(false);
 	}
 }
