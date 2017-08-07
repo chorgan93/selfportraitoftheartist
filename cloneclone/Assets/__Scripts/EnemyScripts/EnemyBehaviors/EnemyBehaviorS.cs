@@ -61,6 +61,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 		currentDifficultyMult = difficultyMult[DifficultyS.GetSinInt()];
 		myEnemy.myAnimator.SetFloat("DifficultySpeed", currentDifficultyMult);
+		myEnemy.currentDifficultyAnimationFloat = currentDifficultyMult;
 
 		if (animationKey != "" && setAnimTrigger){
 			myEnemy.myAnimator.SetTrigger(animationKey);

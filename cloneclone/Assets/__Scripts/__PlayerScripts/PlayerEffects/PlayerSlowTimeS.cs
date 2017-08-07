@@ -1,0 +1,98 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class PlayerSlowTimeS : MonoBehaviour {
+
+	public Renderer _myRenderer;
+	private Collider _myCollider;
+	public static bool witchTimeActive = false;
+	[Header("Acting Properties")]
+	public float witchTimeLength = 2f;
+	public float witchTimeExtend = 0.8f;
+	private float currentWitchTimeMax;
+	public float witchTimeMax = 5f;
+	private float currentWitchTime = 0f;
+	[Header("Effect Properties")]
+	public Vector3 growRate = new Vector3(3f, 2f, 0f);
+	private Vector3 startScale;
+	private Vector3 currentGrowScale = Vector3.zero;
+	public float growStepTime = 0.3f;
+	private float currentGrowStepTime;
+	public float growStepMult = 0.88f;
+	private float growStepCount;
+	public int growIterations = 5;
+	private int currentIteration;
+
+	private PlayerController playerRef;
+
+	// Use this for initialization
+	void Start () {
+
+		startScale = transform.localScale;
+
+		playerRef = GetComponentInParent<PlayerController>();
+		playerRef.SetWitchObject(this);
+
+		_myRenderer.enabled = false;
+		_myCollider = GetComponent<Collider>();
+		_myCollider.enabled = false;
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+		if (witchTimeActive){
+			if (currentIteration < growIterations){
+				growStepCount -= Time.deltaTime;
+				if (growStepCount <= 0){
+					currentIteration++;
+					currentGrowScale.x *= growRate.x;
+					currentGrowScale.y *= growRate.y;
+					transform.localScale = currentGrowScale;
+					growStepCount = currentGrowStepTime;
+					currentGrowStepTime *= growStepMult;
+				}
+			}
+			currentWitchTime+=Time.deltaTime;
+			if (currentWitchTime >= currentWitchTimeMax){
+				EndWitchTime();
+			}
+		}
+	
+	}
+
+	public void TriggerWitchTime(){
+		currentIteration = 0;
+		currentGrowScale = startScale;
+		growStepCount = 0f;
+		witchTimeActive = true;
+		currentWitchTimeMax = witchTimeLength;
+		currentWitchTime = 0f;
+		_myCollider.enabled = _myRenderer.enabled = true;
+		CameraEffectsS.E.SetContrast(false);
+		currentGrowStepTime = growStepTime;
+		if (playerRef.currentCombatManager){
+			playerRef.currentCombatManager.SetWitchTime(true);
+		}
+	}
+
+	public void ExtendWitchTime(){
+		if (witchTimeActive){
+		currentWitchTimeMax += witchTimeExtend;
+		if (currentWitchTimeMax > witchTimeMax){
+			currentWitchTimeMax = witchTimeMax;
+		}
+		}
+	}
+	public void EndWitchTime(){
+		witchTimeActive = false;
+		_myCollider.enabled = _myRenderer.enabled = false;
+		transform.localScale = startScale;
+		playerRef.EndWitchTime(true);
+		CameraEffectsS.E.SetContrast(true);
+		if (playerRef.currentCombatManager){
+			playerRef.currentCombatManager.SetWitchTime(false);
+		}
+	}
+}

@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour {
 	public bool delayWitchTime { get { return _delayWitchTime; } }
 	private EnemyS _counterTarget;
 
+	private PlayerSlowTimeS witchReference;
+
 	private Vector3 _counterNormal = Vector3.zero;
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
@@ -354,6 +356,29 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________PUBLIC METHODS
 
+	public void SetWitchObject(PlayerSlowTimeS newSlow){
+		witchReference = newSlow;
+	}
+
+	void TriggerWitchTime(){
+
+		gameObject.layer = DODGE_PHYSICS_LAYER;
+		witchReference.TriggerWitchTime();
+	}
+
+	public void ExtendWitchTime(){
+		witchReference.ExtendWitchTime();
+	}
+	public void EndWitchTime(bool fromWitch = false){
+
+		if (!_isDashing){
+			gameObject.layer = START_PHYSICS_LAYER;
+		}
+		if (!fromWitch){
+		witchReference.EndWitchTime();
+		}
+	}
+
 	public void Knockback(Vector3 knockbackForce, float knockbackTime, bool attackTime = false){
 
 		myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
@@ -597,6 +622,7 @@ public class PlayerController : MonoBehaviour {
 				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.7f, counterAttackTimeMax*0.3f);
 				_dodgeEffectRef.FireEffect();
 				FlashMana();
+				TriggerWitchTime();
 			}else{
 				CameraShakeS.C.DodgeSloMo(0.28f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
 			}
@@ -2630,13 +2656,12 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool AllowDodgeEffect(){
-		// as of JULY 25, I'm turning this off for balance testing purposes after the PARRY rework
-		/*if (_isDashing && dashDurationTime <= dashEffectThreshold){
+		// turned on for witch testing
+		if (_isDashing && dashDurationTime <= dashEffectThreshold){
 			return true;
 		}else{
 			return false;
-		}**/
-		return false;
+		}
 	}
 	public bool InWitchAnimation(){
 		if (parryDelayWitchCountdown > 0 || counterAttackTime > 0){

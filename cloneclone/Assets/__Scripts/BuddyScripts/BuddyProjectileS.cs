@@ -275,6 +275,10 @@ public class BuddyProjectileS : MonoBehaviour {
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					 damage, actingStunMult, 2f);
+
+				if (_myBuddy){
+					_myBuddy.playerRef.ExtendWitchTime();
+				}
 				
 				if (!isPiercing){
 					

@@ -14,6 +14,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	private float startDelayFadeTime;
 	public float startFadeAlpha = 1f;
 	public bool destroyOnFade = true;
+	public bool ignoreWitchTime = false;
 
 	private bool stopFading = false;
 
@@ -29,6 +30,8 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	private float maxYDrift = 0;
 	private float currentDrift;
 	private bool drifting = false;
+
+	private float witchMult = 0.1f;
 
 
 	// Use this for initialization
@@ -53,17 +56,35 @@ public class FadeSpriteObjectS : MonoBehaviour {
 	
 		if (!stopFading){
 		if (delayFadeTime > 0){
-			delayFadeTime -= Time.deltaTime;
+				if (PlayerSlowTimeS.witchTimeActive && !ignoreWitchTime){
+					
+						delayFadeTime -= Time.deltaTime*witchMult;
+
+				}else{
+					delayFadeTime -= Time.deltaTime;
+				}
 				if (drifting){
+					if (PlayerSlowTimeS.witchTimeActive && !ignoreWitchTime){
+							currentDrift = maxDrift*0.5f;
+							transform.position += currentDrift*Time.deltaTime*transform.up*witchMult;
+							currentDrift = maxYDrift*0.5f;
+							transform.position += currentDrift*Time.deltaTime*transform.right*witchMult;
+
+					}else{
 					currentDrift = maxDrift*0.5f;
 					transform.position += currentDrift*Time.deltaTime*transform.up;
 					currentDrift = maxYDrift*0.5f;
 					transform.position += currentDrift*Time.deltaTime*transform.right;
+					}
 				}
 		}
 		else{
 			currentCol = myRenderer.color;
-			currentCol.a -= Time.deltaTime*fadeRate;
+				if (PlayerSlowTimeS.witchTimeActive && !ignoreWitchTime){
+					currentCol.a -= Time.deltaTime*fadeRate*witchMult;
+				}else{
+					currentCol.a -= Time.deltaTime*fadeRate;
+				}
 			if (currentCol.a <= 0f){
 			if (destroyOnFade){
 					if (!_myManager){
@@ -78,17 +99,28 @@ public class FadeSpriteObjectS : MonoBehaviour {
 					stopFading = true;
 				}else{
 					if (drifting){
+						if (PlayerSlowTimeS.witchTimeActive && !ignoreWitchTime){
+							currentDrift = maxDrift;
+							transform.position += currentDrift*Time.deltaTime*transform.up*witchMult;
+							currentDrift = maxYDrift;
+							transform.position += currentDrift*Time.deltaTime*transform.right*witchMult;
+						}else{
 						currentDrift = maxDrift;
 						transform.position += currentDrift*Time.deltaTime*transform.up;
 						currentDrift = maxYDrift;
 						transform.position += currentDrift*Time.deltaTime*transform.right;
+						}
 					}
 				}
 			myRenderer.color = currentCol;
 		}
 		}else{
 			if (loopFade){
+				if (PlayerSlowTimeS.witchTimeActive && !ignoreWitchTime){
+					loopDelayCountdown -= Time.deltaTime*witchMult;
+				}else{
 				loopDelayCountdown -= Time.deltaTime;
+				}
 				if (loopDelayCountdown <= 0){
 					stopFading = false;
 					Color resetCol = myRenderer.color;

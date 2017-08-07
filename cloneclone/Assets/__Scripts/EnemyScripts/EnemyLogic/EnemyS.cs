@@ -51,6 +51,9 @@ public class EnemyS : MonoBehaviour {
 
 	private float currentDifficultyMult;
 
+	[HideInInspector]
+	public float currentDifficultyAnimationFloat = 1f;
+
 	private float startDrag;
 
 	[HideInInspector]
@@ -188,6 +191,13 @@ public class EnemyS : MonoBehaviour {
 	public Color flashCol { get { return _flashCol; } }
 
 	public bool behaviorBroken { get { return _behaviorBroken; } }
+
+	private bool inWitchTime = false;
+	float witchVelT = 0f;
+	private float witchVelTimeMax = 0.5f;
+	private float currentWitchVelTime = 0f;
+	private Vector3 witchTargetVel;
+	private Vector3 witchCapturedVel;
 
 	//_____________________________________UNITY METHODS
 	// Use this for initialization
@@ -398,6 +408,8 @@ public class EnemyS : MonoBehaviour {
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMaterial = myRenderer.material;
 
+		_myAnimator.SetFloat("WitchSpeed", 1f);
+
 		killAtLessThan = 0f;
 
 		if (myRenderer.color.a < 1f){
@@ -568,6 +580,7 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown -= Time.deltaTime;
 		}
 		else{
+				
 				_myAnimator.SetLayerWeight(1, 0f);
 			_hitStunned = false;
 		}
@@ -760,6 +773,7 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	private void ManageFacing(){
+		if (!inWitchTime){
 		Vector3 newSize = startSize;
 		if (!_hitStunned || !_isCritical){
 		if (_facePlayer && GetTargetReference() != null){
@@ -791,6 +805,7 @@ public class EnemyS : MonoBehaviour {
 				transform.localScale = newSize;
 			}
 		}
+		}
 	}
 
 	private void FadeIn(){
@@ -821,6 +836,26 @@ public class EnemyS : MonoBehaviour {
 
 
 	//_______________________________________________PUBLIC METHODS
+	public void StartWitchTime(){
+		if (_currentBehavior){
+			_currentBehavior.SetBehaviorActing(false);
+		}
+		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyAnimationFloat*0.1f);
+		_myAnimator.SetFloat("WitchSpeed", 0.1f);
+		_myAnimator.SetFloat("DeathSpeed", 0.1f);
+		_myRigidbody.velocity *= 0.1f;
+		inWitchTime = true;
+	}
+	public void EndWitchTime(){
+		if (_currentBehavior){
+			_currentBehavior.SetBehaviorActing(true);
+		}
+		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyAnimationFloat);
+		_myAnimator.SetFloat("WitchSpeed", 1f);
+		_myAnimator.SetFloat("DeathSpeed", 1f);
+		_myRigidbody.velocity /= 0.1f;
+		inWitchTime = false;
+	}
 	public void CheckBehaviorStateSwitch(bool dont){
 
 		CheckStates(dont);
@@ -862,7 +897,7 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	public void Stun(float sTime, bool overrideStun = false){
-		if ((_canBeStunned||overrideStun||_behaviorBroken) && sTime > 0){
+		if ((_canBeStunned||overrideStun||_behaviorBroken||inWitchTime) && sTime > 0){
 			_hitStunned = true;
 			currentKnockbackCooldown = sTime;
 			_myAnimator.SetTrigger("Hit");
@@ -1057,16 +1092,37 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	IEnumerator KnockbackRoutine(Vector3 forceAmt, ForceMode fMode){
-
+		
 		yield return new WaitForSeconds(knockbackDelay);
 
 		hitVelocity = forceAmt;
 		if (!touchingWall){
-			_myRigidbody.AddForce(forceAmt, fMode);
+			if (inWitchTime){
+				StartCoroutine(WitchKnockbackRoutine(forceAmt, fMode));
+			}else{
+				_myRigidbody.AddForce(forceAmt, fMode);
+			}
 		}else{
 			StartCoroutine(WallBounce(currentWallNormal, true));
 		}
 		
+	}
+
+	IEnumerator WitchKnockbackRoutine(Vector3 forceAmt, ForceMode fMode){
+						
+		_myRigidbody.AddForce(forceAmt, fMode);
+		yield return new WaitForSeconds(0.2f);
+		currentWitchVelTime = 0f;
+		witchCapturedVel = _myRigidbody.velocity;
+		witchTargetVel = witchCapturedVel*=0.1f;
+		while (currentWitchVelTime < witchVelTimeMax){
+			currentWitchVelTime += Time.deltaTime;
+			witchVelT = currentWitchVelTime/witchVelTimeMax;
+			witchVelT = Mathf.Sin(witchVelT * Mathf.PI * 0.5f);
+			_myRigidbody.velocity = Vector3.Lerp(witchCapturedVel, witchTargetVel, witchVelT);
+		}
+		_myRigidbody.velocity = witchTargetVel;
+
 	}
 
 	public void KillWithoutXP(){

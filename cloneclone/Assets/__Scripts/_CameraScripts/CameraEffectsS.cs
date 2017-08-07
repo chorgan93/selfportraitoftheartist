@@ -42,6 +42,8 @@ public class CameraEffectsS : MonoBehaviour {
 	public GameObject healSound;
 	public GameObject endCombatSound;
 
+	private ContrastStretch contrastEffect;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -81,6 +83,14 @@ public class CameraEffectsS : MonoBehaviour {
 			blurEffect.enabled = false;
 
 			resetStatic.gameObject.SetActive(false);
+
+			contrastEffect = GetComponent<ContrastStretch>();
+		}
+	}
+
+	public void SetContrast(bool onOff){
+		if (contrastEffect){
+			contrastEffect.enabled = onOff;
 		}
 	}
 

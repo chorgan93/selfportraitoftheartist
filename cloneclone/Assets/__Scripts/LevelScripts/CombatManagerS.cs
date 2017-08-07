@@ -53,6 +53,12 @@ public class CombatManagerS : MonoBehaviour {
 
 	}
 
+	public void SetWitchTime(bool newTime){
+		for (int i = 0; i < enemies.Length; i++){
+			enemies[i].SetWitchTime(newTime);
+		}
+	}
+
 	IEnumerator CompleteCombat(){
 		AddDefeatedEnemies();
 		CameraFollowS.F.ClearStunnedEnemies();
@@ -67,6 +73,7 @@ public class CombatManagerS : MonoBehaviour {
 			enemies[i].DropOnDefeat();
 		}
 		playerRef.SetCombat(false);
+		playerRef.EndWitchTime();
 		CameraEffectsS.E.ResetEffect(true);
 		VerseDisplayS.V.EndVerse();
 		if (combatID > -1){
@@ -115,6 +122,8 @@ public class CombatManagerS : MonoBehaviour {
 		}
 
 		if (itemReset){
+
+			playerRef.EndWitchTime();
 			if (playerRef.myBuddy != null){
 				Vector3 buddyPos = playerRef.myBuddy.transform.position-playerRef.transform.position;
 				playerRef.myBuddy.transform.position = _resetPos+buddyPos;

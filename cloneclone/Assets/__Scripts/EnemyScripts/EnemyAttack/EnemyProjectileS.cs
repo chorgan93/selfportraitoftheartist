@@ -35,6 +35,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public bool isPiercing = true;
 	private bool allowMultiHit = false;
 	public float damage;
+	private float startDamage;
 	public float knockbackTime;
 	public float playerKnockbackMult;
 	public bool noCollider = false;
@@ -47,6 +48,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private Color startColor;
 	private bool doFlashLogic;
 	private bool didFlashLogic = false;
+	public bool disappearOnRoll = false;
 	
 	public float fadeThreshold = 0.1f;
 	private Color fadeColor;
@@ -56,6 +58,8 @@ public class EnemyProjectileS : MonoBehaviour {
 	private bool hitPlayer = false;
 
 	private Collider myCollider;
+	private float witchTimeMult = 0.1f;
+	private bool inWitchTime = false;
 
 	void Start(){
 		_maxRange = range;
@@ -65,6 +69,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
+			startDamage = damage;
 
 		}
 	}
@@ -100,8 +105,11 @@ public class EnemyProjectileS : MonoBehaviour {
 				}
 			}
 		}
-		
+		if (!inWitchTime){
 		range -= Time.deltaTime;
+		}else{
+			range -= Time.deltaTime*0.1f;
+		}
 		if (myCollider.enabled){
 			if (range <= turnOffColliderTime){
 				myCollider.enabled = false;
@@ -264,6 +272,12 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 
+		if (other.gameObject.tag == "WitchTime"){
+			damage = 0;
+			_rigidbody.velocity *= witchTimeMult;
+			inWitchTime = true;
+		}
+
 		if (other.gameObject.tag == "Wall"){
 			if (hitSoundObj){
 				Instantiate(hitSoundObj);
@@ -336,12 +350,15 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (!playerRef.isDashing && !playerRef.isBlocking){
 				HitEffect(other.gameObject, other.transform.position,playerRef.myStats.currentHealth<=1f);
 						playerRef.myStats.DamageEffect(_myRenderer.transform.rotation.eulerAngles.z);
+						if (!isPiercing){
+							range = fadeThreshold;
+							_rigidbody.velocity = Vector3.zero;
+						}
 			}
-
-				if (!isPiercing){
-					range = fadeThreshold;
-					_rigidbody.velocity = Vector3.zero;
-				}
+					if ((playerRef.isDashing || playerRef.isBlocking) && disappearOnRoll){
+						range = fadeThreshold;
+					}
+				
 			hitPlayer = true;
 			}
 		}
@@ -405,6 +422,15 @@ public class EnemyProjectileS : MonoBehaviour {
 
 		}
 		
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "WitchTime"){
+			damage = startDamage;
+			_rigidbody.velocity /= witchTimeMult;
+			inWitchTime = false;
+		}
+
 	}
 
 	void HitEffect(GameObject p, Vector3 spawnPos, bool bigBlood = false){

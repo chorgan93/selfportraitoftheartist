@@ -508,6 +508,7 @@ public class ProjectileS : MonoBehaviour {
 
 				StartMoveStop(hitStopAmt);
 				_myPlayer.AnimationStop(hitStopAmt);
+				_myPlayer.ExtendWitchTime();
 
 				if (!hitEnemy.isDead){
 					_myPlayer.AddEnemyHit(hitEnemy);

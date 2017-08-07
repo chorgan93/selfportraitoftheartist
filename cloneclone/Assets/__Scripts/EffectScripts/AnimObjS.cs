@@ -11,11 +11,14 @@ public class AnimObjS : MonoBehaviour {
 	private float animRateCountdown;
 	private int currentFrame;
 
+	private float witchMult = 0.1f;
+
 	public bool destroyOnEnd = true;
 	public bool loop = false;
 	public float loopBufferTime = 0f;
 	private float loopTime = 0f;
 	private bool delayingLoop = false;
+	public bool ignoreWitchTime = false;
 
 	public GameObject fadeObj;
 	private bool endAnim = false;
@@ -49,7 +52,15 @@ public class AnimObjS : MonoBehaviour {
 	void FixedUpdate () {
 
 		if (delayingLoop){
+			if (PlayerSlowTimeS.witchTimeActive){
+				if (ignoreWitchTime){
+					loopTime -= Time.deltaTime*DifficultyMult();
+				}else{
+					loopTime -= Time.deltaTime*DifficultyMult()*witchMult;
+				}
+			}else{
 			loopTime -= Time.deltaTime*DifficultyMult();
+			}
 			if (loopTime <= 0){
 				delayingLoop = false;
 				currentFrame = 0;
@@ -57,7 +68,17 @@ public class AnimObjS : MonoBehaviour {
 			}
 		}else{
 		if (!endAnim){
-				animRateCountdown -= Time.deltaTime*DifficultyMult();
+				if (PlayerSlowTimeS.witchTimeActive){
+					if (ignoreWitchTime){
+
+						animRateCountdown -= Time.deltaTime*DifficultyMult();
+					}else{
+
+						animRateCountdown -= Time.deltaTime*DifficultyMult()*witchMult;
+					}
+				}else{
+					animRateCountdown -= Time.deltaTime*DifficultyMult();
+				}
 		}
 
 		if (animRateCountdown <= 0){

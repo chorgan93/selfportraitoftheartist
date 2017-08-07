@@ -62,6 +62,16 @@ public class EnemySpawnerS : MonoBehaviour {
 	
 	}
 
+	public void SetWitchTime(bool witchOn){
+		if (_enemySpawned){
+			if (witchOn){
+				currentEnemyReference.StartWitchTime();
+			}else{
+				currentEnemyReference.EndWitchTime();
+			}
+		}
+	}
+
 	public void SaveEnemyDefeated(){
 		if (enemySpawnID > -1){
 			PlayerInventoryS.I.dManager.AddEnemyDefeated(enemySpawnID, currentEnemyReference.transform.position);

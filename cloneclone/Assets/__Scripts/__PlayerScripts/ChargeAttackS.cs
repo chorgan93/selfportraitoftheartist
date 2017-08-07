@@ -240,6 +240,7 @@ public class ChargeAttackS : MonoBehaviour {
 				}**/
 
 			HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
+				myPlayer.ExtendWitchTime();
 			}
 		}
 		
