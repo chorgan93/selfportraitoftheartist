@@ -957,7 +957,7 @@ public class PlayerController : MonoBehaviour {
 				_isDashing = false;
 				_myRigidbody.drag = startDrag;
 
-				if (dontGetStuckInEnemiesCheck.NoEnemies()){
+				if (dontGetStuckInEnemiesCheck.NoEnemies() && !PlayerSlowTimeS.witchTimeActive){
 					gameObject.layer = START_PHYSICS_LAYER;
 				}
 				

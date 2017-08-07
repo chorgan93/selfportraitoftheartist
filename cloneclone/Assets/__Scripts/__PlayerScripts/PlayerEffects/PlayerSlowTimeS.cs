@@ -22,6 +22,9 @@ public class PlayerSlowTimeS : MonoBehaviour {
 	private float growStepCount;
 	public int growIterations = 5;
 	private int currentIteration;
+	private bool endTriggered = false;
+
+	private float shrinkMult = 3f;
 
 	private PlayerController playerRef;
 
@@ -43,6 +46,7 @@ public class PlayerSlowTimeS : MonoBehaviour {
 	void Update () {
 
 		if (witchTimeActive){
+			if (currentWitchTime < currentWitchTimeMax){
 			if (currentIteration < growIterations){
 				growStepCount -= Time.deltaTime;
 				if (growStepCount <= 0){
@@ -52,11 +56,29 @@ public class PlayerSlowTimeS : MonoBehaviour {
 					transform.localScale = currentGrowScale;
 					growStepCount = currentGrowStepTime;
 					currentGrowStepTime *= growStepMult;
+
+					if (currentIteration >= growIterations){
+						currentGrowStepTime = growStepTime;
+					}
 				}
 			}
 			currentWitchTime+=Time.deltaTime;
-			if (currentWitchTime >= currentWitchTimeMax){
+			}
+			else{
+				endTriggered = true;
+				growStepCount -= Time.deltaTime*shrinkMult;
+				if (growStepCount <= 0){
+					currentIteration--;
+					currentGrowScale.x /= growRate.x;
+					currentGrowScale.y /= growRate.y;
+					transform.localScale = currentGrowScale;
+					growStepCount = currentGrowStepTime;
+					currentGrowStepTime *= growStepMult;
+
+				}
+				if (currentIteration <= 0){
 				EndWitchTime();
+				}
 			}
 		}
 	
@@ -75,10 +97,11 @@ public class PlayerSlowTimeS : MonoBehaviour {
 		if (playerRef.currentCombatManager){
 			playerRef.currentCombatManager.SetWitchTime(true);
 		}
+		endTriggered = false;
 	}
 
 	public void ExtendWitchTime(){
-		if (witchTimeActive){
+		if (witchTimeActive && !endTriggered){
 		currentWitchTimeMax += witchTimeExtend;
 		if (currentWitchTimeMax > witchTimeMax){
 			currentWitchTimeMax = witchTimeMax;

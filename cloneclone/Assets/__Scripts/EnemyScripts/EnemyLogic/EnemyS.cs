@@ -193,6 +193,7 @@ public class EnemyS : MonoBehaviour {
 	public bool behaviorBroken { get { return _behaviorBroken; } }
 
 	private bool inWitchTime = false;
+	private bool hitInWitchTime = false;
 	float witchVelT = 0f;
 	private float witchVelTimeMax = 0.5f;
 	private float currentWitchVelTime = 0f;
@@ -847,8 +848,16 @@ public class EnemyS : MonoBehaviour {
 		inWitchTime = true;
 	}
 	public void EndWitchTime(){
-		if (_currentBehavior){
-			_currentBehavior.SetBehaviorActing(true);
+		if (hitInWitchTime){
+			hitInWitchTime = false;
+			if (_currentState){
+				_currentBehavior.CancelAction();
+				_currentState.StartActions();
+			}
+		}else{
+			if (_currentBehavior){
+				_currentBehavior.SetBehaviorActing(true);
+			}
 		}
 		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyAnimationFloat);
 		_myAnimator.SetFloat("WitchSpeed", 1f);
@@ -902,6 +911,9 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown = sTime;
 			_myAnimator.SetTrigger("Hit");
 			_myAnimator.SetLayerWeight(1,1f);
+			if (inWitchTime){
+				hitInWitchTime = true;
+			}
 		}
 		myRenderer.material = flashMaterial;
 		myRenderer.material.SetColor("_FlashColor", Color.white);
