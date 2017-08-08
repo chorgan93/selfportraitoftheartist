@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_21_Delimit.unity
   isLoaded: 1
   isActive: 1

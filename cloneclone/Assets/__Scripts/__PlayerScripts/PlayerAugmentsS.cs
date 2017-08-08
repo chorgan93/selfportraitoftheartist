@@ -78,21 +78,29 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _agileAug = false;
 	public bool agileAug { get { return _agileAug; } }
 
-	// index 7
+	// index 7 (parry projectiles for massive damage)
 	private bool _repellantAug = false;
 	public bool repellantAug { get { return _repellantAug; } }
 	
-	// index 8
+	// index 8 (stronger buddies)
 	private bool _trustingAug = false;
 	public bool trustingAug { get { return _trustingAug; } }
 
-	// index 9
+	// index 9 (stamina recharge on dodge)
 	private bool _drivenAug = false;
 	public bool drivenAug { get { return _drivenAug; } }
 	
-	// index 10
+	// index 10 (ambient charge refill during combat)
 	private bool _anxiousAug = false;
 	public bool anxiousAug { get { return _anxiousAug; } }
+
+	// index 12 (witch time)
+	private bool _untetheredAug = false;
+	public bool untetheredAug { get { return _untetheredAug; } }
+
+	// index 16 (bloodborne rally)
+	private bool _desperateAug = false;
+	public bool desperateAug { get { return _desperateAug; } }
 
 	private bool _initialized;
 
@@ -145,6 +153,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_trustingAug = false;
 		_drivenAug = false;
 		_anxiousAug = false;
+		_untetheredAug = false;
+		_desperateAug = false;
 
 
 	}
@@ -226,11 +236,19 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (PlayerController.equippedVirtues.Contains(8)){
 			_trustingAug = true;
 		}
-		if (PlayerController.equippedVirtues.Contains(9)){
+		//if (PlayerController.equippedVirtues.Contains(9)){
 			_drivenAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(10)){
+		//}
+		//if (PlayerController.equippedVirtues.Contains(10)){
 			_anxiousAug = true;
+		//}
+
+		//if (PlayerController.equippedVirtues.Contains(12)){
+		_untetheredAug = true;
+		//}
+
+		if (PlayerController.equippedVirtues.Contains(16)){
+			_desperateAug = true;
 		}
 
 	}

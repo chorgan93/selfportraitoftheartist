@@ -15,7 +15,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
 	public const float HEALTH_ADD_AMT = 1f;
 
-	private const float anxiousChargeRate = 0.1f;
+	private const float anxiousChargeRate = 0.025f;
 
 	private const float DARKNESS_ADD_RATE = 0.0005f;
 	private const float DARKNESS_ADD_DEATH = 1f/2f;
@@ -186,6 +186,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private FlashEffectS _hurtFlash;
 	private FlashEffectS _killFlash;
+
+	private PlayerHealEffect rechargeEffectRef;
 
 	//_____________________________________UNITY FUNCTIONS
 
@@ -360,7 +362,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	private void ChargeRecovery(){
-		if (myPlayerController.playerAug.anxiousAug){
+		if (myPlayerController.playerAug.anxiousAug && myPlayerController.inCombat){
 			if (_currentCharge < maxCharge){
 				RecoverCharge(anxiousChargeRate*Time.deltaTime);
 			}
@@ -475,6 +477,8 @@ public class PlayerStatsS : MonoBehaviour {
 		myPlayerController = GetComponent<PlayerController>();
 		myPlayerController.SetStatReference(this);
 
+		rechargeEffectRef = GetComponentInChildren<PlayerHealEffect>();
+
 		InitializeStats();
 
 		_hurtFlash = CameraEffectsS.E.hurtFlash;
@@ -555,16 +559,20 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedLevel++;
 	}
 
-	public void ResetStamina(){
+	public void ResetStamina(bool fromDriven = false){
 
 		_currentMana = maxMana;
 		_overchargeMana = 0f;
 		_currentCooldownTimer = 0f;
 		_currentManaUsed = 0f;
 		myPlayerController.FlashMana(true);
+		if (!fromDriven){
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
 		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
+		}else{
+			rechargeEffectRef.TriggerStaminaEffect();
+		}
 
 		warningReference.EndShow("— Stamina LOW —");
 

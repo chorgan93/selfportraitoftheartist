@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _allowCounterAttack = false;
 	public bool allowCounterAttack { get { return _allowCounterAttack; } }
 	private float counterAttackTime;
-	private float counterAttackTimeMax = 0.5f;
+	private float counterAttackTimeMax = 0.4f;
 	private float parryDelayWitchTime = 0.3f;
 	private float parryDelayWitchCountdown = 0f;
 	private bool _delayWitchTime = false;
@@ -362,8 +362,14 @@ public class PlayerController : MonoBehaviour {
 
 	void TriggerWitchTime(){
 
-		gameObject.layer = DODGE_PHYSICS_LAYER;
-		witchReference.TriggerWitchTime();
+		if (_playerAug.untetheredAug){
+			gameObject.layer = DODGE_PHYSICS_LAYER;
+			witchReference.TriggerWitchTime();
+		}
+
+		if (_playerAug.drivenAug){
+			_myStats.ResetStamina(true);
+		}
 	}
 
 	public void ExtendWitchTime(){
@@ -593,7 +599,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FlashMana(bool doEffect = false){
+		if (doEffect){
+			flashManaFrames = 8;
+		}else{
 		flashManaFrames = 4;
+		}
 		myRenderer.material = manaFlashMat;
 		myRenderer.material.SetColor("_FlashColor", equippedWeapon.swapColor);
 		/*if (doEffect){

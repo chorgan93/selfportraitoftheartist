@@ -268,13 +268,15 @@ public class BuddyProjectileS : MonoBehaviour {
 			
 				float actingKnockbackSpeed = shotSpeed*knockbackMult;
 				float actingStunMult = 1f;
+				float actingDamageMult = 1f;
 				if (_myBuddy.playerRef.playerAug.trustingAug){
 					actingStunMult = 1.5f;
+					actingDamageMult = 1.4f;
 				}
 				
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					 damage, actingStunMult, 2f);
+					damage*actingDamageMult, actingStunMult, 2f);
 
 				if (_myBuddy){
 					_myBuddy.playerRef.ExtendWitchTime();

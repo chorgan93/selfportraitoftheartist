@@ -6,6 +6,7 @@ public class NormalizeTimeScaleS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Time.timeScale = 1f;
+		PlayerSlowTimeS.witchTimeActive = false;
 	}
 
 }

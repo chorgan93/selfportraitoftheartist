@@ -5,6 +5,7 @@ public class PlayerSlowTimeS : MonoBehaviour {
 
 	public Renderer _myRenderer;
 	private Collider _myCollider;
+	public GameObject outlineObj;
 	public static bool witchTimeActive = false;
 	[Header("Acting Properties")]
 	public float witchTimeLength = 2f;
@@ -39,6 +40,8 @@ public class PlayerSlowTimeS : MonoBehaviour {
 		_myRenderer.enabled = false;
 		_myCollider = GetComponent<Collider>();
 		_myCollider.enabled = false;
+
+		outlineObj.SetActive(false);
 	
 	}
 	
@@ -87,6 +90,7 @@ public class PlayerSlowTimeS : MonoBehaviour {
 	public void TriggerWitchTime(){
 		currentIteration = 0;
 		currentGrowScale = startScale;
+		outlineObj.SetActive(true);
 		growStepCount = 0f;
 		witchTimeActive = true;
 		currentWitchTimeMax = witchTimeLength;
@@ -110,6 +114,7 @@ public class PlayerSlowTimeS : MonoBehaviour {
 	}
 	public void EndWitchTime(){
 		witchTimeActive = false;
+		outlineObj.SetActive(false);
 		_myCollider.enabled = _myRenderer.enabled = false;
 		transform.localScale = startScale;
 		playerRef.EndWitchTime(true);
