@@ -74,7 +74,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _perceptiveAug = false;
 	public bool perceptiveAug { get { return _perceptiveAug; } }
 	
-	// index 6
+	// index 9 (stamina recharge on dodge)
 	private bool _agileAug = false;
 	public bool agileAug { get { return _agileAug; } }
 
@@ -86,7 +86,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _trustingAug = false;
 	public bool trustingAug { get { return _trustingAug; } }
 
-	// index 9 (stamina recharge on dodge)
+	// index 6 (charge refill on crit)
 	private bool _drivenAug = false;
 	public bool drivenAug { get { return _drivenAug; } }
 	
@@ -94,11 +94,11 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _anxiousAug = false;
 	public bool anxiousAug { get { return _anxiousAug; } }
 
-	// index 12 (witch time)
+	// index 17 (witch time)
 	private bool _untetheredAug = false;
 	public bool untetheredAug { get { return _untetheredAug; } }
 
-	// index 16 (bloodborne rally)
+	// index 12 (bloodborne rally)
 	private bool _desperateAug = false;
 	public bool desperateAug { get { return _desperateAug; } }
 
@@ -221,29 +221,29 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (PlayerController.equippedVirtues.Contains(3)){
 			_enragedAug = true;
 		}
-		if (PlayerController.equippedVirtues.Contains(4)){
+		//if (PlayerController.equippedVirtues.Contains(4)){
 			_adaptiveAug = true;
-		}
+		//}
 		if (PlayerController.equippedVirtues.Contains(5)){
 			_perceptiveAug = true;
 		}
-		if (PlayerController.equippedVirtues.Contains(6)){
+		//if (PlayerController.equippedVirtues.Contains(9)){
 			_agileAug = true;
-		}
+		//}
 		if (PlayerController.equippedVirtues.Contains(7)){
 			_repellantAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(8)){
 			_trustingAug = true;
 		}
-		//if (PlayerController.equippedVirtues.Contains(9)){
+		//if (PlayerController.equippedVirtues.Contains(6)){
 			_drivenAug = true;
 		//}
 		//if (PlayerController.equippedVirtues.Contains(10)){
 			_anxiousAug = true;
 		//}
 
-		//if (PlayerController.equippedVirtues.Contains(12)){
+		//if (PlayerController.equippedVirtues.Contains(17)){
 		_untetheredAug = true;
 		//}
 
@@ -265,6 +265,14 @@ public class PlayerAugmentsS : MonoBehaviour {
 			return erebosAugAmt;
 		}else{
 			return 1f;
+		}
+	}
+
+	public bool HasWitchAug(){
+		if (_untetheredAug || _agileAug){
+			return true;
+		}else{
+			return false;
 		}
 	}
 }

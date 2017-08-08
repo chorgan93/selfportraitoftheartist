@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 	private const int START_PHYSICS_LAYER = 8;
 	private const int DODGE_PHYSICS_LAYER = 12;
 
+	private const float ADAPTIVE_WINDOW = 0.16f;
+
 	private static float SMASH_THRESHOLD = 0.75f;
 	
 	//_________________________________________CLASS PROPERTIES
@@ -367,7 +369,7 @@ public class PlayerController : MonoBehaviour {
 			witchReference.TriggerWitchTime();
 		}
 
-		if (_playerAug.drivenAug){
+		if (_playerAug.agileAug){
 			_myStats.ResetStamina(true);
 		}
 	}
@@ -1538,6 +1540,8 @@ public class PlayerController : MonoBehaviour {
 						_subParadigm = 0;
 					}
 					SwitchParadigm(_currentParadigm);
+
+					AdaptiveCheck();
 					
 					BuddyS tempSwap = _myBuddy;
 					if (!altBuddyCreated){
@@ -1578,6 +1582,14 @@ public class PlayerController : MonoBehaviour {
 			switchButtonUp = false;
 		}
 
+	}
+
+	private void AdaptiveCheck(){
+		if (_isShooting){
+			if (_playerAug.adaptiveAug && _isShooting && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+				_myStats.ResetStamina(true, true);
+			}
+		}
 	}
 
 	private void LockOnControl(){
@@ -1725,9 +1737,10 @@ public class PlayerController : MonoBehaviour {
 		Instantiate(_myBuddy.buddySound);
 		tempSwap.gameObject.SetActive(false);*/
 
-		if (_playerAug.adaptiveAug){
+		// OLD ADAPTIVE AUG USE
+		/*if (_playerAug.adaptiveAug){
 			_adaptiveCountdown = _adaptiveTimeMax;
-		}
+		}*/
 		
 		// switchWeapon
 		equippedWeapon = equippedWeapons[_currentParadigm];
@@ -2550,7 +2563,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool IsSliding(){
-		return (_isDashing && dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime && !_playerAug.agileAug);
+		return (_isDashing && dashDurationTime >= dashDurationTimeMax-triggerDashSlideTime);
 	}
 
 	public Vector3 ShootPosition(){
@@ -2667,7 +2680,7 @@ public class PlayerController : MonoBehaviour {
 
 	public bool AllowDodgeEffect(){
 		// turned on for witch testing
-		if (_isDashing && dashDurationTime <= dashEffectThreshold){
+		if (_isDashing && dashDurationTime <= dashEffectThreshold && _playerAug.HasWitchAug()){
 			return true;
 		}else{
 			return false;

@@ -57,6 +57,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedMana = 0; // max 16 (for 20 total)
 	public float addedMana { get { return _addedMana; } }
 	private float _currentMana;
+	private float _comboStartMana;
 	private RefreshDisplayS myRefresh;
 
 	private float _savedMana = 5;
@@ -217,6 +218,9 @@ public class PlayerStatsS : MonoBehaviour {
 		else{
 		if (_currentMana > 0){
 			if (reduce){
+					if (_currentCooldownTimer <= 0){
+						_comboStartMana = _currentMana;
+					}
 			if (_currentMana >= useAmount){
 				_currentMana -= useAmount;
 				
@@ -295,7 +299,13 @@ public class PlayerStatsS : MonoBehaviour {
 		return canUse;
 	}
 
-	public void RecoverCharge(float addPercent, bool itemEffect = false){
+	public void DrivenCheck(){
+		if (myPlayerController.playerAug.drivenAug){
+			RecoverCharge(100f);
+		}
+	}
+
+	public void RecoverCharge(float addPercent, bool itemEffect = false, bool anxiousEffect = false){
 		// add to charge (old)
 		float amtAdded = addPercent*maxCharge*currentChargeRecover;
 		if (_currentCharge + amtAdded > maxCharge){
@@ -318,6 +328,8 @@ public class PlayerStatsS : MonoBehaviour {
 			CameraShakeS.C.TimeSleep(0.08f);
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 		
+		}else if (addPercent >= 100f){
+			rechargeEffectRef.TriggerChargeEffect();
 		}
 
 		// add to stamina (new)
@@ -364,7 +376,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private void ChargeRecovery(){
 		if (myPlayerController.playerAug.anxiousAug && myPlayerController.inCombat){
 			if (_currentCharge < maxCharge){
-				RecoverCharge(anxiousChargeRate*Time.deltaTime);
+				RecoverCharge(anxiousChargeRate*Time.deltaTime, false, true);
 			}
 		}
 	}
@@ -432,7 +444,7 @@ public class PlayerStatsS : MonoBehaviour {
 					_currentMana = maxMana;
 				}
 
-
+				_comboStartMana = _currentMana;
 			}
 
 		}
@@ -559,14 +571,24 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedLevel++;
 	}
 
-	public void ResetStamina(bool fromDriven = false){
+	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false){
 
-		_currentMana = maxMana;
+		if (onlyCombo){
+			if (_comboStartMana > _currentMana){
+				_currentMana = _comboStartMana;
+
+				_currentManaUsed = maxMana-_comboStartMana;
+				_currentCooldownTimer = recoveryCooldownMax;
+				currentRegenCountdown = GetRegenTime();
+			}
+		}else{
+			_currentMana = maxMana;
+			_currentManaUsed = 0f;
+			_currentCooldownTimer = 0f;
+		}
 		_overchargeMana = 0f;
-		_currentCooldownTimer = 0f;
-		_currentManaUsed = 0f;
 		myPlayerController.FlashMana(true);
-		if (!fromDriven){
+		if (!fromVirtue){
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
 		_itemEffect.Flash(myPlayerController.myRenderer.material.color);

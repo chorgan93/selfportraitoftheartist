@@ -97,9 +97,9 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 
 	private void DetermineTarget(){
 
-		if (myEnemyReference.hitWall && !didWallRedirect){
+		/*if (myEnemyReference.hitWall && !didWallRedirect){
 			WallRedirect();
-		}
+		}*/
 		changeWanderTargetCountdown -= Time.deltaTime;
 
 		if (changeWanderTargetCountdown <= 0){
@@ -131,7 +131,6 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 		wallRedirect*=targetDistance;
 		wallRedirect.z = transform.position.z;
 		currentMoveTarget = wallRedirect;
-		Debug.Log(myEnemyReference.enemyName + " did Wall Redirect!", myEnemyReference.gameObject);
 		didWallRedirect =  true;
 	}
 }

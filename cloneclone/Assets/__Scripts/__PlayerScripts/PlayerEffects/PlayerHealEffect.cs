@@ -55,4 +55,14 @@ public class PlayerHealEffect : MonoBehaviour {
 		_myRender.color = setColor;
 		_myRender.enabled = true;
 	}
+
+	public void TriggerChargeEffect(){
+		currentFrame = 0;
+		animCount = animRate;
+		_myRender.sprite = animFrames[currentFrame];
+		setColor = chargeColor;
+		setColor.a = startAlpha;
+		_myRender.color = setColor;
+		_myRender.enabled = true;
+	}
 }

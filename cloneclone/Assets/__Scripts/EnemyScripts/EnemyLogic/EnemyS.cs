@@ -194,6 +194,7 @@ public class EnemyS : MonoBehaviour {
 
 	private bool inWitchTime = false;
 	private bool hitInWitchTime = false;
+	private bool inWitchKnockback = false;
 	float witchVelT = 0f;
 	private float witchVelTimeMax = 0.5f;
 	private float currentWitchVelTime = 0f;
@@ -520,7 +521,9 @@ public class EnemyS : MonoBehaviour {
 		// check vulnerable/critical
 		if (_isVulnerable){
 			if (_isCritical){
-				vulnerableCountdown -= Time.deltaTime;
+				if (!inWitchTime){
+					vulnerableCountdown -= Time.deltaTime;
+				
 				if (vulnerableCountdown <= 0){
 					_isCritical = false;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
@@ -528,7 +531,7 @@ public class EnemyS : MonoBehaviour {
 
 					_myAnimator.SetBool("Crit", false);
 
-					if (!_hitStunned){
+					if (!_hitStunned && !inWitchTime){
 						_myAnimator.SetLayerWeight(1, 0f);
 					}
 
@@ -536,12 +539,16 @@ public class EnemyS : MonoBehaviour {
 					_currentState.CancelAllActions();
 					_currentState.StartActions();
 				}
+				}
 			}else{
 				VulnerableEffect();
 				// countdown to end vuln state
-				vulnerableCountdown -= Time.deltaTime;
+				if (!inWitchTime){
+					vulnerableCountdown -= Time.deltaTime;
+				
 				if (vulnerableCountdown <= 0){
 					_isVulnerable = false;
+				}
 				}
 			}
 
@@ -862,8 +869,10 @@ public class EnemyS : MonoBehaviour {
 		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyAnimationFloat);
 		_myAnimator.SetFloat("WitchSpeed", 1f);
 		_myAnimator.SetFloat("DeathSpeed", 1f);
+		if (!inWitchKnockback){
 		_myRigidbody.velocity /= 0.1f;
-		inWitchTime = false;
+		}
+		inWitchKnockback = inWitchTime = false;
 	}
 	public void CheckBehaviorStateSwitch(bool dont){
 
@@ -954,7 +963,7 @@ public class EnemyS : MonoBehaviour {
 
 					_myAnimator.SetBool("Crit", false);
 
-					if (!_hitStunned){
+				if (!_hitStunned && !inWitchTime){
 						_myAnimator.SetLayerWeight(1, 0f);
 					}
 
@@ -1038,6 +1047,7 @@ public class EnemyS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.1f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
+					GetPlayerReference().myStats.DrivenCheck();
 					if (breakSound){
 						Instantiate(breakSound);
 					}
@@ -1123,6 +1133,7 @@ public class EnemyS : MonoBehaviour {
 	IEnumerator WitchKnockbackRoutine(Vector3 forceAmt, ForceMode fMode){
 						
 		_myRigidbody.AddForce(forceAmt, fMode);
+		inWitchKnockback = true;
 		yield return new WaitForSeconds(0.2f);
 		currentWitchVelTime = 0f;
 		witchCapturedVel = _myRigidbody.velocity;
@@ -1134,6 +1145,7 @@ public class EnemyS : MonoBehaviour {
 			_myRigidbody.velocity = Vector3.Lerp(witchCapturedVel, witchTargetVel, witchVelT);
 		}
 		_myRigidbody.velocity = witchTargetVel;
+		inWitchKnockback = false;
 
 	}
 
