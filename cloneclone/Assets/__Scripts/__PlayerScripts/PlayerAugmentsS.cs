@@ -31,7 +31,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	public const float gaeaAugAmt = 0.75f;
 
 	private bool _realGaeaAug = false;
-	public bool realGaeaAug { get { return _gaeaAug; } }
+	public bool realGaeaAug { get { return _realGaeaAug; } }
 	public const float realGaeaAugAmt = 1.5f;
 
 	private bool _erebosAug = false;
@@ -54,11 +54,11 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _dashAug = false; // VIRTUE NOT USED
 	public bool dashAug { get { return _dashAug; } }
 
-	// index 1
+	// index 1 (extra killAt dmg)
 	private bool _determinedAug = false;
 	public bool determinedAug { get { return _determinedAug; } }
 
-	// index 2
+	// index 2 (lower stamina at max health
 	private bool _empoweredAug = false;
 	public bool empowered { get { return _empoweredAug; } }
 
@@ -101,6 +101,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 12 (bloodborne rally)
 	private bool _desperateAug = false;
 	public bool desperateAug { get { return _desperateAug; } }
+
+	// index 14 (extra defense)
+	private bool _lovedAug = false;
+	public bool lovedAug { get { return _lovedAug; } }
 
 	private bool _initialized;
 
@@ -155,6 +159,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_anxiousAug = false;
 		_untetheredAug = false;
 		_desperateAug = false;
+		_lovedAug = false;
 
 
 	}
@@ -207,47 +212,49 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private void TurnOnVirtueAugs(){
 
+		// as always, remove // before if statements when done testing
 		if (PlayerController.equippedVirtues.Contains(0)){
 			_unstoppableAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(1)){
-			//_opportunisticAug = true;
 			_determinedAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(2)){
-			//_dashAug = true;
 			_empoweredAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(3)){
 			_enragedAug = true;
 		}
-		//if (PlayerController.equippedVirtues.Contains(4)){
+		if (PlayerController.equippedVirtues.Contains(4)){
 			_adaptiveAug = true;
-		//}
+		}
 		if (PlayerController.equippedVirtues.Contains(5)){
 			_perceptiveAug = true;
 		}
-		//if (PlayerController.equippedVirtues.Contains(9)){
+		if (PlayerController.equippedVirtues.Contains(9)){
 			_agileAug = true;
-		//}
+		}
 		if (PlayerController.equippedVirtues.Contains(7)){
 			_repellantAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(8)){
 			_trustingAug = true;
 		}
-		//if (PlayerController.equippedVirtues.Contains(6)){
+		if (PlayerController.equippedVirtues.Contains(6)){
 			_drivenAug = true;
-		//}
-		//if (PlayerController.equippedVirtues.Contains(10)){
+		}
+		if (PlayerController.equippedVirtues.Contains(10)){
 			_anxiousAug = true;
-		//}
+		}
 
-		//if (PlayerController.equippedVirtues.Contains(17)){
+		if (PlayerController.equippedVirtues.Contains(17)){
 		_untetheredAug = true;
-		//}
+		}
+		if (PlayerController.equippedVirtues.Contains(14)){
+			_lovedAug = true;
+		}
 
-		if (PlayerController.equippedVirtues.Contains(16)){
+		if (PlayerController.equippedVirtues.Contains(12)){
 			_desperateAug = true;
 		}
 

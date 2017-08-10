@@ -55,6 +55,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool delayAttack = false;
 	public float dmg = 1;
 	public float killAtLessThan = 0f;
+	public bool addOnDetermined = false;
 	private float startDmg;
 	public float stunMult = 1f;
 	public float critDmg = 2f;
@@ -374,7 +375,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt, 0f, false, killAtLessThan);
+							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt, 0f, false, killAtLessThan*DeterminedMult());
 					}
 				}
 			}
@@ -504,7 +505,7 @@ public class ProjectileS : MonoBehaviour {
 				hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), hitStopAmt, 0f,
-					false, killAtLessThan);
+					false, killAtLessThan*DeterminedMult());
 
 				StartMoveStop(hitStopAmt);
 				_myPlayer.AnimationStop(hitStopAmt);
@@ -663,6 +664,14 @@ public class ProjectileS : MonoBehaviour {
 	private void SetAnimationEnable(bool newEnable){
 		for (int i = 0; i < allAnimators.Length; i++){
 			allAnimators[i].enabled = newEnable;
+		}
+	}
+
+	float DeterminedMult(){
+		if (_myPlayer.playerAug.determinedAug && addOnDetermined){
+			return 1.4f;
+		}else{
+			return 1f;
 		}
 	}
 

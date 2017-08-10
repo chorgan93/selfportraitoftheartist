@@ -816,6 +816,10 @@ public class PlayerController : MonoBehaviour {
 			_isDashing = false;
 			dashDurationTime = dashDurationTimeMax;
 		}else{
+			if (hitStopped){
+				_myAnimator.enabled = true;
+				hitStopped = false;
+			}
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_triggerBlock = false;
@@ -824,6 +828,8 @@ public class PlayerController : MonoBehaviour {
 			_delayWitchTime = false;
 			parryDelayWitchCountdown = 0f;
 			counterAttackTime = 0f;
+
+
 
 		if (attackTriggered){
 			CancelAttack(true);
@@ -1048,11 +1054,8 @@ public class PlayerController : MonoBehaviour {
 				                                           ShootDirection(), ShootDirection(), this);
 				SpawnAttackPuff();
 
-				if(_playerAug.gaeaAug){
-					_myStats.ManaCheck(_chargeAttackCost*PlayerAugmentsS.gaeaAugAmt);
-				}else{
-					_myStats.ManaCheck(_chargeAttackCost);
-				}
+				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
+
 				_myStats.ChargeCheck(_chargeAttackCost);
 				_playerSound.PlayChargeSound();
 
@@ -1273,14 +1276,11 @@ public class PlayerController : MonoBehaviour {
 			_isSprinting = false;
 			_myRigidbody.drag = startDrag;
 
-				// subtract mana cost
-				if (_playerAug.gaeaAug){
-					_myStats.ManaCheck(currentAttackS.staminaCost*PlayerAugmentsS.gaeaAugAmt, newAttack);
-				}else{
-					_myStats.ManaCheck(currentAttackS.staminaCost, newAttack);
-				}
+			// subtract mana cost
+			_myStats.ManaCheck(currentAttackS.staminaCost*VirtueStaminaMult(), newAttack);
 
-				FlashMana();
+
+			FlashMana();
 
 			if (_myStats.currentMana <= 0){
 				comboDuration = 0f;
@@ -2141,9 +2141,9 @@ public class PlayerController : MonoBehaviour {
 		/*if (blockPrepMax-blockPrepCountdown+timeInBlock < DASH_THRESHOLD && blockPrepCountdown > 0 &&
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
-		if (!_isTalking && !_isStunned && !_delayWitchTime
-		    && attackDuration <= currentAttackS.chainAllow && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD
-			&& !hitStopped){
+		
+		if (!_isTalking && !_isStunned && !_delayWitchTime && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
+			// && attackDuration <= currentAttackS.chainAllow
 			dashAllow = true;
 		}
 
@@ -2735,6 +2735,17 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public float VirtueStaminaMult(){
+		float returnMult = 1f;
+		if (_playerAug.gaeaAug){
+			returnMult *= PlayerAugmentsS.gaeaAugAmt;
+		}
+		if (_playerAug.empowered && _myStats.currentHealth >= _myStats.maxHealth){
+			returnMult *= 0.6f;
+		}
+		return returnMult;
+	}
+
 	IEnumerator HitStopRoutine(float sTime){
 
 		if (!hitStopped){
@@ -2744,9 +2755,11 @@ public class PlayerController : MonoBehaviour {
 		hitStopped = true;
 		_myRigidbody.velocity = Vector3.zero;
 		yield return new WaitForSeconds(sTime);
-		_myAnimator.enabled = true;
-		_myRigidbody.velocity = savedHitVelocity;
-		hitStopped = false;
+		if (hitStopped){
+			_myAnimator.enabled = true;
+			_myRigidbody.velocity = savedHitVelocity;
+			hitStopped = false;
+		}
 		
 	}
 

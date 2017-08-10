@@ -630,6 +630,9 @@ public class PlayerStatsS : MonoBehaviour {
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
 
 		dmg*=DifficultyS.GetPunishMult();
+		if (myPlayerController.playerAug.lovedAug){
+			dmg*=0.75f;
+		}
 		if (dmg > maxHealth){
 			dmg = maxHealth;
 		}

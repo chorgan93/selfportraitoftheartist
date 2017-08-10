@@ -49,7 +49,7 @@ public class PlayerHealEffect : MonoBehaviour {
 		currentFrame = 0;
 		animCount = animRate;
 		_myRender.sprite = animFrames[currentFrame];
-		staminaColor = playerRef.EquippedWeapon().flashSubColor;
+		//staminaColor = playerRef.EquippedWeapon().flashSubColor;
 		setColor = staminaColor;
 		setColor.a = startAlpha;
 		_myRender.color = setColor;

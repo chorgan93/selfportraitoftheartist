@@ -848,7 +848,7 @@ public class EnemyS : MonoBehaviour {
 		if (_currentBehavior){
 			_currentBehavior.SetBehaviorActing(false);
 		}
-		_myAnimator.SetFloat("DifficultySpeed", currentDifficultyAnimationFloat*0.1f);
+		_myAnimator.SetFloat("DifficultySpeed", 0f);
 		_myAnimator.SetFloat("WitchSpeed", 0.1f);
 		_myAnimator.SetFloat("DeathSpeed", 0.1f);
 		_myRigidbody.velocity *= 0.1f;

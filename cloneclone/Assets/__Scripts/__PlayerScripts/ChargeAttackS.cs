@@ -230,7 +230,7 @@ public class ChargeAttackS : MonoBehaviour {
 
 			other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
-					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan);
+					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
 				/*if (myPlayer.playerAug.lunaAug){
@@ -297,5 +297,13 @@ public class ChargeAttackS : MonoBehaviour {
 
 	public void TurnOffStun(){
 		stunMult = 0f;
+	}
+
+	float DeterminedMult(){
+		if (myPlayer.playerAug.determinedAug){
+			return 1.4f;
+		}else{
+			return 1f;
+		}
 	}
 }
