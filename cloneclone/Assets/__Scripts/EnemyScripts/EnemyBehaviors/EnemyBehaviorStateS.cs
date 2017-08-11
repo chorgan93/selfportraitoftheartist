@@ -26,6 +26,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	public EnemyBehaviorS[] behaviorSet;
 
 	private int currentActingBehavior = 0;
+	public int currentBehaviorStep { get { return currentActingBehavior; } }
 	
 
 	public bool isActive(){

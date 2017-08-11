@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_25_TrainCheckpoint.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_28_Defiled.unity
   isLoaded: 1
   isActive: 1

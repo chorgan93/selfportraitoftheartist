@@ -21,11 +21,16 @@ public class EnemyReorderBehaviorS : EnemyBehaviorS {
 		behaviorToExecute = Mathf.FloorToInt(Random.Range(0, possBehaviors.Count));
 		possBehaviors[behaviorToExecute].SetEnemy(myEnemyReference);
 		//Debug.LogError("Reorder to: " + possBehaviors[behaviorToExecute].behaviorName);
-		possBehaviors[behaviorToExecute].StartAction();
+
+		// Debug.Log("Current reorder step: " + stateRef.currentBehaviorStep);
 
 		// set state current behavior int 
 		selectedBehaviorStep = possBehaviorSteps[behaviorToExecute];
-		stateRef.SetActingBehaviorNum(selectedBehaviorStep);
+			stateRef.SetActingBehaviorNum(selectedBehaviorStep);
+		//myEnemyReference.OverrideSpacingRequirement = true;
+			possBehaviors[behaviorToExecute].StartAction();
+
+		// Debug.Log("set current behavior to step " + selectedBehaviorStep);
 
 	}
 

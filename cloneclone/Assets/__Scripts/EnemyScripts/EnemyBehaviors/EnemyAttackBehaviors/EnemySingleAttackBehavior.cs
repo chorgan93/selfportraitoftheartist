@@ -56,6 +56,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	private void InitializeAction(){
 
+		//Debug.Log(AttackInRange());
 		if (AttackInRange() || myEnemyReference.OverrideSpacingRequirement){
 
 			launchedAttack = false;
