@@ -56,6 +56,7 @@ public class InventoryManagerS : MonoBehaviour {
 
 		// create inventory list
 		_equippedInventory = new List<int>(1){0};
+		_currentSelection = 0;
 		// load from save data
 
 	}

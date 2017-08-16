@@ -627,7 +627,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime){
+	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false){
 
 		dmg*=DifficultyS.GetPunishMult();
 		if (myPlayerController.playerAug.lovedAug){
@@ -639,7 +639,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 		if (!PlayerIsDead() && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack && !myPlayerController.usingitem
 		    && !myPlayerController.delayWitchTime && (!myPlayerController.isDashing || (myPlayerController.isDashing && myPlayerController.IsSliding())) 
-		    && !myPlayerController.talking){
+			&& !myPlayerController.talking && !PlayerSlowTimeS.witchTimeActive){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
 				if (!godMode){
 				_currentDefense-=dmg;
@@ -731,10 +731,12 @@ public class PlayerStatsS : MonoBehaviour {
 					}
 				//}
 
-				if (damageSource != null){
-					CameraPOIS.POI.JumpToMidpoint(transform.position, damageSource.transform.position);
-				}else{
-					CameraPOIS.POI.JumpToPoint(transform.position);
+				if (knockbackTime > 0){
+					if (damageSource != null){
+						CameraPOIS.POI.JumpToMidpoint(transform.position, damageSource.transform.position);
+					}else{
+						CameraPOIS.POI.JumpToPoint(transform.position);
+					}
 				}
 				if (_currentHealth <= 0){
 					CameraShakeS.C.LargeShake();
@@ -746,12 +748,15 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.28f, true);
 				}else{
 					CameraShakeS.C.SpecialAttackShake();
-					CameraShakeS.C.TimeSleep(0.24f, true);
+
+					if (knockbackTime > 0){
+						CameraShakeS.C.TimeSleep(0.24f, true);
+					}
 				}
 	
 			}
 		}else{
-			if (myPlayerController.AllowDodgeEffect()){
+			if (myPlayerController.AllowDodgeEffect() && !dontTriggerWitch){
 				myPlayerController.WitchTime(damageSource);
 			}
 		}

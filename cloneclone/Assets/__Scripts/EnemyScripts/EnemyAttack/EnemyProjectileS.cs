@@ -29,6 +29,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float accuracyMult = 0f;
 	public bool stopEnemy = false;
 	public bool followEnemy = false;
+	public bool dontTriggerWitchTime = false;
 
 	[Header("Player Interaction")]
 	public bool aoe = false;
@@ -61,6 +62,14 @@ public class EnemyProjectileS : MonoBehaviour {
 	private float witchTimeMult = 0.1f;
 	private bool inWitchTime = false;
 
+	[Header("Tracking Properties")]
+	public bool trackPlayer = false;
+	public float trackSpeed = 400f;
+	public float trackingDelay = 0.5f;
+	private float trackingCountdown;
+	private Vector3 trackingAcceleration = Vector3.zero;
+	private Transform trackingRef;
+
 	void Start(){
 		_maxRange = range;
 
@@ -91,6 +100,10 @@ public class EnemyProjectileS : MonoBehaviour {
 					didFlashLogic = true;
 				}
 			}
+		}
+
+		if (trackPlayer){
+			TrackTarget();
 		}
 	}
 
@@ -169,6 +182,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (enemyReference != null){
 			_myEnemy = enemyReference;
 			isFriendly = _myEnemy.isFriendly;
+			if (trackPlayer){
+				trackingCountdown  = trackingDelay;
+				trackingRef = _myEnemy.GetTargetReference();
+			}
 		}
 
 		if (!aoe){
@@ -269,11 +286,25 @@ public class EnemyProjectileS : MonoBehaviour {
 		
 	}
 
+	private void TrackTarget(){
+		if (trackingCountdown > 0){
+			trackingCountdown -= Time.deltaTime;
+		}else{
+			trackingAcceleration = (trackingRef.position-transform.position).normalized*trackSpeed*Time.deltaTime;
+			trackingAcceleration.z = 0f;
+			_rigidbody.AddForce(trackingAcceleration, ForceMode.Acceleration);
+		}
+
+	}
+
 	
 	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "WitchTime"){
 			damage = 0;
+			if (!_rigidbody){
+				_rigidbody = GetComponent<Rigidbody>();
+			}
 			_rigidbody.velocity *= witchTimeMult;
 			inWitchTime = true;
 		}
@@ -326,11 +357,11 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (_myEnemy != null){
 					if (followEnemy){
 						playerRef.myStats.
-								TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
+							TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
 						
 					}
 					else{
-							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
+							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
 
 					}
 				}
@@ -338,7 +369,7 @@ public class EnemyProjectileS : MonoBehaviour {
 			else{
 
 				playerRef.myStats.
-							TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime);
+						TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
 				
 
 				}

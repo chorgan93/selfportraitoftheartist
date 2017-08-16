@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LockedDoorS : MonoBehaviour {
 
@@ -20,10 +21,17 @@ public class LockedDoorS : MonoBehaviour {
 
 	public GameObject unlockSound;
 	public SpriteRenderer mySprite;
+	public List <SpriteRenderer> additionalSprites = new List<SpriteRenderer>();
 	public Collider myCollider;
 	private Color fadeColor;
 	private bool fading = false;
 	private float fadeRate = 1f;
+
+	public GameObject setLook;
+	public float resetLookTime = 0f;
+	private float resetLookCount;
+	private bool differentLook = false;
+	private bool doResetLook = false;
 
 	public ActivateOnDoorUnlockS unlockActivations;
 
@@ -45,12 +53,24 @@ public class LockedDoorS : MonoBehaviour {
 			fadeColor = mySprite.color;
 			fadeColor.a -= fadeRate*Time.deltaTime;
 			if (fadeColor.a <= 0){
-				gameObject.SetActive(false);
-				fading = false;
+				if (doResetLook){
+					doResetLook = false;
+					differentLook = false;
+					CameraFollowS.F.ResetPOI();
+					gameObject.SetActive(false);
+					fading = false;
+				}
 			}else{
 				mySprite.color = fadeColor;
+
+				if (additionalSprites.Count > 0){
+					for (int i = 0; i < additionalSprites.Count; i++){
+						additionalSprites[i].color = fadeColor;
+					}
+				}
 			}
 		}
+
 
 		if (playerInRange && pRef != null){
 			if (!pRef.inCombat && !CameraEffectsS.E.isFading){
@@ -63,6 +83,12 @@ public class LockedDoorS : MonoBehaviour {
 					else{
 						if (DialogueManagerS.D.doneScrolling){
 							DialogueManagerS.D.EndText();
+								if (differentLook){
+									doResetLook = true;
+									Debug.Log("Start fade timer!");
+								}else if (setLook){
+									CameraFollowS.F.ResetPOI();
+								}
 							if (unlocking){
 									TurnOffFade();
 							}else{
@@ -94,6 +120,13 @@ public class LockedDoorS : MonoBehaviour {
 	}
 
 	private void TriggerUnlock(){
+		if (setLook != null){
+			CameraFollowS.F.SetNewPOI(setLook);
+			if (resetLookTime > 0){
+				resetLookCount = resetLookTime;
+				differentLook = true;
+			}
+		}
 		pRef.SetTalking(true);
 		pRef.SetExamining(true, examinePos);
 		isTalking = true;
@@ -108,11 +141,15 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void TriggerExamine(){
 
+
 		if (PlayerInventoryS.I.CheckForItem(keyID)){
 			TriggerUnlock();
 			PlayerInventoryS.I.AddClearedWall(keyID);
 		}
 		else{
+			if (setLook != null){
+				CameraFollowS.F.SetNewPOI(setLook);
+			}
 			pRef.SetTalking(true);
 			pRef.SetExamining(true, examinePos);
 			isTalking = true;
@@ -127,6 +164,10 @@ public class LockedDoorS : MonoBehaviour {
 			pRef.SetTalking(false);
 		}
 		gameObject.SetActive(false);
+
+		for (int i = 0; i < additionalSprites.Count; i++){
+			additionalSprites[i].gameObject.SetActive(false);
+		}
 
 		TriggerOnOff();
 	}

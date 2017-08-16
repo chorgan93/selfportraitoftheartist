@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b5d7bb117e5bb4669919a62024c4b162
-timeCreated: 1486025815
+timeCreated: 1502477313
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -87,6 +87,18 @@ TextureImporter:
     21300160: PC Luna Attacks Redesign_53
     21300162: PC Luna Attacks Redesign_54
     21300164: PC Luna Attacks Redesign_55
+    21300166: PC Luna Attacks Redesign_56
+    21300168: PC Luna Attacks Redesign_57
+    21300170: PC Luna Attacks Redesign_58
+    21300172: PC Luna Attacks Redesign_59
+    21300174: PC Luna Attacks Redesign_60
+    21300176: PC Luna Attacks Redesign_61
+    21300178: PC Luna Attacks Redesign_62
+    21300180: PC Luna Attacks Redesign_63
+    21300182: PC Luna Attacks Redesign_64
+    21300184: PC Luna Attacks Redesign_65
+    21300186: PC Luna Attacks Redesign_66
+    21300188: PC Luna Attacks Redesign_67
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -100,7 +112,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -120,12 +132,11 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -137,8 +148,106 @@ TextureImporter:
     compressionQuality: 50
     allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: PC Luna Attacks Redesign_0
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_8
       rect:
         serializedVersion: 2
         x: 0
@@ -148,7 +257,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_1
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_9
       rect:
         serializedVersion: 2
         x: 64
@@ -158,7 +269,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_2
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_10
       rect:
         serializedVersion: 2
         x: 128
@@ -168,7 +281,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_3
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_11
       rect:
         serializedVersion: 2
         x: 192
@@ -178,7 +293,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_4
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_12
       rect:
         serializedVersion: 2
         x: 256
@@ -188,7 +305,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_5
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_13
       rect:
         serializedVersion: 2
         x: 320
@@ -198,7 +317,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_6
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_14
       rect:
         serializedVersion: 2
         x: 384
@@ -208,7 +329,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_7
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_16
       rect:
         serializedVersion: 2
         x: 0
@@ -218,7 +353,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_8
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_17
       rect:
         serializedVersion: 2
         x: 64
@@ -228,7 +365,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_9
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_18
       rect:
         serializedVersion: 2
         x: 128
@@ -238,7 +377,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_10
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_19
       rect:
         serializedVersion: 2
         x: 192
@@ -248,7 +389,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_11
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_20
       rect:
         serializedVersion: 2
         x: 256
@@ -258,7 +401,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_12
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_21
       rect:
         serializedVersion: 2
         x: 320
@@ -268,7 +413,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_13
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_22
       rect:
         serializedVersion: 2
         x: 384
@@ -278,7 +425,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_14
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_23
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_24
       rect:
         serializedVersion: 2
         x: 0
@@ -288,7 +449,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_15
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_25
       rect:
         serializedVersion: 2
         x: 64
@@ -298,7 +461,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_16
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_26
       rect:
         serializedVersion: 2
         x: 128
@@ -308,7 +473,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_17
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_27
       rect:
         serializedVersion: 2
         x: 192
@@ -318,7 +485,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_18
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_28
       rect:
         serializedVersion: 2
         x: 256
@@ -328,7 +497,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_19
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_29
       rect:
         serializedVersion: 2
         x: 320
@@ -338,7 +509,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_20
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_30
       rect:
         serializedVersion: 2
         x: 384
@@ -348,7 +521,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_21
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_31
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_32
       rect:
         serializedVersion: 2
         x: 0
@@ -358,7 +545,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_22
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_33
       rect:
         serializedVersion: 2
         x: 64
@@ -368,7 +557,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_23
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_34
       rect:
         serializedVersion: 2
         x: 128
@@ -378,7 +569,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_24
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_35
       rect:
         serializedVersion: 2
         x: 192
@@ -388,7 +581,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_25
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_36
       rect:
         serializedVersion: 2
         x: 256
@@ -398,7 +593,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_26
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_37
       rect:
         serializedVersion: 2
         x: 320
@@ -408,7 +605,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_27
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_38
       rect:
         serializedVersion: 2
         x: 384
@@ -418,7 +617,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_28
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_39
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_40
       rect:
         serializedVersion: 2
         x: 0
@@ -428,7 +641,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_29
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_41
       rect:
         serializedVersion: 2
         x: 64
@@ -438,7 +653,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_30
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_42
       rect:
         serializedVersion: 2
         x: 128
@@ -448,7 +665,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_31
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_43
       rect:
         serializedVersion: 2
         x: 192
@@ -458,7 +677,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_32
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_44
       rect:
         serializedVersion: 2
         x: 256
@@ -468,7 +689,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_33
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_45
       rect:
         serializedVersion: 2
         x: 320
@@ -478,7 +701,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_34
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_46
       rect:
         serializedVersion: 2
         x: 384
@@ -488,7 +713,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_35
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_47
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_48
       rect:
         serializedVersion: 2
         x: 0
@@ -498,7 +737,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_36
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_49
       rect:
         serializedVersion: 2
         x: 64
@@ -508,7 +749,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_37
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_50
       rect:
         serializedVersion: 2
         x: 128
@@ -518,7 +761,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_38
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_51
       rect:
         serializedVersion: 2
         x: 192
@@ -528,7 +773,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_39
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_52
       rect:
         serializedVersion: 2
         x: 256
@@ -538,7 +785,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_40
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_53
       rect:
         serializedVersion: 2
         x: 320
@@ -548,7 +797,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_41
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_54
       rect:
         serializedVersion: 2
         x: 384
@@ -558,7 +809,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_42
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_55
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_56
       rect:
         serializedVersion: 2
         x: 0
@@ -568,7 +833,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_43
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_57
       rect:
         serializedVersion: 2
         x: 64
@@ -578,7 +845,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_44
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_58
       rect:
         serializedVersion: 2
         x: 128
@@ -588,7 +857,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_45
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_59
       rect:
         serializedVersion: 2
         x: 192
@@ -598,7 +869,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_46
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_60
       rect:
         serializedVersion: 2
         x: 256
@@ -608,7 +881,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_47
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_61
       rect:
         serializedVersion: 2
         x: 320
@@ -618,7 +893,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_48
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_62
       rect:
         serializedVersion: 2
         x: 384
@@ -628,7 +905,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_49
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_63
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_64
       rect:
         serializedVersion: 2
         x: 0
@@ -638,7 +929,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_50
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_65
       rect:
         serializedVersion: 2
         x: 64
@@ -648,7 +941,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_51
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_66
       rect:
         serializedVersion: 2
         x: 128
@@ -658,7 +953,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_52
+      outline: []
+    - serializedVersion: 2
+      name: PC Luna Attacks Redesign_67
       rect:
         serializedVersion: 2
         x: 192
@@ -668,36 +965,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_53
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_54
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Luna Attacks Redesign_55
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

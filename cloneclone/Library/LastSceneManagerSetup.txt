@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_28_Defiled.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_27_ArmoredRest.unity
   isLoaded: 1
   isActive: 1

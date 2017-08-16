@@ -54,10 +54,31 @@ public class LevelUpHandlerS : MonoBehaviour {
 
 		// check for locked level ups
 		for (int i = lockedLevelUps.Count-1; i >= 0; i--){
-			if (lockedLevelUps[i].minLevelForUpgrade <= currentPlayerLvl){
-				availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
-				lockedLevelUps.RemoveAt(i);
+			if (lockedLevelUps[i].minLevelForUpgrade > 0){
+				if (lockedLevelUps[i].minLevelForUpgrade <= currentPlayerLvl){
+					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
+					lockedLevelUps.RemoveAt(i);
+				}
 			}
+			else if (lockedLevelUps[i].minHealthForUpgrade > 0){
+				if (lockedLevelUps[i].minHealthForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(0)){
+					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
+					lockedLevelUps.RemoveAt(i);
+				}
+			}
+			else if (lockedLevelUps[i].minStaminaForUpgrade > 0){
+				if (lockedLevelUps[i].minStaminaForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(1)){
+					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
+					lockedLevelUps.RemoveAt(i);
+				}
+			}
+			else if (lockedLevelUps[i].minChargeForUpgrade > 0){
+				if (lockedLevelUps[i].minChargeForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(2)){
+					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
+					lockedLevelUps.RemoveAt(i);
+				}
+			}
+		
 		}
 
 		foreach (LevelUpS l in nextLevelUps){

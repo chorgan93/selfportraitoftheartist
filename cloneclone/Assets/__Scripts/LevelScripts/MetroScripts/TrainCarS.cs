@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class TrainCarS : MonoBehaviour {
 
-	public static int currentStop = 0;
+	public static int currentStop = -666;
 	public static int currentDirection = 1;
 
 	[Header("Travel Properties")]
@@ -48,6 +48,28 @@ public class TrainCarS : MonoBehaviour {
 	public float largeShakeTimeMax = 2f;
 	private float largeShakeCountdown;
 
+	[Header("Fake Train Properties")]
+	public GameObject onOnFake;
+	public GameObject offOnFake;
+	public GameObject[] fakeColliders;
+	public string checkpointStartScene;
+	public int checkpointSpawnInt;
+	public string fakeTrainEndScene;
+	public int crashSpawnInt;
+	public string[] fakeTrainStrings;
+	public float[] fakeTrainStringTimes;
+	private float currentFakeTrainTime;
+	private int currentFakeMessage = 0;
+	public int increaseIntensityStep;
+	private bool doingFakeTrain = false;
+	public float loadNextSceneTime = 2f;
+	public GameObject onOnCrashObj;
+	private bool beganLoad = false;
+	private bool increaseIntensity = false;
+	public int startZoomStep = 5;
+
+	private PlayerController pRef;
+
 
 	private bool messageIsUp = false;
 
@@ -59,6 +81,10 @@ public class TrainCarS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		if (currentStop < -1){
+			SetFakeTrain();
+		}else{
+			onOnFake.SetActive(false);
 		trainIsStopped = true;
 		currentTimeAtStop = timePerStop/2f;
 
@@ -68,6 +94,7 @@ public class TrainCarS : MonoBehaviour {
 		SetSmallShake();
 		SetLargeShake();
 		CameraShakeS.C.lockXShake = true;
+		}
 	
 	}
 	
@@ -84,18 +111,24 @@ public class TrainCarS : MonoBehaviour {
 				SetColliders(false);
 				trainIsStopped = false;
 				trainIsMoving = true;
-				currentStop+=currentDirection;
-				if (currentStop > trainStops.Length-1){
-					currentStop = trainStops.Length-2;
-					currentDirection = -1;
+
+				if (!doingFakeTrain){
+					currentStop+=currentDirection;
+					if (currentStop > trainStops.Length-1){
+						currentStop = trainStops.Length-2;
+						currentDirection = -1;
+					}
+					if (currentStop < 0){
+						currentStop = 1;
+						currentDirection = 1;
+					}
+					currentStopString = trainStops[currentStop];
+					currentStopName = trainStopNames[currentStop];
+					timeToNextStop = travelTimes[currentStop];
+				}else{
+					timeToNextStop = 9999f;
+					TurnOffFakeColliders();
 				}
-				if (currentStop < 0){
-					currentStop = 1;
-					currentDirection = 1;
-				}
-				currentStopString = trainStops[currentStop];
-				currentStopName = trainStopNames[currentStop];
-				timeToNextStop = travelTimes[currentStop];
 				DialogueManagerS.D.EndText();
 				nextStopMessageCountdown = timeToNextStopMessage;
 				nextStopMessageGiven = false;
@@ -107,6 +140,7 @@ public class TrainCarS : MonoBehaviour {
 
 		if (trainIsMoving){
 			ManageShake();
+			if (!doingFakeTrain){
 			timeToNextStop -= Time.deltaTime;
 			nextStopMessageCountdown -= Time.deltaTime;
 			if (nextStopMessageCountdown <= 0 && !nextStopMessageGiven){
@@ -132,6 +166,9 @@ public class TrainCarS : MonoBehaviour {
 				CameraShakeS.C.LargeShake();
 				SetColliders(true);
 			}
+			}else{
+				RunFakeTrain();
+			}
 		}
 
 		if (messageIsUp){
@@ -153,6 +190,13 @@ public class TrainCarS : MonoBehaviour {
 		}
 	}
 
+	void TurnOffFakeColliders(){
+
+		for (int i = 0; i < fakeColliders.Length; i++){
+			fakeColliders[i].SetActive(false);
+		}
+	}
+
 	void AssignColliders(){
 		sceneChangeColliders.Clear();
 		for (int i = 0; i < exitColliders.Length; i++){
@@ -161,12 +205,21 @@ public class TrainCarS : MonoBehaviour {
 	}
 
 	void SetSceneChanges(){
-		
+
+		if (currentStop < -1){
+			currentStopString = checkpointStartScene;
+
+			for (int i = 0; i < sceneChangeColliders.Count; i++){
+				sceneChangeColliders[i].nextSceneString = checkpointStartScene;
+				sceneChangeColliders[i].whereToSpawn = checkpointSpawnInt;
+			}
+		}else{
 		currentStopString = trainStops[currentStop];
 
-		for (int i = 0; i < sceneChangeColliders.Count; i++){
-			sceneChangeColliders[i].nextSceneString = currentStopString;
-			sceneChangeColliders[i].whereToSpawn = stopSpawnPts[currentStop];
+			for (int i = 0; i < sceneChangeColliders.Count; i++){
+				sceneChangeColliders[i].nextSceneString = currentStopString;
+				sceneChangeColliders[i].whereToSpawn = stopSpawnPts[currentStop];
+			}
 		}
 	}
 
@@ -180,14 +233,89 @@ public class TrainCarS : MonoBehaviour {
 
 	void ManageShake(){
 		if (smallShakeCountdown <= 0){
+			if (increaseIntensity){
+				CameraShakeS.C.SmallShake();
+			}else{
 			CameraShakeS.C.MicroShake();
+			}
 			SetSmallShake();
 		}
 		if (largeShakeCountdown <= 0){
-			CameraShakeS.C.SmallShake();
+			if (increaseIntensity){
+				CameraShakeS.C.LargeShake();
+			}else{
+				CameraShakeS.C.SmallShake();
+			}
 			SetLargeShake();
 		}
 		smallShakeCountdown -= Time.deltaTime;
 		largeShakeCountdown -= Time.deltaTime;
+		if (increaseIntensity){
+
+			smallShakeCountdown -= Time.deltaTime;
+			largeShakeCountdown -= Time.deltaTime;
+		}
+	}
+
+	void SetFakeTrain(){
+
+		pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+		onOnFake.SetActive(true);
+		offOnFake.SetActive(false);
+		onOnCrashObj.SetActive(false);
+		InGameMenuManagerS.allowMenuUse = false;
+		trainIsStopped = true;
+		currentTimeAtStop = timePerStop/2f;
+
+		AssignColliders();
+		SetColliders(false);
+
+		SetSmallShake();
+		SetLargeShake();
+		CameraShakeS.C.lockYShake = true;
+
+		doingFakeTrain = true;
+	}
+
+	void RunFakeTrain(){
+
+		if (!onOnCrashObj.activeSelf){
+		nextStopMessageCountdown -= Time.deltaTime;
+		if (nextStopMessageCountdown <= 0){
+			if (currentFakeMessage >= fakeTrainStrings.Length){
+				DialogueManagerS.D.EndText();
+				onOnCrashObj.SetActive(true);
+
+			}else{
+			nextStopMessageCountdown = fakeTrainStringTimes[currentFakeMessage];
+					if (fakeTrainStrings[currentFakeMessage] == ""){
+						DialogueManagerS.D.EndText();
+					}else{
+						if (startZoomStep >= currentFakeMessage){
+							DialogueManagerS.D.SetDisplayText(fakeTrainStrings[currentFakeMessage], false, false);
+						}else{
+						DialogueManagerS.D.SetDisplayText(fakeTrainStrings[currentFakeMessage]);
+						}
+					}
+					currentFakeMessage++;
+					if (currentFakeMessage == increaseIntensityStep){
+						increaseIntensity = true;
+					}
+		}
+			}
+
+		}else{
+			if (!beganLoad){
+			loadNextSceneTime -= Time.deltaTime;
+				if (loadNextSceneTime <= 0){
+					beganLoad = true;
+					pRef.SetTalking(true);
+					PlayerController.doWakeUp = true;
+					SpawnPosManager.whereToSpawn = crashSpawnInt;
+					CameraEffectsS.E.SetNextScene(fakeTrainEndScene);
+					CameraEffectsS.E.FadeIn();
+				}
+		}
+		}
 	}
 }

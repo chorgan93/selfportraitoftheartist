@@ -51,6 +51,7 @@ public class CheckpointS : MonoBehaviour {
 		if (!SceneManagerS.inInfiniteScene){
 			GameOverS.reviveScene = Application.loadedLevelName;
 			GameOverS.revivePosition = spawnNum;
+			PlayerStatsS.PlayerCantDie = false;
 			StoryProgressionS.SaveProgress();
 		}
 	

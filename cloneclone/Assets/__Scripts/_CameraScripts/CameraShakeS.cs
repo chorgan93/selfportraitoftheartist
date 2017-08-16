@@ -31,7 +31,7 @@ public class CameraShakeS : MonoBehaviour {
 	private float turboOn = 1f;
 	private float superTurbo = 1.09f;
 
-	private float debugScale = 0.91f;
+	private float debugScale = 1f;
 	
 
 	//_______________________________________INSTANCE VARIABLES
@@ -61,6 +61,8 @@ public class CameraShakeS : MonoBehaviour {
 
 	[HideInInspector]
 	public bool lockXShake = false;
+	[HideInInspector]
+	public bool lockYShake = false;
 
 	//_________________________________________________GETTERS AND SETTERS
 
@@ -182,7 +184,11 @@ public class CameraShakeS : MonoBehaviour {
 				if (lockXShake){
 					_shakeOffset.x = 0f;
 				}
-				_shakeOffset.y *= 0.7f;
+				if (lockYShake){
+					_shakeOffset.y = 0f;
+				}else{
+					_shakeOffset.y *= 0.7f;
+				}
 				_shakeOffset.z = 0;
 	
 				if (doDeathTime){

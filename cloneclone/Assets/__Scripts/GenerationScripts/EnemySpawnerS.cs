@@ -139,7 +139,7 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	public void DropOnDefeat(){
 		if (dropOnDefeat){
-			Vector3 spawnPos = transform.position;
+			Vector3 spawnPos = currentSpawnedEnemy.transform.position;
 			spawnPos.z = dropOnDefeat.transform.position.z;
 			Instantiate(dropOnDefeat, spawnPos, Quaternion.identity);
 		}

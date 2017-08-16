@@ -801,7 +801,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+		if (superCloseEnemyDetect.EnemyToParry() != null  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
@@ -2741,7 +2741,7 @@ public class PlayerController : MonoBehaviour {
 			returnMult *= PlayerAugmentsS.gaeaAugAmt;
 		}
 		if (_playerAug.empowered && _myStats.currentHealth >= _myStats.maxHealth){
-			returnMult *= 0.6f;
+			returnMult *= 0.5f;
 		}
 		return returnMult;
 	}

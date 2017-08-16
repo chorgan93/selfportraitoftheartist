@@ -167,6 +167,20 @@ public class PlayerInventoryS : MonoBehaviour {
 		return count;
 	}
 
+	public int GetUpgradeCount(int i){
+		int count = 0;
+		if (_earnedUpgrades != null){
+			if (_earnedUpgrades.Contains(i)){
+				for (int j = 0; j < _earnedUpgrades.Count; j++){
+					if (_earnedUpgrades[j] == i){
+						count++;
+					}
+				}
+			}
+		}
+		return count;
+	}
+
 	public void RemoveFromInventory(int i, bool rechargeable = false){
 		if (_collectedItems.Contains(i)){
 			_collectedItemCount[_collectedItems.IndexOf(i)]--;
@@ -193,6 +207,22 @@ public class PlayerInventoryS : MonoBehaviour {
 		// Add "Adaptive" virtue
 		if (i == 8){
 			AddEarnedVirtue(4);
+		}
+		// Add "Driven" virtue
+		if (i == 9){
+			AddEarnedVirtue(6);
+		}
+		// Add "Agile" virtue
+		if (i == 10){
+			AddEarnedVirtue(9);
+		}
+		// Add "Loved" virtue
+		if (i == 11){
+			AddEarnedVirtue(14);
+		}
+		// Add "Empowered" virtue
+		if (i == 12){
+			AddEarnedVirtue(2);
 		}
 	}
 
@@ -337,6 +367,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls.Clear();
 		_openedDoors.Clear();
 		healNums.Clear();
+		staminaNums.Clear();
 		if (unlockedWeapons.Count > 1){
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
 		}
