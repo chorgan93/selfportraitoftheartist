@@ -571,13 +571,13 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedLevel++;
 	}
 
-	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false){
+	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false, float comboReduction = 1f){
 
 		if (onlyCombo){
 			if (_comboStartMana > _currentMana){
-				_currentMana = _comboStartMana;
+				_currentMana = _comboStartMana*comboReduction;
 
-				_currentManaUsed = maxMana-_comboStartMana;
+				_currentManaUsed = maxMana-_comboStartMana*comboReduction;
 				_currentCooldownTimer = recoveryCooldownMax;
 				currentRegenCountdown = GetRegenTime();
 			}

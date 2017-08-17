@@ -1587,7 +1587,7 @@ public class PlayerController : MonoBehaviour {
 	private void AdaptiveCheck(){
 		if (_isShooting){
 			if (_playerAug.adaptiveAug && _isShooting && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
-				_myStats.ResetStamina(true, true);
+				_myStats.ResetStamina(true, true, 0.8f);
 			}
 		}
 	}

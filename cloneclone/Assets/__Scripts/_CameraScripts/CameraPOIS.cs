@@ -19,6 +19,8 @@ public class CameraPOIS : MonoBehaviour {
 	private Vector3 currentPosition;
 	private bool CAMERA_LOCK = false;
 
+	private Vector3 newPos;
+
 	//private float subtleLookAmt = 1f;
 
 	public static CameraPOIS POI;
@@ -68,7 +70,7 @@ public class CameraPOIS : MonoBehaviour {
 			lookVector.z = 0;
 
 			
-			Vector3 newPos = Vector3.zero;
+			newPos = Vector3.zero;
 			if (enemyReference.closestEnemy != null && !playerReference.myStats.PlayerIsDead()){
 
 				if (playerReference.myLockOn.lockedOn){

@@ -69,7 +69,7 @@ public class EnemyDetectS : MonoBehaviour {
 	
 	private void UpdateEnemyPosition(){
 		
-		_enemyCenterpoint = Vector3.zero;
+		_enemyCenterpoint = playerReference.transform.position;
 		
 		if (enemiesInRange.Count > 0){
 			lowestX = lowestY = largestX = largestY = 0f;
