@@ -576,6 +576,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (onlyCombo){
 			if (_comboStartMana > _currentMana){
 				_currentMana = _comboStartMana*comboReduction;
+				_comboStartMana = _currentMana;
 
 				_currentManaUsed = maxMana-_comboStartMana*comboReduction;
 				_currentCooldownTimer = recoveryCooldownMax;

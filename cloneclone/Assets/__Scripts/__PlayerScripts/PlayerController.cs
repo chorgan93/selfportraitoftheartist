@@ -637,6 +637,9 @@ public class PlayerController : MonoBehaviour {
 				TriggerWitchTime();
 			}else{
 				CameraShakeS.C.DodgeSloMo(0.28f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
+				if (_playerAug.agileAug){
+					_myStats.ResetStamina(true);
+				}
 			}
 			_allowCounterAttack = true;
 			counterAttackTime = counterAttackTimeMax;
