@@ -8,6 +8,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
 	public const float ENRAGED_DAMAGE_BOOST = 1.75f;
+	public const float CONDEMNED_TIME = 3f;
 
 	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
@@ -93,6 +94,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 10 (ambient charge refill during combat)
 	private bool _anxiousAug = false;
 	public bool anxiousAug { get { return _anxiousAug; } }
+
+	// index 11 (stay alive for a bit after death)
+	private bool _condemnedAug = false;
+	public bool condemnedAug { get { return _condemnedAug; } }
 
 	// index 17 (witch time)
 	private bool _untetheredAug = false;
@@ -245,6 +250,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 		if (PlayerController.equippedVirtues.Contains(10)){
 			_anxiousAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(11)){
+			_condemnedAug = true;
 		}
 
 		if (PlayerController.equippedVirtues.Contains(17)){

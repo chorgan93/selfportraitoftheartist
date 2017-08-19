@@ -175,6 +175,12 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _extraKnockbackMult = 2f;
 	private BlockDisplay3DS myBlocker;
 
+	//________________________________________CONDEMNED
+
+	private bool delayDeath = false;
+	private float delayDeathCountdown = 0f;
+	public float condemnedCurrentTime { get { return delayDeathCountdown; } }
+
 	//________________________________________OTHER
 	public GameObject hurtPrefab;
 
@@ -203,6 +209,7 @@ public class PlayerStatsS : MonoBehaviour {
 		ManaRecovery();
 		//FakeManaRecovery();
 		ChargeRecovery();
+		CondemnedHandler();
 		DarknessAdd();
 	}
 
@@ -258,6 +265,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 			}
 
+				_uiReference.UpdateFills();
 			return true;
 		}
 		else{
@@ -296,6 +304,7 @@ public class PlayerStatsS : MonoBehaviour {
 				warningReference.NewMessage("— Charge LOW —", Color.white, Color.magenta, false, 0);
 			}
 		}
+		_uiReference.UpdateFills();
 		return canUse;
 	}
 
@@ -331,6 +340,8 @@ public class PlayerStatsS : MonoBehaviour {
 		}else if (addPercent >= 100f){
 			rechargeEffectRef.TriggerChargeEffect();
 		}
+
+		_uiReference.UpdateFills();
 
 		// add to stamina (new)
 		/*float amtAdded = addPercent*maxMana*currentChargeRecover;
@@ -447,6 +458,8 @@ public class PlayerStatsS : MonoBehaviour {
 				_comboStartMana = _currentMana;
 			}
 
+			_uiReference.UpdateFills();
+
 		}
 
 	}
@@ -474,6 +487,17 @@ public class PlayerStatsS : MonoBehaviour {
 
 		return canRecover;
 
+	}
+
+	private void CondemnedHandler(){
+		if (delayDeath && !myPlayerController.usingitem){
+			delayDeathCountdown -= Time.deltaTime;
+			if (delayDeathCountdown <= 0){
+				TakeDamage(null, 1f, Vector3.zero, 0.2f, true, true);
+				delayDeath = false;
+			}
+			_uiReference.UpdateFills();
+		}
 	}
 
 	public bool ManaUnlocked(){
@@ -569,6 +593,7 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedStrength ++;
 		}
 		_addedLevel++;
+		_uiReference.UpdateFills();
 	}
 
 	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false, float comboReduction = 1f){
@@ -600,6 +625,7 @@ public class PlayerStatsS : MonoBehaviour {
 		warningReference.EndShow("— Stamina LOW —");
 
 		warningReference.EndShow("! ! STAMINA OUT ! !");
+		_uiReference.UpdateFills();
 
 	}
 
@@ -613,6 +639,9 @@ public class PlayerStatsS : MonoBehaviour {
 		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 		CameraShakeS.C.TimeSleep(0.08f);
 		warningReference.EndShow("! ! HEALTH LOW ! !");
+		delayDeath = false;
+		delayDeathCountdown = 0f;
+		_uiReference.UpdateFills();
 	}
 
 	public void DamageEffect(float dmgAngle){
@@ -628,7 +657,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false){
+	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false){
 
 		dmg*=DifficultyS.GetPunishMult();
 		if (myPlayerController.playerAug.lovedAug){
@@ -638,9 +667,9 @@ public class PlayerStatsS : MonoBehaviour {
 			dmg = maxHealth;
 		}
 
-		if (!PlayerIsDead() && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack && !myPlayerController.usingitem
+		if ((!PlayerIsDead() && !delayDeath && !myPlayerController.allowCounterAttack && !myPlayerController.doingCounterAttack && !myPlayerController.usingitem
 		    && !myPlayerController.delayWitchTime && (!myPlayerController.isDashing || (myPlayerController.isDashing && myPlayerController.IsSliding())) 
-			&& !myPlayerController.talking && !PlayerSlowTimeS.witchTimeActive){
+			&& !myPlayerController.talking && !PlayerSlowTimeS.witchTimeActive) || overrideAll){
 			if (myPlayerController.isBlocking && _currentDefense > 0){
 				if (!godMode){
 				_currentDefense-=dmg;
@@ -687,9 +716,10 @@ public class PlayerStatsS : MonoBehaviour {
 
 				}
 				if (_currentHealth <= 0){
+					_currentHealth = 0;
+					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && delayDeath)){
 					myPlayerController.playerSound.PlayDeathSound();
 					myPlayerController.playerSound.SetWalking(false);
-						_currentHealth = 0;
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
 						myPlayerController.myAnimator.SetTrigger("Dead");
@@ -702,6 +732,7 @@ public class PlayerStatsS : MonoBehaviour {
 					}
 					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
 					                               saveBuddyList);
+						
 					//_uiReference.cDisplay.DeathPenalty();
 
 					if (dontDoCountUp){
@@ -719,6 +750,12 @@ public class PlayerStatsS : MonoBehaviour {
 
 					CameraFollowS.F.RemoveLimits();
 					warningReference.EndAll();
+						delayDeath = false;
+					}else{
+						// start condemned process
+						delayDeath = true;
+						delayDeathCountdown = PlayerAugmentsS.CONDEMNED_TIME;
+					}
 					}
 				else{
 					_hurtFlash.Flash();
@@ -739,7 +776,7 @@ public class PlayerStatsS : MonoBehaviour {
 						CameraPOIS.POI.JumpToPoint(transform.position);
 					}
 				}
-				if (_currentHealth <= 0){
+				if (_currentHealth <= 0 && !delayDeath){
 					CameraShakeS.C.LargeShake();
 					CameraShakeS.C.TimeSleepBigPunch(0.5f);
 					CameraShakeS.C.DeathTimeEffect();
@@ -762,6 +799,8 @@ public class PlayerStatsS : MonoBehaviour {
 			}
 		}
 
+		_uiReference.UpdateFills();
+
 	}
 
 	public void ActivateDefense(){
@@ -769,7 +808,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public bool PlayerIsDead(){
-		return (_currentHealth <= 0);
+		return (_currentHealth <= 0 && delayDeathCountdown <= 0f);
 	}
 
 	public void AddBlocker(BlockDisplay3DS newBlock){
@@ -788,17 +827,20 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedMana+=numToAdd;
 		_currentMana=maxMana;
 		_addedLevel++;
+		_uiReference.UpdateFills();
 	}
 
 	public void AddHealth(float numToAdd = 1){
 		_addedHealth += numToAdd;
 		_currentHealth += numToAdd;
 		_addedLevel++;
+		_uiReference.UpdateFills();
 	}
 	public void AddCharge(float numToAdd = 10){
 		_addedCharge += numToAdd;
 		_currentCharge += numToAdd;
 		_addedLevel++;
+		_uiReference.UpdateFills();
 	}
 
 	public void ChangeVirtue(float numChange){
@@ -814,6 +856,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_overchargeMana = 0f;
 		_currentMana = maxMana;
 		warningReference.EndAll();
+		_uiReference.UpdateFills();
 	}
 
 	public void SaveStats ()
@@ -824,6 +867,8 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 	public void ResetCombatStats(){
 		_currentHealth = _savedHealth;
+		delayDeath = false;
+		delayDeathCountdown = 0f;
 		_currentCharge = _savedCharge;
 		//_currentMana = _savedMana;
 		warningReference.EndAll();
@@ -833,5 +878,14 @@ public class PlayerStatsS : MonoBehaviour {
 		if (PlayerInventoryS.I.GetItemCount(0) == 0){
 			warningReference.NewMessage("! REWINDS OUT !",  warningReference.resetGreen,Color.red, false, 1);
 		}
+		_uiReference.UpdateFills();
+	}
+
+	public bool InCondemnedState(){
+		bool inCondemned = false;
+		if (delayDeath && delayDeathCountdown > 0){
+			inCondemned = true;
+		}
+		return inCondemned;
 	}
 }

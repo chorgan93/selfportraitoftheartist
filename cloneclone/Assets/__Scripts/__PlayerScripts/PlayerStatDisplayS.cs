@@ -75,6 +75,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image healthBorderBG;
 	public Image healthFill;
 	public Image savedHealthFill;
+	public Image condemnedHealthFill;
 	private Vector2 healthBorderMaxSize;
 
 	public Image staminaFill;
@@ -166,7 +167,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		else{
 			TurnOnAll();
 		//UpdateMaxSizes();
-		UpdateFills();
+		//UpdateFills();
 			//PositionStamina();
 			//UpdateText();
 		}
@@ -258,7 +259,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	}
 
-	private void UpdateFills(){
+	public void UpdateFills(){
 
 		// health fill
 		Vector2 fillSize = healthBarMaxSize;
@@ -285,6 +286,22 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			if (savedHealthFill.enabled){
 				savedHealthFill.enabled = false;
 			}
+		}
+
+		if (pController.myStats != null){
+		if (pController.myStats.InCondemnedState()){
+			if (!condemnedHealthFill.enabled){
+				condemnedHealthFill.enabled = true;
+				}
+				fillSize.y = condemnedHealthFill.rectTransform.sizeDelta.y;
+				fillSize.x = (pController.myStats.condemnedCurrentTime/PlayerAugmentsS.CONDEMNED_TIME)
+					*(healthBarMaxSize.x+ playerStats.addedHealth*barAddSize);
+				condemnedHealthFill.rectTransform.sizeDelta = fillSize;
+		}else{
+			if (condemnedHealthFill.enabled){
+				condemnedHealthFill.enabled = false;
+			}
+		}
 		}
 
 		Vector2 borderSize = healthBorderMaxSize;
@@ -403,6 +420,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			staminaBar.enabled = true;
 			//background.enabled = true;
 			allTurnedOn = true;
+
+			UpdateFills();
 		}
 
 	}
