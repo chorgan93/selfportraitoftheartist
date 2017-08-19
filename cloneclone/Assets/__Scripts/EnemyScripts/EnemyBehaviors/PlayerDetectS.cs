@@ -16,6 +16,7 @@ public class PlayerDetectS : MonoBehaviour {
 	public string examineString;
 	public string examineStringNoController = "";
 	public Vector3 examinePos = new Vector3(0, 1f, 0);
+	private Vector3 defaultPos = new Vector3(0, 1f, 0);
 
 	private bool keepTrackOfEnemies = false;
 
@@ -80,9 +81,17 @@ public class PlayerDetectS : MonoBehaviour {
 
 			if (playerReference != null && examineString != ""){
 				if (playerReference.myControl.ControllerAttached() || examineStringNoController == ""){
+					if (examinePos != defaultPos){
+						playerReference.SetExamining(true, examinePos, examineString);
+					}else{
 					playerReference.SetExamining(true, Vector3.zero, examineString);
+					}
 				}else{
-					playerReference.SetExamining(true, Vector3.zero, examineStringNoController);
+					if (examinePos != defaultPos){
+						playerReference.SetExamining(true, examinePos, examineStringNoController);
+					}else{
+						playerReference.SetExamining(true, Vector3.zero, examineStringNoController);
+					}
 				}
 			}
 		}

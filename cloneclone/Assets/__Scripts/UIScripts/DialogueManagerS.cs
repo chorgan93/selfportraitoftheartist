@@ -7,6 +7,7 @@ public class DialogueManagerS : MonoBehaviour {
 	public Image dialogueBox;
 	public Image dialogueBoxTop;
 	public Text dialogueText;
+	public Text merchantText;
 	private Vector2 boxBottomStartPos;
 	private Vector2 boxBottomHidePos;
 	private Vector2 boxTopStartPos;
@@ -35,6 +36,8 @@ public class DialogueManagerS : MonoBehaviour {
 	public bool doneScrolling { get { return _doneScrolling; } }
 
 	private bool _freezeText = false;
+
+	private bool _usingMerchantText = false;
 
 	public static DialogueManagerS D;
 
@@ -76,7 +79,11 @@ public class DialogueManagerS : MonoBehaviour {
 				scrollCountdown = scrollRate;
 				currentDisplayString += targetDisplayString[currentChar];
 				currentChar++;
-				dialogueText.text = currentDisplayString+ " ";
+				if (_usingMerchantText && merchantText){
+					merchantText.text = currentDisplayString+ " ";
+				}else{
+					dialogueText.text = currentDisplayString+ " ";
+				}
 				if (currentChar >= targetDisplayString.Length){
 					_doneScrolling = true;
 				}
@@ -95,6 +102,9 @@ public class DialogueManagerS : MonoBehaviour {
 
 			dialogueBox.rectTransform.anchoredPosition = Vector2.Lerp(boxBottomHidePos, boxBottomStartPos, showT);
 			dialogueBoxTop.rectTransform.anchoredPosition = Vector2.Lerp(boxTopHidePos, boxTopStartPos, showT);
+			if (_usingMerchantText){
+				merchantText.rectTransform.position = dialogueText.rectTransform.position;
+			}
 		}
 		if (isLerpingOut){
 			showTime -= Time.deltaTime;
@@ -108,11 +118,14 @@ public class DialogueManagerS : MonoBehaviour {
 			
 			dialogueBox.rectTransform.anchoredPosition = Vector2.Lerp(boxBottomHidePos, boxBottomStartPos, showT);
 			dialogueBoxTop.rectTransform.anchoredPosition = Vector2.Lerp(boxTopHidePos, boxTopStartPos, showT);
+			if (_usingMerchantText){
+				merchantText.rectTransform.position = dialogueText.rectTransform.position;
+			}
 		}
 	
 	}
 
-	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true){
+	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false){
 
 		if (!isMemo){
 			memoBG.enabled = false;
@@ -122,7 +135,11 @@ public class DialogueManagerS : MonoBehaviour {
 				dialogueBox.rectTransform.anchoredPosition = boxBottomHidePos;
 				dialogueBoxTop.rectTransform.anchoredPosition = boxTopHidePos;
 				dialogueBox.enabled = dialogueBoxTop.enabled = true;
-				dialogueText.enabled = true;
+				if (fromMerchant && merchantText){
+					merchantText.enabled = true;
+				}else{
+					dialogueText.enabled = true;
+				}
 
 					showTime = showT = 0f;
 					isLerping = true;
@@ -133,9 +150,16 @@ public class DialogueManagerS : MonoBehaviour {
 
 			if (doZoom){
 				CameraFollowS.F.SetDialogueZoomIn(true);
+			}else{
+				CameraFollowS.F.SetDialogueZoomIn(false);
 			}
 
-		dialogueText.text = currentDisplayString = "";
+			if (fromMerchant && merchantText){
+				_usingMerchantText = true;
+				merchantText.text = currentDisplayString = "";
+			}else{
+				dialogueText.text = currentDisplayString = "";
+			}
 		targetDisplayString = newText;
 			
 			scrollCountdown = 0f;
@@ -157,7 +181,11 @@ public class DialogueManagerS : MonoBehaviour {
 	}
 
 	public void CompleteText(){
-		dialogueText.text = currentDisplayString = targetDisplayString+" ";
+		if (_usingMerchantText){
+			merchantText.text = currentDisplayString = targetDisplayString+" ";
+		}else{
+			dialogueText.text = currentDisplayString = targetDisplayString+" ";
+		}
 		_doneScrolling = true;
 	}
 
@@ -175,8 +203,14 @@ public class DialogueManagerS : MonoBehaviour {
 		if (statsOn){
 			hideStats.gameObject.SetActive(true);
 		}
+		if (_usingMerchantText){
+			_usingMerchantText = false;
+			merchantText.text = currentDisplayString = targetDisplayString = "";
+			merchantText.enabled = false;
+		}else{
 		
 		dialogueText.text = currentDisplayString = targetDisplayString = "";
+		}
 		
 		scrollCountdown = 0f;
 		currentChar = 0;

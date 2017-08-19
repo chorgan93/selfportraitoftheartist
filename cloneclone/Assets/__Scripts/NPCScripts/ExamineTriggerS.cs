@@ -293,9 +293,13 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (inventoryNum >= 0){
 				PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
 			}
+
+			// add rewind
 			if (healNum >= 0){
 				PlayerInventoryS.I.AddHeal(healNum);
 			}
+
+			// add health essence
 			if (chargeNum >= 0){
 				PlayerInventoryS.I.AddCharge(chargeNum);
 			}
