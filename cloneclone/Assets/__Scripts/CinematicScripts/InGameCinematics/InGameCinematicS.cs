@@ -24,6 +24,9 @@ public class InGameCinematicS : MonoBehaviour {
 	public bool noBuddy = false;
 	public bool resetPOIOnEnd = false;
 
+	[HideInInspector]
+	public bool dialogueDone = true;
+
 	public static bool turnOffBuddies = false;
 
 	public static bool inGameCinematic = false;
@@ -36,6 +39,7 @@ public class InGameCinematicS : MonoBehaviour {
 		if(noBuddy){
 			turnOffBuddies = true;
 		}
+		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
 	}
 
@@ -43,8 +47,7 @@ public class InGameCinematicS : MonoBehaviour {
 
 		CheckCurrentStep();
 
-		
-		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+
 		_pRef.SetTalking(true);
 
 	}
@@ -54,11 +57,15 @@ public class InGameCinematicS : MonoBehaviour {
 
 		if (timedStep){
 			currentCountdown-=Time.deltaTime;
-			if (currentCountdown <= 0){
+			if (currentCountdown <= 0 && dialogueDone){
 				AdvanceCinematic();
 			}
 		}
 	
+	}
+
+	public void TurnOnTime(){
+		timedStep = true;
 	}
 
 	public void AdvanceCinematic(){
@@ -89,12 +96,14 @@ public class InGameCinematicS : MonoBehaviour {
 
 		currentCountdown = 0f;
 
+		dialogueDone = true;
 		bool cinematicDone = true;
 		if (cinemaDialogues != null){
-			foreach (InGameCinemaTextS t in cinemaDialogues){
-				if (t.myCinemaStep == currentStep){
+			for (int i = 0; i < cinemaDialogues.Length; i++){
+				if (cinemaDialogues[i].myCinemaStep == currentStep){
 					cinematicDone = false;
-					t.gameObject.SetActive(true);
+					cinemaDialogues[i].gameObject.SetActive(true);
+					dialogueDone = false;
 				}
 			}
 		}
@@ -105,7 +114,7 @@ public class InGameCinematicS : MonoBehaviour {
 				c.gameObject.SetActive(true);
 				if (c.moveTime > 0){
 					timedStep = true;
-					if (c.moveTime > currentCountdown){
+						if (c.moveTime > currentCountdown){
 						currentCountdown = c.moveTime;
 					}
 				}
@@ -119,9 +128,15 @@ public class InGameCinematicS : MonoBehaviour {
 				c.gameObject.SetActive(true);
 				if (c.moveTime > 0){
 					timedStep = true;
-					if (c.moveTime > currentCountdown){
-						currentCountdown = c.moveTime;
+						if (c.turnOnEnd.Length > 0){
+						if (c.moveTime+c.turnOnTime > currentCountdown){
+							currentCountdown = c.moveTime+c.turnOnTime;
 					}
+						}else{
+							if (c.moveTime > currentCountdown){
+								currentCountdown = c.moveTime;
+							}
+						}
 				}
 			}
 		}

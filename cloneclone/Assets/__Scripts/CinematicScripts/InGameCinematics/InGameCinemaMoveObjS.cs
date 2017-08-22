@@ -14,20 +14,26 @@ public class InGameCinemaMoveObjS : MonoBehaviour {
 	private Vector3 startSize;
 	public float movingLeftXMult = -1f;
 
+	public GameObject[] turnOnEnd;
+	public GameObject[] turnOffEnd;
+	private bool completedMove = false;
+	public float turnOnTime = 0.1f;
+
 	// Use this for initialization
 	void Start () {
 
-		moveDirection = (targetPosition.transform.position-movingObject.transform.position).normalized;
+		moveDirection = targetPosition.position-movingObject.position;
 		moveDirection.z = 0f;
 
+
 		if (faceMoveDirection){
-		startSize = movingObject.transform.localScale;
+		startSize = movingObject.localScale;
 			if (moveDirection.x < 0){
 				startSize.x *= movingLeftXMult;
 			}else{
 				startSize.x *= -movingLeftXMult;
 			}
-			movingObject.transform.localScale = startSize;
+			movingObject.localScale = startSize;
 		}
 	
 	}
@@ -36,8 +42,16 @@ public class InGameCinemaMoveObjS : MonoBehaviour {
 	void Update () {
 
 		if (moveTime > 0f){
-			movingObject.transform.position += moveSpeed*Time.deltaTime*moveDirection;
+			movingObject.position += moveSpeed*Time.deltaTime*moveDirection.normalized;
 			moveTime -= Time.deltaTime;
+		}else if (!completedMove){
+			for (int i = 0; i < turnOnEnd.Length; i++){
+				turnOnEnd[i].SetActive(true);
+			}
+			for (int i = 0; i < turnOffEnd.Length; i++){
+				turnOffEnd[i].SetActive(false);
+			}
+			completedMove = true;
 		}
 	
 	}

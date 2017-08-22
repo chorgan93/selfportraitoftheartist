@@ -29,6 +29,8 @@ public class InGameCinemaTextS : MonoBehaviour {
 		DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
 
 		CheckForDialogueAfter();
+		advanceButtonDown = true;
+
 	}
 	
 	// Update is called once per frame
@@ -36,13 +38,15 @@ public class InGameCinemaTextS : MonoBehaviour {
 
 		if (!dialogueComplete){
 		if (!advanceButtonDown && _myControl.TalkButton()){
+				advanceButtonDown = true;
 			if (DialogueManagerS.D.doneScrolling){
 				currentString++;
 				if (currentString > textStrings.Length-1){
 						if (!textAfter){
 							DialogueManagerS.D.EndText();
 						}
-					_myHandler.AdvanceCinematic();
+						_myHandler.dialogueDone = true;
+						_myHandler.TurnOnTime();
 						dialogueComplete = true;
 					}else{
 						DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
@@ -52,10 +56,8 @@ public class InGameCinemaTextS : MonoBehaviour {
 				}
 		}
 
-		if (!_myControl.TalkButton()){
+			if (!_myControl.TalkButton() && advanceButtonDown){
 			advanceButtonDown = false;
-			}else{
-				advanceButtonDown = true;
 			}
 		}
 	
