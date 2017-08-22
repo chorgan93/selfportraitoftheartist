@@ -12,9 +12,17 @@ public class LookOnTouchS : MonoBehaviour {
 
 	private bool activated = false;
 
-	// Use this for initialization
-	void Start () {
-	
+	[Header("IgnoreProperties")]
+	public int doNotActivateOnRewindNum = -1;
+
+	bool canActivate(){
+		bool canAct = true;
+		if (doNotActivateOnRewindNum >= 0){
+			if (PlayerInventoryS.I.CheckHeal(doNotActivateOnRewindNum)){
+				canAct = false;
+			}
+		}
+		return canAct;
 	}
 	
 	// Update is called once per frame
@@ -40,9 +48,11 @@ public class LookOnTouchS : MonoBehaviour {
 	
 		if (other.gameObject.tag == "Player" && !activated){
 			activated = true;
+			if (canActivate()){
 			isLooking = true;
 			CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 			lookCountdown = lookDurations[currentTarget];
+			}
 		}
 	
 	}

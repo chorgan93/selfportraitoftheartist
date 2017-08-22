@@ -213,6 +213,14 @@ public class PlayerStatsS : MonoBehaviour {
 		DarknessAdd();
 	}
 
+	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.G)){
+			godMode = !godMode;
+		}
+	}
+	#endif
+
 	//________________________________________PUBLIC FUNCTIONS
 
 	public bool ManaCheck(float useAmount, bool reduce = true){

@@ -79,10 +79,6 @@ public class ExamineTriggerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (delayOnTime > 0){
-			delayOnTime -= Time.deltaTime;
-		}
-
 		if (turnOffBarrier){
 			if (!turnOffBarrier.gameObject.activeSelf){
 				gameObject.SetActive(false);
@@ -93,10 +89,13 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 	
 		if (playerInRange){
-
+			if (delayOnTime > 0){
+				delayOnTime -= Time.deltaTime;
+				talkButtonDown = true;
+			}
 			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading){
 
-			if (!pRef.myControl.TalkButton()){
+				if (!pRef.myControl.TalkButton() && delayOnTime <= 0){
 				talkButtonDown = false;
 			}
 
@@ -132,7 +131,6 @@ public class ExamineTriggerS : MonoBehaviour {
 					}
 
 				}else{
-					
 					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
 						if (examineString == "" && examineSound != null){
 							Instantiate(examineSound);
@@ -348,9 +346,9 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 	}
 
-	void OnEnable(){
+	/*void OnEnable(){
 		delayOnTime = delayOnTimeStart;
-	}
+	}**/
 
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){

@@ -9,6 +9,7 @@ public class EnemyShadowS : MonoBehaviour {
 	private float fadeRate = 2.4f;
 
 	private Color shadowColor;
+	public bool ignoreDeath = false;
 
 	public bool matchAlpha = false;
 	public bool overrideColor = false;
@@ -33,7 +34,7 @@ public class EnemyShadowS : MonoBehaviour {
 
 		if (myRender.enabled){
 
-			if (enemyRef.isDead){
+			if (enemyRef.isDead && !ignoreDeath){
 				myColor = myRender.color;
 				myColor.a -= fadeRate*Time.deltaTime;
 				if (myColor.a <= 0){

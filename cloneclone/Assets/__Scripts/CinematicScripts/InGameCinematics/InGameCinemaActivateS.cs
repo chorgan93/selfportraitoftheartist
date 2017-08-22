@@ -8,6 +8,7 @@ public class InGameCinemaActivateS : MonoBehaviour {
 
 	public GameObject[] onObjects;
 	public GameObject[] offObjects;
+	public EnemySpawnerS[] offEnemies;
 	public PlayerController turnOffBuddy;
 
 	// Use this for initialization
@@ -22,6 +23,12 @@ public class InGameCinemaActivateS : MonoBehaviour {
 
 		foreach (GameObject off in offObjects){
 			off.SetActive(false);
+		}
+
+		for (int i = 0; i < offEnemies.Length; i++){
+			if (offEnemies[i].currentSpawnedEnemy != null){
+				offEnemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
+			}
 		}
 
 		if (turnOffBuddy != null){

@@ -35,6 +35,7 @@ public class EnemyS : MonoBehaviour {
 	[HideInInspector]
 	public float actingMaxHealth;
 	public bool showHealth;
+	public bool hitWorkaround = false;
 	public bool cantDie = false;
 	public float damageMultiplier = 1f;
 	public Vector3 healthBarOffset = new Vector3(0f,1.5f,1f);
@@ -837,7 +838,7 @@ public class EnemyS : MonoBehaviour {
 		if (!_isDead){
 			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT, ForceMode.Impulse);
 		}else{
-			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT/2f, ForceMode.Impulse);
+			_myRigidbody.AddForce(bounceVelocity*BOUNCE_MULT/4f, ForceMode.Impulse);
 		}
 		
 	}
@@ -1087,6 +1088,9 @@ public class EnemyS : MonoBehaviour {
 			_myAnimator.SetLayerWeight(1, 0f);
 			_myAnimator.SetBool("Death", true);
 			_myAnimator.SetFloat("DeathSpeed", 1f);
+			if (hitWorkaround){
+				_myAnimator.SetTrigger("Hit");
+			}
 			//_myCollider.enabled = false;
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;

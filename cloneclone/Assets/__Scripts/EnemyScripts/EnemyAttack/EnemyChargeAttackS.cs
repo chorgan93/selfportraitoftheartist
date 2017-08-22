@@ -102,7 +102,13 @@ public class EnemyChargeAttackS : MonoBehaviour {
 						flashFrames = blackFlashFrames;
 					}else{
 					_myRenderer.material.SetTexture("_MainTex", startTexture);
-					_myCollider.enabled = true;
+							if (myEnemy){
+								if (!myEnemy.isCritical && !myEnemy.isDead){
+									_myCollider.enabled = true;
+								}
+							}else if (!myEnemy){
+							_myCollider.enabled = true;
+							}
 							SpawnObjects();
 					}
 				}else{

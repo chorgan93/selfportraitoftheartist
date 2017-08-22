@@ -29,6 +29,10 @@ public class PlayerSoundS : MonoBehaviour {
 	public GameObject deathSound;
 	public GameObject slowSound;
 
+	[Header("Item Sounds")]
+	public GameObject changeToRewindSound;
+	public GameObject changeToHealSound;
+
 	// Use this for initialization
 	void Start () {
 
@@ -122,5 +126,13 @@ public class PlayerSoundS : MonoBehaviour {
 
 	public void PlaySlowSound(){
 		Instantiate(slowSound);
+	}
+
+	public void PlayItemSound(int item = 0){
+		if (item == 0){
+			Instantiate(changeToRewindSound);
+		}else{
+			Instantiate(changeToHealSound);
+		}
 	}
 }

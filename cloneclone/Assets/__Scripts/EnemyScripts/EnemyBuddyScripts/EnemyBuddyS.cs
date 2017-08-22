@@ -92,6 +92,14 @@ public class EnemyBuddyS : MonoBehaviour {
 
 	}
 
+	public virtual void BuddyUpdate(){
+		if (_enemyRef){
+			if (!_enemyRef.gameObject.activeSelf){
+				gameObject.SetActive(false);
+			}
+		}
+	}
+
 	public virtual void FaceDirection(){
 
 		Vector3 faceScale = transform.localScale;

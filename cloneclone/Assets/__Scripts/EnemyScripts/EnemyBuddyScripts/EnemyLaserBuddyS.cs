@@ -50,6 +50,10 @@ public class EnemyLaserBuddyS : EnemyBuddyS {
 		HandleShooting();
 	}
 
+	void Update(){
+		BuddyUpdate();
+	}
+
 	void HandleShooting(){
 		if (isShooting){
 			actionCount += Time.deltaTime;

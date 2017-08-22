@@ -68,6 +68,24 @@ public class TrainCarS : MonoBehaviour {
 	private bool increaseIntensity = false;
 	public int startZoomStep = 5;
 
+	[Header("Sound Properties")]
+	public GameObject doorOpenSound;
+	public GameObject doorCloseSound;
+	public GameObject announceSound;
+	public float timeBeforeClosingSound = 1f;
+	public float timeBeforeOpeningSound = 0.75f;
+	private bool doorSoundMade = false;
+	public AudioSource rumblingSource;
+	private float rumblingMaxVolume;
+
+	private float rumbleT;
+	private float rumbleInTime = 0.9f;
+	private float rumbleOutTime = 0.15f;
+	private bool endedRumble = false;
+	private float rumbleAdjustCount;
+	private bool rumbleStart = false;
+	private bool rumbleEnd = false;
+
 	private PlayerController pRef;
 
 
@@ -95,22 +113,40 @@ public class TrainCarS : MonoBehaviour {
 		SetLargeShake();
 		CameraShakeS.C.lockXShake = true;
 		}
+
+		rumblingMaxVolume = rumblingSource.volume;
+		rumblingSource.volume = 0f;
+		rumblingSource.Play();
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 		if (trainIsStopped){
 			currentTimeAtStop -= Time.deltaTime;
 			if (currentTimeAtStop <= timeBeforeDoorsMessage && !doorsClosingMessageGiven){
 				doorsClosingMessageGiven = true;
 				DialogueManagerS.D.SetDisplayText(doorsClosingString,false,false);
+				if (announceSound){
+					Instantiate(announceSound);
+				}
+			}
+			if (currentTimeAtStop <= timeBeforeClosingSound && !doorSoundMade){
+
+				if (doorCloseSound){
+					Instantiate(doorCloseSound);
+				}
+				doorSoundMade = true;
 			}
 			if (currentTimeAtStop <= 0){
 				SetColliders(false);
 				trainIsStopped = false;
 				trainIsMoving = true;
+				doorSoundMade = false;
+				StartRumble();
+
+
 
 				if (!doingFakeTrain){
 					currentStop+=currentDirection;
@@ -139,6 +175,7 @@ public class TrainCarS : MonoBehaviour {
 		}
 
 		if (trainIsMoving){
+			HandleRumble();
 			ManageShake();
 			if (!doingFakeTrain){
 			timeToNextStop -= Time.deltaTime;
@@ -146,24 +183,44 @@ public class TrainCarS : MonoBehaviour {
 			if (nextStopMessageCountdown <= 0 && !nextStopMessageGiven){
 
 				nextStopMessageGiven = true;
-				DialogueManagerS.D.SetDisplayText(nextStopString + currentStopName, false, false);
+					DialogueManagerS.D.SetDisplayText(nextStopString + currentStopName, false, false);
+					if (announceSound){
+						Instantiate(announceSound);
+					}
 				messageTimeOut = messageTime;
 				messageIsUp = true;
 			}
 			if (!nowArrivingMessageGiven && timeToNextStop <= timeBeforeNowArrivingMessage){
 				nowArrivingMessageGiven = true;
-				DialogueManagerS.D.SetDisplayText(nowArrivingString + currentStopName, false, false);
+					DialogueManagerS.D.SetDisplayText(nowArrivingString + currentStopName, false, false);
+					if (announceSound){
+						Instantiate(announceSound);
+					}
 				messageTimeOut = messageTime;
 				messageIsUp = true;
 			}
 
+				if (!endedRumble && timeToNextStop <= rumbleOutTime){
+					endedRumble = true;
+					EndRumble();
+				}
+
+				if (!doorSoundMade && timeToNextStop <= timeBeforeOpeningSound){
+					if (doorOpenSound){
+						Instantiate(doorOpenSound);
+					}
+					doorSoundMade = true;
+				}
+
 			if (timeToNextStop <= 0){
 				trainIsMoving = false;
+					endedRumble = false;
 				nextStopMessageGiven = false;
 				nowArrivingMessageGiven = false;
 				currentTimeAtStop = timePerStop;
 				trainIsStopped = true;
 				CameraShakeS.C.LargeShake();
+					doorSoundMade = false;
 				SetColliders(true);
 			}
 			}else{
@@ -179,6 +236,40 @@ public class TrainCarS : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void StartRumble(){
+		rumbleStart = true;
+		rumbleAdjustCount = rumbleInTime;
+	}
+
+	void EndRumble(){
+		rumbleAdjustCount = rumbleOutTime;
+		rumbleEnd = true;
+	}
+
+	void HandleRumble(){
+		if (rumbleEnd){
+			rumbleAdjustCount -= Time.deltaTime;
+			if (rumbleAdjustCount <= 0){
+				rumbleAdjustCount = 0;
+				rumbleEnd = false;
+			}
+			rumbleT = rumbleAdjustCount/rumbleOutTime;
+			rumbleT = Mathf.Sin(rumbleT * Mathf.PI * 0.5f);
+			rumblingSource.volume = Mathf.Lerp(0f,rumblingMaxVolume,rumbleT)*SFXObjS.volumeSetting;
+		}else if (rumbleStart){
+			rumbleAdjustCount -= Time.deltaTime;
+			if (rumbleAdjustCount <= 0){
+				rumbleAdjustCount = 0;
+				rumbleStart = false;
+			}
+			rumbleT = rumbleAdjustCount/rumbleInTime;
+			rumbleT = Mathf.Sin(rumbleT * Mathf.PI * 0.5f);
+			rumblingSource.volume = Mathf.Lerp(rumblingMaxVolume,0f,rumbleT)*SFXObjS.volumeSetting;
+		}else{
+			rumblingSource.volume = rumblingMaxVolume*SFXObjS.volumeSetting;
+		}
 	}
 
 	void SetColliders(bool setOn){
@@ -284,6 +375,8 @@ public class TrainCarS : MonoBehaviour {
 		if (nextStopMessageCountdown <= 0){
 			if (currentFakeMessage >= fakeTrainStrings.Length){
 				DialogueManagerS.D.EndText();
+					pRef.SetTalking(true);
+					rumblingSource.Stop();
 				onOnCrashObj.SetActive(true);
 
 			}else{
@@ -293,8 +386,14 @@ public class TrainCarS : MonoBehaviour {
 					}else{
 						if (startZoomStep >= currentFakeMessage){
 							DialogueManagerS.D.SetDisplayText(fakeTrainStrings[currentFakeMessage], false, false);
+							if (announceSound){
+								Instantiate(announceSound);
+							}
 						}else{
 						DialogueManagerS.D.SetDisplayText(fakeTrainStrings[currentFakeMessage]);
+							if (announceSound){
+								Instantiate(announceSound);
+							}
 						}
 					}
 					currentFakeMessage++;

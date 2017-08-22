@@ -10,6 +10,7 @@ public class EnemyDodgeBehaviorS : EnemyBehaviorS {
 	public float dodgeMaxTime;
 	public float triggerSlideTime;
 	public float invulnerablePercentTime;
+	public float dodgeAngleRadius = 45f;
 	private float dodgeCount;
 	private float invulnerableTime;
 
@@ -28,9 +29,15 @@ public class EnemyDodgeBehaviorS : EnemyBehaviorS {
 
 		invulnerableTime = invulnerablePercentTime*dodgeMaxTime;
 
-		Vector3 dodgeAccel = Random.insideUnitSphere.normalized;
+
+		Vector3 dodgeAccel = Random.insideUnitSphere;
+		if (myEnemyReference.GetPlayerReference()){
+
+			dodgeAccel = Quaternion.Euler(0,0,Random.Range(-dodgeAngleRadius, dodgeAngleRadius))
+				*-(myEnemyReference.GetPlayerReference().transform.position-myEnemyReference.transform.position).normalized;
+		}
 		dodgeAccel.z = 0f;
-		myEnemyReference.myRigidbody.AddForce(dodgeAccel*dodgeForce);
+		myEnemyReference.myRigidbody.AddForce(dodgeAccel*dodgeForce, ForceMode.Impulse);
 		setDrag = false;
 
 	}

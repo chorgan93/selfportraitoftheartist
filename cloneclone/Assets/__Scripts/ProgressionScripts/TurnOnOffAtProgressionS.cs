@@ -14,6 +14,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	public PlayerWeaponS turnOnOffAtMantraInInventory;
 	public BuddyS turnOnOffAtBuddyInInventory;
 	public int turnOnOffAtTechEarned = -1;
+	public int turnOnOffAtVirtueEarned = -1;
 
 	// Use this for initialization
 	void Awake(){
@@ -56,6 +57,11 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 		}
 		else if (turnOnOffAtTechEarned > -1){
 			if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned)){
+				TurnObjectsOnOff();
+			}	
+		}
+		else if (turnOnOffAtVirtueEarned > -1){
+			if (PlayerInventoryS.I._earnedVirtues.Contains(turnOnOffAtVirtueEarned)){
 				TurnObjectsOnOff();
 			}	
 		}

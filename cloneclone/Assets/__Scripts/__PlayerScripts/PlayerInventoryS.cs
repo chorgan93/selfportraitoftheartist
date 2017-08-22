@@ -366,6 +366,10 @@ public class PlayerInventoryS : MonoBehaviour {
 		_collectedKeyItems.Clear();
 		_clearedWalls.Clear();
 		_openedDoors.Clear();
+
+		checkpointsReachedScenes.Clear();
+		checkpointsReachedSpawns.Clear();
+
 		healNums.Clear();
 		staminaNums.Clear();
 		if (unlockedWeapons.Count > 1){

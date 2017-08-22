@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7e19e0ee8d5b547b4b06aa971f9ec14d
-timeCreated: 1494576049
+timeCreated: 1503366795
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -104,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -116,7 +116,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -128,7 +128,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -139,8 +139,8 @@ TextureImporter:
       name: Christian Hurt_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 0
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -151,8 +151,8 @@ TextureImporter:
       name: Christian Hurt_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -163,8 +163,8 @@ TextureImporter:
       name: Christian Hurt_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -175,8 +175,8 @@ TextureImporter:
       name: Christian Hurt_6
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 0
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -187,8 +187,8 @@ TextureImporter:
       name: Christian Hurt_7
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 64
+        y: 0
         width: 64
         height: 64
       alignment: 0
@@ -199,91 +199,7 @@ TextureImporter:
       name: Christian Hurt_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_9
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_10
-      rect:
-        serializedVersion: 2
         x: 128
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_11
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_13
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Christian Hurt_15
-      rect:
-        serializedVersion: 2
-        x: 192
         y: 0
         width: 64
         height: 64

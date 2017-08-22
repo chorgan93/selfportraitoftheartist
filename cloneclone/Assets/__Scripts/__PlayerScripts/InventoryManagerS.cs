@@ -92,6 +92,10 @@ public class InventoryManagerS : MonoBehaviour {
 			}
 			_updateUICall = true;
 			toggleItemButtonDown = true;
+				if (_pRef.tutorialReference != null){
+					_pRef.tutorialReference.AddSwap();
+				}
+				_pRef.playerSound.PlayItemSound(_currentSelection);
 				//Debug.Log("TOGGLED ITEMS");
 		}
 		}

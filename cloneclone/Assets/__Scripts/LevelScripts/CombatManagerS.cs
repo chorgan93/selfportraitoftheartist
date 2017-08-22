@@ -32,9 +32,24 @@ public class CombatManagerS : MonoBehaviour {
 	void Update () {
 
 		if (!completed && activated){
+			#if UNITY_EDITOR_OSX || UNITY_EDITOR || UNITY_EDITOR_64
+			if (Input.GetKeyDown(KeyCode.Minus)){
+				HurtAllEnemies();
+			}
+			#endif
 			CheckForCompletion();
 		}
 	
+	}
+
+	void HurtAllEnemies(){
+		for (int i = 0; i < enemies.Length; i++){
+			if (enemies[i].enemySpawned){
+				if (enemies[i].currentSpawnedEnemy.GetPlayerReference() != null){
+					enemies[i].currentSpawnedEnemy.TakeDamage(Vector3.zero, 9999f, 1f, 1f, 0f, 0f);
+				}
+			}
+		}
 	}
 
 	void CheckForCompletion(){

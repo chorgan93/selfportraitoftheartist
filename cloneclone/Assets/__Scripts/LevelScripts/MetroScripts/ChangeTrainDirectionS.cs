@@ -11,6 +11,7 @@ public class ChangeTrainDirectionS : MonoBehaviour {
 		for (int i = 0; i < targetTriggers.Length; i++){
 			targetTriggers[i].trainDirection = newDir;
 		}
+		TrainCarS.currentDirection = newDir;
 		CameraShakeS.C.MicroShake();
 	}
 

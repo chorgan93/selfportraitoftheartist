@@ -15,7 +15,7 @@ public class InstructionTrigger : MonoBehaviour {
 	[Header("Turn Off Conditions")]
 	public int turnedOffIfClearedCombat = -1;
 
-	public enum TutorialType {Text, Attack, Reset, Dodge, ParadigmShift, Menu};
+	public enum TutorialType {Text, Attack, Reset, Dodge, ParadigmShift, Menu, ChangeItem};
 	public TutorialType tutorialType = TutorialType.Text;
 	private int playerLightAttacks;
 	private int playerHeavyAttacks;
@@ -24,6 +24,7 @@ public class InstructionTrigger : MonoBehaviour {
 	private int playerSprints;
 	private int playerResets;
 	private int playerShifts;
+	private int playerSwaps;
 	public int newTextSize = -1;
 
 	void Start(){
@@ -80,6 +81,12 @@ public class InstructionTrigger : MonoBehaviour {
 
 		if (tutorialType == TutorialType.ParadigmShift){
 			if (playerShifts >= 2){
+				gameObject.SetActive(false);
+			}
+		}
+
+		if (tutorialType == TutorialType.ChangeItem){
+			if (playerSwaps >= 2){
 				gameObject.SetActive(false);
 			}
 		}
@@ -154,5 +161,9 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 	public void AddShift(){
 		playerShifts++;
+	}
+
+	public void AddSwap(){
+		playerSwaps++;
 	}
 }
