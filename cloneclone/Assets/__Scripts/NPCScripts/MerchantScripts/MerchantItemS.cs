@@ -14,7 +14,10 @@ public class MerchantItemS : MonoBehaviour {
 	public int giveItem = -1;
 	public int giveRewind = -1;
 	public int giveHeal = -1;
+	public int giveVP = -1;
 	public int giveCheckpt = -1;
+
+	private PlayerStatsS statRef;
 
 	public bool isAvailable(){
 		bool available = true;
@@ -43,6 +46,12 @@ public class MerchantItemS : MonoBehaviour {
 			}
 		}
 
+		if (giveVP > -1){
+			if (PlayerInventoryS.I.CheckVP(giveVP)){
+				available = false;
+			}
+		}
+
 		if (giveCheckpt > -1){
 			if (PlayerInventoryS.I.HasReachedScene(giveCheckpt)){
 				available = false;
@@ -60,6 +69,9 @@ public class MerchantItemS : MonoBehaviour {
 
 	public bool canBeBought(){
 		if (itemCost <= PlayerCollectionS.currencyCollected && isAvailable()){
+			if (!statRef){
+				statRef = GameObject.Find("Player").GetComponent<PlayerStatsS>();
+			}
 			return true;
 		}else{
 			return false;
@@ -85,6 +97,11 @@ public class MerchantItemS : MonoBehaviour {
 
 		if (giveCheckpt > -1){
 			PlayerInventoryS.I.AddCheckpoint(giveCheckpt, 0);
+		}
+
+		if (giveVP > -1){
+			PlayerInventoryS.I.AddVP(giveVP);
+			statRef.AddStat(3);
 		}
 
 		if (giveWeapon){

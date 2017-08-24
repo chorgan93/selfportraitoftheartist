@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d9e2875986b52433fab0d5f238eaad3c
-timeCreated: 1502837950
+timeCreated: 1503436768
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -68,6 +68,22 @@ TextureImporter:
     21300122: Virtues_51
     21300124: Virtues_52
     21300126: Virtues_53
+    21300128: Virtues_54
+    21300130: Virtues_55
+    21300132: Virtues_56
+    21300134: Virtues_57
+    21300136: Virtues_58
+    21300138: Virtues_59
+    21300140: Virtues_60
+    21300142: Virtues_61
+    21300144: Virtues_62
+    21300146: Virtues_63
+    21300148: Virtues_64
+    21300150: Virtues_65
+    21300152: Virtues_66
+    21300154: Virtues_67
+    21300156: Virtues_68
+    21300158: Virtues_69
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -90,7 +106,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -124,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -136,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -148,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -160,7 +176,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -172,7 +188,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -184,7 +200,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -196,7 +212,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -207,8 +223,8 @@ TextureImporter:
       name: Virtues_7
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 448
+        y: 512
         width: 64
         height: 64
       alignment: 0
@@ -219,8 +235,8 @@ TextureImporter:
       name: Virtues_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 384
+        x: 0
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -231,8 +247,8 @@ TextureImporter:
       name: Virtues_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
+        x: 64
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -243,8 +259,8 @@ TextureImporter:
       name: Virtues_10
       rect:
         serializedVersion: 2
-        x: 192
-        y: 384
+        x: 128
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -255,8 +271,8 @@ TextureImporter:
       name: Virtues_11
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
+        x: 192
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -267,8 +283,8 @@ TextureImporter:
       name: Virtues_12
       rect:
         serializedVersion: 2
-        x: 320
-        y: 384
+        x: 256
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -279,8 +295,8 @@ TextureImporter:
       name: Virtues_13
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
+        x: 320
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -291,8 +307,8 @@ TextureImporter:
       name: Virtues_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 384
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -303,8 +319,8 @@ TextureImporter:
       name: Virtues_15
       rect:
         serializedVersion: 2
-        x: 64
-        y: 320
+        x: 448
+        y: 448
         width: 64
         height: 64
       alignment: 0
@@ -315,8 +331,8 @@ TextureImporter:
       name: Virtues_16
       rect:
         serializedVersion: 2
-        x: 128
-        y: 320
+        x: 0
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -327,8 +343,8 @@ TextureImporter:
       name: Virtues_17
       rect:
         serializedVersion: 2
-        x: 192
-        y: 320
+        x: 64
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -339,8 +355,8 @@ TextureImporter:
       name: Virtues_18
       rect:
         serializedVersion: 2
-        x: 256
-        y: 320
+        x: 128
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -351,8 +367,8 @@ TextureImporter:
       name: Virtues_19
       rect:
         serializedVersion: 2
-        x: 320
-        y: 320
+        x: 192
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -363,8 +379,8 @@ TextureImporter:
       name: Virtues_20
       rect:
         serializedVersion: 2
-        x: 384
-        y: 320
+        x: 256
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -375,8 +391,8 @@ TextureImporter:
       name: Virtues_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -387,8 +403,8 @@ TextureImporter:
       name: Virtues_22
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 384
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -399,8 +415,8 @@ TextureImporter:
       name: Virtues_23
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 448
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -411,8 +427,8 @@ TextureImporter:
       name: Virtues_24
       rect:
         serializedVersion: 2
-        x: 192
-        y: 256
+        x: 0
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -423,8 +439,8 @@ TextureImporter:
       name: Virtues_25
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 64
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -435,8 +451,8 @@ TextureImporter:
       name: Virtues_26
       rect:
         serializedVersion: 2
-        x: 320
-        y: 256
+        x: 128
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -447,8 +463,8 @@ TextureImporter:
       name: Virtues_27
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
+        x: 192
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -459,8 +475,8 @@ TextureImporter:
       name: Virtues_28
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -471,8 +487,8 @@ TextureImporter:
       name: Virtues_29
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -483,8 +499,8 @@ TextureImporter:
       name: Virtues_30
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 384
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -495,8 +511,8 @@ TextureImporter:
       name: Virtues_31
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 448
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -507,8 +523,8 @@ TextureImporter:
       name: Virtues_32
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -519,8 +535,8 @@ TextureImporter:
       name: Virtues_33
       rect:
         serializedVersion: 2
-        x: 320
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -531,8 +547,8 @@ TextureImporter:
       name: Virtues_34
       rect:
         serializedVersion: 2
-        x: 384
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -543,8 +559,8 @@ TextureImporter:
       name: Virtues_35
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -555,8 +571,8 @@ TextureImporter:
       name: Virtues_36
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -567,8 +583,8 @@ TextureImporter:
       name: Virtues_37
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 320
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -579,8 +595,8 @@ TextureImporter:
       name: Virtues_38
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 384
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -591,8 +607,8 @@ TextureImporter:
       name: Virtues_39
       rect:
         serializedVersion: 2
-        x: 256
-        y: 128
+        x: 448
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -603,8 +619,8 @@ TextureImporter:
       name: Virtues_40
       rect:
         serializedVersion: 2
-        x: 320
-        y: 128
+        x: 0
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -615,6 +631,162 @@ TextureImporter:
       name: Virtues_41
       rect:
         serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_42
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_45
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_46
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_47
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_49
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_51
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_52
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_53
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_54
+      rect:
+        serializedVersion: 2
         x: 384
         y: 128
         width: 64
@@ -624,7 +796,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_42
+      name: Virtues_55
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_56
       rect:
         serializedVersion: 2
         x: 0
@@ -636,7 +820,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_43
+      name: Virtues_57
       rect:
         serializedVersion: 2
         x: 64
@@ -648,7 +832,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_44
+      name: Virtues_58
       rect:
         serializedVersion: 2
         x: 128
@@ -660,7 +844,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_45
+      name: Virtues_59
       rect:
         serializedVersion: 2
         x: 192
@@ -672,7 +856,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_46
+      name: Virtues_60
       rect:
         serializedVersion: 2
         x: 256
@@ -684,7 +868,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_47
+      name: Virtues_61
       rect:
         serializedVersion: 2
         x: 320
@@ -696,7 +880,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_48
+      name: Virtues_62
       rect:
         serializedVersion: 2
         x: 384
@@ -708,7 +892,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_49
+      name: Virtues_63
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_64
       rect:
         serializedVersion: 2
         x: 0
@@ -720,7 +916,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_50
+      name: Virtues_65
       rect:
         serializedVersion: 2
         x: 64
@@ -732,7 +928,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_51
+      name: Virtues_66
       rect:
         serializedVersion: 2
         x: 128
@@ -744,7 +940,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_52
+      name: Virtues_67
       rect:
         serializedVersion: 2
         x: 192
@@ -756,10 +952,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Virtues_53
+      name: Virtues_68
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Virtues_69
+      rect:
+        serializedVersion: 2
+        x: 320
         y: 0
         width: 64
         height: 64

@@ -41,6 +41,23 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 			attackTimeCountdown = attackDuration;
 			attackCollider.TurnOn(attackWarmup);
 			myEnemyReference.AttackFlashEffect();
+			if (animationKey != ""){
+				myEnemyReference.myAnimator.SetTrigger(animationKey);
+				//Debug.Log("Behavior " + behaviorName + " is attempting to send trigger " + animationKey + " through base.StartAction()");
+
+				if (soundObj){
+					Instantiate(soundObj);
+				}
+
+				if (signalObj != null){
+					Vector3 signalPos =  transform.position;
+					signalPos.z = transform.position.z+1f;
+					GameObject signal = Instantiate(signalObj, signalPos, Quaternion.identity)
+						as GameObject;
+					signal.transform.parent = myEnemyReference.transform;
+				}
+
+			}
 		}
 		else if (doDodge){
 
@@ -79,7 +96,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	public override void StartAction (bool setAnimTrigger = true)
 	{
-		base.StartAction ();
+		base.StartAction (false);
 		InitializeAction();
 
 	}

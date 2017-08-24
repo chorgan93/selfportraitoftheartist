@@ -224,6 +224,7 @@ public class ProjectileS : MonoBehaviour {
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
+		dmg *= _myPlayer.ParanoidMult();
 		dmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 
 		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){

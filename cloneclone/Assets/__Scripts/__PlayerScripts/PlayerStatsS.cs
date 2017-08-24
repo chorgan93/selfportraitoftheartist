@@ -21,7 +21,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DARKNESS_ADD_DEATH = 1f/2f;
 	public const float DARKNESS_MAX = 100f;
 	
-	private const float VIRTUE_ADD_AMT = 4f;
+	private const float VIRTUE_ADD_AMT = 5f;
 
 	public static bool healOnStart = false;
 
@@ -556,10 +556,10 @@ public class PlayerStatsS : MonoBehaviour {
 				if (i == 2){
 					_addedCharge+=1f;
 				}
-				if (i == 3){
+				/*if (i == 3){
 					//_addedStrength++;
 					_addedVirtue += VIRTUE_ADD_AMT;
-				}
+				}**/
 				if (i == 4){
 					_currentChargeRecoverLv++;
 				}
@@ -572,6 +572,7 @@ public class PlayerStatsS : MonoBehaviour {
 				_addedLevel++;
 			}
 		}
+		_addedVirtue = VIRTUE_ADD_AMT*PlayerInventoryS.I.GetVPUpgradeCount();
 	}
 
 	public void AddStat(int i){
@@ -671,6 +672,10 @@ public class PlayerStatsS : MonoBehaviour {
 		if (myPlayerController.playerAug.lovedAug){
 			dmg*=0.75f;
 		}
+		if (myPlayerController.playerAug.hatedAug){
+				dmg*=PlayerAugmentsS.HATED_MULT;
+			}
+
 		if (dmg > maxHealth){
 			dmg = maxHealth;
 		}

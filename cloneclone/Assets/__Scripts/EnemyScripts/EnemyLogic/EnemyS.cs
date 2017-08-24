@@ -941,12 +941,20 @@ public class EnemyS : MonoBehaviour {
 	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
 		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f, bool fromParry = false){
 
+		if (GetPlayerReference()){
+			if (GetPlayerReference().playerAug.hatedAug){
+				dmg*=PlayerAugmentsS.HATED_MULT;
+			}
+		}
+
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult;
 
 		knockbackDelay = hitStopAmt;
 
 		killAtLessThan = killAtLess;
+
+
 
 		if (_breakAmt >= _breakThreshold){
 			_behaviorBroken = true;

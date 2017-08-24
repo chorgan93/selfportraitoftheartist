@@ -235,6 +235,8 @@ public class PlayerController : MonoBehaviour {
 
 	private List<EnemyS> enemiesHitByLastAttack;
 	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
+	private float paranoidMult = 0.875f;
+	private float addPerHitParanoid = 0.125f;
 
 	private int numAttacksPerShot;
 	private float timeBetweenAttacks;
@@ -1039,6 +1041,7 @@ public class PlayerController : MonoBehaviour {
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();
+				paranoidMult = 0.875f;
 			}
 		}
 
@@ -1055,6 +1058,7 @@ public class PlayerController : MonoBehaviour {
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(false,
 				                                           ShootDirection(), ShootDirection(), this);
+				paranoidMult += addPerHitParanoid;
 				SpawnAttackPuff();
 
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
@@ -1267,6 +1271,7 @@ public class PlayerController : MonoBehaviour {
 				}else{
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}
+				paranoidMult += addPerHitParanoid;
 			}else{
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
@@ -2747,6 +2752,14 @@ public class PlayerController : MonoBehaviour {
 			returnMult *= 0.5f;
 		}
 		return returnMult;
+	}
+
+	public float ParanoidMult(){
+		if (_playerAug.paranoidAug){
+			return paranoidMult;
+		}else{
+			return 1f;
+		}
 	}
 
 	IEnumerator HitStopRoutine(float sTime){

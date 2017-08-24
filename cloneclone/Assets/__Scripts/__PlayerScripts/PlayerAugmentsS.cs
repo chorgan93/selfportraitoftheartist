@@ -9,6 +9,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
 	public const float ENRAGED_DAMAGE_BOOST = 1.75f;
 	public const float CONDEMNED_TIME = 3f;
+	public const float HATED_MULT = 1.5f;
 
 	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
@@ -99,6 +100,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _condemnedAug = false;
 	public bool condemnedAug { get { return _condemnedAug; } }
 
+	// index 13 (extra dmg everywhere)
+	private bool _hatedAug = false;
+	public bool hatedAug { get { return _hatedAug; } }
+
 	// index 17 (witch time)
 	private bool _untetheredAug = false;
 	public bool untetheredAug { get { return _untetheredAug; } }
@@ -110,6 +115,14 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 14 (extra defense)
 	private bool _lovedAug = false;
 	public bool lovedAug { get { return _lovedAug; } }
+
+	// index 20 (extra dmg per combo chain)
+	private bool _paranoidAug = false;
+	public bool paranoidAug { get { return _paranoidAug; } }
+
+	// index 21 (decrease stats, increase VP)
+	private bool _scornedAug = false;
+	public bool scornedAug { get { return _scornedAug; } }
 
 	private bool _initialized;
 
@@ -165,6 +178,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_untetheredAug = false;
 		_desperateAug = false;
 		_lovedAug = false;
+		_hatedAug = false;
+		_paranoidAug = false;
 
 
 	}
@@ -255,6 +270,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 			_condemnedAug = true;
 		}
 
+		if (PlayerController.equippedVirtues.Contains(13)){
+			_hatedAug = true;
+		}
+
 		if (PlayerController.equippedVirtues.Contains(17)){
 		_untetheredAug = true;
 		}
@@ -264,6 +283,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		if (PlayerController.equippedVirtues.Contains(12)){
 			_desperateAug = true;
+		}
+
+		if (PlayerController.equippedVirtues.Contains(20)){
+			_paranoidAug = true;
 		}
 
 	}

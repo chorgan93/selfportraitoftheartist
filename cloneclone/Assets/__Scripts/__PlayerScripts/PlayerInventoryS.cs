@@ -35,6 +35,7 @@ public class PlayerInventoryS : MonoBehaviour {
 	private List<int> healNums;
 	private List<int> staminaNums;
 	private List<int> chargeNums;
+	private List<int> vpNums;
 
 	private List<int> checkpointsReachedScenes;
 	private List<int> checkpointsReachedSpawns;
@@ -155,6 +156,19 @@ public class PlayerInventoryS : MonoBehaviour {
 			staminaNums.Add(i);
 		}
 	}
+	public void AddVP(int i){
+		if (!vpNums.Contains(i)){
+			vpNums.Add(i);
+		}
+	}
+
+	public int GetVPUpgradeCount(){
+		if (vpNums != null){
+			return vpNums.Count;
+		}else{
+			return 0;
+		}
+	}
 
 	public int GetItemCount(int i){
 		int count = 0;
@@ -270,6 +284,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			healNums = new List<int>();
 			staminaNums = new List<int>();
 			chargeNums = new List<int>();
+			vpNums = new List<int>();
 			_collectedKeyItems = new List<int>();
 			_collectedItemCount = new List<int>();
 			_openedDoors = new List<int>();
@@ -358,6 +373,9 @@ public class PlayerInventoryS : MonoBehaviour {
 	public bool CheckStim(int n){
 		return staminaNums.Contains(n);
 	}
+	public bool CheckVP(int v){
+		return vpNums.Contains(v);
+	}
 
 	public void NewGame(){
 		_dManager.ClearAllSaved();
@@ -371,6 +389,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		checkpointsReachedSpawns.Clear();
 
 		healNums.Clear();
+		vpNums.Clear();
 		staminaNums.Clear();
 		if (unlockedWeapons.Count > 1){
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
@@ -411,6 +430,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_earnedUpgrades = inventoryData.earnedUpgrades;
 		_collectedItems = inventoryData.collectedItems;
 		healNums = inventoryData.healNums;
+		vpNums = inventoryData.vpNums;
 		staminaNums = inventoryData.staminaNums;
 		chargeNums = inventoryData.chargeNums;
 		_collectedKeyItems = inventoryData.collectedKeyItems;
@@ -487,6 +507,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData.healNums = healNums;
 		inventoryData.staminaNums = staminaNums;
 		inventoryData.chargeNums = chargeNums;
+			inventoryData.vpNums = vpNums;
 		inventoryData.collectedKeyItems = _collectedKeyItems;
 		inventoryData.collectedItemCount = _collectedItemCount;
 		inventoryData.openedDoors = _openedDoors;
@@ -561,6 +582,7 @@ public class InventorySave {
 	public List<int> healNums;
 	public List<int> staminaNums;
 	public List<int> chargeNums;
+	public List<int> vpNums;
 	public List<int> collectedKeyItems;
 	public List<int> collectedItemCount;
 	public List<int> openedDoors;

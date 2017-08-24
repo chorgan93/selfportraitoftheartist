@@ -23,8 +23,10 @@ public class ActivateOnTimerS : MonoBehaviour {
 
 	public void TurnOn(){
 
-		foreach (GameObject eh in turnOnObjects){
-			eh.SetActive(true);
+		for (int i = 0; i < turnOnObjects.Count; i++){ 
+			if (turnOnObjects[i] != null){
+				turnOnObjects[i].SetActive(true);
+			}
 		}
 		foreach (GameObject bleh in turnOffObjects){
 			bleh.SetActive(false);
@@ -34,7 +36,7 @@ public class ActivateOnTimerS : MonoBehaviour {
 			turnOffEnemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
 		}
 
-			turnedOn = false;
+		turnedOn = true;
 
 	}
 }

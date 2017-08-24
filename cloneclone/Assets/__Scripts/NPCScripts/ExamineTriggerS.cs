@@ -31,6 +31,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int healNum = -1;
 	public int chargeNum = -1;
 	public int staminaNum = -1;
+	public int vpNum = -1;
 	public int numToAdd = 1;
 	public bool keyItem = false;
 	public ActivateOnExamineS myTrigger;
@@ -272,13 +273,17 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 		}
 
+		// check if picked up rewind
 		if (inventoryNum == 0 && PlayerInventoryS.I.CheckHeal(healNum)){
 			gameObject.SetActive(false);
 		}
-		if (inventoryNum == 1 && PlayerInventoryS.I.CheckStim(staminaNum)){
+		// check if picked up virtue increase
+		if (inventoryNum == 2 && PlayerInventoryS.I.CheckVP(vpNum)){
 			gameObject.SetActive(false);
 		}
-		if (inventoryNum == 2 && PlayerInventoryS.I.CheckCharge(chargeNum)){
+
+		// check if picked up health essence
+		if (inventoryNum == 1 && PlayerInventoryS.I.CheckCharge(chargeNum)){
 			gameObject.SetActive(false);
 		}
 
@@ -303,6 +308,12 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 			if (staminaNum >= 0){
 				PlayerInventoryS.I.AddStamina(staminaNum);
+			}
+
+			// add vp increase
+			if (vpNum >= 0){
+				PlayerInventoryS.I.AddVP(vpNum);
+				pRef.myStats.AddStat(3);
 			}
 		}
 
