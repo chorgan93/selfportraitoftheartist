@@ -43,6 +43,9 @@ public class CameraEffectsS : MonoBehaviour {
 	public GameObject endCombatSound;
 
 	private ContrastStretch contrastEffect;
+	private Tonemapping toneEffect;
+	private SunShafts sunEffect;
+	private BloomOptimized bloomEffect;
 
 	// Use this for initialization
 	void Awake () {
@@ -85,6 +88,16 @@ public class CameraEffectsS : MonoBehaviour {
 			resetStatic.gameObject.SetActive(false);
 
 			contrastEffect = GetComponent<ContrastStretch>();
+
+			#if UNITY_EDITOR_OSX
+			toneEffect = GetComponent<Tonemapping>();
+			bloomEffect = GetComponent<BloomOptimized>();
+			sunEffect = GetComponent<SunShafts>();
+			sunEffect.enabled = false;
+			bloomEffect.enabled = false;
+			toneEffect.enabled = false;
+			contrastEffect.enabled = false;
+			#endif
 		}
 	}
 
