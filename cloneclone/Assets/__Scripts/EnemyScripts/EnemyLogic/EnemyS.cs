@@ -32,6 +32,7 @@ public class EnemyS : MonoBehaviour {
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
 	private float currentCritDamage;
+	public float cinematicKillAt = 0f;
 	[HideInInspector]
 	public float actingMaxHealth;
 	public bool showHealth;
@@ -952,7 +953,7 @@ public class EnemyS : MonoBehaviour {
 
 		knockbackDelay = hitStopAmt;
 
-		killAtLessThan = killAtLess;
+		killAtLessThan = killAtLess+cinematicKillAt;
 
 
 

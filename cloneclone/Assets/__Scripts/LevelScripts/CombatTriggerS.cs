@@ -14,6 +14,7 @@ public class CombatTriggerS : MonoBehaviour {
 				activated = true;
 				combatReference.TurnOnOnceObjects();
 				combatReference.TurnOffOnceObjects();
+				Debug.Log("Combat will not trigger bc ID " + combatReference.combatID + " has been cleared");
 			}
 		}
 	}

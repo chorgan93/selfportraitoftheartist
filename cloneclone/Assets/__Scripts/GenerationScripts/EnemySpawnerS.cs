@@ -96,6 +96,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	
 			//newEnemy.transform.parent = transform;
 
+			Debug.Log("Enemy defeated?" + (enemySpawnID > -1 && PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)));
 			if (enemySpawnID > -1 && PlayerInventoryS.I.dManager.enemiesDefeated.Contains(enemySpawnID)){
 				currentEnemyReference.transform.position = PlayerInventoryS.I.dManager.enemiesDefeatedPos
 					[PlayerInventoryS.I.dManager.enemiesDefeated.IndexOf(enemySpawnID)];
