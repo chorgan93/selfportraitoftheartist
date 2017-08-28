@@ -38,6 +38,7 @@ public class GameMenuS : MonoBehaviour {
 	public RectTransform[] optionsPositions;
 	public Text[] optionsTexts;
 	public Text controlText;
+	public Text speedText;
 	public Text sinText;
 	public Text punishText;
 	public Text musicText;
@@ -139,7 +140,8 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 7)){
+			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 8
+			)){
 
 				selectButtonUp = false;
 				cancelButtonUp = false;
@@ -153,29 +155,33 @@ public class GameMenuS : MonoBehaviour {
 			if (currentSelection == 0){
 				HandleControlOption();
 			}
-			// sin difficulty set
+			// speed type set
 			if (currentSelection == 1){
+				HandleSpeedOption();
+			}
+			// sin difficulty set
+			if (currentSelection == 2){
 				HandleSinOption();
 			}
 			// punishment difficulty set
-			if (currentSelection == 2){
+			if (currentSelection == 3){
 				HandlePunishOption();
 			}
 			// music volume set
-			if (currentSelection == 3){
+			if (currentSelection == 4){
 				HandleMusicOption();
 			}
 			// sfx volume set
-			if (currentSelection == 4){
+			if (currentSelection == 5){
 				HandleSfxOption();
 			}
 			// screenshake set
-			if (currentSelection == 5){
+			if (currentSelection == 6){
 				HandleShakeOption();
 			}
 
 			// zoom set
-			if (currentSelection == 6){
+			if (currentSelection == 7){
 				HandleZoomOption();
 			}
 		}
@@ -545,6 +551,28 @@ public class GameMenuS : MonoBehaviour {
 
 	}
 
+	void HandleSpeedOption(){
+		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+			stickReset = false;
+			CameraShakeS.ChangeTurbo(1);
+		}
+
+
+		if (selectButtonUp && myControl.MenuSelectButton()){
+
+			selectButtonUp = false;
+			CameraShakeS.ChangeTurbo(1);
+
+		}
+
+		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+			stickReset = false;
+			CameraShakeS.ChangeTurbo(-1);
+		}
+
+		speedText.text = CameraShakeS.GetTurboString();
+	}
+
 	void UpdateCameraZoomSettingText(){
 		if (CameraFollowS.zoomInt == 0){
 			zoomText.text = "+/- " + CameraFollowS.zoomInt.ToString();
@@ -566,6 +594,7 @@ public class GameMenuS : MonoBehaviour {
 			shakeText.text = "OFF";
 		}
 		UpdateCameraZoomSettingText();
+		speedText.text = CameraShakeS.GetTurboString();
 		musicText.text = BGMHolderS.volumeMult*100f + "%";
 		sfxText.text = SFXObjS.volumeSetting*100f + "%";
 	}

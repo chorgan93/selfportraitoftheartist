@@ -1,0 +1,783 @@
+fileFormatVersion: 2
+guid: 6a5fc7ac42e31468e88c6ca28f3afd76
+timeCreated: 1503618198
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Movement_0
+    21300002: PC Movement_1
+    21300004: PC Movement_2
+    21300006: PC Movement_3
+    21300008: PC Movement_4
+    21300010: PC Movement_5
+    21300012: PC Movement_6
+    21300014: PC Movement_7
+    21300016: PC Movement_8
+    21300018: PC Movement_9
+    21300020: PC Movement_10
+    21300022: PC Movement_11
+    21300024: PC Movement_12
+    21300026: PC Movement_13
+    21300028: PC Movement_14
+    21300030: PC Movement_15
+    21300032: PC Movement_16
+    21300034: sick_0
+    21300036: sick_1
+    21300038: sick_2
+    21300040: sick_3
+    21300042: sick_4
+    21300044: sick_5
+    21300046: sick_6
+    21300048: sick_7
+    21300050: sick_8
+    21300052: sick_9
+    21300054: sick_10
+    21300056: sick_11
+    21300058: sick_12
+    21300060: sick_13
+    21300062: sick_14
+    21300064: sick_15
+    21300066: sick_16
+    21300068: sick_17
+    21300070: sick_18
+    21300072: sick_19
+    21300074: sick_20
+    21300076: sick_21
+    21300078: sick_22
+    21300080: sick_23
+    21300082: sick_24
+    21300084: bleckman_0
+    21300086: bleckman_1
+    21300088: bleckman_2
+    21300090: bleckman_3
+    21300092: bleckman_4
+    21300094: bleckman_5
+    21300096: bleckman_6
+    21300098: bleckman_7
+    21300100: bleckman_8
+    21300102: bleckman_9
+    21300104: bleckman_10
+    21300106: bleckman_11
+    21300108: bleckman_12
+    21300110: bleckman_13
+    21300112: bleckman_14
+    21300114: bleckman_15
+    21300116: bleckman_16
+    21300118: bleckman_17
+    21300120: bleckman_18
+    21300122: bleckman_19
+    21300124: bleckman_20
+    21300126: bleckman_21
+    21300128: crawlything_0
+    21300130: crawlything_1
+    21300132: crawlything_2
+    21300134: crawlything_3
+    21300136: crawlything_4
+    21300138: crawlything_5
+    21300140: crawlything_6
+    21300142: crawlything_7
+    21300144: crawlything_8
+    21300146: crawlything_9
+    21300148: crawlything_10
+    21300150: crawlything_11
+    21300152: crawlything_12
+    21300154: crawlything_13
+    21300156: crawlything_14
+    21300158: crawlything_15
+    21300160: crawlything_16
+    21300162: crawlything_17
+    21300164: crawlything_18
+    21300166: crawlything_19
+    21300168: crawlything_20
+    21300170: crawlything_21
+    21300172: crawlything_22
+    21300174: crawlything_23
+    21300176: crawlything_24
+    21300178: crawlything_25
+    21300180: crawlything_26
+    21300182: crawlything_27
+    21300184: crawlything_28
+    21300186: crawlything_29
+    21300188: crawlything_30
+    21300190: ratthing_0
+    21300192: ratthing_1
+    21300194: ratthing_2
+    21300196: ratthing_3
+    21300198: ratthing_4
+    21300200: ratthing_5
+    21300202: ratthing_6
+    21300204: ratthing_7
+    21300206: ratthing_8
+    21300208: ratthing_9
+    21300210: ratthing_10
+    21300212: ratthing_11
+    21300214: ratthing_12
+    21300216: ratthing_13
+    21300218: ratthing_14
+    21300220: ratthing_15
+    21300222: ratthing_16
+    21300224: ratthing_17
+    21300226: ratthing_18
+    21300228: ratthing_19
+    21300230: ratthing_20
+    21300232: ratthing_21
+    21300234: ratthing_22
+    21300236: ratthing_23
+    21300238: ratthing_24
+    21300240: ratthing_25
+    21300242: ratthing_26
+    21300244: ratthing_27
+    21300246: ratthing_28
+    21300248: ratthing_29
+    21300250: ratthing_30
+    21300252: ratthing_31
+    21300254: ratthing_32
+    21300256: ratthing_33
+    21300258: ratthing_34
+    21300260: ratthing_35
+    21300262: ratthing_36
+    21300264: ratthing_37
+    21300266: ratthing_38
+    21300268: ratthing_39
+    21300270: ratthing_40
+    21300272: ratthing_41
+    21300274: ratthing_42
+    21300276: ratthing_43
+    21300278: ratthing_44
+    21300280: ratthing_45
+    21300282: staffmare_0
+    21300284: staffmare_1
+    21300286: staffmare_2
+    21300288: staffmare_3
+    21300290: staffmare_4
+    21300292: staffmare_5
+    21300294: staffmare_6
+    21300296: staffmare_7
+    21300298: staffmare_8
+    21300300: staffmare_9
+    21300302: staffmare_10
+    21300304: staffmare_11
+    21300306: staffmare_12
+    21300308: staffmare_13
+    21300310: staffmare_14
+    21300312: staffmare_15
+    21300314: staffmare_16
+    21300316: staffmare_17
+    21300318: staffmare_18
+    21300320: staffmare_19
+    21300322: staffmare_20
+    21300324: staffmare_21
+    21300326: staffmare_22
+    21300328: staffmare_23
+    21300330: staffmare_24
+    21300332: staffmare_25
+    21300334: staffmare_26
+    21300336: staffmare_27
+    21300338: staffmare_28
+    21300340: staffmare_29
+    21300342: staffmare_30
+    21300344: staffmare_31
+    21300346: staffmare_32
+    21300348: staffmare_33
+    21300350: staffmare_34
+    21300352: staffmare_35
+    21300354: staffmare_36
+    21300356: staffmare_37
+    21300358: staffmare_38
+    21300360: snipething_0
+    21300362: snipething_1
+    21300364: snipething_2
+    21300366: snipething_3
+    21300368: snipething_4
+    21300370: snipething_5
+    21300372: snipething_6
+    21300374: snipething_7
+    21300376: snipething_8
+    21300378: snipething_9
+    21300380: snipething_10
+    21300382: snipething_11
+    21300384: snipething_12
+    21300386: snipething_13
+    21300388: snipething_14
+    21300390: snipething_15
+    21300392: snipething_16
+    21300394: snipething_17
+    21300396: snipething_18
+    21300398: snipething_19
+    21300400: snipething_20
+    21300402: snipething_21
+    21300404: snipething_22
+    21300406: snipething_23
+    21300408: snipething_24
+    21300410: snipething_25
+    21300412: snipething_26
+    21300414: snipething_27
+    21300416: snipething_28
+    21300418: snipething_29
+    21300420: snipething_30
+    21300422: snipething_31
+    21300424: snipething_32
+    21300426: snipething_33
+    21300428: snipething_34
+    21300430: snipething_35
+    21300432: snipething_36
+    21300434: snipething_37
+    21300436: snipething_38
+    21300438: snipething_39
+    21300440: snipething_40
+    21300442: snipething_41
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: snipething_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_9
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_23
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_34
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_35
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_37
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_38
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_39
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_40
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: snipething_41
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

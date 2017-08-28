@@ -404,6 +404,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerController._currentParadigm = 0;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
+		CameraShakeS.SetTurbo();
 		List<int> buddyList = new List<int>();
 		buddyList.Add(unlockedBuddies[0].buddyNum);
 		equippedWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
@@ -444,6 +445,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		checkpointsReachedScenes = inventoryData.checkpointsReachedScenes;
 		checkpointsReachedSpawns = inventoryData.checkpointsReachedSpawns;
+
+		CameraShakeS.SetTurbo(inventoryData.turboSetting);
 
 
 		unlockedWeapons = new List<PlayerWeaponS>();
@@ -567,7 +570,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			inventoryData.sinLevel = DifficultyS.GetSinInt();
 			inventoryData.punishLevel = DifficultyS.GetPunishInt();
 
-
+			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
 		}
 	}
@@ -613,6 +616,8 @@ public class InventorySave {
 	public List<int> checkpointsReachedScenes;
 	public int currentSpawnPoint;
 
+	public int turboSetting = 0;
+
 	public int sinLevel;
 	public int punishLevel;
 
@@ -653,6 +658,8 @@ public class InventorySave {
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1};
+
+		turboSetting = 0;
 
 		punishLevel = 1;
 		sinLevel = 1;

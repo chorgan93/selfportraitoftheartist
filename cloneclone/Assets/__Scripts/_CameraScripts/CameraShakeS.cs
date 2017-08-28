@@ -26,12 +26,12 @@ public class CameraShakeS : MonoBehaviour {
 
 	public static float 		OPTIONS_SHAKE_MULTIPLIER = 1f;
 
-	public static float 		turboMultiplier = 0.91f;
-	private float turboOff = 0.91f;
-	private float turboOn = 1f;
-	private float superTurbo = 1.09f;
+	public static float 		turboMultiplier = 0.925f;
+	private const float turboOff = 0.925f;
+	private const float turboOn = 1f;
+	private const float superTurbo = 1.085f;
 
-	private float debugScale = 1f;
+	private const float debugScale = 1f;
 	
 
 	//_______________________________________INSTANCE VARIABLES
@@ -83,11 +83,12 @@ public class CameraShakeS : MonoBehaviour {
 
 		C = this;
 
-		#if UNITY_EDITOR || UNITY_EDITOR_OSX
+		/*#if UNITY_EDITOR || UNITY_EDITOR_OSX
 		Time.timeScale = turboMultiplier = debugScale;
 		#else
 			Time.timeScale = turboMultiplier;
-		#endif
+		#endif**/
+		Time.timeScale = turboMultiplier;
 
 	}
 
@@ -385,6 +386,69 @@ public class CameraShakeS : MonoBehaviour {
 		}
 	}
 
+	public static void SetTurboNormal(){
+		turboMultiplier = turboOff;
+	}
 
+	public static void SetTurboFast(){
+		turboMultiplier = turboOn;
+	}
+
+	public static void SetTurboFastest(){
+		turboMultiplier = superTurbo;
+	}
+
+	public static int GetTurboInt(){
+		int tInt = 0;
+		if (turboMultiplier == turboOn){
+			tInt = 1;
+		}
+		if (turboMultiplier == superTurbo){
+			tInt = 2;
+		}
+		return tInt;
+	}
+	public static string GetTurboString(){
+		string turboString = "1x";
+		if (turboMultiplier == turboOn){
+			turboString = "1.1x";
+		}
+		if (turboMultiplier == superTurbo){
+			turboString = "1.2x";
+		}
+		return turboString;
+	}
+
+	public static void SetTurbo(int turbo = 0){
+		if (turbo == 1){
+			turboMultiplier = turboOn;
+		}else if (turbo == 2){
+			turboMultiplier = superTurbo;
+		}else{
+			turboMultiplier = turboOff;
+		}
+	}
+
+	public static void ChangeTurbo(int dir){
+		if (dir > 0){
+			if (turboMultiplier == turboOff){
+				turboMultiplier = turboOn;
+			}
+			else if (turboMultiplier == turboOn){
+				turboMultiplier = superTurbo;
+			}else{
+				turboMultiplier = turboOff;
+			}
+		}else{
+			if (turboMultiplier == turboOff){
+				turboMultiplier = superTurbo;
+			}
+			else if (turboMultiplier == turboOn){
+				turboMultiplier = turboOff;
+			}else{
+				turboMultiplier = turboOn;
+			}
+		}
+	}
 
 }

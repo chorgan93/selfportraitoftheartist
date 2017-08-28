@@ -153,9 +153,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		if (!standalone){
 		CameraShakeS.C.TimeSleep(0.06f);
-			if (soundObj){
-				Instantiate(soundObj);
-			}
+		}
+		if (soundObj){
+			Instantiate(soundObj);
 		}
 		CameraShakeS.C.SmallShake();
 
@@ -243,9 +243,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myRenderer.enabled = true;
 		charging = true;
 
-		if (soundObj && standalone){
+		/*if (soundObj && standalone){
 			Instantiate(soundObj);
-		}
+		}**/
 
 	}
 
