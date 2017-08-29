@@ -30,7 +30,7 @@ public class MixTriggerS : MonoBehaviour {
 			}
 			if (fadeOut){
 				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant);
+					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, true);
 				}
 			}
 			activated = true;
@@ -56,7 +56,7 @@ public class MixTriggerS : MonoBehaviour {
 				}
 				if (fadeOut){
 					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant);
+						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, true);
 					}
 				}
 				activated = true;

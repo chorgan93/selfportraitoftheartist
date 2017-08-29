@@ -5,12 +5,23 @@ public class MatchCinemaPositionS : MonoBehaviour {
 
 	public Transform targetPos;
 	public EnemySpawnerS targetEnemy;
+	public Vector3 offsetPos = Vector3.zero;
 
 	void Start(){
 		if (targetEnemy){
-			transform.position = targetEnemy.currentSpawnedEnemy.transform.position;
+			transform.position = targetEnemy.currentSpawnedEnemy.transform.position+offsetPos;
 		}else if (targetPos){
-			transform.position = targetPos.transform.position;
+			transform.position = targetPos.transform.position+offsetPos;
+		}
+	}
+
+	public Vector3 GetTargetPos(){
+		if (targetEnemy){
+			return targetEnemy.currentSpawnedEnemy.transform.position+offsetPos;
+		}else if (targetPos){
+			return targetPos.transform.position+offsetPos;
+		}else{
+			return transform.position+offsetPos;
 		}
 	}
 }

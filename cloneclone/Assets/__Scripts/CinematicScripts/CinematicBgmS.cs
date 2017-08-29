@@ -16,7 +16,7 @@ public class CinematicBgmS : MonoBehaviour {
 			myTarget.FadeIn(instant);
 		}
 		if (fadeOut){
-			myTarget.FadeOut(instant);
+			myTarget.FadeOut(instant, true);
 		}
 
 	}

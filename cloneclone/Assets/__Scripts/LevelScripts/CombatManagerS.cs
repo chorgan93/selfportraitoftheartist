@@ -208,7 +208,7 @@ public class CombatManagerS : MonoBehaviour {
 			if (!correctedFightOnce){
 				CorrectCompletedFight();
 			}
-			Debug.Log("Fight already completed! ID" + combatID + " " +PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(combatID));
+			//Debug.Log("Fight already completed! ID" + combatID + " " +PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(combatID));
 			return false;
 		}
 	}

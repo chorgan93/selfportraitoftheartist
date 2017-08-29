@@ -16,7 +16,7 @@ public class InGameCinemaActivateS : MonoBehaviour {
 
 		foreach (GameObject on in onObjects){
 			if (on.GetComponent<MatchCinemaPositionS>() != null){
-				on.transform.position = on.GetComponent<MatchCinemaPositionS>().targetPos.transform.position;
+				on.transform.position = on.GetComponent<MatchCinemaPositionS>().GetTargetPos();
 			}
 			on.SetActive(true);
 		}
