@@ -24,11 +24,20 @@ public class SaveLoadS : MonoBehaviour {
 	}  
 
 	public static void OverriteCurrentSave(){
+		
+		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
+		if (!PlayerInventoryS.DO_NOT_SAVE){
+		#endif
+			
 		if (GameDataS.current == null){
 			GameDataS.current = new GameDataS();
 		}
 		GameDataS.current.OverwriteCurrent();
 		Save ();
+
+		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
+		}
+		#endif
 	}
 	
 	public static void Load() {

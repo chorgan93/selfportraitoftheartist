@@ -51,6 +51,10 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public static InventorySave inventoryData;
 
+	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
+	public static bool DO_NOT_SAVE = false;
+	#endif
+
 	void Awake () {
 
 		if (I == null){
@@ -62,6 +66,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 
 	}
+	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.Comma)){
+			DO_NOT_SAVE = !DO_NOT_SAVE;
+			Debug.Log("DO_NOT_SAVE turned to " + DO_NOT_SAVE);
+		}
+	}
+	#endif
 
 	public void AddCheckpoint(int sceneIndex, int spawnN){
 		if (!checkpointsReachedScenes.Contains(sceneIndex)){

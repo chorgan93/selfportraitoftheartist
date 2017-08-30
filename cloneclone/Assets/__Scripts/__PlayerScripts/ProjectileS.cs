@@ -227,8 +227,8 @@ public class ProjectileS : MonoBehaviour {
 		dmg *= _myPlayer.ParanoidMult();
 		dmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 
-		if (_myPlayer.playerAug.enragedAug && _myPlayer.myStats.currentHealth <= _myPlayer.myStats.maxHealth/3f){
-			dmg*= PlayerAugmentsS.ENRAGED_DAMAGE_BOOST;
+		if (_myPlayer.playerAug.enragedAug){
+			dmg*= _myPlayer.playerAug.GetEnragedMult();
 		}
 		if (_myPlayer.adaptiveAugBonus){
 			dmg*= PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;

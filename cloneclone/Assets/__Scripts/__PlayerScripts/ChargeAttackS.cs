@@ -224,7 +224,7 @@ public class ChargeAttackS : MonoBehaviour {
 				actingDmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 
 				if (myPlayer.playerAug.enragedAug){
-					actingDmg*=PlayerAugmentsS.ENRAGED_DAMAGE_BOOST;
+					actingDmg*=myPlayer.playerAug.GetEnragedMult();
 				}
 				if (myPlayer.adaptiveAugBonus){
 					actingDmg*=PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;

@@ -7,7 +7,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private PlayerController _playerReference;
 
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
-	public const float ENRAGED_DAMAGE_BOOST = 1.75f;
+	public const float ENRAGED_DAMAGE_BOOST = 2f;
 	public const float CONDEMNED_TIME = 3f;
 	public const float HATED_MULT = 1.5f;
 
@@ -312,5 +312,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}else{
 			return false;
 		}
+	}
+
+	public float GetEnragedMult(){
+		return (Mathf.Lerp(ENRAGED_DAMAGE_BOOST, 1f,_playerReference.myStats.currentHealth/_playerReference.myStats.maxHealth));
 	}
 }
