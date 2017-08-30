@@ -12,6 +12,9 @@ public class CameraPOIS : MonoBehaviour {
 
 	public float moveEasing = 0.1f;
 
+	[HideInInspector]
+	public Vector3 poiOffset = Vector3.zero;
+
 	private Vector3 lookVector;
 	private float lookAmt = 1f;
 	private float lookWeight = 1f;
@@ -98,6 +101,7 @@ public class CameraPOIS : MonoBehaviour {
 			if (!playerReference.myLockOn.lockedOn){
 				newPos += lookVector*lookAmt;
 			}
+			newPos += poiOffset;
 
 			if (!CAMERA_LOCK){
 				transform.position = newPos;
@@ -125,5 +129,13 @@ public class CameraPOIS : MonoBehaviour {
 		newPos.z = transform.position.z;
 		transform.position = newPos;
 		CameraFollowS.F.CutTo(transform.position);
+	}
+
+	public void SetOffset(Vector3 newOff){
+		poiOffset = newOff;
+	}
+
+	public void ResetOffset(){
+		poiOffset = Vector3.zero;
 	}
 }
