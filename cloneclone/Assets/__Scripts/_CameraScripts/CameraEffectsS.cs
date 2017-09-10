@@ -97,6 +97,17 @@ public class CameraEffectsS : MonoBehaviour {
 			bloomEffect.enabled = false;
 			toneEffect.enabled = false;
 			contrastEffect.enabled = false;
+
+			#elif UNITY_STANDALONE_OSX || UNITY_STANDALONE
+			if (QualitySettings.GetQualityLevel() < 1){
+			toneEffect = GetComponent<Tonemapping>();
+			bloomEffect = GetComponent<BloomOptimized>();
+			sunEffect = GetComponent<SunShafts>();
+			sunEffect.enabled = false;
+			bloomEffect.enabled = false;
+			toneEffect.enabled = false;
+			contrastEffect.enabled = false;
+			}
 			#endif
 		}
 	}

@@ -985,7 +985,7 @@ public class EnemyS : MonoBehaviour {
 		}else{
 			_currentHealth -= dmg*damageMultiplier*currentDefenseMult;
 			damageTaken += dmg*damageMultiplier*currentDefenseMult;
-			if (_behaviorBroken){
+			if (_behaviorBroken && _currentBehavior != null){
 				_currentBehavior.CancelAction();
 			}
 		}

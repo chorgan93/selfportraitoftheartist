@@ -25,9 +25,11 @@ public class InGameCinemaActivateS : MonoBehaviour {
 			off.SetActive(false);
 		}
 
-		for (int i = 0; i < offEnemies.Length; i++){
-			if (offEnemies[i].currentSpawnedEnemy != null){
-				offEnemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
+		if (offEnemies != null){
+			for (int i = 0; i < offEnemies.Length; i++){
+				if (offEnemies[i].currentSpawnedEnemy != null){
+					offEnemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
+				}
 			}
 		}
 

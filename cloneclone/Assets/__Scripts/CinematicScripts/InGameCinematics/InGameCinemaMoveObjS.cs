@@ -45,11 +45,16 @@ public class InGameCinemaMoveObjS : MonoBehaviour {
 			movingObject.position += moveSpeed*Time.deltaTime*moveDirection.normalized;
 			moveTime -= Time.deltaTime;
 		}else if (!completedMove){
+
+			if (turnOnEnd != null){
 			for (int i = 0; i < turnOnEnd.Length; i++){
 				turnOnEnd[i].SetActive(true);
 			}
+			}
+			if (turnOffEnd != null){
 			for (int i = 0; i < turnOffEnd.Length; i++){
 				turnOffEnd[i].SetActive(false);
+			}
 			}
 			completedMove = true;
 		}

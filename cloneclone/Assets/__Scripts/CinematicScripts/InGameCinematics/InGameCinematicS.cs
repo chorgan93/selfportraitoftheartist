@@ -128,7 +128,7 @@ public class InGameCinematicS : MonoBehaviour {
 				c.gameObject.SetActive(true);
 				if (c.moveTime > 0){
 					timedStep = true;
-						if (c.turnOnEnd.Length > 0){
+						if (c.turnOnEnd != null){
 						if (c.moveTime+c.turnOnTime > currentCountdown){
 							currentCountdown = c.moveTime+c.turnOnTime;
 					}

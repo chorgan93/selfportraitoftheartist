@@ -260,7 +260,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach (int i in PlayerInventoryS.I.collectedItems){
-				if (i == inventoryNum && inventoryNum != 0){
+				if (i == inventoryNum && inventoryNum > 2){
 					gameObject.SetActive(false);
 				}
 			}
@@ -285,6 +285,7 @@ public class ExamineTriggerS : MonoBehaviour {
 		// check if picked up health essence
 		if (inventoryNum == 1 && PlayerInventoryS.I.CheckCharge(chargeNum)){
 			gameObject.SetActive(false);
+			Debug.Log("Turned off bc already have this Heal item! Charge num " + chargeNum);
 		}
 
 

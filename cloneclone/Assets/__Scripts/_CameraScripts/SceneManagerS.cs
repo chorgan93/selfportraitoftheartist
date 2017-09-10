@@ -9,6 +9,7 @@ public class SceneManagerS : MonoBehaviour {
 	public bool preMenuScene = false;
 	public bool lockMenus = false;
 	public bool allowFastTravel = true;
+	public bool resetDoCountup = false;
 
 	[Header("Infinite Scene Properties")]
 	public bool isInfiniteScene = false;
@@ -28,6 +29,10 @@ public class SceneManagerS : MonoBehaviour {
 		InGameMenuManagerS.allowFastTravel = allowFastTravel;
 		inInfiniteScene = isInfiniteScene;
 		PlayerCurrencyDisplayS.CanGetXP = !preventEXPGain;
+
+		if (resetDoCountup){
+			PlayerStatsS.dontDoCountUp = false;
+		}
 
 		DifficultyS.sinStateOverride = overrideSinState;
 		DifficultyS.punishStateOverride = overridePunishState;

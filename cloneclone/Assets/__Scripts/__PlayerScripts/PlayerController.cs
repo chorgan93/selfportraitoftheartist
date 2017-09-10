@@ -807,6 +807,7 @@ public class PlayerController : MonoBehaviour {
 
 		// first, check for parry, otherwise dodge
 		if (superCloseEnemyDetect.EnemyToParry() != null  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+			
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
@@ -1086,7 +1087,7 @@ public class PlayerController : MonoBehaviour {
 		allowParryCountdown -= Time.deltaTime;
 		// check if parry conditions are met before attack fires off
 		/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)
-		    && !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f){
+			&& !_doingCounterAttack && attackDelay > 0f && allowParryCountdown > 0f && controller.HeavyButton()){
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
@@ -1336,7 +1337,7 @@ public class PlayerController : MonoBehaviour {
 							enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
 						}
 						CameraShakeS.C.SmallShake();
-						//CameraShakeS.C.SmallSleep();
+						CameraShakeS.C.SmallSleep();
 						DelayWitchTimeActivate(enemiesToParry[0]);
 						shootButtonUp = false;
 						PrepParryAnimation();
