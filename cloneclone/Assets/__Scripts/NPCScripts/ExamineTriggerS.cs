@@ -30,7 +30,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int inventoryNum = -1;
 	public int healNum = -1;
 	public int chargeNum = -1;
-	public int staminaNum = -1;
+	public int laNum = -1;
 	public int vpNum = -1;
 	public int numToAdd = 1;
 	public bool keyItem = false;
@@ -40,6 +40,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public PlayerWeaponS mantraToGive;
 	public int virtueToGive = -1;
 	public int techToGive = -1;
+	public int laToGive = -1;
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
@@ -94,7 +95,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				delayOnTime -= Time.deltaTime;
 				talkButtonDown = true;
 			}
-			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading){
+			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading  && !InGameMenuManagerS.menuInUse){
 
 				if (!pRef.myControl.TalkButton() && delayOnTime <= 0){
 				talkButtonDown = false;
@@ -103,7 +104,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				if (pRef.myControl.TalkButton() && !talkButtonDown && delayOnTime <= 0f){
 				talkButtonDown = true;
 
-				if (!talking && examineString != "" && !pRef.talking){
+					if (!talking && examineString != "" && !pRef.talking){
 					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading && !pRef.talking){
 
 						pRef.SetTalking(true);
@@ -158,7 +159,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 							if (teleportItem){
 								if (!fullRevive){
-									InfinityS.savedLastDifficulty = 1;
+									InfinityDemoS.savedLastDifficulty = 1;
 								}
 									List<int> saveBuddyList = new List<int>();
 									saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
@@ -260,7 +261,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (PlayerInventoryS.I.collectedItems.Count > 0){
 			foreach (int i in PlayerInventoryS.I.collectedItems){
-				if (i == inventoryNum && inventoryNum > 2){
+				if (i == inventoryNum && inventoryNum > 2 && inventoryNum != 420){
 					gameObject.SetActive(false);
 				}
 			}
@@ -279,6 +280,11 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 		// check if picked up virtue increase
 		if (inventoryNum == 2 && PlayerInventoryS.I.CheckVP(vpNum)){
+			gameObject.SetActive(false);
+		}
+
+		// check if picked up la increase
+		if (inventoryNum == 420 && PlayerInventoryS.I.CheckStim(laNum)){
 			gameObject.SetActive(false);
 		}
 
@@ -307,8 +313,10 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (chargeNum >= 0){
 				PlayerInventoryS.I.AddCharge(chargeNum);
 			}
-			if (staminaNum >= 0){
-				PlayerInventoryS.I.AddStamina(staminaNum);
+
+			// add la
+			if (laNum >= 0){
+				PlayerInventoryS.I.AddLaPickup(laNum, laToGive);
 			}
 
 			// add vp increase

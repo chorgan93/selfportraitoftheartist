@@ -249,6 +249,8 @@ public class GameMenuS : MonoBehaviour {
 				debugActive.enabled = false;
 			}
 		}
+
+		InGameMenuManagerS.menuInUse = true;
 		inOptionsMenu = false;
 		optionsMenuProper.gameObject.SetActive(false);
 		inConfirmation = false;
@@ -267,6 +269,7 @@ public class GameMenuS : MonoBehaviour {
 	public void TurnOff(){
 		inOptionsMenu = false;
 		inConfirmation = false;
+		InGameMenuManagerS.menuInUse = false;
 		optionsMenuProper.gameObject.SetActive(false);
 		gameObject.SetActive(false);
 		//Debug.LogError("game menu turn OFF");

@@ -7,6 +7,7 @@ public class CombatTriggerS : MonoBehaviour {
 	private bool activated = false;
 	public string verseTitle;
 	public bool preventDeath = false;
+	public InfinityManagerS myInfiniteManager;
 
 	void Start(){
 		if (combatReference.combatID > -1){
@@ -28,7 +29,11 @@ public class CombatTriggerS : MonoBehaviour {
 				if (combatReference.darknessHolder){
 					combatReference.darknessHolder.gameObject.SetActive(true);
 				}
-				VerseDisplayS.V.NewVerse(verseTitle);
+				if (myInfiniteManager != null){
+					VerseDisplayS.V.NewVerse(myInfiniteManager.CurrentVerseDisplay());
+				}else{
+					VerseDisplayS.V.NewVerse(verseTitle);
+				}
 				activated = true;
 				
 				if (preventDeath){

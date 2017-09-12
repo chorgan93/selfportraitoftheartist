@@ -87,7 +87,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________CHARGE RECOVERY
 
-	private int _currentChargeRecoverLv = 1;
+	private int _currentChargeRecoverLv = 3;
 	private float _baseChargeRecover = 1.2f;
 	private float _addedChargeRecoverPerLevel = .2f;
 	public float currentChargeRecover  { get { return 
@@ -750,7 +750,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 					if (dontDoCountUp){
 						dontDoCountUp = false;
-					}else{
+						}else if (!SceneManagerS.inInfiniteScene){
 						_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
 						_currentDarkness += DARKNESS_ADD_DEATH;
 					}

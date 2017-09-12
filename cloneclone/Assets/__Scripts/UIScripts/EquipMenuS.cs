@@ -136,6 +136,7 @@ public class EquipMenuS : MonoBehaviour {
 		virtueBarMaxX = virtueBarFull.rectTransform.sizeDelta.x-2;
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 
+		InGameMenuManagerS.menuInUse = true;
 		descriptionText.text = "";
 		SetSelector(0);
 		UpdateMantraDisplay();
@@ -746,6 +747,7 @@ public class EquipMenuS : MonoBehaviour {
 		currentPos = 0;
 		onMainScreen = true;
 		gameObject.SetActive(false);
+		InGameMenuManagerS.menuInUse = false;
 	}
 
 	private void UpdateMantras(){

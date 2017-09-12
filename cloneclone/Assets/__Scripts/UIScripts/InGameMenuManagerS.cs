@@ -26,6 +26,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 	public static bool hasUsedMenu = false;
 	public static bool allowFastTravel = false;
 
+	public static bool menuInUse = false;
+
 	private float holdEscapeTime = 3f;
 	private float holdEscapeCount = 0f;
 	private bool holdingEscape = false;
@@ -193,11 +195,13 @@ public class InGameMenuManagerS : MonoBehaviour {
 	public void TurnOnLevelUpMenu(){
 		levelUpMenu.TurnOn();
 		levelMenuActive = true;
+		menuInUse = true;
 	}
 
 	public void TurnOffLevelUpMenu(){
 		levelUpMenu.TurnOff();
 		levelMenuActive = false;
+		menuInUse = false;
 	}
 
 	public void TurnOffFromGameMenu(){
@@ -205,5 +209,6 @@ public class InGameMenuManagerS : MonoBehaviour {
 		gameMenuActive = false;
 		gameMenuButtonDown = true;
 		_pRef.SetTalking(false);
+		menuInUse = false;
 	}
 }

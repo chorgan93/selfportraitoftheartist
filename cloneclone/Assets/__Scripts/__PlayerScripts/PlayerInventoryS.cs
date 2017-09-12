@@ -33,7 +33,7 @@ public class PlayerInventoryS : MonoBehaviour {
 	private static List<PlayerWeaponS> subWeapons;
 
 	private List<int> healNums;
-	private List<int> staminaNums;
+	private List<int> laPickupNums;
 	private List<int> chargeNums;
 	private List<int> vpNums;
 
@@ -163,10 +163,12 @@ public class PlayerInventoryS : MonoBehaviour {
 			chargeNums.Add(i);
 		}
 	}
-	public void AddStamina(int i){
-		if (!staminaNums.Contains(i)){
-			staminaNums.Add(i);
+	public void AddLaPickup(int i, int sinAmt){
+		if (!laPickupNums.Contains(i)){
+			laPickupNums.Add(i);
 		}
+
+		GameObject.Find("Player").GetComponent<PlayerController>().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 	}
 	public void AddVP(int i){
 		if (!vpNums.Contains(i)){
@@ -294,7 +296,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			PlayerController.equippedVirtues.Add(0);
 			_collectedItems = new List<int>();
 			healNums = new List<int>();
-			staminaNums = new List<int>();
+			laPickupNums = new List<int>();
 			chargeNums = new List<int>();
 			vpNums = new List<int>();
 			_collectedKeyItems = new List<int>();
@@ -353,7 +355,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			_collectedItemCount[_collectedItems.IndexOf(1)]=chargeNums.Count;
 		}
 		if (CheckForItem(2)){
-			_collectedItemCount[_collectedItems.IndexOf(2)]=staminaNums.Count;
+			_collectedItemCount[_collectedItems.IndexOf(2)]=laPickupNums.Count;
 		}
 		_iManager.RefreshUI();
 	}
@@ -383,7 +385,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		return chargeNums.Contains(n);
 	}
 	public bool CheckStim(int n){
-		return staminaNums.Contains(n);
+		return laPickupNums.Contains(n);
 	}
 	public bool CheckVP(int v){
 		return vpNums.Contains(v);
@@ -402,7 +404,7 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		healNums.Clear();
 		vpNums.Clear();
-		staminaNums.Clear();
+		laPickupNums.Clear();
 		if (unlockedWeapons.Count > 1){
 			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
 		}
@@ -444,7 +446,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_collectedItems = inventoryData.collectedItems;
 		healNums = inventoryData.healNums;
 		vpNums = inventoryData.vpNums;
-		staminaNums = inventoryData.staminaNums;
+		laPickupNums = inventoryData.laPickupNums;
 		chargeNums = inventoryData.chargeNums;
 		_collectedKeyItems = inventoryData.collectedKeyItems;
 		_collectedItemCount = inventoryData.collectedItemCount;
@@ -520,7 +522,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData.earnedUpgrades = _earnedUpgrades;
 		inventoryData.collectedItems = _collectedItems;
 		inventoryData.healNums = healNums;
-		inventoryData.staminaNums = staminaNums;
+		inventoryData.laPickupNums = laPickupNums;
 		inventoryData.chargeNums = chargeNums;
 			inventoryData.vpNums = vpNums;
 		inventoryData.collectedKeyItems = _collectedKeyItems;
@@ -595,7 +597,7 @@ public class InventorySave {
 	public List<int> earnedTech;
 	public List<int> collectedItems;
 	public List<int> healNums;
-	public List<int> staminaNums;
+	public List<int> laPickupNums;
 	public List<int> chargeNums;
 	public List<int> vpNums;
 	public List<int> collectedKeyItems;
@@ -640,7 +642,7 @@ public class InventorySave {
 		earnedTech = new List<int>();
 		collectedItems = new List<int>();
 		healNums = new List<int>();
-		staminaNums = new List<int>();
+		laPickupNums = new List<int>();
 		chargeNums = new List<int>();
 		collectedKeyItems = new List<int>();
 		collectedItemCount = new List<int>();

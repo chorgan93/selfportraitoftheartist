@@ -427,6 +427,10 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public void ResetBuddyPos(){
+		_myBuddy.transform.position = buddyPos.position;
+	}
+
 	//_________________________________________PRIVATE METHODS
 
 	void InitializePlayer(){

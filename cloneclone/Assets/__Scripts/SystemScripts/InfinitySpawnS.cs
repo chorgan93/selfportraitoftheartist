@@ -10,13 +10,13 @@ public class InfinitySpawnS : MonoBehaviour {
 	public EnemySpawnerS[] mySpawners;
 	private int enemiesCleared = 0;
 
-	private InfinityS myInfinity;
+	private InfinityDemoS myInfinity;
 	public Color flashColor = Color.white;
 
 	private bool completed = false;
 
 
-	public void SetInfinity(InfinityS newI){
+	public void SetInfinity(InfinityDemoS newI){
 
 		myInfinity = newI;
 
@@ -35,7 +35,7 @@ public class InfinitySpawnS : MonoBehaviour {
 		enemiesCleared++;
 
 		if (mySpawners.Length <= enemiesCleared && !completed){
-			myInfinity.NextStage();
+			//myInfinity.NextStage();
 			completed = true;
 		}
 

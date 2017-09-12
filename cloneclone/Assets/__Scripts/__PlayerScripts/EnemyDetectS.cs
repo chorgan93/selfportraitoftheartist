@@ -19,6 +19,15 @@ public class EnemyDetectS : MonoBehaviour {
 	private float lowestY;
 	private float largestX;
 	private float largestY;
+
+	private int critEnemies = 0;
+	private float critEnemyWeight = 0.6f;
+	private Vector3 critCenterpoint = Vector3.zero;
+
+	private float lowestCritX;
+	private float lowestCritY;
+	private float largestCritX;
+	private float largestCritY;
 	
 	private List<EnemyS> parryEnemies = new List<EnemyS>();
 	
@@ -70,9 +79,11 @@ public class EnemyDetectS : MonoBehaviour {
 	private void UpdateEnemyPosition(){
 		
 		_enemyCenterpoint = playerReference.transform.position;
-		
+		critEnemies = 0;
+
 		if (enemiesInRange.Count > 0){
 			lowestX = lowestY = largestX = largestY = 0f;
+			lowestCritX = lowestCritY = largestCritX = largestCritY = 0f;
 			for (int i = 0; i < enemiesInRange.Count; i++){
 				if (enemiesInRange[i].transform.position.x < lowestX || lowestX == 0f){
 					lowestX = enemiesInRange[i].transform.position.x;
@@ -83,12 +94,35 @@ public class EnemyDetectS : MonoBehaviour {
 				if (enemiesInRange[i].transform.position.y < lowestY || lowestY == 0f){
 					lowestY = enemiesInRange[i].transform.position.y;
 				}
-				if (enemiesInRange[i].transform.position.y > largestX || largestY == 0f){
+				if (enemiesInRange[i].transform.position.y > largestY || largestY == 0f){
 					largestY = enemiesInRange[i].transform.position.y;
+				}
+
+				if (enemiesInRange[i].isCritical){
+					critEnemies++;
+					if (enemiesInRange[i].transform.position.x < lowestCritX || lowestCritX == 0f){
+						lowestCritX = enemiesInRange[i].transform.position.x;
+					}
+					if (enemiesInRange[i].transform.position.x > largestCritX || largestCritX == 0f){
+						largestCritX = enemiesInRange[i].transform.position.x;
+					}
+					if (enemiesInRange[i].transform.position.y < lowestCritY || lowestCritY == 0f){
+						lowestCritY = enemiesInRange[i].transform.position.y;
+					}
+					if (enemiesInRange[i].transform.position.y > largestCritY || largestCritY == 0f){
+						largestCritY = enemiesInRange[i].transform.position.y;
+					}
 				}
 			}
 			_enemyCenterpoint.x = (lowestX+largestX)/2f;
 			_enemyCenterpoint.y = (lowestY+largestY)/2f;
+
+			// add crit'd enemies
+			if (critEnemies > 0){
+				critCenterpoint.x = (lowestCritX+largestCritX)/2f;
+				critCenterpoint.y = (lowestCritY+largestCritY)/2f;
+				_enemyCenterpoint = (_enemyCenterpoint+critCenterpoint*critEnemyWeight)/(1f + critEnemyWeight);
+			}
 		}
 		
 	}

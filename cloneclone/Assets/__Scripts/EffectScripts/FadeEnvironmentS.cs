@@ -10,6 +10,8 @@ public class FadeEnvironmentS : MonoBehaviour {
 	private SpriteRenderer myRender;
 	private Color myColor;
 
+	public bool showOnStart = false;
+
 	private bool fadingIn;
 	private bool fadingOut;
 	private float currentFadeTarget;
@@ -19,8 +21,13 @@ public class FadeEnvironmentS : MonoBehaviour {
 
 		myRender = GetComponent<SpriteRenderer>();
 		myColor = myRender.color;
-		myColor.a = 0;
+		if (showOnStart){
+			myColor.a = fadeAmt[fadeLevel];
+		}else{
+			myColor.a = 0;
+		}
 		myRender.color = myColor;
+
 	
 	}
 	

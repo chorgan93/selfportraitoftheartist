@@ -304,9 +304,9 @@ public class CameraShakeS : MonoBehaviour {
 		_isSleeping = true;
 		
 		Time.timeScale = 0;
-		
 
-		GetComponent<CameraFollowS>().PunchInCustom(0.56f, 0.1f);
+
+		GetComponent<CameraFollowS>().PunchInCustom(0.56f, sleepTime*0.8f);
 
 		
 		

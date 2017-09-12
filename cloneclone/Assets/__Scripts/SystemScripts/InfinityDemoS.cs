@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class InfinityS : MonoBehaviour {
+public class InfinityDemoS : MonoBehaviour {
 
 	public SpriteRenderer spawnFlash;
 	public float fadeRate = 2f;

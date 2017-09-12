@@ -57,6 +57,7 @@ public class LockedDoorS : MonoBehaviour {
 					doResetLook = false;
 					differentLook = false;
 					CameraFollowS.F.ResetPOI();
+					CameraFollowS.F.EndZoom();
 					gameObject.SetActive(false);
 					fading = false;
 				}
@@ -73,7 +74,7 @@ public class LockedDoorS : MonoBehaviour {
 
 
 		if (playerInRange && pRef != null){
-			if (!pRef.inCombat && !CameraEffectsS.E.isFading){
+			if (!pRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){

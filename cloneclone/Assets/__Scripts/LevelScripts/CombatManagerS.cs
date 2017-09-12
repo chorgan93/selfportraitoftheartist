@@ -27,6 +27,14 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOnOnSkip;
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
+
+	[Header("Infinite Properties")]
+	public bool inInfiniteMode = false;
+	public InfinityManagerS myInfiniteManager;
+	public int minDifficulty = -1;
+	public int maxDifficulty = 9999;
+	public int overrideOnDifficulty = -1;
+	public float geometryMultiplier = 1f;
 	
 	// Update is called once per frame
 	void Update () {
@@ -77,10 +85,11 @@ public class CombatManagerS : MonoBehaviour {
 	IEnumerator CompleteCombat(){
 		AddDefeatedEnemies();
 		CameraFollowS.F.ClearStunnedEnemies();
-		CameraShakeS.C.TimeSleepEndCombat(0.12f);
+		CameraShakeS.C.TimeSleepEndCombat(0.3f);
 		completed = true;
-		CameraEffectsS.E.ResetSound();
 		yield return new WaitForSeconds(0.2f);
+		CameraEffectsS.E.ResetSound();
+		yield return new WaitForSeconds(0.1f);
 		foreach (BarrierS b in barriers){
 			b.TurnOff();
 		}
@@ -98,6 +107,9 @@ public class CombatManagerS : MonoBehaviour {
 		TurnOnObjects();
 		TurnOffObjects();
 
+		if (inInfiniteMode){
+			myInfiniteManager.AddCompletedFight();
+		}
 		if (clearBloodOnComplete){
 			PlayerInventoryS.I.dManager.ClearBattleBlood();
 		}
@@ -146,6 +158,9 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}else{
+			if (inInfiniteMode){
+				myInfiniteManager.SetGeometrySize(geometryMultiplier);	
+			}
 			if (clearBloodOnComplete){
 				PlayerInventoryS.I.dManager.SetBattleBlood();
 			}
@@ -215,7 +230,9 @@ public class CombatManagerS : MonoBehaviour {
 
 	void TurnOffEnemies(){
 		for (int i = 0; i < enemies.Length; i++){
-			enemies[i].currentSpawnedEnemy.enabled = false;
+			if (enemies[i].enemySpawned && enemies[i].currentSpawnedEnemy != null){
+				enemies[i].currentSpawnedEnemy.enabled = false;
+			}
 		}
 	}
 
@@ -224,6 +241,17 @@ public class CombatManagerS : MonoBehaviour {
 			if (enemies[i].currentSpawnedEnemy != null){
 				enemies[i].currentSpawnedEnemy.ChangeFeatherColor(newCol);
 			}
+		}
+	}
+
+	public bool CheckDifficulty(int check){
+		if (check == overrideOnDifficulty){
+			return true;
+		}
+		else if (check >= minDifficulty && check <= maxDifficulty){
+			return true;
+		}else{
+			return false;
 		}
 	}
 }

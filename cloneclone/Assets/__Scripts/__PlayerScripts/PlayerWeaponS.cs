@@ -16,6 +16,8 @@ public class PlayerWeaponS : MonoBehaviour {
 	public Sprite swapSprite;
 	public Color swapColor;
 	public Color flashSubColor;
+	public Color invertSwapColor;
+	public Color invertSubColor;
 
 	public GameObject attackFlashMain;
 	public GameObject attackFlashSub;

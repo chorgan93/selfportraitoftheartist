@@ -63,7 +63,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	}
 
 	public void SetWitchTime(bool witchOn){
-		if (_enemySpawned){
+		if (_enemySpawned && currentEnemyReference != null){
 			if (witchOn){
 				currentEnemyReference.StartWitchTime();
 			}else{

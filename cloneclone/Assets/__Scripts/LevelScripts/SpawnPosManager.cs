@@ -39,4 +39,15 @@ public class SpawnPosManager : MonoBehaviour {
 		}
 
 	}
+
+	public void ResetPlayerPos(){
+		if (whereToSpawn > spawnPts.Length-1){
+			pRef.transform.position = spawnPts[0].position;
+			CameraFollowS.F.CutTo(spawnPts[0].position);
+		}else{
+			pRef.transform.position = spawnPts[whereToSpawn].position;
+			CameraFollowS.F.CutTo(spawnPts[whereToSpawn].position);
+		}
+		pRef.GetComponent<PlayerController>().ResetBuddyPos(); 
+	}
 }

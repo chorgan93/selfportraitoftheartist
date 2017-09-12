@@ -115,7 +115,6 @@ public class PlayerDestructionS : MonoBehaviour {
 			for (int i = _bloodIds.Count-1; i > savedBloodCount; i--){
 				_bloodIds.RemoveAt(i);
 				_bloodSpriteNums.RemoveAt(i);
-				_bloodSpriteNums.RemoveAt(i);
 			}
 		}
 		if (currentlySpawnedBlood.Count > 0){

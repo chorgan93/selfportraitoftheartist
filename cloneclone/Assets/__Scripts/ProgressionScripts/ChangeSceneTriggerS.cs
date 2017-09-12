@@ -91,6 +91,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	void StartNextScene(){
 
+		if (SceneManagerS.inInfiniteScene){
+			PlayerInventoryS.I.dManager.ClearAll();
+		}
 		List<int> saveBuddyList = new List<int>();
 		saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
 		if (pRef.ParadigmIIBuddy() != null){
