@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_00_Brooksvale.unity
+- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_07_LowerHouse.unity
   isLoaded: 1
   isActive: 1

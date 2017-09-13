@@ -22,17 +22,29 @@ public class DifficultyS : MonoBehaviour {
 	public const float punishMultHard = 2f;
 	public const float punishMultChallenge = 1000f;
 
-	public static float GetSinMult(){
+	public static float GetSinMult(bool isGold){
 
 		if (sinStateOverride != SinState.None){
 			if (sinStateOverride == SinState.Easy){
-				return sinMultEasy;
+				if (isGold){
+					return sinMultNormal;
+				}else{
+					return sinMultEasy;
+				}
 			}
 			else if (sinStateOverride == SinState.Normal){
-				return sinMultNormal;
+				if (isGold){
+					return sinMultHard;
+				}else{
+					return sinMultNormal;
+				}
 			}
 			else if (sinStateOverride == SinState.Hard){
-				return sinMultHard;
+				if (isGold){
+					return sinMultChallenge;
+				}else{
+					return sinMultHard;
+				}
 			}
 			else if (sinStateOverride == SinState.Challenge){
 				return sinMultChallenge;
@@ -59,18 +71,30 @@ public class DifficultyS : MonoBehaviour {
 		}
 	}
 
-	public static int GetSinInt(){
+	public static int GetSinInt(bool isGold = false){
 
 
 		if (sinStateOverride != SinState.None){
 			if (sinStateOverride == SinState.Easy){
-				return 0;
+				if (isGold){
+					return 1;
+				}else{
+					return 0;
+				}
 			}
 			else if (sinStateOverride == SinState.Normal){
-				return 1;
+				if (isGold){
+					return 2;
+				}else{
+					return 1;
+				}
 			}
 			else if (sinStateOverride == SinState.Hard){
-				return 2;
+				if (isGold){
+					return 3;
+				}else{
+					return 2;
+				}
 			}
 			else if (sinStateOverride == SinState.Challenge){
 				return 3;
@@ -80,13 +104,25 @@ public class DifficultyS : MonoBehaviour {
 			}
 		}else{
 		if (selectedSinState == SinState.Easy){
-			return 0;
+				if (isGold){
+					return 1;
+				}else{
+					return 0;
+				}
 		}
 		else if (selectedSinState == SinState.Normal){
-			return 1;
+				if (isGold){
+					return 2;
+				}else{
+					return 1;
+				}
 		}
 		else if (selectedSinState == SinState.Hard){
-			return 2;
+				if (isGold){
+					return 3;
+				}else{
+					return 2;
+				}
 		}
 		else if (selectedSinState == SinState.Challenge){
 			return 3;

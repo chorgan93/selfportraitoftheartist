@@ -28,6 +28,7 @@ public class EnemyS : MonoBehaviour {
 	public string enemyName = "sickman";
 	public bool isFriendly = false;
 	public bool debugMark = false;
+	public bool isGold = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
@@ -383,9 +384,9 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
-		currentDifficultyMult = DifficultyS.GetSinMult();
+		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
 		actingMaxHealth = maxHealth*currentDifficultyMult;
-		maxCritDamage *= DifficultyS.GetSinMult();
+		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 
 		touchingWall = false;
 

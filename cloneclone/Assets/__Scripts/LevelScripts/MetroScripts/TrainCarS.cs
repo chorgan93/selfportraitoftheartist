@@ -358,6 +358,8 @@ public class TrainCarS : MonoBehaviour {
 		trainIsStopped = true;
 		currentTimeAtStop = timePerStop/2f;
 
+		rumblingSource.pitch*=0.75f;
+
 		AssignColliders();
 		SetColliders(false);
 
@@ -384,6 +386,9 @@ public class TrainCarS : MonoBehaviour {
 					if (fakeTrainStrings[currentFakeMessage] == ""){
 						DialogueManagerS.D.EndText();
 					}else{
+						if (rumblingSource.pitch < 1.8f){
+							rumblingSource.pitch += 0.1f;
+						}
 						if (startZoomStep >= currentFakeMessage){
 							DialogueManagerS.D.SetDisplayText(fakeTrainStrings[currentFakeMessage], false, false);
 							if (announceSound){

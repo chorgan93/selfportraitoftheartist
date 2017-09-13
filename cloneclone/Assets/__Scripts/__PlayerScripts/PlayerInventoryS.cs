@@ -42,6 +42,9 @@ public class PlayerInventoryS : MonoBehaviour {
 	
 	private static List<GameObject> equippedBuddies;
 
+	private int _tvNum = 999;
+	public int tvNum { get { return 999; } }
+
 	private InventoryManagerS _iManager;
 	public InventoryManagerS iManager { get { return _iManager; } }
 	private PlayerDestructionS _dManager;
@@ -425,6 +428,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		subWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		lHandler.ResetUpgrades();
+		_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
 		SaveLoadout(equippedWeapons, subWeapons, buddyList);
 		GameMenuS.ResetOptions();
 		OverwriteInventoryData();
@@ -504,6 +508,18 @@ public class PlayerInventoryS : MonoBehaviour {
 			lLU.Add(masterLoadoutList.lockedUpList[inventoryData.lockedUpgrades[i]]);
 		}
 		lHandler.LoadLists(nLU, aLU, lLU);
+
+		if (inventoryData.tvNumber != null){
+			if (inventoryData.tvNumber < 100){
+				_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+				inventoryData.tvNumber = _tvNum;
+			}else{
+				_tvNum = inventoryData.tvNumber;
+			}
+		}else{
+			_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+			inventoryData.tvNumber = _tvNum;
+		}
 
 		GameOverS.revivePosition = inventoryData.currentSpawnPoint;
 		RefreshRechargeables();
@@ -586,6 +602,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
+			inventoryData.tvNumber = _tvNum;
+
 		}
 	}
 }
@@ -631,6 +649,7 @@ public class InventorySave {
 	public int currentSpawnPoint;
 
 	public int turboSetting = 0;
+	public int tvNumber;
 
 	public int sinLevel;
 	public int punishLevel;
@@ -672,6 +691,8 @@ public class InventorySave {
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1};
+
+		tvNumber = Mathf.RoundToInt(Random.Range(100, 999));
 
 		turboSetting = 0;
 
