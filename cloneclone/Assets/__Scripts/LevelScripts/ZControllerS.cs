@@ -48,7 +48,7 @@ public class ZControllerS : MonoBehaviour {
 			zPlaced = false;
 			if (currentList.Count > 0){
 				for (int i = 0; i < currentList.Count; i++){
-					if (currentList[i].transform.position.y < allTargets[j].myTargetRef.position.y){
+					if (currentList[i].myTargetRef.position.y < allTargets[j].myTargetRef.position.y){
 						if (i == currentList.Count-1 && !zPlaced){
 							currentList.Add(allTargets[j]);
 							zPlaced = true;

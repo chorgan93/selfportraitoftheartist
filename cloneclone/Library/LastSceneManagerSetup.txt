@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_07_LowerHouse.unity
+- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_14_UpperHouseBasement.unity
   isLoaded: 1
   isActive: 1
