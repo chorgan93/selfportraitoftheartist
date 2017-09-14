@@ -10,16 +10,19 @@ public class VideotapePlayerS : MonoBehaviour {
 	public GameObject tvTapeB;
 	public GameObject tvTapeC;
 	public GameObject tvAmbient;
+	private int activeTape = -1;
 
 	[Header("Examine Strings")]
 	public string examineTapeA;
 	public string examineTapeB;
 	public string examineTapeC;
+	public string examineTapeIn;
 	public string examineNoTapes;
 	public string examinePostTapes;
 
 	private bool seenOneTape = false; // need this for turning on ambient tv vs. off tv
 	private bool seenAllTapes = false;
+	private bool tapeIsLoaded = false;
 
 	[Header("Progression Stats")]
 	public int keyTapeA; // added to "cleared walls" to see which tapes have been watched
@@ -42,4 +45,36 @@ public class VideotapePlayerS : MonoBehaviour {
 	private ControlManagerS controlRef;
 	private bool talkButtonDown;
 	private bool talking;
+
+	void TurnOffAllTVs(){
+		tvOff.gameObject.SetActive(false);
+		tvTapeA.gameObject.SetActive(false);
+		tvTapeB.gameObject.SetActive(false);
+		tvTapeC.gameObject.SetActive(false);
+		tvAmbient.gameObject.SetActive(false);
+	}
+	void SetUpTape(){
+
+		TurnOffAllTVs();
+
+		bool foundTape = false;
+		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeA)){
+			if (PlayerInventoryS.I.CheckForItem(itemNumTapeA)){
+				tvTapeA.gameObject.SetActive(true);
+				foundTape = true;
+			}
+		}
+
+		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) && !foundTape){
+			
+		}
+
+		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeC) && !foundTape){
+
+		}
+
+		if (!foundTape){
+			tvOff.gameObject.SetActive(true);
+		}
+	}
 }
