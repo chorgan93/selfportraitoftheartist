@@ -62,7 +62,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
 	
-	private string newGameScene = "IntroCutscene";
+	private string newGameScene = "Dream00_IntroCutscene";
 	//private string newGameScene = "InfiniteScene";
 	private string twitterLink = "http://www.twitter.com/melessthanthree";
 	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";

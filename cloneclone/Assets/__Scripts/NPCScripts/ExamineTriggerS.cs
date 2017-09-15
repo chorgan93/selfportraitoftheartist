@@ -45,7 +45,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool advanceProgress = false;
 	public int setProgress = -1;
 	public bool saveOnPickup = false;
-	public int addInvisibleKey = -1;
+	public bool isTapeTV = false;
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
@@ -170,6 +170,9 @@ public class ExamineTriggerS : MonoBehaviour {
 								PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
 								CameraEffectsS.E.SetNextScene(teleportScene);
 								CameraEffectsS.E.FadeIn();
+									if (isTapeTV){
+										VideotapePlayerS.backFromTape = true;
+									}
 							}
 	
 							if (myTrigger){
@@ -335,9 +338,6 @@ public class ExamineTriggerS : MonoBehaviour {
 			StoryProgressionS.SaveProgress();
 		}
 
-		if (addInvisibleKey > -1){
-			PlayerInventoryS.I.AddToInventory(addInvisibleKey, false, true);
-		}
 
 	}
 

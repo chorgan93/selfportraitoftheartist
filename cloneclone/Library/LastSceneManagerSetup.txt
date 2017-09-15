@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_09_OfficeFront.unity
+- path: Assets/_Scenes/_DreamScenes/Dream04_TapeDreamB.unity
   isLoaded: 1
   isActive: 1

@@ -6,11 +6,9 @@ public class VideotapePlayerS : MonoBehaviour {
 
 	[Header("Object References")]
 	public GameObject tvOff;
-	public GameObject tvTapeA;
-	public GameObject tvTapeB;
-	public GameObject tvTapeC;
-	public GameObject tvAmbient;
-	private int activeTape = -1;
+	public ExamineTriggerS tvOn;
+	public ExamineTriggerS tvAmbient;
+	public GameObject vcrOff;
 
 	[Header("Examine Strings")]
 	public string examineTapeA;
@@ -18,7 +16,7 @@ public class VideotapePlayerS : MonoBehaviour {
 	public string examineTapeC;
 	public string examineTapeIn;
 	public string examineNoTapes;
-	public string examinePostTapes;
+	public string ambientIntercut;
 
 	private bool seenOneTape = false; // need this for turning on ambient tv vs. off tv
 	private bool seenAllTapes = false;
@@ -37,44 +35,210 @@ public class VideotapePlayerS : MonoBehaviour {
 	public string sceneStringTapeB;
 	public string sceneStringTapeC;
 	public BarrierS[] barriersToTurnOff;
+	public GameObject barrier2Dholder;
 	public int progressNumToAdd = -1;
+	private bool lookingAtTV = false;
 
 	// management variables
 	private PlayerDetectS playerDetect;
 	private PlayerController playerRef;
-	private ControlManagerS controlRef;
 	private bool talkButtonDown;
 	private bool talking;
 
+	public static bool backFromTape = false;
+	private static bool hasSeenLoadMessage = false;
+
+	void Start(){
+		playerDetect = GetComponentInChildren<PlayerDetectS>();
+		tvAmbient.examineString = tvAmbient.examineString.Replace("[TVNUM]", PlayerInventoryS.I.tvNum.ToString());
+		InitializeTVs();
+	}
+
+	void Update(){
+		if (playerDetect.PlayerInRange() && !playerRef){
+			playerRef = playerDetect.player;
+		}
+
+			if (playerRef != null){
+			if (backFromTape && !CameraEffectsS.E.isFading && !playerRef.talking){
+				if(PlayerInventoryS.I.clearedWalls.Contains(keyTapeA) && PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) &&
+					PlayerInventoryS.I.clearedWalls.Contains(keyTapeC)){
+					for (int i = 0; i < barriersToTurnOff.Length; i++){
+						barriersToTurnOff[i].TurnOff();
+					}
+					barrier2Dholder.SetActive(false);
+					StoryProgressionS.storyProgress.Add(progressNumToAdd);
+				}
+				else if (!hasSeenLoadMessage){
+					TriggerExamine(4);
+					hasSeenLoadMessage = true;
+				}
+				backFromTape = false;
+			}
+				if (!playerRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse){
+					if (playerRef.myControl.TalkButton()){
+
+						if (!talkButtonDown){
+						if (!talking && !playerRef.talking && playerDetect.PlayerInRange()){
+							TriggerExamine(SetUpTape());
+							}
+						else if (talking){
+								if (DialogueManagerS.D.doneScrolling){
+									DialogueManagerS.D.EndText();
+									if (lookingAtTV){
+										CameraFollowS.F.ResetPOI();
+									}
+										
+									EndExamine();
+
+								}else{
+									DialogueManagerS.D.CompleteText();
+								}
+							}
+						}
+						talkButtonDown = true;
+					}else{
+						talkButtonDown = false;
+					}
+				}else{
+				if (playerRef.examining){
+					playerRef.SetExamining(false, playerDetect.examinePos);
+					}
+				}
+			}
+
+	}
+
+	void TriggerExamine(int typeOfExamine){
+		playerRef.SetTalking(true);
+		playerRef.SetExamining(true, playerDetect.examinePos);
+		talking = true;
+		switch (typeOfExamine){
+			case 0:
+				// give tape is in message
+			DialogueManagerS.D.SetDisplayText(examineTapeIn);
+			LookAtMe();
+				break;
+			case 1:
+			// insert tape a 
+			DialogueManagerS.D.SetDisplayText(examineTapeA);
+			LookAtTV();
+				break;
+			case 2:
+			// insert tape b
+			DialogueManagerS.D.SetDisplayText(examineTapeB);
+			LookAtTV();
+				break;
+			case 3:
+			// insert tape c
+			DialogueManagerS.D.SetDisplayText(examineTapeC);
+			LookAtTV();
+				break;
+		case 4:
+			// intercut message (to get point across)
+			DialogueManagerS.D.SetDisplayText(ambientIntercut);
+			LookAtTV();
+			break;
+			default:
+			// no tape message
+			DialogueManagerS.D.SetDisplayText(examineNoTapes);
+				break;
+		}
+	}
+
+	void LookAtTV(){
+		CameraFollowS.F.SetNewPOI(tvOff);
+		lookingAtTV = true;
+	}
+	void LookAtMe(){
+		CameraFollowS.F.SetNewPOI(gameObject);
+		lookingAtTV = true;
+	}
+
+	void EndExamine(){
+		lookingAtTV = false;
+		playerRef.SetTalking(false);
+		playerRef.SetExamining(true, playerDetect.examinePos);
+		talking = false;
+	}
+
 	void TurnOffAllTVs(){
-		tvOff.gameObject.SetActive(false);
-		tvTapeA.gameObject.SetActive(false);
-		tvTapeB.gameObject.SetActive(false);
-		tvTapeC.gameObject.SetActive(false);
+		tvOff.SetActive(false);
+		tvOn.gameObject.SetActive(false);
 		tvAmbient.gameObject.SetActive(false);
 	}
-	void SetUpTape(){
+	void InitializeTVs(){
+		TurnOffAllTVs();
+		if (PlayerInventoryS.I.clearedWalls.Contains(keyTapeA) && PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) &&
+			PlayerInventoryS.I.clearedWalls.Contains(keyTapeC) && !backFromTape){
+			tvAmbient.gameObject.SetActive(true);
+			vcrOff.SetActive(true);
+			for (int i = 0; i < barriersToTurnOff.Length; i++){
+				barriersToTurnOff[i].gameObject.SetActive(false);
+			}
+			barrier2Dholder.SetActive(false);
+			StoryProgressionS.storyProgress.Add(progressNumToAdd);
+			gameObject.SetActive(false);
+		}
+		else if (PlayerInventoryS.I.clearedWalls.Contains(keyTapeA) || PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) ||
+			PlayerInventoryS.I.clearedWalls.Contains(keyTapeC)){
+			tvAmbient.gameObject.SetActive(true);
+		}else{
+			tvOff.gameObject.SetActive(true);
+		}
+	}
+	int SetUpTape(){
 
+		if (!tapeIsLoaded){
 		TurnOffAllTVs();
 
 		bool foundTape = false;
+		int tapeMessage = 0;
 		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeA)){
 			if (PlayerInventoryS.I.CheckForItem(itemNumTapeA)){
-				tvTapeA.gameObject.SetActive(true);
+				tvOn.gameObject.SetActive(true);
+				tvOn.teleportScene = sceneStringTapeA;
 				foundTape = true;
+				tapeMessage = 1;
+				PlayerInventoryS.I.AddClearedWall(keyTapeA);
 			}
 		}
 
 		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) && !foundTape){
-			
+			if (PlayerInventoryS.I.CheckForItem(itemNumTapeB)){
+				tvOn.gameObject.SetActive(true);
+				tvOn.teleportScene = sceneStringTapeB;
+				foundTape = true;
+				tapeMessage = 2;
+				PlayerInventoryS.I.AddClearedWall(keyTapeB);
+			}
 		}
 
 		if (!PlayerInventoryS.I.clearedWalls.Contains(keyTapeC) && !foundTape){
-
+			if (PlayerInventoryS.I.CheckForItem(itemNumTapeC)){
+				tvOn.gameObject.SetActive(true);
+				tvOn.teleportScene = sceneStringTapeC;
+				foundTape = true;
+				tapeMessage = 3;
+				PlayerInventoryS.I.AddClearedWall(keyTapeC);
+			}
 		}
 
 		if (!foundTape){
-			tvOff.gameObject.SetActive(true);
+			if (PlayerInventoryS.I.clearedWalls.Contains(keyTapeA) || PlayerInventoryS.I.clearedWalls.Contains(keyTapeB) ||
+				PlayerInventoryS.I.clearedWalls.Contains(keyTapeC)){
+				tvAmbient.gameObject.SetActive(true);
+			}else{
+				tvOff.gameObject.SetActive(true);
+				}
+				tapeMessage = -1;
+			}else{
+				tapeIsLoaded = true;
+			}
+
+		return tapeMessage;
+		}else{
+			return 0;
 		}
 	}
 }
