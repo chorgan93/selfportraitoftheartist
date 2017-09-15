@@ -136,7 +136,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 	}
 
-	public void AddToInventory(int i, bool isKey = false){
+	public void AddToInventory(int i, bool isKey = false, bool dontAddMultiple = false){
 		if (!_collectedItems.Contains(i)){
 			if (i != 1){
 				_collectedItems.Add(i);
@@ -151,8 +151,10 @@ public class PlayerInventoryS : MonoBehaviour {
 				_collectedKeyItems.Add(i);
 			}
 		}else{
+			if (!dontAddMultiple){
 			_collectedItemCount[_collectedItems.IndexOf(i)]++;
 			_iManager.RefreshUI();
+			}
 		}
 	}
 

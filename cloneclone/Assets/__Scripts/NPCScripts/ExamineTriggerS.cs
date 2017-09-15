@@ -45,6 +45,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool advanceProgress = false;
 	public int setProgress = -1;
 	public bool saveOnPickup = false;
+	public int addInvisibleKey = -1;
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
@@ -332,6 +333,10 @@ public class ExamineTriggerS : MonoBehaviour {
 		
 		if (saveOnPickup){
 			StoryProgressionS.SaveProgress();
+		}
+
+		if (addInvisibleKey > -1){
+			PlayerInventoryS.I.AddToInventory(addInvisibleKey, false, true);
 		}
 
 	}

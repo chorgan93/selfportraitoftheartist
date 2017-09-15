@@ -33,7 +33,13 @@ public class LockedDoorS : MonoBehaviour {
 	private bool differentLook = false;
 	private bool doResetLook = false;
 
+	public ActivateOnDoorUnlockS lockedActivations;
 	public ActivateOnDoorUnlockS unlockActivations;
+	[Header("Code Properties")]
+	public KeypadS myKeypad;
+	private bool inKeypad = false;
+	public string keypadFailString;
+	private bool inKeypadFail = false;
 
 	// Use this for initialization
 	void Start () {
@@ -74,7 +80,7 @@ public class LockedDoorS : MonoBehaviour {
 
 
 		if (playerInRange && pRef != null){
-			if (!pRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse){
+			if (!pRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse && !inKeypad){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){
@@ -92,7 +98,9 @@ public class LockedDoorS : MonoBehaviour {
 								}
 							if (unlocking){
 									TurnOffFade();
-							}else{
+								}else if (myKeypad != null && !inKeypadFail){
+									TurnOnKeypad();
+								}else{
 									EndExamine();
 								}
 							}else{
@@ -140,9 +148,10 @@ public class LockedDoorS : MonoBehaviour {
 		}
 	}
 
-	private void TriggerExamine(){
+	private void TriggerExamine(bool keypadFail = false){
 
 
+		inKeypadFail = keypadFail;
 		if (PlayerInventoryS.I.CheckForItem(keyID)){
 			TriggerUnlock();
 			PlayerInventoryS.I.AddClearedWall(keyID);
@@ -154,7 +163,11 @@ public class LockedDoorS : MonoBehaviour {
 			pRef.SetTalking(true);
 			pRef.SetExamining(true, examinePos);
 			isTalking = true;
-			DialogueManagerS.D.SetDisplayText(lockString);
+			if (keypadFail){
+				DialogueManagerS.D.SetDisplayText(keypadFailString);
+			}else{
+				DialogueManagerS.D.SetDisplayText(lockString);
+			}
 		}
 
 	}
@@ -185,9 +198,31 @@ public class LockedDoorS : MonoBehaviour {
 		TriggerOnOff();
 	}
 
+	private void TurnOnKeypad(){
+		pRef.SetTalking(true);
+		inKeypad = true;
+		myKeypad.TurnOn(this, pRef.myControl);
+	}
+
+	public void EndKeypad(bool correct){
+		inKeypad = false;
+		if (correct){
+			PlayerInventoryS.I.AddToInventory(keyID, false, true);
+			TriggerExamine();
+		}else{
+			TriggerExamine(true);
+		}
+	}
+
 	void TriggerOnOff(){
 		if (unlockActivations != null){
 			unlockActivations.Activate();
+		}
+	}
+
+	void TriggerLockOnOff(){
+		if (lockedActivations != null){
+			lockedActivations.Activate();
 		}
 	}
 
@@ -195,6 +230,8 @@ public class LockedDoorS : MonoBehaviour {
 		pRef.SetTalking(false);
 		pRef.SetExamining(false, examinePos);
 		isTalking = false;
+		TriggerLockOnOff();
+		inKeypadFail = false;
 	}
 
 	void OnTriggerEnter(Collider other){

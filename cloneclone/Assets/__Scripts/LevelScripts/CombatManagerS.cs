@@ -3,11 +3,13 @@ using System.Collections;
 
 public class CombatManagerS : MonoBehaviour {
 
+	[Header("Activate Properties")]
 	public int combatID = -1;
 	public EnemySpawnerS[] enemies;
 	public BarrierS[] barriers;
 	public GameObject darknessHolder;
 	int defeatedEnemies = 0;
+	public bool effectOnStart = false;
 
 	PlayerController playerRef;
 	public PlayerController pRef { get { return playerRef; } }
@@ -158,6 +160,9 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}else{
+			if (effectOnStart){
+				CameraEffectsS.E.ResetEffect(false, true);
+			}
 			if (inInfiniteMode){
 				myInfiniteManager.SetGeometrySize(geometryMultiplier);	
 			}

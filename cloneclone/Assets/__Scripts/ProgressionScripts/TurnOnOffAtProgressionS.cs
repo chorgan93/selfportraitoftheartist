@@ -4,7 +4,6 @@ using System.Collections;
 public class TurnOnOffAtProgressionS : MonoBehaviour {
 
 	public int progressNum = -1;
-	public int[] progressNumMultiple;
 	public bool triggerOnAwake = false;
 	public bool triggerIfContainsGreater = false;
 	public GameObject[] onAtProgressObjects;
@@ -32,18 +31,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	}
 
 	void TriggerLogic(){
-		if (progressNumMultiple.Length > 0){
-			int numMatch = 0;
-			for (int i = 0; i < progressNumMultiple.Length; i++){
-				if (StoryProgressionS.storyProgress.Contains(progressNumMultiple[i])){
-					numMatch++;
-				}
-			}
-			if (numMatch >= progressNumMultiple.Length){
-				TurnObjectsOnOff();
-			}
-		}
-		else if (progressNum > -1){
+		if (progressNum > -1){
 			if (StoryProgressionS.storyProgress.Contains(progressNum) 
 				|| (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
 				TurnObjectsOnOff();

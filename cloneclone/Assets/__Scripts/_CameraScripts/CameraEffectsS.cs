@@ -196,7 +196,7 @@ public class CameraEffectsS : MonoBehaviour {
 			Instantiate(healSound);
 		}
 	}
-	public void ResetEffect(bool endCombat = false){
+	public void ResetEffect(bool endCombat = false, bool noColor = false){
 		blurEnabled = true;
 		blurEffect.enabled = true;
 		blurEffectTime = 0;
@@ -204,6 +204,8 @@ public class CameraEffectsS : MonoBehaviour {
 
 		if (endCombat){
 			staticCol = endCombatColor;
+		}else if (noColor){
+			staticCol = Color.white;
 		}else{
 			staticCol = resetColor;
 		}
