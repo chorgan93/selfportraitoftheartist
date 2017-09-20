@@ -10,6 +10,7 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject darknessHolder;
 	int defeatedEnemies = 0;
 	public bool effectOnStart = false;
+	public float delayEndEffect = 0f;
 
 	PlayerController playerRef;
 	public PlayerController pRef { get { return playerRef; } }
@@ -91,7 +92,7 @@ public class CombatManagerS : MonoBehaviour {
 		completed = true;
 		yield return new WaitForSeconds(0.2f);
 		CameraEffectsS.E.ResetSound();
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.1f+delayEndEffect);
 		foreach (BarrierS b in barriers){
 			b.TurnOff();
 		}
@@ -150,6 +151,7 @@ public class CombatManagerS : MonoBehaviour {
 			b.gameObject.SetActive(true);
 		}
 
+		playerRef.playerAug.canUseUnstoppable = true;
 		if (itemReset){
 
 			playerRef.EndWitchTime();

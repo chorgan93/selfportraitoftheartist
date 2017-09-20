@@ -274,9 +274,11 @@ public class BuddyProjectileS : MonoBehaviour {
 					actingDamageMult = 1.4f;
 				}
 				
-				hitEnemy.TakeDamage
+				float dmgDealt = hitEnemy.TakeDamage
 					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					damage*actingDamageMult, actingStunMult, 2f);
+
+				_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 
 				if (_myBuddy){
 					_myBuddy.playerRef.ExtendWitchTime();

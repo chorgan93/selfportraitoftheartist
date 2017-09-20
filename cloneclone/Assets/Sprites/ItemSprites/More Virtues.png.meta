@@ -1,0 +1,194 @@
+fileFormatVersion: 2
+guid: ef547e6d7c6224874ac8dff48941521e
+timeCreated: 1505844865
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Consumables 0_0
+    21300002: Consumables 0_1
+    21300004: Consumables 0_2
+    21300006: Consumables 0_3
+    21300008: Consumables 0_4
+    21300010: Consumables 0_5
+    21300012: Consumables 0_6
+    21300014: Consumables 0_7
+    21300016: Key Items_0
+    21300018: Key Items_1
+    21300020: Virtues_0
+    21300022: Virtues_1
+    21300024: Virtues_2
+    21300026: Virtues_3
+    21300028: Virtues_4
+    21300030: Virtues_5
+    21300032: Virtues_6
+    21300034: Virtues_7
+    21300036: Virtues_8
+    21300038: Virtues_9
+    21300040: Virtues_10
+    21300042: Virtues_11
+    21300044: Virtues_12
+    21300046: Virtues_13
+    21300048: Virtues_14
+    21300050: Virtues_15
+    21300052: Virtues_16
+    21300054: Virtues_17
+    21300056: Virtues_18
+    21300058: Virtues_19
+    21300060: Virtues_20
+    21300062: Virtues_21
+    21300064: Virtues_22
+    21300066: Virtues_23
+    21300068: Virtues_24
+    21300070: Virtues_25
+    21300072: Virtues_26
+    21300074: Virtues_27
+    21300076: Virtues_28
+    21300078: Virtues_29
+    21300080: Virtues_30
+    21300082: Virtues_31
+    21300084: Virtues_32
+    21300086: Virtues_33
+    21300088: Virtues_34
+    21300090: Virtues_35
+    21300092: Virtues_36
+    21300094: Virtues_37
+    21300096: Virtues_38
+    21300098: Virtues_39
+    21300100: Virtues_40
+    21300102: Virtues_41
+    21300104: Virtues_42
+    21300106: Virtues_43
+    21300108: Virtues_44
+    21300110: Virtues_45
+    21300112: Virtues_46
+    21300114: Virtues_47
+    21300116: Virtues_48
+    21300118: Virtues_49
+    21300120: Virtues_50
+    21300122: Virtues_51
+    21300124: Virtues_52
+    21300126: Virtues_53
+    21300128: Virtues_54
+    21300130: Virtues_55
+    21300132: Virtues_56
+    21300134: Virtues_57
+    21300136: Virtues_58
+    21300138: Virtues_59
+    21300140: Virtues_60
+    21300142: Virtues_61
+    21300144: Virtues_62
+    21300146: Virtues_63
+    21300148: Virtues_64
+    21300150: Virtues_65
+    21300152: Virtues_66
+    21300154: Virtues_67
+    21300156: Virtues_68
+    21300158: Virtues_69
+    21300160: More Virtues_0
+    21300162: More Virtues_1
+    21300164: More Virtues_2
+    21300166: More Virtues_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: More Virtues_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

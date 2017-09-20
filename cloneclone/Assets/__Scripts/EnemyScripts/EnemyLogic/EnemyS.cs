@@ -940,7 +940,7 @@ public class EnemyS : MonoBehaviour {
 		canBeParried = false;
 	}
 
-	public void TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
+	public float TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
 		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f, bool fromParry = false){
 
 		if (GetPlayerReference()){
@@ -1124,6 +1124,7 @@ public class EnemyS : MonoBehaviour {
 		EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, true, false, damageTaken, transform);
 
 		//healthBarReference.ResizeForDamage();
+		return damageTaken;
 
 	}
 

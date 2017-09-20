@@ -381,4 +381,12 @@ public class ExamineTriggerS : MonoBehaviour {
 			playerInRange = false;
 		}
 	}
+
+	void OnDisable(){
+		if (pRef != null){
+			if (pRef.examining){
+				pRef.SetExamining(false, Vector3.zero);
+			}
+		}
+	}
 }

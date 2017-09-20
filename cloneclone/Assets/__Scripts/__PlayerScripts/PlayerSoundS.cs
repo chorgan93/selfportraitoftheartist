@@ -33,6 +33,8 @@ public class PlayerSoundS : MonoBehaviour {
 	public GameObject changeToRewindSound;
 	public GameObject changeToHealSound;
 
+	private float faceStepX = 1f;
+
 	// Use this for initialization
 	void Start () {
 
@@ -92,11 +94,20 @@ public class PlayerSoundS : MonoBehaviour {
 			spawnPos.x += footstepX*xMult;
 			GameObject newFootstep = Instantiate(footstepObj, spawnPos, Quaternion.identity)
 					as GameObject;
+
+			Vector3 flipSize = newFootstep.transform.localScale;
 			if (pRef.myRenderer.transform.localScale.x < 0){
-				Vector3 flipSize = newFootstep.transform.localScale;
 				flipSize.x *= -1f;
 				newFootstep.transform.localScale = flipSize;
 			}
+
+			if (pRef.facingUp || pRef.facingDown){
+				flipSize = newFootstep.transform.localScale;
+				flipSize.x*=faceStepX;
+				faceStepX*=-1f;
+				newFootstep.transform.localScale = flipSize;
+			}
+
 			newFootstep.GetComponent<SpriteRenderer>().color = pRef.myRenderer.color;
 			newFootstep.transform.GetChild(0).GetComponent<SpriteRenderer>().color = pRef.myRenderer.color;
 			xMult *= -1f;

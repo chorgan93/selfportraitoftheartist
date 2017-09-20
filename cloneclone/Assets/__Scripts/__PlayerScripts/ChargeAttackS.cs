@@ -230,10 +230,12 @@ public class ChargeAttackS : MonoBehaviour {
 					actingDmg*=PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
 				}
 
-			other.gameObject.GetComponent<EnemyS>().TakeDamage
+			float dmgDealt = other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
 					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
+
+				myPlayer.myStats.DesperateRecover(dmgDealt);
 
 				/*if (myPlayer.playerAug.lunaAug){
 					myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);

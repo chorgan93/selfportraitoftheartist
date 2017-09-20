@@ -29,6 +29,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private float healthStartYMult;
 	private Vector2 healthBarCurrentSize;
 	public Image healthBar;
+	private Vector2 healthBarDesperateCurrentSize;
+	public Image healthBarDesperate;
 
 	private Vector2 staminaBarMaxSize;
 	private Vector2 staminaStartPos;
@@ -261,6 +263,12 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	public void UpdateFills(){
 
+		if (!healthBarDesperate.enabled){
+			if (playerStats.canRecoverHealth > 0){
+				healthBarDesperate.enabled = true;
+			}
+		}
+
 		// health fill
 		Vector2 fillSize = healthBarMaxSize;
 		fillSize.x += playerStats.addedHealth*barAddSize;
@@ -308,6 +316,18 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		borderSize.y = healthBorder.rectTransform.sizeDelta.y;
 		borderSize.x += playerStats.addedHealth*barAddSize;
 		healthBorder.rectTransform.sizeDelta = healthBorderBG.rectTransform.sizeDelta = borderSize;
+
+		// desperate fill
+		if (healthBarDesperate.enabled){
+			fillSize = healthBarMaxSize;
+			fillSize.x += playerStats.addedHealth*barAddSize;
+			fillSize.x *= (playerStats.currentHealth+playerStats.canRecoverHealth)/playerStats.maxHealth;
+			fillSize.y = healthFill.rectTransform.sizeDelta.y;
+			healthBarDesperate.rectTransform.sizeDelta = fillSize;
+			if (fillSize.x <= healthFill.rectTransform.sizeDelta.x || playerStats.canRecoverHealth <= 0){
+				healthBarDesperate.enabled = false;
+			}
+		}
 
 		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;

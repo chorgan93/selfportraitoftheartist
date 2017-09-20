@@ -47,6 +47,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 0
 	private bool _unstoppableAug = false;
 	public bool unstoppableAug { get { return _unstoppableAug; } }
+	[HideInInspector]
+	public bool canUseUnstoppable = true;
 
 	// NOT USED
 	private bool _opportunisticAug = false; // VIRTUE NOT USED
@@ -59,6 +61,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 1 (extra killAt dmg)
 	private bool _determinedAug = false;
 	public bool determinedAug { get { return _determinedAug; } }
+
 
 	// index 2 (lower stamina at max health
 	private bool _empoweredAug = false;

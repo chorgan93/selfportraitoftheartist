@@ -503,10 +503,12 @@ public class ProjectileS : MonoBehaviour {
 				}
 
 				//DoShake();
-				hitEnemy.TakeDamage
+				float dmgDealt = hitEnemy.TakeDamage
 					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), hitStopAmt, 0f,
 					false, killAtLessThan*DeterminedMult());
+
+				_myPlayer.myStats.DesperateRecover(dmgDealt);
 
 				StartMoveStop(hitStopAmt);
 				_myPlayer.AnimationStop(hitStopAmt);

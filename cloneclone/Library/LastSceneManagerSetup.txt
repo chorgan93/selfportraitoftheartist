@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_03_CenterHall.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_08_Paranoid.unity
   isLoaded: 1
   isActive: 1

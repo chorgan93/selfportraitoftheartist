@@ -19,9 +19,7 @@ public class ChapterTrigger : MonoBehaviour {
 		chapterRef = GameObject.Find("ChapterText").GetComponent<InstructionTextS>();
 		chapterString = chapterString.Replace("NEWLINE", "\n");
 
-		if (addToProgression > -1){
-			StoryProgressionS.SetStory(addToProgression);
-		}
+
 	}
 
 	void Update(){
@@ -49,12 +47,16 @@ public class ChapterTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
+		Debug.Log(other.gameObject.name);
 		if (other.gameObject.tag == "Player" && !activated){
 		
 				//chapterRef.SetShowing(true, chapterString);
 
 			isShowing = true;
 			activated = true;
+			if (addToProgression > -1){
+				StoryProgressionS.SetStory(addToProgression);
+			}
 		}
 	}
 

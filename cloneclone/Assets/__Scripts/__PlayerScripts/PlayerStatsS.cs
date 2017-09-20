@@ -12,6 +12,9 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float CAN_USE_MANA = 0.25f;
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
+	private const float DESPERATE_MULT = 0.8f;
+	private const float DESPERATE_HEAL_MULT = 0.75f;
+
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
 	public const float HEALTH_ADD_AMT = 1f;
 
@@ -45,6 +48,17 @@ public class PlayerStatsS : MonoBehaviour {
 	private static float _currentHealth;
 
 	public float currentHealth { get { return _currentHealth; } }
+	private float _canRecoverHealth = 0f;
+	private float _canRecoverHealthStart;
+	private float allowHealthRecoverMaxTime = 1.8f;
+	private float allowRecoverAddTime = 0.4f;
+	private float currentAllowRecoverTime;
+
+	private float allowHealthEndTime = 0.8f;
+	private float allowHealthEndCountdown;
+	private float allowHealthT;
+
+	public float canRecoverHealth { get { return _canRecoverHealth; } }
 	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
 	public float savedHealth { get { return _savedHealth; } }
@@ -213,13 +227,14 @@ public class PlayerStatsS : MonoBehaviour {
 		DarknessAdd();
 	}
 
-	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 	void Update(){
+		HealthRecovery();
+		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 		if (Input.GetKeyDown(KeyCode.G)){
 			godMode = !godMode;
 		}
+		#endif
 	}
-	#endif
 
 	//________________________________________PUBLIC FUNCTIONS
 
@@ -472,6 +487,24 @@ public class PlayerStatsS : MonoBehaviour {
 
 	}
 
+	private void HealthRecovery(){
+		if (pRef.playerAug.desperateAug && _canRecoverHealth > 0){
+			currentAllowRecoverTime -= Time.deltaTime;
+			if (currentAllowRecoverTime <= 0){
+
+				allowHealthEndCountdown += Time.deltaTime;
+				allowHealthT = allowHealthEndCountdown/allowHealthEndTime;
+
+				allowHealthT = Mathf.Sin(allowHealthT * Mathf.PI * 0.5f);
+				_canRecoverHealth = Mathf.Lerp(_canRecoverHealthStart, 0f, allowHealthT);
+				if (_canRecoverHealth <= 0 || allowHealthEndCountdown >= allowHealthEndTime){
+					_canRecoverHealth = 0f;
+				}
+			}
+			_uiReference.UpdateFills();
+		}
+	}
+
 	private bool RecoveryCheck(){
 
 		bool canRecover = true;
@@ -638,15 +671,17 @@ public class PlayerStatsS : MonoBehaviour {
 
 	}
 
-	public void Heal(float healAmt){
+	public void Heal(float healAmt, bool doEffect = true){
 		_currentHealth += healAmt;
 		if (_currentHealth > maxHealth){
 			_currentHealth = maxHealth;
 		}
-		myPlayerController.FlashHeal();
-		_itemEffect.Flash(myPlayerController.myRenderer.material.color);
-		CameraShakeS.C.SmallShakeCustomDuration(0.6f);
-		CameraShakeS.C.TimeSleep(0.08f);
+		if (doEffect){
+			myPlayerController.FlashHeal();
+			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
+			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
+			CameraShakeS.C.TimeSleep(0.08f);
+		}
 		warningReference.EndShow("! ! HEALTH LOW ! !");
 		delayDeath = false;
 		delayDeathCountdown = 0f;
@@ -669,6 +704,7 @@ public class PlayerStatsS : MonoBehaviour {
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false){
 
 		dmg*=DifficultyS.GetPunishMult();
+		float healthBeforeTakingDmg = _currentHealth;
 		if (myPlayerController.playerAug.lovedAug){
 			dmg*=0.75f;
 		}
@@ -715,9 +751,9 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					
-					if (_currentHealth > maxHealth*0.011f && _currentHealth-dmg <= 0 
-					    && myPlayerController.playerAug.unstoppableAug){
+					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable){
 						_currentHealth = maxHealth*0.01f;
+						myPlayerController.playerAug.canUseUnstoppable = false;
 					}else{
 						_currentHealth -= dmg;
 					}
@@ -775,6 +811,16 @@ public class PlayerStatsS : MonoBehaviour {
 					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 
+					if (pRef.playerAug.desperateAug){
+						currentAllowRecoverTime = allowHealthRecoverMaxTime;
+						_canRecoverHealth = dmg*DESPERATE_MULT;
+						allowHealthEndCountdown = 0f;
+						if (_canRecoverHealth > healthBeforeTakingDmg){
+							_canRecoverHealth = (healthBeforeTakingDmg-_currentHealth)*DESPERATE_MULT;
+						}
+						_canRecoverHealthStart = _canRecoverHealth;
+					}
+
 					if(_currentHealth<maxHealth*0.33f){
 
 						warningReference.NewMessage("! ! HEALTH LOW ! !", Color.white, Color.red, false, 2);
@@ -814,6 +860,18 @@ public class PlayerStatsS : MonoBehaviour {
 
 		_uiReference.UpdateFills();
 
+	}
+
+	public void DesperateRecover(float amtToRecover){
+		if (pRef.playerAug.desperateAug && _canRecoverHealth > 0 && allowHealthEndCountdown <= 0){
+			Heal(amtToRecover*DESPERATE_HEAL_MULT, false);
+			_canRecoverHealth -= amtToRecover*DESPERATE_HEAL_MULT;
+			currentAllowRecoverTime+=allowRecoverAddTime;
+			if (_canRecoverHealth < 0){
+				_canRecoverHealth = 0f;
+				allowHealthEndCountdown = allowHealthEndTime;
+			}
+		}
 	}
 
 	public void ActivateDefense(){
