@@ -125,6 +125,14 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		currentActingBehavior = newB;
 	}
 
+	public void SetTargetBehavior(int newBehavior){
+		if (newBehavior < behaviorSet.Length){
+			CancelAllActions();
+			SetActingBehaviorNum(newBehavior);
+			behaviorSet[newBehavior].StartAction();
+		}
+	}
+
 	public void CancelAllActions(){
 		for (int i = 0; i < behaviorSet.Length; i++){
 			if (behaviorSet[i].behaviorActive){

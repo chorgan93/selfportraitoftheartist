@@ -124,6 +124,9 @@ public class EnemyS : MonoBehaviour {
 
 	private float knockbackDelay = 0.1f;
 
+	[Header("Interaction Properties")]
+	public EnemyStatusReferencesS myStatusMessenger;
+
 	
 	[Header("Sound Properties")]
 	public GameObject hitSound;
@@ -494,7 +497,9 @@ public class EnemyS : MonoBehaviour {
 		foreach (EnemyBehaviorStateS bState in _behaviorStates){
 			bState.SetEnemy(this);
 		}
-
+		if (myStatusMessenger){
+			myStatusMessenger.ResetMessage();
+		}
 		CancelBehaviors();
 		//EndAllBehaviors();
 		CheckStates(false);
@@ -743,7 +748,7 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	private void EndAllBehaviors(){
+	public void EndAllBehaviors(){
 		
 		if (_currentState != null){
 		_currentState.EndBehavior();
@@ -1091,6 +1096,10 @@ public class EnemyS : MonoBehaviour {
 			}
 			_killScreen.Flash();
 			_isDead = true;
+			if (myStatusMessenger){
+				myStatusMessenger.KillMessage();
+			}
+
 			CameraFollowS.F.RemoveStunnedEnemy(this);
 			Stun (0);
 			CancelBehaviors();
@@ -1168,6 +1177,10 @@ public class EnemyS : MonoBehaviour {
 
 		if (!_initialized){
 			Initialize();
+		}
+
+		if (myStatusMessenger){
+			myStatusMessenger.KillMessage();
 		}
 
 		_currentHealth = 0;

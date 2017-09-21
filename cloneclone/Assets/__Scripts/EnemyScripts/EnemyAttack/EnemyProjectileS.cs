@@ -66,6 +66,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public bool trackPlayer = false;
 	public float trackSpeed = 400f;
 	public float trackingDelay = 0.5f;
+	public float endTrackingTime = -1;
 	private float trackingCountdown;
 	private Vector3 trackingAcceleration = Vector3.zero;
 	private Transform trackingRef;
@@ -80,6 +81,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		myCollider = GetComponent<Collider>();
 			startDamage = damage;
 
+		}
+
+		if (trackPlayer && endTrackingTime < 0){
+			endTrackingTime = _maxRange;
 		}
 	}
 
@@ -290,9 +295,12 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (trackingCountdown > 0){
 			trackingCountdown -= Time.deltaTime;
 		}else{
-			trackingAcceleration = (trackingRef.position-transform.position).normalized*trackSpeed*Time.deltaTime;
+			if (endTrackingTime > 0){
+				trackingAcceleration = (trackingRef.position-transform.position).normalized*trackSpeed*Time.deltaTime;
 			trackingAcceleration.z = 0f;
 			_rigidbody.AddForce(trackingAcceleration, ForceMode.Acceleration);
+				endTrackingTime -= Time.deltaTime;
+			}
 		}
 
 	}

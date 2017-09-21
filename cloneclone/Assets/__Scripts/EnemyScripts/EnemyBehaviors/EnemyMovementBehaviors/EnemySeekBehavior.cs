@@ -10,6 +10,7 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 
 	[Header("Movement Variables")]
 	public GameObject poi;
+	public string searchPOIName = "";
 	public float wanderDragAmt = -1f;
 	public float wanderSpeedFixed = -1f;
 	public float wanderSpeedMin;
@@ -51,6 +52,12 @@ public class EnemySeekBehavior : EnemyBehaviorS {
 	private void InitializeAction(){
 
 		didWallRedirect  = false;
+		if (searchPOIName != "" && poi == null){
+			GameObject searchPoi = GameObject.Find(searchPOIName);
+			if (searchPoi){
+				poi = searchPoi;
+			}
+		}
 		if (poi == null || poi == myEnemyReference.gameObject){
 			if (myEnemyReference.GetTargetReference() != null){
 				poi = myEnemyReference.GetTargetReference().gameObject;

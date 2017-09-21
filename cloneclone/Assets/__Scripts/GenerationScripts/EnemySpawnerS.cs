@@ -112,14 +112,32 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	}
 
-	public void RespawnEnemies(){
+	public void RespawnEnemies(bool usedSaveSpawn = true){
 
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			currentEnemyReference.gameObject.SetActive(true);
 			currentEnemyReference.Reinitialize();
-			currentEnemyReference.transform.position = savedSpawnPt;
+			if (usedSaveSpawn){
+				currentEnemyReference.transform.position = savedSpawnPt;
+			}else{
+				currentEnemyReference.transform.position = transform.position;
+			}
 			//currentEnemyReference.transform.parent = transform;
 		}
 
+	}
+
+	public void Unspawn(){
+
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			currentEnemyReference.gameObject.SetActive(false);
+		}
+	}
+
+	public void KillWithoutXP(){
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			currentEnemyReference.KillWithoutXP();
+		}
 	}
 
 	public bool EnemiesDefeated(){
@@ -144,5 +162,15 @@ public class EnemySpawnerS : MonoBehaviour {
 			spawnPos.z = dropOnDefeat.transform.position.z;
 			Instantiate(dropOnDefeat, spawnPos, Quaternion.identity);
 		}
+	}
+
+	public bool SpawnedEnemyIsActive(){
+		bool active = false;
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			if (!currentEnemyReference.isDead && currentEnemyReference.gameObject.activeSelf){
+				active = true;
+			}
+		}
+		return active;
 	}
 }
