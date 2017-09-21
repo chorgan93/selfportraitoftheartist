@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private const string currentVer = "— v. 0.3.0 —";
+	private const string currentVer = "— v. 0.3.2 —";
 	private static bool hasSeenMainMenu = false;
 	
 	private ControlManagerS myController;
@@ -62,7 +62,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
 	
-	private string newGameScene = "Dream00_IntroCutscene";
+	private string newGameScene = "TutorialIntro";
 	//private string newGameScene = "InfiniteScene";
 	private string twitterLink = "http://www.twitter.com/melessthanthree";
 	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";

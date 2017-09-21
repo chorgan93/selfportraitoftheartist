@@ -468,6 +468,7 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		CameraShakeS.SetTurbo(inventoryData.turboSetting);
 
+		TextInputUIS.playerName = inventoryData.playerName;
 
 		unlockedWeapons = new List<PlayerWeaponS>();
 		equippedWeapons = new List<PlayerWeaponS>();
@@ -537,6 +538,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData = new InventorySave();
 
 		if (initialized){
+			inventoryData.playerName = TextInputUIS.playerName;
 		inventoryData.earnedUpgrades = _earnedUpgrades;
 		inventoryData.collectedItems = _collectedItems;
 		inventoryData.healNums = healNums;
@@ -656,8 +658,11 @@ public class InventorySave {
 	public int sinLevel;
 	public int punishLevel;
 
+	public string playerName;
+
 
 	public InventorySave(){
+		playerName = "LUCAH";
 		earnedUpgrades = new List<int>();
 		earnedVirtues = new List<int>();
 		earnedTech = new List<int>();

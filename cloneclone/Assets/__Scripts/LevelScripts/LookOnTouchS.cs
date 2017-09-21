@@ -14,11 +14,19 @@ public class LookOnTouchS : MonoBehaviour {
 
 	[Header("IgnoreProperties")]
 	public int doNotActivateOnRewindNum = -1;
+	public int doNotActivateOnHealNum = -1;
+	public float delayCountdown = 0f;
+	private bool doDelay = false;
 
 	bool canActivate(){
 		bool canAct = true;
 		if (doNotActivateOnRewindNum >= 0){
 			if (PlayerInventoryS.I.CheckHeal(doNotActivateOnRewindNum)){
+				canAct = false;
+			}
+		}
+		if (doNotActivateOnHealNum >= 0){
+			if (PlayerInventoryS.I.CheckCharge(doNotActivateOnHealNum)){
 				canAct = false;
 			}
 		}
@@ -28,6 +36,15 @@ public class LookOnTouchS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (activated && doDelay){
+			delayCountdown -= Time.deltaTime;
+			if (delayCountdown <= 0){
+				doDelay = false;
+				isLooking = true;
+				CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
+				lookCountdown = lookDurations[currentTarget];
+			}
+		}
 		if (activated && isLooking){
 			lookCountdown-=Time.deltaTime;
 			if (lookCountdown <= 0){
@@ -48,7 +65,10 @@ public class LookOnTouchS : MonoBehaviour {
 	
 		if (other.gameObject.tag == "Player" && !activated){
 			activated = true;
-			if (canActivate()){
+					if (delayCountdown <= 0){
+						doDelay = canActivate();
+					}
+			else if (canActivate()){
 			isLooking = true;
 			CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 			lookCountdown = lookDurations[currentTarget];

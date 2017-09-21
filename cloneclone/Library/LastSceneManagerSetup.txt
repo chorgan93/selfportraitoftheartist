@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_08_Paranoid.unity
+- path: Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneMainHall.unity
   isLoaded: 1
   isActive: 1

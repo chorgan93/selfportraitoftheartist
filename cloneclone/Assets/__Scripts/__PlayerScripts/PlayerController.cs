@@ -575,8 +575,12 @@ public class PlayerController : MonoBehaviour {
 		if (!allowChain){
 			currentChain = 0;
 		}
+		if (queuedAttackDelays != null){
 		queuedAttackDelays.Clear();
+		}
+		if (queuedAttacks != null){
 		queuedAttacks.Clear();
+		}
 		attackDelay = 0;
 		_chargingAttack = false;
 		allowChargeAttack = false;
@@ -2092,8 +2096,12 @@ public class PlayerController : MonoBehaviour {
 	private void TurnOffAttackAnimation(){
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("HeavyAttacking", false);
-		attackEffectRef.EndAttackEffect();
-		_myFace.AllowFace();
+		if (attackEffectRef){
+			attackEffectRef.EndAttackEffect();
+		}
+		if (_myFace){
+			_myFace.AllowFace();
+		}
 	}
 
 	public void TurnOffResting(){
@@ -2617,9 +2625,18 @@ public class PlayerController : MonoBehaviour {
 	public void SetTalking(bool nEx){
 		_isTalking = nEx;
 		if (_isTalking){
+			if (!_myRigidbody){
+				_myRigidbody = GetComponent<Rigidbody>();
+			}
 			_myRigidbody.velocity = Vector3.zero;
+			if (!_myAnimator){
+				_myAnimator = GetComponentInChildren<Animator>();
+			}
 			_myAnimator.SetFloat("Speed", 0f);
 			_myAnimator.SetBool("Attacking", false);
+			if (!_playerSound){
+				_playerSound = GetComponent<PlayerSoundS>();
+			}
 			_playerSound.SetWalking(false);
 			CancelAttack();
 		}

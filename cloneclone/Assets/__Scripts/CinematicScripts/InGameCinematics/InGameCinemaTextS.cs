@@ -18,6 +18,12 @@ public class InGameCinemaTextS : MonoBehaviour {
 
 	private bool textAfter = false;
 
+	[Header ("First Scene Info")]
+	public bool dontTurnOnStats = false;
+	public bool waitForInput = false;
+	public TextInputUIS textInputRef;
+	private bool awaitingInput = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -36,21 +42,27 @@ public class InGameCinemaTextS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!dialogueComplete){
+		if (!dialogueComplete && !awaitingInput){
 		if (!advanceButtonDown && _myControl.TalkButton()){
 				advanceButtonDown = true;
 			if (DialogueManagerS.D.doneScrolling){
 				currentString++;
 				if (currentString > textStrings.Length-1){
+							if (!textInputRef){
 						if (!textAfter){
-							DialogueManagerS.D.EndText();
+								DialogueManagerS.D.EndText(!dontTurnOnStats);
 						}
 						_myHandler.dialogueDone = true;
 						_myHandler.TurnOnTime();
 						dialogueComplete = true;
+						}else{
+							textInputRef.Activate(this);
+							awaitingInput = true;
+						}
 					}else{
 						DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
 					}
+					
 				}else{
 					DialogueManagerS.D.CompleteText();
 				}
@@ -74,6 +86,17 @@ public class InGameCinemaTextS : MonoBehaviour {
 	void AddNewlines(){
 		for (int i = 0; i < textStrings.Length; i++){
 			textStrings[i] = textStrings[i].Replace("NEWLINE","\n");
+			textStrings[i] = textStrings[i].Replace("PLAYERNAME", TextInputUIS.playerName);
 		}
+	}
+
+	public void SetInputComplete(){
+		awaitingInput = false;
+		if (!textAfter){
+			DialogueManagerS.D.EndText();
+		}
+		_myHandler.dialogueDone = true;
+		_myHandler.TurnOnTime();
+		dialogueComplete = true;
 	}
 }

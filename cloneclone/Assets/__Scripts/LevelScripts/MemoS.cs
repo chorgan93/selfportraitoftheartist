@@ -23,6 +23,8 @@ public class MemoS : MonoBehaviour {
 
 		if (PlayerInventoryS.I.collectedKeyItems.Contains(memoID)){
 			TurnOff();
+		}else{
+			AddLineBreaks();
 		}
 	
 	}
@@ -61,6 +63,14 @@ public class MemoS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	void AddLineBreaks(){
+		for (int i = 0; i < examineStrings.Length; i++){
+			if (examineStrings[i].Contains("NEWLINE")){
+				examineStrings[i] = examineStrings[i].Replace("NEWLINE", "\n");
+			}
+		}
 	}
 
 	private void TriggerExamine(){

@@ -6,6 +6,7 @@ public class EquipMenuS : MonoBehaviour {
 
 	public Image playerImage;
 	public Text playerLevel;
+	public Text playerName;
 	public Text descriptionText;
 	private PlayerController pRef;
 	[Header("Text Properties")]
@@ -103,6 +104,8 @@ public class EquipMenuS : MonoBehaviour {
 			mantraSubParadigmI.enabled = false;
 			buddyParadigmI.enabled = false;
 			buddyParadigmII.enabled = false;
+
+			playerName.text = TextInputUIS.playerName;
 	
 			inventoryRef = PlayerInventoryS.I;
 			

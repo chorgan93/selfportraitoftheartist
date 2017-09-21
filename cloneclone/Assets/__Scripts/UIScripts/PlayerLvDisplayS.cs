@@ -15,7 +15,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 	public Text pwStat;
 
 	private Color textStartColor;
-	private Color highlightColor = Color.white;
+	private Color highlightColor = Color.green;
 
 	private bool _initialized = false;
 

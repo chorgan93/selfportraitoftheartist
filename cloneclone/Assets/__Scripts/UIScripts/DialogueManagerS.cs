@@ -189,7 +189,7 @@ public class DialogueManagerS : MonoBehaviour {
 		_doneScrolling = true;
 	}
 
-	public void EndText(){
+	public void EndText(bool newStatOn = true){
 
 		dialogueText.enabled = false;
 		memoBG.enabled = false;
@@ -200,7 +200,7 @@ public class DialogueManagerS : MonoBehaviour {
 				showTime = showTimeMax/2f;
 
 		CameraFollowS.F.EndZoom();
-		if (statsOn){
+		if (statsOn && newStatOn){
 			hideStats.gameObject.SetActive(true);
 		}
 		if (_usingMerchantText){

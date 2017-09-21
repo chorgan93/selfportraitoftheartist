@@ -22,6 +22,8 @@ public class LevelUpMenu : MonoBehaviour {
 	public GameObject mainMenuObj;
 
 	[Header("Level Up Menu Selections")]
+	public Text playerName;
+	public Text playerLvl;
 	public GameObject levelMenuProper;
 	private bool onLevelMenu = false;
 	private bool onTravelMenu = false;
@@ -62,6 +64,8 @@ public class LevelUpMenu : MonoBehaviour {
 	
 		levelMenuProper.gameObject.SetActive(false);
 		travelMenuProper.gameObject.SetActive(false);
+
+		playerName.text = TextInputUIS.playerName;
 
 		if (PlayerInventoryS.I.CheckpointsReached() > 1){
 			canTravel = true;
@@ -242,6 +246,11 @@ public class LevelUpMenu : MonoBehaviour {
 	}
 
 	private void TurnOnLevelUpMenu(){
+		if (pRef.myStats.currentLevel < 10){
+			playerLvl.text = "LV. 0" + pRef.myStats.currentLevel;
+		}else{
+			playerLvl.text = "LV. " + pRef.myStats.currentLevel;
+		}
 		pRef.myStats.uiReference.cDisplay.SetShowing (true);
 		cursorObj.gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(true);
@@ -367,6 +376,11 @@ public class LevelUpMenu : MonoBehaviour {
 			l.TurnOffVisual();
 			levelMenuItemOutlines[index].enabled = false;
 			index++;
+		}
+		if (pRef.myStats.currentLevel < 10){
+			playerLvl.text = "LV. 0" + pRef.myStats.currentLevel;
+		}else{
+			playerLvl.text = "LV. " + pRef.myStats.currentLevel;
 		}
 		StartCoroutine(TurnOnUpgrades());
 	}
