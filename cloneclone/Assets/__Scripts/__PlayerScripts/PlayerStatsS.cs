@@ -673,8 +673,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void Heal(float healAmt, bool doEffect = true){
 		_currentHealth += healAmt;
-		if (_currentHealth > maxHealth){
+		if (_currentHealth >= maxHealth){
 			_currentHealth = maxHealth;
+			myPlayerController.playerAug.canUseUnstoppable = true;
 		}
 		if (doEffect){
 			myPlayerController.FlashHeal();
