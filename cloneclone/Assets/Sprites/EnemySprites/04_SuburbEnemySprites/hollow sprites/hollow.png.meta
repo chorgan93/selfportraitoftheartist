@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 37cb3855248724e17b4b745e0753f76d
-timeCreated: 1506032527
+timeCreated: 1506554279
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -164,6 +164,65 @@ TextureImporter:
     21300314: slimething_96
     21300316: slimething_97
     21300318: slimething_98
+    21300320: hollow_0
+    21300322: hollow_1
+    21300324: hollow_2
+    21300326: hollow_3
+    21300328: hollow_4
+    21300330: hollow_5
+    21300332: hollow_6
+    21300334: hollow_7
+    21300336: hollow_8
+    21300338: hollow_9
+    21300340: hollow_10
+    21300342: hollow_11
+    21300344: hollow_12
+    21300346: hollow_13
+    21300348: hollow_14
+    21300350: hollow_15
+    21300352: hollow_16
+    21300354: hollow_17
+    21300356: hollow_18
+    21300358: hollow_19
+    21300360: hollow_20
+    21300362: hollow_21
+    21300364: hollow_22
+    21300366: hollow_23
+    21300368: hollow_24
+    21300370: hollow_25
+    21300372: hollow_26
+    21300374: hollow_27
+    21300376: hollow_28
+    21300378: hollow_29
+    21300380: hollow_30
+    21300382: hollow_31
+    21300384: hollow_32
+    21300386: hollow_33
+    21300388: hollow_34
+    21300390: hollow_35
+    21300392: hollow_36
+    21300394: hollow_37
+    21300396: hollow_38
+    21300398: hollow_39
+    21300400: hollow_40
+    21300402: hollow_41
+    21300404: hollow_42
+    21300406: hollow_43
+    21300408: hollow_44
+    21300410: hollow_45
+    21300412: hollow_46
+    21300414: hollow_47
+    21300416: hollow_48
+    21300418: hollow_49
+    21300420: hollow_50
+    21300422: hollow_51
+    21300424: hollow_52
+    21300426: hollow_53
+    21300428: hollow_54
+    21300430: hollow_55
+    21300432: hollow_56
+    21300434: hollow_57
+    21300436: hollow_58
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -211,1189 +270,709 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slimething_0
+      name: hollow_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1152
-        width: 128
-        height: 128
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_1
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 1152
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_2
+      name: hollow_1
       rect:
         serializedVersion: 2
         x: 256
-        y: 1152
-        width: 128
-        height: 128
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_3
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 1152
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_4
+      name: hollow_2
       rect:
         serializedVersion: 2
         x: 512
-        y: 1152
-        width: 128
-        height: 128
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 1152
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_6
+      name: hollow_3
       rect:
         serializedVersion: 2
         x: 768
-        y: 1152
-        width: 128
-        height: 128
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 1152
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_8
+      name: hollow_4
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1152
-        width: 128
-        height: 128
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_9
+      name: hollow_5
       rect:
         serializedVersion: 2
-        x: 1152
-        y: 1152
-        width: 128
-        height: 128
+        x: 1280
+        y: 1792
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_10
+      name: hollow_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_12
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_13
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_14
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_15
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_20
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_21
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_22
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_23
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: hollow_24
       rect:
         serializedVersion: 2
         x: 0
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_11
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_12
+      name: hollow_25
       rect:
         serializedVersion: 2
         x: 256
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_13
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_14
+      name: hollow_26
       rect:
         serializedVersion: 2
         x: 512
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_15
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_16
+      name: hollow_27
       rect:
         serializedVersion: 2
         x: 768
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_17
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 1024
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_18
+      name: hollow_28
       rect:
         serializedVersion: 2
         x: 1024
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_19
+      name: hollow_29
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1280
         y: 1024
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_20
+      name: hollow_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 896
-        width: 128
-        height: 128
+        x: 1536
+        y: 1024
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_21
+      name: hollow_31
       rect:
         serializedVersion: 2
-        x: 128
-        y: 896
-        width: 128
-        height: 128
+        x: 1792
+        y: 1024
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_22
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_23
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_24
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_25
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_26
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_27
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_28
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_29
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 896
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_30
+      name: hollow_32
       rect:
         serializedVersion: 2
         x: 0
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_31
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_32
+      name: hollow_33
       rect:
         serializedVersion: 2
         x: 256
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_33
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_34
+      name: hollow_34
       rect:
         serializedVersion: 2
         x: 512
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_35
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_36
+      name: hollow_35
       rect:
         serializedVersion: 2
         x: 768
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_37
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_38
+      name: hollow_36
       rect:
         serializedVersion: 2
         x: 1024
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_39
+      name: hollow_37
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1280
         y: 768
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_40
+      name: hollow_38
       rect:
         serializedVersion: 2
-        x: 0
-        y: 640
-        width: 128
-        height: 128
+        x: 1536
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_41
+      name: hollow_39
       rect:
         serializedVersion: 2
-        x: 128
-        y: 640
-        width: 128
-        height: 128
+        x: 1792
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_42
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_43
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_44
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_45
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_46
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_47
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_48
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_49
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_50
+      name: hollow_40
       rect:
         serializedVersion: 2
         x: 0
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_51
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_52
+      name: hollow_41
       rect:
         serializedVersion: 2
         x: 256
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_53
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_54
+      name: hollow_42
       rect:
         serializedVersion: 2
         x: 512
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_55
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_56
+      name: hollow_43
       rect:
         serializedVersion: 2
         x: 768
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_57
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_58
+      name: hollow_44
       rect:
         serializedVersion: 2
         x: 1024
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_59
+      name: hollow_45
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1280
         y: 512
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_60
+      name: hollow_46
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
-        width: 128
-        height: 128
+        x: 1536
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_61
+      name: hollow_47
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
-        width: 128
-        height: 128
+        x: 1792
+        y: 512
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_62
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_63
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_64
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_65
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_66
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_67
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_68
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_69
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_70
+      name: hollow_48
       rect:
         serializedVersion: 2
         x: 0
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_71
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_72
+      name: hollow_49
       rect:
         serializedVersion: 2
         x: 256
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_73
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_74
+      name: hollow_50
       rect:
         serializedVersion: 2
         x: 512
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_75
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_76
+      name: hollow_51
       rect:
         serializedVersion: 2
         x: 768
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_77
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_78
+      name: hollow_52
       rect:
         serializedVersion: 2
         x: 1024
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_79
+      name: hollow_53
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1280
         y: 256
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_80
+      name: hollow_54
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 128
-        height: 128
+        x: 1536
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_81
+      name: hollow_55
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
+        x: 1792
+        y: 256
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_82
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_83
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_84
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_85
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_86
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_87
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_88
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_89
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_90
+      name: hollow_56
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_91
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_92
+      name: hollow_57
       rect:
         serializedVersion: 2
         x: 256
         y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: slimething_93
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_94
+      name: hollow_58
       rect:
         serializedVersion: 2
         x: 512
         y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_95
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_96
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_97
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: slimething_98
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 0
-        width: 128
-        height: 128
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
