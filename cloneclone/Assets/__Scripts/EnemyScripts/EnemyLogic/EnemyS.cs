@@ -453,6 +453,9 @@ public class EnemyS : MonoBehaviour {
 			healthFeatherReference.SetUpEnemy(this);
 			if (mySpawner){
 				healthFeatherReference.ChangeFeatherColor(mySpawner.myManager.pRef.EquippedWeapon().swapColor);
+				if (myStatusMessenger){
+					myStatusMessenger.FeatherMessage(mySpawner.myManager.pRef.EquippedWeapon().swapColor);
+				}
 			}
 			if (!PlayerController.equippedVirtues.Contains(5)){
 				healthFeatherReference.Hide();
@@ -1224,6 +1227,9 @@ public class EnemyS : MonoBehaviour {
 	public void ChangeFeatherColor(Color newCol){
 		if (healthFeatherReference)
 			healthFeatherReference.ChangeFeatherColor(newCol);
+		if (myStatusMessenger){
+			myStatusMessenger.FeatherMessage(newCol);
+		}
 	}
 
 	public void SetInvulnerable(bool newI){

@@ -40,6 +40,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 	
 	[Header ("Effect Properties")]
 	public GameObject signalObj;
+	public EnemyGiveSpawnCommandS spawnCommand;
 
 
 	public virtual void StartAction(bool setAnimTrigger = true){
@@ -51,6 +52,10 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
 		myEnemy.SetInvulnerable(setInvincible);
+
+		if (spawnCommand){
+			spawnCommand.GiveCommand();
+		}
 
 		myEnemy.ignorePush = ignorePush;
 

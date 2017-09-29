@@ -93,8 +93,9 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 			for (int i = 0; i < spawnReferences.Length; i++){
 				if (!spawnedEnemy){
 				if (spawnReferences[i].enemySpawned){
-					if (spawnReferences[i].currentSpawnedEnemy.isDead){
+						if (spawnReferences[i].currentSpawnedEnemy.isDead || !spawnReferences[i].currentSpawnedEnemy.gameObject.activeSelf){
 							spawnReferences[i].RespawnEnemies(false);
+							spawnedEnemy = true;
 					}
 				}else{
 					spawnReferences[i].myManager = myEnemyReference.mySpawner.myManager;
@@ -110,7 +111,7 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 		int numAvail = 0;
 		for (int i = 0; i < spawnReferences.Length; i++){
 			if (spawnReferences[i].enemySpawned){
-				if (spawnReferences[i].currentSpawnedEnemy.isDead){
+				if (spawnReferences[i].currentSpawnedEnemy.isDead || !spawnReferences[i].currentSpawnedEnemy.gameObject.activeSelf){
 					numAvail++;
 				}
 			}else{
@@ -129,6 +130,12 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 	public void KillAll(){
 		for (int i = 0; i < spawnReferences.Length; i++){
 			spawnReferences[i].KillWithoutXP();
+		}
+	}
+
+	public void FeatherAll(Color newCol){
+		for (int i = 0; i < spawnReferences.Length; i++){
+			spawnReferences[i].ChangeFeatherColor(newCol);
 		}
 	}
 

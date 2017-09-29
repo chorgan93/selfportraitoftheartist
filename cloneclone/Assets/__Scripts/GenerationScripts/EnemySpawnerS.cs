@@ -131,12 +131,19 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
 			currentEnemyReference.gameObject.SetActive(false);
+			currentEnemyReference.myAnimator.SetBool("Death", false);
 		}
 	}
 
 	public void KillWithoutXP(){
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
 			currentEnemyReference.KillWithoutXP();
+		}
+	}
+
+	public void ChangeFeatherColor(Color newC){
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			currentEnemyReference.ChangeFeatherColor(newC);
 		}
 	}
 

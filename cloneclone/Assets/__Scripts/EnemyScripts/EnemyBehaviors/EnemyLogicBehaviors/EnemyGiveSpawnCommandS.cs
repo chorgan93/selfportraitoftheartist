@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class EnemyGiveSpawnCommandS : EnemyBehaviorS {
 
 	public EnemySpawnEnemyBehavior targetSpawns;
-	private int commandStepToGive = 0;
+	public int commandStepToGive = 0;
 
-	public override void StartAction(bool setAnimTrigger=false){
+	//assigned in other behaviors
+
+	public void GiveCommand(){
 
 		// give command, then move on
 		if (targetSpawns.EnemiesAreActive()){
@@ -19,7 +21,7 @@ public class EnemyGiveSpawnCommandS : EnemyBehaviorS {
 			}
 		}
 
-		EndAction();
+		//EndAction();
 
 	}
 
