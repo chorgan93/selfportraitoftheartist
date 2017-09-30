@@ -11,6 +11,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 	public float attackDuration = 3f;
 	public float attackWarmup = 2f;
 	public EnemyChargeAttackS attackCollider;
+	public bool killOnCast = false;
 
 
 	private Vector3 attackDirection;
@@ -39,7 +40,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 		if (AttackInRange()){
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			attackTimeCountdown = attackDuration;
-			attackCollider.TurnOn(attackWarmup);
+			attackCollider.TurnOn(attackWarmup, killOnCast);
 			myEnemyReference.AttackFlashEffect();
 			if (animationKey != ""){
 				myEnemyReference.myAnimator.SetTrigger(animationKey);

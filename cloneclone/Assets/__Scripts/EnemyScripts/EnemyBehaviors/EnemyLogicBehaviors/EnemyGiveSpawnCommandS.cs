@@ -25,4 +25,17 @@ public class EnemyGiveSpawnCommandS : EnemyBehaviorS {
 
 	}
 
+	public int NumSpawnsActive(){
+		int numSpawned = 0;
+		for (int i = 0; i < targetSpawns.spawnReferences.Length; i++){
+			if (targetSpawns.spawnReferences[i].enemySpawned){
+				if (!targetSpawns.spawnReferences[i].currentSpawnedEnemy.isDead
+					&& targetSpawns.spawnReferences[i].currentSpawnedEnemy.gameObject.activeSelf){
+					numSpawned++;
+				}
+			}
+		}
+		return numSpawned;
+	}
+
 }

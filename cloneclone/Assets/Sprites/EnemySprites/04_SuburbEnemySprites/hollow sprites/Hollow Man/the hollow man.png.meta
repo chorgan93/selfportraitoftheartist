@@ -1,0 +1,471 @@
+fileFormatVersion: 2
+guid: 3dc42f32cdf574bb9ac15fd0b45b30ce
+timeCreated: 1506797205
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Movement_0
+    21300002: PC Movement_1
+    21300004: PC Movement_2
+    21300006: PC Movement_3
+    21300008: PC Movement_4
+    21300010: PC Movement_5
+    21300012: PC Movement_6
+    21300014: PC Movement_7
+    21300016: PC Movement_8
+    21300018: PC Movement_9
+    21300020: PC Movement_10
+    21300022: PC Movement_11
+    21300024: PC Movement_12
+    21300026: PC Movement_13
+    21300028: PC Movement_14
+    21300030: PC Movement_15
+    21300032: PC Movement_16
+    21300034: sick_0
+    21300036: sick_1
+    21300038: sick_2
+    21300040: sick_3
+    21300042: sick_4
+    21300044: sick_5
+    21300046: sick_6
+    21300048: sick_7
+    21300050: sick_8
+    21300052: sick_9
+    21300054: sick_10
+    21300056: sick_11
+    21300058: sick_12
+    21300060: sick_13
+    21300062: sick_14
+    21300064: sick_15
+    21300066: sick_16
+    21300068: sick_17
+    21300070: sick_18
+    21300072: sick_19
+    21300074: sick_20
+    21300076: sick_21
+    21300078: sick_22
+    21300080: sick_23
+    21300082: sick_24
+    21300084: it part 1_0
+    21300086: it part 1_1
+    21300088: it part 1_2
+    21300090: it part 1_3
+    21300092: it part 1_4
+    21300094: it part 1_5
+    21300096: it part 1_6
+    21300098: it part 1_7
+    21300100: it part 1_8
+    21300102: it part 1_9
+    21300104: it part 1_10
+    21300106: it part 1_11
+    21300108: it part 1_12
+    21300110: it part 1_13
+    21300112: it part 1_14
+    21300114: it part 1_15
+    21300116: it part 1_16
+    21300118: it part 1_17
+    21300120: it part 1_18
+    21300122: slimething_0
+    21300124: slimething_1
+    21300126: slimething_2
+    21300128: slimething_3
+    21300130: slimething_4
+    21300132: slimething_5
+    21300134: slimething_6
+    21300136: slimething_7
+    21300138: slimething_8
+    21300140: slimething_9
+    21300142: slimething_10
+    21300144: slimething_11
+    21300146: slimething_12
+    21300148: slimething_13
+    21300150: slimething_14
+    21300152: slimething_15
+    21300154: slimething_16
+    21300156: slimething_17
+    21300158: slimething_18
+    21300160: slimething_19
+    21300162: slimething_20
+    21300164: slimething_21
+    21300166: slimething_22
+    21300168: slimething_23
+    21300170: slimething_24
+    21300172: slimething_25
+    21300174: slimething_26
+    21300176: slimething_27
+    21300178: slimething_28
+    21300180: slimething_29
+    21300182: slimething_30
+    21300184: slimething_31
+    21300186: slimething_32
+    21300188: slimething_33
+    21300190: slimething_34
+    21300192: slimething_35
+    21300194: slimething_36
+    21300196: slimething_37
+    21300198: slimething_38
+    21300200: slimething_39
+    21300202: slimething_40
+    21300204: slimething_41
+    21300206: slimething_42
+    21300208: slimething_43
+    21300210: slimething_44
+    21300212: slimething_45
+    21300214: slimething_46
+    21300216: slimething_47
+    21300218: slimething_48
+    21300220: slimething_49
+    21300222: slimething_50
+    21300224: slimething_51
+    21300226: slimething_52
+    21300228: slimething_53
+    21300230: slimething_54
+    21300232: slimething_55
+    21300234: slimething_56
+    21300236: slimething_57
+    21300238: slimething_58
+    21300240: slimething_59
+    21300242: slimething_60
+    21300244: slimething_61
+    21300246: slimething_62
+    21300248: slimething_63
+    21300250: slimething_64
+    21300252: slimething_65
+    21300254: slimething_66
+    21300256: slimething_67
+    21300258: slimething_68
+    21300260: slimething_69
+    21300262: slimething_70
+    21300264: slimething_71
+    21300266: slimething_72
+    21300268: slimething_73
+    21300270: slimething_74
+    21300272: slimething_75
+    21300274: slimething_76
+    21300276: slimething_77
+    21300278: slimething_78
+    21300280: slimething_79
+    21300282: slimething_80
+    21300284: slimething_81
+    21300286: slimething_82
+    21300288: slimething_83
+    21300290: slimething_84
+    21300292: slimething_85
+    21300294: slimething_86
+    21300296: slimething_87
+    21300298: slimething_88
+    21300300: slimething_89
+    21300302: slimething_90
+    21300304: slimething_91
+    21300306: slimething_92
+    21300308: slimething_93
+    21300310: slimething_94
+    21300312: slimething_95
+    21300314: slimething_96
+    21300316: slimething_97
+    21300318: slimething_98
+    21300320: hollow_0
+    21300322: hollow_1
+    21300324: hollow_2
+    21300326: hollow_3
+    21300328: hollow_4
+    21300330: hollow_5
+    21300332: hollow_6
+    21300334: hollow_7
+    21300336: hollow_8
+    21300338: hollow_9
+    21300340: hollow_10
+    21300342: hollow_11
+    21300344: hollow_12
+    21300346: hollow_13
+    21300348: hollow_14
+    21300350: hollow_15
+    21300352: hollow_16
+    21300354: hollow_17
+    21300356: hollow_18
+    21300358: hollow_19
+    21300360: hollow_20
+    21300362: hollow_21
+    21300364: hollow_22
+    21300366: hollow_23
+    21300368: hollow_24
+    21300370: hollow_25
+    21300372: hollow_26
+    21300374: hollow_27
+    21300376: hollow_28
+    21300378: hollow_29
+    21300380: hollow_30
+    21300382: hollow_31
+    21300384: hollow_32
+    21300386: hollow_33
+    21300388: hollow_34
+    21300390: hollow_35
+    21300392: hollow_36
+    21300394: hollow_37
+    21300396: hollow_38
+    21300398: hollow_39
+    21300400: hollow_40
+    21300402: hollow_41
+    21300404: hollow_42
+    21300406: hollow_43
+    21300408: hollow_44
+    21300410: hollow_45
+    21300412: hollow_46
+    21300414: hollow_47
+    21300416: hollow_48
+    21300418: hollow_49
+    21300420: hollow_50
+    21300422: hollow_51
+    21300424: hollow_52
+    21300426: hollow_53
+    21300428: hollow_54
+    21300430: hollow_55
+    21300432: hollow_56
+    21300434: hollow_57
+    21300436: hollow_58
+    21300438: the hollow man_0
+    21300440: the hollow man_1
+    21300442: the hollow man_2
+    21300444: the hollow man_3
+    21300446: the hollow man_4
+    21300448: the hollow man_5
+    21300450: the hollow man_6
+    21300452: the hollow man_7
+    21300454: the hollow man_8
+    21300456: the hollow man_9
+    21300458: the hollow man_10
+    21300460: the hollow man_11
+    21300462: the hollow man_12
+    21300464: the hollow man_13
+    21300466: the hollow man_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: the hollow man_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: the hollow man_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

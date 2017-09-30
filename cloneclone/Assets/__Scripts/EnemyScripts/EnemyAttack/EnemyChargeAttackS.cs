@@ -48,6 +48,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public float spawnRadius;
 	public int numToSpawn = 1;
 
+	private bool doKill = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -105,6 +107,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 							if (myEnemy){
 								if (!myEnemy.isCritical && !myEnemy.isDead){
 									_myCollider.enabled = true;
+									if (doKill){
+										myEnemy.KillWithoutXP();
+									}
 								}
 							}else if (!myEnemy){
 							_myCollider.enabled = true;
@@ -233,8 +238,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		newHitObj.transform.position = hitObjSpawn;
 	}*/
 
-	public void TurnOn(float attackWarmup){
+	public void TurnOn(float attackWarmup, bool killOnCast = false){
 
+		doKill = killOnCast;
 		capturedChargeTime = chargeUpTime = attackWarmup;
 		_myRenderer.material.SetTexture("_MainTex", startFlash);
 		fadeColor.a = 0;
