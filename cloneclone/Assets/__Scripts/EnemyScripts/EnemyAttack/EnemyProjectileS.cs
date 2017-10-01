@@ -295,7 +295,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (trackingCountdown > 0){
 			trackingCountdown -= Time.deltaTime;
 		}else{
-			if (endTrackingTime > 0){
+			if (endTrackingTime > 0 && !inWitchTime){
 				trackingAcceleration = (trackingRef.position-transform.position).normalized*trackSpeed*Time.deltaTime;
 			trackingAcceleration.z = 0f;
 			_rigidbody.AddForce(trackingAcceleration, ForceMode.Acceleration);

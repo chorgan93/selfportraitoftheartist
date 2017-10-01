@@ -43,7 +43,7 @@ public class PlayerInventoryS : MonoBehaviour {
 	private static List<GameObject> equippedBuddies;
 
 	private int _tvNum = 999;
-	public int tvNum { get { return 999; } }
+	public int tvNum { get { return _tvNum; } }
 
 	private InventoryManagerS _iManager;
 	public InventoryManagerS iManager { get { return _iManager; } }
@@ -513,14 +513,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		lHandler.LoadLists(nLU, aLU, lLU);
 
 		if (inventoryData.tvNumber != null){
-			if (inventoryData.tvNumber < 100){
-				_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+			if (inventoryData.tvNumber < 100 || inventoryData.tvNumber == 999){
+				_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
 				inventoryData.tvNumber = _tvNum;
 			}else{
 				_tvNum = inventoryData.tvNumber;
 			}
 		}else{
-			_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+			_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
 			inventoryData.tvNumber = _tvNum;
 		}
 
@@ -606,6 +606,9 @@ public class PlayerInventoryS : MonoBehaviour {
 
 			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
+			if (_tvNum < 100 || _tvNum == 999){
+				_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
+			}
 			inventoryData.tvNumber = _tvNum;
 
 		}
@@ -699,7 +702,7 @@ public class InventorySave {
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1};
 
-		tvNumber = Mathf.RoundToInt(Random.Range(100, 999));
+		tvNumber = Mathf.FloorToInt(Random.Range(100, 999));
 
 		turboSetting = 0;
 
