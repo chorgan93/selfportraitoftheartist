@@ -66,8 +66,14 @@ public class EnemySpawnerS : MonoBehaviour {
 		if (_enemySpawned && currentEnemyReference != null){
 			if (witchOn){
 				currentEnemyReference.StartWitchTime();
+				if (currentEnemyReference.myStatusMessenger){
+					currentEnemyReference.myStatusMessenger.StartWitchTime();
+				}
 			}else{
 				currentEnemyReference.EndWitchTime();
+				if (currentEnemyReference.myStatusMessenger){
+					currentEnemyReference.myStatusMessenger.EndWitchTime();
+				}
 			}
 		}
 	}
@@ -144,6 +150,16 @@ public class EnemySpawnerS : MonoBehaviour {
 	public void ChangeFeatherColor(Color newC){
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
 			currentEnemyReference.ChangeFeatherColor(newC);
+		}
+	}
+
+	public void SendWitchMessage(bool doWitch){
+		if (!didNotSpawnEnemy && currentEnemyReference != null){
+			if (doWitch){
+			currentEnemyReference.StartWitchTime();
+			}else{
+				currentEnemyReference.EndWitchTime();
+			}
 		}
 	}
 

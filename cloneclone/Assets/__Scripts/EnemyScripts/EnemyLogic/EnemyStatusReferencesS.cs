@@ -23,6 +23,21 @@ public class EnemyStatusReferencesS : MonoBehaviour {
 		}
 	}
 
+	public void StartWitchTime(){
+		if (spawnEnemyReferences.Count > 0){
+			for (int i = 0; i < spawnEnemyReferences.Count; i++){
+				spawnEnemyReferences[i].SendWitchMessage(true);
+			}
+		}
+	}
+	public void EndWitchTime(){
+		if (spawnEnemyReferences.Count > 0){
+			for (int i = 0; i < spawnEnemyReferences.Count; i++){
+				spawnEnemyReferences[i].SendWitchMessage(false);
+			}
+		}
+	}
+
 	public void FeatherMessage(Color swapCol){
 		if (spawnEnemyReferences.Count > 0){
 			for (int i = 0; i < spawnEnemyReferences.Count; i++){

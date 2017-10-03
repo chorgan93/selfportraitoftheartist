@@ -193,9 +193,11 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 					//spawnedEnemy = true;
 				}
 			}else if (availSpawns.Count <= 1){
+				if (availSpawns[0].enemySpawned){
 				if (availSpawns[0].currentSpawnedEnemy.isDead || !availSpawns[0].currentSpawnedEnemy.gameObject.activeSelf){
 					availSpawns[0].RespawnEnemies(false);
 					//spawnedEnemy = true;
+				}
 				}
 			else{
 				availSpawns[0].myManager = myEnemyReference.mySpawner.myManager;
@@ -270,6 +272,18 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 		}
 		}
 
+	}
+
+	public void SendWitchMessage(bool witchOn){
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				externalSpawners[i].SendWitchMessage(witchOn);
+			}
+		}else{
+			for (int i = 0; i < spawnReferences.Length; i++){
+				spawnReferences[i].SendWitchMessage(witchOn);
+			}
+		}
 	}
 
 	public bool EnemiesAreActive(){
