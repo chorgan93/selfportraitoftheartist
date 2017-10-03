@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 
@@ -12,6 +13,9 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 	public float spawnDelay = 0.8f;
 	public float timeBetweenSpawns = 0.3f;
 	public EnemySpawnerS[] spawnReferences;
+	public string searchSpawnReferenceTag = "";
+	private bool foundSpawnReferences;
+	private List<EnemySpawnerS> externalSpawners;
 	public bool parentSpawn = false;
 	public int numToSpawnPer = 3;
 	private int currentSpawns;
@@ -38,6 +42,10 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 	
 	private void InitializeAction(){
 
+		if (!foundSpawnReferences && searchSpawnReferenceTag != ""){
+			FindExternalSpawners();
+		}
+
 		if (CanSpawn()){
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 			if (signalObj != null){
@@ -60,6 +68,17 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 			EndAction();
 		}
 		
+	}
+
+	void FindExternalSpawners(){
+		GameObject[] externalSpawns = GameObject.FindGameObjectsWithTag(searchSpawnReferenceTag);
+		externalSpawners = new List<EnemySpawnerS>();
+		for (int i = 0; i < externalSpawns.Length; i++){
+			externalSpawners.Add(externalSpawns[i].GetComponent<EnemySpawnerS>());
+			externalSpawners[i].gameObject.SetActive(false);
+			externalSpawners[i].allowSpawn = true;
+		}
+		foundSpawnReferences = true;
 	}
 
 	private void DoSpawns(){
@@ -90,6 +109,22 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 	void SpawnAnEnemy(){
 		if (CanSpawn()){
 			bool spawnedEnemy = false;
+			if (foundSpawnReferences){
+				for (int i = 0; i < externalSpawners.Count; i++){
+					if (!spawnedEnemy){
+						if (externalSpawners[i].enemySpawned){
+							if (externalSpawners[i].currentSpawnedEnemy.isDead || !externalSpawners[i].currentSpawnedEnemy.gameObject.activeSelf){
+								externalSpawners[i].RespawnEnemies(false);
+								spawnedEnemy = true;
+							}
+						}else{
+							externalSpawners[i].myManager = myEnemyReference.mySpawner.myManager;
+							externalSpawners[i].gameObject.SetActive(true);
+							spawnedEnemy = true;
+						}
+					}
+				}
+			}else{
 			for (int i = 0; i < spawnReferences.Length; i++){
 				if (!spawnedEnemy){
 				if (spawnReferences[i].enemySpawned){
@@ -104,11 +139,23 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 				}
 				}
 			}
+			}
 		}
 	}
 
 	bool CanSpawn(){
 		int numAvail = 0;
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				if (externalSpawners[i].enemySpawned){
+					if (externalSpawners[i].currentSpawnedEnemy.isDead || !externalSpawners[i].currentSpawnedEnemy.gameObject.activeSelf){
+						numAvail++;
+					}
+				}else{
+					numAvail++;
+				}
+			}
+		}else{
 		for (int i = 0; i < spawnReferences.Length; i++){
 			if (spawnReferences[i].enemySpawned){
 				if (spawnReferences[i].currentSpawnedEnemy.isDead || !spawnReferences[i].currentSpawnedEnemy.gameObject.activeSelf){
@@ -118,35 +165,67 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 				numAvail++;
 			}
 		}
+		}
 		return (numAvail > 0);
 	}
 
 	public void ResetSpawn(){
+
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				externalSpawners[i].Unspawn();
+			}
+		}else{
 		for (int i = 0; i < spawnReferences.Length; i++){
 			spawnReferences[i].Unspawn();
+		}
 		}
 	}
 
 	public void KillAll(){
-		for (int i = 0; i < spawnReferences.Length; i++){
+
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				externalSpawners[i].KillWithoutXP();
+			}
+		}else{
+			for (int i = 0; i < spawnReferences.Length; i++){
 			spawnReferences[i].KillWithoutXP();
+		}
 		}
 	}
 
 	public void FeatherAll(Color newCol){
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				externalSpawners[i].ChangeFeatherColor(newCol);
+			}
+		}else{
 		for (int i = 0; i < spawnReferences.Length; i++){
 			spawnReferences[i].ChangeFeatherColor(newCol);
 		}
+		}
+
 	}
 
 	public bool EnemiesAreActive(){
 		bool activeEnemies = false;
+		if (foundSpawnReferences){
+			for (int i = 0; i < externalSpawners.Count; i++){
+				if (externalSpawners[i].currentSpawnedEnemy != null){
+					if (externalSpawners[i].currentSpawnedEnemy.gameObject.activeSelf && !externalSpawners[i].currentSpawnedEnemy.isDead){
+						activeEnemies = true; 
+					}
+				}
+			}
+		}else{
 		for (int i = 0; i < spawnReferences.Length; i++){
 			if (spawnReferences[i].currentSpawnedEnemy != null){
 				if (spawnReferences[i].currentSpawnedEnemy.gameObject.activeSelf && !spawnReferences[i].currentSpawnedEnemy.isDead){
 					activeEnemies = true; 
 				}
 			}
+		}
 		}
 		return activeEnemies;
 	}

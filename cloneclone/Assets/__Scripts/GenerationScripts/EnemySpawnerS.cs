@@ -5,7 +5,7 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	[HideInInspector]
 	public CombatManagerS myManager;
-
+	public bool allowSpawn = true;
 	private bool _enemySpawned = false;
 	public bool enemySpawned { get { return _enemySpawned; } }
 	private EnemyS currentEnemyReference;
@@ -34,7 +34,7 @@ public class EnemySpawnerS : MonoBehaviour {
 		//parentClear = GetComponentInParent<RoomClearCheck>();
 		parentClear = GetComponentInParent<InfinitySpawnS>();
 
-		if (enemySpawnDelay <= 0){
+		if (enemySpawnDelay <= 0 && allowSpawn){
 			SpawnEnemy();
 		}
 	
@@ -45,7 +45,7 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		if (!_enemySpawned){
 			enemySpawnDelay -= Time.deltaTime;
-			if (enemySpawnDelay <= 0){
+			if (enemySpawnDelay <= 0 && allowSpawn){
 				SpawnEnemy();
 			}
 		}

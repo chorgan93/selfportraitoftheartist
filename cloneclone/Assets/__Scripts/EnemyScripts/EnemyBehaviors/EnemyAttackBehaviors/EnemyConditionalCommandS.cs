@@ -7,6 +7,10 @@ public class EnemyConditionalCommandS : EnemyBehaviorS {
 	public EnemyGiveSpawnCommandS conditionalCommand;
 	public PlayerDetectS rangeCheck;
 	public int minSpawnsToCommand = 1;
+	public int numToGiveCommandsFixed = -1;
+	public int numToGiveRandomMin = -1;
+	public int numToGiveRandomMax = -1;
+	private int numToGiveCommands;
 
 	[Header("Behavior Duration")]
 	public float commandDuration = 3f;
@@ -38,7 +42,7 @@ public class EnemyConditionalCommandS : EnemyBehaviorS {
 
 			if (!gaveCommand && commandCountdown <= (commandDuration-giveCommandDelay)/currentDifficultyMult){
 				gaveCommand = true;
-				conditionalCommand.GiveCommand();
+				conditionalCommand.GiveCommand(numToGiveCommands);
 				myEnemyReference.SetBreakState(9999f,0f);
 			}
 		}
@@ -52,6 +56,13 @@ public class EnemyConditionalCommandS : EnemyBehaviorS {
 
 			gaveCommand = false;
 			commandCountdown = commandDuration/currentDifficultyMult;
+
+			if (numToGiveCommandsFixed > -1){
+				numToGiveCommands = numToGiveCommandsFixed;
+			}
+			else{
+				numToGiveCommands = Mathf.RoundToInt(Random.Range(numToGiveRandomMin, numToGiveRandomMax));
+			}
 			
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 			//Debug.Log("Attempting to animate single attack!");

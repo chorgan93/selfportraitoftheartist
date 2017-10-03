@@ -9,14 +9,20 @@ public class EnemyGiveSpawnCommandS : EnemyBehaviorS {
 
 	//assigned in other behaviors
 
-	public void GiveCommand(){
+	public void GiveCommand(int minCommand = 9999){
+		if(minCommand <= 0){
+			minCommand = 9999;
+		}
 
+		int currentCommand = 0;
 		// give command, then move on
 		if (targetSpawns.EnemiesAreActive()){
 			for (int i = 0; i < targetSpawns.spawnReferences.Length; i++){
 				if (targetSpawns.spawnReferences[i].SpawnedEnemyIsActive() 
-					&& targetSpawns.spawnReferences[i].currentSpawnedEnemy.currentState != null){
+					&& targetSpawns.spawnReferences[i].currentSpawnedEnemy.currentState != null
+					&& currentCommand < minCommand){
 					targetSpawns.spawnReferences[i].currentSpawnedEnemy.currentState.SetTargetBehavior(commandStepToGive);
+					currentCommand++;
 				}
 			}
 		}
