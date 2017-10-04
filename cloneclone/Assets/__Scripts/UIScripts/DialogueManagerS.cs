@@ -13,6 +13,8 @@ public class DialogueManagerS : MonoBehaviour {
 	private Vector2 boxTopStartPos;
 	private Vector2 boxTopHidePos;
 
+	public GameObject advanceIndicator;
+
 	private float showTimeMax = 0.3f;
 	private float showTime;
 	private float showT;
@@ -56,6 +58,8 @@ public class DialogueManagerS : MonoBehaviour {
 		memoText.enabled = false;
 		_doneScrolling = true;
 
+		advanceIndicator.SetActive(false);
+
 		boxBottomStartPos = boxBottomHidePos = dialogueBox.rectTransform.anchoredPosition;
 		boxBottomHidePos.y -= dialogueBox.rectTransform.sizeDelta.y;
 		
@@ -86,6 +90,7 @@ public class DialogueManagerS : MonoBehaviour {
 				}
 				if (currentChar >= targetDisplayString.Length){
 					_doneScrolling = true;
+					advanceIndicator.SetActive(true);
 				}
 			}
 
@@ -176,6 +181,7 @@ public class DialogueManagerS : MonoBehaviour {
 			memoText.text = newText;
 			_doneScrolling = true;
 		}
+		advanceIndicator.SetActive(false);
 
 
 	}
@@ -187,6 +193,7 @@ public class DialogueManagerS : MonoBehaviour {
 			dialogueText.text = currentDisplayString = targetDisplayString+" ";
 		}
 		_doneScrolling = true;
+		advanceIndicator.SetActive(true);
 	}
 
 	public void EndText(bool newStatOn = true){
@@ -214,6 +221,7 @@ public class DialogueManagerS : MonoBehaviour {
 		
 		scrollCountdown = 0f;
 		currentChar = 0;
+		advanceIndicator.SetActive(false);
 
 	}
 
