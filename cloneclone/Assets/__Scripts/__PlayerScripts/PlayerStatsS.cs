@@ -13,7 +13,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	private const float DESPERATE_MULT = 0.8f;
-	private const float DESPERATE_HEAL_MULT = 0.75f;
+	private const float DESPERATE_HEAL_MULT = 0.6f;
 
 	public const float STAMINA_ADD_PER_LVL = 0.5f;
 	public const float HEALTH_ADD_AMT = 1f;
@@ -564,6 +564,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_itemEffect = GetComponentInChildren<ItemEffectS>();
 
 		_currentMana = maxMana;
+		// TODO find a way to remove doWakeUp from this without screwing everything up
 		if (PlayerController.doWakeUp || healOnStart){
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
@@ -865,8 +866,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void DesperateRecover(float amtToRecover){
 		if (pRef.playerAug.desperateAug && _canRecoverHealth > 0 && allowHealthEndCountdown <= 0){
+			if (amtToRecover*DESPERATE_HEAL_MULT > _canRecoverHealth){
+				Heal(_canRecoverHealth);
+				_canRecoverHealth = 0;
+			}else{
 			Heal(amtToRecover*DESPERATE_HEAL_MULT, false);
 			_canRecoverHealth -= amtToRecover*DESPERATE_HEAL_MULT;
+			}
 			currentAllowRecoverTime+=allowRecoverAddTime;
 			if (_canRecoverHealth < 0){
 				_canRecoverHealth = 0f;
@@ -942,6 +948,7 @@ public class PlayerStatsS : MonoBehaviour {
 		delayDeath = false;
 		delayDeathCountdown = 0f;
 		_currentCharge = _savedCharge;
+		_canRecoverHealth = 0;
 		//_currentMana = _savedMana;
 		warningReference.EndAll();
 		if (PlayerInventoryS.I.GetItemCount(0) == 1){
