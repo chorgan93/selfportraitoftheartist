@@ -33,7 +33,9 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	private Vector3 spawnPosAdd = Vector3.zero;
 
 	public bool chargeSpawner = false;
+	public bool enemyChargeSpawner = false;
 	private PlayerController playerRef;
+	private EnemyS myEnemyRef;
 	public bool turnOffStun = false;
 
 	public float spawnOnHitEnemyDelay = -1f;
@@ -55,6 +57,10 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		}
 
 		effectManager = EffectSpawnManagerS.E;
+
+		if (enemyChargeSpawner){
+			myEnemyRef = GetComponent<EnemyProjectileS>().myEnemy;
+		}
 	
 	}
 	
@@ -99,6 +105,10 @@ public class SpawnOnProjectileS : MonoBehaviour {
 					newSpawn = Instantiate(spawnObjects[currentSpawn], spawnPos, spawnObjects[currentSpawn].transform.rotation)
 						as GameObject;
 					currentSpawn++;
+				}
+
+				if (enemyChargeSpawner){
+					newSpawn.GetComponentInChildren<EnemyChargeAttackS>().SetEnemy(myEnemyRef);
 				}
 
 				if (chargeSpawner){

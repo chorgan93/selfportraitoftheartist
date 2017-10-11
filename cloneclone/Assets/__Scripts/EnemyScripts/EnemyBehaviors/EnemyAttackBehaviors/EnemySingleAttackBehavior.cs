@@ -16,6 +16,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	[Header ("Behavior Physics")]
 	public GameObject attackPrefab;
+	public bool spawnOnTarget = false;
 	public float attackDragAmt = -1;
 	public bool setVelocityToZeroOnStart = false;
 
@@ -42,7 +43,11 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			}
 
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)/currentDifficultyMult){
-				GameObject attackObj = Instantiate(attackPrefab, transform.position, attackPrefab.transform.rotation)
+				Vector3 spawnPos = transform.position;
+				if (spawnOnTarget){
+					spawnPos = myEnemyReference.GetTargetReference().position;
+				}
+				GameObject attackObj = Instantiate(attackPrefab, spawnPos, attackPrefab.transform.rotation)
 					as GameObject;
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
 				projectileRef.Fire(attackDirection, myEnemyReference, currentDifficultyMult);

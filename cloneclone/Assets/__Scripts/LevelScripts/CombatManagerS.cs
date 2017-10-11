@@ -104,7 +104,7 @@ public class CombatManagerS : MonoBehaviour {
 		CameraEffectsS.E.ResetEffect(true);
 		VerseDisplayS.V.EndVerse();
 		if (combatID > -1){
-			PlayerInventoryS.I.dManager.AddClearedCombat(combatID);
+			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, RankManagerS.R.CombatRank());
 		}
 		TurnOffEnemies();
 		TurnOnObjects();

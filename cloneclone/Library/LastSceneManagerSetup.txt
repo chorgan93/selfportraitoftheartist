@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_10_Office_F1.unity
+- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_15_Office_Boss.unity
   isLoaded: 1
   isActive: 1

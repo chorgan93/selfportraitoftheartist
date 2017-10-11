@@ -8,6 +8,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private SpriteRenderer _myRenderer;
 	private Renderer _myRenderer3D;
 	private EnemyS _myEnemy;
+	public EnemyS myEnemy { get { return _myEnemy; } }
 	private bool isFriendly = false;
 	
 	[Header("Projectile Properties")]

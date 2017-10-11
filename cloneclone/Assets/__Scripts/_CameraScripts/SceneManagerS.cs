@@ -11,6 +11,9 @@ public class SceneManagerS : MonoBehaviour {
 	public bool allowFastTravel = true;
 	public bool resetDoCountup = false;
 
+	[Header("Mode and NG+ Properties")]
+	public bool scoringEnabled = false;
+
 	[Header("Infinite Scene Properties")]
 	public bool isInfiniteScene = false;
 	public bool preventEXPGain = false;
@@ -33,6 +36,8 @@ public class SceneManagerS : MonoBehaviour {
 		if (resetDoCountup){
 			PlayerStatsS.dontDoCountUp = false;
 		}
+
+		RankManagerS.rankEnabled = scoringEnabled;
 
 		DifficultyS.sinStateOverride = overrideSinState;
 		DifficultyS.punishStateOverride = overridePunishState;

@@ -49,6 +49,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public int numToSpawn = 1;
 
 	private bool doKill = false;
+	[Header("Friendly Properties")]
+	public bool isFriendly = false;
 
 
 	// Use this for initialization
@@ -58,7 +60,12 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myCollider = GetComponent<Collider>();
 		animateCountdown = _animateRate;
 
+		if (!standalone){
 		myEnemy = GetComponentInParent<EnemyS>();
+		if (myEnemy){
+			isFriendly = myEnemy.isFriendly;
+		}
+		}
 
 		startTiling = _myRenderer.material.GetTextureScale("_MainTex");
 		startTexture = _myRenderer.material.GetTexture("_MainTex");
@@ -199,7 +206,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && !isFriendly){
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
@@ -214,6 +221,26 @@ public class EnemyChargeAttackS : MonoBehaviour {
 				other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
 				(null, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
 			}
+
+			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
+		}
+
+		if (other.gameObject.tag == "Enemy" && isFriendly){
+
+			knockBackDir = (other.transform.position-transform.position).normalized;
+			knockBackDir.z = 1f;
+
+			float actingDamage = dmg*Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
+
+			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+			Debug.Log(hitEnemy);
+			Debug.Log(myEnemy);
+
+			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead){
+				hitEnemy.TakeDamage
+				(knockBackDir*knockbackForce*Time.deltaTime, actingDamage, 1f, 1f, 0.1f, knockbackTime, true);
+			}
+			
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}
@@ -264,5 +291,11 @@ public class EnemyChargeAttackS : MonoBehaviour {
 				Instantiate(spawnOnCharge, spawnPos, Quaternion.identity);
 			}
 		}
+	}
+
+	public void SetEnemy(EnemyS myRef){
+		myEnemy = myRef;
+		isFriendly = myEnemy.isFriendly;
+		Debug.Log("Enemy is set!", gameObject);
 	}
 }

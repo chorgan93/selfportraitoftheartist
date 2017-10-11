@@ -461,7 +461,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_earnedVirtues = inventoryData.earnedVirtues;
 		_earnedTech = inventoryData.earnedTech;
 
-		_dManager.LoadCombatsCleared(inventoryData.combatClearedAtLeastOnce);
+		_dManager.LoadCombatsCleared(inventoryData.combatClearedAtLeastOnce, inventoryData.combatRankingData);
 
 		checkpointsReachedScenes = inventoryData.checkpointsReachedScenes;
 		checkpointsReachedSpawns = inventoryData.checkpointsReachedSpawns;
@@ -558,6 +558,7 @@ public class PlayerInventoryS : MonoBehaviour {
 
 			if (_dManager.combatClearedAtLeastOnce != null){
 				inventoryData.combatClearedAtLeastOnce = _dManager.combatClearedAtLeastOnce;
+				inventoryData.combatRankingData = _dManager.combatClearedRanks;
 			}
 
 
@@ -631,6 +632,7 @@ public class InventorySave {
 	public List<int> clearedWalls;
 
 	public List<int> combatClearedAtLeastOnce;
+	public List<int> combatRankingData;
 	
 	public List<int> unlockedWeapons;
 	public List<int> unlockedBuddies;
@@ -679,6 +681,7 @@ public class InventorySave {
 		clearedWalls = new List<int>();
 
 		combatClearedAtLeastOnce = new List<int>();
+		combatRankingData = new List<int>();
 
 		checkpointsReachedScenes = new List<int>();
 		checkpointsReachedSpawns = new List<int>();

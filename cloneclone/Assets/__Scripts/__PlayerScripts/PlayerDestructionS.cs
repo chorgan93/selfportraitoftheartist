@@ -20,6 +20,8 @@ public class PlayerDestructionS : MonoBehaviour {
 	
 	private List<int> _combatClearedAtLeastOnce;
 	public List<int> combatClearedAtLeastOnce { get { return _combatClearedAtLeastOnce; } }
+	private List<int> _combatClearedRanks;
+	public List<int> combatClearedRanks { get { return _combatClearedRanks; } }
 	
 	
 	private List<int> _clearedCombatTriggers;
@@ -90,20 +92,35 @@ public class PlayerDestructionS : MonoBehaviour {
 		}
 	}
 	
-	public void AddClearedCombat(int newI){
+	public void AddClearedCombat(int newI, int newScore){
 		_clearedCombatTriggers.Add(newI);
 		if (_combatClearedAtLeastOnce == null){
 			_combatClearedAtLeastOnce = new List<int>();
 		}
 		if (!_combatClearedAtLeastOnce.Contains(newI)){
 			_combatClearedAtLeastOnce.Add(newI);
+			_combatClearedRanks.Add(newScore);
+		}else{
+			if (_combatClearedRanks[_combatClearedAtLeastOnce.IndexOf(newI)] < newScore){
+				_combatClearedRanks[_combatClearedAtLeastOnce.IndexOf(newI)] = newScore;
+			}
 		}
 	}
 	public void ClearCompletedCombat(){
 		_clearedCombatTriggers.Clear();
 	}
-	public void LoadCombatsCleared(List<int> newCombat){
+	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores){
 		_combatClearedAtLeastOnce = newCombat;
+		if (newCombatScores != null){
+		_combatClearedRanks = newCombatScores;
+		}else{
+			_combatClearedRanks = new List<int>();
+		}
+		if (_combatClearedRanks.Count < _combatClearedAtLeastOnce.Count){
+			for (int i = _combatClearedRanks.Count; i < _combatClearedAtLeastOnce.Count; i++){
+				_combatClearedRanks.Add(-1);
+			}
+		}
 	}
 
 	public void SetBattleBlood(){
