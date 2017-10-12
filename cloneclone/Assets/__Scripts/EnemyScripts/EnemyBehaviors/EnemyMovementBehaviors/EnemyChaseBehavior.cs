@@ -45,6 +45,7 @@ public class EnemyChaseBehavior : EnemyBehaviorS {
 			chaseTimeCountdown -= Time.deltaTime;
 
 			if (chaseEndRange != null){
+				chaseEndRange.FindTarget();
 				if (chaseEndRange.currentTarget!=null && chaseTimeCountdown<=minChaseTime){
 					chaseTimeCountdown = 0;
 				}

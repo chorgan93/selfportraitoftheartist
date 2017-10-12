@@ -52,6 +52,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetBreakState(breakAmt, breakRecoverTime);
 		myEnemy.SetFaceStatus(facePlayer);
 		myEnemy.SetInvulnerable(setInvincible);
+		myEnemy.RefreshTarget();
 
 		if (spawnCommand){
 			spawnCommand.GiveCommand();

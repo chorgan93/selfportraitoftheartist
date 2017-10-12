@@ -233,8 +233,6 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			float actingDamage = dmg*Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
 
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
-			Debug.Log(hitEnemy);
-			Debug.Log(myEnemy);
 
 			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead){
 				hitEnemy.TakeDamage

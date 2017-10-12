@@ -113,6 +113,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		}**/
 
 		if (rangeCheck != null){
+			rangeCheck.FindTarget();
 			if (!rangeCheck.currentTarget){
 				canContinue = false;
 			}
@@ -124,6 +125,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	private void SetAttackDirection(){
 
+		myEnemyReference.RefreshTarget();
 		if (trackingTime >= 0 && myEnemyReference.GetTargetReference() != null){
 			attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 			attackDirection.z = 0;

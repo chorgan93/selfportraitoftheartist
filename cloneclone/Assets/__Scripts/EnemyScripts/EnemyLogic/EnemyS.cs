@@ -588,6 +588,7 @@ public class EnemyS : MonoBehaviour {
 					}
 				}
 			}else{
+				activationDetect.FindTarget();
 				if (activationDetect.currentTarget != null){
 					_isActive = true;
 				}
@@ -899,6 +900,10 @@ public class EnemyS : MonoBehaviour {
 			return transform;
 		}
 
+	}
+
+	public void RefreshTarget(){
+		activationDetect.FindTarget();
 	}
 
 	public PlayerController GetPlayerReference(){

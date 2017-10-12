@@ -86,6 +86,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 		}
 
 		if (rangeCheck != null){
+			rangeCheck.FindTarget();
 			if (!rangeCheck.PlayerInRange()){
 				canContinue = false;
 			}

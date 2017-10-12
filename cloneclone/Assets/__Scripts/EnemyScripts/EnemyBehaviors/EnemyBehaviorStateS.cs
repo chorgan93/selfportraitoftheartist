@@ -41,6 +41,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		}
 
 		if (minDistance != null){
+			minDistance.FindTarget();
 			if (!minDistance.PlayerInRange()){
 				active = false;
 			}
@@ -66,7 +67,6 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		if (active && overrideImmediate){
 			myEnemy.ForceBehaviorState(this);
 		}
-
 
 		return active;
 

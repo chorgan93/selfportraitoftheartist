@@ -106,6 +106,7 @@ public class EnemyConditionalCommandS : EnemyBehaviorS {
 		}**/
 
 		if (rangeCheck != null){
+			rangeCheck.FindTarget();
 			if (!rangeCheck.currentTarget){
 				canContinue = false;
 			}

@@ -21,6 +21,8 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	private int currentAttack = 0;
 	public float attackDragAmt = -1;
 	public bool setVelocityToZeroOnStart = false;
+	public bool momsEye = false;
+	private float momsEyeMult = 1f;
 
 	private Vector3 attackDirection;
 
@@ -74,7 +76,10 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 				GameObject attackObj = Instantiate(attackPrefab[currentAttack], transform.position, Quaternion.identity)
 					as GameObject;
 				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
-				projectileRef.Fire(attackDirection, myEnemyReference);
+				projectileRef.Fire(attackDirection*momsEyeMult, myEnemyReference);
+				if (momsEye){
+					momsEyeMult*=-1f;
+				}
 				launchedAttack = true;
 			}
 
@@ -87,6 +92,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
 		if (AttackInRange()){
 
+			momsEyeMult = 1f;
 			launchedAttack = false;
 			currentAttack = 0;
 			attackTimeCountdown = attackDuration;
@@ -129,7 +135,6 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	private void ResetAttack(){
 		launchedAttack = false;
 		attackTimeCountdown = attackDuration-attackWarmup;
-
 		if (retarget){
 			SetAttackDirection();
 		}
@@ -140,6 +145,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 		bool canContinue = true;
 
 		if (rangeCheck != null){
+			rangeCheck.FindTarget();
 			if (!rangeCheck.PlayerInRange()){
 				canContinue = false;
 			}

@@ -83,6 +83,7 @@ public class EnemyBulletPatternBehavior: EnemyBehaviorS {
 		bool canContinue = true;
 
 		if (rangeCheck != null){
+			rangeCheck.FindTarget();
 			if (!rangeCheck.PlayerInRange()){
 				canContinue = false;
 			}

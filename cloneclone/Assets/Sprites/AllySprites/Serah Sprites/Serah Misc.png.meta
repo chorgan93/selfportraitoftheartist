@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9da4415885a4f4a0597c5d9b59a2bed3
-timeCreated: 1507739164
+timeCreated: 1507766569
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -72,6 +72,10 @@ TextureImporter:
     21300130: Serah Misc_26
     21300132: Serah Misc_27
     21300134: Serah Misc_28
+    21300136: Serah Misc_29
+    21300138: Serah Misc_30
+    21300140: Serah Misc_31
+    21300142: Serah Misc_32
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -182,8 +186,8 @@ TextureImporter:
       name: Serah Misc_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -194,7 +198,7 @@ TextureImporter:
       name: Serah Misc_6
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 256
         width: 64
         height: 64
@@ -206,7 +210,7 @@ TextureImporter:
       name: Serah Misc_7
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 256
         width: 64
         height: 64
@@ -218,7 +222,7 @@ TextureImporter:
       name: Serah Misc_8
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 256
         width: 64
         height: 64
@@ -230,7 +234,7 @@ TextureImporter:
       name: Serah Misc_9
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 256
         width: 64
         height: 64
@@ -242,8 +246,8 @@ TextureImporter:
       name: Serah Misc_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -254,8 +258,8 @@ TextureImporter:
       name: Serah Misc_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -266,7 +270,7 @@ TextureImporter:
       name: Serah Misc_12
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 192
         width: 64
         height: 64
@@ -278,7 +282,7 @@ TextureImporter:
       name: Serah Misc_13
       rect:
         serializedVersion: 2
-        x: 192
+        x: 64
         y: 192
         width: 64
         height: 64
@@ -290,7 +294,7 @@ TextureImporter:
       name: Serah Misc_14
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 192
         width: 64
         height: 64
@@ -302,8 +306,8 @@ TextureImporter:
       name: Serah Misc_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -314,8 +318,8 @@ TextureImporter:
       name: Serah Misc_16
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -326,8 +330,8 @@ TextureImporter:
       name: Serah Misc_17
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 320
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -338,7 +342,7 @@ TextureImporter:
       name: Serah Misc_18
       rect:
         serializedVersion: 2
-        x: 192
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -350,7 +354,7 @@ TextureImporter:
       name: Serah Misc_19
       rect:
         serializedVersion: 2
-        x: 256
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -362,8 +366,8 @@ TextureImporter:
       name: Serah Misc_20
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -374,8 +378,8 @@ TextureImporter:
       name: Serah Misc_21
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -386,8 +390,8 @@ TextureImporter:
       name: Serah Misc_22
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 256
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -398,8 +402,8 @@ TextureImporter:
       name: Serah Misc_23
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 320
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -410,7 +414,7 @@ TextureImporter:
       name: Serah Misc_24
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -422,6 +426,66 @@ TextureImporter:
       name: Serah Misc_25
       rect:
         serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Serah Misc_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Serah Misc_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Serah Misc_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Serah Misc_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Serah Misc_30
+      rect:
+        serializedVersion: 2
         x: 0
         y: 0
         width: 64
@@ -431,7 +495,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Serah Misc_26
+      name: Serah Misc_31
       rect:
         serializedVersion: 2
         x: 64
@@ -443,22 +507,10 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Serah Misc_27
+      name: Serah Misc_32
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - serializedVersion: 2
-      name: Serah Misc_28
-      rect:
-        serializedVersion: 2
-        x: 192
         y: 0
         width: 64
         height: 64
