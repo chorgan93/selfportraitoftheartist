@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_12_Office_Roof.unity
+- path: Assets/_Scenes/Area04(Desert)Scenes/Area04_04_ArenaInterior.unity
   isLoaded: 1
   isActive: 1
