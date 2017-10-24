@@ -231,6 +231,9 @@ public class GameMenuS : MonoBehaviour {
 		myManager.pRef.SetExamining(false, Vector3.zero, "");
 		myManager.pRef.SetTalking(true);
 		respawnManager.FakeDeath(toMenu);
+		if (!toMenu){
+		myManager.pRef.myStats.DeathCountUp(true);
+		}
 	}
 
 	public void TurnOn(){

@@ -703,7 +703,7 @@ public class InventorySave {
 
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
-		lockedUpgrades = new List<int>(){0,1};
+		lockedUpgrades = new List<int>(){0,1, 2};
 
 		tvNumber = Mathf.FloorToInt(Random.Range(100, 999));
 

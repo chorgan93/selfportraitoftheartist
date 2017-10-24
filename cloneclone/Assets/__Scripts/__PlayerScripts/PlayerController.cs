@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private const int START_PHYSICS_LAYER = 8;
 	private const int DODGE_PHYSICS_LAYER = 12;
 
-	private const float ADAPTIVE_WINDOW = 0.16f;
+	private const float ADAPTIVE_WINDOW = 0.2f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
 	
@@ -280,6 +280,7 @@ public class PlayerController : MonoBehaviour {
 	private float staggerBonusTime;
 	private float _adaptiveCountdown = 0f;
 	private float _adaptiveTimeMax = 1.5f;
+	private bool canDoAdaptive = false;
 	public bool adaptiveAugBonus { get { return (_adaptiveCountdown > 0); } }
 
 	
@@ -641,15 +642,15 @@ public class PlayerController : MonoBehaviour {
 				}else{
 					_counterNormal = _myRigidbody.velocity.normalized;
 				}
-				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.7f, counterAttackTimeMax*0.3f);
+				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.8f, counterAttackTimeMax*0.3f);
 				_dodgeEffectRef.FireEffect();
 				FlashMana();
 				TriggerWitchTime();
 			}else{
 				CameraShakeS.C.DodgeSloMo(0.28f, 0.14f, 0.7f, counterAttackTimeMax*0.4f);
-				if (_playerAug.agileAug){
+				/*if (_playerAug.agileAug){
 					_myStats.ResetStamina(true);
-				}
+				}**/
 			}
 			_allowCounterAttack = true;
 			counterAttackTime = counterAttackTimeMax;
@@ -1069,6 +1070,7 @@ public class PlayerController : MonoBehaviour {
 				                                           ShootDirection(), ShootDirection(), this);
 				paranoidMult += addPerHitParanoid;
 				SpawnAttackPuff();
+				canDoAdaptive = true;
 
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
 
@@ -1274,6 +1276,7 @@ public class PlayerController : MonoBehaviour {
 			if (newAttack){
 				allowChainHeavy = currentAttackS.allowChainHeavy;
 				allowChainLight = currentAttackS.allowChainLight;
+				canDoAdaptive = true;
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
 					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
@@ -1603,9 +1606,10 @@ public class PlayerController : MonoBehaviour {
 
 	private void AdaptiveCheck(){
 		if (_isShooting){
-			if (_playerAug.adaptiveAug && _isShooting && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+			if (_playerAug.adaptiveAug && _isShooting && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
 				_myStats.ResetStamina(true, true, 0.8f);
 			}
+			canDoAdaptive = false;
 		}
 	}
 

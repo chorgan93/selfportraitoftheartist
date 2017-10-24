@@ -86,6 +86,8 @@ public class TrainCarS : MonoBehaviour {
 	private bool rumbleStart = false;
 	private bool rumbleEnd = false;
 
+	private bool allowUntetheredStop = false;
+
 	private PlayerController pRef;
 
 
@@ -112,6 +114,11 @@ public class TrainCarS : MonoBehaviour {
 		SetSmallShake();
 		SetLargeShake();
 		CameraShakeS.C.lockXShake = true;
+			if (currentStop == trainStops.Length-2 && currentDirection == 1){
+				allowUntetheredStop = true;
+			}else{
+				allowUntetheredStop = false;
+			}
 		}
 
 		rumblingMaxVolume = rumblingSource.volume;
@@ -150,9 +157,17 @@ public class TrainCarS : MonoBehaviour {
 
 				if (!doingFakeTrain){
 					currentStop+=currentDirection;
+					if (!allowUntetheredStop){
+						if (currentStop > trainStops.Length-2){
+							currentStop = trainStops.Length-3;
+							currentDirection = -1;
+						}
+					}else{
 					if (currentStop > trainStops.Length-1){
 						currentStop = trainStops.Length-2;
 						currentDirection = -1;
+					}
+						allowUntetheredStop = false;
 					}
 					if (currentStop < 0){
 						currentStop = 1;

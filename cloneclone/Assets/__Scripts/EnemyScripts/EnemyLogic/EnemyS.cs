@@ -1190,6 +1190,9 @@ public class EnemyS : MonoBehaviour {
 		if (myStatusMessenger){
 			myStatusMessenger.KillMessage();
 		}
+		if (healthFeatherReference){
+			healthFeatherReference.EnemyHit(_currentHealth);
+		}
 
 		_currentHealth = 0;
 		_isDead = true;

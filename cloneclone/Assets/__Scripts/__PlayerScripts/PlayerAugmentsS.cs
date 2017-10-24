@@ -26,7 +26,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private bool _thanaAug = false;
 	public bool thanaAug { get { return _thanaAug; } }
-	public const float thanaAugAmt = 1.4f;
+	public const float thanaAugAmt = 1.3f;
 
 	private bool _gaeaAug = false;
 	public bool gaeaAug { get { return _gaeaAug; } }
@@ -310,11 +310,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 	}
 
 	public bool HasWitchAug(){
+		/*
 		if (_untetheredAug || _agileAug){
 			return true;
 		}else{
 			return false;
-		}
+		}**/
+		return true;
 	}
 
 	public float GetEnragedMult(){

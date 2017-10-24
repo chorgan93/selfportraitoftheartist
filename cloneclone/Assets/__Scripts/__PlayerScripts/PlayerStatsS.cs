@@ -20,8 +20,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float anxiousChargeRate = 0.025f;
 
-	private const float DARKNESS_ADD_RATE = 0.0005f;
-	private const float DARKNESS_ADD_DEATH = 1f/2f;
+	private const float DARKNESS_ADD_RATE = 0.001f;
+	private const float DARKNESS_ADD_DEATH = 3f/4f;
 	public const float DARKNESS_MAX = 100f;
 	
 	private const float VIRTUE_ADD_AMT = 5f;
@@ -50,8 +50,8 @@ public class PlayerStatsS : MonoBehaviour {
 	public float currentHealth { get { return _currentHealth; } }
 	private float _canRecoverHealth = 0f;
 	private float _canRecoverHealthStart;
-	private float allowHealthRecoverMaxTime = 1.8f;
-	private float allowRecoverAddTime = 0.4f;
+	private float allowHealthRecoverMaxTime = 3f;
+	private float allowRecoverAddTime = 0.3f;
 	private float currentAllowRecoverTime;
 
 	private float allowHealthEndTime = 0.8f;
@@ -160,7 +160,7 @@ public class PlayerStatsS : MonoBehaviour {
 	
 	private float blockRecoverMult = 0.5f;
 
-	private float _recoverRateMin = 0.75f;
+	private float _recoverRateMin = 0.35f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
 	private float recoverRateAddPerLevel = 0.02f;
 
@@ -683,6 +683,14 @@ public class PlayerStatsS : MonoBehaviour {
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
 			CameraShakeS.C.SmallShakeCustomDuration(0.6f);
 			CameraShakeS.C.TimeSleep(0.08f);
+		}else if (_canRecoverHealth > 0){
+			_canRecoverHealth -= healAmt;
+			_canRecoverHealthStart = _canRecoverHealth;
+			if (_canRecoverHealth <= 0){
+				_canRecoverHealth = 0f;
+				_canRecoverHealthStart = 0f;
+				allowHealthEndCountdown = allowHealthEndTime;
+			}
 		}
 		warningReference.EndShow("! ! HEALTH LOW ! !");
 		delayDeath = false;
@@ -864,6 +872,16 @@ public class PlayerStatsS : MonoBehaviour {
 
 	}
 
+	public void DeathCountUp(bool isReduced = false){
+
+		_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
+		if (isReduced){
+			_currentDarkness += DARKNESS_ADD_DEATH*0.5f;
+		}else{
+		_currentDarkness += DARKNESS_ADD_DEATH;
+		}
+	}
+
 	public void DesperateRecover(float amtToRecover){
 		if (pRef.playerAug.desperateAug && _canRecoverHealth > 0 && allowHealthEndCountdown <= 0){
 			if (amtToRecover*DESPERATE_HEAL_MULT > _canRecoverHealth){
@@ -872,10 +890,12 @@ public class PlayerStatsS : MonoBehaviour {
 			}else{
 			Heal(amtToRecover*DESPERATE_HEAL_MULT, false);
 			_canRecoverHealth -= amtToRecover*DESPERATE_HEAL_MULT;
+				_canRecoverHealthStart = _canRecoverHealth;
 			}
 			currentAllowRecoverTime+=allowRecoverAddTime;
 			if (_canRecoverHealth < 0){
 				_canRecoverHealth = 0f;
+				_canRecoverHealthStart = 0f;
 				allowHealthEndCountdown = allowHealthEndTime;
 			}
 		}

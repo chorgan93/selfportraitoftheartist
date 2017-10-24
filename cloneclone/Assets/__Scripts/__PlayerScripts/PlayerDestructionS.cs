@@ -97,6 +97,9 @@ public class PlayerDestructionS : MonoBehaviour {
 		if (_combatClearedAtLeastOnce == null){
 			_combatClearedAtLeastOnce = new List<int>();
 		}
+		if (_combatClearedRanks == null){
+			_combatClearedRanks = new List<int>();
+		}
 		if (!_combatClearedAtLeastOnce.Contains(newI)){
 			_combatClearedAtLeastOnce.Add(newI);
 			_combatClearedRanks.Add(newScore);

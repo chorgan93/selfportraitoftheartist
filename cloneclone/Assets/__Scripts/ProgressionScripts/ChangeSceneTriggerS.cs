@@ -62,8 +62,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.GetComponent<PlayerController>();
 			}
-
+			if (!pRef.myStats.PlayerIsDead()){
 			if (!requireExamine){
+				
 				pRef.SetTalking(true);
 				StartNextScene();
 			}else{
@@ -75,6 +76,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 					}
 				}
 				examining = true;
+			}
 			}
 		}
 
