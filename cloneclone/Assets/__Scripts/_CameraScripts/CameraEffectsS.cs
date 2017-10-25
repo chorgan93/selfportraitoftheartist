@@ -47,6 +47,10 @@ public class CameraEffectsS : MonoBehaviour {
 	private SunShafts sunEffect;
 	private BloomOptimized bloomEffect;
 
+	#if UNITY_EDITOR_OSX
+	private static bool debugEffects = false;
+	#endif
+
 	// Use this for initialization
 	void Awake () {
 
@@ -67,6 +71,12 @@ public class CameraEffectsS : MonoBehaviour {
 		}
 
 		HandleBlur();
+		#if UNITY_EDITOR_OSX
+		if(Input.GetKeyDown(KeyCode.P)){
+			debugEffects = !debugEffects;
+			Debug.Log("Setting camera effects: " + debugEffects);
+		}
+		#endif
 	}
 
 
@@ -90,6 +100,7 @@ public class CameraEffectsS : MonoBehaviour {
 			contrastEffect = GetComponent<ContrastStretch>();
 
 			#if UNITY_EDITOR_OSX
+			if (!debugEffects){
 			toneEffect = GetComponent<Tonemapping>();
 			bloomEffect = GetComponent<BloomOptimized>();
 			sunEffect = GetComponent<SunShafts>();
@@ -97,6 +108,7 @@ public class CameraEffectsS : MonoBehaviour {
 			bloomEffect.enabled = false;
 			toneEffect.enabled = false;
 			contrastEffect.enabled = false;
+			}
 
 			#elif UNITY_STANDALONE_OSX || UNITY_STANDALONE
 			if (QualitySettings.GetQualityLevel() < 1){

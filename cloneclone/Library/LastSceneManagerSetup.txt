@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/Area04(Desert)Scenes/Area04_03_ArenaEntrance.unity
   isLoaded: 1
   isActive: 1

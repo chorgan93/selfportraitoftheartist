@@ -10,6 +10,7 @@ public class SceneManagerS : MonoBehaviour {
 	public bool lockMenus = false;
 	public bool allowFastTravel = true;
 	public bool resetDoCountup = false;
+	public bool disableCountUp = false;
 
 	[Header("Mode and NG+ Properties")]
 	public bool scoringEnabled = false;
@@ -35,6 +36,9 @@ public class SceneManagerS : MonoBehaviour {
 
 		if (resetDoCountup){
 			PlayerStatsS.dontDoCountUp = false;
+		}
+		if (disableCountUp){
+			PlayerStatsS.dontDoCountUp = true;
 		}
 
 		RankManagerS.rankEnabled = scoringEnabled;
