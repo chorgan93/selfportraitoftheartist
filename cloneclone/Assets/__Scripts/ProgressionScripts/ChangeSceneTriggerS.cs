@@ -18,6 +18,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	private bool talkButtonDown = false;
 	private PlayerController pRef;
 	public bool doWakeUp = false;
+	public bool dontResetItemsOnWakeUp =false;
 	public int setProgressOnActivate = -1;
 
 	void Start(){
@@ -117,6 +118,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 		if (doWakeUp){
 			PlayerController.doWakeUp = true;
+			if (dontResetItemsOnWakeUp){
+				PlayerController.dontHealWakeUp = true;
+			}
 		}
 
 		if (requireExamine && doorNum > -1){

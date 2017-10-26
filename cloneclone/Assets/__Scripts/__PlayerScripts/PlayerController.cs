@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 	private PlayerStatsS _myStats;
 
 	public static bool doWakeUp = true;
+	public static bool dontHealWakeUp = false;
 	private bool wakingUp = false;
 	public bool isWaking  { get { return  wakingUp; } }
 	private float wakeUpTime = 3f;

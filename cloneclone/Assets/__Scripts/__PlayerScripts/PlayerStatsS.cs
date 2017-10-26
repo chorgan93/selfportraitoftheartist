@@ -189,10 +189,13 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _extraKnockbackMult = 2f;
 	private BlockDisplay3DS myBlocker;
 
+	private bool unstoppableActivatedOnHit = false;
+
 	//________________________________________CONDEMNED
 
 	private bool delayDeath = false;
 	private float delayDeathCountdown = 0f;
+	private float delayDeathCountdownMult = 0f;
 	public float condemnedCurrentTime { get { return delayDeathCountdown; } }
 
 	//________________________________________OTHER
@@ -532,7 +535,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private void CondemnedHandler(){
 		if (delayDeath && !myPlayerController.usingitem){
-			delayDeathCountdown -= Time.deltaTime;
+			delayDeathCountdown -= Time.deltaTime*delayDeathCountdownMult;
 			if (delayDeathCountdown <= 0){
 				TakeDamage(null, 1f, Vector3.zero, 0.2f, true, true);
 				delayDeath = false;
@@ -565,15 +568,17 @@ public class PlayerStatsS : MonoBehaviour {
 
 		_currentMana = maxMana;
 		// TODO find a way to remove doWakeUp from this without screwing everything up
-		if (PlayerController.doWakeUp || healOnStart){
+		if ((PlayerController.doWakeUp && !PlayerController.dontHealWakeUp) || healOnStart){
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
 			PlayerInventoryS.I.RefreshRechargeables();
 			healOnStart = false;
 		}
+		PlayerController.dontHealWakeUp = false;
 		_currentDefense = maxDefense;
 
 		warningReference = GameObject.Find("WarningText").GetComponent<WarningManagerS>();
+		delayDeathCountdownMult = 0f;
 
 	}
 
@@ -674,9 +679,10 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void Heal(float healAmt, bool doEffect = true){
 		_currentHealth += healAmt;
+		myPlayerController.playerAug.canUseUnstoppable = true;
 		if (_currentHealth >= maxHealth){
 			_currentHealth = maxHealth;
-			myPlayerController.playerAug.canUseUnstoppable = true;
+			delayDeathCountdownMult = 0f;
 		}
 		if (doEffect){
 			myPlayerController.FlashHeal();
@@ -713,6 +719,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false){
 
+		unstoppableActivatedOnHit = false;
 		dmg*=DifficultyS.GetPunishMult();
 		float healthBeforeTakingDmg = _currentHealth;
 		if (myPlayerController.playerAug.lovedAug){
@@ -761,9 +768,10 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					
-					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable){
+					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && _currentHealth > maxHealth*0.01f){
 						_currentHealth = maxHealth*0.01f;
-						myPlayerController.playerAug.canUseUnstoppable = false;
+						//myPlayerController.playerAug.canUseUnstoppable = false;
+						unstoppableActivatedOnHit = true;
 					}else{
 						_currentHealth -= dmg;
 					}
@@ -813,22 +821,35 @@ public class PlayerStatsS : MonoBehaviour {
 					}else{
 						// start condemned process
 						delayDeath = true;
+						delayDeathCountdownMult += 1f;
 						delayDeathCountdown = PlayerAugmentsS.CONDEMNED_TIME;
+						if (pRef.playerAug.desperateAug){
+							if (!unstoppableActivatedOnHit){
+								currentAllowRecoverTime = allowHealthRecoverMaxTime;
+								_canRecoverHealth = dmg*DESPERATE_MULT;
+								allowHealthEndCountdown = 0f;
+								if (_canRecoverHealth > healthBeforeTakingDmg){
+									_canRecoverHealth = (healthBeforeTakingDmg-_currentHealth)*DESPERATE_MULT;
+								}
+								_canRecoverHealthStart = _canRecoverHealth;
+							}
+						}
 					}
 					}
 				else{
 					_hurtFlash.Flash();
 					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
-
 					if (pRef.playerAug.desperateAug){
-						currentAllowRecoverTime = allowHealthRecoverMaxTime;
-						_canRecoverHealth = dmg*DESPERATE_MULT;
-						allowHealthEndCountdown = 0f;
-						if (_canRecoverHealth > healthBeforeTakingDmg){
-							_canRecoverHealth = (healthBeforeTakingDmg-_currentHealth)*DESPERATE_MULT;
+						if (!unstoppableActivatedOnHit && healthBeforeTakingDmg >= maxHealth*0.01f){
+							currentAllowRecoverTime = allowHealthRecoverMaxTime;
+							_canRecoverHealth = dmg*DESPERATE_MULT;
+							allowHealthEndCountdown = 0f;
+							if (_canRecoverHealth > healthBeforeTakingDmg){
+								_canRecoverHealth = (healthBeforeTakingDmg-_currentHealth)*DESPERATE_MULT;
+							}
+							_canRecoverHealthStart = _canRecoverHealth;
 						}
-						_canRecoverHealthStart = _canRecoverHealth;
 					}
 
 					if(_currentHealth<maxHealth*0.33f){
@@ -969,6 +990,7 @@ public class PlayerStatsS : MonoBehaviour {
 		delayDeathCountdown = 0f;
 		_currentCharge = _savedCharge;
 		_canRecoverHealth = 0;
+		delayDeathCountdownMult = 0f;
 		//_currentMana = _savedMana;
 		warningReference.EndAll();
 		if (PlayerInventoryS.I.GetItemCount(0) == 1){
