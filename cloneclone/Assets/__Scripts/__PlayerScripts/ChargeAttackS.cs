@@ -154,7 +154,7 @@ public class ChargeAttackS : MonoBehaviour {
 		_myRenderer.enabled = true;
 		flashFrames = flashMax;
 
-		dmg*=myPlayer.ParanoidMult();
+		dmg*=myPlayer.playerAug.GetParanoidMult();
 
 		if (shakeAmt == 1){
 		CameraShakeS.C.TimeSleep(0.1f);

@@ -67,7 +67,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _empoweredAug = false;
 	public bool empowered { get { return _empoweredAug; } }
 
-	// index 3
+	// index 20 (more dmg at low health)
 	private bool _enragedAug = false;
 	public bool enragedAug { get { return _enragedAug; } }
 
@@ -119,9 +119,20 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _lovedAug = false;
 	public bool lovedAug { get { return _lovedAug; } }
 
-	// index 20 (extra dmg per combo chain)
+	// index 19 (super dodge-y)
+	private bool _incensedAug = false;
+	public bool incensedAug { get { return _incensedAug; } }
+	private float _incensedStaminaMult = 0.4f;
+	public float incensedStaminaMult { get { return _incensedStaminaMult; } }
+	private float _incensedPowerMult = 1.5f;
+	public float incensedPowerMult { get { return _incensedPowerMult; } }
+
+	// index 3 (extra dmg per combo chain)
 	private bool _paranoidAug = false;
 	public bool paranoidAug { get { return _paranoidAug; } }
+	private float _startParanoidMult = 0.875f;
+	private float _currentParanoidMult = 0.875f;
+	private float _addParanoidMult = 0.125f;
 
 	// index 21 (decrease stats, increase VP)
 	private bool _scornedAug = false;
@@ -183,6 +194,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_lovedAug = false;
 		_hatedAug = false;
 		_paranoidAug = false;
+		_incensedAug = false;
 
 
 	}
@@ -245,7 +257,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (PlayerController.equippedVirtues.Contains(2)){
 			_empoweredAug = true;
 		}
-		if (PlayerController.equippedVirtues.Contains(3)){
+		if (PlayerController.equippedVirtues.Contains(20)){
 			_enragedAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(4)){
@@ -288,8 +300,11 @@ public class PlayerAugmentsS : MonoBehaviour {
 			_desperateAug = true;
 		}
 
-		if (PlayerController.equippedVirtues.Contains(20)){
+		if (PlayerController.equippedVirtues.Contains(3)){
 			_paranoidAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(19)){
+			_incensedAug = true;
 		}
 
 	}
@@ -321,5 +336,19 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	public float GetEnragedMult(){
 		return (Mathf.Lerp(ENRAGED_DAMAGE_BOOST, 1f,_playerReference.myStats.currentHealth/_playerReference.myStats.maxHealth));
+	}
+
+	public void AddToParanoidMult(){
+		_currentParanoidMult += _addParanoidMult;
+	}
+	public void ResetParanoidMult(){
+		_currentParanoidMult = _startParanoidMult;
+	}
+	public float GetParanoidMult(){
+		if (_paranoidAug){
+			return _currentParanoidMult;
+		}else{
+			return 1f;
+		}
 	}
 }

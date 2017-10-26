@@ -53,6 +53,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Weapon Stats")]
 	public bool dashAttack = false;
 	public bool delayAttack = false;
+	public bool counterAttack = false;
 	public float dmg = 1;
 	public float killAtLessThan = 0f;
 	public bool addOnDetermined = false;
@@ -224,7 +225,10 @@ public class ProjectileS : MonoBehaviour {
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
-		dmg *= _myPlayer.ParanoidMult();
+		dmg *= _myPlayer.playerAug.GetParanoidMult();
+		if (dashAttack || counterAttack && _myPlayer.playerAug.incensedAug){
+			dmg *= _myPlayer.playerAug.incensedPowerMult;
+		}
 		dmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 
 		if (_myPlayer.playerAug.enragedAug){

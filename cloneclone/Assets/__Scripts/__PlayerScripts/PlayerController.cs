@@ -236,8 +236,6 @@ public class PlayerController : MonoBehaviour {
 
 	private List<EnemyS> enemiesHitByLastAttack;
 	public List<EnemyS> enemiesHitByAttackRef { get { return enemiesHitByLastAttack; } }
-	private float paranoidMult = 0.875f;
-	private float addPerHitParanoid = 0.125f;
 
 	private int numAttacksPerShot;
 	private float timeBetweenAttacks;
@@ -822,7 +820,11 @@ public class PlayerController : MonoBehaviour {
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
 			}
-			_myStats.ManaCheck(_dodgeCost);
+			if (_playerAug.incensedAug){
+				_myStats.ManaCheck(_dodgeCost*_playerAug.incensedStaminaMult);
+			}else{
+				_myStats.ManaCheck(_dodgeCost);
+			}
 			CameraShakeS.C.SmallShake();
 			CameraShakeS.C.SmallSleep();
 			CameraShakeS.C.SloAndPunch(0f, 0.7f, 0.2f);
@@ -831,6 +833,13 @@ public class PlayerController : MonoBehaviour {
 			PrepParryAnimation();
 			_isDashing = false;
 			dashDurationTime = dashDurationTimeMax;
+			if (_chargingAttack){
+			_chargingAttack = false;
+			allowChargeAttack = false;
+			_chargeAttackTriggered = false;
+			_chargeAttackTime = 0f;
+			_myAnimator.SetBool("Charging", false);
+			}
 		}else{
 			if (hitStopped){
 				_myAnimator.enabled = true;
@@ -885,14 +894,22 @@ public class PlayerController : MonoBehaviour {
 		gameObject.layer = DODGE_PHYSICS_LAYER;
 
 		if (fullDash){
+				if (_playerAug.incensedAug){
+					_myStats.ManaCheck(_dodgeCost/2f*_playerAug.incensedStaminaMult);
+				}else{
 			_myStats.ManaCheck(_dodgeCost/2f);
+				}
 			_myAnimator.SetTrigger("Dash");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTimeMax = dashDuration*0.6f;
 			_allowDashAttack = true;
 		}else{
 			_allowDashAttack = true; // change this to false if we dont want roll attacks
+				if (_playerAug.incensedAug){
+					_myStats.ManaCheck(_dodgeCost*_playerAug.incensedStaminaMult);
+				}else{
 			_myStats.ManaCheck(_dodgeCost);
+				}
 			_myAnimator.SetTrigger("Roll");
 			_myRigidbody.AddForce(inputDirection.normalized*dashSpeed*0.7f*Time.deltaTime, ForceMode.Impulse);
 			dashDurationTimeMax = dashDuration*0.4f;
@@ -1031,7 +1048,7 @@ public class PlayerController : MonoBehaviour {
 				if (sprintNoDrainTime > 0){
 					sprintNoDrainTime -= Time.deltaTime;
 				}
-				else if (!_myStats.ManaCheck(sprintStaminaRate*Time.deltaTime)){
+				else if (!_myStats.ManaCheck(sprintStaminaRate*GetIncensedSprintMult()*Time.deltaTime)){
 					_isSprinting = false;
 					_myRigidbody.drag = startDrag;
 				}
@@ -1052,7 +1069,7 @@ public class PlayerController : MonoBehaviour {
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();
-				paranoidMult = 0.875f;
+				_playerAug.ResetParanoidMult();
 			}
 		}
 
@@ -1069,7 +1086,6 @@ public class PlayerController : MonoBehaviour {
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(false,
 				                                           ShootDirection(), ShootDirection(), this);
-				paranoidMult += addPerHitParanoid;
 				SpawnAttackPuff();
 				canDoAdaptive = true;
 
@@ -1131,6 +1147,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			else{
 				newAttack = true;
+				_playerAug.AddToParanoidMult();
 				momsEyeMult = 1f;
 				if (_doingCounterAttack){
 					if (_doingHeavyAttack){
@@ -1284,7 +1301,6 @@ public class PlayerController : MonoBehaviour {
 				}else{
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
 				}
-				paranoidMult += addPerHitParanoid;
 			}else{
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
@@ -2729,6 +2745,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	float GetIncensedSprintMult(){
+		if (_playerAug.incensedAug){
+			return _playerAug.incensedStaminaMult;
+		}else{
+			return 1f;
+		}
+	}
+
 	//_________________________________________________________________VISUAL EFFECTS
 	public void SpawnDashPuff(){
 		Vector3 spawnPos = transform.position;
@@ -2781,13 +2805,6 @@ public class PlayerController : MonoBehaviour {
 		return returnMult;
 	}
 
-	public float ParanoidMult(){
-		if (_playerAug.paranoidAug){
-			return paranoidMult;
-		}else{
-			return 1f;
-		}
-	}
 
 	IEnumerator HitStopRoutine(float sTime){
 

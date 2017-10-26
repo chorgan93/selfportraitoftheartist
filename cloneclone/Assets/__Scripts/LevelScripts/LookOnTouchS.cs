@@ -15,6 +15,7 @@ public class LookOnTouchS : MonoBehaviour {
 	[Header("IgnoreProperties")]
 	public int doNotActivateOnRewindNum = -1;
 	public int doNotActivateOnHealNum = -1;
+	public int doNotActivateOnVirtueNum = -1;
 	public float delayCountdown = 0f;
 	private bool doDelay = false;
 
@@ -27,6 +28,11 @@ public class LookOnTouchS : MonoBehaviour {
 		}
 		if (doNotActivateOnHealNum >= 0){
 			if (PlayerInventoryS.I.CheckCharge(doNotActivateOnHealNum)){
+				canAct = false;
+			}
+		}
+		if (doNotActivateOnVirtueNum >= 0){
+			if (PlayerInventoryS.I.earnedVirtues.Contains(doNotActivateOnVirtueNum)){
 				canAct = false;
 			}
 		}
