@@ -6,6 +6,8 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	public string nextSceneString = "";
 	public bool requireExamine = false;
+	public float delayTransition = -1f;
+	private bool waitingForChange = false;
 	public int whereToSpawn = 0;
 	public int doorNum = -1;
 	public string examineString = "";
@@ -21,6 +23,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	public bool dontResetItemsOnWakeUp =false;
 	public int setProgressOnActivate = -1;
 
+	private bool startedNewScene = false;
+
+	[Header("On/Off Properties")]
+	public ActivateOnSceneTriggerS activateS;
+
 	void Start(){
 		if (openedSprite != null){
 			_myRender=GetComponentInChildren<SpriteRenderer>();
@@ -33,7 +40,13 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (requireExamine && examining && !loading){
+		if (waitingForChange){
+			delayTransition -= Time.deltaTime;
+			if (delayTransition <= 0 && !startedNewScene){
+				TransitionScene();
+			}
+		}
+		else if (requireExamine && examining && !loading){
 
 			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
 				if (pRef.myControl.ControllerAttached() || examineStringNoController == ""){
@@ -94,6 +107,19 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	void StartNextScene(){
 
+		if (delayTransition <= 0f){
+			TransitionScene();
+		}else{
+			pRef.SetTalking(true);
+			pRef.SetExamining(false, Vector3.zero);
+			waitingForChange = true;
+		}
+		if (activateS != null){
+			activateS.TurnOnOff();
+		}
+	}
+
+	void TransitionScene(){
 		if (SceneManagerS.inInfiniteScene){
 			PlayerInventoryS.I.dManager.ClearAll();
 		}
@@ -126,5 +152,6 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		if (requireExamine && doorNum > -1){
 			PlayerInventoryS.I.AddOpenDoor(doorNum);
 		}
+		startedNewScene = true;
 	}
 }
