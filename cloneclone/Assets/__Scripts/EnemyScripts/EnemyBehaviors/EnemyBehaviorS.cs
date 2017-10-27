@@ -53,6 +53,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetFaceStatus(facePlayer);
 		myEnemy.SetInvulnerable(setInvincible);
 		myEnemy.RefreshTarget();
+		myEnemy.ResetFaceLock();
 
 		if (spawnCommand){
 			spawnCommand.GiveCommand();

@@ -19,6 +19,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public bool spawnOnTarget = false;
 	public float attackDragAmt = -1;
 	public bool setVelocityToZeroOnStart = false;
+	public bool lockDirectionOnTargeting = false;
+	private bool lockFacing = false;
 
 
 	private Vector3 attackDirection;
@@ -40,6 +42,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)/currentDifficultyMult){
 				SetAttackDirection();
 				foundTarget = true;
+				if (lockDirectionOnTargeting){
+					lockFacing = true;
+					myEnemyReference.SetFaceForAttack(attackDirection);
+				}
 			}
 
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)/currentDifficultyMult){
@@ -62,6 +68,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	private void InitializeAction(){
 
 		//Debug.Log(AttackInRange());
+		lockFacing = false;
 		if (AttackInRange() || myEnemyReference.OverrideSpacingRequirement){
 
 			launchedAttack = false;
@@ -133,6 +140,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		}else{
 			attackDirection = myEnemyReference.currentTarget;
 			foundTarget = true;
+			if (lockDirectionOnTargeting){
+				lockFacing = true;
+				myEnemyReference.SetFaceForAttack(attackDirection);
+			}
 		}
 
 	}

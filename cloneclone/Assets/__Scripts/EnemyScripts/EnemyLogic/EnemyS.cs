@@ -32,6 +32,8 @@ public class EnemyS : MonoBehaviour {
 	[Header ("Health Properties")]
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
+	public float maxCritTime = 3f;
+	private float currentCritTime = 0f;
 	private float currentCritDamage;
 	public float cinematicKillAt = 0f;
 	[HideInInspector]
@@ -88,6 +90,7 @@ public class EnemyS : MonoBehaviour {
 	private bool _canBeStunned;
 	private bool _hitStunned;
 	private bool _facePlayer;
+	private bool _faceLocked = false;
 
 	private float currentDefenseMult = 1f;
 	private float currentStunResistMult = 1f;
@@ -295,6 +298,21 @@ public class EnemyS : MonoBehaviour {
 		_isActing = newActingState;
 	}
 
+	public void SetFaceForAttack(Vector3 targetLook){
+		_faceLocked = true;
+		Vector3 newSize = transform.localScale;
+		if (targetLook.x < transform.position.x){
+			newSize.x *= -1f;
+			transform.localScale = newSize;
+		}
+		if (targetLook.x > transform.position.x){
+			transform.localScale = newSize;
+		}
+	}
+	public void ResetFaceLock(){
+		_faceLocked = false;
+	}
+
 	public void SetBreakState(float newBreakAmt, float newRecover){
 		_breakThreshold = newBreakAmt;
 		_breakAmt = 0f;
@@ -390,6 +408,9 @@ public class EnemyS : MonoBehaviour {
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
 		actingMaxHealth = maxHealth*currentDifficultyMult;
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
+		maxCritTime *= DifficultyS.GetSinMult(isGold);
+
+		ResetFaceLock();
 
 		touchingWall = false;
 
@@ -470,11 +491,14 @@ public class EnemyS : MonoBehaviour {
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 		CameraFollowS.F.RemoveStunnedEnemy(this);
 
+		ResetFaceLock();
+
 		_invulnerable = false;
 
 		touchingWall = false;
 
 		currentCritDamage = 0;
+		currentCritTime = 0f;
 		killAtLessThan = 0f;
 
 		//EndAllBehaviors();
@@ -534,12 +558,12 @@ public class EnemyS : MonoBehaviour {
 			if (_isCritical){
 				if (!inWitchTime){
 					vulnerableCountdown -= Time.deltaTime;
-				
-				if (vulnerableCountdown <= 0){
+					currentCritTime += Time.deltaTime;
+					if (vulnerableCountdown <= 0 || currentCritTime >= maxCritTime){
 					_isCritical = false;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
-
+						currentCritTime = 0f;
 					_myAnimator.SetBool("Crit", false);
 
 					if (!_hitStunned && !inWitchTime){
@@ -795,7 +819,8 @@ public class EnemyS : MonoBehaviour {
 	private void ManageFacing(){
 		if (!inWitchTime){
 		Vector3 newSize = startSize;
-		if (!_hitStunned || !_isCritical){
+			if (!_faceLocked){
+		if (!_hitStunned && !_isCritical){
 		if (_facePlayer && GetTargetReference() != null){
 			float playerX = GetTargetReference().transform.position.x;
 			if (playerX < transform.position.x){
@@ -825,6 +850,7 @@ public class EnemyS : MonoBehaviour {
 				transform.localScale = newSize;
 			}
 		}
+			}
 		}
 	}
 
@@ -1071,11 +1097,13 @@ public class EnemyS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.1f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
+					ResetFaceLock();
 					GetPlayerReference().myStats.DrivenCheck();
 					if (breakSound){
 						Instantiate(breakSound);
 					}
 					currentCritDamage = 0;
+					currentCritTime = 0f;
 					CameraFollowS.F.AddStunnedEnemy(this);
 					_critScreen.Flash();
 					GetPlayerReference().SendCritMessage();
@@ -1104,6 +1132,7 @@ public class EnemyS : MonoBehaviour {
 			}
 			_killScreen.Flash();
 			_isDead = true;
+			ResetFaceLock();
 			if (myStatusMessenger){
 				myStatusMessenger.KillMessage();
 			}
@@ -1196,6 +1225,7 @@ public class EnemyS : MonoBehaviour {
 
 		_currentHealth = 0;
 		_isDead = true;
+		ResetFaceLock();
 		Stun (0);
 		CancelBehaviors();
 		_myAnimator.SetLayerWeight(1, 0f);
