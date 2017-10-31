@@ -679,8 +679,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void Heal(float healAmt, bool doEffect = true){
 		_currentHealth += healAmt;
-		myPlayerController.playerAug.canUseUnstoppable = true;
 		if (_currentHealth >= maxHealth){
+			myPlayerController.playerAug.canUseUnstoppable = true;
 			_currentHealth = maxHealth;
 			delayDeathCountdownMult = 0f;
 		}
@@ -768,10 +768,11 @@ public class PlayerStatsS : MonoBehaviour {
 					
 				if(!godMode){
 					
-					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && _currentHealth > maxHealth*0.01f){
+					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable 
+						&&_currentHealth > maxHealth*0.01f){
 						_currentHealth = maxHealth*0.01f;
-						//myPlayerController.playerAug.canUseUnstoppable = false;
-						unstoppableActivatedOnHit = true;
+						myPlayerController.playerAug.canUseUnstoppable = false;
+						//unstoppableActivatedOnHit = true;
 					}else{
 						_currentHealth -= dmg;
 					}
@@ -824,7 +825,7 @@ public class PlayerStatsS : MonoBehaviour {
 						delayDeathCountdownMult += 1f;
 						delayDeathCountdown = PlayerAugmentsS.CONDEMNED_TIME;
 						if (pRef.playerAug.desperateAug){
-							if (!unstoppableActivatedOnHit){
+							//if (!unstoppableActivatedOnHit){
 								currentAllowRecoverTime = allowHealthRecoverMaxTime;
 								_canRecoverHealth = dmg*DESPERATE_MULT;
 								allowHealthEndCountdown = 0f;
@@ -832,7 +833,7 @@ public class PlayerStatsS : MonoBehaviour {
 									_canRecoverHealth = (healthBeforeTakingDmg-_currentHealth)*DESPERATE_MULT;
 								}
 								_canRecoverHealthStart = _canRecoverHealth;
-							}
+							//}
 						}
 					}
 					}
@@ -841,7 +842,7 @@ public class PlayerStatsS : MonoBehaviour {
 					myPlayerController.playerSound.PlayHurtSound();
 					myPlayerController.myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
 					if (pRef.playerAug.desperateAug){
-						if (!unstoppableActivatedOnHit && healthBeforeTakingDmg >= maxHealth*0.01f){
+						if (healthBeforeTakingDmg >= maxHealth*0.01f){
 							currentAllowRecoverTime = allowHealthRecoverMaxTime;
 							_canRecoverHealth = dmg*DESPERATE_MULT;
 							allowHealthEndCountdown = 0f;
@@ -982,6 +983,7 @@ public class PlayerStatsS : MonoBehaviour {
 	{
 		_savedHealth = _currentHealth;
 		_savedCharge = _currentCharge;
+		myPlayerController.playerAug.canUseUnstoppable = true;
 		//_savedMana = _currentMana;
 	}
 	public void ResetCombatStats(){
@@ -989,6 +991,7 @@ public class PlayerStatsS : MonoBehaviour {
 		delayDeath = false;
 		delayDeathCountdown = 0f;
 		_currentCharge = _savedCharge;
+		myPlayerController.playerAug.canUseUnstoppable = true;
 		_canRecoverHealth = 0;
 		delayDeathCountdownMult = 0f;
 		//_currentMana = _savedMana;

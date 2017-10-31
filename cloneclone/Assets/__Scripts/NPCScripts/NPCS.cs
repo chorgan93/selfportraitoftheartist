@@ -54,6 +54,10 @@ public class NPCS : MonoBehaviour {
 	private Vector3 talkScale;
 	private Vector3 flipTalkScale;
 
+	[Header("Sound Properties")]
+	public GameObject mixOnTalk;
+	public GameObject mixOnEnd;
+
 
 	
 	void Start () {
@@ -103,6 +107,10 @@ public class NPCS : MonoBehaviour {
 							CameraFollowS.F.SetNewPOI(newPoi);
 						}
 					currentDialogueIndex = 0;
+						if (mixOnTalk){
+							GameObject newMix = Instantiate(mixOnTalk) as GameObject;
+							newMix.SetActive(true);
+						}
 						
 					DialogueManagerS.D.SetDisplayText(dialogues[currentDialogue].dialogueStrings[currentDialogueIndex]);
 
@@ -146,7 +154,10 @@ public class NPCS : MonoBehaviour {
 									currentDialogue = dialogues.Length-1;
 								}
 							}
-
+							if (mixOnEnd){
+								GameObject newMix = Instantiate(mixOnEnd) as GameObject;
+								newMix.SetActive(true);
+							}
 							if (isWaiting){
 								_myAnimator.SetTrigger(walkKey);
 							}else{

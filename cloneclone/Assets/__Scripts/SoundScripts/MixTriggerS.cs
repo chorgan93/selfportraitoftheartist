@@ -13,6 +13,7 @@ public class MixTriggerS : MonoBehaviour {
 	private bool activated = false;
 
 	public bool activateOnStart = false;
+	public bool dontDestroyOnFadeOut = false;
 
 	void Start(){
 		if (activateOnStart){
@@ -56,7 +57,7 @@ public class MixTriggerS : MonoBehaviour {
 				}
 				if (fadeOut){
 					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, true);
+						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, !dontDestroyOnFadeOut);
 					}
 				}
 				activated = true;

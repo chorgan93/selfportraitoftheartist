@@ -8,6 +8,7 @@ public class CinematicBgmS : MonoBehaviour {
 	public bool fadeIn;
 	public bool fadeOut;
 	public bool instant;
+	public bool destroyOnFade = true;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class CinematicBgmS : MonoBehaviour {
 			myTarget.FadeIn(instant);
 		}
 		if (fadeOut){
-			myTarget.FadeOut(instant, true);
+			myTarget.FadeOut(instant, destroyOnFade);
 		}
 
 	}
