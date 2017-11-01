@@ -10,6 +10,8 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 	[Header("Visual Properties")]
 	public float fadeRate = 1f;
+	public float delayFade = 0f;
+	private float delayFadeCountdown;
 	private Color fadeCol;
 	public Text mainText;
 	private float maxFade;
@@ -46,6 +48,9 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 		// change for controller once non-standalone
 		if (optionActive && _initialized){
 			if (fadingIn){
+				if (delayFadeCountdown > 0){
+					delayFadeCountdown -= Time.deltaTime;
+				}else{
 				fadeCol = mainText.color;
 				fadeCol.a += fadeRate*Time.deltaTime;
 				if (fadeCol.a >= maxFade){
@@ -53,6 +58,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 					fadingIn = false;
 				}
 				mainText.color = fadeCol;
+				}
 			}
 			if (Input.GetMouseButtonDown(0) && _isHovering){
 				SelectOption();
@@ -83,11 +89,13 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			textJumps[i].ActivateUndertext(this);
 		}
 					optionActive = true;
+			delayFadeCountdown = delayFade;
 
 			fadeCol = mainText.color;
 			fadeCol.a = 0f;
 			mainText.color = fadeCol;
 			fadingIn = true;
+			gameObject.SetActive(true);
 		}
 
 	}
@@ -96,6 +104,11 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			textJumps[i].DeactivateUndertext();
 		}
 		optionActive = false;
+		_isHovering = false;
+		gameObject.SetActive(false);
+	}
+
+	public void Hide(){
 		gameObject.SetActive(false);
 	}
 
@@ -103,6 +116,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 		if (isLimited){
 			limitedOption--;
 		}
+		_isHovering = false;
 			myHandler.GoToStep(ChooseNextStep());
 			numTimesChosen++;
 	}

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SacramentHandlerS : MonoBehaviour {
 
 	public List<SacramentStepS> sacramentSteps;
+	public Image waitForAdvanceImage;
 
 	public string nextSceneString;
 	public int nextSceneSpawnPos;
@@ -18,6 +20,8 @@ public class SacramentHandlerS : MonoBehaviour {
 	public int setProgress = -1;
 	public bool noFade = false;
 
+	bool startedLoading = false;
+
 	AsyncOperation async;
 
 	// Use this for initialization
@@ -25,6 +29,14 @@ public class SacramentHandlerS : MonoBehaviour {
 		currentStep = 0;
 		InitializeSteps();
 		sacramentSteps[currentStep].ActivateStep();
+	}
+
+	void Update(){
+		if (startedLoading){
+			if (async.progress >= 0.9f){
+				async.allowSceneActivation = true;
+			}
+		}
 	}
 
 	public void GoToStep(SacramentStepS nextStep){
@@ -52,16 +64,30 @@ public class SacramentHandlerS : MonoBehaviour {
 	public void AdvanceStep(){
 
 		sacramentSteps[currentStep].DeactivateStep();
+		if (sacramentSteps[currentStep].nextStep != null){
+			GoToStep(sacramentSteps[currentStep].nextStep);
+		}else{
 		currentStep++;
 		if (currentStep < sacramentSteps.Count){
 			sacramentSteps[currentStep].ActivateStep();
 		}else{
 			if (quitGameOnEnd){
+				Debug.Log("Exiting Sacrament...");
 				Application.Quit();
 			}else{
 				StartCoroutine(LoadNextScene());
 			}
 		}
+		}
+	}
+
+	public void ActivateWait(){
+		if (!sacramentSteps[currentStep].waitOnOptions){
+			waitForAdvanceImage.gameObject.SetActive(true);
+		}
+	}
+	public void DeactivateWait(){
+		waitForAdvanceImage.gameObject.SetActive(false);
 	}
 
 	private IEnumerator LoadNextScene(){
@@ -72,6 +98,7 @@ public class SacramentHandlerS : MonoBehaviour {
 		if (setProgress > -1){
 			StoryProgressionS.SetStory(setProgress);
 		}
+		startedLoading = true;
 		async = Application.LoadLevelAsync(nextSceneString);
 		async.allowSceneActivation = false;
 		yield return async;

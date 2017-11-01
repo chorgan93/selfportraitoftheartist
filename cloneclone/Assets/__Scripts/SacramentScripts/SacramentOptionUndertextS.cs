@@ -21,6 +21,7 @@ public class SacramentOptionUndertextS : MonoBehaviour {
 	private Color fadeCol;
 	private bool fadingIn = false;
 	private float maxFade;
+	private float delayFadeCountdown;
 
 	private float hoverTimeMult;
 	private float hoverXMult;
@@ -36,6 +37,9 @@ public class SacramentOptionUndertextS : MonoBehaviour {
 	
 		if (_initialized){
 			if (fadingIn){
+				if (delayFadeCountdown > 0){
+					delayFadeCountdown -= Time.deltaTime;
+				}else{
 				fadeCol = myText.color;
 				fadeCol.a += fadeRate*Time.deltaTime;
 				if (fadeCol.a >= maxFade){
@@ -43,6 +47,7 @@ public class SacramentOptionUndertextS : MonoBehaviour {
 					fadingIn = false;
 				}
 				myText.color = fadeCol;
+				}
 			}
 			if (myOption.isHovering){
 				shakeCountdown -= Time.deltaTime*hoverTimeMult;
@@ -73,6 +78,7 @@ public class SacramentOptionUndertextS : MonoBehaviour {
 		fadeCol = myText.color;
 		fadeCol.a = 0f;
 		myText.color = fadeCol;
+		delayFadeCountdown = myO.delayFade;
 		fadingIn = true;
 	}
 
