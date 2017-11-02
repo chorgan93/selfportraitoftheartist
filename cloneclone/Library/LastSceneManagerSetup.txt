@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/SacramentScenes/SacramentI-02.unity
+- path: Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-04.unity
   isLoaded: 1
   isActive: 1
