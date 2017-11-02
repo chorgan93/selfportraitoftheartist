@@ -60,7 +60,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 				mainText.color = fadeCol;
 				}
 			}
-			if (Input.GetMouseButtonDown(0) && _isHovering){
+			else if (Input.GetMouseButtonDown(0) && _isHovering){
 				SelectOption();
 			}
 		}
@@ -115,6 +115,9 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public void SelectOption(){
 		if (isLimited){
 			limitedOption--;
+		}
+		if (selectSound){
+			Instantiate(selectSound);
 		}
 		_isHovering = false;
 			myHandler.GoToStep(ChooseNextStep());

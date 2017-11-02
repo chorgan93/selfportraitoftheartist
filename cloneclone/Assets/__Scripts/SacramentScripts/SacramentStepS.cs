@@ -18,6 +18,8 @@ public class SacramentStepS : MonoBehaviour {
 	private int currentText = 0;
 	public SacramentOptionS[] sacramentOptions;
 	public SacramentImageS[] sacramentImages;
+	private bool imageStep = false;
+	private int currentImage;
 	private bool delayOptionSetup = false;
 
 	[Header("Navigation Properties")]
@@ -26,6 +28,7 @@ public class SacramentStepS : MonoBehaviour {
 	[Header("Sound Properties")]
 	public GameObject onSound;
 	public GameObject offSound;
+	public SacramentBGMS musicTrigger;
 
 	// Use this for initialization
 	void Start () {
@@ -51,10 +54,24 @@ public class SacramentStepS : MonoBehaviour {
 
 	}
 
+	public void AdvanceImage(){
+		sacramentImages[currentImage].DeactivateImage();
+		currentImage++;
+		if (currentImage < sacramentImages.Length){
+			sacramentImages[currentImage].ActivateImage(this);
+		}else{
+			_myHandler.AdvanceStep();
+		}
+	}
+
 	public void ActivateStep(){
+		if (musicTrigger){
+			musicTrigger.Activate();
+		}
 		_stepActive = true;
 	delayOptionSetup = false;
 		_myHandler.DeactivateWait();
+		SetUpImages();
 		SetUpOptions();
 		SetUpTexts();
 		gameObject.SetActive(true);
@@ -110,13 +127,22 @@ public class SacramentStepS : MonoBehaviour {
 		}
 	}
 
+	void SetUpImages(){
+		currentImage = 0;
+		if (sacramentImages.Length > 0){
+			imageStep = true;
+			for (int i = 0; i < sacramentImages.Length; i++){
+				if (i == 0){
+				sacramentImages[i].ActivateImage(this);
+				}else{
+					sacramentImages[i].Hide();}
+			}
+		}
+	}
+
 	void DelayedOptionSetup(){
 		for (int i = 0; i < sacramentOptions.Length; i++){
 			sacramentOptions[i].Initialize(_myHandler);
 		}
-	}
-
-	void SetUpImages(){
-		
 	}
 }

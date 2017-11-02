@@ -15,6 +15,7 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	[Header("Standalone Properties")]
 	public bool quitGameOnEnd = false;
+	public bool enableEscToQuit = false;
 	public bool loadPlayerDown = false;
 	public bool healPlayer = false;
 	public int setProgress = -1;
@@ -35,6 +36,10 @@ public class SacramentHandlerS : MonoBehaviour {
 		if (startedLoading){
 			if (async.progress >= 0.9f){
 				async.allowSceneActivation = true;
+			}
+		}else{
+			if (enableEscToQuit && Input.GetKeyDown(KeyCode.Escape)){
+				Application.Quit();
 			}
 		}
 	}
