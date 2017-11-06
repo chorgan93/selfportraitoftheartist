@@ -16,6 +16,7 @@ public class LookOnTouchS : MonoBehaviour {
 	public int doNotActivateOnRewindNum = -1;
 	public int doNotActivateOnHealNum = -1;
 	public int doNotActivateOnVirtueNum = -1;
+	public int doNotActivateOnCombatNum = -1;
 	public float delayCountdown = 0f;
 	private bool doDelay = false;
 
@@ -33,6 +34,11 @@ public class LookOnTouchS : MonoBehaviour {
 		}
 		if (doNotActivateOnVirtueNum >= 0){
 			if (PlayerInventoryS.I.earnedVirtues.Contains(doNotActivateOnVirtueNum)){
+				canAct = false;
+			}
+		}
+		if (doNotActivateOnCombatNum >= 0 && PlayerInventoryS.I.dManager.combatClearedAtLeastOnce != null){
+			if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(doNotActivateOnCombatNum)){
 				canAct = false;
 			}
 		}

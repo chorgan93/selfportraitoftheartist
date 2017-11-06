@@ -1138,6 +1138,7 @@ public class EnemyS : MonoBehaviour {
 			}
 
 			CameraFollowS.F.RemoveStunnedEnemy(this);
+			_canBeStunned = true;
 			Stun (0);
 			CancelBehaviors();
 			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
