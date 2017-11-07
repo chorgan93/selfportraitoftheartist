@@ -13,6 +13,8 @@ public class RankUIS : MonoBehaviour {
 	private List<RankUIItemS> inactiveScoreObjs;
 	public RankUIItemS addScoreItem00;
 	public RankUIItemS addScoreItem01;
+	public RankUIItemS noDamageItem;
+	public RankUIItemS timeBonusItem;
 	private int currentAddScoreItem = 0;
 	public int maxScoreObjs = 4;
 
@@ -26,14 +28,16 @@ public class RankUIS : MonoBehaviour {
 	private float maxBarSize;
 	public Color[] multiplierColors;
 	public string[] multiplierColorStrings;
+	public Color[] finalRankColors;
 	private List<float> imageMaxAlphas = new List<float>();
 	public Text totalRankText;
+	private Color totalRankStartCol;
 	public Text currentComboText;
+	public Text finalRankLetter;
 	public GameObject currentComboObj;
 	private float rankTextMaxAlpha;
 	public float fadeInTime;
 	public float showAfterRankTime;
-	private float showAfterRankCountdown;
 	public float fadeOutTime;
 
 	private Color fadeCol;
@@ -50,6 +54,13 @@ public class RankUIS : MonoBehaviour {
 	public float xItemMoveDist = 50f;
 	private Vector2 scoreAddStartPos;
 	private Vector2 scoreAddEndPos;
+
+	private bool endCombatOnFade = false;
+
+	[HideInInspector]
+	public bool doTimeBonus = false;
+	[HideInInspector]
+	public bool doNoDamage = false;
 
 
 
@@ -79,30 +90,48 @@ public class RankUIS : MonoBehaviour {
 						fadeT = fadeCount/fadeOutTime;
 					}
 					fadeT = Mathf.Sin(fadeT * Mathf.PI * 0.5f);
+					// fade images
 					for (int i = 0; i < totalRankBorders.Length; i++){
 						fadeCol = totalRankBorders[i].color;
 						if (fadingIn){
 							fadeCol.a = imageMaxAlphas[i]*fadeT;
 						}else if (fadingOut){
-							fadeCol.a = imageMaxAlphas[i]/fadeT;
+							fadeCol.a = imageMaxAlphas[i]*(1f-fadeT);
 						}
 						totalRankBorders[i].color = fadeCol;
 					}
+					// fade mult bar
 					fadeCol = multiplierColors[myRankManager.currentMultStage];
 					if (fadingIn){
 						fadeCol.a = fadeT;
 					}else if (fadingOut){
-						fadeCol.a = 1f/fadeT;
+						fadeCol.a = 1f-fadeT;
 					}
 					multiplierBar.color = fadeCol;
+					// fadeText
 					fadeCol = totalRankText.color;
 					if (fadingIn){
 						fadeCol.a = fadeT*rankTextMaxAlpha;
 					}else if (fadingOut){
-						fadeCol.a = 1f/fadeT*rankTextMaxAlpha;
+						fadeCol.a = (1f-fadeT)*rankTextMaxAlpha;
 					}
+					totalRankText.color = fadeCol;
+
+					fadeCol = finalRankLetter.color;
+					if (fadingIn){
+						fadeCol.a = fadeT;
+					}else if (fadingOut){
+						fadeCol.a = 1f-fadeT;
+					}
+					finalRankLetter.color = fadeCol;
+
+					// check fade end
 					if (fadeT >= 1f){
 						fadingIn = false;
+						if (fadingOut && endCombatOnFade){
+							endCombatOnFade = false;
+							myRankManager.EndScoring();
+						}
 						fadingOut = false;
 					}
 				}
@@ -129,12 +158,17 @@ public class RankUIS : MonoBehaviour {
 				scoreAddEndPos.y = 0f;
 
 			}
+			finalRankLetter.text = "";
+			noDamageItem.gameObject.SetActive(false);
+			timeBonusItem.gameObject.SetActive(false);
 			multBarTransform = multiplierBar.GetComponent<RectTransform>();
 			maxBarSize = multBarTransform.sizeDelta.x;
 			multBarSize = multBarTransform.sizeDelta;
 			multBarSize.x = 0;
+			totalRankStartCol = totalRankText.color;
 			rankTextMaxAlpha = totalRankText.color.a;
 			fadeCol = totalRankText.color;
+			fadeCol.a = 0f;
 			totalRankText.color = fadeCol; 
 		}
 	}
@@ -199,6 +233,7 @@ public class RankUIS : MonoBehaviour {
 
 		fadeCount = 0;
 		fadingIn = true;
+		totalRankText.color = totalRankStartCol;
 		UpdateCurrentCombo();
 		UpdateCurrentScore();
 		UpdateMultBar();
@@ -208,6 +243,7 @@ public class RankUIS : MonoBehaviour {
 	public void UpdateMultBar(){
 		if (!fadingIn && !fadingOut){
 			fadeCol = multiplierColors[myRankManager.currentMultStage];
+			multiplierBar.color = fadeCol;
 		}
 		multBarSize.x = maxBarSize*myRankManager.CurrentMultSize();
 		multBarTransform.sizeDelta = multBarSize;
@@ -233,18 +269,70 @@ public class RankUIS : MonoBehaviour {
 	}
 
 	public void EndCombat(){
+		myRankManager.delayLoad = true;
 		StartCoroutine(EndCombatDisplay());
 	}
 
 	IEnumerator EndCombatDisplay(){
-		yield return null;
+		bool doBonus = false;
+		if (doNoDamage){
+			Debug.Log("doing no damage bonus!");
+			yield return new WaitForSeconds(0.25f);
+			doBonus = true;
+			Vector2 startPos = scoreAddStartPos;
+			startPos.y -= xItemMoveDist;
+			noDamageItem.TurnOn(-1, 0, this);
+			noDamageItem.SetPosition(startPos);
+			noDamageItem.SetNewPos(true, false, scoreAddStartPos);
+			doNoDamage = false;
+			activeScoreObjs.Add(noDamageItem);
+
+		}
+		if (doTimeBonus){
+			Debug.Log("doing under time bonus!");
+			yield return new WaitForSeconds(0.25f);
+			if (!doBonus){
+				doBonus = true;
+				Vector2 startPos = scoreAddStartPos;
+				startPos.y -= xItemMoveDist;
+				timeBonusItem.TurnOn(-1, 0, this);
+				timeBonusItem.SetPosition(startPos);
+				timeBonusItem.SetNewPos(true, false, scoreAddStartPos);
+				activeScoreObjs.Add(timeBonusItem);
+			}else{
+
+				Vector2 startPos = scoreAddStartPos;
+				startPos.y -= xItemMoveDist+yItemSeparation;
+				timeBonusItem.TurnOn(-1, 0, this);
+				timeBonusItem.SetPosition(startPos);
+				Vector2 endPos = scoreAddStartPos;
+				endPos.y -= yItemSeparation;
+				timeBonusItem.SetNewPos(true, false, endPos);
+				activeScoreObjs.Add(timeBonusItem);
+			}
+			doTimeBonus = false;
+		}
+		if (doBonus){
+			yield return new WaitForSeconds(0.5f);
+			myRankManager.AddBonuses();
+			doBonus = false;
+		}
+		yield return new WaitForSeconds(2f);
+		finalRankLetter.color = finalRankColors[myRankManager.GetRankInt()];
+		finalRankLetter.text = "(" + myRankManager.ReturnRank() + ")";
+		totalRankText.color = finalRankLetter.color;
+		yield return new WaitForSeconds(showAfterRankTime);
+		VerseDisplayS.V.EndVerse(0.1f);
+		myRankManager.AddFinalScore();
+		fadeCount = 0f;
+		fadingOut = true;
+		endCombatOnFade = true;
 	}
 
-	public void StartCountUp(int countAmt){
+	public void StartCountUp(int countAmt, bool showAddScore = true){
 		EndCurrentCombo();
+		if (showAddScore){
 		currentAddScoreItem++;
-		fadingOut = true;
-		fadeCount = 0f;
 		if (currentAddScoreItem > 1){
 			currentAddScoreItem = 0;
 		}
@@ -258,6 +346,18 @@ public class RankUIS : MonoBehaviour {
 			addScoreItem01.SetPosition(scoreAddStartPos);
 			addScoreItem01.SetMaxAlpha();
 			addScoreItem01.SetNewPos(false, true, Vector2.zero, 0.8f);
+		}
+		}else{
+			Vector2 bonusTarget = totalRankText.rectTransform.anchoredPosition;
+			if (timeBonusItem.gameObject.activeSelf){
+				bonusTarget.x = timeBonusItem.rectTransform.anchoredPosition.x;
+				timeBonusItem.SetNewPos(false, true, bonusTarget, 0.8f);
+			}
+			if (noDamageItem.gameObject.activeSelf){
+				bonusTarget.x = noDamageItem.rectTransform.anchoredPosition.x;
+				noDamageItem.SetNewPos(false, true, bonusTarget, 0.8f);
+			}
+
 		}
 	}
 

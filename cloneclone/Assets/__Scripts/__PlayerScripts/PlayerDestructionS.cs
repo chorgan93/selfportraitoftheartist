@@ -22,6 +22,8 @@ public class PlayerDestructionS : MonoBehaviour {
 	public List<int> combatClearedAtLeastOnce { get { return _combatClearedAtLeastOnce; } }
 	private List<int> _combatClearedRanks;
 	public List<int> combatClearedRanks { get { return _combatClearedRanks; } }
+	private List<string> _combatClearedRankGrades;
+	public List<string> combatClearedRankGrades { get { return _combatClearedRankGrades; } }
 	
 	
 	private List<int> _clearedCombatTriggers;
@@ -92,7 +94,7 @@ public class PlayerDestructionS : MonoBehaviour {
 		}
 	}
 	
-	public void AddClearedCombat(int newI, int newScore){
+	public void AddClearedCombat(int newI, int newScore, string newScoreLetter){
 		_clearedCombatTriggers.Add(newI);
 		if (_combatClearedAtLeastOnce == null){
 			_combatClearedAtLeastOnce = new List<int>();
@@ -100,28 +102,43 @@ public class PlayerDestructionS : MonoBehaviour {
 		if (_combatClearedRanks == null){
 			_combatClearedRanks = new List<int>();
 		}
+		if (_combatClearedRankGrades == null){
+			_combatClearedRankGrades = new List<string>();
+		}
 		if (!_combatClearedAtLeastOnce.Contains(newI)){
 			_combatClearedAtLeastOnce.Add(newI);
 			_combatClearedRanks.Add(newScore);
+			_combatClearedRankGrades.Add(newScoreLetter);
 		}else{
 			if (_combatClearedRanks[_combatClearedAtLeastOnce.IndexOf(newI)] < newScore){
 				_combatClearedRanks[_combatClearedAtLeastOnce.IndexOf(newI)] = newScore;
+				_combatClearedRankGrades[_combatClearedAtLeastOnce.IndexOf(newI)] = newScoreLetter;
 			}
 		}
 	}
 	public void ClearCompletedCombat(){
 		_clearedCombatTriggers.Clear();
 	}
-	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores){
+	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores, List<string> newCombatGrades){
 		_combatClearedAtLeastOnce = newCombat;
 		if (newCombatScores != null){
 		_combatClearedRanks = newCombatScores;
 		}else{
 			_combatClearedRanks = new List<int>();
 		}
+		if (newCombatGrades != null){
+			_combatClearedRankGrades = newCombatGrades;
+		}else{
+			_combatClearedRankGrades = new List<string>();
+		}
 		if (_combatClearedRanks.Count < _combatClearedAtLeastOnce.Count){
 			for (int i = _combatClearedRanks.Count; i < _combatClearedAtLeastOnce.Count; i++){
 				_combatClearedRanks.Add(-1);
+			}
+		}
+		if (_combatClearedRankGrades.Count < _combatClearedAtLeastOnce.Count){
+			for (int i = _combatClearedRankGrades.Count; i < _combatClearedAtLeastOnce.Count; i++){
+				_combatClearedRankGrades.Add("C");
 			}
 		}
 	}

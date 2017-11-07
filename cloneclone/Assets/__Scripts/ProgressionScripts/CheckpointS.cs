@@ -44,7 +44,7 @@ public class CheckpointS : MonoBehaviour {
 
 		if (addToCompletedFights.Length > 0){
 			for (int i = 0; i<addToCompletedFights.Length;i++){
-				PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i], -1);
+				PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i], -1, "C");
 			}
 		}
 
@@ -118,7 +118,7 @@ public class CheckpointS : MonoBehaviour {
 				PlayerInventoryS.I.dManager.ClearAll();
 				if (addToCompletedFights.Length > 0){
 					for (int i = 0; i<addToCompletedFights.Length;i++){
-						PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i], -1);
+						PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i], -1, "C");
 					}
 				}
 				PlayerInventoryS.I.RefreshRechargeables();

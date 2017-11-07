@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CombatManagerS : MonoBehaviour {
 
@@ -38,6 +39,10 @@ public class CombatManagerS : MonoBehaviour {
 	public int maxDifficulty = 9999;
 	public int overrideOnDifficulty = -1;
 	public float geometryMultiplier = 1f;
+
+	[Header("Scoring Properties")]
+	public int[] targetTimesInSeconds = new int[]{25, 20, 15, 15};
+	public List<int> rankThresholds = new List<int>(3){2000, 2500, 3000};
 	
 	// Update is called once per frame
 	void Update () {
@@ -102,9 +107,8 @@ public class CombatManagerS : MonoBehaviour {
 		playerRef.SetCombat(false);
 		playerRef.EndWitchTime();
 		CameraEffectsS.E.ResetEffect(true);
-		VerseDisplayS.V.EndVerse();
-		if (combatID > -1){
-			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, RankManagerS.R.CombatRank());
+		if (combatID > -1 && !RankManagerS.rankEnabled){
+			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}
 		RankManagerS.R.EndCombat();
 		TurnOffEnemies();
@@ -163,7 +167,9 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}else{
-			RankManagerS.R.StartCombat();
+			if (RankManagerS.rankEnabled){
+			RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID);
+			}
 			if (effectOnStart){
 				CameraEffectsS.E.ResetEffect(false, true);
 			}

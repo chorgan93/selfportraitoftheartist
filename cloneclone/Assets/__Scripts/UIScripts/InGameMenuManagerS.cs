@@ -38,6 +38,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 	public GameObject gamePausedScreen;
 	private bool gamePaused = false;
+	public bool isPaused { get { return gamePaused; } }
 
 	// Use this for initialization
 	void Start () {

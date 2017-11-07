@@ -15,6 +15,7 @@ public class RankUIItemS : MonoBehaviour {
 
 	[Header("Special Properties")]
 	public bool isScoreAdd = false;
+	public bool isBonusAdd = false;
 
 	[Header("Color Properties")]
 	public float fadeTime = 0.4f;
@@ -62,7 +63,7 @@ public class RankUIItemS : MonoBehaviour {
 				if (fadingIn){
 					fadeColor.a = scoreMaxAlphas[i]*fadeT;
 				}else if (fadingOut){
-					fadeColor.a = scoreMaxAlphas[i]/fadeT;
+						fadeColor.a = scoreMaxAlphas[i]*(1f-fadeT);
 				}
 				scoreRenders[i].color = fadeColor;
 			}
@@ -70,7 +71,7 @@ public class RankUIItemS : MonoBehaviour {
 			if (fadingIn){
 				fadeColor.a = fadeT;
 			}else if (fadingOut){
-				fadeColor.a = 1f/fadeT;
+					fadeColor.a = 1f*(1f-fadeT);
 			}
 			if (!isScoreAdd){
 				scoreTypeImage.color = fadeColor;
@@ -114,10 +115,12 @@ public class RankUIItemS : MonoBehaviour {
 		fadeColor.a = 0f;
 		scoreTypeImage.color = fadeColor;
 		}
+		if (!isBonusAdd){
 		if (isScoreAdd){
 			scoreAmt.text = "+ " + scoreAmount.ToString();
 		}else{
 		scoreAmt.text = scoreAmount.ToString();
+		}
 		}
 		fadeColor = scoreAmt.color;
 		fadeColor.a = 0f;
@@ -136,6 +139,8 @@ public class RankUIItemS : MonoBehaviour {
 	}
 
 	public void SetPosition(Vector2 newPos){
+		moving = false;
+		moveTimeCount = 0f;
 		myTransform.anchoredPosition = prevAnchoredPosition = newPos;
 
 	}

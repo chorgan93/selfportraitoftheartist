@@ -44,11 +44,30 @@ public class RankManagerS : MonoBehaviour {
 	private float countUpCount = 0f;
 	private float countUpT;
 
+	//_____________________________BONUS PROPERTIES
+	private bool _noDamage=true;
+	public bool noDamage { get { return _noDamage; } }
+	private int noDamageBonus = 1000;
+	private bool _underTime = true;
+	public bool underTime {get { return _underTime; } }
+	private float combatDuration;
+
+	private int goalTimeInSeconds;
+	private int timeBonus = 1000;
+	private List<int> rankScoreTargets;
+
+	private int currentCombatID = -1;
+
 	private bool _initialized = false;
 
 	public static RankManagerS R;
 
 	public static bool rankEnabled = false;
+	private bool endScoringAfterCount = false;
+
+	private InGameMenuManagerS pauseRef;
+	[HideInInspector]
+	public bool delayLoad = false;
 
 	void Awake(){
 		if (R == null){
@@ -62,7 +81,8 @@ public class RankManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (_scoringActive){
+		if (_scoringActive && !pauseRef.isPaused){
+			combatDuration+=Time.deltaTime;
 			if (delayCountUp > 0){
 				delayCountUp -= Time.deltaTime;
 			}
@@ -71,6 +91,10 @@ public class RankManagerS : MonoBehaviour {
 				if (countUpCount >= countUpTime){
 					countUpCount = countUpTime;
 					_countingUp = false;
+					if (endScoringAfterCount){
+						endScoringAfterCount  = false;
+						myUI.EndCombat();
+					}
 				}
 				countUpT = countUpCount/countUpTime;
 				totalRank = Mathf.RoundToInt(Mathf.Lerp(rankAtCountStart, rankCountUp, countUpT));
@@ -105,37 +129,104 @@ public class RankManagerS : MonoBehaviour {
 	void Initialize() {
 		if (!_initialized){
 			myUI = GameObject.Find("CombatRankUI").GetComponent<RankUIS>();
+			pauseRef = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
 			myUI.Initialize(this);
 			_initialized = true;
 		}
 	} 
 
-	public void StartCombat(){
+	public void StartCombat(int targetTime, List<int> scores, int combatID){
 
-		if (rankEnabled){
+			currentCombatID = combatID;
+			goalTimeInSeconds = targetTime;
+			rankScoreTargets = scores;
 		currentMultiplierStage = 0;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
 		currentRankAdd = totalRank = 0;
 			myUI.StartCombat();
 			myUI.UpdateCurrentScore();
 		_scoringActive = true;
-		}
-		
+			combatDuration = 0;
+			_noDamage = true;
+			_underTime = false;
 	}
 
 	public void RestartCombat(){
 		if (rankEnabled){
 		currentMultiplierStage = 0;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
-		currentRankAdd = totalRank = 0;
+			currentRankAdd = totalRank = 0;
+			combatDuration = 0;
+			_noDamage = true;
+			_underTime = false;
 		}
 	}
 
 	public void EndCombat(){
 		if (rankEnabled){
 		EndCombo();
-		_scoringActive = false;
+			if (goalTimeInSeconds >= combatDuration){
+				_underTime = true;
+			}else{
+				_underTime = false;
+			}
+			Debug.Log(_underTime + " : " + combatDuration.ToString() + " / " + goalTimeInSeconds.ToString());
+			myUI.doTimeBonus = _underTime;
+			myUI.doNoDamage = _noDamage;
+			endScoringAfterCount = true;
+		}else{
+
+			VerseDisplayS.V.EndVerse();
 		}
+	}
+	public string ReturnRank(){
+		string rankString = "C";
+		if (rankEnabled){
+		if (totalRank >= rankScoreTargets[2]){
+			rankString = "S";
+		}else if (totalRank >= rankScoreTargets[1]){
+			rankString = "A";
+		}else if (totalRank >= rankScoreTargets[0]){
+			rankString = "B";
+		}else{
+			rankString = "C";
+		}
+		}
+		return rankString;
+	}
+	public int GetRankInt(){
+		int rankInt = 0;
+		if (totalRank >= rankScoreTargets[2]){
+			rankInt = 3;
+		}else if (totalRank >= rankScoreTargets[1]){
+		rankInt = 2;
+		}else if (totalRank >= rankScoreTargets[0]){
+			rankInt = 1;
+		}
+		return rankInt;
+	}
+	public void TakeHit(){
+		if (rankEnabled){
+			_noDamage = false;
+			if (currentDmgAdvance > 0){
+			currentDmgAdvance -= dmgAdvanceReductionPenalties[currentMultiplierStage];
+				myUI.UpdateMultBar();
+			if (currentDmgAdvance <= 0){
+				currentDmgAdvance = 0;
+				EndCombo();
+			}
+			}
+		}
+	}
+	public void EndScoring(){
+		_scoringActive = false;
+	}
+
+	public void AddFinalScore(){
+		if (currentCombatID > -1){
+			PlayerInventoryS.I.dManager.AddClearedCombat(currentCombatID, totalRank, ReturnRank());
+		}
+		delayLoad = false;
 	}
 
 	public void ScoreHit(int dmgType, float dmgAmount){
@@ -164,6 +255,24 @@ public class RankManagerS : MonoBehaviour {
 
 	}
 
+	public void AddBonuses(){
+		rankAtCountStart = totalRank;
+		int totalBonus = 0;
+		if (_noDamage){
+			totalBonus += noDamageBonus;
+		}
+		_noDamage = true;
+		if (_underTime){
+			totalBonus += timeBonus;
+		}
+		_underTime = false;
+		rankCountUp = rankAtCountStart+totalBonus;
+		myUI.StartCountUp(totalBonus, false);
+		_countingUp = true;
+		countUpCount = 0f;
+		delayCountUp = delayCountUpTime;
+	}
+
 
 	void EndCombo(){
 		rankAtCountStart = totalRank;
@@ -176,17 +285,6 @@ public class RankManagerS : MonoBehaviour {
 		_countingUp = true;
 		countUpCount = 0f;
 		delayCountUp = delayCountUpTime;
-	}
-
-	public int CombatRank(){
-		int combatRank = 0;
-		if (rankEnabled){
-			combatRank = Mathf.RoundToInt(currentRankAdd*currentMultiplier);
-			currentRankAdd = currentMultiplier = 0;
-		}else{
-			combatRank = -1;
-		}
-		return combatRank;
 	}
 
 	public string CurrentMultiplierDisplay(){

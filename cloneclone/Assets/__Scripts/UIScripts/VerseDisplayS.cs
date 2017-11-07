@@ -122,13 +122,13 @@ public class VerseDisplayS : MonoBehaviour {
 	
 	}
 
-	public void EndVerse(){
-		StartCoroutine(EndVerseCoroutine());
+	public void EndVerse(float waitTime = 1.6f){
+		StartCoroutine(EndVerseCoroutine(waitTime));
 	}
-	private IEnumerator EndVerseCoroutine(){
+	private IEnumerator EndVerseCoroutine(float newWait){
 
 		currentVerse = "";
-		yield return new WaitForSeconds(1.6f);
+		yield return new WaitForSeconds(newWait);
 		if (!fadingIn){
 			fadingIn = false;
 			fadingOut = true;
