@@ -27,6 +27,7 @@ public class RankUIItemS : MonoBehaviour {
 	private Vector2 currentAnchoredTarget;
 	private Vector2 prevAnchoredPosition;
 	private RectTransform myTransform;
+	public RectTransform rectTransform { get { return myTransform; } }
 	private float moveT;
 
 	[Header("Movement Properties")]
@@ -36,6 +37,9 @@ public class RankUIItemS : MonoBehaviour {
 	private bool moving = false;
 	private bool fadingIn = false;
 	private bool fadingOut = false;
+	private float delayMoveCount = 0f;
+
+	private RankUIS myUIManager;
 
 	private bool _initialized = false;
 
@@ -43,6 +47,9 @@ public class RankUIItemS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (delayMoveCount > 0){
+			delayMoveCount -= Time.deltaTime;
+		}else{
 		if (fadingIn || fadingOut){
 			fadeCount += Time.deltaTime;
 			if (fadeCount >= fadeTime){
@@ -65,28 +72,39 @@ public class RankUIItemS : MonoBehaviour {
 			}else if (fadingOut){
 				fadeColor.a = 1f/fadeT;
 			}
+			if (!isScoreAdd){
+				scoreTypeImage.color = fadeColor;
+			}
+			scoreAmt.color = fadeColor;
 			if (fadeT >= 1f){
 				fadingIn = false;
+				if (fadingOut){
 				fadingOut = false;
+					TurnOff();
+				}
 			}
 		}
 
 		if (moving){
+			
 			moveTimeCount += Time.deltaTime;
-			if (moveTimeCount >= 0){
+			if (moveTimeCount >= moveTimeMax){
 				moveTimeCount = moveTimeMax;
 				moving = false;
 			}
 			moveT = moveTimeCount/moveTimeMax;
 			moveT = Mathf.Sin(moveT * Mathf.PI * 0.5f);
 			myTransform.anchoredPosition = Vector2.Lerp(prevAnchoredPosition, currentAnchoredTarget, moveT);
+			}
 
 		}
 	
+	
 	}
 
-	public void TurnOn(int scoreT, float scoreAmount){
+	public void TurnOn(int scoreT, float scoreAmount, RankUIS myManager){
 		if (!_initialized){
+			myUIManager = myManager;
 			Initialize();
 		}
 		if (!isScoreAdd){
@@ -95,8 +113,6 @@ public class RankUIItemS : MonoBehaviour {
 		fadeColor = scoreTypeImage.color;
 		fadeColor.a = 0f;
 		scoreTypeImage.color = fadeColor;
-		}else{
-			scoreTypeImage.enabled = false;
 		}
 		if (isScoreAdd){
 			scoreAmt.text = "+ " + scoreAmount.ToString();
@@ -108,7 +124,7 @@ public class RankUIItemS : MonoBehaviour {
 		scoreAmt.color = fadeColor;
 		scoreAmt.enabled = true;
 		gameObject.SetActive(true);
-		
+
 	}
 
 	public void MoveTo(Vector2 newTarget, float newMoveTime = 0.5f){
@@ -127,7 +143,7 @@ public class RankUIItemS : MonoBehaviour {
 	void Initialize(){
 
 		if (!_initialized){
-		scoreMaxAlphas.Clear();
+			scoreMaxAlphas = new List<float>();
 		for (int i = 0; i < scoreRenders.Length; i++){
 			scoreMaxAlphas.Add(scoreRenders[i].color.a);
 			fadeColor = scoreRenders[i].color;
@@ -142,11 +158,42 @@ public class RankUIItemS : MonoBehaviour {
 
 	public void TurnOff(){
 		gameObject.SetActive(false);
+		if (!isScoreAdd){
+		myUIManager.AddOffItem(this);
+		}
 	}
 
-	public void SetNewPos(bool doFadeIn, bool doFadeOut){
+	public void SetFade(bool doFadeIn, bool doFadeOut){
 		fadingIn = doFadeIn;
 		fadingOut = doFadeOut;
 		fadeCount = 0f;
+	}
+
+	public void SetMaxAlpha(){
+		for (int i = 0; i < scoreRenders.Length; i++){
+			
+			fadeColor.a = scoreMaxAlphas[i];
+			
+			scoreRenders[i].color = fadeColor;
+		}
+		fadeColor = scoreAmt.color;
+			fadeColor.a = 1f;
+		if (!isScoreAdd){
+		scoreAmt.color = scoreTypeImage.color = fadeColor;
+		}else{
+			scoreAmt.color = fadeColor;
+		}
+	}
+
+	public void SetNewPos(bool doFadeIn, bool doFadeOut, Vector2 newPos, float delay = 0f){
+		fadingIn = doFadeIn;
+		fadingOut = doFadeOut;
+		fadeCount = 0f;
+		delayMoveCount = delay;
+		if (fadingOut){
+			MoveTo(newPos, 0.6f);
+		}else{
+			MoveTo(newPos);
+		}
 	}
 }

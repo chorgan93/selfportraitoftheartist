@@ -235,6 +235,9 @@ public class ChargeAttackS : MonoBehaviour {
 					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
+				RankManagerS.R.ScoreHit(2, dmgDealt);
+
+
 				myPlayer.myStats.DesperateRecover(dmgDealt);
 
 				/*if (myPlayer.playerAug.lunaAug){

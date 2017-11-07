@@ -54,6 +54,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool dashAttack = false;
 	public bool delayAttack = false;
 	public bool counterAttack = false;
+	public bool isFinisher = false;
 	public float dmg = 1;
 	public float killAtLessThan = 0f;
 	public bool addOnDetermined = false;
@@ -513,6 +514,12 @@ public class ProjectileS : MonoBehaviour {
 					false, killAtLessThan*DeterminedMult());
 
 				_myPlayer.myStats.DesperateRecover(dmgDealt);
+
+				if (isFinisher || counterAttack || hitEnemy.isCritical){
+					RankManagerS.R.ScoreHit(1, dmgDealt);
+				}else{
+					RankManagerS.R.ScoreHit(0, dmgDealt);
+				}
 
 				StartMoveStop(hitStopAmt);
 				_myPlayer.AnimationStop(hitStopAmt);

@@ -7,21 +7,25 @@ public class RankManagerS : MonoBehaviour {
 	[HideInInspector]
 	public int totalRank = 0;
 	private int rankCountUp = 0;
-	public int currentCombo {get { return rankCountUp; } }
+	public int currentCombo {get { return currentRankAdd; } }
 	private int rankAtCountStart = 0;
 	private int currentRankAdd;
 	private int currentMultiplier;
 
-	private RankUIS myUI;
+	[HideInInspector]
+	public RankUIS myUI;
 
 	[Header("Scoring Properties")]
 	public int[] scoreTypeAmts;
+	private float delayCountUpTime = 0.8f;
+	private float delayCountUp;
 
 	[Header("Multiplier Properties")]
 	public int[] multiplierStages;
 	public float[] dmgToAdvanceMultipliers;
 	public float[] dmgAdvanceReductionPenalties; // how much currentDmgAdvance to take away on hit at current stage
 	private int currentMultiplierStage = 0;
+	public int currentMultStage { get { return currentMultiplierStage; } }
 	private float currentDmgAdvance = 0;
 	private float timeSinceDealingDmg = 0;
 	private float currentMultiplierDecreaseRate =0;
@@ -49,23 +53,20 @@ public class RankManagerS : MonoBehaviour {
 	void Awake(){
 		if (R == null){
 			R = this;
+			Initialize();
 		}else{
 			enabled  = false;
 		}
-	}
-
-	// Use this for initialization
-	void Start () {
-
-		Initialized();
-	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (_scoringActive){
-			if (_countingUp){
+			if (delayCountUp > 0){
+				delayCountUp -= Time.deltaTime;
+			}
+			else if (_countingUp){
 				countUpCount += Time.deltaTime;
 				if (countUpCount >= countUpTime){
 					countUpCount = countUpTime;
@@ -73,48 +74,96 @@ public class RankManagerS : MonoBehaviour {
 				}
 				countUpT = countUpCount/countUpTime;
 				totalRank = Mathf.RoundToInt(Mathf.Lerp(rankAtCountStart, rankCountUp, countUpT));
+				myUI.UpdateCurrentScore();
 			}
+
+			if (currentDmgAdvance > 0){
+			if (currentReductionState < timeForReductionPenalties.Length){
+			timeSinceDealingDmg += Time.deltaTime;
+			if (timeSinceDealingDmg >= timeForReductionPenalties[currentReductionState] && currentReductionState < timeForReductionPenalties.Length){
+				currentReductionState++;
+			}
+			}
+				if (currentReductionState > 0){
+					currentDmgAdvance-=reductionPenalties[currentReductionState-1]*Time.deltaTime;
+
+					if (currentDmgAdvance <= 0){
+						currentDmgAdvance = 0;
+						currentReductionState = 0;
+						EndCombo();
+					}
+
+					myUI.UpdateMultBar();
+				}
+			}
+
+
 		}
 	
 	}
 
-	void Initialized() {
+	void Initialize() {
 		if (!_initialized){
+			myUI = GameObject.Find("CombatRankUI").GetComponent<RankUIS>();
+			myUI.Initialize(this);
 			_initialized = true;
-			myUI = GetComponent<RankUIS>();
 		}
 	} 
 
 	public void StartCombat(){
 
+		if (rankEnabled){
 		currentMultiplierStage = 0;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
 		currentRankAdd = totalRank = 0;
+			myUI.StartCombat();
+			myUI.UpdateCurrentScore();
+		_scoringActive = true;
+		}
 		
 	}
 
 	public void RestartCombat(){
+		if (rankEnabled){
 		currentMultiplierStage = 0;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
 		currentRankAdd = totalRank = 0;
+		}
+	}
+
+	public void EndCombat(){
+		if (rankEnabled){
+		EndCombo();
+		_scoringActive = false;
+		}
 	}
 
 	public void ScoreHit(int dmgType, float dmgAmount){
+		if (rankEnabled){
 		currentRankAdd += scoreTypeAmts[dmgType];
+			if (currentDmgAdvance < 0){
+				currentDmgAdvance = 0;
+			}
+			currentReductionState = 0;
 		currentDmgAdvance += dmgAmount;
-		if (currentDmgAdvance >= multiplierStages[currentMultiplierStage]){
+			while (currentDmgAdvance > dmgToAdvanceMultipliers[currentMultiplierStage]){
 			if (currentMultiplierStage < multiplierStages.Length-1){
-				currentDmgAdvance = dmgAmount-dmgToAdvanceMultipliers[currentMultiplierStage];
+					currentDmgAdvance -= dmgToAdvanceMultipliers[currentMultiplierStage];
 				currentMultiplierStage++;
 			}else{
 				currentDmgAdvance = dmgToAdvanceMultipliers[currentMultiplierStage];
 			}
 		}
+			currentMultiplier = multiplierStages[currentMultiplierStage];
+			myUI.UpdateMultBar();
 		timeSinceDealingDmg = 0f;
 		currentReductionState = 0;
-
+			myUI.AddScoreItem(dmgType, scoreTypeAmts[dmgType]);
+		myUI.UpdateCurrentCombo();
+		}
 
 	}
+
 
 	void EndCombo(){
 		rankAtCountStart = totalRank;
@@ -126,6 +175,7 @@ public class RankManagerS : MonoBehaviour {
 		currentDmgAdvance = timeSinceDealingDmg = 0f;
 		_countingUp = true;
 		countUpCount = 0f;
+		delayCountUp = delayCountUpTime;
 	}
 
 	public int CombatRank(){
@@ -146,4 +196,10 @@ public class RankManagerS : MonoBehaviour {
 		return currentMult;
 
 	}
+
+	public float CurrentMultSize(){
+		float multSize = currentDmgAdvance / dmgToAdvanceMultipliers[currentMultiplierStage];
+		return multSize;
+	}
+		
 }

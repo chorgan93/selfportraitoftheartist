@@ -280,6 +280,8 @@ public class BuddyProjectileS : MonoBehaviour {
 
 				//_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 
+				RankManagerS.R.ScoreHit(3, dmgDealt);
+
 				if (_myBuddy){
 					_myBuddy.playerRef.ExtendWitchTime();
 				}

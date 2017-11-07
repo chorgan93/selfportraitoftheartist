@@ -106,6 +106,7 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, RankManagerS.R.CombatRank());
 		}
+		RankManagerS.R.EndCombat();
 		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();
@@ -162,6 +163,7 @@ public class CombatManagerS : MonoBehaviour {
 			playerRef.transform.position = _resetPos;
 
 		}else{
+			RankManagerS.R.StartCombat();
 			if (effectOnStart){
 				CameraEffectsS.E.ResetEffect(false, true);
 			}
