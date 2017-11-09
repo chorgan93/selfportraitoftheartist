@@ -125,7 +125,7 @@ public class FadeScreenUI : MonoBehaviour {
 			if (RankManagerS.R != null){
 			if (darknessTracker){
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && darknessTracker.allowAdvance && !RankManagerS.R.delayLoad){	
-				if (destinationScene == GameOverS.reviveScene){
+						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 					if (PlayerInventoryS.I != null){
 						// this is reviving from game over, reset inventory
 						PlayerInventoryS.I.RefreshRechargeables();
@@ -137,7 +137,7 @@ public class FadeScreenUI : MonoBehaviour {
 			}
 			}else{
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && !RankManagerS.R.delayLoad){	
-					if (destinationScene == GameOverS.reviveScene){
+						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 						if (PlayerInventoryS.I != null){
 							// this is reviving from game over, reset inventory
 							PlayerInventoryS.I.RefreshRechargeables();
@@ -151,7 +151,7 @@ public class FadeScreenUI : MonoBehaviour {
 			}else{
 				if (darknessTracker){
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && darknessTracker.allowAdvance){	
-					if (destinationScene == GameOverS.reviveScene){
+						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 						if (PlayerInventoryS.I != null){
 							// this is reviving from game over, reset inventory
 							PlayerInventoryS.I.RefreshRechargeables();
@@ -163,7 +163,7 @@ public class FadeScreenUI : MonoBehaviour {
 				}
 			}else{
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f){	
-					if (destinationScene == GameOverS.reviveScene){
+						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 						if (PlayerInventoryS.I != null){
 							// this is reviving from game over, reset inventory
 							PlayerInventoryS.I.RefreshRechargeables();

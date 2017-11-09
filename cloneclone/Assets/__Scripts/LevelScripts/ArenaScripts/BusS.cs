@@ -11,12 +11,20 @@ public class BusS : MonoBehaviour {
 	private float currentTime = 0f;
 	private bool moving = false;
 
+	public bool leavingBus = false;
+	private static bool comingFromBus = false;
+
 	// Use this for initialization
 	void Start () {
 
+		if (leavingBus && !comingFromBus){
+			gameObject.SetActive(false);
+		}else{
 		startPos = transform.position;
 		startY = startPos.y;
 		moving = true;
+		}
+		comingFromBus = false;
 	
 	}
 	
@@ -30,10 +38,17 @@ public class BusS : MonoBehaviour {
 			if (currentTime >= travelTime){
 				currentTime = travelTime;
 				moving = false;
+				if (!leavingBus){
+					comingFromBus = true;
+				}
 			}
 
 			currentPos = startPos;
+			if (!leavingBus){
 			currentPos.y = AnimCurveS.QuadEaseOut(currentTime, startY, yChange, travelTime);
+			}else{
+				currentPos.y = AnimCurveS.QuadEaseIn(currentTime, startY, yChange, travelTime);
+			}
 			transform.position = currentPos;
 		}
 	

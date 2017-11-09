@@ -30,6 +30,8 @@ public class RankManagerS : MonoBehaviour {
 	private float timeSinceDealingDmg = 0;
 	private float currentMultiplierDecreaseRate =0;
 
+	private float[] diffComboMultipliers = new float[4]{0.9f, 1f, 1.05f, 1f};
+
 	[Header("Multiplier Reduction Properties")]
 	public float[] timeForReductionPenalties;
 	public float[] reductionPenalties;
@@ -45,6 +47,7 @@ public class RankManagerS : MonoBehaviour {
 	private float countUpT;
 
 	//_____________________________BONUS PROPERTIES
+	public bool disableInScene = false;
 	private bool _noDamage=true;
 	public bool noDamage { get { return _noDamage; } }
 	private int noDamageBonus = 1000;
@@ -80,6 +83,17 @@ public class RankManagerS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		#if UNITY_EDITOR_OSX
+		if (Input.GetKeyDown(KeyCode.Alpha9)){
+			rankEnabled = !rankEnabled;
+			if (rankEnabled){
+				Debug.Log("Scoring is Active!");
+			}else{
+				Debug.Log("Scoring is Disabled!");
+			}
+		}
+		#endif
 
 		if (_scoringActive && !pauseRef.isPaused){
 			combatDuration+=Time.deltaTime;
@@ -127,7 +141,7 @@ public class RankManagerS : MonoBehaviour {
 	}
 
 	void Initialize() {
-		if (!_initialized){
+		if (!_initialized && !disableInScene){
 			myUI = GameObject.Find("CombatRankUI").GetComponent<RankUIS>();
 			pauseRef = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
 			myUI.Initialize(this);
@@ -155,10 +169,13 @@ public class RankManagerS : MonoBehaviour {
 		if (rankEnabled){
 		currentMultiplierStage = 0;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
+			rankAtCountStart = rankCountUp = 0;
+			_countingUp = false;
 			currentRankAdd = totalRank = 0;
 			combatDuration = 0;
 			_noDamage = true;
 			_underTime = false;
+			myUI.ResetCombat();
 		}
 	}
 
@@ -170,7 +187,6 @@ public class RankManagerS : MonoBehaviour {
 			}else{
 				_underTime = false;
 			}
-			Debug.Log(_underTime + " : " + combatDuration.ToString() + " / " + goalTimeInSeconds.ToString());
 			myUI.doTimeBonus = _underTime;
 			myUI.doNoDamage = _noDamage;
 			endScoringAfterCount = true;
@@ -182,11 +198,11 @@ public class RankManagerS : MonoBehaviour {
 	public string ReturnRank(){
 		string rankString = "C";
 		if (rankEnabled){
-		if (totalRank >= rankScoreTargets[2]){
+			if (totalRank >= rankScoreTargets[2]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 			rankString = "S";
-		}else if (totalRank >= rankScoreTargets[1]){
+			}else if (totalRank >= rankScoreTargets[1]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 			rankString = "A";
-		}else if (totalRank >= rankScoreTargets[0]){
+			}else if (totalRank >= rankScoreTargets[0]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 			rankString = "B";
 		}else{
 			rankString = "C";
@@ -196,11 +212,11 @@ public class RankManagerS : MonoBehaviour {
 	}
 	public int GetRankInt(){
 		int rankInt = 0;
-		if (totalRank >= rankScoreTargets[2]){
+		if (totalRank >= rankScoreTargets[2]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 			rankInt = 3;
-		}else if (totalRank >= rankScoreTargets[1]){
+		}else if (totalRank >= rankScoreTargets[1]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 		rankInt = 2;
-		}else if (totalRank >= rankScoreTargets[0]){
+		}else if (totalRank >= rankScoreTargets[0]*diffComboMultipliers[DifficultyS.GetSinInt()]){
 			rankInt = 1;
 		}
 		return rankInt;
@@ -285,6 +301,16 @@ public class RankManagerS : MonoBehaviour {
 		_countingUp = true;
 		countUpCount = 0f;
 		delayCountUp = delayCountUpTime;
+	}
+
+	public int TimeLeftInSeconds(){
+		int timeLeft = 0;
+		if (combatDuration < goalTimeInSeconds){
+			timeLeft = Mathf.RoundToInt(goalTimeInSeconds-combatDuration);
+		}else{
+			timeLeft = 0;
+		}
+		return timeLeft;
 	}
 
 	public string CurrentMultiplierDisplay(){

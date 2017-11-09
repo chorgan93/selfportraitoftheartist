@@ -12,6 +12,8 @@ public class GameOverS : MonoBehaviour {
 
 	public static string reviveScene = "";
 	public static int revivePosition = 0;
+	public static string tempReviveScene = "";
+	public static int tempRevivePosition = 0;
 
 	private bool triggerRespawn = false;
 
@@ -55,7 +57,12 @@ public class GameOverS : MonoBehaviour {
 		StoryProgressionS.ResetToSavedProgress();
 		SpawnPosManager.whereToSpawn = revivePosition;
 		SpawnPosManager.spawningFromDeath = true;
-		CameraEffectsS.E.SetNextScene(reviveScene);
+		if (tempReviveScene != ""){
+			CameraEffectsS.E.SetNextScene(tempReviveScene);
+			SpawnPosManager.tempWhereToSpawn = tempRevivePosition;
+		}else{
+			CameraEffectsS.E.SetNextScene(reviveScene);
+		}
 		CameraEffectsS.E.FadeIn();
 	}
 

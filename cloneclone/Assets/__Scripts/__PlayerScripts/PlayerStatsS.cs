@@ -769,7 +769,7 @@ public class PlayerStatsS : MonoBehaviour {
 				EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, false, true, dmg);
 					
 				if(!godMode){
-					
+					myPlayerController.currentCombatManager.SentHurtMessage(true);
 					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable 
 						&&_currentHealth > maxHealth*0.01f){
 						_currentHealth = maxHealth*0.01f;

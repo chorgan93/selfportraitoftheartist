@@ -120,6 +120,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	}
 
 	void TransitionScene(){
+		GameOverS.tempReviveScene = "";
 		if (SceneManagerS.inInfiniteScene){
 			PlayerInventoryS.I.dManager.ClearAll();
 		}

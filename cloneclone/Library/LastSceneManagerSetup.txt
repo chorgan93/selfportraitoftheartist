@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/InfiniteScene00.unity
+- path: Assets/_Scenes/Area04(Desert)Scenes/Area04_07_Training.unity
   isLoaded: 1
   isActive: 1

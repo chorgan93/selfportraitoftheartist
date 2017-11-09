@@ -4,6 +4,7 @@ using System.Collections;
 public class SpawnPosManager : MonoBehaviour {
 
 	public static int whereToSpawn = 0;
+	public static int tempWhereToSpawn = -1;
 	public static bool spawningFromDeath = false;
 	public static bool spawningFromTeleport = false;
 	private GameObject pRef;
@@ -16,11 +17,15 @@ public class SpawnPosManager : MonoBehaviour {
 		
 		if (spawnPts.Length > 0){
 			pRef = GameObject.Find("Player");
-			if (whereToSpawn > spawnPts.Length-1){
+			if (tempWhereToSpawn > -1 && tempWhereToSpawn < spawnPts.Length-1){
+				pRef.transform.position = spawnPts[tempWhereToSpawn].position;
+			}
+			else if (whereToSpawn > spawnPts.Length-1){
 				pRef.transform.position = spawnPts[0].position;
 			}else{
 				pRef.transform.position = spawnPts[whereToSpawn].position;
 			}
+			tempWhereToSpawn = -1;
 		}
 	
 	}

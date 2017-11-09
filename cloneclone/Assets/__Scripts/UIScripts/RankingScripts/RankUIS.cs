@@ -276,7 +276,6 @@ public class RankUIS : MonoBehaviour {
 	IEnumerator EndCombatDisplay(){
 		bool doBonus = false;
 		if (doNoDamage){
-			Debug.Log("doing no damage bonus!");
 			yield return new WaitForSeconds(0.25f);
 			doBonus = true;
 			Vector2 startPos = scoreAddStartPos;
@@ -289,7 +288,6 @@ public class RankUIS : MonoBehaviour {
 
 		}
 		if (doTimeBonus){
-			Debug.Log("doing under time bonus!");
 			yield return new WaitForSeconds(0.25f);
 			if (!doBonus){
 				doBonus = true;
@@ -363,5 +361,18 @@ public class RankUIS : MonoBehaviour {
 
 	public void AddOffItem(RankUIItemS newItem){
 		inactiveScoreObjs.Add(newItem);
+	}
+
+	public void ResetCombat(){
+		for (int i = 0; i < activeScoreObjs.Count; i++){
+			activeScoreObjs[i].gameObject.SetActive(false);
+			inactiveScoreObjs.Add(activeScoreObjs[i]);
+		}
+		activeScoreObjs.Clear();
+		addScoreItem00.gameObject.SetActive(false);
+		addScoreItem01.gameObject.SetActive(false);
+		UpdateCurrentCombo();
+		UpdateCurrentScore();
+		UpdateMultBar();
 	}
 }

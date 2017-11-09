@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class CombatManagerS : MonoBehaviour {
 
+	public enum CombatSpecialCondition {None, NoDamage, TimeLimit, OneCombo};
+	public CombatSpecialCondition combatCondition = CombatSpecialCondition.None;
+	private bool _failedSpecialCondition = false;
+	public bool failedSpecialCondition { get { return _failedSpecialCondition; } }
+	private ConditionUIS _myConditionUI;
+
 	[Header("Activate Properties")]
 	public int combatID = -1;
 	public EnemySpawnerS[] enemies;
@@ -53,6 +59,9 @@ public class CombatManagerS : MonoBehaviour {
 				HurtAllEnemies();
 			}
 			#endif
+			if (combatCondition == CombatSpecialCondition.TimeLimit){
+				_myConditionUI.ReplaceTimeString(RankManagerS.R.TimeLeftInSeconds().ToString());
+			}
 			CheckForCompletion();
 		}
 	
@@ -165,6 +174,7 @@ public class CombatManagerS : MonoBehaviour {
 				playerRef.myBuddy.transform.position = _resetPos+buddyPos;
 			}
 			playerRef.transform.position = _resetPos;
+			RankManagerS.R.RestartCombat();
 
 		}else{
 			if (RankManagerS.rankEnabled){
@@ -179,6 +189,15 @@ public class CombatManagerS : MonoBehaviour {
 			if (clearBloodOnComplete){
 				PlayerInventoryS.I.dManager.SetBattleBlood();
 			}
+		}
+
+		if (combatCondition != CombatSpecialCondition.None){
+			_failedSpecialCondition = false;
+			if (!_myConditionUI){
+				_myConditionUI = GameObject.Find("ConditionUI").GetComponent<ConditionUIS>();
+				_myConditionUI.TurnOnAll(combatCondition);
+			}
+			SentHurtMessage(false);
 		}
 
 		ChangeFeatherCols(playerRef.EquippedWeapon().swapColor);
@@ -212,6 +231,20 @@ public class CombatManagerS : MonoBehaviour {
 		if (turnOffOnSkip != null){
 			for (int i = 0; i < turnOffOnSkip.Length; i++){
 				turnOffOnSkip[i].SetActive(false);
+			}
+		}
+	}
+
+	public void SentHurtMessage(bool newH){
+		if (newH){
+			if (combatCondition == CombatSpecialCondition.NoDamage){
+				_failedSpecialCondition = true;
+				_myConditionUI.FailCondition();
+			}
+		}else{
+			if (combatCondition == CombatSpecialCondition.NoDamage){
+				_failedSpecialCondition = false;
+				_myConditionUI.TurnOnAll(combatCondition);
 			}
 		}
 	}
