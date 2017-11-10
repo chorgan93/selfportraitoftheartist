@@ -805,6 +805,7 @@ public class PlayerStatsS : MonoBehaviour {
 						
 					//_uiReference.cDisplay.DeathPenalty();
 
+						RankManagerS.R.DieInCombat();
 					if (dontDoCountUp){
 						dontDoCountUp = false;
 						}else if (!SceneManagerS.inInfiniteScene){

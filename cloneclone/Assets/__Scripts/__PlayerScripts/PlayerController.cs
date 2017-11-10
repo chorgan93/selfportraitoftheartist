@@ -814,7 +814,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
-		if (superCloseEnemyDetect.EnemyToParry() != null  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 			
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
@@ -1525,6 +1525,7 @@ public class PlayerController : MonoBehaviour {
 						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger);
 
 					_chargingAttack = true;
+						_doingCounterAttack = false;
 						//EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,1);
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
@@ -1623,7 +1624,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void AdaptiveCheck(){
 		if (_isShooting){
-			if (_playerAug.adaptiveAug && _isShooting && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+			if (_playerAug.adaptiveAug && _isShooting && !_chargingAttack && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
 				_myStats.ResetStamina(true, true, 0.8f);
 			}
 			canDoAdaptive = false;

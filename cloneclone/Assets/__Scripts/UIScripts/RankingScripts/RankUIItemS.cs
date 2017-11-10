@@ -145,6 +145,10 @@ public class RankUIItemS : MonoBehaviour {
 
 	}
 
+	public void EndDelay(){
+		delayMoveCount = 0f;
+	}
+
 	void Initialize(){
 
 		if (!_initialized){

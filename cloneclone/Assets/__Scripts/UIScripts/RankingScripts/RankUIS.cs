@@ -203,6 +203,9 @@ public class RankUIS : MonoBehaviour {
 			activeScoreObjs[0].SetFade(true, false);
 			}
 
+		addScoreItem00.EndDelay();
+		addScoreItem01.EndDelay();
+
 	}
 
 	void MoveTopItemOff(){
@@ -234,6 +237,7 @@ public class RankUIS : MonoBehaviour {
 		fadeCount = 0;
 		fadingIn = true;
 		totalRankText.color = totalRankStartCol;
+		finalRankLetter.text = "";
 		UpdateCurrentCombo();
 		UpdateCurrentScore();
 		UpdateMultBar();
@@ -271,6 +275,11 @@ public class RankUIS : MonoBehaviour {
 	public void EndCombat(){
 		myRankManager.delayLoad = true;
 		StartCoroutine(EndCombatDisplay());
+	}
+
+	public void FadeOut(){
+		fadeCount = 0f;
+		fadingOut = true;
 	}
 
 	IEnumerator EndCombatDisplay(){
@@ -330,6 +339,7 @@ public class RankUIS : MonoBehaviour {
 	public void StartCountUp(int countAmt, bool showAddScore = true){
 		EndCurrentCombo();
 		if (showAddScore){
+			if (countAmt > 0){
 		currentAddScoreItem++;
 		if (currentAddScoreItem > 1){
 			currentAddScoreItem = 0;
@@ -345,6 +355,7 @@ public class RankUIS : MonoBehaviour {
 			addScoreItem01.SetMaxAlpha();
 			addScoreItem01.SetNewPos(false, true, Vector2.zero, 0.8f);
 		}
+			}
 		}else{
 			Vector2 bonusTarget = totalRankText.rectTransform.anchoredPosition;
 			if (timeBonusItem.gameObject.activeSelf){

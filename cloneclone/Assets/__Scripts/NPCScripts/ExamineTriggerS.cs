@@ -295,7 +295,6 @@ public class ExamineTriggerS : MonoBehaviour {
 		// check if picked up health essence
 		if (inventoryNum == 1 && PlayerInventoryS.I.CheckCharge(chargeNum)){
 			gameObject.SetActive(false);
-			Debug.Log("Turned off bc already have this Heal item! Charge num " + chargeNum);
 		}
 
 

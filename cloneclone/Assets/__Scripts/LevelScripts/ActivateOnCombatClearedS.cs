@@ -25,8 +25,10 @@ public class ActivateOnCombatClearedS : MonoBehaviour {
 				turnOnObjects[i].SetActive(true);
 			}
 		}
-		foreach (GameObject bleh in turnOffObjects){
-			bleh.SetActive(false);
+		for (int i = 0; i < turnOffObjects.Count; i++){ 
+			if (turnOffObjects[i] != null){
+				turnOffObjects[i].SetActive(false);
+			}
 		}
 
 

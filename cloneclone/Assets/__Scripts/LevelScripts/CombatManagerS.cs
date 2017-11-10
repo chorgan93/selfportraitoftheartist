@@ -49,6 +49,8 @@ public class CombatManagerS : MonoBehaviour {
 	[Header("Scoring Properties")]
 	public int[] targetTimesInSeconds = new int[]{25, 20, 15, 15};
 	public List<int> rankThresholds = new List<int>(3){2000, 2500, 3000};
+	public bool hasContinuation = false;
+	public bool isContinuation = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -119,7 +121,7 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1 && !RankManagerS.rankEnabled){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}
-		RankManagerS.R.EndCombat();
+		RankManagerS.R.EndCombat(hasContinuation);
 		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();
@@ -178,7 +180,7 @@ public class CombatManagerS : MonoBehaviour {
 
 		}else{
 			if (RankManagerS.rankEnabled){
-			RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID);
+				RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, isContinuation);
 			}
 			if (effectOnStart){
 				CameraEffectsS.E.ResetEffect(false, true);
