@@ -63,6 +63,8 @@ public class RankManagerS : MonoBehaviour {
 
 	private int currentCombatID = -1;
 	private List<int> savedCombatIDs = new List<int>();
+	private CombatManagerS _finalCombatManager;
+	public CombatManagerS finalCombatManager { get {return _finalCombatManager; } }
 
 	private bool _initialized = false;
 
@@ -134,6 +136,7 @@ public class RankManagerS : MonoBehaviour {
 						currentDmgAdvance = 0;
 						currentReductionState = 0;
 						EndCombo();
+						_finalCombatManager.SendComboBreakMessage(true);
 					}
 
 					myUI.UpdateMultBar();
@@ -154,9 +157,10 @@ public class RankManagerS : MonoBehaviour {
 		}
 	} 
 
-	public void StartCombat(int targetTime, List<int> scores, int combatID, bool continuation = false){
+	public void StartCombat(int targetTime, List<int> scores, int combatID, CombatManagerS finalCombat, bool continuation = false){
 
 			currentCombatID = combatID;
+		_finalCombatManager = finalCombat;
 		if (!continuation){
 			goalTimeInSeconds = targetTime;
 			rankScoreTargets = scores;
@@ -281,6 +285,7 @@ public class RankManagerS : MonoBehaviour {
 		for (int i = 0; i < savedCombatIDs.Count; i++){
 			if (savedCombatIDs[i] > -1){
 				PlayerInventoryS.I.dManager.AddClearedCombat(savedCombatIDs[i], totalRank, ReturnRank());
+
 			}
 		}
 		delayLoad = false;

@@ -217,6 +217,7 @@
 'Assets/__Scripts/LevelScripts/MetroScripts/SetTrainStopS.cs'
 'Assets/__Scripts/LevelScripts/MetroScripts/TrainCarS.cs'
 'Assets/__Scripts/LevelScripts/OneWayDoorS.cs'
+'Assets/__Scripts/LevelScripts/RemoveCombatDataS.cs'
 'Assets/__Scripts/LevelScripts/RoomS.cs'
 'Assets/__Scripts/LevelScripts/RoomTeleporterS.cs'
 'Assets/__Scripts/LevelScripts/SpawnPosManager.cs'

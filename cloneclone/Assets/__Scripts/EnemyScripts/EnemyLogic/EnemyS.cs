@@ -506,7 +506,8 @@ public class EnemyS : MonoBehaviour {
 		//CheckBehaviorStateSwitch(false);
 
 		_isActive = false;
-		
+
+		_myAnimator.SetLayerWeight(2, 0f);
 		_myAnimator.SetBool("Death", false);
 		_currentHealth = actingMaxHealth;
 			_isActive = false;
@@ -537,7 +538,8 @@ public class EnemyS : MonoBehaviour {
 		if (healthFeatherReference){
 			healthFeatherReference.SetUpEnemy(this);
 			if (!GetPlayerReference()){
-				healthFeatherReference.Hide ();
+				// TODO make sure this isn't the issue
+				//healthFeatherReference.Hide ();
 			}else{
 				if (GetPlayerReference().playerAug.perceptiveAug){
 					healthFeatherReference.Show();
@@ -1039,7 +1041,7 @@ public class EnemyS : MonoBehaviour {
 			damageTaken += killAtLessThan;
 		}
 
-		if (healthFeatherReference){
+		if (healthFeatherReference && gameObject.activeSelf){
 			healthFeatherReference.EnemyHit(damageTaken);
 		}
 
@@ -1211,7 +1213,7 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	public void KillWithoutXP(){
+	public void KillWithoutXP(bool fromMessenger = false){
 
 		if (!_initialized){
 			Initialize();
@@ -1220,8 +1222,11 @@ public class EnemyS : MonoBehaviour {
 		if (myStatusMessenger){
 			myStatusMessenger.KillMessage();
 		}
-		if (healthFeatherReference){
+		if (healthFeatherReference && gameObject.activeSelf){
 			healthFeatherReference.EnemyHit(_currentHealth);
+			if (fromMessenger){
+				healthFeatherReference.Hide();
+			}
 		}
 
 		_currentHealth = 0;

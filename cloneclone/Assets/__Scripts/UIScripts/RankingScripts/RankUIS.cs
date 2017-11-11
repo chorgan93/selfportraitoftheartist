@@ -328,6 +328,7 @@ public class RankUIS : MonoBehaviour {
 		finalRankLetter.color = finalRankColors[myRankManager.GetRankInt()];
 		finalRankLetter.text = "(" + myRankManager.ReturnRank() + ")";
 		totalRankText.color = finalRankLetter.color;
+		myRankManager.finalCombatManager.CheckCondition();
 		yield return new WaitForSeconds(showAfterRankTime);
 		VerseDisplayS.V.EndVerse(0.1f);
 		myRankManager.AddFinalScore();

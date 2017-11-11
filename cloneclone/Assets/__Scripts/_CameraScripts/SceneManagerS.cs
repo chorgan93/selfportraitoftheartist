@@ -41,9 +41,7 @@ public class SceneManagerS : MonoBehaviour {
 			PlayerStatsS.dontDoCountUp = true;
 		}
 
-		#if !UNITY_EDITOR_OSX
 		RankManagerS.rankEnabled = scoringEnabled;
-		#endif
 
 		DifficultyS.sinStateOverride = overrideSinState;
 		DifficultyS.punishStateOverride = overridePunishState;

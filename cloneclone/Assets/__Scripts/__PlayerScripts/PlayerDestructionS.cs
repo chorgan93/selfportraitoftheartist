@@ -24,6 +24,9 @@ public class PlayerDestructionS : MonoBehaviour {
 	public List<int> combatClearedRanks { get { return _combatClearedRanks; } }
 	private List<string> _combatClearedRankGrades;
 	public List<string> combatClearedRankGrades { get { return _combatClearedRankGrades; } }
+
+	private List<int> _specialConditionCombatCleared;
+	public List<int> specialConditionCombatCleared { get { return _specialConditionCombatCleared; } }
 	
 	
 	private List<int> _clearedCombatTriggers;
@@ -118,6 +121,14 @@ public class PlayerDestructionS : MonoBehaviour {
 	}
 	public void ClearCompletedCombat(){
 		_clearedCombatTriggers.Clear();
+	}
+	public void AddSpecialConditionCompleteID(int newID){
+		if (_specialConditionCombatCleared == null){
+			_specialConditionCombatCleared = new List<int>();
+		}
+		if (!_specialConditionCombatCleared.Contains(newID)){
+			_specialConditionCombatCleared.Add(newID);
+		}
 	}
 	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores, List<string> newCombatGrades){
 		_combatClearedAtLeastOnce = newCombat;

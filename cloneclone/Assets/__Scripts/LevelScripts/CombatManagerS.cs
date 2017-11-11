@@ -61,8 +61,12 @@ public class CombatManagerS : MonoBehaviour {
 				HurtAllEnemies();
 			}
 			#endif
-			if (combatCondition == CombatSpecialCondition.TimeLimit){
+			if (combatCondition == CombatSpecialCondition.TimeLimit && !_failedSpecialCondition){
 				_myConditionUI.ReplaceTimeString(RankManagerS.R.TimeLeftInSeconds().ToString());
+				if (RankManagerS.R.TimeLeftInSeconds() <= 0){
+					_myConditionUI.FailCondition();
+					_failedSpecialCondition = true;
+				}
 			}
 			CheckForCompletion();
 		}
@@ -93,6 +97,18 @@ public class CombatManagerS : MonoBehaviour {
 			}
 		}
 
+	}
+
+	public void CheckCondition(){
+		if (combatCondition != CombatSpecialCondition.None){
+				if (!_failedSpecialCondition){
+				_myConditionUI.SuccessCondition();
+				PlayerInventoryS.I.dManager.AddSpecialConditionCompleteID(combatID);
+				}else{
+					_myConditionUI.FadeOut();
+					_failedSpecialCondition = false;
+				}
+		}
 	}
 
 	public void SetWitchTime(bool newTime){
@@ -180,7 +196,7 @@ public class CombatManagerS : MonoBehaviour {
 
 		}else{
 			if (RankManagerS.rankEnabled){
-				RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, isContinuation);
+				RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, this, isContinuation);
 			}
 			if (effectOnStart){
 				CameraEffectsS.E.ResetEffect(false, true);
@@ -200,6 +216,7 @@ public class CombatManagerS : MonoBehaviour {
 				_myConditionUI.TurnOnAll(combatCondition);
 			}
 			SentHurtMessage(false);
+			SendComboBreakMessage(false);
 		}
 
 		ChangeFeatherCols(playerRef.EquippedWeapon().swapColor);
@@ -245,6 +262,20 @@ public class CombatManagerS : MonoBehaviour {
 			}
 		}else{
 			if (combatCondition == CombatSpecialCondition.NoDamage){
+				_failedSpecialCondition = false;
+				_myConditionUI.TurnOnAll(combatCondition);
+			}
+		}
+	}
+
+	public void SendComboBreakMessage(bool newC){
+		if (newC){
+			if (combatCondition == CombatSpecialCondition.OneCombo){
+				_failedSpecialCondition = true;
+				_myConditionUI.FailCondition();
+			}
+		}else{
+			if (combatCondition == CombatSpecialCondition.OneCombo){
 				_failedSpecialCondition = false;
 				_myConditionUI.TurnOnAll(combatCondition);
 			}
