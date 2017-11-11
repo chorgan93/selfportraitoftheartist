@@ -48,6 +48,8 @@ public class CheckpointS : MonoBehaviour {
 			}
 		}
 
+		CombatGiverS.chosenSpecialCombat = -1;
+
 		if (!SceneManagerS.inInfiniteScene){
 			GameOverS.reviveScene = Application.loadedLevelName;
 			GameOverS.revivePosition = spawnNum;

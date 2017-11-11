@@ -461,7 +461,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_earnedVirtues = inventoryData.earnedVirtues;
 		_earnedTech = inventoryData.earnedTech;
 
-		_dManager.LoadCombatsCleared(inventoryData.combatClearedAtLeastOnce, inventoryData.combatRankingData, inventoryData.combatRankingGrades);
+		_dManager.LoadCombatsCleared(inventoryData.combatClearedAtLeastOnce, inventoryData.combatRankingData, inventoryData.combatRankingGrades, inventoryData.specialCombatsCleared);
 
 		checkpointsReachedScenes = inventoryData.checkpointsReachedScenes;
 		checkpointsReachedSpawns = inventoryData.checkpointsReachedSpawns;
@@ -561,6 +561,9 @@ public class PlayerInventoryS : MonoBehaviour {
 				inventoryData.combatRankingData = _dManager.combatClearedRanks;
 				inventoryData.combatRankingGrades = _dManager.combatClearedRankGrades;
 			}
+			if (_dManager.specialConditionCombatCleared != null){
+				inventoryData.specialCombatsCleared = _dManager.specialConditionCombatCleared;
+			}
 
 
 			for (int i = 0; i < unlockedWeapons.Count; i++){
@@ -635,6 +638,7 @@ public class InventorySave {
 	public List<int> combatClearedAtLeastOnce;
 	public List<int> combatRankingData;
 	public List<string> combatRankingGrades;
+	public List<int> specialCombatsCleared;
 	
 	public List<int> unlockedWeapons;
 	public List<int> unlockedBuddies;
@@ -685,6 +689,7 @@ public class InventorySave {
 		combatClearedAtLeastOnce = new List<int>();
 		combatRankingData = new List<int>();
 		combatRankingGrades = new List<string>();
+		specialCombatsCleared = new List<int>();
 
 		checkpointsReachedScenes = new List<int>();
 		checkpointsReachedSpawns = new List<int>();

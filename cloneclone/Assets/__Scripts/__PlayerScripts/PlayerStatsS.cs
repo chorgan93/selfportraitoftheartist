@@ -914,8 +914,8 @@ public class PlayerStatsS : MonoBehaviour {
 				_canRecoverHealth = 0;
 			}else{
 			Heal(amtToRecover*DESPERATE_HEAL_MULT, false);
-			_canRecoverHealth -= amtToRecover*DESPERATE_HEAL_MULT;
-				_canRecoverHealthStart = _canRecoverHealth;
+			//_canRecoverHealth -= amtToRecover*DESPERATE_HEAL_MULT;
+			//	_canRecoverHealthStart = _canRecoverHealth;
 			}
 			currentAllowRecoverTime+=allowRecoverAddTime;
 			if (_canRecoverHealth < 0){

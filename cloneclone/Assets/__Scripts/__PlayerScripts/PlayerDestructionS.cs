@@ -130,7 +130,7 @@ public class PlayerDestructionS : MonoBehaviour {
 			_specialConditionCombatCleared.Add(newID);
 		}
 	}
-	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores, List<string> newCombatGrades){
+	public void LoadCombatsCleared(List<int> newCombat, List<int> newCombatScores, List<string> newCombatGrades, List<int> specialCombats){
 		_combatClearedAtLeastOnce = newCombat;
 		if (newCombatScores != null){
 		_combatClearedRanks = newCombatScores;
@@ -141,6 +141,12 @@ public class PlayerDestructionS : MonoBehaviour {
 			_combatClearedRankGrades = newCombatGrades;
 		}else{
 			_combatClearedRankGrades = new List<string>();
+		}
+
+		if (specialCombats != null){
+			_specialConditionCombatCleared = specialCombats;
+		}else{
+			_specialConditionCombatCleared = new List<int>();
 		}
 		if (_combatClearedRanks.Count < _combatClearedAtLeastOnce.Count){
 			for (int i = _combatClearedRanks.Count; i < _combatClearedAtLeastOnce.Count; i++){

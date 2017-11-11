@@ -64,6 +64,21 @@ public class BGMHolderS : MonoBehaviour {
 		return containsChild;
 	}
 
+	public void ForceReset(AudioClip resetTarget, int sampleSet){
+
+		AudioSource checkSource;
+		if (transform.childCount > 0){
+			for (int i = 0; i < transform.childCount; i++){
+				if (transform.GetChild(i).gameObject.GetComponent<AudioSource>() != null){
+					checkSource = transform.GetChild(i).gameObject.GetComponent<AudioSource>();
+					if (checkSource.clip == resetTarget){
+						checkSource.timeSamples = sampleSet;
+					}
+				}
+			}
+		}
+	}
+
 	public void EndAllExcept(BGMLayerS[] layers, bool instant, bool destroy){
 
 

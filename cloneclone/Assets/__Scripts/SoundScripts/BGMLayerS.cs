@@ -18,13 +18,19 @@ public class BGMLayerS : MonoBehaviour {
 	private AudioSource mySource;
 	public AudioSource sourceRef { get { return mySource; } }
 
+	public AudioClip forceRestartOnLoop;
+	private bool checkForceRestart;
+
 	private bool destroyOnFade = false;
+	private int prevData = 0;
 
 	// Use this for initialization
 	void Awake () {
 
 		mySource = GetComponent<AudioSource>();
 		mySource.volume = startVolume;
+
+		checkForceRestart = (forceRestartOnLoop != null);
 
 		// for recording only, delete after
 		//Debug.Log("ATTN Colin delete the folowing lines:");
@@ -53,6 +59,13 @@ public class BGMLayerS : MonoBehaviour {
 					Destroy(gameObject);
 				}
 			}
+		}
+
+		if (checkForceRestart){
+			if (prevData > mySource.timeSamples){
+				BGMHolderS.BG.ForceReset(forceRestartOnLoop, mySource.timeSamples);
+			}
+			prevData = mySource.timeSamples;
 		}
 	
 	}
