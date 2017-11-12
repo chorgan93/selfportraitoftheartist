@@ -6,6 +6,7 @@ public class CombatGiverS : MonoBehaviour {
 	[Header("Set Properties")]
 	public CombatGiverUIItemS[] possChoices;
 	public CombatGiverUIS combatChooseUI;
+	public GameObject turnOnCombatObj;
 
 	[Header("Talk Properties")]
 	public NPCDialogueSet introSet;
@@ -58,10 +59,13 @@ public class CombatGiverS : MonoBehaviour {
 						talking = true;
 						playerRef.SetTalking(true);
 						CameraFollowS.F.SetNewPOI(gameObject);
-						currentDialogue = 0;
+							currentDialogue = 0;
+							if (myAnimator){
+							myAnimator.SetTrigger(talkKey);
+							}
 							if (!combatChosen){
 						merchantState = 0;
-						DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
+						DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, true, true);
 							}else{
 								merchantState = 5;
 								DialogueManagerS.D.SetDisplayText(chosenSet.dialogueStrings[currentDialogue], false, true, true);
@@ -75,18 +79,18 @@ public class CombatGiverS : MonoBehaviour {
 								currentDialogue++;
 								if (merchantState == 0){
 									if (currentDialogue >= introSet.dialogueStrings.Length){
-										//merchantUIRef.TurnOn(this);
+											combatChooseUI.TurnOn(this);
 										currentDialogue = 0;
 										merchantState = 1;
 									}else{
-										DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
+										DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, true, true);
 									}
 								}else if (merchantState == 2){
 									if (currentDialogue >= talkSet.dialogueStrings.Length){
 											combatChooseUI.ShowMenus();
 										currentDialogue = 0;
 										merchantState = 1;
-											DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, false, true);
+											DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
 									}else{
 										DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
 									}
@@ -96,9 +100,12 @@ public class CombatGiverS : MonoBehaviour {
 											DialogueManagerS.D.EndText();
 											playerRef.SetTalking(false);
 											CameraFollowS.F.ResetPOI();
+											if (myAnimator){
 											myAnimator.SetTrigger(idleKey);
+											}
+											combatChosen = true;
 									}else{
-										DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+										DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, true, true);
 									}
 									}else if (merchantState == 5){
 										if (currentDialogue >= chosenSet.dialogueStrings.Length){
@@ -107,7 +114,9 @@ public class CombatGiverS : MonoBehaviour {
 											playerRef.SetTalking(false);
 											CameraFollowS.F.ResetPOI();
 											combatChooseUI.TurnOff();
+											if (myAnimator){
 											myAnimator.SetTrigger(idleKey);
+											}
 										}else{
 											DialogueManagerS.D.SetDisplayText(chosenSet.dialogueStrings[currentDialogue], false, true, true);
 										}
@@ -118,7 +127,9 @@ public class CombatGiverS : MonoBehaviour {
 										playerRef.SetTalking(false);
 										CameraFollowS.F.ResetPOI();
 											combatChooseUI.TurnOff();
+											if (myAnimator){
 											myAnimator.SetTrigger(idleKey);
+											}
 									}else{
 										DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
 									}
@@ -167,25 +178,25 @@ public class CombatGiverS : MonoBehaviour {
 		if (possChoices[chosenOption].CanSelect()){
 			chosenSpecialCombat = possChoices[chosenOption].combatID;
 			combatChooseUI.TurnOff();
+			turnOnCombatObj.gameObject.SetActive(true);
 			BuyMessage();
 		}
 		
 	}
 
 	public void ResetMessage(){
-		DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, false, true);
+		DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
 		
 	}
 
 	void BuyMessage(){
 		merchantState = 3;
 		currentDialogue = 0;
-		DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+		DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, true, true);
 
 	}
 
 	public void StartTalk(){
-		myAnimator.SetTrigger(talkKey);
 		merchantState = 2;
 		currentDialogue = 0;
 		DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);

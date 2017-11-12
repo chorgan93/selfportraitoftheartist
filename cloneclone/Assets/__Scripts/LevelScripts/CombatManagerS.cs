@@ -38,6 +38,11 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
 
+	[Header("Scoring Properties")]
+	public bool turnOnScoring = false;
+	public bool turnOffScoring = false;
+	public bool allowRetry = false;
+
 	[Header("Infinite Properties")]
 	public bool inInfiniteMode = false;
 	public InfinityManagerS myInfiniteManager;
@@ -181,6 +186,13 @@ public class CombatManagerS : MonoBehaviour {
 
 		foreach (BarrierS b in barriers){
 			b.gameObject.SetActive(true);
+		}
+
+		if (turnOnScoring){
+			RankManagerS.rankEnabled = true;
+		}
+		if (turnOffScoring){
+			RankManagerS.rankEnabled = false;
 		}
 
 		playerRef.playerAug.canUseUnstoppable = true;

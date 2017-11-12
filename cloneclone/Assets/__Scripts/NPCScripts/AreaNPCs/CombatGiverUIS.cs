@@ -21,7 +21,7 @@ public class CombatGiverUIS : MonoBehaviour {
 
 	[Header("Main Arena Properties")]
 	public int[] arenaCombatIDs;
-	private int avgCombatRanking = 0;
+	private int avgCombatRanking = -1;
 	public int playerRank { get { return avgCombatRanking; } }
 
 	private int currentPos;
@@ -48,9 +48,16 @@ public class CombatGiverUIS : MonoBehaviour {
 		}else{
 
 			rulesText.text = newText;
+				rulesText.enabled = true;
 			rulesBG.enabled = true;
 		}
 		}else{
+			if (newText == ""){
+
+				rulesText.text = "";
+				rulesBG.enabled = false;
+			}else{
+				if (avgCombatRanking < 0){
 			avgCombatRanking = 0;
 			string rankSave = "";
 			if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce != null){
@@ -76,6 +83,30 @@ public class CombatGiverUIS : MonoBehaviour {
 				}
 			}
 			avgCombatRanking = Mathf.RoundToInt(avgCombatRanking/arenaCombatIDs.Length);
+				}
+				rulesText.text = "Current Rank: ";
+				switch (avgCombatRanking){
+				default:
+					rulesText.text += " [C]";
+					break;
+				case (2):
+					rulesText.text += " [B]";
+					break;
+				case (3):
+					rulesText.text += " [A]";
+					break;
+				case (4):
+					rulesText.text += " [S]";
+					break;
+				}
+				if (newText == "A" && avgCombatRanking < 3){
+					rulesText.text += " : Required Rank: <color=red>[" + newText + "]</color>";
+				}else{
+					rulesText.text += " : Required Rank: [" + newText + "]";
+				}
+			rulesText.enabled = true;
+			rulesBG.enabled = true;
+			}
 		}
 	}
 
@@ -145,7 +176,11 @@ public class CombatGiverUIS : MonoBehaviour {
 	}
 
 	void OpenShopMenu(){
-		SetRulesText("");
+		if (giverRef.possChoices[0].mainArenaCombat){
+			SetRulesText("C");
+		}else{
+			SetRulesText("");
+		}
 		SetItems();
 		//selectMenu.SetActive(false);
 		currentPos = 0;
@@ -165,6 +200,7 @@ public class CombatGiverUIS : MonoBehaviour {
 	}
 
 	void CloseShopMenu(){
+		SetRulesText("");
 		inShopMenu = false;
 		currentPos = 0;
 		selectMenu.SetActive(true);
@@ -175,6 +211,7 @@ public class CombatGiverUIS : MonoBehaviour {
 
 	public void TurnOff(){
 
+		SetRulesText("");
 		buyMenu.SetActive(false);
 		selectMenu.SetActive(false);
 		currentPos = 0;

@@ -99,7 +99,8 @@ public class ConditionUIS : MonoBehaviour {
 			ConditionBorders[i].enabled = true;
 		}
 		for (int i = 0; i < conditionTexts.Length; i++){
-			ConditionBorders[i].color = Color.white;
+			conditionTexts[i].color = Color.white;
+			conditionTexts[0].text = "CONDITION:";
 			conditionTexts[i].enabled = true;
 			if (i == 1){
 				if (conditionKind == CombatManagerS.CombatSpecialCondition.NoDamage){
