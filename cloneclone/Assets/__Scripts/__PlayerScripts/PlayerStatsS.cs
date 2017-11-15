@@ -791,6 +791,7 @@ public class PlayerStatsS : MonoBehaviour {
 					myPlayerController.playerSound.PlayDeathSound();
 					myPlayerController.playerSound.SetWalking(false);
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
+						_canRecoverHealth = 0f;
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);

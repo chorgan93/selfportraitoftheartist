@@ -14,6 +14,9 @@ public class InGameCinemaTextS : MonoBehaviour {
 	private bool advanceButtonDown = true;
 	private bool dialogueComplete = false;
 
+	public float skipAfterTime = 2f;
+	public bool skipAfterTimePasses = false;
+
 	public bool textZoom = false;
 
 	private bool textAfter = false;
@@ -43,6 +46,22 @@ public class InGameCinemaTextS : MonoBehaviour {
 	void Update () {
 
 		if (!dialogueComplete && !awaitingInput){
+			if (skipAfterTimePasses){
+				skipAfterTime -= Time.deltaTime;
+				if (skipAfterTime <= 0){
+					if (!textInputRef){
+						if (!textAfter){
+							DialogueManagerS.D.EndText(!dontTurnOnStats);
+						}
+						_myHandler.dialogueDone = true;
+						_myHandler.TurnOnTime();
+						dialogueComplete = true;
+					}else{
+						textInputRef.Activate(this);
+						awaitingInput = true;
+					}
+				}
+			}
 		if (!advanceButtonDown && _myControl.TalkButton()){
 				advanceButtonDown = true;
 			if (DialogueManagerS.D.doneScrolling){

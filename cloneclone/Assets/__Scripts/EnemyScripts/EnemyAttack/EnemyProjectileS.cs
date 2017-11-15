@@ -418,7 +418,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					}
 					
 					if (!isPiercing){
-						
+						range = fadeThreshold;
 						_rigidbody.velocity = Vector3.zero;
 						
 					}
@@ -449,7 +449,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					}
 					
 					if (!isPiercing){
-						
+						range = fadeThreshold;
 						_rigidbody.velocity = Vector3.zero;
 						
 					}

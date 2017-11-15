@@ -11,6 +11,7 @@ public class EnemyDetectS : MonoBehaviour {
 	public EnemyS closestEnemy { get { return _closestEnemy; } }
 	
 	private List<EnemyS> enemiesInRange;
+	private List<EnemyS> friendliesInRange;
 	public List<EnemyS> allEnemiesInRange { get { return enemiesInRange; } }
 	private Vector3 _enemyCenterpoint;
 	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
@@ -41,6 +42,7 @@ public class EnemyDetectS : MonoBehaviour {
 		playerReference.SetDetect(this);
 		
 		enemiesInRange = new List<EnemyS>();
+		friendliesInRange = new List<EnemyS>();
 		
 	}
 	
@@ -140,6 +142,18 @@ public class EnemyDetectS : MonoBehaviour {
 			}
 			
 		}
+
+		for (int i = 0; i < friendliesInRange.Count; i++){
+
+			if (friendliesInRange[i] == null){
+				friendliesInRange.RemoveAt(i);
+			}else{
+				if (friendliesInRange[i].isDead || !friendliesInRange[i].gameObject.activeSelf){
+					friendliesInRange.RemoveAt(i);
+				}
+			}
+
+		}
 		
 	}
 	
@@ -197,6 +211,9 @@ public class EnemyDetectS : MonoBehaviour {
 			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
 				enemiesInRange.Add(otherEnemy);
 			}
+			if (!otherEnemy.isDead && otherEnemy.isFriendly){
+				friendliesInRange.Add(otherEnemy);
+			}
 			
 		}
 		
@@ -208,8 +225,11 @@ public class EnemyDetectS : MonoBehaviour {
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			
-			if (!otherEnemy.isDead){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
 				enemiesInRange.Remove(otherEnemy);
+			}
+			if (!otherEnemy.isDead && otherEnemy.isFriendly){
+				friendliesInRange.Remove(otherEnemy);
 			}
 			
 		}
@@ -243,7 +263,7 @@ public class EnemyDetectS : MonoBehaviour {
 	}
 	
 	public bool NoEnemies(){
-		return (enemiesInRange.Count <= 0);
+		return (enemiesInRange.Count <= 0 && friendliesInRange.Count <= 0);
 	}
 	
 	bool parryEnemyInRange(){

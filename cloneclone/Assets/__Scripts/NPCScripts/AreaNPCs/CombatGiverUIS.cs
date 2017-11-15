@@ -112,7 +112,6 @@ public class CombatGiverUIS : MonoBehaviour {
 
 	public void MoveSelector(int dir){
 
-		Debug.Log("Moved selector!");
 		if (dir > 0){
 			if (inShopMenu){
 				if (currentPos < giverRef.possChoices.Length-1){

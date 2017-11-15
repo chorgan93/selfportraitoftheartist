@@ -225,23 +225,29 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}
 
-		if (other.gameObject.tag == "Enemy" && isFriendly){
+		if (other.gameObject.tag == "Enemy"){
+
+
+			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+
+			if (hitEnemy != null && !myEnemy != null){
+			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead && (hitEnemy.isFriendly != isFriendly)){
 
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
 			float actingDamage = dmg*Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
 
-			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
-			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead){
 				hitEnemy.TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, actingDamage, 1f, 1f, 0.1f, knockbackTime, true);
-			}
 			
+			}
+			}
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
 		}
+
 		
 	}
 
@@ -294,6 +300,5 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public void SetEnemy(EnemyS myRef){
 		myEnemy = myRef;
 		isFriendly = myEnemy.isFriendly;
-		Debug.Log("Enemy is set!", gameObject);
 	}
 }
