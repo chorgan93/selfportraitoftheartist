@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CorruptedEffectS : MonoBehaviour {
 
 	public AnimObjS[] animObjs;
 	public float[] activateRates;
+	private List<Vector3> startPos;
+	private Vector3 newPos;
+	public float posMult = 0.3f;
 	private float activateCountdown;
 	private int currentObj = 0;
 
+	[Header("Object Assignments")]
 	public GameObject[] backingObjs;
 
 	private EnemyS myEnemy;
@@ -20,10 +25,16 @@ public class CorruptedEffectS : MonoBehaviour {
 	
 		if (!_initialized){
 			myEnemy = enemyRef;
+			startPos = new List<Vector3>();
+			for (int i = 0; i < animObjs.Length; i++){
+				startPos.Add(animObjs[i].transform.localPosition);
+			}
 		}
 		if (myEnemy.isCorrupted){
 			currentObj = 0;
 			activateCountdown = activateRates[currentObj];
+
+
 			TurnOnAll();
 		}else{
 			TurnOffAll();
@@ -48,6 +59,10 @@ public class CorruptedEffectS : MonoBehaviour {
 
 	void ActivateObj(int objIndex){
 
+		newPos = startPos[objIndex];
+		newPos += Random.insideUnitSphere*posMult;
+		newPos.z = startPos[objIndex].z;
+		animObjs[objIndex].transform.localPosition = newPos;
 		animObjs[objIndex].ResetAnimation();
 		animObjs[objIndex].gameObject.SetActive(true);
 	}
@@ -74,5 +89,6 @@ public class CorruptedEffectS : MonoBehaviour {
 
 	public void SendDeathMessage(){
 		_effectActive = false;
+		TurnOffAll();
 	}
 }

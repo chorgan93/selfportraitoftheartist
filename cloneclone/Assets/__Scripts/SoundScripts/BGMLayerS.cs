@@ -26,7 +26,7 @@ public class BGMLayerS : MonoBehaviour {
 
 	private float startPitch;
 	private float witchTimePitch;
-	private float witchTimePitchMult = 0.5f;
+	private float witchTimePitchMult = 0.33f;
 	private bool witchingIn = false;
 	private bool witchingOut = false;
 	private float witchInTime = 0.8f;

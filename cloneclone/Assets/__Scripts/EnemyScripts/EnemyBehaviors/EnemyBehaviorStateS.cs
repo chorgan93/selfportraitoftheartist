@@ -16,6 +16,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	public float activateAtPlayerHealth = -1f;
 
 	public bool onlyActOnce = false;
+	public bool resetActOnceOnReset = false;
 	private bool _doNotActAgain = false;
 	public bool doNotActAgain { get { return _doNotActAgain; } }
 
@@ -47,7 +48,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 			}
 		}
 
-		if (minHealthPercentage > 0 && myEnemy.currentHealth/myEnemy.actingMaxHealth*100f <= minHealthPercentage){
+		if (minHealthPercentage > 0 && myEnemy.currentHealth/myEnemy.actingMaxHealth > minHealthPercentage){
 			active = false;
 		}
 
@@ -102,9 +103,13 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		behaviorSet[currentActingBehavior].EndAction();
 	}
 
-	public void SetEnemy(EnemyS enemy){
+	public void SetEnemy(EnemyS enemy, bool fromReset = false){
 
 		myEnemy = enemy;
+
+		if (fromReset && resetActOnceOnReset){
+			_doNotActAgain = false;
+		}
 
 		foreach(EnemyBehaviorS behavior in behaviorSet){
 			behavior.SetEnemy(enemy);

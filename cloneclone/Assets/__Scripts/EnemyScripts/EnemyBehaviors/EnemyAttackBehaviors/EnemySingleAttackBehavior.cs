@@ -21,6 +21,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public bool setVelocityToZeroOnStart = false;
 	public bool lockDirectionOnTargeting = false;
 	private bool lockFacing = false;
+	public int numToSpawn = 1;
 
 
 	private Vector3 attackDirection;
@@ -50,13 +51,18 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 			if (!launchedAttack && attackTimeCountdown <= (attackDuration-attackWarmup)/currentDifficultyMult){
 				Vector3 spawnPos = transform.position;
+				GameObject attackObj;
+				EnemyProjectileS projectileRef;
 				if (spawnOnTarget){
 					spawnPos = myEnemyReference.GetTargetReference().position;
 				}
-				GameObject attackObj = Instantiate(attackPrefab, spawnPos, attackPrefab.transform.rotation)
-					as GameObject;
-				EnemyProjectileS projectileRef = attackObj.GetComponent<EnemyProjectileS>();
+				for (int i =0; i < numToSpawn; i++){
+				attackObj = Instantiate(attackPrefab, spawnPos, attackPrefab.transform.rotation)
+						as GameObject;
+					projectileRef = attackObj.GetComponent<EnemyProjectileS>();
+					Debug.Log(projectileRef != null);
 				projectileRef.Fire(attackDirection, myEnemyReference, currentDifficultyMult);
+				}
 				launchedAttack = true;
 
 				myEnemyReference.SetBreakState(9999f,0f);
@@ -69,6 +75,9 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 		//Debug.Log(AttackInRange());
 		lockFacing = false;
+		if (numToSpawn <= 0){
+			numToSpawn = 1;
+		}
 		if (AttackInRange() || myEnemyReference.OverrideSpacingRequirement){
 
 			launchedAttack = false;

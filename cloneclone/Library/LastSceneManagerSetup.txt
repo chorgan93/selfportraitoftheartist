@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/_DreamScenes/Dream06_SerahAwakens.unity
+- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
   isLoaded: 1
   isActive: 1

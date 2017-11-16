@@ -541,7 +541,7 @@ public class EnemyS : MonoBehaviour {
 		_behaviorStates = GetBehaviorStates();
 			
 		foreach (EnemyBehaviorStateS bState in _behaviorStates){
-			bState.SetEnemy(this);
+			bState.SetEnemy(this, true);
 		}
 		if (myStatusMessenger){
 			myStatusMessenger.ResetMessage();
