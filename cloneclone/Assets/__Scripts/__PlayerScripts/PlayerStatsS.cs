@@ -684,6 +684,9 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentHealth = maxHealth;
 			delayDeathCountdownMult = 0f;
 		}
+		if (maxHealth - _currentHealth < _canRecoverHealth){
+			_canRecoverHealth = maxHealth-_currentHealth;
+		}
 		if (doEffect){
 			myPlayerController.FlashHeal();
 			_itemEffect.Flash(myPlayerController.myRenderer.material.color);
@@ -828,7 +831,7 @@ public class PlayerStatsS : MonoBehaviour {
 						delayDeath = true;
 						delayDeathCountdownMult += 1f;
 						delayDeathCountdown = PlayerAugmentsS.CONDEMNED_TIME;
-						if (pRef.playerAug.desperateAug){
+						if (pRef.playerAug.desperateAug && !godMode){
 							//if (!unstoppableActivatedOnHit){
 								currentAllowRecoverTime = allowHealthRecoverMaxTime;
 								_canRecoverHealth = dmg*DESPERATE_MULT;

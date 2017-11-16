@@ -14,11 +14,8 @@ public class TurnOnChosenCombatS : MonoBehaviour {
 				potentialCombats[i].gameObject.SetActive(false);
 			}
 		}
+		CombatGiverS.chosenSpecialCombat = -1;
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

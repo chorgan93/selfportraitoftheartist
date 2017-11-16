@@ -14,6 +14,7 @@ public class ProgressionTriggerS : MonoBehaviour {
 		if (!_activated && activateOnStart){
 
 			StoryProgressionS.SetStory(progressionSet);
+			Debug.Log("Added story beat " + progressionSet);
 		}
 	}
 

@@ -122,7 +122,6 @@ public class NPCS : MonoBehaviour {
 					_myAnimator.ResetTrigger(idleKey);
 					_myAnimator.ResetTrigger(walkKey);
 					_myAnimator.SetTrigger(talkKey);
-					_myAnimator.ResetTrigger(idleKey);
 
 					if (pRef.transform.position.x > transform.position.x){
 						transform.localScale = talkScale;
@@ -159,8 +158,10 @@ public class NPCS : MonoBehaviour {
 								newMix.SetActive(true);
 							}
 							if (isWaiting){
+								_myAnimator.ResetTrigger(talkKey);
 								_myAnimator.SetTrigger(walkKey);
 							}else{
+								_myAnimator.ResetTrigger(talkKey);
 								_myAnimator.SetTrigger(idleKey);
 							}
 						}else{
@@ -221,6 +222,8 @@ public class NPCS : MonoBehaviour {
 
 		if (walkTimeMax > 0){
 			if (isWaiting){
+				_myAnimator.ResetTrigger(idleKey);
+				_myAnimator.ResetTrigger(talkKey);
 				_myAnimator.SetTrigger(walkKey);
 			}
 			isWaiting = false;
@@ -237,6 +240,8 @@ public class NPCS : MonoBehaviour {
 		if (waitTimeMax > 0){
 			_myRigid.velocity = Vector3.zero;
 			if (!isWaiting){
+				_myAnimator.ResetTrigger(talkKey);
+				_myAnimator.ResetTrigger(walkKey);
 				_myAnimator.SetTrigger(idleKey);
 			}
 			isWaiting = true;
