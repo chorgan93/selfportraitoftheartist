@@ -29,6 +29,7 @@ public class EnemyS : MonoBehaviour {
 	public bool isFriendly = false;
 	public bool debugMark = false;
 	public bool isGold = false;
+	public bool isCorrupted = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
@@ -129,6 +130,8 @@ public class EnemyS : MonoBehaviour {
 
 	[Header("Interaction Properties")]
 	public EnemyStatusReferencesS myStatusMessenger;
+	public CorruptedEffectS corruptionManager;
+	public InstantiateOnEnemyHealthS healthSpawn;
 
 	
 	[Header("Sound Properties")]
@@ -406,9 +409,13 @@ public class EnemyS : MonoBehaviour {
 	private void Initialize(){
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
-		actingMaxHealth = maxHealth*currentDifficultyMult;
+		actingMaxHealth = maxHealth*currentDifficultyMult*CorruptedMult();
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);
+
+
+
+		damageMultiplier/=CorruptedMult();
 
 		ResetFaceLock();
 
@@ -449,6 +456,10 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		startDrag = _myRigidbody.drag*FIX_DRAG_MULT;
+
+		if (corruptionManager){
+			corruptionManager.Initialize(this);
+		}
 
 		if (!_initialized){
 			_initialized = true;
@@ -492,6 +503,9 @@ public class EnemyS : MonoBehaviour {
 		CameraFollowS.F.RemoveStunnedEnemy(this);
 
 		ResetFaceLock();
+		if (healthSpawn){
+			healthSpawn.ResetSpawn();
+		}
 
 		_invulnerable = false;
 
@@ -509,11 +523,15 @@ public class EnemyS : MonoBehaviour {
 
 		_myAnimator.SetLayerWeight(2, 0f);
 		_myAnimator.SetBool("Death", false);
+		ResetAnimatorTriggers();
 		_currentHealth = actingMaxHealth;
 			_isActive = false;
 
 		_myCollider.enabled = true;
 		gameObject.layer = ALIVE_LAYER;
+
+		//_myAnimator.Rebind();
+		//_myAnimator.Update(0f);
 		
 		spawnedDeathObj = false;
 		deathFrameDelay = 3;
@@ -670,6 +688,15 @@ public class EnemyS : MonoBehaviour {
 			_flashCol = Color.white;
 			vulnerableEffectEnded = true;
 			vulnEffectCountdown = VULN_EFFECT_RATE;
+		}
+	}
+
+	void ResetAnimatorTriggers(){
+		AnimatorControllerParameter[] parameters = _myAnimator.parameters;
+		for (int i = 0; i < parameters.Length; i++){
+			if (parameters[i].type == AnimatorControllerParameterType.Trigger){
+				myAnimator.ResetTrigger(i);
+			}
 		}
 	}
 
@@ -1134,6 +1161,9 @@ public class EnemyS : MonoBehaviour {
 			}
 			_killScreen.Flash();
 			_isDead = true;
+			if (corruptionManager){
+				corruptionManager.SendDeathMessage();
+			}
 			ResetFaceLock();
 			if (myStatusMessenger){
 				myStatusMessenger.KillMessage();
@@ -1168,6 +1198,10 @@ public class EnemyS : MonoBehaviour {
 			CameraShakeS.C.SloAndPunch(0.3f, 0.8f, 0.2f);
 			
 			currentKnockbackCooldown = knockbackTime;
+		}
+
+		if (healthSpawn){
+			healthSpawn.CheckSpawn(_currentHealth/actingMaxHealth);
 		}
 
 		EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, true, false, damageTaken, transform);
@@ -1231,6 +1265,9 @@ public class EnemyS : MonoBehaviour {
 
 		_currentHealth = 0;
 		_isDead = true;
+		if (corruptionManager){
+			corruptionManager.SendDeathMessage();
+		}
 		ResetFaceLock();
 		Stun (0);
 		CancelBehaviors();
@@ -1287,6 +1324,14 @@ public class EnemyS : MonoBehaviour {
 
 	public void ResetAttackCount(){
 		_numAttacksTakenInBehavior = 0;
+	}
+
+	public float CorruptedMult(){
+		float returnMult = 1f;
+		if (isCorrupted){
+			returnMult = 1.075f;
+		}
+		return returnMult;
 	}
 
 }

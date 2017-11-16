@@ -68,6 +68,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private float delayFadeOut = 1f;
 	private float adjustT;
 	private bool adjustingNum;
+	public RetryFightUI allowRetryUI;
 
 	private PlayerStatsS pStats;
 	public PlayerStatsS pStatRef { get { return pStats; } }
@@ -112,6 +113,10 @@ public class DarknessPercentUIS : MonoBehaviour {
 		barOffsetCountdown = barChangeTime;
 
 		StartShake();
+
+		if (allowRetryUI){
+			allowRetryUI.Initialize(this);
+		}
 
 		inRecordMode = PlayerStatDisplayS.RECORD_MODE;
 		if (inRecordMode){
@@ -204,7 +209,11 @@ public class DarknessPercentUIS : MonoBehaviour {
 			
 			if (fadeCount >= fadeOutTime){
 				fadeT = 1f;
-				_allowAdvance = true;
+				if (RetryFightUI.allowRetry){
+					allowRetryUI.TurnOn();
+				}else{
+					_allowAdvance = true;
+				}
 			}
 			fadeColorRed = deathRedTextDisplay.color;
 			fadeColorRed.a = Mathf.SmoothStep(fadeRedMaxAlpha, 0, fadeT);
@@ -379,6 +388,10 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 		fadeCount = 0f;
 
+	}
+
+	public void SetAdvance(){
+		_allowAdvance = true;
 	}
 
 	void TurnOffCornerDisplay(){

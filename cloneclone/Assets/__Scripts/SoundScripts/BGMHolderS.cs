@@ -146,4 +146,30 @@ public class BGMHolderS : MonoBehaviour {
 			}
 		}
 	}
+
+	public void SetWitch(bool newWitch){
+		if (newWitch){
+			if (transform.childCount > 0){
+				BGMLayerS currentLayer;
+				for (int i = 0; i < transform.childCount; i++){
+					currentLayer = transform.GetChild(i).gameObject.GetComponent<BGMLayerS>();
+					if (currentLayer != null){
+						currentLayer.StartWitch();
+					}
+				}
+
+			}
+		}else{
+			if (transform.childCount > 0){
+				BGMLayerS currentLayer;
+				for (int i = 0; i < transform.childCount; i++){
+					currentLayer = transform.GetChild(i).gameObject.GetComponent<BGMLayerS>();
+					if (currentLayer != null){
+						currentLayer.EndWitch();
+					}
+				}
+
+			}
+		}
+	}
 }

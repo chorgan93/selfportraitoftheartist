@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area04(Desert)Scenes/Area04_04_ArenaInterior.unity
+- path: Assets/_Scenes/_DreamScenes/Dream06_SerahAwakens.unity
   isLoaded: 1
   isActive: 1

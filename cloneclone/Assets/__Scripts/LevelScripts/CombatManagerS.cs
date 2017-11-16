@@ -30,6 +30,7 @@ public class CombatManagerS : MonoBehaviour {
 	public ActivateOnCombatS turnOnAtStart;
 	public GameObject[] turnOffOnEnd;
 	public GameObject[] turnOnOnEnd;
+	public InstantiateOnCombatRestartS restartSpawn;
 
 	[Header("Fight Once Properties")]
 	public bool onlyFightOnce = false;
@@ -38,7 +39,7 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
 
-	[Header("Scoring Properties")]
+	[Header("Scoring Settings")]
 	public bool turnOnScoring = false;
 	public bool turnOffScoring = false;
 	public bool allowRetry = false;
@@ -175,6 +176,8 @@ public class CombatManagerS : MonoBehaviour {
 			turnOnAtStart.Activate();
 		}
 
+		RetryFightUI.allowRetry = allowRetry;
+
 		foreach (EnemySpawnerS e in enemies){
 			e.myManager = this;
 			if (e.gameObject.activeSelf){
@@ -197,8 +200,11 @@ public class CombatManagerS : MonoBehaviour {
 
 		playerRef.playerAug.canUseUnstoppable = true;
 		if (itemReset){
+			if (restartSpawn){
+				restartSpawn.SpawnOnRestart();
+			}
 
-			playerRef.EndWitchTime();
+			playerRef.EndWitchTime(false, true);
 			if (playerRef.myBuddy != null){
 				Vector3 buddyPos = playerRef.myBuddy.transform.position-playerRef.transform.position;
 				playerRef.myBuddy.transform.position = _resetPos+buddyPos;

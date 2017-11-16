@@ -172,6 +172,7 @@
 'Assets/__Scripts/EnemyScripts/EnemyBuddyScripts/FakeEnemyBuddyS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyEffects/BleedingS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyEffects/BloodS.cs'
+'Assets/__Scripts/EnemyScripts/EnemyEffects/CorruptedEffectS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyHealthBarS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyHealthFeatherColorS.cs'
 'Assets/__Scripts/EnemyScripts/EnemyHealthFeathersS.cs'

@@ -100,7 +100,9 @@ public class FadeScreenUI : MonoBehaviour {
 			if (_myColor.a >= 1){
 				_myColor.a = 1;
 				_fadingIn = false;
-				StartLoading();
+				if (!RetryFightUI.allowRetry){
+					StartLoading();
+				}
 			}
 			_myRenderer.color = _myColor;
 
@@ -233,7 +235,7 @@ public class FadeScreenUI : MonoBehaviour {
 		destinationSceneIndex = newSceneIndex;
 	}
 
-	private void StartLoading(){
+	public void StartLoading(){
 		StartCoroutine(LoadNextScene());
 		dontAllowReset = true;
 		startedLoading = true;

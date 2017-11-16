@@ -66,7 +66,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 		behaviorActTime = 0f;
 
-		currentDifficultyMult = difficultyMult[DifficultyS.GetSinInt(myEnemyReference.isGold)];
+		currentDifficultyMult = difficultyMult[DifficultyS.GetSinInt(myEnemyReference.isGold)]*myEnemy.CorruptedMult();
 		myEnemy.myAnimator.SetFloat("DifficultySpeed", currentDifficultyMult);
 		myEnemy.currentDifficultyAnimationFloat = currentDifficultyMult;
 

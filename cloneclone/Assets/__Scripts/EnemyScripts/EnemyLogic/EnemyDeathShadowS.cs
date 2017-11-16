@@ -32,6 +32,15 @@ public class EnemyDeathShadowS : MonoBehaviour {
 		delayGrowCount--;
 		if (delayGrowCount <= 0){
 
+			if (!_myRenderer){
+
+				_myRenderer = GetComponent<SpriteRenderer>();
+
+				myColor = _myRenderer.color;
+				myColor.a = startFade;
+				_myRenderer.color = myColor;
+			}
+
 		myColor = _myRenderer.color;
 		myColor.a -= fadeRate*Time.deltaTime;
 		if (myColor.a <= 0){

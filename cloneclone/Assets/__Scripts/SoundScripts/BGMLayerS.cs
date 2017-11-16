@@ -24,11 +24,23 @@ public class BGMLayerS : MonoBehaviour {
 	private bool destroyOnFade = false;
 	private int prevData = 0;
 
+	private float startPitch;
+	private float witchTimePitch;
+	private float witchTimePitchMult = 0.5f;
+	private bool witchingIn = false;
+	private bool witchingOut = false;
+	private float witchInTime = 0.8f;
+	private float witchOutTime = 0.6f;
+	private float currentWitchCount;
+	private float witchT;
+
 	// Use this for initialization
 	void Awake () {
 
 		mySource = GetComponent<AudioSource>();
 		mySource.volume = startVolume;
+		startPitch = mySource.pitch;
+		witchTimePitch = startPitch*witchTimePitchMult;
 
 		checkForceRestart = (forceRestartOnLoop != null);
 
@@ -41,6 +53,27 @@ public class BGMLayerS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (witchingIn){
+			currentWitchCount += Time.deltaTime;
+			if (currentWitchCount >= witchInTime){
+				currentWitchCount = witchInTime;
+				witchingIn = false;
+			}
+			witchT = currentWitchCount/witchInTime;
+			witchT = Mathf.Sin(witchT * Mathf.PI * 0.5f);
+			mySource.pitch = Mathf.Lerp(startPitch, witchTimePitch, witchT);
+		}
+		if (witchingOut){
+			currentWitchCount += Time.deltaTime;
+			if (currentWitchCount >= witchOutTime){
+				currentWitchCount = witchOutTime;
+				witchingOut = false;
+			}
+			witchT = currentWitchCount/witchOutTime;
+			witchT = Mathf.Sin(witchT * Mathf.PI * 0.5f);
+			mySource.pitch = Mathf.Lerp(witchTimePitch, startPitch, witchT);
+		}
 
 		if (fadingIn){
 			mySource.volume += fadeInRate*Time.unscaledDeltaTime;
@@ -110,6 +143,23 @@ public class BGMLayerS : MonoBehaviour {
 
 	public void StopLayer(){
 		mySource.Stop();
+	}
+
+	public void StartWitch(){
+		//mySource.pitch = witchTimePitch;
+		if (!witchingIn && !witchingOut){
+			currentWitchCount = 0f;
+		}
+		witchingIn = true;
+		witchingOut = false;
+	}
+	public void EndWitch(){
+		//mySource.pitch = startPitch;
+		if (!witchingIn && !witchingOut){
+			currentWitchCount = 0f;
+		}
+		witchingIn = false;
+		witchingOut = true;
 	}
 
 	public bool isPlayingAndHeard(){

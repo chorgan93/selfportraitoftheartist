@@ -379,13 +379,13 @@ public class PlayerController : MonoBehaviour {
 	public void ExtendWitchTime(){
 		witchReference.ExtendWitchTime();
 	}
-	public void EndWitchTime(bool fromWitch = false){
+	public void EndWitchTime(bool fromWitch = false, bool fromItem = false){
 
 		if (!_isDashing){
 			gameObject.layer = START_PHYSICS_LAYER;
 		}
 		if (!fromWitch){
-		witchReference.EndWitchTime();
+			witchReference.EndWitchTime(fromItem);
 		}
 	}
 

@@ -102,6 +102,7 @@ public class PlayerSlowTimeS : MonoBehaviour {
 			playerRef.currentCombatManager.SetWitchTime(true);
 		}
 		endTriggered = false;
+		BGMHolderS.BG.SetWitch(true);
 	}
 
 	public void ExtendWitchTime(){
@@ -112,7 +113,11 @@ public class PlayerSlowTimeS : MonoBehaviour {
 		}
 		}
 	}
-	public void EndWitchTime(){
+	public void EndWitchTime(bool fromReset = false){
+		if (witchTimeActive || fromReset){
+
+			BGMHolderS.BG.SetWitch(false);
+		}
 		witchTimeActive = false;
 		outlineObj.SetActive(false);
 		_myCollider.enabled = _myRenderer.enabled = false;

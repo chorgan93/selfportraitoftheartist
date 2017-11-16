@@ -10,6 +10,7 @@ public class CameraEffectsS : MonoBehaviour {
 	public bool isFading = false;
 
 	private FadeScreenUI fadeScreen;
+	public FadeScreenUI fadeRef { get { return fadeScreen; } }
 
 	public FlashEffectS hurtFlash;
 	public FlashEffectS killFlash;

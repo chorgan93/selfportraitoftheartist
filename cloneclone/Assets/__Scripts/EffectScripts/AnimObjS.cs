@@ -132,6 +132,12 @@ public class AnimObjS : MonoBehaviour {
 	}
 
 	public void ResetAnimation(){
+		if (!mySprite){
+
+			mySprite = GetComponent<SpriteRenderer>();
+			currentFrame = 0;
+			mySprite.sprite = animFrames[currentFrame];
+		}
 		endAnim = false;
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
