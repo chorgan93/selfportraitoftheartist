@@ -7,6 +7,8 @@ public class CombatGiverS : MonoBehaviour {
 	public CombatGiverUIItemS[] possChoices;
 	public CombatGiverUIS combatChooseUI;
 	public GameObject turnOnCombatObj;
+	public int giveHealItem = -1;
+	private bool giveHeal = false;
 
 	[Header("Talk Properties")]
 	public NPCDialogueSet introSet;
@@ -14,8 +16,12 @@ public class CombatGiverS : MonoBehaviour {
 	public NPCDialogueSet talkSet;
 	public NPCDialogueSet saleSet;
 	public NPCDialogueSet goodbyeSet;
+	public NPCDialogueSet giveHealSet;
+	public NPCDialogueSet completedAllIntroSet;
+	public NPCDialogueSet completedAllGoodbyeSet;
 	private int currentDialogue = 0;
 	private bool combatChosen = false;
+	private bool completedAll = false;
 
 	private bool selectButtonDown = false;
 	private bool cancelButtonDown = false;
@@ -41,6 +47,9 @@ public class CombatGiverS : MonoBehaviour {
 
 		playerDetect = GetComponentInChildren<PlayerDetectS>();
 
+		CheckCompletedAll();
+		CheckGiveHeal();
+
 	}
 	
 	// Update is called once per frame
@@ -64,8 +73,17 @@ public class CombatGiverS : MonoBehaviour {
 							myAnimator.SetTrigger(talkKey);
 							}
 							if (!combatChosen){
+								if (!giveHeal){
 						merchantState = 0;
+									if (!completedAll){
 						DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, true, true);
+									}else{
+										DialogueManagerS.D.SetDisplayText(completedAllIntroSet.dialogueStrings[currentDialogue], false, true, true);
+									}
+								}else{
+									merchantState = 4;
+									DialogueManagerS.D.SetDisplayText(giveHealSet.dialogueStrings[currentDialogue], false, true, true);
+								}
 							}else{
 								merchantState = 5;
 								DialogueManagerS.D.SetDisplayText(chosenSet.dialogueStrings[currentDialogue], false, true, true);
@@ -78,19 +96,28 @@ public class CombatGiverS : MonoBehaviour {
 							if (merchantState != 1){
 								currentDialogue++;
 								if (merchantState == 0){
-									if (currentDialogue >= introSet.dialogueStrings.Length){
+										if ((!completedAll && currentDialogue >= introSet.dialogueStrings.Length) ||
+											(completedAll && currentDialogue >= completedAllIntroSet.dialogueStrings.Length)){
 											combatChooseUI.TurnOn(this);
 										currentDialogue = 0;
 										merchantState = 1;
 									}else{
+											if (!completedAll){
 										DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, true, true);
+											}else{
+												DialogueManagerS.D.SetDisplayText(completedAllIntroSet.dialogueStrings[currentDialogue], false, true, true);
+											}
 									}
 								}else if (merchantState == 2){
 									if (currentDialogue >= talkSet.dialogueStrings.Length){
 											combatChooseUI.ShowMenus();
 										currentDialogue = 0;
 										merchantState = 1;
+											if (!completedAll){
 											DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
+											}else{
+												DialogueManagerS.D.SetDisplayText(completedAllIntroSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
+											}
 									}else{
 										DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
 									}
@@ -121,7 +148,9 @@ public class CombatGiverS : MonoBehaviour {
 											DialogueManagerS.D.SetDisplayText(chosenSet.dialogueStrings[currentDialogue], false, true, true);
 										}
 									}else{
-										if (currentDialogue >= goodbyeSet.dialogueStrings.Length){
+										if (!giveHeal){
+											if ((!completedAll && currentDialogue >= goodbyeSet.dialogueStrings.Length) ||
+												(completedAll && currentDialogue >= completedAllGoodbyeSet.dialogueStrings.Length)){
 										talking = false;
 										DialogueManagerS.D.EndText();
 										playerRef.SetTalking(false);
@@ -131,8 +160,29 @@ public class CombatGiverS : MonoBehaviour {
 											myAnimator.SetTrigger(idleKey);
 											}
 									}else{
+												if (!completedAll){
 										DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+												}else{
+													DialogueManagerS.D.SetDisplayText(completedAllGoodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+												}
 									}
+										}else{
+											if (currentDialogue >= giveHealSet.dialogueStrings.Length){
+												PlayerInventoryS.I.AddToInventory(1);
+												PlayerInventoryS.I.AddCharge(giveHealItem);
+												talking = false;
+												DialogueManagerS.D.EndText();
+												playerRef.SetTalking(false);
+												CameraFollowS.F.ResetPOI();
+												combatChooseUI.TurnOff();
+												giveHeal = false;
+												if (myAnimator){
+													myAnimator.SetTrigger(idleKey);
+												}
+											}else{
+												DialogueManagerS.D.SetDisplayText(giveHealSet.dialogueStrings[currentDialogue], false, true, true);
+											}
+										}
 								}
 							}else{
 									combatChooseUI.SelectOption();
@@ -185,7 +235,11 @@ public class CombatGiverS : MonoBehaviour {
 	}
 
 	public void ResetMessage(){
+		if (!completedAll){
 		DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
+		}else{
+			DialogueManagerS.D.SetDisplayText(completedAllIntroSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, true, true);
+		}
 		
 	}
 
@@ -205,6 +259,44 @@ public class CombatGiverS : MonoBehaviour {
 	public void StartExit(){
 		merchantState = 4;
 		currentDialogue = 0;
+		if (!completedAll){
 		DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+		}else{
+			DialogueManagerS.D.SetDisplayText(completedAllGoodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+		}
+	}
+
+	void CheckCompletedAll(){
+		if (giveHealItem >= 0){
+			int combatsCompleted = 0;
+			if (PlayerInventoryS.I.dManager.specialConditionCombatCleared != null){
+			for (int i = 0; i < possChoices.Length; i++){
+				if (PlayerInventoryS.I.dManager.specialConditionCombatCleared.Contains(possChoices[i].combatID)){
+					combatsCompleted++;
+				}
+			}
+			}
+			if (combatsCompleted >= possChoices.Length){
+				completedAll = true;
+			}
+		}
+	}
+
+	void CheckGiveHeal(){
+		if (giveHealItem >= 0){
+			if (!PlayerInventoryS.I.CheckCharge(giveHealItem)){
+				int combatsCompleted = 0;
+				if (PlayerInventoryS.I.dManager.specialConditionCombatCleared != null){
+				for (int i = 0; i < possChoices.Length; i++){
+					if (PlayerInventoryS.I.dManager.specialConditionCombatCleared.Contains(possChoices[i].combatID)){
+						combatsCompleted++;
+					}
+				}
+				}
+				if (combatsCompleted >= possChoices.Length){
+					giveHeal = true;
+				}
+			}
+		}
 	}
 }

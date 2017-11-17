@@ -17,6 +17,7 @@ public class LevelUpHandlerS : MonoBehaviour {
 
 	private int currentPlayerLvl = 0;
 
+
 	private bool initialized = false;
 
 
@@ -88,10 +89,19 @@ public class LevelUpHandlerS : MonoBehaviour {
 
 		int addLevelUpIndex = 0;
 
-		while (nextLevelUps.Count < 4){
-			addLevelUpIndex = Mathf.RoundToInt(Random.Range(0, availableLevelUps.Count-1));
-			nextLevelUps.Add(availableLevelUps[addLevelUpIndex]);
-			availableLevelUps.RemoveAt(addLevelUpIndex);
+		List<LevelUpS> levelUpPool = new List<LevelUpS>();
+		for (int i = availableLevelUps.Count-1; i >= 0; i--){
+
+			if (!availableLevelUps[i].LockedByCount(currentPlayerLvl, PlayerInventoryS.I.GetUpgradeCount(availableLevelUps[i].upgradeID))){
+				levelUpPool.Add(availableLevelUps[i]);
+			}
+		}
+
+		while (nextLevelUps.Count < 4 && levelUpPool.Count > 0){
+			addLevelUpIndex = Mathf.RoundToInt(Random.Range(0, levelUpPool.Count-1));
+			nextLevelUps.Add(levelUpPool[addLevelUpIndex]);
+			availableLevelUps.Remove(levelUpPool[addLevelUpIndex]);
+			levelUpPool.RemoveAt(addLevelUpIndex);
 		}
 
 	}

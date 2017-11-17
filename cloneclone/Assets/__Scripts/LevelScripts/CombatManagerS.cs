@@ -154,6 +154,8 @@ public class CombatManagerS : MonoBehaviour {
 		if (clearBloodOnComplete){
 			PlayerInventoryS.I.dManager.ClearBattleBlood();
 		}
+
+		RetryFightUI.allowRetry = false;
 	}
 
 	void AddDefeatedEnemies(){

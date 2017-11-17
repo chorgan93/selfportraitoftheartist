@@ -63,7 +63,8 @@ public class RetryFightUI : MonoBehaviour {
 						CameraEffectsS.E.SetNextScene(Application.loadedLevelName);
 					GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;
 					}else{
-
+						PlayerController.doWakeUp = false;
+						PlayerStatsS.healOnStart = false;
 						GameOverS.tempReviveScene = "";
 						GameOverS.tempRevivePosition = -1;
 						CameraEffectsS.E.SetNextScene(GameOverS.reviveScene);

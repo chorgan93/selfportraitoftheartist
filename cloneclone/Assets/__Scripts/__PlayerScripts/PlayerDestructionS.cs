@@ -160,6 +160,18 @@ public class PlayerDestructionS : MonoBehaviour {
 		}
 	}
 
+	public void RemoveCombatData(int cID){
+		if (_combatClearedAtLeastOnce.Contains(cID)){
+			int indexOfCombat = _combatClearedAtLeastOnce.IndexOf(cID);
+			_combatClearedRanks.RemoveAt(indexOfCombat);
+			_combatClearedRankGrades.RemoveAt(indexOfCombat);
+			if (_specialConditionCombatCleared.Contains(cID)){
+				_specialConditionCombatCleared.Remove(cID);
+			}
+			_combatClearedAtLeastOnce.Remove(cID);
+		}
+	}
+
 	public void SetBattleBlood(){
 		savedBloodCount = _bloodIds.Count;
 	}

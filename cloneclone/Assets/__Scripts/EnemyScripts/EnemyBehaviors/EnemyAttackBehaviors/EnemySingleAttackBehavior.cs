@@ -60,7 +60,6 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				attackObj = Instantiate(attackPrefab, spawnPos, attackPrefab.transform.rotation)
 						as GameObject;
 					projectileRef = attackObj.GetComponent<EnemyProjectileS>();
-					Debug.Log(projectileRef != null);
 				projectileRef.Fire(attackDirection, myEnemyReference, currentDifficultyMult);
 				}
 				launchedAttack = true;

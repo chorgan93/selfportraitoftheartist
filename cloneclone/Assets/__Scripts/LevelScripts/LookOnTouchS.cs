@@ -20,6 +20,8 @@ public class LookOnTouchS : MonoBehaviour {
 	public float delayCountdown = 0f;
 	private bool doDelay = false;
 
+	//private PlayerController pRef;
+
 	bool canActivate(){
 		bool canAct = true;
 		if (doNotActivateOnRewindNum >= 0){
@@ -53,6 +55,9 @@ public class LookOnTouchS : MonoBehaviour {
 			if (delayCountdown <= 0){
 				doDelay = false;
 				isLooking = true;
+				/*if (pRef){
+					pRef.SetTalking(true);
+				}**/
 				CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 				lookCountdown = lookDurations[currentTarget];
 			}
@@ -64,6 +69,9 @@ public class LookOnTouchS : MonoBehaviour {
 				if (currentTarget > lookPositions.Length-1){
 					isLooking = false;
 					CameraFollowS.F.ResetPOI();
+					/*if (pRef){
+						pRef.SetTalking(false);
+					}**/
 				}else{
 					CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 					lookCountdown = lookDurations[currentTarget];
@@ -77,11 +85,15 @@ public class LookOnTouchS : MonoBehaviour {
 	
 		if (other.gameObject.tag == "Player" && !activated){
 			activated = true;
+			//pRef = other.gameObject.GetComponent<PlayerController>();
 					if (delayCountdown <= 0){
 						doDelay = canActivate();
 					}
 			else if (canActivate()){
 			isLooking = true;
+				/*if (pRef){
+					pRef.SetTalking(true);
+				}**/
 			CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 			lookCountdown = lookDurations[currentTarget];
 			}
