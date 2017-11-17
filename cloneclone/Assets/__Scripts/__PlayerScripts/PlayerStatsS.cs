@@ -826,6 +826,7 @@ public class PlayerStatsS : MonoBehaviour {
 					CameraFollowS.F.RemoveLimits();
 					warningReference.EndAll();
 						delayDeath = false;
+						PlayerController.doWakeUp = true;
 					}else{
 						// start condemned process
 						delayDeath = true;

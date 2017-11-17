@@ -1860,7 +1860,7 @@ public class PlayerController : MonoBehaviour {
 	private void StatusCheck(){
 
 		if (_myStats.PlayerIsDead()){
-			doWakeUp = true;
+			//doWakeUp = true;
 			if (gameObject.layer != DODGE_PHYSICS_LAYER){
 				gameObject.layer = DODGE_PHYSICS_LAYER;
 			}
