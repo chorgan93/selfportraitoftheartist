@@ -8,6 +8,7 @@ public class InGameCinemaMoveObjS : MonoBehaviour {
 	public Transform movingObject;
 	public Transform targetPosition;
 	public float moveSpeed;
+	public Vector3 fixedDirection = Vector3.zero;
 	private Vector3 moveDirection;
 
 	public bool faceMoveDirection;
@@ -22,8 +23,12 @@ public class InGameCinemaMoveObjS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		if (fixedDirection == Vector3.zero){
 		moveDirection = targetPosition.position-movingObject.position;
 		moveDirection.z = 0f;
+		}else{
+			moveDirection = fixedDirection;
+		}
 
 
 		if (faceMoveDirection){

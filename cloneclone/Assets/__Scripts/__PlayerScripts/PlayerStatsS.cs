@@ -113,7 +113,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________ATTACK
 	private float _baseStrength = 0.7f;
 	private float _addedStrength = 0; // (upgradeable)
-	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.1f);}}
+	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.075f);}}
 	public float addedStrength { get { return _addedStrength; } }
 
 	

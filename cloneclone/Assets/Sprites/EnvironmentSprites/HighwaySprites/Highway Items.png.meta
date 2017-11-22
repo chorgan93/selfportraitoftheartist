@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: aa053e6cbc3fe4034b8ee3622701b713
+timeCreated: 1511229690
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Environment Texture_0
+    21300002: Environment Texture_1
+    21300004: Environment Texture_2
+    21300006: Environment Texture_3
+    21300008: Environment Texture_4
+    21300010: Environment Texture_5
+    21300012: Environment Texture_6
+    21300014: Tutorial Area Environment Items_0
+    21300016: Tutorial Area Environment Items_1
+    21300018: Tutorial Area Environment Items_2
+    21300020: Tutorial Area Environment Items_3
+    21300022: Tutorial Area Environment Items_4
+    21300024: Tutorial Area Environment Items_5
+    21300026: Tutorial Area Environment Items_6
+    21300028: Tutorial Area Environment Items_7
+    21300030: Tutorial Area Environment Items_8
+    21300032: Tutorial Area Environment Items_9
+    21300034: Tutorial Area Environment Items_10
+    21300036: Tutorial Area Environment Items_11
+    21300038: Tutorial Area Environment Items_12
+    21300040: Tutorial Area Environment Items_13
+    21300042: Tutorial Area Environment Items_14
+    21300044: Tutorial Area Environment Items_15
+    21300046: Tutorial Area Environment Items_16
+    21300048: Tutorial Area Environment Items_17
+    21300050: Tutorial Area Environment Items_18
+    21300052: MetroEnvirons_0
+    21300054: MetroEnvirons_1
+    21300056: MetroEnvirons_2
+    21300058: MetroEnvirons_3
+    21300060: MetroEnvirons_4
+    21300062: MetroEnvirons_5
+    21300064: MetroEnvirons_6
+    21300066: MetroEnvirons_7
+    21300068: MetroEnvirons_8
+    21300070: MetroEnvirons_9
+    21300072: MetroEnvirons_10
+    21300074: MetroEnvirons_11
+    21300076: MetroEnvirons_12
+    21300078: MetroEnvirons_13
+    21300080: MetroEnvirons_14
+    21300082: MetroEnvirons_15
+    21300084: MetroEnvirons_16
+    21300086: MetroEnvirons_17
+    21300088: MetroEnvirons_18
+    21300090: MetroEnvirons_19
+    21300092: MetroEnvirons_20
+    21300094: MetroEnvirons_21
+    21300096: MetroEnvirons_22
+    21300098: MetroEnvirons_23
+    21300100: MetroEnvirons_24
+    21300102: MetroEnvirons_25
+    21300104: MetroEnvirons_26
+    21300106: MetroEnvirons_27
+    21300108: MetroEnvirons_28
+    21300110: MetroEnvirons_29
+    21300112: MetroEnvirons_30
+    21300114: MetroEnvirons_31
+    21300116: MetroEnvirons_32
+    21300118: MetroEnvirons_33
+    21300120: MetroEnvirons_34
+    21300122: MetroEnvirons_35
+    21300124: MetroEnvirons_36
+    21300126: MetroEnvirons_37
+    21300128: MetroEnvirons_38
+    21300130: MetroEnvirons_39
+    21300132: MetroEnvirons_40
+    21300134: MetroEnvirons_41
+    21300136: MetroEnvirons_42
+    21300138: MetroEnvirons_43
+    21300140: MetroEnvirons_44
+    21300142: MetroEnvirons_45
+    21300144: MetroEnvirons_46
+    21300146: MetroEnvirons_47
+    21300148: MetroEnvirons_48
+    21300150: MetroEnvirons_49
+    21300152: MetroEnvirons_50
+    21300154: MetroEnvirons_51
+    21300156: MetroEnvirons_52
+    21300158: MetroEnvirons_53
+    21300160: MetroEnvirons_54
+    21300162: MetroEnvirons_55
+    21300164: MetroEnvirons_56
+    21300166: MetroEnvirons_57
+    21300168: MetroEnvirons_58
+    21300170: MetroEnvirons_59
+    21300172: MetroEnvirons_60
+    21300174: MetroEnvirons_61
+    21300176: MetroEnvirons_62
+    21300178: MetroEnvirons_63
+    21300180: MetroEnvirons_64
+    21300182: MetroEnvirons_65
+    21300184: MetroEnvirons_66
+    21300186: MetroEnvirons_67
+    21300188: MetroEnvirons_68
+    21300190: MetroEnvirons_69
+    21300192: MetroEnvirons_70
+    21300194: MetroEnvirons_71
+    21300196: MetroEnvirons_72
+    21300198: Suburb Items_0
+    21300200: Suburb Items_1
+    21300202: Suburb Items_2
+    21300204: Suburb Items_3
+    21300206: Suburb Items_4
+    21300208: Suburb Items_5
+    21300210: Suburb Items_6
+    21300212: Suburb Items_7
+    21300214: Suburb Items_8
+    21300216: Suburb Items_9
+    21300218: Suburb Items_10
+    21300220: Suburb Items_11
+    21300222: Suburb Items_12
+    21300224: Suburb Items_13
+    21300226: Suburb Items_14
+    21300228: Suburb Items_15
+    21300230: Suburb Items_16
+    21300232: Suburb Items_17
+    21300234: Suburb Items_18
+    21300236: Suburb Items_19
+    21300238: Suburb Items_20
+    21300240: Suburb Items_21
+    21300242: Suburb Items_22
+    21300244: Suburb Items_23
+    21300246: Suburb Items_24
+    21300248: Suburb Items_25
+    21300250: Suburb Items_26
+    21300252: Suburb Items_27
+    21300254: Suburb Items_28
+    21300256: Suburb Items_29
+    21300258: Suburb Items_30
+    21300260: Suburb Items_31
+    21300262: Suburb Items_32
+    21300264: Suburb Items_33
+    21300266: Suburb Items_34
+    21300268: Suburb Items_35
+    21300270: Suburb Items_36
+    21300272: Suburb Items_37
+    21300274: Suburb Items_38
+    21300276: Suburb Items_39
+    21300278: Suburb Items_40
+    21300280: Suburb Items_41
+    21300282: Suburb Items_42
+    21300284: Suburb Items_43
+    21300286: Suburb Items_44
+    21300288: Suburb Items_45
+    21300290: Suburb Items_46
+    21300292: Suburb Items_47
+    21300294: Suburb Items_48
+    21300296: Suburb Items_49
+    21300298: Suburb Items_50
+    21300300: Suburb Items_51
+    21300302: Suburb Items_52
+    21300304: Suburb Items_53
+    21300306: Suburb Items_54
+    21300308: Suburb Items_55
+    21300310: Suburb Items_56
+    21300312: Suburb Items_57
+    21300314: Suburb Items_58
+    21300316: Suburb Items_59
+    21300318: Suburb Items_60
+    21300320: Suburb Items_61
+    21300322: Suburb Items_62
+    21300324: Suburb Items_63
+    21300326: Suburb Items_64
+    21300328: Suburb Items_65
+    21300330: Suburb Items_66
+    21300332: Suburb Items_67
+    21300334: Suburb Items_68
+    21300336: Suburb Items_69
+    21300338: Suburb Items_70
+    21300340: Suburb Items_71
+    21300342: Suburb Items_72
+    21300344: Suburb Items_73
+    21300346: Suburb Items_74
+    21300348: Suburb Items_75
+    21300350: Suburb Items_76
+    21300352: Suburb Items_77
+    21300354: Suburb Items_78
+    21300356: Suburb Items_79
+    21300358: Suburb Items_80
+    21300360: Suburb Items_81
+    21300362: Suburb Items_82
+    21300364: Suburb Items_83
+    21300366: Suburb Items_84
+    21300368: Suburb Items_85
+    21300370: DesertItems_0
+    21300372: DesertItems_1
+    21300374: DesertItems_2
+    21300376: DesertItems_3
+    21300378: DesertItems_4
+    21300380: DesertItems_5
+    21300382: DesertItems_6
+    21300384: DesertItems_7
+    21300386: DesertItems_8
+    21300388: DesertItems_9
+    21300390: DesertItems_10
+    21300392: DesertItems_11
+    21300394: DesertItems_12
+    21300396: DesertItems_13
+    21300398: DesertItems_14
+    21300400: DesertItems_15
+    21300402: DesertItems_16
+    21300404: DesertItems_17
+    21300406: DesertItems_18
+    21300408: DesertItems_19
+    21300410: DesertItems_20
+    21300412: DesertItems_21
+    21300414: DesertItems_22
+    21300416: DesertItems_23
+    21300418: DesertItems_24
+    21300420: DesertItems_25
+    21300422: DesertItems_26
+    21300424: DesertItems_27
+    21300426: DesertItems_28
+    21300428: DesertItems_29
+    21300430: DesertItems_30
+    21300432: DesertItems_31
+    21300434: DesertItems_32
+    21300436: DesertItems_33
+    21300438: DesertItems_34
+    21300440: DesertItems_35
+    21300442: DesertItems_36
+    21300444: DesertItems_37
+    21300446: DesertItems_38
+    21300448: DesertItems_39
+    21300450: DesertItems_40
+    21300452: DesertItems_41
+    21300454: DesertItems_42
+    21300456: DesertItems_43
+    21300458: DesertItems_44
+    21300460: DesertItems_45
+    21300462: DesertItems_46
+    21300464: DesertItems_47
+    21300466: DesertItems_48
+    21300468: DesertItems_49
+    21300470: DesertItems_50
+    21300472: DesertItems_51
+    21300474: DesertItems_52
+    21300476: DesertItems_53
+    21300478: ArenaBand_0
+    21300480: ArenaBand_1
+    21300482: ArenaBand_2
+    21300484: ArenaBand_3
+    21300486: ArenaBand_4
+    21300488: ArenaBand_5
+    21300490: ArenaBand_6
+    21300492: ArenaBand_7
+    21300494: ArenaBand_8
+    21300496: ArenaBand_9
+    21300498: ArenaBand_10
+    21300500: Highway Items_0
+    21300502: Highway Items_1
+    21300504: Highway Items_2
+    21300506: Highway Items_3
+    21300508: Highway Items_4
+    21300510: Highway Items_5
+    21300512: Highway Items_6
+    21300514: Highway Items_7
+    21300516: Highway Items_8
+    21300518: Highway Items_9
+    21300520: Highway Items_10
+    21300522: Highway Items_11
+    21300524: Highway Items_12
+    21300526: Highway Items_13
+    21300528: Highway Items_14
+    21300530: Highway Items_15
+    21300532: Highway Items_16
+    21300534: Highway Items_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Highway Items_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

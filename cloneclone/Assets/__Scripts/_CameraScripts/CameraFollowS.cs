@@ -323,6 +323,9 @@ public class CameraFollowS : MonoBehaviour {
 		overrideResetPoi = newOverride;
 	}
 
+	public void ChangeOffset(Vector3 newOffset){
+	}
+
 	//_____________________________OPTIONS METHODS
 	public static void ChangeZoomLevel(int dir){
 		if (dir > 0){

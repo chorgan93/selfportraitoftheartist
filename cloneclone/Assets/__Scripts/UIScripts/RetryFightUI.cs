@@ -17,12 +17,18 @@ public class RetryFightUI : MonoBehaviour {
 	private bool selectButtonDown = true;
 
 	public static bool allowRetry = false;
+	public bool retryActive = false;
 
+	void Start(){
+		if (!retryActive){
+		TurnOff();
+		}
+	}
 
 	public void Initialize(DarknessPercentUIS newD){
 		if (!_initialized){
 		myDarknessCounter = newD;
-		myController = newD.pStatRef.pRef.myControl;
+			myController = newD.pStatRef.GetComponent<ControlManagerS>();
 			_initialized = true;
 		}
 		TurnOff();
@@ -31,7 +37,7 @@ public class RetryFightUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (_initialized){
+		if (_initialized && retryActive){
 
 			if (Mathf.Abs(myController.VerticalMenu()) > 0.1f){
 				if (stickReset){
@@ -84,15 +90,17 @@ public class RetryFightUI : MonoBehaviour {
 
 	public void TurnOn(){
 
-		if (!wholeUI.gameObject.activeSelf){
+		if (!retryActive){
 		currentPos = 0;
 		selector.anchoredPosition = selectorPos[currentPos].anchoredPosition;
 		wholeUI.gameObject.SetActive(true);
+			retryActive = true;
 		}
 	}
 
 	void TurnOff(){
 		wholeUI.gameObject.SetActive(false);
 		currentPos = 0;
+		retryActive = false;
 	}
 }
