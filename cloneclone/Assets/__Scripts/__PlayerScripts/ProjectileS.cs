@@ -70,6 +70,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Combo Properties")]
 	public bool allowChainHeavy = true;
 	public bool allowChainLight = true;
+	public bool activateBiosEffect;
 
 	[Header("Collider Properties")]
 	public float delayColliderTime = -1f;
@@ -341,6 +342,9 @@ public class ProjectileS : MonoBehaviour {
 		}
 
 
+		if (activateBiosEffect && playerReference){
+			playerReference.ActivateBios();
+		}
 
 
 	}

@@ -10,6 +10,11 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 	private float changeCountdown = 0f;
 	public float changeSizeAmt = 0.2f;
 
+	[Header("Bios Properties")]
+	public bool biosDistortion = false;
+	public Color overrideColor = Color.white;
+	public Vector3 distortionSizeAdd = Vector3.zero;
+
 	private PlayerStatsS playerReference;
 
 	// Use this for initialization
@@ -19,7 +24,11 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 
 		mySprite = GetComponent<SpriteRenderer>();
 		parentSprite = transform.parent.GetComponent<SpriteRenderer>();
-		mySprite.material.SetColor("_FlashColor", parentSprite.color);
+		if (biosDistortion){
+			mySprite.material.SetColor("_FlashColor", overrideColor);
+		}else{
+			mySprite.material.SetColor("_FlashColor", parentSprite.color);
+		}
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
 	}
@@ -32,8 +41,10 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 		}
 
 		if (mySprite.enabled){
+			if (!biosDistortion){
 			if (parentSprite.color != mySprite.material.GetColor("_FlashColor")){
 				mySprite.material.SetColor("_FlashColor", parentSprite.color);
+			}
 			}
 			mySprite.sprite = parentSprite.sprite;
 	
@@ -46,7 +57,7 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 	}
 
 	private void ChangeSize(){
-		transform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
+		transform.localScale = (Vector3.one + distortionSizeAdd) +Random.insideUnitSphere*changeSizeAmt;
 		changeCountdown = changeRate;
 	}
 }

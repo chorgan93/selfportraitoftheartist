@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	private const int START_PHYSICS_LAYER = 8;
 	private const int DODGE_PHYSICS_LAYER = 12;
 
+
 	private const float ADAPTIVE_WINDOW = 0.2f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
@@ -174,6 +175,11 @@ public class PlayerController : MonoBehaviour {
 	private BuddyS _myBuddy;
 	private BuddyS _altBuddy;
 	private bool altBuddyCreated = false;
+	[Header("Bios Properties")]
+	public GameObject[] biosDistortions;
+	private int activeBios = 0;
+	public float activeBiosTime = 3f;
+	private float activeBiosCount = 0f;
 	[Header("Buddy Properties")]
 	public List<GameObject> equippedBuddies;
 	public Transform buddyPos;
@@ -518,6 +524,8 @@ public class PlayerController : MonoBehaviour {
 			_subParadigm=0;
 		}
 
+		ResetBios();
+
 		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
 		myRenderer.color = equippedWeapon.swapColor;
 
@@ -556,6 +564,17 @@ public class PlayerController : MonoBehaviour {
 		CurrentEnemyCheck();
 	}
 
+	void ManageBios(){
+		if (activeBios > 0){
+			activeBiosCount -= Time.deltaTime;
+			if (activeBiosCount <= 0){
+				biosDistortions[activeBios].SetActive(false);
+				activeBios--;
+				activeBiosCount = activeBiosTime;
+			}
+		}
+	}
+
 
 	public void EquipBuddy(BuddyS newBud){
 		_myBuddy = newBud;
@@ -567,6 +586,21 @@ public class PlayerController : MonoBehaviour {
 		_isStunned = true;
 		CancelAttack();
 
+	}
+
+	public void ActivateBios(){
+		if (activeBios < biosDistortions.Length-1){
+			biosDistortions[activeBios].SetActive(true);
+			activeBios++;
+		}
+		activeBiosCount = activeBiosTime;
+	}
+
+	void ResetBios(){
+		for (int i = 0; i < biosDistortions.Length; i++){
+			biosDistortions[i].SetActive(false);
+		}
+		activeBios = 0;
 	}
 
 	private void CancelAttack(bool allowChain = false){
@@ -1889,6 +1923,10 @@ public class PlayerController : MonoBehaviour {
 				_isStunned = false;
 			}
 			}
+		}
+
+		if (!hitStopped){
+			ManageBios();
 		}
 
 		if (_adaptiveCountdown > 0){
