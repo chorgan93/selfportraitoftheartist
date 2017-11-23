@@ -9,6 +9,8 @@ public class ProjectileS : MonoBehaviour {
 	private Vector3 hitWallPos = Vector3.zero;
 	private bool touchingWall = false;
 
+	private float bioMult = 0.5f;
+
 	public static float EXTRA_FORCE_MULT = 2.2f;
 	public int projectileID = -1;
 
@@ -120,6 +122,7 @@ public class ProjectileS : MonoBehaviour {
 	public Collider extraRangeCollider;
 	public GameObject extraRangeSprite;
 	private AnimObjS extraRangeAnim;
+	public List<AnimObjS> biosAnimators;
 
 	private int weaponNum = 0;
 	private List<EnemyS> enemiesHit = new List<EnemyS>();
@@ -129,6 +132,7 @@ public class ProjectileS : MonoBehaviour {
 	private ProjectilePoolS myPool;
 	private Vector3 startScale;
 	public ChargeProjectileS chargeProjectileRef;
+	private bool useBios = false;
 
 	// hitStopTest
 	bool isStopped = false;
@@ -199,7 +203,14 @@ public class ProjectileS : MonoBehaviour {
 		}
 	}
 
-	public void Fire(bool tooCloseForKnockback, Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true){
+	public void Fire(bool tooCloseForKnockback, Vector3 aimDirection, Vector3 knockbackDirection, PlayerController playerReference, bool doKnockback = true, 
+		int activeBio = 0){
+
+		if (activeBio > 0){
+			useBios = true;
+		}else{
+			useBios = false;
+		}
 
 		if (!firedOnce){
 		_rigidbody = GetComponent<Rigidbody>();
@@ -239,7 +250,9 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.adaptiveAugBonus){
 			dmg*= PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
 		}
-
+		if (useBios){
+			dmg*= 1f+(activeBio*bioMult);
+		}
 
 		if (soundObj){
 			Instantiate(soundObj);
@@ -333,7 +346,7 @@ public class ProjectileS : MonoBehaviour {
 		//}
 
 		currentRange = range;
-		InitializeSprites(_myPlayer.playerAug.aeroAug);
+		InitializeSprites(_myPlayer.playerAug.aeroAug, activeBio);
 
 		if (!firedOnce){
 			transform.localScale += transform.localScale*(maxSizeMult*(1f-1f)/(4f));
@@ -660,7 +673,8 @@ public class ProjectileS : MonoBehaviour {
 
 	}
 
-	private void InitializeSprites(bool aeroOn = false){
+	private void InitializeSprites(bool aeroOn = false, int biosActive = 0){
+		int numBiosToUse = biosActive;
 		if (!firedOnce){
 			allAnimators = transform.GetComponentsInChildren<AnimObjS>();
 			for (int i = 0; i < allAnimators.Length; i++){
@@ -668,12 +682,26 @@ public class ProjectileS : MonoBehaviour {
 			}
 		}else{
 			for (int i = 0; i < allAnimators.Length; i++){
+				if(useBios){
 				if (allAnimators[i] == extraRangeAnim){
 					if (aeroOn){
 						allAnimators[i].ResetAnimation();
 					}
+				}else if (biosAnimators.Contains(allAnimators[i]) && numBiosToUse > 0 ){
+					allAnimators[i].ResetAnimation();
+					numBiosToUse--;
 				}else{
 					allAnimators[i].ResetAnimation();
+				}
+				}else{
+					if (allAnimators[i] == extraRangeAnim){
+						if (aeroOn){
+							allAnimators[i].ResetAnimation();
+						}
+					}
+					else{
+						allAnimators[i].ResetAnimation();
+					}
 				}
 			}
 		}

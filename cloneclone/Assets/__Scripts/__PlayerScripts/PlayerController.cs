@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour {
 	[Header("Bios Properties")]
 	public GameObject[] biosDistortions;
 	private int activeBios = 0;
+	public int ActiveBios { get {return activeBios; } }
 	public float activeBiosTime = 3f;
 	private float activeBiosCount = 0f;
 	[Header("Buddy Properties")]
@@ -1331,16 +1332,16 @@ public class PlayerController : MonoBehaviour {
 				canDoAdaptive = true;
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
-					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+						<= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}else{
-					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}
 			}else{
 				if (currentTargetEnemy){
 					currentAttackS.Fire(Vector3.SqrMagnitude(currentTargetEnemy.transform.position-transform.position)
-					                    <= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+						<= ENEMY_TOO_CLOSE_DISTANCE, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}else{
-					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this);
+					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}
 			}
 			SpawnAttackPuff();

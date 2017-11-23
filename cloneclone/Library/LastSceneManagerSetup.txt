@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_26_Creeping.unity
+- path: Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement2.unity
   isLoaded: 1
   isActive: 1
