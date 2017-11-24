@@ -222,6 +222,10 @@ public class ProjectileS : MonoBehaviour {
 			stopTime = 0f;
 			isStopped = false;
 
+			for (int i=0;i < biosAnimators.Count; i++){
+				biosAnimators[i].gameObject.SetActive(false);
+			}
+
 			if (extraRangeSprite != null){
 				extraRangeAnim = extraRangeSprite.GetComponent<AnimObjS>();
 			}
@@ -675,10 +679,21 @@ public class ProjectileS : MonoBehaviour {
 
 	private void InitializeSprites(bool aeroOn = false, int biosActive = 0){
 		int numBiosToUse = biosActive;
+		Debug.Log(useBios + " : " + numBiosToUse, this);
 		if (!firedOnce){
 			allAnimators = transform.GetComponentsInChildren<AnimObjS>();
 			for (int i = 0; i < allAnimators.Length; i++){
 				allAnimators[i].destroyOnEnd = false;
+			}
+			if (useBios){
+				for (int i = 0; i < biosAnimators.Count; i++){
+					if (numBiosToUse > 0){
+					biosAnimators[i].ResetAnimation();
+						numBiosToUse--;
+					}else{
+						biosAnimators[i].gameObject.SetActive(false);
+					}
+				}
 			}
 		}else{
 			for (int i = 0; i < allAnimators.Length; i++){
@@ -687,9 +702,13 @@ public class ProjectileS : MonoBehaviour {
 					if (aeroOn){
 						allAnimators[i].ResetAnimation();
 					}
-				}else if (biosAnimators.Contains(allAnimators[i]) && numBiosToUse > 0 ){
+					}else if (biosAnimators.Contains(allAnimators[i])){
+						if (numBiosToUse > 0){
 					allAnimators[i].ResetAnimation();
 					numBiosToUse--;
+						}else{
+							allAnimators[i].gameObject.SetActive(false);
+						}
 				}else{
 					allAnimators[i].ResetAnimation();
 				}
@@ -698,6 +717,8 @@ public class ProjectileS : MonoBehaviour {
 						if (aeroOn){
 							allAnimators[i].ResetAnimation();
 						}
+					}else if (biosAnimators.Contains(allAnimators[i])){
+						allAnimators[i].gameObject.SetActive(false);
 					}
 					else{
 						allAnimators[i].ResetAnimation();

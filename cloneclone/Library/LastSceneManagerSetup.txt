@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement2.unity
+- path: Assets/_Scenes/Area00(Forest)Scenes/Area00_06_Ambush.unity
   isLoaded: 1
   isActive: 1

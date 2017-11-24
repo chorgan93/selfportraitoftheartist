@@ -569,7 +569,7 @@ public class PlayerController : MonoBehaviour {
 		if (activeBios > 0){
 			activeBiosCount -= Time.deltaTime;
 			if (activeBiosCount <= 0){
-				biosDistortions[activeBios].SetActive(false);
+				biosDistortions[activeBios-1].SetActive(false);
 				activeBios--;
 				activeBiosCount = activeBiosTime;
 			}
