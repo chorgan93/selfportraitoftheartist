@@ -19,6 +19,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _animaAug = false;
 	public bool animaAug { get { return _animaAug; } }
 	public const float animaAugAmt = 0.94f;
+	public const float addSpeedPerBios = 0.01f;
 
 	private bool _solAug = false;
 	public bool solAug { get { return _solAug; } }

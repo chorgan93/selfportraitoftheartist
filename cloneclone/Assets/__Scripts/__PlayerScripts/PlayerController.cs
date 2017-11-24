@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject[] biosDistortions;
 	private int activeBios = 0;
 	public int ActiveBios { get {return activeBios; } }
-	public float activeBiosTime = 3f;
+	public float activeBiosTime = 4f;
 	private float activeBiosCount = 0f;
 	[Header("Buddy Properties")]
 	public List<GameObject> equippedBuddies;
@@ -590,7 +590,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void ActivateBios(){
-		if (activeBios < biosDistortions.Length-1){
+		if (activeBios < biosDistortions.Length){
 			biosDistortions[activeBios].SetActive(true);
 			activeBios++;
 		}
@@ -631,6 +631,9 @@ public class PlayerController : MonoBehaviour {
 		attackDuration = aTime;
 		if (_playerAug.animaAug){
 			attackDuration*=PlayerAugmentsS.animaAugAmt;
+		}
+		if (activeBios > 0){
+			attackDuration*=1f-(PlayerAugmentsS.addSpeedPerBios*activeBios);
 		}
 	}
 
@@ -1293,17 +1296,17 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(equippedWeapon.counterAttack);
 						}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}
 					else if (_doingDashAttack){
 						queuedAttacks.Add(equippedWeapon.dashAttack);
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}else{
 						if (_doingHeavyAttack){
@@ -1312,9 +1315,9 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
 						}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks);
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}
 				}
@@ -1495,10 +1498,10 @@ public class PlayerController : MonoBehaviour {
 
 					}
 					
-					attackDelay = currentAttackS.delayShotTime;
+						attackDelay = currentAttackS.delayShotTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
 
 					if (_playerAug.animaAug){
-						attackDelay*=PlayerAugmentsS.animaAugAmt;
+							attackDelay*=PlayerAugmentsS.animaAugAmt;
 					}
 					if (_doingCounterAttack && _counterTarget != null){
 						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
@@ -1750,10 +1753,10 @@ public class PlayerController : MonoBehaviour {
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
 	                             float animationSpeed, string animationTrigger){
 		_chargePrefab = chargePrefab;
-		_chargeAttackTrigger = chargeTime;
+		_chargeAttackTrigger = chargeTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
 		_chargeAttackCost = chargeCost;
-		_chargeAttackDuration = cDuration;
-		_chargeAnimationSpeed = animationSpeed;
+		_chargeAttackDuration = cDuration*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
+		_chargeAnimationSpeed = animationSpeed*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
 
 		if (_playerAug.animaAug){
 			_chargeAttackTrigger *= PlayerAugmentsS.animaAugAmt;
@@ -2104,9 +2107,9 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetTrigger("AttackTrigger");
 
 		if (_playerAug.animaAug){
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt);
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 		}else{
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult);
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 		}
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		if (heavy){
