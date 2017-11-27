@@ -83,7 +83,8 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.75f;
-	private float dashSprintAllowMult = 0.45f;
+	private float dashSprintAllowMult = 0.5f;
+	private float sprintStartForce = 750f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -148,6 +149,7 @@ public class PlayerController : MonoBehaviour {
 	private float momsEyeMult = 1f;
 
 	// Status Properties
+	private float delayAttackAllow = 0f;
 	private bool _isStunned = false;
 	private bool attackTriggered;
 	private bool allowItemUse = true;
@@ -992,6 +994,8 @@ public class PlayerController : MonoBehaviour {
 		_isDashing = false;
 		_myRigidbody.drag = startDrag*sprintDragMult;
 
+		_myRigidbody.AddForce(sprintStartForce*Time.deltaTime*_myRigidbody.velocity.normalized, ForceMode.Impulse);
+
 		sprintNoDrainTime = sprintNoDrainMax;
 		
 		if (dontGetStuckInEnemiesCheck.NoEnemies()){
@@ -1077,7 +1081,7 @@ public class PlayerController : MonoBehaviour {
 						_chargeAttackTriggered = false;
 						_isShooting = false;
 					}
-				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting){
+				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting && SprintMoveCondition()){
 					TriggerSprint();
 				}
 			}
@@ -1952,6 +1956,10 @@ public class PlayerController : MonoBehaviour {
 			ManageBios();
 		}
 
+		if (delayAttackAllow > 0){
+			delayAttackAllow -= Time.deltaTime;
+		}
+
 		if (_adaptiveCountdown > 0){
 			_adaptiveCountdown -= Time.deltaTime;
 		}
@@ -2257,7 +2265,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputShoot(){
 
 		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
-			&& !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem && !hitStopped){
+			&& !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem && !hitStopped && delayAttackAllow <= 0f){
 			return true;
 		}
 		else{
@@ -2706,6 +2714,10 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void SetTalking(bool nEx){
+
+		if (_isTalking && !nEx){
+			delayAttackAllow = 0.2f;
+		}
 		_isTalking = nEx;
 		if (_isTalking){
 			if (!_myRigidbody){
@@ -2813,6 +2825,10 @@ public class PlayerController : MonoBehaviour {
 		}else{
 			return 1f;
 		}
+	}
+
+	bool SprintMoveCondition(){
+		return inputDirection != Vector3.zero;
 	}
 
 	//_________________________________________________________________VISUAL EFFECTS
