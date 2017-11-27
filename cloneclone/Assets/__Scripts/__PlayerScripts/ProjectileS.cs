@@ -117,6 +117,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Charge Attack Properties")]
 	public float chargeAttackTime;
 	public GameObject chargeAttackPrefab;
+	public bool useAllCharge = false;
 
 	[Header("Extend Properties")]
 	public Collider extraRangeCollider;

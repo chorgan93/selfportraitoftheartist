@@ -165,6 +165,7 @@ public class PlayerController : MonoBehaviour {
 	private float _chargeAttackTrigger = 0.6f;
 	private float _chargeAttackDuration = 1f;
 	private float _chargeAnimationSpeed;
+	private bool _chargeAttackUseAll = false;
 	//private ChargeAttackS _chargeCollider;
 	private GameObject _chargePrefab;
 	private bool _chargeAttackTriggered = false; 
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour {
 	public GameObject[] biosDistortions;
 	private int activeBios = 0;
 	public int ActiveBios { get {return activeBios; } }
-	public float activeBiosTime = 4f;
+	private float activeBiosTime = 5f;
 	private float activeBiosCount = 0f;
 	[Header("Buddy Properties")]
 	public List<GameObject> equippedBuddies;
@@ -357,12 +358,24 @@ public class PlayerController : MonoBehaviour {
 				
 		}
 
+		#if UNITY_EDITOR_OSX
+		DebugCommands();
+		#endif
+
 	}
 
 	void FixedUpdate () {
 
 		PlayerFixedUpdate();
 
+	}
+
+	void DebugCommands(){
+
+		// active bios
+		if (Input.GetKeyDown(KeyCode.B)){
+			ActivateBios();
+		}
 	}
 
 	//_________________________________________PUBLIC METHODS
@@ -1129,7 +1142,11 @@ public class PlayerController : MonoBehaviour {
 
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
 
+				if (_chargeAttackUseAll){
+					_myStats.ChargeCheck(9999f);
+				}else{
 				_myStats.ChargeCheck(_chargeAttackCost);
+				}
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();
@@ -1560,7 +1577,8 @@ public class PlayerController : MonoBehaviour {
 						                chargeAttackRef.chargeAttackTime, 
 						                chargeAttackRef.staminaCost, 
 						                (chargeAttackRef.chargeAttackTime+chargeAttackRef.knockbackTime),
-						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger);
+						                chargeAttackRef.animationSpeedMult, chargeAttackRef.attackAnimationTrigger,
+							chargeAttackRef.useAllCharge);
 
 					_chargingAttack = true;
 						_doingCounterAttack = false;
@@ -1751,12 +1769,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
-	                             float animationSpeed, string animationTrigger){
+		float animationSpeed, string animationTrigger, bool useAll = false){
 		_chargePrefab = chargePrefab;
 		_chargeAttackTrigger = chargeTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
 		_chargeAttackCost = chargeCost;
 		_chargeAttackDuration = cDuration*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
 		_chargeAnimationSpeed = animationSpeed*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
+		_chargeAttackUseAll = useAll;
 
 		if (_playerAug.animaAug){
 			_chargeAttackTrigger *= PlayerAugmentsS.animaAugAmt;
