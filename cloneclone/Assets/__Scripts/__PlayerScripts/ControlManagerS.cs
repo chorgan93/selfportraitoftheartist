@@ -11,6 +11,7 @@ public class ControlManagerS : MonoBehaviour {
 	private string platformType;
 	private string controllerType;
 	private bool canSelectPS4 = false;
+	public bool CanSelectPS4 { get { return canSelectPS4; } }
 
 	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard, 3 = PS4 on Mac/PC
 
@@ -47,6 +48,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (controlProfile == 3){
 			platform = "PS4";
+			canSelectPS4 = true;
 		}
 		else if (Application.platform == RuntimePlatform.OSXEditor ||
 		    Application.platform == RuntimePlatform.OSXPlayer){

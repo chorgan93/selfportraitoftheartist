@@ -291,8 +291,8 @@ public class GameMenuS : MonoBehaviour {
 		if (myControl.HorizontalMenu() > 0.2f && stickReset){
 			stickReset = false;
 			ControlManagerS.controlProfile++;
-			if (ControlManagerS.controlProfile > 2){
-				if (myControl.ControllerAttached()){
+			if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4)){
+				if (myControl.ControllerAttached() && !myControl.CanSelectPS4){
 					ControlManagerS.controlProfile = 0;
 				}else{
 					ControlManagerS.controlProfile = 1;
@@ -303,9 +303,13 @@ public class GameMenuS : MonoBehaviour {
 		if (myControl.HorizontalMenu() < -0.2f && stickReset){
 			stickReset = false;
 			ControlManagerS.controlProfile--;
-			if ((ControlManagerS.controlProfile < 0 && myControl.ControllerAttached()) 
-				|| (ControlManagerS.controlProfile < 1 && !myControl.ControllerAttached())){
-				ControlManagerS.controlProfile = 2;
+			if ((ControlManagerS.controlProfile < 0 && myControl.ControllerAttached() && !myControl.CanSelectPS4) 
+				|| (ControlManagerS.controlProfile < 1 && (!myControl.ControllerAttached() || myControl.CanSelectPS4))){
+				if (myControl.CanSelectPS4){
+					ControlManagerS.controlProfile = 3;
+				}else{
+					ControlManagerS.controlProfile = 2;
+				}
 			}
 			UpdateControlSettingText();
 		}
@@ -313,8 +317,8 @@ public class GameMenuS : MonoBehaviour {
 		if (selectButtonUp && myControl.MenuSelectButton()){
 			
 			ControlManagerS.controlProfile++;
-			if (ControlManagerS.controlProfile > 2){
-				if (myControl.ControllerAttached()){
+			if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4)){
+				if (myControl.ControllerAttached() && !myControl.CanSelectPS4){
 					ControlManagerS.controlProfile = 0;
 				}else{
 					ControlManagerS.controlProfile = 1;
@@ -330,6 +334,10 @@ public class GameMenuS : MonoBehaviour {
 	void UpdateControlSettingText(){
 		if (ControlManagerS.controlProfile == 0){
 			controlText.text = "Gamepad";
+			Cursor.visible = false;
+		}
+		else if (ControlManagerS.controlProfile == 3){
+			controlText.text = "Gamepad (PS4)";
 			Cursor.visible = false;
 		}
 		else if (ControlManagerS.controlProfile == 1){
