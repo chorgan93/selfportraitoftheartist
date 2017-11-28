@@ -83,8 +83,8 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.75f;
-	private float dashSprintAllowMult = 0.5f;
-	private float sprintStartForce = 750f;
+	private float dashSprintAllowMult = 0.45f;
+	private float sprintStartForce = 600f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -2326,7 +2326,7 @@ public class PlayerController : MonoBehaviour {
 
 		// read left analogue input
 		//if (Input.GetJoystickNames().Length > 0 || moveOverride){
-		if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 2){
+		if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 2 || ControlManagerS.controlProfile == 3){
 			inputDirection.x = controller.Horizontal();
 			inputDirection.y = controller.Vertical();
 		}else {
@@ -2753,6 +2753,10 @@ public class PlayerController : MonoBehaviour {
 	public void SetCanSwap (bool newCanSwap)
 	{
 		_canSwap = newCanSwap;
+	}
+
+	public void DelayAttackAllow(){
+		delayAttackAllow = 0.2f;
 	}
 
 	public PlayerWeaponS EquippedWeapon(){

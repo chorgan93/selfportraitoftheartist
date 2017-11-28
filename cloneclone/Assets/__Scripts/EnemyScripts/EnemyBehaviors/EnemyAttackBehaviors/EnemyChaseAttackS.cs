@@ -188,7 +188,6 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 		redirectTarget = Quaternion.Euler(0,0,180f)*(recenterTarget-transform.position).normalized;
 		redirectTarget*=targetDistance;
 		redirectTarget.z = transform.position.z;
-		Debug.Log(myEnemyReference.enemyName + " did Wall Redirect!", myEnemyReference.gameObject);
 		didWallRedirect =  true;
 		redirecting = true;
 		redirectCountdown = redirectTime;

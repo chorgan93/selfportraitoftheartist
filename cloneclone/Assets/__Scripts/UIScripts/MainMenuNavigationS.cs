@@ -102,7 +102,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 		myController = GetComponent<ControlManagerS>();
 		if (!hasSeenMainMenu){
 			if (myController.ControllerAttached()){
-				ControlManagerS.controlProfile = 0;
+				if (myController.DetermineControllerType() == 1){
+				ControlManagerS.controlProfile = 3;
+				}else{
+					ControlManagerS.controlProfile = 0;
+				}
 				Cursor.visible = false;
 			}else{
 				ControlManagerS.controlProfile = 1;
@@ -421,7 +425,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 			Cursor.visible = false;
 		}
+		if (ControlManagerS.controlProfile == 3){
+			controlType = "Gamepad (PS4)";
 
+			Cursor.visible = false;
+		}
 		for (int i = 0; i < controlTexts.Length; i++){
 			controlTexts[i].text = controlType;
 		}

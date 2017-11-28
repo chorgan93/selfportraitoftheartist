@@ -10,20 +10,25 @@ public class ControlManagerS : MonoBehaviour {
 
 	private string platformType;
 	private string controllerType;
+	private bool canSelectPS4 = false;
 
-	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard
+	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard, 3 = PS4 on Mac/PC
 
 	// Use this for initialization
 	void Start () {
 
-		platformType = GetPlatform();
 		if (controlProfile < 0){
 			if (ControllerAttached()){
+				if (DetermineControllerType() == 1){
+					controlProfile = 3;
+				}else{
 				controlProfile = 0;
+				}
 			}else{
 				controlProfile = 1;
 			}
 		}
+		platformType = GetPlatform();
 	
 	}
 
@@ -40,7 +45,10 @@ public class ControlManagerS : MonoBehaviour {
 		// assume pc, check for mac/linux
 		string platform = "PC";
 
-		if (Application.platform == RuntimePlatform.OSXEditor ||
+		if (controlProfile == 3){
+			platform = "PS4";
+		}
+		else if (Application.platform == RuntimePlatform.OSXEditor ||
 		    Application.platform == RuntimePlatform.OSXPlayer){
 
 			platform = "Mac";
@@ -77,6 +85,17 @@ public class ControlManagerS : MonoBehaviour {
 
 	}
 
+	public int DetermineControllerType(){
+		int numToReturn = 0;
+		string[] joyStickNames = Input.GetJoystickNames();
+		//Debug.Log(joyStickNames[0]);
+		if (joyStickNames[0].Contains("Sony")){
+			numToReturn = 1;
+			canSelectPS4 = true;
+		}
+		return numToReturn;
+	}
+
 
 	//_________________________________________PUBLIC CONTROL CHECKS
 
@@ -89,7 +108,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				if (controlProfile == 0){
+				if (controlProfile == 0 || controlProfile == 3){
 					return Input.GetAxis("HorizontalController");
 				}else{
 					return Input.GetAxis("Horizontal");
@@ -111,7 +130,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				if (controlProfile == 0){
+				if (controlProfile == 0 || controlProfile == 3){
 					return Input.GetAxis("VerticalController");
 				}else{
 					return Input.GetAxis("Vertical");
@@ -175,7 +194,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				if (controlProfile == 0){
+				if (controlProfile == 0 || controlProfile == 3){
 					return Input.GetAxis("HorizontalController");
 				}else{
 					return Input.GetAxis("HorizontalKeys");
@@ -197,7 +216,7 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		else{
 			if (ControllerAttached()){
-				if (controlProfile == 0){
+				if (controlProfile == 0 || controlProfile == 3){
 					return Input.GetAxis("VerticalController");
 				}else{
 					return Input.GetAxis("VerticalKeys");
@@ -239,7 +258,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("ShootButton"+platformType));
 			}else if (controlProfile == 1){
 				return (Input.GetMouseButton(2) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl));
@@ -285,7 +304,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 			//return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("SwitchBuddyButton" + platformType));
 			}else{
 				return ( Input.GetKey(KeyCode.Space));
@@ -317,7 +336,7 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			
 			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 			}else {
 				return (Input.GetKey(KeyCode.Space));
@@ -337,7 +356,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("SwitchButton"+platformType+"Alt"));
 			}else if (controlProfile == 1){
 				return (Input.GetMouseButton(0));
@@ -362,7 +381,7 @@ public class ControlManagerS : MonoBehaviour {
 		
 		if (ControllerAttached()){
 
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("ReloadButton"+platformType));
 			}else if (controlProfile == 1){
 				return (Input.GetMouseButton(1));
@@ -427,7 +446,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool TalkButton(){
 		if (ControllerAttached()){
 
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("DashButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.E));
@@ -441,12 +460,16 @@ public class ControlManagerS : MonoBehaviour {
 		}
 	}
 
+	public string CheckTalkString(){
+		return ("DashButton"+platformType);
+	}
+
 	public bool SwitchButton(){
 
 
 
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 			}else{
 				return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
@@ -501,7 +524,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool StartButton(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("StartButton"+platformType));
 			}else{
 				return(Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return));
@@ -512,7 +535,7 @@ public class ControlManagerS : MonoBehaviour {
 	}
 	public bool BackButton(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("BackButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.Escape));
@@ -524,7 +547,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (WeaponButtonA() || TalkButton());
 			}else{
 				return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
@@ -536,7 +559,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (!WeaponButtonA() && !TalkButton());
 			}else{
 				return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
@@ -548,7 +571,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool ExitButton(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (WeaponButtonB() || WeaponButtonC());
 			}else{
 				return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete)
@@ -564,7 +587,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool ExitButtonUp(){
 		if (ControllerAttached()){
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (!WeaponButtonB() && !WeaponButtonC());
 			}else{
 				return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
@@ -578,7 +601,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 		
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("SwitchButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.R));
@@ -591,7 +614,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (ControllerAttached()){
 
-			if (controlProfile == 0){
+			if (controlProfile == 0 || controlProfile == 3){
 				return (Input.GetButton("SwitchBuddyButton"+platformType));
 			}else{
 				return (Input.GetKey(KeyCode.Tab));
@@ -606,7 +629,11 @@ public class ControlManagerS : MonoBehaviour {
 			if (platformType == "Mac"){
 				return (Input.GetButton("SwitchItemButtonLeftMac"));
 			}else{
+				if (controlProfile == 3){
+					return (Input.GetAxis("SwitchItemAxisPS4") < -0.1f);
+				}else{
 				return (Input.GetAxis("SwitchItemAxisPC") < -0.1f);
+				}
 			}
 		}else{
 			return false;
@@ -618,7 +645,11 @@ public class ControlManagerS : MonoBehaviour {
 			if (platformType == "Mac"){
 				return (Input.GetButton("SwitchItemButtonRightMac"));
 			}else{
+				if (controlProfile == 3){
+					return (Input.GetAxis("SwitchItemAxisPS4") > 0.1f);
+				}else{
 				return (Input.GetAxis("SwitchItemAxisPC") > 0.1f);
+				}
 			}
 		}else{
 			return false;
@@ -628,8 +659,8 @@ public class ControlManagerS : MonoBehaviour {
 	public void ChangeControlProfile(int dir){
 		if (dir > 0){
 			controlProfile ++;
-			if (controlProfile > 2){
-				if (ControllerAttached()){
+			if ((controlProfile > 3 && canSelectPS4) || (controlProfile > 2 && !canSelectPS4)){
+				if (ControllerAttached() && !canSelectPS4){
 					controlProfile = 0;
 				}else{
 					controlProfile = 1;
@@ -637,13 +668,17 @@ public class ControlManagerS : MonoBehaviour {
 			}
 		}else{
 			controlProfile --;
-			if (ControllerAttached()){
+			if (ControllerAttached() && !canSelectPS4){
 				if (controlProfile < 0){
 					controlProfile = 2;
 				}
 			}else{
 				if (controlProfile < 1){
+					if (canSelectPS4){
+						controlProfile = 3;
+					}else{
 					controlProfile = 2;
+					}
 				}
 			}
 		}

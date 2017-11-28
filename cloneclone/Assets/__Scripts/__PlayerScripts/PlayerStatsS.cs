@@ -9,7 +9,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DEATH_KNOCKBACK_MULT = 2f;
 	private const float BIG_KNOCKBACK_TIME = 0.4f;
 	private const float DEATH_DRAG = 3.4f;
-	private const float CAN_USE_MANA = 0.25f;
+	private const float CAN_USE_MANA = 0.15f;
 	private const float BREAK_STAMINA_PENALTY = 1.5f;
 
 	private const float DESPERATE_MULT = 0.8f;
@@ -114,6 +114,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _baseStrength = 0.7f;
 	private float _addedStrength = 0; // (upgradeable)
 	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.075f);}}
+	public float strengthLvl { get { return (_baseStrength*10f+_addedStrength-4f); } }
 	public float addedStrength { get { return _addedStrength; } }
 
 	

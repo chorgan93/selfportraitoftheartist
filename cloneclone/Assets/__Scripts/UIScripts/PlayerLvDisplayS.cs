@@ -57,7 +57,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 		vtStat.text = (playerStatRef.virtueAmt).ToString();
 		rcStat.text = playerStatRef.currentRecoverRateLv.ToString();
 		abStat.text = playerStatRef.currentChargeRecoverLv.ToString();
-		pwStat.text = Mathf.RoundToInt(playerStatRef.strengthAmt*10f).ToString();
+		pwStat.text = (playerStatRef.strengthLvl).ToString();
 
 	}
 
@@ -91,7 +91,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 			rcStat.color = highlightColor;
 			break;
 		case (6):
-			pwStat.text = ((playerStatRef.strengthAmt+0.1f)*10f).ToString();
+			pwStat.text = (playerStatRef.strengthLvl+1f).ToString();
 			pwStat.color = highlightColor;
 			break;
 		

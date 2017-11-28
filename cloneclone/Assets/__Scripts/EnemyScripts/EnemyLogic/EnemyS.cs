@@ -1031,9 +1031,9 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (_isCritical){
-			_currentHealth -= dmg*critDmg*damageMultiplier;
-			damageTaken+=dmg*critDmg*damageMultiplier;
-			currentCritDamage += dmg*critDmg*damageMultiplier;
+			_currentHealth -= (dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
+			damageTaken+=(dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
+			currentCritDamage += (dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
 					_isCritical = false;

@@ -57,7 +57,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			}
 
 			if (pRef.myControl.TalkButton()){
-				if (!talkButtonDown && pRef.examining){
+				if (!talkButtonDown && pRef.examining && !pRef.talking){
 					StartNextScene();
 					pRef.SetTalking(true);
 				}

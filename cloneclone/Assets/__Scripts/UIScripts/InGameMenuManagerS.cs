@@ -88,6 +88,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 				if ((_pRef.myControl.BackButton() && !gameMenuButtonDown) 
 					|| (_pRef.myControl.StartButton() && !equipMenuButtonDown) ||
 					(_pRef.myControl.ExitButton() && !exitButtonDown)){
+					_pRef.DelayAttackAllow();
 					gamePaused = false;
 					gameMenuButtonDown = true;
 					equipMenuButtonDown = true;
