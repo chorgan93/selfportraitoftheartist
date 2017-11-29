@@ -153,4 +153,13 @@ public class AnimObjS : MonoBehaviour {
 			return 1f;
 		}
 	}
+
+	public void SetColor(Color newCol){
+		Color replaceCol = newCol;
+		if (!mySprite){
+			mySprite = GetComponent<SpriteRenderer>();
+		}
+		replaceCol.a = mySprite.color.a;
+		mySprite.color = replaceCol;
+	} 
 }

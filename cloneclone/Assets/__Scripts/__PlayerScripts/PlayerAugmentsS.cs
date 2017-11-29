@@ -7,7 +7,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private PlayerController _playerReference;
 
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
-	public const float ENRAGED_DAMAGE_BOOST = 2f;
+	//public const float ENRAGED_DAMAGE_BOOST = 2f; // old
+	public const float ENRAGED_DAMAGE_BOOST = 1.5f; // old
 	public const float CONDEMNED_TIME = 3f;
 	public const float HATED_MULT = 1.5f;
 
@@ -71,6 +72,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 	// index 20 (more dmg at low health)
 	private bool _enragedAug = false;
 	public bool enragedAug { get { return _enragedAug; } }
+	private bool _enragedActive = false;
+	private float enragedTimeMax = 3f;
+	private float enragedCountdown = 0f;
 
 	// index 4
 	private bool _adaptiveAug = false;
@@ -139,13 +143,22 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _scornedAug = false;
 	public bool scornedAug { get { return _scornedAug; } }
 
+	[Header("Instance Properties")]
+	public GameObject enragedShadow;
+
 	private bool _initialized;
 
 	// Update is called once per frame
 	void Update () {
 
 		if (_initialized){
-
+			if (_enragedActive){
+				enragedCountdown -= Time.deltaTime;
+				if (enragedCountdown <= 0){
+					enragedShadow.SetActive(false);
+					_enragedActive = false;
+				}
+			}
 		}
 	
 	}
@@ -154,6 +167,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		if (!_initialized){
 			_initialized = true;
+			enragedShadow.SetActive(false);
 		}
 		RefreshAll();
 
@@ -310,6 +324,14 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	}
 
+	public void EnragedTrigger(){
+		if (_enragedAug){
+			_enragedActive = true;
+			enragedCountdown = enragedTimeMax;
+			enragedShadow.SetActive(true);
+		}
+	}
+
 	public float GetGaeaAug(){
 		if (_realGaeaAug){
 			return realGaeaAugAmt;
@@ -336,7 +358,12 @@ public class PlayerAugmentsS : MonoBehaviour {
 	}
 
 	public float GetEnragedMult(){
-		return (Mathf.Lerp(ENRAGED_DAMAGE_BOOST, 1f,_playerReference.myStats.currentHealth/_playerReference.myStats.maxHealth));
+		//return (Mathf.Lerp(ENRAGED_DAMAGE_BOOST, 1f,_playerReference.myStats.currentHealth/_playerReference.myStats.maxHealth));
+		if (_enragedActive){
+		return ENRAGED_DAMAGE_BOOST;
+		}else{
+			return 1f;
+		}
 	}
 
 	public void AddToParanoidMult(){

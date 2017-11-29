@@ -396,6 +396,7 @@ public class PlayerController : MonoBehaviour {
 		if (_playerAug.agileAug){
 			_myStats.ResetStamina(true);
 		}
+
 	}
 
 	public void ExtendWitchTime(){
@@ -704,6 +705,7 @@ public class PlayerController : MonoBehaviour {
 					_myStats.ResetStamina(true);
 				}**/
 			}
+			_playerAug.EnragedTrigger();
 			_allowCounterAttack = true;
 			counterAttackTime = counterAttackTimeMax;
 			_counterTarget = targetEnemy;

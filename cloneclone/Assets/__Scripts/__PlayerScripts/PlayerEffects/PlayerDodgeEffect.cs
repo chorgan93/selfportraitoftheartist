@@ -9,6 +9,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	public SpriteRenderer spriteThree;
 	public SpriteRenderer spriteFour;
 	public SpriteRenderer spriteFive;
+	public DodgeLinesS dodgeLines;
 	
 	[Header("Effect Timings")]
 	public float sleepTime = 0.14f;
@@ -194,6 +195,11 @@ public class PlayerDodgeEffect : MonoBehaviour {
 			matchSprites = fromParry;
 			
 			allowCounter = allowCounterTime;
+
+			if (!fromParry){
+				dodgeLines.TriggerEffect(playerController.EquippedWeapon().swapColor, playerController.EquippedWeapon().flashSubColor,
+					playerSprite.transform.position, playerController.myRigidbody.velocity);
+			}
 		}
 	}
 	
