@@ -9,12 +9,16 @@ public class InstructionFloatS : MonoBehaviour {
 	bool isShowing = false;
 
 	public SpriteRenderer buttonSprite;
+	public SpriteRenderer buttonSpritePS4;
 	public SpriteRenderer keySprite;
 	public SpriteRenderer mouseSprite;
 	private Color currentSpriteCol;
+	private Color currentSpritePS4Col;
 	private Color currentKeyCol;
 	public TextMesh examineString;
 	public TextMesh buttonString;
+	public TextMesh buttonStringPS4;
+	private bool useButtonStringPS4;
 	private Color currentTextCol;
 
 	private bool fadingIn = false;
@@ -39,9 +43,22 @@ public class InstructionFloatS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+		if (ControlManagerS.controlProfile == 3 && buttonStringPS4 != null){
+			useButtonStringPS4 = true;
+			buttonString.gameObject.SetActive(false);
+		}else{
+			if (buttonStringPS4){
+				buttonStringPS4.gameObject.SetActive(false);
+			}
+		}
+
 		currentSpriteCol = buttonSprite.color;
 		currentSpriteCol.a = 0f;
 		buttonSprite.color = currentSpriteCol;
+
+		currentSpritePS4Col = buttonSpritePS4.color;
+		currentSpritePS4Col.a = 0f;
+		buttonSpritePS4.color = currentSpritePS4Col;
 
 		currentKeyCol = keySprite.color;
 		currentKeyCol.a = 0f;
@@ -49,10 +66,16 @@ public class InstructionFloatS : MonoBehaviour {
 
 		currentTextCol = examineString.color;
 		currentTextCol.a = 0f;
+		if (useButtonStringPS4){
+			examineString.color = buttonStringPS4.color = currentTextCol;
+		}else{
 		examineString.color = buttonString.color = currentTextCol;
+		}
 
 		changeSubKeyString = changeSubKeyString.Replace("NEWLINE", "\n");
 		changeSubMouseString = changeSubMouseString.Replace("NEWLINE", "\n");
+
+
 
 	}
 	
@@ -77,33 +100,41 @@ public class InstructionFloatS : MonoBehaviour {
 
 			if (fadingIn || fadingOut){
 				currentSpriteCol = buttonSprite.color;
+				currentSpritePS4Col = buttonSpritePS4.color;
 				currentKeyCol = keySprite.color;
 				currentTextCol = examineString.color;
 				if (fadingIn){
 
 					currentSpriteCol.a += Time.deltaTime*fadeInRate;
+					currentSpritePS4Col.a += Time.deltaTime*fadeInRate;
 					currentKeyCol.a += Time.deltaTime*fadeInRate;
 					currentTextCol.a += Time.deltaTime*fadeInRate;
 					if (currentSpriteCol.a >= 1){
-						currentSpriteCol.a = currentKeyCol.a = currentTextCol.a = 1f;
+						currentSpriteCol.a = currentSpritePS4Col.a = currentKeyCol.a = currentTextCol.a = 1f;
 						fadingIn = false;
 					}
 					
 				}
 				if (fadingOut){
 					currentSpriteCol.a -= Time.deltaTime*fadeOutRate;
+					currentSpritePS4Col.a -= Time.deltaTime*fadeOutRate;
 					currentTextCol.a -= Time.deltaTime*fadeOutRate;
 					currentKeyCol.a -= Time.deltaTime*fadeOutRate;
 					if (currentSpriteCol.a <= 0){
-						currentSpriteCol.a = currentTextCol.a = currentKeyCol.a = 0f;
+						currentSpriteCol.a = currentSpritePS4Col.a = currentTextCol.a = currentKeyCol.a = 0f;
 						fadingOut = false;
 						isShowing = false;
 					}
 				}
 
 				buttonSprite.color = currentSpriteCol;
+				buttonSpritePS4.color = currentSpritePS4Col;
 				mouseSprite.color = keySprite.color = currentKeyCol;
+				if (useButtonStringPS4){
+					examineString.color = buttonStringPS4.color = currentTextCol;
+				}else{
 				examineString.color = buttonString.color = currentTextCol;
+				}
 			}
 		}
 	
@@ -127,14 +158,24 @@ public class InstructionFloatS : MonoBehaviour {
 		wanderCount = Random.Range(wanderChangeMin, wanderChangeMax);
 
 		currentPos = followTransform.position+InstructionOffset;
-		if (useController && ControlManagerS.controlProfile == 0){
+		if (ControlManagerS.controlProfile == 3){
+
+			buttonSpritePS4.gameObject.SetActive(true);
+
+			buttonSprite.gameObject.SetActive(false);
+			mouseSprite.gameObject.SetActive(false);
+			keySprite.gameObject.SetActive(false);
+		}
+		else if (useController && ControlManagerS.controlProfile == 0){
 			buttonSprite.gameObject.SetActive(true);
 			keySprite.gameObject.SetActive(false);
 			mouseSprite.gameObject.SetActive(false);
+			buttonSpritePS4.gameObject.SetActive(false);
 		}else{
 			buttonSprite.gameObject.SetActive(false);
 			mouseSprite.gameObject.SetActive(false);
 			keySprite.gameObject.SetActive(false);
+			buttonSpritePS4.gameObject.SetActive(false);
 			if (ControlManagerS.controlProfile == 1){
 				mouseSprite.gameObject.SetActive(true);
 				if (changeSubMouseString != ""){

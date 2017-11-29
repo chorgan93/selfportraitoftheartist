@@ -9,6 +9,7 @@ public class ControlManagerS : MonoBehaviour {
 	private float triggerSensitivity = 0.1f;
 
 	private string platformType;
+	private string truePlatform;
 	private string controllerType;
 	private bool canSelectPS4 = false;
 	public bool CanSelectPS4 { get { return canSelectPS4; } }
@@ -30,7 +31,8 @@ public class ControlManagerS : MonoBehaviour {
 			}
 		}
 		platformType = GetPlatform();
-	
+		truePlatform = GetTruePlatform();
+
 	}
 
 	void Update(){
@@ -69,6 +71,22 @@ public class ControlManagerS : MonoBehaviour {
 
 		return platform;
 
+	}
+
+	string GetTruePlatform(){
+		string platform = "PC";
+		if (Application.platform == RuntimePlatform.OSXEditor ||
+			Application.platform == RuntimePlatform.OSXPlayer){
+
+			platform = "Mac";
+
+		}
+		else if (Application.platform == RuntimePlatform.LinuxPlayer){
+
+			platform = "Linux";
+
+		}
+		return platform;
 	}
 
 	//_________________________________________CONTROLLER CHECK
@@ -232,14 +250,29 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public float RightHorizontal(){
-		
+
+		if (controlProfile == 3){
+			if (truePlatform == "PC"){
+				return Input.GetAxis("RightHorizontalController" + platformType + "PC");
+			}else{
 		return Input.GetAxis("RightHorizontalController" + platformType);
+			}
+		}else{
+			return Input.GetAxis("RightHorizontalController" + platformType);
+		}
 		
 	}
 	
 	public float RightVertical(){
-		
+		if (controlProfile == 3){
+			if (truePlatform == "PC"){
+				return Input.GetAxis("RightVerticalController" + platformType + "PC");
+			}else{
+				return Input.GetAxis("RightVerticalController" + platformType);
+			}
+		}else{
 		return Input.GetAxis("RightVerticalController" + platformType);
+		}
 		
 	}
 
@@ -338,8 +371,14 @@ public class ControlManagerS : MonoBehaviour {
 		if (ControllerAttached()){
 			
 			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
-			if (controlProfile == 0 || controlProfile == 3){
+			if (controlProfile == 0){
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+			}else if (controlProfile == 3){
+				if (truePlatform == "PC"){
+					return (Input.GetAxis("ShootTrigger"+platformType+"PC") > triggerSensitivity);}
+				else{
+					return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
+				}
 			}else {
 				return (Input.GetKey(KeyCode.Space));
 			}
@@ -471,8 +510,14 @@ public class ControlManagerS : MonoBehaviour {
 
 
 		if (ControllerAttached()){
-			if (controlProfile == 0 || controlProfile == 3){
+			if (controlProfile == 0 ){
 			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+			}else if (controlProfile == 3){
+				if (truePlatform == "PC"){
+					return (Input.GetAxis("DashTrigger" + platformType + "PC") > triggerSensitivity);
+				}else{
+				return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
+				}
 			}else{
 				return (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift));
 			}

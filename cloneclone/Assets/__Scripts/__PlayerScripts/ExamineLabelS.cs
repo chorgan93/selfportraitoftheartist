@@ -9,6 +9,7 @@ public class ExamineLabelS : MonoBehaviour {
 
 
 	public SpriteRenderer examineButtonSprite;
+	public SpriteRenderer examineButtonSpritePS4;
 	public SpriteRenderer examineKeySprite;
 
 	private bool buttonSet = false;
@@ -35,6 +36,7 @@ public class ExamineLabelS : MonoBehaviour {
 		myMesh.text = "";
 
 		examineButtonSprite.gameObject.SetActive(false);
+		examineButtonSpritePS4.gameObject.SetActive(false);
 		examineKeySprite.gameObject.SetActive(false);
 		buttonSet = false;
 
@@ -63,7 +65,10 @@ public class ExamineLabelS : MonoBehaviour {
 					floatPos = Vector3.zero;
 					transform.localPosition = myRef.examineStringPos+floatPos;
 
-					if (myRef.myControl.ControllerAttached() && ControlManagerS.controlProfile == 0){
+					if (ControlManagerS.controlProfile == 3){
+						examineButtonSpritePS4.gameObject.SetActive(true);
+					}
+					else if (myRef.myControl.ControllerAttached() && ControlManagerS.controlProfile == 0){
 					examineButtonSprite.gameObject.SetActive(true);
 				}else{
 					examineKeySprite.gameObject.SetActive(true);
@@ -88,6 +93,7 @@ public class ExamineLabelS : MonoBehaviour {
 			if (buttonSet || currentButtonSet < buttonSetDelay){
 				buttonSet = false;
 				examineButtonSprite.gameObject.SetActive(false);
+				examineButtonSpritePS4.gameObject.SetActive(false);
 				examineKeySprite.gameObject.SetActive(false);
 				myMesh.text = "";
 				floatPos = Vector3.zero;
