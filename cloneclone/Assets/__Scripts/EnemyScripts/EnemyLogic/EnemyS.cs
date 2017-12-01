@@ -257,7 +257,7 @@ public class EnemyS : MonoBehaviour {
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Wall"){
 			touchingWall = true;
-			if (currentKnockbackCooldown > 0){
+			if (currentKnockbackCooldown > 0 && other.contacts.Length > 0){
 				WallBounce(other.contacts[0].normal);
 			}
 		}
