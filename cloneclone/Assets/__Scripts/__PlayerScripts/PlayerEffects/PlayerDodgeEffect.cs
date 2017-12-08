@@ -10,6 +10,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	public SpriteRenderer spriteFour;
 	public SpriteRenderer spriteFive;
 	public DodgeLinesS dodgeLines;
+	private SpawnOnProjectileS particleSpawner;
 	
 	[Header("Effect Timings")]
 	public float sleepTime = 0.14f;
@@ -62,6 +63,8 @@ public class PlayerDodgeEffect : MonoBehaviour {
 		spriteFive.gameObject.SetActive(false);
 		playerSprite = GetComponent<SpriteRenderer>();
 		playerController = GetComponentInParent<PlayerController>();
+		particleSpawner = GetComponent<SpawnOnProjectileS>();
+		particleSpawner.enabled = false;
 		
 		spriteOne.material.SetFloat("_FlashAmount", 1f);
 		spriteTwo.material.SetFloat("_FlashAmount", 1f);
@@ -93,6 +96,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 				spriteThree.gameObject.SetActive(false);
 				spriteFour.gameObject.SetActive(false);
 				spriteFive.gameObject.SetActive(false);
+				particleSpawner.enabled = false;
 			}else{
 				if (matchSprites){
 					spriteOne.sprite = spriteTwo.sprite = spriteThree.sprite 
@@ -199,6 +203,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 			if (!fromParry){
 				dodgeLines.TriggerEffect(playerController.EquippedWeapon().swapColor, playerController.EquippedWeapon().flashSubColor,
 					playerSprite.transform.position, playerController.myRigidbody.velocity);
+				particleSpawner.enabled = true;
 			}
 		}
 	}

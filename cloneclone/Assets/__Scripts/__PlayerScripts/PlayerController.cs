@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour {
 	private const int DODGE_PHYSICS_LAYER = 12;
 
 
-	private const float ADAPTIVE_WINDOW = 0.2f;
+	private const float ADAPTIVE_WINDOW = 0.22f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
 	
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
+	private float evadeSpeed = 2000f;
 	private bool _isDashing;
 	private bool _triggerBlock;
 	private bool _dashStickReset;
@@ -695,7 +696,9 @@ public class PlayerController : MonoBehaviour {
 				}else{
 					_counterNormal = _myRigidbody.velocity.normalized;
 				}
+				_myRigidbody.AddForce(-evadeSpeed*Time.deltaTime*_counterNormal, ForceMode.Impulse);
 				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.8f, counterAttackTimeMax*0.3f);
+				_myAnimator.SetTrigger("Evade");
 				_dodgeEffectRef.FireEffect();
 				FlashMana();
 				TriggerWitchTime();
@@ -900,6 +903,7 @@ public class PlayerController : MonoBehaviour {
 				_myAnimator.enabled = true;
 				hitStopped = false;
 			}
+			_myAnimator.ResetTrigger("Evade");
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_triggerBlock = false;
@@ -1461,6 +1465,7 @@ public class PlayerController : MonoBehaviour {
 						_allowCounterAttack = false;
 						_allowDashAttack = false;
 
+							_myRigidbody.drag = startDrag;
 						heavyCounterQueued = false;
 						counterQueued = false;
 

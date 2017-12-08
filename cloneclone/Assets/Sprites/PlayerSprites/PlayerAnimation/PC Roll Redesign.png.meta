@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4715fbcf7f4374ca986a215bd617b390
-timeCreated: 1490221660
+timeCreated: 1512586236
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -52,6 +52,10 @@ TextureImporter:
     21300090: PC Roll Redesign_18
     21300092: PC Roll Redesign_19
     21300094: PC Roll Redesign_20
+    21300096: PC Roll Redesign_21
+    21300098: PC Roll Redesign_22
+    21300100: PC Roll Redesign_23
+    21300102: PC Roll Redesign_24
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -65,7 +69,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -85,20 +89,21 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: PC Roll Redesign_0
+    - serializedVersion: 2
+      name: PC Roll Redesign_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,7 +113,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_1
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_1
       rect:
         serializedVersion: 2
         x: 64
@@ -118,7 +125,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_2
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_2
       rect:
         serializedVersion: 2
         x: 128
@@ -128,7 +137,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_3
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_3
       rect:
         serializedVersion: 2
         x: 192
@@ -138,7 +149,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_4
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_4
       rect:
         serializedVersion: 2
         x: 256
@@ -148,7 +161,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_5
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_5
       rect:
         serializedVersion: 2
         x: 0
@@ -158,7 +173,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_6
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_6
       rect:
         serializedVersion: 2
         x: 64
@@ -168,7 +185,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_7
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_7
       rect:
         serializedVersion: 2
         x: 128
@@ -178,7 +197,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_8
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_8
       rect:
         serializedVersion: 2
         x: 192
@@ -188,7 +209,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_9
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_9
       rect:
         serializedVersion: 2
         x: 256
@@ -198,7 +221,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_10
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_10
       rect:
         serializedVersion: 2
         x: 0
@@ -208,7 +233,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_11
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_11
       rect:
         serializedVersion: 2
         x: 64
@@ -218,7 +245,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_12
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_12
       rect:
         serializedVersion: 2
         x: 128
@@ -228,7 +257,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_13
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_13
       rect:
         serializedVersion: 2
         x: 192
@@ -238,7 +269,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_14
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_14
       rect:
         serializedVersion: 2
         x: 256
@@ -248,7 +281,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_15
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_15
       rect:
         serializedVersion: 2
         x: 0
@@ -258,7 +293,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_16
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_16
       rect:
         serializedVersion: 2
         x: 64
@@ -268,7 +305,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_17
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_17
       rect:
         serializedVersion: 2
         x: 128
@@ -278,7 +317,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_18
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_18
       rect:
         serializedVersion: 2
         x: 192
@@ -288,7 +329,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_19
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_19
       rect:
         serializedVersion: 2
         x: 256
@@ -298,7 +341,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Roll Redesign_20
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_20
       rect:
         serializedVersion: 2
         x: 0
@@ -308,6 +353,56 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Roll Redesign_24
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
