@@ -98,7 +98,7 @@ public class LevelUpHandlerS : MonoBehaviour {
 		}
 
 		while (nextLevelUps.Count < 4 && levelUpPool.Count > 0){
-			addLevelUpIndex = Mathf.RoundToInt(Random.Range(0, levelUpPool.Count-1));
+			addLevelUpIndex = Mathf.FloorToInt(Random.Range(0, levelUpPool.Count));
 			nextLevelUps.Add(levelUpPool[addLevelUpIndex]);
 			availableLevelUps.Remove(levelUpPool[addLevelUpIndex]);
 			levelUpPool.RemoveAt(addLevelUpIndex);

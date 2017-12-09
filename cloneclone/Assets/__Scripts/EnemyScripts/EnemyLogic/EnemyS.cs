@@ -291,7 +291,7 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetActiveState(bool newActive){
 		_isActive = allowActivation = newActive;
-		if (!_isActive){
+		if (!_isActive && _currentBehavior != null){
 			_currentBehavior.EndAction(false);
 		}
 		CheckBehaviorStateSwitch(false);
