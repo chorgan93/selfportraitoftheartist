@@ -8,9 +8,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
 	//public const float ENRAGED_DAMAGE_BOOST = 2f; // old
-	public const float ENRAGED_DAMAGE_BOOST = 1.5f; // old
+	public const float ENRAGED_DAMAGE_BOOST = 1.5f;
 	public const float CONDEMNED_TIME = 3f;
 	public const float HATED_MULT = 1.5f;
+	public const float BIOS_MULT = 1.32f;
 
 	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
@@ -44,6 +45,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private bool _aeroAug = false;
 	public bool aeroAug { get { return _aeroAug; } }
+
+	private bool _biosAug = false;
+	public bool biosAug { get { return _biosAug; } }
 
 	//____________________________________________________________virtue augmentations
 	// index 0
@@ -189,6 +193,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_thanaAug = false;
 		_realGaeaAug = false;
 		_erebosAug = false;
+		_biosAug = false;
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
@@ -257,6 +262,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 		if (_playerReference.EquippedWeaponAug().weaponNum == 7){
 			_erebosAug = true;
+		}
+		if (_playerReference.EquippedWeaponAug().weaponNum == 8){
+			_biosAug = true;
 		}
 	}
 

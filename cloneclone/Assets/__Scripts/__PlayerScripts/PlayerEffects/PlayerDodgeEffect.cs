@@ -20,7 +20,7 @@ public class PlayerDodgeEffect : MonoBehaviour {
 	private SpriteRenderer playerSprite;
 	private PlayerController playerController;
 	
-	private float allowCounterTime = 0.12f;
+	private float allowCounterTime = 0.22f;
 	private float allowCounter;
 	
 	Vector3 oneStartPos;

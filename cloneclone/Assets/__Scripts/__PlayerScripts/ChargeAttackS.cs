@@ -229,6 +229,7 @@ public class ChargeAttackS : MonoBehaviour {
 				if (myPlayer.adaptiveAugBonus){
 					actingDmg*=PlayerAugmentsS.ADAPTIVE_DAMAGE_BOOST;
 				}
+				actingDmg*=BiosAugMult();
 
 			float dmgDealt = other.gameObject.GetComponent<EnemyS>().TakeDamage
 				(knockBackDir*knockbackForce*Time.deltaTime, 
@@ -304,6 +305,13 @@ public class ChargeAttackS : MonoBehaviour {
 
 	public void TurnOffStun(){
 		stunMult = 0f;
+	}
+	float BiosAugMult(){
+		if (myPlayer.playerAug.biosAug){
+			return PlayerAugmentsS.BIOS_MULT;
+		}else{
+			return 1f;
+		}
 	}
 
 	float DeterminedMult(){

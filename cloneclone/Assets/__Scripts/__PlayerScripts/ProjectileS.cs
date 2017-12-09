@@ -244,6 +244,7 @@ public class ProjectileS : MonoBehaviour {
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt;
 		dmg *= _myPlayer.playerAug.GetParanoidMult();
+		dmg*=BiosAugMult();
 		if (dashAttack || counterAttack && _myPlayer.playerAug.incensedAug){
 			dmg *= _myPlayer.playerAug.incensedPowerMult;
 		}
@@ -729,6 +730,14 @@ public class ProjectileS : MonoBehaviour {
 	private void SetAnimationEnable(bool newEnable){
 		for (int i = 0; i < allAnimators.Length; i++){
 			allAnimators[i].enabled = newEnable;
+		}
+	}
+
+	float BiosAugMult(){
+		if (_myPlayer.playerAug.biosAug && isFinisher){
+			return PlayerAugmentsS.BIOS_MULT;
+		}else{
+			return 1f;
 		}
 	}
 

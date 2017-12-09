@@ -6,7 +6,7 @@ public class ColinEffectS : MonoBehaviour {
 	public Color[] flashColors;
 	public float colorChangeRate = 0.2f;
 	private float colorCountdown;
-	private int currentColor = 0;
+	public int currentColor = 0;
 
 	private SpriteRenderer mySprite;
 
@@ -14,7 +14,7 @@ public class ColinEffectS : MonoBehaviour {
 	void Start () {
 
 		mySprite = GetComponent<SpriteRenderer>();
-		mySprite.color = flashColors[0];
+		mySprite.color = flashColors[currentColor];
 		colorCountdown = colorChangeRate;
 	
 	}

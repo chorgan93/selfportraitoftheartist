@@ -480,11 +480,19 @@ public class PlayerController : MonoBehaviour {
 		enemiesHitByLastAttack = new List<EnemyS>();
 
 		if (PlayerInventoryS.I.EquippedWeapons() != null){
+			if (PlayerInventoryS.I.EquippedWeapons().Count > 0){
 		equippedWeapons = PlayerInventoryS.I.EquippedWeapons();
 			subWeapons = PlayerInventoryS.I.SubWeapons();
+			}else{
+				_currentParadigm = 0;
+			}
 		}
 		if (PlayerInventoryS.I.EquippedBuddies() != null){
+			if (PlayerInventoryS.I.EquippedBuddies().Count > 0){
 			equippedBuddies = PlayerInventoryS.I.EquippedBuddies();
+			}else{
+				_currentParadigm = 0;
+			}
 		}
 
 		if (_currentParadigm > 1){
