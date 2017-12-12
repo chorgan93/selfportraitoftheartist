@@ -9,11 +9,15 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 	public float changeRate = 0.08f;
 	private float changeCountdown = 0f;
 	public float changeSizeAmt = 0.2f;
+	public float changePosAmtX = 0.05f;
+	public float changePosAmtY = 0.03f;
+	private Vector3 currentPos;
 
 	[Header("Bios Properties")]
 	public bool biosDistortion = false;
 	public Color overrideColor = Color.white;
 	public Vector3 distortionSizeAdd = Vector3.zero;
+
 
 	private PlayerStatsS playerReference;
 
@@ -59,5 +63,10 @@ public class SpriteDistortionPlayerS : MonoBehaviour {
 	private void ChangeSize(){
 		transform.localScale = (Vector3.one + distortionSizeAdd) +Random.insideUnitSphere*changeSizeAmt;
 		changeCountdown = changeRate;
+		currentPos = Vector3.zero;
+		currentPos.x += changePosAmtX*Random.insideUnitCircle.x;
+		currentPos.y += changePosAmtY*Random.insideUnitCircle.y;
+		currentPos.z = transform.localPosition.z;
+		transform.localPosition = currentPos;
 	}
 }

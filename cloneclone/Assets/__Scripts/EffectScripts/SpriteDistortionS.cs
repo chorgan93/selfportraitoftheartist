@@ -10,6 +10,10 @@ public class SpriteDistortionS : MonoBehaviour {
 	private float changeCountdown = 0f;
 	public float changeSizeAmt = 0.2f;
 
+	public float changePosAmtX = 0.015f;
+	public float changePosAmtY = 0.0075f;
+	private Vector3 currentPos;
+
 	public bool matchColor = false;
 
 	// Use this for initialization
@@ -51,6 +55,10 @@ public class SpriteDistortionS : MonoBehaviour {
 	
 			transform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
 
-		changeCountdown = changeRate;
+		changeCountdown = changeRate;currentPos = Vector3.zero;
+		currentPos.x += changePosAmtX*Random.insideUnitCircle.x;
+		currentPos.y += changePosAmtY*Random.insideUnitCircle.y;
+		currentPos.z = transform.localPosition.z;
+		transform.localPosition = currentPos;
 	}
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2a9af4964912d40e4b3572fb3bea068c
-timeCreated: 1487805824
+timeCreated: 1513061660
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -72,6 +72,10 @@ TextureImporter:
     21300130: PC CounterAttacks_38
     21300132: PC CounterAttacks_39
     21300134: PC CounterAttacks_40
+    21300136: PC CounterAttacks_41
+    21300138: PC CounterAttacks_42
+    21300140: PC CounterAttacks_43
+    21300142: PC CounterAttacks_44
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -85,7 +89,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -105,12 +109,11 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -122,8 +125,10 @@ TextureImporter:
     compressionQuality: 50
     allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: PC CounterAttacks_0
+    - serializedVersion: 2
+      name: PC CounterAttacks_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,7 +138,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_1
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_1
       rect:
         serializedVersion: 2
         x: 64
@@ -143,7 +150,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_2
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,7 +162,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_3
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_3
       rect:
         serializedVersion: 2
         x: 192
@@ -163,7 +174,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_4
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_4
       rect:
         serializedVersion: 2
         x: 256
@@ -173,7 +186,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_5
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_5
       rect:
         serializedVersion: 2
         x: 320
@@ -183,7 +198,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_6
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_7
       rect:
         serializedVersion: 2
         x: 0
@@ -193,7 +222,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_7
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_8
       rect:
         serializedVersion: 2
         x: 64
@@ -203,7 +234,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_8
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_9
       rect:
         serializedVersion: 2
         x: 128
@@ -213,7 +246,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_9
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_10
       rect:
         serializedVersion: 2
         x: 192
@@ -223,7 +258,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_10
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_11
       rect:
         serializedVersion: 2
         x: 256
@@ -233,7 +270,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_11
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_12
       rect:
         serializedVersion: 2
         x: 320
@@ -243,7 +282,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_12
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_14
       rect:
         serializedVersion: 2
         x: 0
@@ -253,7 +306,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_13
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_15
       rect:
         serializedVersion: 2
         x: 64
@@ -263,7 +318,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_14
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_16
       rect:
         serializedVersion: 2
         x: 128
@@ -273,7 +330,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_15
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_17
       rect:
         serializedVersion: 2
         x: 192
@@ -283,7 +342,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_16
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_18
       rect:
         serializedVersion: 2
         x: 256
@@ -293,7 +354,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_17
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_19
       rect:
         serializedVersion: 2
         x: 320
@@ -303,7 +366,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_18
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_20
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_21
       rect:
         serializedVersion: 2
         x: 0
@@ -313,7 +390,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_19
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_22
       rect:
         serializedVersion: 2
         x: 64
@@ -323,7 +402,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_20
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_23
       rect:
         serializedVersion: 2
         x: 128
@@ -333,7 +414,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_21
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_24
       rect:
         serializedVersion: 2
         x: 192
@@ -343,7 +426,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_22
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_25
       rect:
         serializedVersion: 2
         x: 256
@@ -353,7 +438,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_23
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_26
       rect:
         serializedVersion: 2
         x: 320
@@ -363,7 +450,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_24
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_28
       rect:
         serializedVersion: 2
         x: 0
@@ -373,7 +474,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_25
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_29
       rect:
         serializedVersion: 2
         x: 64
@@ -383,7 +486,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_26
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_30
       rect:
         serializedVersion: 2
         x: 128
@@ -393,7 +498,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_27
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_31
       rect:
         serializedVersion: 2
         x: 192
@@ -403,7 +510,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_28
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_32
       rect:
         serializedVersion: 2
         x: 256
@@ -413,7 +522,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_29
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_33
       rect:
         serializedVersion: 2
         x: 320
@@ -423,7 +534,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_30
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_34
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_35
       rect:
         serializedVersion: 2
         x: 0
@@ -433,7 +558,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_31
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_36
       rect:
         serializedVersion: 2
         x: 64
@@ -443,7 +570,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_32
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_37
       rect:
         serializedVersion: 2
         x: 128
@@ -453,7 +582,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_33
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_38
       rect:
         serializedVersion: 2
         x: 192
@@ -463,7 +594,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_34
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_39
       rect:
         serializedVersion: 2
         x: 256
@@ -473,7 +606,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_35
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_40
       rect:
         serializedVersion: 2
         x: 320
@@ -483,7 +618,21 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_36
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_41
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_42
       rect:
         serializedVersion: 2
         x: 0
@@ -493,7 +642,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_37
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_43
       rect:
         serializedVersion: 2
         x: 64
@@ -503,7 +654,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_38
+      outline: []
+    - serializedVersion: 2
+      name: PC CounterAttacks_44
       rect:
         serializedVersion: 2
         x: 128
@@ -513,26 +666,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_39
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC CounterAttacks_40
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

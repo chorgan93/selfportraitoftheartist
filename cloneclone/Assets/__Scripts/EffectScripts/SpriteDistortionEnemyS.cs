@@ -14,6 +14,10 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 	public float changeSizeCritMult = 2f;
 	private float changeRateCritMult = 3f;
 
+	public float changePosAmtX = 0.025f;
+	public float changePosAmtY = 0.015f;
+	private Vector3 currentPos;
+
 	private float deadChangeRate;
 	private bool inCritState = false;
 
@@ -95,5 +99,14 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 			transform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
 		}
 		changeCountdown = changeRate;
+
+		currentPos = Vector3.zero;
+		currentPos.x += changePosAmtX*Random.insideUnitCircle.x;
+		currentPos.y += changePosAmtY*Random.insideUnitCircle.y;
+		if (inCritState){
+			currentPos*=changeSizeCritMult;
+		}
+		currentPos.z = transform.localPosition.z;
+		transform.localPosition = currentPos;
 	}
 }

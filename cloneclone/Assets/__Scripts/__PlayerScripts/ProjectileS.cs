@@ -735,6 +735,7 @@ public class ProjectileS : MonoBehaviour {
 
 	float BiosAugMult(){
 		if (_myPlayer.playerAug.biosAug && isFinisher){
+			Debug.Log("Increasing dmg for bios!");
 			return PlayerAugmentsS.BIOS_MULT;
 		}else{
 			return 1f;

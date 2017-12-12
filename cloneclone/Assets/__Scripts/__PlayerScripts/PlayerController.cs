@@ -78,6 +78,10 @@ public class PlayerController : MonoBehaviour {
 	public bool delayWitchTime { get { return _delayWitchTime; } }
 	private EnemyS _counterTarget;
 
+	[Header("Parry Variables")]
+	public float parryForce = 1000f;
+	public float parryKnockbackMult = -2f;
+
 	private PlayerSlowTimeS witchReference;
 
 	private Vector3 _counterNormal = Vector3.zero;
@@ -881,10 +885,11 @@ public class PlayerController : MonoBehaviour {
 
 		// first, check for parry, otherwise dodge
 		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
-			
+
+			_myRigidbody.AddForce(ShootDirection().normalized*parryForce*Time.deltaTime, ForceMode.Impulse);
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
-				enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.magnitude*ShootDirection().normalized*-1.15f, 3f);
+				enemiesToParry[i].AutoCrit(parryForce*ShootDirection().normalized*Time.deltaTime*parryKnockbackMult, 3f);
 			}
 			if (_playerAug.incensedAug){
 				_myStats.ManaCheck(_dodgeCost*_playerAug.incensedStaminaMult);
