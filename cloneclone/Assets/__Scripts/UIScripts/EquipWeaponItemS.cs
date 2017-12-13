@@ -19,6 +19,7 @@ public class EquipWeaponItemS : MonoBehaviour {
 
 		inventoryRef = i;
 
+
 		bool turnOn = false;
 		foreach (PlayerWeaponS w in i.unlockedWeapons){
 			if (w.weaponNum == weaponNum){

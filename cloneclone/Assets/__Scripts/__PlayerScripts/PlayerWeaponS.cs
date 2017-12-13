@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerWeaponS : MonoBehaviour {
 
 	public int weaponNum = 0;
+	public int displayNum = 0;
 	public float speedMult = 1f;
 	public GameObject[] attackChain;
 	public GameObject[] heavyChain;

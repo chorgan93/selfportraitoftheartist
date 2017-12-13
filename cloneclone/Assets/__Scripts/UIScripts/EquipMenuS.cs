@@ -668,15 +668,15 @@ public class EquipMenuS : MonoBehaviour {
 				paradigmMantraSubscreen.gameObject.SetActive(true);
 				if (paradigmNum == 0){
 					if (newPos == 0){
-						descriptionText.text = allMantraItems[pRef.EquippedWeapon().weaponNum].weaponDescriptionMain;
+						descriptionText.text = allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain;
 					}else{
-						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().weaponNum].weaponDescriptionSub;
+						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub;
 					}
 				}else{
 					if (newPos == 0){
-						descriptionText.text = allMantraItems[pRef.SubWeapon().weaponNum].weaponDescriptionMain;
+						descriptionText.text = allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain;
 					}else{
-						descriptionText.text = allMantraItems[pRef.SubWeaponAug().weaponNum].weaponDescriptionSub;
+						descriptionText.text = allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub;
 					}
 				}
 			}
