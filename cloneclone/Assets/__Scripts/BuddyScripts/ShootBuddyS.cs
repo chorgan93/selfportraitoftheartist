@@ -12,13 +12,18 @@ public class ShootBuddyS : BuddyS {
 
 	public float shootRate;
 	private float shootCountdown;
+	public int numShots = 1;
+	public float timeBetweenShots = 0.1f;
+	private int currentShot = 0;
 
 	public float shotDelay = 0.08f;
 	private float shotDelayCountdown = 0f;
 	private bool shotTriggered = false;
 	public bool lookOnShoot = true;
+	public float allowChainTime = 0f;
 
 	private bool chargeButtonUp = true;
+	private Vector3 aimDir = Vector3.zero;
 
 
 	public string chargeAnimatorTrigger;
@@ -114,7 +119,6 @@ public class ShootBuddyS : BuddyS {
 			shotDelayCountdown -= Time.deltaTime;
 			if (shotDelayCountdown <= 0){
 				FireProjectile();
-				shotTriggered = false;
 			}
 		}
 		else{
@@ -127,8 +131,25 @@ public class ShootBuddyS : BuddyS {
 					chargeButtonUp = true;
 				}else{
 					if (chargeButtonUp){
-						if (shootCountdown <= 0 && playerRef.myStats.ChargeCheck(costPerUse)){
+						if (shootCountdown <= allowChainTime && playerRef.myStats.ChargeCheck(costPerUse)){
 							myAnimator.SetTrigger(fireAnimatorTrigger);
+							aimDir = Vector3.zero;
+
+
+							if (playerRef.targetEnemy != null){
+								aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
+								aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
+							}
+							else if (shootDetect.closestEnemy != null){
+								aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
+								aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
+							}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){
+								aimDir.x = playerRef.myRigidbody.velocity.x;
+								aimDir.y = playerRef.myRigidbody.velocity.y;
+							}else{
+								aimDir.x = myRigid.velocity.x;
+								aimDir.y = myRigid.velocity.y;
+							}
 							if (shotDelay <= 0){
 								FireProjectile();
 							}else{
@@ -158,25 +179,6 @@ public class ShootBuddyS : BuddyS {
 		}
 
 		canSwitch = true;
-		myAnimator.SetTrigger(fireAnimatorTrigger);
-
-		Vector3 aimDir = Vector3.zero;
-
-
-		if (playerRef.targetEnemy != null){
-			aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
-			aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
-		}
-		else if (shootDetect.closestEnemy != null){
-			aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
-			aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
-		}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){
-			aimDir.x = playerRef.myRigidbody.velocity.x;
-			aimDir.y = playerRef.myRigidbody.velocity.y;
-		}else{
-			aimDir.x = myRigid.velocity.x;
-			aimDir.y = myRigid.velocity.y;
-		}
 
 		GameObject myProj = Instantiate(myProjectile, transform.position, Quaternion.identity)
 			as GameObject;
@@ -186,6 +188,14 @@ public class ShootBuddyS : BuddyS {
 
 		charging = false;
 		shootCountdown = shootRate;
+
+		currentShot++;
+		if (currentShot >= numShots){
+			shotTriggered = false;
+			currentShot = 0;
+		}else{
+			shotDelayCountdown = timeBetweenShots;
+		}
 
 		if (shootEffect){
 			Vector3 pRotation = myProj.transform.rotation.eulerAngles;

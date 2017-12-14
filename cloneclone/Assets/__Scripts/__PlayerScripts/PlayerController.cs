@@ -647,6 +647,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		attackDelay = 0;
 		_chargingAttack = false;
+		_canSwap = true;
 		allowChargeAttack = false;
 		_chargeAttackTriggered = false;
 		_chargeAttackTime = 0f;
@@ -906,6 +907,7 @@ public class PlayerController : MonoBehaviour {
 			dashDurationTime = dashDurationTimeMax;
 			if (_chargingAttack){
 			_chargingAttack = false;
+				_canSwap = true;
 			allowChargeAttack = false;
 			_chargeAttackTriggered = false;
 			_chargeAttackTime = 0f;
@@ -1096,6 +1098,7 @@ public class PlayerController : MonoBehaviour {
 						ChargeAnimationTrigger(true);
 					}else{
 						_chargingAttack = false;
+						_canSwap = true;
 						_myAnimator.SetBool("Charging", false);
 						_chargeAttackTriggered = false;
 						_isShooting = false;
@@ -1176,6 +1179,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			if (_chargeAttackTime >= _chargeAttackDuration){
 				_chargingAttack = false;
+				_canSwap = true;
 				_chargeAttackTriggered = false;
 				_myAnimator.SetBool("Charging", false);
 			}
@@ -1183,6 +1187,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		if (_chargingAttack && !ShootInputPressed() && !_chargeAttackTriggered){
 			_chargingAttack = false;
+			_canSwap = true;
 			_myAnimator.SetBool("Charging", false);
 			shootButtonUp = false;
 			allowChargeAttack = true;
@@ -1605,6 +1610,7 @@ public class PlayerController : MonoBehaviour {
 							chargeAttackRef.useAllCharge);
 
 					_chargingAttack = true;
+						_canSwap = false;
 						_doingCounterAttack = false;
 						//EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,1);
 					_chargeAttackTriggered = false;
@@ -1631,6 +1637,7 @@ public class PlayerController : MonoBehaviour {
 					if (_chargingAttack && (_chargeAttackTime < _chargeAttackTrigger 
 					                        || _chargeAttackTime > _chargeAttackDuration)){
 						_chargingAttack = false;
+						_canSwap = true;
 						_chargeAttackTime = 0;
 						_myAnimator.SetBool("Charging", false);
 					}
