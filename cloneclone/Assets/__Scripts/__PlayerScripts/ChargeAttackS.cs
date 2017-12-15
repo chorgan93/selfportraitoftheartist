@@ -219,7 +219,7 @@ public class ChargeAttackS : MonoBehaviour {
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
-			float actingDmg = dmg*myPlayer.myStats.strengthAmt;
+				float actingDmg = dmg*myPlayer.myStats.strengthAmt();
 
 				actingDmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 

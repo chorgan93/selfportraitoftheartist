@@ -23,6 +23,9 @@ public class VerseDisplayS : MonoBehaviour {
 	public static VerseDisplayS V;
 	private bool _isShowing = true;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	void Awake(){
 
 		if (V != null){
@@ -57,7 +60,7 @@ public class VerseDisplayS : MonoBehaviour {
 		verseBorder.enabled = borderBG.enabled = false;
 		verseTitle.text = verseTitleBg.text = "";
 
-		if (!PlayerController.equippedUpgrades.Contains(3) || PlayerStatDisplayS.RECORD_MODE){
+		if (!PlayerController.equippedUpgrades.Contains(3) || PlayerStatDisplayS.RECORD_MODE || arcadeMode){
 			_isShowing  = false;
 		}
 	

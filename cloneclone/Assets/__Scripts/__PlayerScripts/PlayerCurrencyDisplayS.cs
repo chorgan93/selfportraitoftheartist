@@ -33,6 +33,9 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	private bool showing = false;
 	private bool _isHiding = false;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -44,7 +47,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		totalDisplay.text = currencyDisplayAmt.ToString();
 		beingAddedDisplay.text = "";
 
-		if (PlayerController.equippedUpgrades.Contains(0) && !PlayerStatDisplayS.RECORD_MODE){
+		if (PlayerController.equippedUpgrades.Contains(0) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
 			Show();
 		}else{
 			Hide ();
@@ -131,7 +134,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 	}
 
 	public void AddCurrency (int currencyToAdd){
-		if (CanGetXP){
+		if (CanGetXP && !arcadeMode){
 		PlayerCollectionS.currencyCollected += currencyToAdd;
 		currencyTotalAmt = PlayerCollectionS.currencyCollected;
 

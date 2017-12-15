@@ -113,7 +113,6 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________ATTACK
 	private float _baseStrength = 0.7f;
 	private float _addedStrength = 0; // (upgradeable)
-	public float strengthAmt { get { return (_baseStrength+_addedStrength*0.075f);}}
 	public float strengthLvl { get { return (_baseStrength*10f+_addedStrength-4f); } }
 	public float addedStrength { get { return _addedStrength; } }
 
@@ -214,6 +213,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private PlayerHealEffect rechargeEffectRef;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -244,7 +246,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool ManaCheck(float useAmount, bool reduce = true){
 
-		if (godMode){
+		if (godMode || arcadeMode){
 			return true;
 		}else if (!ManaUnlocked()){
 			return false;
@@ -310,6 +312,9 @@ public class PlayerStatsS : MonoBehaviour {
 	public bool ChargeCheck(float reqCharge, bool useCharge = true){
 
 		bool canUse =  (_currentCharge > 0);
+		if (arcadeMode){
+			return true;
+		}else{
 
 		if (useCharge && canUse){
 			if (reqCharge > _currentCharge){
@@ -333,6 +338,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		_uiReference.UpdateFills();
 		return canUse;
+		}
 	}
 
 	public void DrivenCheck(){
@@ -406,7 +412,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________PRIVATE FUNCTIONS
 
 	private void DarknessAdd(){
-		if (!PlayerIsDead() && !myPlayerController.talking){
+		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode){
 			_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE;
 		}
 	}
@@ -536,10 +542,15 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private void CondemnedHandler(){
 		if (delayDeath && !myPlayerController.usingitem){
+			if (!myPlayerController.inCombat){
+				Heal(1f,false);
+				delayDeath = false;
+			}else{
 			delayDeathCountdown -= Time.deltaTime*delayDeathCountdownMult;
 			if (delayDeathCountdown <= 0){
 				TakeDamage(null, 1f, Vector3.zero, 0.2f, true, true);
 				delayDeath = false;
+			}
 			}
 			_uiReference.UpdateFills();
 		}
@@ -580,6 +591,10 @@ public class PlayerStatsS : MonoBehaviour {
 
 		warningReference = GameObject.Find("WarningText").GetComponent<WarningManagerS>();
 		delayDeathCountdownMult = 0f;
+
+		if (arcadeMode){
+			myPlayerController.SetAllowItem(false);
+		}
 
 	}
 
@@ -949,6 +964,15 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public float OverCooldownMult(){
 		return (_currentCooldownTimer/(recoveryCooldownMax*BREAK_STAMINA_PENALTY));
+	}
+
+	public float strengthAmt(){
+
+		if (arcadeMode){
+			return 2f;
+		}else{
+			return (_baseStrength+_addedStrength*0.075f);
+		}
 	}
 
 	//__________________________________STAT UPGRADES

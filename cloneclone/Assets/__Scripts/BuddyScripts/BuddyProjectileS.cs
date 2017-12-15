@@ -56,8 +56,22 @@ public class BuddyProjectileS : MonoBehaviour {
 	
 	private Collider myCollider;
 
+	[Header("Aura Properties")]
+	public SimpleEnemyDetectS auraTrigger;
+	public float auraDamageRate = 0.2f;
+	private float auraDamageCountdown;
+	public float auraDamage = 0.2f;
+	public float auraKnockbackMult = 0.1f;
+	private bool isAura = false;
+	private Vector3 auraPos;
+
 	void Start(){
 		_maxRange = range;
+		if (auraTrigger){
+			isAura = true;
+			auraPos = auraTrigger.transform.localPosition;
+			//auraTrigger.transform.parent = null;
+		}
 	}
 	
 	// Update is called once per frame
@@ -75,6 +89,37 @@ public class BuddyProjectileS : MonoBehaviour {
 						_myRenderer3D.material.color = startColor;
 					}
 					didFlashLogic = true;
+				}
+			}
+		}
+
+
+
+		if (isAura){
+			//auraTrigger.transform.position = transform.position+auraPos;
+			auraDamageCountdown -= Time.deltaTime;
+			if (auraDamageCountdown <= 0){
+				auraDamageCountdown = auraDamageRate;
+				if (auraTrigger.EnemiesInRange.Count > 0){
+					float actingKnockbackSpeed = shotSpeed*knockbackMult*auraKnockbackMult;
+					float actingStunMult = 1f;
+					float actingDamageMult = 1f;
+					if (_myBuddy.playerRef.playerAug.trustingAug){
+						actingStunMult = 1.5f;
+						actingDamageMult = 1.4f;
+					}
+
+
+					for (int i = 0; i < auraTrigger.EnemiesInRange.Count; i++){
+						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+							auraDamage*actingDamageMult, actingStunMult, 2f, 0f, 0f);
+						RankManagerS.R.ScoreHit(3, dmgDealt);
+
+
+					}
+					if (_myBuddy){
+						_myBuddy.playerRef.ExtendWitchTime();
+					}
 				}
 			}
 		}

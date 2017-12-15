@@ -18,6 +18,9 @@ public class ResetUIS : MonoBehaviour {
 	private InventoryManagerS inventoryRef;
 	private bool isShowing = true;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -31,7 +34,7 @@ public class ResetUIS : MonoBehaviour {
 		}else{
 			instruction.text = "R";
 		}
-		if (PlayerController.equippedUpgrades.Contains(2) && !PlayerStatDisplayS.RECORD_MODE){
+		if (PlayerController.equippedUpgrades.Contains(2) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
 			Show ();
 		}else{
 			Hide ();

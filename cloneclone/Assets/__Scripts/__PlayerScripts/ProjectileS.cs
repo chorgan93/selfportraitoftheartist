@@ -242,7 +242,7 @@ public class ProjectileS : MonoBehaviour {
 		playerReference.SetFace(lockFaceDirection);
 
 		// calculate attack power
-		dmg *= _myPlayer.myStats.strengthAmt;
+		dmg *= _myPlayer.myStats.strengthAmt();
 		dmg *= _myPlayer.playerAug.GetParanoidMult();
 		dmg*=BiosAugMult();
 		if (dashAttack || counterAttack && _myPlayer.playerAug.incensedAug){

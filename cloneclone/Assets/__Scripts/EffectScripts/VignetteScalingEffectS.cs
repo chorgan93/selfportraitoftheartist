@@ -14,11 +14,17 @@ public class VignetteScalingEffectS : MonoBehaviour {
 	private float bigFOVScalar = 1.1f;
 	private float smallFOVScalar = 0.97f;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	// Use this for initialization
 	void Start () {
 
 		newScale = originalScale = transform.localScale;
 		scaleChangeCountdown = scaleChangeTime;
+		/*if (arcadeMode){
+			GetComponent<SpriteRenderer>().enabled = false;
+		}**/
 	
 	}
 	

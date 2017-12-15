@@ -93,6 +93,9 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private bool _allowAdvance = true;
 	public bool allowAdvance { get { return _allowAdvance; } }
 
+	[Header("Special Case Properties")]
+	public bool doNotShowInScene = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -119,7 +122,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 		}
 
 		inRecordMode = PlayerStatDisplayS.RECORD_MODE;
-		if (inRecordMode){
+		if (inRecordMode || doNotShowInScene){
 			TurnOffCornerDisplay();
 		}
 	

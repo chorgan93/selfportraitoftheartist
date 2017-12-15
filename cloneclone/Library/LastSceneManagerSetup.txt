@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_24_Passage.unity
+- path: Assets/_Scenes/iamnotamachineScenes/iamnotamachine_00.unity
   isLoaded: 1
   isActive: 1

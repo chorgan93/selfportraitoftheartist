@@ -20,6 +20,9 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 	public static EffectSpawnManagerS E;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -96,7 +99,7 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 		GameObject spawnObj = null;
 
-		if (PlayerController.equippedUpgrades.Contains(1) && dmgAmt > 0){
+		if (PlayerController.equippedUpgrades.Contains(1) && !arcadeMode && dmgAmt > 0){
 		spawnPos.y += 0.8f;
 		spawnPos.z = -8f;
 		if (damageNumbers.Count > 0){

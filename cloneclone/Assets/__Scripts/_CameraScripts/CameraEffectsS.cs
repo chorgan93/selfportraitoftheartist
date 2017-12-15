@@ -48,6 +48,9 @@ public class CameraEffectsS : MonoBehaviour {
 	private SunShafts sunEffect;
 	private BloomOptimized bloomEffect;
 
+	[Header("Special Scene Properties")]
+	public bool arcadeMode = false;
+
 	#if UNITY_EDITOR_OSX
 	private static bool debugEffects = false;
 	#endif
@@ -112,7 +115,7 @@ public class CameraEffectsS : MonoBehaviour {
 			}
 
 			#elif UNITY_STANDALONE_OSX || UNITY_STANDALONE
-			if (QualitySettings.GetQualityLevel() < 1){
+			if (QualitySettings.GetQualityLevel() < 1 && !arcadeMode){
 			toneEffect = GetComponent<Tonemapping>();
 			bloomEffect = GetComponent<BloomOptimized>();
 			sunEffect = GetComponent<SunShafts>();
