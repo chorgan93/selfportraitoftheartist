@@ -293,9 +293,9 @@ public class CameraFollowS : MonoBehaviour {
 
 	}
 
-	public void SetNewPOI(GameObject newPoi){
+	public void SetNewPOI(GameObject newPoi, bool ignoreTalk = false){
 		_poi = newPoi;
-		if (playerRef){
+		if (playerRef && !ignoreTalk){
 			playerRef.SetTalking(true);
 		}
 	}

@@ -13,6 +13,8 @@ public class DialogueManagerS : MonoBehaviour {
 	private Vector2 boxTopStartPos;
 	private Vector2 boxTopHidePos;
 
+	public DialogueResponseS dialogueResponse;
+
 	public GameObject advanceIndicator;
 
 	private float showTimeMax = 0.3f;
@@ -40,6 +42,8 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool _freezeText = false;
 
 	private bool _usingMerchantText = false;
+
+	private bool triggerResponse = false;
 
 	public static DialogueManagerS D;
 
@@ -91,6 +95,10 @@ public class DialogueManagerS : MonoBehaviour {
 				if (currentChar >= targetDisplayString.Length){
 					_doneScrolling = true;
 					advanceIndicator.SetActive(true);
+					if (triggerResponse){
+						triggerResponse = false;
+						dialogueResponse.TurnOn(hideStats.pConRef.myControl);
+					}
 				}
 			}
 
@@ -130,11 +138,13 @@ public class DialogueManagerS : MonoBehaviour {
 	
 	}
 
-	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false){
+	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, bool endWithResponse = false){
 
 		if (!isMemo){
 			memoBG.enabled = false;
 			memoText.enabled = false;
+
+			triggerResponse = endWithResponse;
 
 			if (!dialogueBox.enabled){
 				dialogueBox.rectTransform.anchoredPosition = boxBottomHidePos;
@@ -194,10 +204,15 @@ public class DialogueManagerS : MonoBehaviour {
 		}
 		_doneScrolling = true;
 		advanceIndicator.SetActive(true);
+		if (triggerResponse){
+			triggerResponse = false;
+			dialogueResponse.TurnOn(hideStats.pConRef.myControl);
+		}
 	}
 
 	public void EndText(bool newStatOn = true){
 
+		//if (!waitingForResponse || (waitingForResponse && !dialogueResponse.getChoiceActive)){
 		dialogueText.enabled = false;
 		memoBG.enabled = false;
 		memoText.enabled = false;
@@ -222,6 +237,8 @@ public class DialogueManagerS : MonoBehaviour {
 		scrollCountdown = 0f;
 		currentChar = 0;
 		advanceIndicator.SetActive(false);
+
+		//}
 
 	}
 

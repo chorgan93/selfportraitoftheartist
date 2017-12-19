@@ -107,6 +107,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private PlayerStatsS playerStats;
 	private SpriteRenderer playerRender;
 	private PlayerController pController;
+	public PlayerController pConRef { get { return pController; } }
 	private Transform playerTransform;
 	private RectTransform parentRect;
 

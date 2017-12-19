@@ -26,6 +26,10 @@ public class SacramentHandlerS : MonoBehaviour {
 	AsyncOperation async;
 
 	// Use this for initialization
+	void Awake(){
+		CinematicHandlerS.inCutscene = true;
+	}
+
 	void Start () {
 		currentStep = 0;
 		InitializeSteps();

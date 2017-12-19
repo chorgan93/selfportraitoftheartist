@@ -918,6 +918,12 @@ public class PlayerStatsS : MonoBehaviour {
 
 	}
 
+	public void GoToUnstoppableHealth(){
+		if (_currentHealth <= maxHealth*0.01f && myPlayerController.playerAug.unstoppableAug){
+			_currentHealth = maxHealth*0.012f;
+		}
+	}
+
 	public void DeathCountUp(bool isReduced = false){
 
 		_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();

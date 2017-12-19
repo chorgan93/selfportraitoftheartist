@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/iamnotamachineScenes/iamnotamachine_00.unity
+- path: Assets/_Scenes/iamnotamachineScenes/iamnotamachine_03.unity
   isLoaded: 1
   isActive: 1

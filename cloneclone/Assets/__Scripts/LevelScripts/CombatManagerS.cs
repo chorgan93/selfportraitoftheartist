@@ -201,6 +201,7 @@ public class CombatManagerS : MonoBehaviour {
 		}
 
 		playerRef.playerAug.canUseUnstoppable = true;
+		playerRef.myStats.GoToUnstoppableHealth();
 		if (itemReset){
 			if (restartSpawn){
 				restartSpawn.SpawnOnRestart();

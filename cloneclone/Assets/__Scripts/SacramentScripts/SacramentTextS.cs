@@ -14,6 +14,9 @@ public class SacramentTextS : MonoBehaviour {
 	[Header("Appear Properties")]
 	public float delayAppearance = 0f;
 	private float delayAppearanceCountdown;
+	public float autoAdvanceTime = -1f;
+	private float autoAdvanceCount;
+	private bool useAutoAdvance = false;
 
 	[Header("Fade Properties")]
 	public float fadeRate;
@@ -29,6 +32,7 @@ public class SacramentTextS : MonoBehaviour {
 	private int currentChar = 0;
 	private float scrollCountdown;
 	private bool isScrolling = false;
+	public bool disableAdvance=  false;
 
 	private bool _readyToAdvance = false;
 	public bool readyToAdvance { get { return _readyToAdvance; }}
@@ -55,13 +59,17 @@ public class SacramentTextS : MonoBehaviour {
 			if (delayAppearanceCountdown > 0){
 				delayAppearanceCountdown -= Time.deltaTime;
 			}else{
+
+				if (useAutoAdvance && autoAdvanceCount > 0f){
+					autoAdvanceCount -= Time.deltaTime;
+				}
 				if (!playedAppearSound){
 					if (appearSound){
 						Instantiate(appearSound);
 					}
 					playedAppearSound = true;
 				}
-			if (_readyToAdvance && Input.GetMouseButtonDown(0)){
+				if (_readyToAdvance && ((Input.GetMouseButtonDown(0) && !disableAdvance) || (useAutoAdvance && autoAdvanceCount <= 0f))){
 				_stepRef.AdvanceText();
 			}
 		if (fadingIn){
@@ -71,7 +79,9 @@ public class SacramentTextS : MonoBehaviour {
 					myCol.a = maxAlpha;
 					fadingIn = false;
 					_readyToAdvance = true;
+						if (!disableAdvance){
 					_stepRef.myHandler.ActivateWait();
+						}
 				}
 				myText.color = myCol;
 		}
@@ -83,7 +93,9 @@ public class SacramentTextS : MonoBehaviour {
 					if (currentChar >= fullText.Length){
 						isScrolling = false;
 						_readyToAdvance = true;
+							if (!disableAdvance){
 						_stepRef.myHandler.ActivateWait();
+							}
 					}else{
 						currentText += fullText[currentChar];
 							scrollSoundCountdown--;
@@ -101,7 +113,9 @@ public class SacramentTextS : MonoBehaviour {
 					myText.text = currentText = fullText;
 					isScrolling = false;
 					_readyToAdvance = true;
+						if (!disableAdvance){
 					_stepRef.myHandler.ActivateWait();
+						}
 				}
 		}
 			}
@@ -116,14 +130,22 @@ public class SacramentTextS : MonoBehaviour {
 					fullText = myText.text;
 			myCol = myText.color;
 			maxAlpha = myCol.a;
+			if (autoAdvanceTime > 0){
+				useAutoAdvance = true;
+			}
 			_initialized = true;
+		}
+		if (useAutoAdvance){
+			autoAdvanceCount = autoAdvanceTime;
 		}
 		playedAppearSound = false;
 		delayAppearanceCountdown = delayAppearance;
 		if (textType == SacramentTextType.Instant){
 			myText.text = fullText;
 			_readyToAdvance = true;
+			if (!disableAdvance){
 			_stepRef.myHandler.ActivateWait();
+			}
 		}else if (textType == SacramentTextType.FadeIn){
 			myText.text = fullText;
 			myCol.a = 0f;

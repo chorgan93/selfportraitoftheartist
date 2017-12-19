@@ -24,14 +24,23 @@ public class CinematicTextS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
+		targetString = targetString.Replace("/n", "\n");
+		if (scrollRate > 0){
 		myText.text = "";
 		scrollCountdown = scrollRate;
 		currentChar = 0;
 
-		targetString = targetString.Replace("/n", "\n");
 		soundCountdown = soundRate;
 		if (subText){
 			subText.text = myText.text;
+		}
+		}else{
+			_doneScrolling = true;
+			myText.text = targetString;
+			if (subText){
+				subText.text = targetString;
+			}
 		}
 
 	

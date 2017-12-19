@@ -31,7 +31,6 @@ public class MerchantUIS : MonoBehaviour {
 
 	public void MoveSelector(int dir){
 
-		Debug.Log("Moved selector!");
 		if (dir > 0){
 			if (inShopMenu){
 				if (currentPos < merchantRef.itemsForSale.Length-1){

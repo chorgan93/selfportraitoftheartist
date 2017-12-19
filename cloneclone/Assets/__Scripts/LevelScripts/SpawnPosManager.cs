@@ -17,7 +17,7 @@ public class SpawnPosManager : MonoBehaviour {
 		
 		if (spawnPts.Length > 0){
 			pRef = GameObject.Find("Player");
-			if (tempWhereToSpawn > -1 && tempWhereToSpawn < spawnPts.Length-1){
+			if (tempWhereToSpawn > -1 && tempWhereToSpawn <= spawnPts.Length-1){
 				pRef.transform.position = spawnPts[tempWhereToSpawn].position;
 			}
 			else if (whereToSpawn > spawnPts.Length-1){
