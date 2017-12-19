@@ -67,6 +67,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private string twitterLink = "http://www.twitter.com/melessthanthree";
 	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
 	private string facebookLink = "http://www.facebook.com/lucahgame/";
+
+	private bool attractEnabled = true;
+	private string attractScene = "AttractMode_00";
+	private float attractCountdownMax = 30f;
+	private float attractCountdown;
 	
 	private string cheatString = "";
 	private bool allowCheats = false; // TURN OFF FOR DEMO
@@ -87,13 +92,15 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+
 		PlayerStatsS.godMode = false;
 
 		blurEffect = GetComponent<BlurOptimized>();
 		
 		fadeOnZoom.gameObject.SetActive(false);
 		firstScreenTurnOff.SetActive(true);
+
+		attractCountdown = attractCountdownMax;
 		
 		foreach (GameObject t in textTurnOff){
 			t.SetActive(true);
@@ -148,23 +155,30 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		CheckCheats();
 
-		if (!loading){
-			// check for cursor
-			/*if (!Cursor.visible){
-				if (Input.GetKeyDown(KeyCode.Escape)){
-					Cursor.visible = true;
-				}
-			}else{
-				if (Input.GetMouseButtonDown(0)){
+		if (!startedLoading){
+
+			if (attractEnabled){
+				attractCountdown -= Time.deltaTime;
+				Debug.Log(attractCountdown);
+				Debug.Log(attractCountdown);
+				if (attractCountdown <= 0){
+					loading = true;
+					newGameScene = attractScene;
+					startMusic.FadeOut();
+					loadBlackScreen.gameObject.SetActive(true);
+					loading = true;
+					selectOrb.SetActive(false);
 					Cursor.visible = false;
+					hideOnOverride.gameObject.SetActive(false);
+					showOnOverride.gameObject.SetActive(false);
+					StartNextLoad();
 				}
-			}**/
+			}
 		}
 
-		if (!started){
+		if (!started && !loading){
 
 			allowStartTime -= Time.deltaTime;
 
@@ -174,12 +188,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 				started = true;
 				selectReset = false;
 				CancelBlur();
+				attractCountdown = attractCountdownMax;
 				foreach (GameObject t in textTurnOff){
 					t.SetActive(false);
 				}
 				fadeOnZoom.gameObject.SetActive(true);
 			}
-		}else if (!onNewScreen){
+		}else if (!onNewScreen && !loading){
 			if (myCam.orthographicSize > minZoom){
 				myCam.orthographicSize -= Time.deltaTime*zoomInRate;
 			}else{
@@ -221,9 +236,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 						showOnOverride.gameObject.SetActive(false);
 						hideOnOverride.gameObject.SetActive(true);
 						SetSelection();
+						attractCountdown = attractCountdownMax;
 					}
 
 					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton())){
+						attractCountdown = attractCountdownMax;
 						if (currentSelection == 0){
 							startMusic.FadeOut();
 							loadBlackScreen.gameObject.SetActive(true);
@@ -248,6 +265,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 						
 					if (myController.HorizontalMenu() > 0.1f && stickReset){
+						attractCountdown = attractCountdownMax;
 						currentSelection++;
 						if (currentSelection > 1){
 							currentSelection = 0;
@@ -256,6 +274,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 						SetSelection();
 					}
 					if (myController.HorizontalMenu() < -0.1f && stickReset){
+						attractCountdown = attractCountdownMax;
 						currentSelection--;
 						if (currentSelection < 0){
 							currentSelection = 1;
@@ -266,7 +285,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}else{
 
 				// go down
-				if (myController.VerticalMenu() < -0.1f && stickReset){
+					if (myController.VerticalMenu() < -0.1f && stickReset){
+						attractCountdown = attractCountdownMax;
 					
 					stickReset = false;
 					
@@ -282,7 +302,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 				
 				// go up
-				if (myController.VerticalMenu() > 0.1f && stickReset){
+					if (myController.VerticalMenu() > 0.1f && stickReset){
+						attractCountdown = attractCountdownMax;
 						
 					stickReset = false;
 					
@@ -298,16 +319,18 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 
 				// control settings
-				if (currentSelection == 2){
+					if (currentSelection == 2){
 						if ((myController.HorizontalMenu() > 0.1f && stickReset) || 
 							(selectReset && (myController.TalkButton() || Input.GetKeyDown(KeyCode.KeypadEnter) 
 								|| Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)))){
+							attractCountdown = attractCountdownMax;
 						myController.ChangeControlProfile(1);
 						SetControlSelection();
 						stickReset = false;
 							selectReset = false;
 					}
-					if (myController.HorizontalMenu() < -0.1f && stickReset){
+						if (myController.HorizontalMenu() < -0.1f && stickReset){
+							attractCountdown = attractCountdownMax;
 						myController.ChangeControlProfile(-1);
 						SetControlSelection();
 						stickReset = false;
@@ -316,6 +339,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 				
 					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) 
 						&& !loading && !quitting){
+						attractCountdown = attractCountdownMax;
 						if (currentSelection == 1 || (currentSelection == 0 && !canContinue)){
 						startMusic.FadeOut();
 						loadBlackScreen.gameObject.SetActive(true);
@@ -343,7 +367,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 							hideOnOverride.gameObject.SetActive(false);
 							SetSelection();
 						}
-					else if (currentSelection == 3){
+						else if (currentSelection == 3){
+							attractCountdown = attractCountdownMax;
 							Application.Quit();
 							quitting = true;
 						}

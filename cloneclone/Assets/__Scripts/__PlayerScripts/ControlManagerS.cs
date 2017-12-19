@@ -5,6 +5,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class ControlManagerS : MonoBehaviour {
 
 	// TODO distinguish mouse/keyboard and controller types
+	// adding a comment here
 
 	private float triggerSensitivity = 0.1f;
 
