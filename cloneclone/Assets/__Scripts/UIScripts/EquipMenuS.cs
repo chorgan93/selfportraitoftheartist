@@ -9,6 +9,7 @@ public class EquipMenuS : MonoBehaviour {
 	public Text playerName;
 	public Text descriptionText;
 	private PlayerController pRef;
+	public GameObject hideOnMap;
 	[Header("Text Properties")]
 	public string paradigmIString;
 	public string paradigmIIString;
@@ -85,6 +86,12 @@ public class EquipMenuS : MonoBehaviour {
 	private Vector2 virtueBarSizeDelta;
 	private float virtueBarMaxX;
 
+	// MAP ELEMENTS
+	public MapScreenS mapScreen;
+	private static int mapToUse = -1;
+	private bool onMapScreen = false;
+	private bool mapButtonDown = false;
+
 	// INVENTORY ELEMENTS
 	private bool inInventoryMenu;
 	public EquipTechItemS[] allInventoryItems;
@@ -99,6 +106,7 @@ public class EquipMenuS : MonoBehaviour {
 	public void TurnOn(){
 
 		if (!_initialized){
+			mapScreen.gameObject.SetActive(false);
 			playerImage.enabled = false;
 			mantraMainParadigmI.enabled = false;
 			mantraSubParadigmI.enabled = false;
@@ -139,6 +147,7 @@ public class EquipMenuS : MonoBehaviour {
 		virtueBarMaxX = virtueBarFull.rectTransform.sizeDelta.x-2;
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 
+		hideOnMap.SetActive(true);
 		InGameMenuManagerS.menuInUse = true;
 		descriptionText.text = "";
 		SetSelector(0);
@@ -150,6 +159,9 @@ public class EquipMenuS : MonoBehaviour {
 		UpdateBuddies();
 		UpdateVirtues();
 		gameObject.SetActive(true);
+		onMapScreen = false;
+		onMainScreen = true;
+		mapScreen.gameObject.SetActive(false);
 	}
 	
 	
@@ -160,9 +172,31 @@ public class EquipMenuS : MonoBehaviour {
 		playerImage.color = pRef.myRenderer.color;
 		playerImage.sprite = pRef.myRenderer.sprite;
 
-		// MAIN MENU SECTION
 
-		if (onMainScreen){
+
+		// MAIN MENU SECTION
+		if (onMapScreen){
+			if (pRef.myControl.ToggleMapButton()){
+				if (!mapButtonDown){
+					TurnOn();
+				}
+				mapButtonDown = true;
+			}else{
+				mapButtonDown = false;
+			}
+		}
+		else if (onMainScreen){
+
+				if (pRef.myControl.ToggleMapButton()){
+				Debug.Log("Map button!");
+				if (!mapButtonDown){
+					TurnOnMapScreen();
+				}
+					mapButtonDown = true;
+			}else{
+				mapButtonDown = false;
+			}
+
 
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
@@ -733,6 +767,10 @@ public class EquipMenuS : MonoBehaviour {
 		
 	}
 
+	public void SetMapScene(int newScene){
+		mapToUse = newScene;
+	}
+
 	public void TurnOff(){
 		paradigmMantraSubscreen.gameObject.SetActive(false);
 		paradigmBuddySubscreen.gameObject.SetActive(false);
@@ -751,6 +789,29 @@ public class EquipMenuS : MonoBehaviour {
 		onMainScreen = true;
 		gameObject.SetActive(false);
 		InGameMenuManagerS.menuInUse = false;
+		onMapScreen = false;
+	}
+
+	void TurnOnMapScreen(){
+		hideOnMap.SetActive(false);
+		paradigmMantraSubscreen.gameObject.SetActive(false);
+		paradigmBuddySubscreen.gameObject.SetActive(false);
+		virtueSubscreen.gameObject.SetActive(false);
+		inventorySubscreen.gameObject.SetActive(false);
+		inventoryWhole.gameObject.SetActive(true);
+		virtueWhole.gameObject.SetActive(true);
+		paradigmIMantraWhole.gameObject.SetActive(true);
+		paradigmIIMantraWhole.gameObject.SetActive(true);
+		inParadigmIMenu = false;
+		inParadigmIIMenu = false;
+		inInventoryMenu = false;
+		inVirtueMenu = false;
+		exitButtonDown = true;
+		currentPos = 0;
+		onMainScreen = false;
+
+		mapScreen.Activate(mapToUse, Application.loadedLevel);
+		onMapScreen = true;
 	}
 
 	private void UpdateMantras(){

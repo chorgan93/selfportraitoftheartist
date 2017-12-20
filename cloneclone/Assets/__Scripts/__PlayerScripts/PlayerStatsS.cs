@@ -919,7 +919,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void GoToUnstoppableHealth(){
-		if (_currentHealth <= maxHealth*0.01f && myPlayerController.playerAug.unstoppableAug){
+		if (_currentHealth > 0 && _currentHealth <= maxHealth*0.01f && myPlayerController.playerAug.unstoppableAug){
 			_currentHealth = maxHealth*0.012f;
 		}
 	}

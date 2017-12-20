@@ -704,6 +704,19 @@ public class ControlManagerS : MonoBehaviour {
 		}
 	}
 
+	public bool ToggleMapButton(){
+		if (ControllerAttached()){
+
+			if (controlProfile == 0 || controlProfile == 3){
+				return (Input.GetButton("SwitchButton"+platformType) || Input.GetButton("SwitchBuddyButton"+platformType));
+			}else{
+				return (Input.GetKey(KeyCode.Tab));
+			}
+		}else{
+			return (Input.GetKey(KeyCode.Tab));
+		}
+	}
+
 	public void ChangeControlProfile(int dir){
 		if (dir > 0){
 			controlProfile ++;

@@ -346,6 +346,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		InitializePlayer();
 
+		PlayerInventoryS.I.AddSceneIveBeenTo(Application.loadedLevel);
+
 	}
 
 	void Update(){
