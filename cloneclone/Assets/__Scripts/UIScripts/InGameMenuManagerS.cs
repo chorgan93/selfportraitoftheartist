@@ -33,6 +33,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private bool holdingEscape = false;
 	public Text escapeText;
 
+	private bool preventMUse = false;
+
 	private PlayerController _pRef;
 	public PlayerController pRef { get { return _pRef; } }
 
@@ -115,12 +117,15 @@ public class InGameMenuManagerS : MonoBehaviour {
 				}
 			}
 
+
 			if ((_pRef.myControl.StartButton() && !equipMenuButtonDown) || 
-			    (equipMenu.canBeQuit && !exitButtonDown && _pRef.myControl.ExitButton())){
+			    (equipMenu.canBeQuit && !exitButtonDown && _pRef.myControl.ExitButton()) ||
+					((ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && equipMenu.inMap)){
 				equipMenuActive = false;
 				//equipMenu.gameObject.SetActive(false);
 				equipMenu.TurnOff();
 				_pRef.SetTalking(false);
+					preventMUse=true;
 				if (_pRef.myControl.ExitButton()){
 					exitButtonDown = true;
 					_pRef.SetCanSwap(false);
@@ -141,6 +146,14 @@ public class InGameMenuManagerS : MonoBehaviour {
 						equipMenuButtonDown = true;
 						hasUsedMenu = true;
 					}
+					if (allowMenuUse && (ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && !preventMUse){
+						equipMenuActive = true;
+						equipMenu.TurnOn(true);
+						_pRef.SetTalking(true);
+						equipMenuButtonDown = true;
+						hasUsedMenu = true;
+					}
+					preventMUse = false;
 					if (allowMenuUse && _pRef.myControl.BackButton() && !gameMenuButtonDown){
 						gameMenuActive = true;
 						gameMenuButtonDown = true;

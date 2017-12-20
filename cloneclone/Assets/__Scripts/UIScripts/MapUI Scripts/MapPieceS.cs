@@ -16,8 +16,14 @@ public class MapPieceS : MonoBehaviour {
 	private float highlightMaxAlpha = 0.4f;
 	private float highlightMinAlpha = 0.1f;
 
+	private RectTransform myTransform;
+
+	private MapScreenS mapRef;
+
 	// Use this for initialization
 	void Start () {
+
+		myTransform = GetComponent<RectTransform>();
 
 		if (PlayerInventoryS.I.HasBeenToScene(mySceneNum)){
 			gameObject.SetActive(true);
@@ -27,6 +33,8 @@ public class MapPieceS : MonoBehaviour {
 				highlightColor = highlightImage.color;
 				highlightColor.a = highlightMinAlpha;
 				highlightImage.color = highlightColor;
+				mapRef.playerPosition.rectTransform.parent = myTransform.parent;
+				mapRef.playerPosition.rectTransform.anchoredPosition = myTransform.anchoredPosition;
 			}else{
 				highlightImage.enabled = false;
 			}
@@ -66,5 +74,9 @@ public class MapPieceS : MonoBehaviour {
 		for (int i = 0; i < additionalIcons.Length; i++){
 			additionalIcons[i].SetActive(false);
 		}
+	}
+
+	public void SetMapRef(MapScreenS newM){
+		mapRef = newM;
 	}
 }

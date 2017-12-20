@@ -90,6 +90,7 @@ public class EquipMenuS : MonoBehaviour {
 	public MapScreenS mapScreen;
 	private static int mapToUse = -1;
 	private bool onMapScreen = false;
+	public bool inMap { get { return onMapScreen; } }
 	private bool mapButtonDown = false;
 
 	// INVENTORY ELEMENTS
@@ -103,7 +104,7 @@ public class EquipMenuS : MonoBehaviour {
 	private PlayerInventoryS inventoryRef;
 
 
-	public void TurnOn(){
+	public void TurnOn(bool goToMap = false){
 
 		if (!_initialized){
 			mapScreen.gameObject.SetActive(false);
@@ -162,6 +163,10 @@ public class EquipMenuS : MonoBehaviour {
 		onMapScreen = false;
 		onMainScreen = true;
 		mapScreen.gameObject.SetActive(false);
+
+		if (goToMap){
+			TurnOnMapScreen();
+		}
 	}
 	
 	
@@ -188,7 +193,6 @@ public class EquipMenuS : MonoBehaviour {
 		else if (onMainScreen){
 
 				if (pRef.myControl.ToggleMapButton()){
-				Debug.Log("Map button!");
 				if (!mapButtonDown){
 					TurnOnMapScreen();
 				}

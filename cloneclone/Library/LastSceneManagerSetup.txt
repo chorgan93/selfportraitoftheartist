@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/AttractMode_00.unity
+- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
   isLoaded: 1
   isActive: 1
