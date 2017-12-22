@@ -64,9 +64,9 @@ public class LockedDoorS : MonoBehaviour {
 					differentLook = false;
 					CameraFollowS.F.ResetPOI();
 					CameraFollowS.F.EndZoom();
-					gameObject.SetActive(false);
-					fading = false;
 				}
+				gameObject.SetActive(false);
+				fading = false;
 			}else{
 				mySprite.color = fadeColor;
 
@@ -79,7 +79,7 @@ public class LockedDoorS : MonoBehaviour {
 		}
 
 
-		if (playerInRange && pRef != null){
+		if (pRef){
 			if (!pRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse && !inKeypad){
 			if (pRef.myControl.TalkButton()){
 
@@ -88,11 +88,13 @@ public class LockedDoorS : MonoBehaviour {
 						TriggerExamine();
 					}
 					else{
+							if (isTalking){
 						if (DialogueManagerS.D.doneScrolling){
+								//Debug.Log("End text!");
 							DialogueManagerS.D.EndText();
 								if (differentLook){
 									doResetLook = true;
-									Debug.Log("Start fade timer!");
+									//Debug.Log("Start fade timer!");
 								}else if (setLook){
 									CameraFollowS.F.ResetPOI();
 								}
@@ -106,6 +108,7 @@ public class LockedDoorS : MonoBehaviour {
 							}else{
 								DialogueManagerS.D.CompleteText();
 							}
+						}
 						}
 				}
 				talkButtonDown = true;
@@ -150,7 +153,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void TriggerExamine(bool keypadFail = false){
 
-
+		if (playerInRange || keypadFail){
 		inKeypadFail = keypadFail;
 		if (PlayerInventoryS.I.CheckForItem(keyID)){
 			TriggerUnlock();
@@ -168,6 +171,7 @@ public class LockedDoorS : MonoBehaviour {
 			}else{
 				DialogueManagerS.D.SetDisplayText(lockString);
 			}
+		}
 		}
 
 	}
@@ -228,7 +232,7 @@ public class LockedDoorS : MonoBehaviour {
 
 	private void EndExamine(){
 		pRef.SetTalking(false);
-		pRef.SetExamining(false, examinePos);
+		pRef.SetExamining(true, examinePos);
 		isTalking = false;
 		TriggerLockOnOff();
 		inKeypadFail = false;
@@ -240,6 +244,7 @@ public class LockedDoorS : MonoBehaviour {
 				pRef = other.gameObject.GetComponent<PlayerController>();
 				interactRef = pRef.GetComponentInChildren<PlayerInteractCheckS>();
 			}
+			if (!fading){
 			if (examineLabelNoController != ""){
 				if (!pRef.myControl.ControllerAttached()){
 					pRef.SetExamining(true, examinePos, examineLabelNoController);
@@ -248,6 +253,7 @@ public class LockedDoorS : MonoBehaviour {
 				}
 			}else{
 				pRef.SetExamining(true, examinePos, examineLabel);
+			}
 			}
 			interactRef.AddDoor(this);
 			playerInRange = true;

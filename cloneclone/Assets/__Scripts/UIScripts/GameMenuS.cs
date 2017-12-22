@@ -45,6 +45,7 @@ public class GameMenuS : MonoBehaviour {
 	public Text sfxText;
 	public Text shakeText;
 	public Text zoomText;
+	public Text aliasText;
 	public RectTransform optionsSelector;
 
 
@@ -140,7 +141,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 8
+			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 9
 			)){
 
 				selectButtonUp = false;
@@ -183,6 +184,11 @@ public class GameMenuS : MonoBehaviour {
 			// zoom set
 			if (currentSelection == 7){
 				HandleZoomOption();
+			}
+
+			// alias set
+			if (currentSelection == 8){
+				HandleAliasOption();
 			}
 		}
 
@@ -453,6 +459,31 @@ public class GameMenuS : MonoBehaviour {
 		}
 		else if (DifficultyS.GetPunishInt() == 3){
 			punishText.text = "Challenge";
+		}
+	}
+
+	void HandleAliasOption(){
+		if ((myControl.HorizontalMenu() > 0.2f || myControl.HorizontalMenu() < -0.2f) && stickReset){
+			stickReset = false;
+			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
+			if (CameraEffectsS.E){
+				CameraEffectsS.E.MatchAlias();
+			}
+		}
+
+		if (selectButtonUp && myControl.MenuSelectButton()){
+			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
+			if (CameraEffectsS.E){
+				CameraEffectsS.E.MatchAlias();
+			}
+			selectButtonUp = false;
+
+		}
+
+		if (CameraEffectsS.aliasOn){
+			aliasText.text = "ON";
+		}else{
+			aliasText.text = "OFF";
 		}
 	}
 

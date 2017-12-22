@@ -172,7 +172,7 @@ public class ProjectileS : MonoBehaviour {
 		}**/
 		
 
-		if (currentRange <= 0){
+			if (currentRange <= 0 || myPlayer.isDashing){
 
 			if (projectileID < 0){
 			Destroy(gameObject);

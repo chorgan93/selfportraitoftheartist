@@ -18,6 +18,7 @@ public class MemoS : MonoBehaviour {
 	private PlayerController pRef;
 	private bool playerInRange;
 
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,7 +33,7 @@ public class MemoS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (playerInRange && pRef != null){
+		if (pRef != null){
 			if (pRef.myControl.TalkButton()){
 
 				if (!talkButtonDown){
@@ -74,12 +75,15 @@ public class MemoS : MonoBehaviour {
 	}
 
 	private void TriggerExamine(){
-		
+
+		if (playerInRange){
 		pRef.SetTalking(true);
 		pRef.SetExamining(true, examinePos);
 		isTalking = true;
 		currentStep = 0;
 		DialogueManagerS.D.SetDisplayText(examineStrings[currentStep]);
+		}
+
 
 	}
 

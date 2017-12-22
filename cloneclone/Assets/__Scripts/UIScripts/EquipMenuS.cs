@@ -92,6 +92,14 @@ public class EquipMenuS : MonoBehaviour {
 	private bool onMapScreen = false;
 	public bool inMap { get { return onMapScreen; } }
 	private bool mapButtonDown = false;
+	public Text toggleTextLeft;
+	public Text toggleTextRight;
+	private string toMapString = "MAP";
+	private string toMenuString = "MENU";
+	public Sprite[] toggleButtonSpritesLeft;
+	public Sprite[] toggleButtonSpritesRight;
+	public Image toggleButtonSpriteLeft;
+	public Image toggleButtonSpriteRight;
 
 	// INVENTORY ELEMENTS
 	private bool inInventoryMenu;
@@ -147,6 +155,9 @@ public class EquipMenuS : MonoBehaviour {
 		pRef.FaceDown();
 		virtueBarMaxX = virtueBarFull.rectTransform.sizeDelta.x-2;
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
+
+		toggleTextLeft.text = toggleTextRight.text = toMapString;
+		TurnOnToggleButton();
 
 		hideOnMap.SetActive(true);
 		InGameMenuManagerS.menuInUse = true;
@@ -241,6 +252,7 @@ public class EquipMenuS : MonoBehaviour {
 			_canBeQuit = true;
 
 		}
+
 
 		//______________________________________________________START LOADOUT SECTION
 
@@ -577,6 +589,13 @@ public class EquipMenuS : MonoBehaviour {
 
 	}
 
+
+	void TurnOnToggleButton(){
+		int buttonToTurnOn = ControlManagerS.controlProfile;
+		toggleButtonSpriteLeft.sprite = toggleButtonSpritesLeft[buttonToTurnOn];
+		toggleButtonSpriteRight.sprite = toggleButtonSpritesRight[buttonToTurnOn];
+	}
+
 	public void SetSelector(int newPos){
 
 		Color changeCols = selectorElements[currentPos].color;
@@ -814,6 +833,7 @@ public class EquipMenuS : MonoBehaviour {
 		currentPos = 0;
 		onMainScreen = false;
 
+		toggleTextLeft.text = toggleTextRight.text = toMenuString;
 		mapScreen.Activate(mapToUse, Application.loadedLevel);
 		onMapScreen = true;
 	}

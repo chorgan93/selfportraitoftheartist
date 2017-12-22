@@ -39,6 +39,8 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool _doneScrolling = true;
 	public bool doneScrolling { get { return _doneScrolling; } }
 
+	private bool _textActive = false;
+
 	private bool _freezeText = false;
 
 	private bool _usingMerchantText = false;
@@ -80,6 +82,7 @@ public class DialogueManagerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (_textActive){
 		if (!_doneScrolling && !_freezeText){
 
 			scrollCountdown -= Time.deltaTime;
@@ -94,6 +97,7 @@ public class DialogueManagerS : MonoBehaviour {
 				}
 				if (currentChar >= targetDisplayString.Length){
 					_doneScrolling = true;
+						//Debug.LogError("Done scrolling by update!");
 					advanceIndicator.SetActive(true);
 					if (triggerResponse){
 						triggerResponse = false;
@@ -102,6 +106,7 @@ public class DialogueManagerS : MonoBehaviour {
 				}
 			}
 
+		}
 		}
 
 		if (isLerping){
@@ -190,8 +195,10 @@ public class DialogueManagerS : MonoBehaviour {
 
 			memoText.text = newText;
 			_doneScrolling = true;
+			//Debug.LogError("Done scrolling bc memo!");
 		}
 		advanceIndicator.SetActive(false);
+		_textActive = true;
 
 
 	}
@@ -203,6 +210,7 @@ public class DialogueManagerS : MonoBehaviour {
 			dialogueText.text = currentDisplayString = targetDisplayString+" ";
 		}
 		_doneScrolling = true;
+		//Debug.LogError("Done scrolling by complete text function!");
 		advanceIndicator.SetActive(true);
 		if (triggerResponse){
 			triggerResponse = false;
@@ -216,6 +224,9 @@ public class DialogueManagerS : MonoBehaviour {
 		dialogueText.enabled = false;
 		memoBG.enabled = false;
 		memoText.enabled = false;
+		_textActive = false;
+
+		//CompleteText();
 
 				isLerpingOut = true;
 				isLerping = false;
@@ -237,6 +248,7 @@ public class DialogueManagerS : MonoBehaviour {
 		scrollCountdown = 0f;
 		currentChar = 0;
 		advanceIndicator.SetActive(false);
+		_doneScrolling = false;
 
 		//}
 
@@ -244,5 +256,6 @@ public class DialogueManagerS : MonoBehaviour {
 
 	public void FreezeDialogue(){
 		_freezeText = true;
+		//Debug.LogError("Dialogue freezing");
 	}
 }

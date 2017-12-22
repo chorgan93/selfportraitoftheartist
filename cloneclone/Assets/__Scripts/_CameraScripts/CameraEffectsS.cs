@@ -48,6 +48,9 @@ public class CameraEffectsS : MonoBehaviour {
 	private SunShafts sunEffect;
 	private BloomOptimized bloomEffect;
 
+	private Antialiasing antiAliasEffect;
+	public static bool aliasOn = false;
+
 	[Header("Special Scene Properties")]
 	public bool arcadeMode = false;
 
@@ -102,6 +105,9 @@ public class CameraEffectsS : MonoBehaviour {
 			resetStatic.gameObject.SetActive(false);
 
 			contrastEffect = GetComponent<ContrastStretch>();
+
+			antiAliasEffect = GetComponent<Antialiasing>();
+			antiAliasEffect.enabled = aliasOn;
 
 			#if UNITY_EDITOR_OSX
 			if (!debugEffects){
@@ -244,5 +250,9 @@ public class CameraEffectsS : MonoBehaviour {
 
 	public void SetRaysColor(Color rayColor){
 		GetComponent<SunShafts>().sunColor = rayColor;
+	}
+
+	public void MatchAlias(){
+		antiAliasEffect.enabled = aliasOn;
 	}
 }

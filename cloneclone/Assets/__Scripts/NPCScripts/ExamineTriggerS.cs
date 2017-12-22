@@ -55,6 +55,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public string teleportScene = "InfiniteScene";
 	public bool fullRevive = false;
 
+
 	public float lookTime = -1f;
 
 	void Start () {
@@ -77,6 +78,8 @@ public class ExamineTriggerS : MonoBehaviour {
 			examineString = examineString.Replace("NEWLINE","\n");
 		}
 
+
+
 	}
 
 	// Update is called once per frame
@@ -91,7 +94,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 		}
 	
-		if (playerInRange){
+		if (pRef){
 			if (delayOnTime > 0){
 				delayOnTime -= Time.deltaTime;
 				talkButtonDown = true;
@@ -106,7 +109,8 @@ public class ExamineTriggerS : MonoBehaviour {
 				talkButtonDown = true;
 
 					if (!talking && examineString != "" && !pRef.talking){
-					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading && !pRef.talking){
+						if (playerInRange){
+						if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading && !pRef.talking){
 
 						pRef.SetTalking(true);
 						if (newPoi){
@@ -128,26 +132,33 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 						if (!unlocking){
 							DialogueManagerS.D.SetDisplayText(examineString);
+
+									//Debug.Log("Set text! " + DialogueManagerS.D.doneScrolling);
 						}else{
 							DialogueManagerS.D.SetDisplayText(unlockString);
 						}
 					}
+						}
 
 				}else{
-					if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading){
+						if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading 
+							&& ((talking && examineString != "") || (examineString == "" && playerInRange))){
 						if (examineString == "" && examineSound != null){
 							Instantiate(examineSound);
 						}
-	
-						if (costToExamine > 0){
-							pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
-						}
+
+							if (costToExamine > 0){
+								pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
+							}
+
+							//Debug.Log("Second press! " + DialogueManagerS.D.doneScrolling);
 	
 						if (DialogueManagerS.D.doneScrolling){
 								if (!teleportItem){
 							pRef.SetTalking(false);
-							CameraFollowS.F.ResetPOI();
-							DialogueManagerS.D.EndText();
+									CameraFollowS.F.ResetPOI();
+									//Debug.Log("End text!");
+									DialogueManagerS.D.EndText();
 							talking = false;
 								}else{
 									DialogueManagerS.D.SetDisplayText("");
@@ -225,8 +236,10 @@ public class ExamineTriggerS : MonoBehaviour {
 									pRef.SetExamining(false, examinePos);
 								Destroy(gameObject);
 							}
+
 						}else{
-							DialogueManagerS.D.CompleteText();
+								DialogueManagerS.D.CompleteText();
+								//Debug.Log("Complete text!");
 						}
 					}
 				}
@@ -237,6 +250,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				}
 			}
 		}
+		
 
 	}
 

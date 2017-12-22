@@ -99,8 +99,10 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	}
 
-	public void EndBehavior(){
-		behaviorSet[currentActingBehavior].EndAction();
+	public void EndBehavior(bool doNext = true){
+		if (currentActingBehavior < behaviorSet.Length){
+			behaviorSet[currentActingBehavior].EndAction(doNext);
+		}
 	}
 
 	public void SetEnemy(EnemyS enemy, bool fromReset = false){

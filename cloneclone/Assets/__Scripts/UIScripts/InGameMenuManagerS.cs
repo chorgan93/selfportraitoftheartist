@@ -114,12 +114,14 @@ public class InGameMenuManagerS : MonoBehaviour {
 			if (!equipMenu.canBeQuit){
 				if (_pRef.myControl.ExitButton()){
 					exitButtonDown = true;
-				}
+					}else{
+						exitButtonDown = false;
+					}
 			}
 
 
 			if ((_pRef.myControl.StartButton() && !equipMenuButtonDown) || 
-			    (equipMenu.canBeQuit && !exitButtonDown && _pRef.myControl.ExitButton()) ||
+					((equipMenu.canBeQuit || equipMenu.inMap) && !exitButtonDown && _pRef.myControl.ExitButton()) ||
 					((ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && equipMenu.inMap)){
 				equipMenuActive = false;
 				//equipMenu.gameObject.SetActive(false);

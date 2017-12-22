@@ -733,9 +733,9 @@ public class EnemyS : MonoBehaviour {
 
 			if (!dontChange){
 	
-			foreach (EnemyBehaviorStateS bState in _behaviorStates){
-				if (bState.isActive() && !behaviorSet && !bState.doNotActAgain){
-					stateToChangeTo = bState;
+				for (int i = 0; i < _behaviorStates.Length; i++){
+					if (_behaviorStates[i].isActive() && !behaviorSet && !_behaviorStates[i].doNotActAgain){
+						stateToChangeTo = _behaviorStates[i];
 					behaviorSet = true;
 				}
 			}
@@ -746,6 +746,7 @@ public class EnemyS : MonoBehaviour {
 			}
 			else{
 				if (_currentState != stateToChangeTo){
+							_currentState.EndBehavior(false);
 					ChangeBehaviorState(stateToChangeTo);
 				}
 				else{

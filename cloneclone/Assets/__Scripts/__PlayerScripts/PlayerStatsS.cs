@@ -15,7 +15,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DESPERATE_MULT = 0.8f;
 	private const float DESPERATE_HEAL_MULT = 0.6f;
 
-	public const float STAMINA_ADD_PER_LVL = 0.5f;
+	public const float STAMINA_ADD_PER_LVL = 0.3f;
 	public const float HEALTH_ADD_AMT = 1f;
 
 	private const float anxiousChargeRate = 0.025f;
