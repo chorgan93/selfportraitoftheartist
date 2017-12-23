@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aa053e6cbc3fe4034b8ee3622701b713
-timeCreated: 1511229690
+timeCreated: 1513998718
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -272,6 +272,30 @@ TextureImporter:
     21300530: Highway Items_15
     21300532: Highway Items_16
     21300534: Highway Items_17
+    21300536: Highway Items_18
+    21300538: Highway Items_19
+    21300540: Highway Items_20
+    21300542: Highway Items_21
+    21300544: Highway Items_22
+    21300546: Highway Items_23
+    21300548: Highway Items_24
+    21300550: Highway Items_25
+    21300552: Highway Items_26
+    21300554: Highway Items_27
+    21300556: Highway Items_28
+    21300558: Highway Items_29
+    21300560: Highway Items_30
+    21300562: Highway Items_31
+    21300564: Highway Items_32
+    21300566: Highway Items_33
+    21300568: Highway Items_34
+    21300570: Highway Items_35
+    21300572: Highway Items_36
+    21300574: Highway Items_37
+    21300576: Highway Items_38
+    21300578: Highway Items_39
+    21300580: Highway Items_40
+    21300582: Highway Items_41
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -328,7 +352,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -340,7 +364,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 512
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -352,7 +376,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 512
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -364,7 +388,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 512
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -375,8 +399,8 @@ TextureImporter:
       name: Highway Items_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 384
+        x: 512
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -387,8 +411,8 @@ TextureImporter:
       name: Highway Items_5
       rect:
         serializedVersion: 2
-        x: 128
-        y: 384
+        x: 640
+        y: 768
         width: 128
         height: 128
       alignment: 0
@@ -399,8 +423,8 @@ TextureImporter:
       name: Highway Items_6
       rect:
         serializedVersion: 2
-        x: 256
-        y: 384
+        x: 0
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -411,8 +435,8 @@ TextureImporter:
       name: Highway Items_7
       rect:
         serializedVersion: 2
-        x: 384
-        y: 384
+        x: 128
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -423,8 +447,8 @@ TextureImporter:
       name: Highway Items_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 256
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -435,8 +459,8 @@ TextureImporter:
       name: Highway Items_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 384
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -447,8 +471,8 @@ TextureImporter:
       name: Highway Items_10
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 512
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -459,8 +483,8 @@ TextureImporter:
       name: Highway Items_11
       rect:
         serializedVersion: 2
-        x: 384
-        y: 256
+        x: 640
+        y: 640
         width: 128
         height: 128
       alignment: 0
@@ -472,7 +496,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -484,7 +508,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -496,7 +520,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -508,7 +532,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 512
         width: 128
         height: 128
       alignment: 0
@@ -517,6 +541,246 @@ TextureImporter:
       outline: []
     - serializedVersion: 2
       name: Highway Items_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_19
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_20
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_21
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_22
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_23
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_32
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_34
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_35
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_36
       rect:
         serializedVersion: 2
         x: 0
@@ -528,10 +792,58 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Highway Items_17
+      name: Highway Items_37
       rect:
         serializedVersion: 2
         x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_38
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_39
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_40
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Highway Items_41
+      rect:
+        serializedVersion: 2
+        x: 640
         y: 0
         width: 128
         height: 128

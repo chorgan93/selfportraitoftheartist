@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area01(Sanctum)Scenes/Area01_08_MetroEntrance.unity
+- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_00_Arcade.unity
   isLoaded: 1
   isActive: 1

@@ -349,6 +349,9 @@ public class EquipMenuS : MonoBehaviour {
 				inParadigmIMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+
+				toggleTextLeft.enabled = toggleTextRight.enabled = true;
+				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
 			}
 			
 			_canBeQuit = false;
@@ -447,6 +450,9 @@ public class EquipMenuS : MonoBehaviour {
 				inParadigmIIMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+
+				toggleTextLeft.enabled = toggleTextRight.enabled = true;
+				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
 			}
 
 			_canBeQuit = false;
@@ -512,6 +518,9 @@ public class EquipMenuS : MonoBehaviour {
 				inVirtueMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+
+				toggleTextLeft.enabled = toggleTextRight.enabled = true;
+				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
 			}
 			
 			_canBeQuit = false;
@@ -561,6 +570,9 @@ public class EquipMenuS : MonoBehaviour {
 				inVirtueMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+
+				toggleTextLeft.enabled = toggleTextRight.enabled = true;
+				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
 			}
 			
 			_canBeQuit = false;
@@ -1126,6 +1138,9 @@ public class EquipMenuS : MonoBehaviour {
 		inventoryWhole.gameObject.SetActive(false);
 		virtueWhole.gameObject.SetActive(false);
 		SetSelectorParadigmI(0, 0);
+
+		toggleTextLeft.enabled = toggleTextRight.enabled = false;
+		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
 	}
 
 	private void GoToParadigmIISetUp(){
@@ -1138,6 +1153,9 @@ public class EquipMenuS : MonoBehaviour {
 		inventoryWhole.gameObject.SetActive(false);
 		virtueWhole.gameObject.SetActive(false);
 		SetSelectorParadigmII(0);
+
+		toggleTextLeft.enabled = toggleTextRight.enabled = false;
+		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
 	}
 
 	private void GoToVirtueSetUp(){
@@ -1156,6 +1174,9 @@ public class EquipMenuS : MonoBehaviour {
 		currentVirtueSelected = 0;
 		changingVirtue = false;
 		SetSelectorVirtue(0);
+
+		toggleTextLeft.enabled = toggleTextRight.enabled = false;
+		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
 	}
 	private void GoToInventorySetUp(){
 		currentPos = 0;
@@ -1171,6 +1192,9 @@ public class EquipMenuS : MonoBehaviour {
 		virtueWhole.gameObject.SetActive(false);
 		virtueSubscreen.gameObject.SetActive(false);
 		SetSelectorInventory(0);
+
+		toggleTextLeft.enabled = toggleTextRight.enabled = false;
+		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
 	}
 
 
