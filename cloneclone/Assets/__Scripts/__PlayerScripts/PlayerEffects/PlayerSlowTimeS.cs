@@ -116,7 +116,9 @@ public class PlayerSlowTimeS : MonoBehaviour {
 	public void EndWitchTime(bool fromReset = false){
 		if (witchTimeActive || fromReset){
 
+			if (BGMHolderS.BG != null){
 			BGMHolderS.BG.SetWitch(false);
+			}
 		}
 		witchTimeActive = false;
 		outlineObj.SetActive(false);

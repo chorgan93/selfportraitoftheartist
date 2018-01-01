@@ -69,8 +69,12 @@ public class GameOverS : MonoBehaviour {
 	public void FakeDeath(bool returnToMain = false){
 		triggerRespawn = true;
 		if( returnToMain){
+			if (BGMHolderS.BG != null){
 			BGMHolderS.BG.EndAllLayers(false,true);
-			reviveScene = "MenuScene";
+			}
+			// TODO change back after magfest!!
+			//reviveScene = "MenuScene";
+			reviveScene = "MenuSceneMAGFEST";
 			MainMenuNavigationS.inMain = true;
 		}
 	}

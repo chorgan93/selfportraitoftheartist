@@ -7,9 +7,15 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private const string currentVer = "— v. 0.5.1 —";
 	private static bool hasSeenMainMenu = false;
+
+	[Header("Demo Properties")]
+	public bool publicDemoVersion = false;
+	public string demoOneScene;
+	public string demoTwoScene;
 	
 	private ControlManagerS myController;
 
+	[Header("Instance Properties")]
 	public Text versionText;
 	public float allowStartTime = 3f;
 	private bool started = false;
@@ -94,6 +100,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void Start () {
 
 		PlayerStatsS.godMode = false;
+		OverrideDemoLoadS.beenToMainMenu = true;
 
 		blurEffect = GetComponent<BlurOptimized>();
 		
@@ -161,8 +168,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 			if (attractEnabled){
 				attractCountdown -= Time.deltaTime;
-				Debug.Log(attractCountdown);
-				Debug.Log(attractCountdown);
+				//Debug.Log(attractCountdown);
 				if (attractCountdown <= 0){
 					loading = true;
 					newGameScene = attractScene;
@@ -291,12 +297,18 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection ++;
+						if (!publicDemoVersion){
 					if (currentSelection == 1 && !canContinue){
 						currentSelection = 2;
 					}
 					if (currentSelection > menuSelections.Length-1){
 						currentSelection = 0;
 					}
+						}else{
+							if (currentSelection > 1){
+								currentSelection = 0;
+							}
+						}
 					
 					SetSelection();
 				}
@@ -308,12 +320,18 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection --;
+						if (!publicDemoVersion){
 					if (currentSelection == 1 && !canContinue){
 						currentSelection = 0;
 					}
 					if (currentSelection < 0){
 						currentSelection = menuSelections.Length-1;
 					}
+						}else{
+							if (currentSelection < 0){
+								currentSelection = 1;
+							}
+						}
 					
 					SetSelection();
 				}
@@ -340,7 +358,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) 
 						&& !loading && !quitting){
 						attractCountdown = attractCountdownMax;
-						if (currentSelection == 1 || (currentSelection == 0 && !canContinue)){
+						if (currentSelection == 1 || (currentSelection == 0 && (!canContinue || publicDemoVersion))){
 						startMusic.FadeOut();
 						loadBlackScreen.gameObject.SetActive(true);
 						loading = true;
@@ -349,8 +367,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 						Cursor.visible = false;
 							hideOnOverride.gameObject.SetActive(false);
 							showOnOverride.gameObject.SetActive(false);
-						if (currentSelection == 0){
+							if (currentSelection == 0 || publicDemoVersion){
 							StoryProgressionS.NewGame(); // reset for new game progress
+								if (currentSelection == 0){
+									newGameScene = demoOneScene;
+								}else{
+									newGameScene = demoTwoScene;
+								}
 						}else{
 							SaveLoadS.Load();
 							newGameScene = GameOverS.reviveScene;
@@ -359,7 +382,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 						PlayerStatsS.healOnStart = true;
 						StartNextLoad();
 					}
-						else if (currentSelection == 0 && canContinue){
+						else if (currentSelection == 0 && canContinue && !publicDemoVersion){
 							selectingOverride = true;
 							currentSelection = 1;
 							selectReset = false;
@@ -367,7 +390,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 							hideOnOverride.gameObject.SetActive(false);
 							SetSelection();
 						}
-						else if (currentSelection == 3){
+						else if (currentSelection == 3 && !publicDemoVersion){
 							attractCountdown = attractCountdownMax;
 							Application.Quit();
 							quitting = true;

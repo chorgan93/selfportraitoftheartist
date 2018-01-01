@@ -111,7 +111,8 @@ public class LevelUpHandlerS : MonoBehaviour {
 	}
 
 	public void ResetUpgrades(){
-		
+
+		if (nextLevelUpsReset.Count > 0){
 		nextLevelUps.Clear();
 		availableLevelUps.Clear();
 		lockedLevelUps.Clear();
@@ -124,6 +125,7 @@ public class LevelUpHandlerS : MonoBehaviour {
 		}
 		for (int i = 0; i < lockedLevelUpsReset.Count; i++){
 			lockedLevelUps.Add(lockedLevelUpsReset[i]);
+		}
 		}
 	}
 

@@ -77,7 +77,8 @@ public class DifficultySelectS : MonoBehaviour {
 	private float minLoadTime = 3f;
 
 	//________________LOADING VARIABLES
-	private int destinationSceneIndex = 15;
+	[Header("Loading Properties")]
+	public int destinationSceneIndex = 15;
 	AsyncOperation async;
 	private bool startedLoading = false;
 

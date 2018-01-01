@@ -55,6 +55,12 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	public static InventorySave inventoryData;
 
+	[Header("Demo Properties")]
+	private bool unlockForDemo = false;
+	private bool eraseOnNewGame = false;
+	public List<PlayerWeaponS> weaponsToAddForDemo;
+	public List<GameObject> buddiesToAddForDemo;
+
 	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 	public static bool DO_NOT_SAVE = false;
 	#endif
@@ -360,10 +366,98 @@ public class PlayerInventoryS : MonoBehaviour {
 			_earnedTech = new List<int>(){0,1,2,3,7,8,9};
 			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
 
+			if (unlockForDemo){
+				DemoUnlocks(pRef);
+			}
 
 		}
 
 		initialized = true;
+	}
+
+	public void ReinitializeForDemo(){
+		PlayerController pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+
+
+		_earnedUpgrades = new List<int>();
+		_earnedVirtues = new List<int>();
+		_earnedVirtues.Add(0);
+		PlayerController.equippedVirtues = new List<int>();
+		PlayerController.equippedVirtues.Add(0);
+		_collectedItems = new List<int>();
+		healNums = new List<int>();
+		laPickupNums = new List<int>();
+		chargeNums = new List<int>();
+		vpNums = new List<int>();
+		_collectedKeyItems = new List<int>();
+		_collectedItemCount = new List<int>();
+		_openedDoors = new List<int>();
+		_clearedWalls = new List<int>();
+		equippedWeapons = pRef.equippedWeapons;
+		equippedBuddies = pRef.equippedBuddies;
+		subWeapons = pRef.subWeapons;
+
+		scenesIveBeenTo = new List<int>();
+		checkpointsReachedScenes = new List<int>();
+		checkpointsReachedSpawns = new List<int>();
+
+		unlockedWeapons = new List<PlayerWeaponS>();
+		for (int i = 0; i < pRef.equippedWeapons.Count; i++){
+			if (i == 0){
+				unlockedWeapons.Add(pRef.equippedWeapons[i]);
+			}else{
+				if (!unlockedWeapons.Contains(pRef.equippedWeapons[i])){
+					unlockedWeapons.Add(pRef.equippedWeapons[i]);
+				}
+			}
+		}
+
+		unlockedBuddies = new List<BuddyS>();
+		for (int i = 0; i < pRef.equippedBuddies.Count; i++){
+			if (i == 0){
+				unlockedBuddies.Add(pRef.equippedBuddies[i].GetComponent<BuddyS>());
+			}else{
+				if (!unlockedBuddies.Contains(pRef.equippedBuddies[i].GetComponent<BuddyS>())){
+					unlockedBuddies.Add(pRef.equippedBuddies[i].GetComponent<BuddyS>());
+				}
+			}
+		}
+
+		_earnedTech = new List<int>(){0,1,2,3,7,8,9};
+		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
+
+		DemoUnlocks(pRef);
+
+	}
+
+	void DemoUnlocks(PlayerController pRef){
+
+		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
+		lHandler.ResetUpgrades();
+		Debug.Log("Triggering unlocks!");
+		_earnedTech.Add(5);
+		_earnedTech.Add(6);
+		PlayerController.equippedUpgrades.Add(5);
+		PlayerController.equippedUpgrades.Add(6);
+		for (int i = 0; i < buddiesToAddForDemo.Count; i++){
+			unlockedBuddies.Add(buddiesToAddForDemo[i].GetComponent<BuddyS>());
+			if (i == 0 && pRef != null){
+				pRef.equippedBuddies.Add(buddiesToAddForDemo[i]);
+			}
+		}
+		for (int i = 0; i < weaponsToAddForDemo.Count; i++){
+			unlockedWeapons.Add(weaponsToAddForDemo[i]);
+			if (i == 0  && pRef != null){
+				pRef.equippedWeapons.Add(weaponsToAddForDemo[i]);
+				pRef.subWeapons.Add(weaponsToAddForDemo[i]);
+			}
+		}
+		_collectedItems = new List<int>(2){0,1};
+		healNums = new List<int>(3){0,1,2};
+		chargeNums = new List<int>(1){0};
+		_collectedItemCount = new List<int>(2){3,1};
+		vpNums = new List<int>(3){0,1,2};
+		PlayerCollectionS.currencyCollected = 2500;
 	}
 
 	public void AddOpenDoor(int i){
@@ -452,9 +546,12 @@ public class PlayerInventoryS : MonoBehaviour {
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		lHandler.ResetUpgrades();
 		_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+		if (unlockForDemo){
+			DemoUnlocks(null);
+		}
 		SaveLoadout(equippedWeapons, subWeapons, buddyList);
 		GameMenuS.ResetOptions();
-		OverwriteInventoryData();
+		OverwriteInventoryData(eraseOnNewGame);
 	}
 
 	void SetUpStartTech(){
@@ -556,8 +653,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		_iManager.RefreshUI();
 	}
 	 
-	public void OverwriteInventoryData(){
+	public void OverwriteInventoryData(bool erase = false){
 
+		if (erase){
+			inventoryData = null;
+		}else{
 		inventoryData = new InventorySave();
 
 		if (initialized){
@@ -639,7 +739,7 @@ public class PlayerInventoryS : MonoBehaviour {
 				_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
 			}
 			inventoryData.tvNumber = _tvNum;
-
+			}
 		}
 	}
 }

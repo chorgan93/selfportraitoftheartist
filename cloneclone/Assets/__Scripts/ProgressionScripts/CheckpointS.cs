@@ -4,6 +4,7 @@ using System.Collections;
 public class CheckpointS : MonoBehaviour {
 
 	public bool fullCheckpoint = true;
+	public bool dontAddToSceneList = false;
 	private PlayerDetectS _playerDetect;
 	private bool _examining = false;
 	public Vector3 examinePos = new Vector3(0, 1f, 0);
@@ -39,7 +40,9 @@ public class CheckpointS : MonoBehaviour {
 			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
 		}else{	
 			_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+			if (!dontAddToSceneList){
 			PlayerInventoryS.I.AddCheckpoint(Application.loadedLevel, spawnNum);
+			}
 		}
 
 		if (addToCompletedFights.Length > 0){

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class EquipMenuS : MonoBehaviour {
 
+	[Header("Demo Properties")]
+	public bool disableTech = true;
+	[Header("Instance Properties")]
 	public Image playerImage;
 	public Text playerLevel;
 	public Text playerName;
@@ -244,7 +247,7 @@ public class EquipMenuS : MonoBehaviour {
 				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
 					GoToVirtueSetUp();
 				}
-				if (currentPos == 3){
+				if (currentPos == 3 && !disableTech){
 					GoToInventorySetUp();
 				}
 			}
