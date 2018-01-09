@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour {
 
 	//_________________________________________CONSTANTS
 
-	private static float SPRINT_THRESHOLD = 0.66f;
-	private static float DASH_THRESHOLD = 0.34f;
 	private static float DASH_RESET_THRESHOLD = 0.15f;
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
@@ -20,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	private const int DODGE_PHYSICS_LAYER = 12;
 
 
-	private const float ADAPTIVE_WINDOW = 0.22f;
+	private const float ADAPTIVE_WINDOW = 0.32f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
 	
@@ -293,7 +291,6 @@ public class PlayerController : MonoBehaviour {
 	private float staggerBonusTimeMax = 1f;
 	private float staggerBonusTime;
 	private float _adaptiveCountdown = 0f;
-	private float _adaptiveTimeMax = 1.5f;
 	private bool canDoAdaptive = false;
 	public bool adaptiveAugBonus { get { return (_adaptiveCountdown > 0); } }
 
