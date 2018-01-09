@@ -58,25 +58,25 @@ public class LevelUpHandlerS : MonoBehaviour {
 			if (lockedLevelUps[i].minLevelForUpgrade > 0){
 				if (lockedLevelUps[i].minLevelForUpgrade <= currentPlayerLvl){
 					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
-					lockedLevelUps.RemoveAt(i);
+					lockedLevelUps.Remove(lockedLevelUps[i]);
 				}
 			}
 			else if (lockedLevelUps[i].minHealthForUpgrade > 0){
 				if (lockedLevelUps[i].minHealthForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(0)){
 					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
-					lockedLevelUps.RemoveAt(i);
+					lockedLevelUps.Remove(lockedLevelUps[i]);
 				}
 			}
 			else if (lockedLevelUps[i].minStaminaForUpgrade > 0){
 				if (lockedLevelUps[i].minStaminaForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(1)){
 					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
-					lockedLevelUps.RemoveAt(i);
+					lockedLevelUps.Remove(lockedLevelUps[i]);
 				}
 			}
 			else if (lockedLevelUps[i].minChargeForUpgrade > 0){
 				if (lockedLevelUps[i].minChargeForUpgrade <= PlayerInventoryS.I.GetUpgradeCount(2)){
 					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
-					lockedLevelUps.RemoveAt(i);
+					lockedLevelUps.Remove(lockedLevelUps[i]);
 				}
 			}
 		

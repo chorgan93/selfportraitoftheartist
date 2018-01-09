@@ -17,6 +17,8 @@ public class GameOverS : MonoBehaviour {
 
 	private bool triggerRespawn = false;
 
+	private bool resetSet = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -29,6 +31,11 @@ public class GameOverS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!resetSet){
+
+			playerReference.pRef.SetResetManager(this);
+			resetSet = true;
+		}
 
 		if ((playerReference.PlayerIsDead() || triggerRespawn) && !gameOver){
 			gameOver = true;

@@ -326,6 +326,11 @@ public class PlayerController : MonoBehaviour {
 	public string overrideExamineString { get { return _overrideExamineString; } }
 	public bool talking { get { return _isTalking; } }
 
+	//_________________________________________DEMO SHOW ONLY
+	private float resetTimeMax = 60f;
+	private float resetCountdown;
+	private bool demoResetTriggered = false;
+	private GameOverS resetManager;
 	
 	//_________________________________________UNITY METHODS
 
@@ -561,6 +566,8 @@ public class PlayerController : MonoBehaviour {
 		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
 		myRenderer.color = equippedWeapon.swapColor;
 
+		resetCountdown = resetTimeMax;
+
 	}
 
 	void PlayerFixedUpdate(){
@@ -585,11 +592,37 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void DemoResetCheck(){
+
+		// for demo show purposes only!! TODO comment out when not making show demo
+		if (!demoResetTriggered){
+			resetCountdown -= Time.deltaTime;
+			if (resetCountdown <= 0){
+				if (resetManager){
+				SetExamining(false, Vector3.zero, "");
+				SetTalking(true);
+				resetManager.FakeDeath(true);
+				}
+				demoResetTriggered = true;
+		
+			}
+
+		}
+
+
+
+	}
+
+	public void SetResetManager(GameOverS newManage){
+		resetManager = newManage;
+	}
+
 	void PlayerUpdate(){
 
 		ButtonCheck();
 		ManageCounterTimer();
-		
+
+		DemoResetCheck();
 		ManageFlash();
 		ManageAugments();
 
@@ -757,6 +790,7 @@ public class PlayerController : MonoBehaviour {
 				
 				_playerSound.SetWalking(true);
 				_isDoingMovement = true;
+				resetCountdown = resetTimeMax;
 
 				if (Mathf.Abs(moveVelocity.x) <= 0.6f && moveVelocity.y < 0){
 					FaceDown();
@@ -884,6 +918,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		FlashMana();
+		resetCountdown = resetTimeMax;
 		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
@@ -1013,6 +1048,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TriggerSprint(){
 		_isSprinting = true;
+		resetCountdown = resetTimeMax;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag*sprintDragMult;
@@ -1443,6 +1479,9 @@ public class PlayerController : MonoBehaviour {
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
 				){
 
+					// demo reset count
+					resetCountdown = resetTimeMax;
+
 					// first, check for parry, then counter attack, then regular attack
 					/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 						List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
@@ -1658,7 +1697,8 @@ public class PlayerController : MonoBehaviour {
 		
 			if (switchButtonUp && _myBuddy.canSwitch){
 				if (myControl.SwitchButton()){
-	
+
+					resetCountdown = resetTimeMax;
 					_currentParadigm++;
 					if (_currentParadigm > equippedWeapons.Count-1){
 						_currentParadigm = 0;
@@ -2903,6 +2943,10 @@ public class PlayerController : MonoBehaviour {
 		if (!_isDashing && !_isSprinting){
 		StartCoroutine(HitStopRoutine(stopTime));
 		}
+	}
+
+	public void ResetTimeMax(){
+		resetCountdown = resetTimeMax;
 	}
 
 	public float VirtueStaminaMult(){

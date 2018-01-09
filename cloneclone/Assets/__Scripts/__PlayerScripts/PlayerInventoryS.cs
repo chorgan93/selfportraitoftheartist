@@ -434,7 +434,6 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		lHandler.ResetUpgrades();
-		Debug.Log("Triggering unlocks!");
 		_earnedTech.Add(5);
 		_earnedTech.Add(6);
 		PlayerController.equippedUpgrades.Add(5);
@@ -452,12 +451,22 @@ public class PlayerInventoryS : MonoBehaviour {
 				pRef.subWeapons.Add(weaponsToAddForDemo[i]);
 			}
 		}
+
+
+		PlayerInventoryS.I._earnedVirtues.Add(1);
+		PlayerInventoryS.I._earnedVirtues.Add(3);
+		PlayerInventoryS.I._earnedVirtues.Add(8);
+		PlayerInventoryS.I._earnedVirtues.Add(12);
+		PlayerInventoryS.I._earnedVirtues.Add(17);
+		PlayerInventoryS.I._earnedVirtues.Add(19);
+		PlayerInventoryS.I._earnedVirtues.Add(20);
+
 		_collectedItems = new List<int>(2){0,1};
 		healNums = new List<int>(3){0,1,2};
 		chargeNums = new List<int>(1){0};
 		_collectedItemCount = new List<int>(2){3,1};
+		iManager.equippedInventory.Add(1);
 		vpNums = new List<int>(3){0,1,2};
-		PlayerCollectionS.currencyCollected = 2500;
 	}
 
 	public void AddOpenDoor(int i){
@@ -521,6 +530,11 @@ public class PlayerInventoryS : MonoBehaviour {
 		scenesIveBeenTo.Clear();
 		checkpointsReachedScenes.Clear();
 		checkpointsReachedSpawns.Clear();
+
+		if (_iManager){
+			_iManager.equippedInventory.Clear();
+			_iManager.equippedInventory.Add(0);
+		}
 
 		healNums.Clear();
 		vpNums.Clear();

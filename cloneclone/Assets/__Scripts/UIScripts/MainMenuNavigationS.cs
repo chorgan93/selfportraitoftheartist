@@ -149,7 +149,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 		startMusic.FadeIn();
 
 		if (SaveLoadS.SaveFileExists()){
+			if (!publicDemoVersion){
 			currentSelection = 1;
+			}
 			canContinue = true;
 		}else{
 			continueDisableColor.a = 0f;

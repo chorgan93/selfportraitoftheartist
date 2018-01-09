@@ -89,12 +89,14 @@ public class LevelUpMenu : MonoBehaviour {
 
 				if (myControl.Horizontal() > 0f ||
 				    myControl.Vertical() < 0f){
+					pRef.ResetTimeMax();
 					currentPos++;
 					if (currentPos > mainMenuSelectPositions.Length-1){
 						currentPos = 0;
 					}
 				}else{
 					currentPos--;
+					pRef.ResetTimeMax();
 					if (currentPos < 0){
 						currentPos = mainMenuSelectPositions.Length-1;
 					}
@@ -114,14 +116,17 @@ public class LevelUpMenu : MonoBehaviour {
 			if (!_selectButtonDown && myControl.MenuSelectButton()){
 				_selectButtonDown = true;
 				if (currentPos == 0){
+					pRef.ResetTimeMax();
 					TurnOnLevelUpMenu();
 				}
 				
 				else if (currentPos == 1 && canTravel){
+					pRef.ResetTimeMax();
 					TurnOnTravelMenu();
 				}
 
 				else if (currentPos == 2){
+					pRef.ResetTimeMax();
 					TurnOff();
 					sendExitMessage = true;
 				}
@@ -138,13 +143,15 @@ public class LevelUpMenu : MonoBehaviour {
 				levelMenuItemOutlines[currentPos].color = textStartColor;
 				
 				if (myControl.Horizontal() > 0f ||
-				    myControl.Vertical() < 0f){
+					myControl.Vertical() < 0f){
+					pRef.ResetTimeMax();
 					currentPos++;
 					if (currentPos > levelMenuItems.Length-1){
 						currentPos = 0;
 					}
 				}else{
 					currentPos--;
+					pRef.ResetTimeMax();
 					if (currentPos < 0){
 						currentPos = levelMenuItems.Length-1;
 					}
@@ -158,6 +165,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 			if (!_selectButtonDown && myControl.MenuSelectButton()){
 				_selectButtonDown = true;
+				pRef.ResetTimeMax();
 				if (levelMenuItems[currentPos].CanBeUpgraded()){
 					pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
 					levelMenuItems[currentPos].BuyUpgrade(currentPos, levelHandler);
@@ -176,13 +184,16 @@ public class LevelUpMenu : MonoBehaviour {
 			if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
 			                            Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted){
 				_controlStickMoved = true;
-				
+
+				pRef.ResetTimeMax();
 				travelMenuChoices[currentPos].color = textStartColor;
 				
 				if (myControl.Horizontal() > 0f ||
-				    myControl.Vertical() < 0f){
+					myControl.Vertical() < 0f){
+					pRef.ResetTimeMax();
 					AdvanceTravelPos(1);
 				}else{
+					pRef.ResetTimeMax();
 					AdvanceTravelPos(-1);
 				}
 
@@ -197,6 +208,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 			if (!_selectButtonDown && myControl.MenuSelectButton()){
 				_selectButtonDown = true;
+				pRef.ResetTimeMax();
 
 				// load level if we're not already there
 				if (travelMenuSceneNums[currentPos] != Application.loadedLevel && !travelStarted){
@@ -230,6 +242,7 @@ public class LevelUpMenu : MonoBehaviour {
 			}
 			if (!_exitButtonDown && myControl.ExitButton() && !travelStarted && !doingEffect){
 				TurnOffTravelMenu();
+				pRef.ResetTimeMax();
 			}
 		}
 

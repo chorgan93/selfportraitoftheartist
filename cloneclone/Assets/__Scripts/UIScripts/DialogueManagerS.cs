@@ -145,6 +145,9 @@ public class DialogueManagerS : MonoBehaviour {
 
 	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, bool endWithResponse = false){
 
+		if (hideStats){
+			hideStats.pConRef.ResetTimeMax();
+		}
 		if (!isMemo){
 			memoBG.enabled = false;
 			memoText.enabled = false;
@@ -204,6 +207,9 @@ public class DialogueManagerS : MonoBehaviour {
 	}
 
 	public void CompleteText(){
+		if (hideStats){
+			hideStats.pConRef.ResetTimeMax();
+		}
 		if (_usingMerchantText){
 			merchantText.text = currentDisplayString = targetDisplayString+" ";
 		}else{
@@ -219,7 +225,9 @@ public class DialogueManagerS : MonoBehaviour {
 	}
 
 	public void EndText(bool newStatOn = true){
-
+		if (hideStats){
+			hideStats.pConRef.ResetTimeMax();
+		}
 		//if (!waitingForResponse || (waitingForResponse && !dialogueResponse.getChoiceActive)){
 		dialogueText.enabled = false;
 		memoBG.enabled = false;

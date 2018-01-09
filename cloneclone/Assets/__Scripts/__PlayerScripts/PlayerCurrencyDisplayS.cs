@@ -185,4 +185,8 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		borderDisplay.enabled = false;
 		iconDisplay.enabled = false;
 	}
+
+	public void UpdateCurrency(){
+		totalDisplay.text = PlayerCollectionS.currencyCollected.ToString();
+	}
 }

@@ -196,6 +196,7 @@ public class EquipMenuS : MonoBehaviour {
 		// MAIN MENU SECTION
 		if (onMapScreen){
 			if (pRef.myControl.ToggleMapButton()){
+				pRef.ResetTimeMax();
 				if (!mapButtonDown){
 					TurnOn();
 				}
@@ -206,7 +207,8 @@ public class EquipMenuS : MonoBehaviour {
 		}
 		else if (onMainScreen){
 
-				if (pRef.myControl.ToggleMapButton()){
+			if (pRef.myControl.ToggleMapButton()){
+				pRef.ResetTimeMax();
 				if (!mapButtonDown){
 					TurnOnMapScreen();
 				}
@@ -218,6 +220,7 @@ public class EquipMenuS : MonoBehaviour {
 
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					if (targetPos > selectorPositions.Length-1){
@@ -227,6 +230,7 @@ public class EquipMenuS : MonoBehaviour {
 					controlStickMoved = true;
 				}
 				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
 					if (targetPos < 0){
@@ -238,6 +242,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 
 			if (pRef.myControl.MenuSelectButton() && !selectButtonDown){
+				pRef.ResetTimeMax();
 				if (currentPos == 0){
 					GoToParadigmISetUp();
 				}
@@ -264,6 +269,7 @@ public class EquipMenuS : MonoBehaviour {
 		if (inParadigmIMenu){
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					if (!changingWeapon){
@@ -280,6 +286,7 @@ public class EquipMenuS : MonoBehaviour {
 					controlStickMoved = true;
 				}
 				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
 					if (!changingWeapon){
@@ -300,6 +307,7 @@ public class EquipMenuS : MonoBehaviour {
 			// changing mantra function
 			if (!changingWeapon){
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					pRef.ResetTimeMax();
 					changingWeapon = true;
 					selectButtonDown = true;
 					currentWeaponSelected = currentPos;
@@ -315,6 +323,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 			else{
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					pRef.ResetTimeMax();
 					changingWeapon = false;
 					selectButtonDown = true;
 
@@ -336,6 +345,7 @@ public class EquipMenuS : MonoBehaviour {
 
 				}
 				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingWeapon = false;
 					exitButtonDown = true;
@@ -344,6 +354,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				pRef.ResetTimeMax();
 				SetSelector(0);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
 				paradigmBuddySubscreen.gameObject.SetActive(false);
@@ -366,6 +377,7 @@ public class EquipMenuS : MonoBehaviour {
 		if (inParadigmIIMenu){
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					if (!changingWeapon){
@@ -382,6 +394,7 @@ public class EquipMenuS : MonoBehaviour {
 					controlStickMoved = true;
 				}
 				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
 					if (!changingWeapon){
@@ -402,6 +415,7 @@ public class EquipMenuS : MonoBehaviour {
 			// changing mantra function
 			if (!changingWeapon){
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					pRef.ResetTimeMax();
 					changingWeapon = true;
 					selectButtonDown = true;
 					currentWeaponSelected = currentPos;
@@ -417,6 +431,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 			else{
 				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+					pRef.ResetTimeMax();
 					changingWeapon = false;
 					selectButtonDown = true;
 					// swap actual mantra equip & update display
@@ -437,6 +452,7 @@ public class EquipMenuS : MonoBehaviour {
 
 				}
 				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingWeapon = false;
 					exitButtonDown = true;
@@ -445,6 +461,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 				
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				pRef.ResetTimeMax();
 				SetSelector(1);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
 				paradigmBuddySubscreen.gameObject.SetActive(false);
@@ -468,12 +485,14 @@ public class EquipMenuS : MonoBehaviour {
 			changingVirtue = true;
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					SetSelectorVirtue(targetPos, 1);
 					controlStickMoved = true;
 				}
 				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
 					SetSelectorVirtue(targetPos, -1);
@@ -481,7 +500,8 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			// changing virtue function
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+			if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				pRef.ResetTimeMax();
 					//changingVirtue = false;
 					selectButtonDown = true;
 
@@ -503,6 +523,7 @@ public class EquipMenuS : MonoBehaviour {
 					UpdateVirtueDisplay();
 
 				if (!exitButtonDown && pRef.myControl.ExitButton()){
+					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingVirtue = false;
 					exitButtonDown = true;
@@ -510,6 +531,7 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				pRef.ResetTimeMax();
 				virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 				currentPos = 0;
 				SetSelector(2);
@@ -534,12 +556,14 @@ public class EquipMenuS : MonoBehaviour {
 		if (inInventoryMenu){
 			if (!controlStickMoved){
 				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					SetSelectorInventory(targetPos, 1);
 					controlStickMoved = true;
 				}
 				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
 					SetSelectorInventory(targetPos, -1);
@@ -548,6 +572,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 
 			if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				pRef.ResetTimeMax();
 				selectButtonDown = true;
 					
 				// toggle unlocked tech
@@ -562,6 +587,7 @@ public class EquipMenuS : MonoBehaviour {
 			}
 
 			if (!exitButtonDown && pRef.myControl.ExitButton()){
+				pRef.ResetTimeMax();
 				currentPos = 0;
 				SetSelector(3);
 				inventorySubscreen.gameObject.SetActive(false);
@@ -920,7 +946,7 @@ public class EquipMenuS : MonoBehaviour {
 		int nextAvail = startPt-3;
 		
 		if (dir > 0){
-			if (startPt+3 <= allMantraItems.Length){
+			if (startPt-3 <= allMantraItems.Length){
 				for (int i = startPt-3; i < allMantraItems.Length; i++){
 					if (allMantraItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;

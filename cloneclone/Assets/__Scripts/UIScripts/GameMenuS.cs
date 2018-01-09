@@ -87,6 +87,7 @@ public class GameMenuS : MonoBehaviour {
 			if (myControl.VerticalMenu() > 0.2f && stickReset){
 				stickReset = false;
 				currentSelection--;
+				myManager.pRef.ResetTimeMax();
 				if (currentSelection < 0){
 					currentSelection = selectTexts.Length-1;
 				}
@@ -95,6 +96,7 @@ public class GameMenuS : MonoBehaviour {
 			if (myControl.VerticalMenu() < -0.2f && stickReset){
 				stickReset = false;
 				currentSelection++;
+				myManager.pRef.ResetTimeMax();
 				if (currentSelection > selectTexts.Length-1){
 					currentSelection = 0;
 				}
@@ -103,12 +105,14 @@ public class GameMenuS : MonoBehaviour {
 
 			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 0)){
 				TurnOff();
+				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
 				cancelButtonUp = false;
 				myManager.TurnOffFromGameMenu();
 			}
 
 			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 2){
+				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
 				inOptionsMenu = true;
 				MatchOptionsText();
@@ -118,16 +122,19 @@ public class GameMenuS : MonoBehaviour {
 
 			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
 				RespawnAtLastCheckpoint();
+				myManager.pRef.ResetTimeMax();
 			}
 
 			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
 				(PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu)){
 				RespawnAtLastCheckpoint(true);
+				myManager.pRef.ResetTimeMax();
 			}
 		}else{
 			if (myControl.VerticalMenu() > 0.2f && stickReset){
 				stickReset = false;
 				currentSelection--;
+				myManager.pRef.ResetTimeMax();
 				if (currentSelection < 0){
 					currentSelection = optionsTexts.Length-1;
 				}
@@ -136,6 +143,7 @@ public class GameMenuS : MonoBehaviour {
 			if (myControl.VerticalMenu() < -0.2f && stickReset){
 				stickReset = false;
 				currentSelection++;
+				myManager.pRef.ResetTimeMax();
 				if (currentSelection > optionsTexts.Length-1){
 					currentSelection = 0;
 				}
@@ -149,6 +157,7 @@ public class GameMenuS : MonoBehaviour {
 				selectButtonUp = false;
 				cancelButtonUp = false;
 				inOptionsMenu = false;
+				myManager.pRef.ResetTimeMax();
 				SetSelection(2);
 				optionsMenuProper.gameObject.SetActive(false);
 
@@ -157,40 +166,49 @@ public class GameMenuS : MonoBehaviour {
 			// control type set
 			if (currentSelection == 0){
 				HandleControlOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// speed type set
 			if (currentSelection == 1){
 				HandleSpeedOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// sin difficulty set
 			if (currentSelection == 2){
 				HandleSinOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// punishment difficulty set
 			if (currentSelection == 3){
 				HandlePunishOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// music volume set
 			if (currentSelection == 4){
 				HandleMusicOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// sfx volume set
 			if (currentSelection == 5){
 				HandleSfxOption();
+				myManager.pRef.ResetTimeMax();
 			}
 			// screenshake set
 			if (currentSelection == 6){
 				HandleShakeOption();
+				myManager.pRef.ResetTimeMax();
 			}
 
 			// zoom set
 			if (currentSelection == 7){
 				HandleZoomOption();
+				myManager.pRef.ResetTimeMax();
 			}
 
 			// alias set
 			if (currentSelection == 8){
 				HandleAliasOption();
+				myManager.pRef.ResetTimeMax();
 			}
 		}
 
