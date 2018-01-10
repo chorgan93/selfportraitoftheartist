@@ -56,7 +56,10 @@ public class LevelUpHandlerS : MonoBehaviour {
 		// check for locked level ups
 		for (int i = lockedLevelUps.Count-1; i >= 0; i--){
 			if (lockedLevelUps[i].minLevelForUpgrade > 0){
-				if (lockedLevelUps[i].minLevelForUpgrade <= currentPlayerLvl){
+				if (PlayerInventoryS.I.earnedUpgrades.Contains(lockedLevelUps[i].levelUpToAdd.upgradeID)){
+					lockedLevelUps.Remove(lockedLevelUps[i]);
+				}
+				else if (lockedLevelUps[i].minLevelForUpgrade <= currentPlayerLvl){
 					availableLevelUps.Add(lockedLevelUps[i].levelUpToAdd);
 					lockedLevelUps.Remove(lockedLevelUps[i]);
 				}
