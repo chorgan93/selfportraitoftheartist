@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawnBehavior : EnemyBehaviorS {
 
@@ -12,6 +13,7 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 	public float spawnDelay = 0.8f;
 	public float timeBetweenSpawns = 0.3f;
 	public Transform[] spawnReferences;
+	private List<Vector3> spawnPositions;
 	public GameObject spawnObject;
 	private GameObject currentSpawnObject;
 	public bool parentSpawn = false;
@@ -44,6 +46,13 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 		}
 		myEnemyReference.AttackFlashEffect();
 
+		if (spawnPositions == null){
+			spawnPositions = new List<Vector3>();
+			for (int i = 0; i < spawnReferences.Length; i++){
+				spawnPositions.Add(spawnReferences[i].position-myEnemyReference.transform.position);
+			}
+		}
+
 		currentSpawnDelay = spawnDelay;
 		currentSpawnStep = 0;
 		behaviorCountdown = behaviorDuration;
@@ -57,7 +66,11 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 			if (currentSpawnDelay <= 0){
 				currentSpawnDelay = timeBetweenSpawns;
 				currentSpawnObject = 
-					(GameObject)Instantiate(spawnObject, spawnReferences[currentSpawnStep].position, Quaternion.identity);
+					(GameObject)Instantiate(spawnObject, transform.position+spawnPositions[currentSpawnStep], Quaternion.identity);
+
+				if (currentSpawnObject.GetComponent<EnemyShooterS>()){
+					currentSpawnObject.GetComponent<EnemyShooterS>().SetEnemy(myEnemyReference);
+				}
 				if (parentSpawn){
 					currentSpawnObject.transform.parent = spawnReferences[currentSpawnStep].parent;
 				}
@@ -72,6 +85,11 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 		base.StartAction ();
 		InitializeAction();
 
+	}
+
+	public override void SetSecondBehaviorStart(float difficultyMult, EnemyS enemyRef){
+		base.SetSecondBehaviorStart(difficultyMult, enemyRef);
+		InitializeAction();
 	}
 	
 	public override void EndAction (bool doNextAction = true)

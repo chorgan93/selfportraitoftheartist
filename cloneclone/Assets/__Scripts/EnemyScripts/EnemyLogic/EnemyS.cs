@@ -82,6 +82,9 @@ public class EnemyS : MonoBehaviour {
 	private EnemyHealthFeathersS healthFeatherReference;
 	//private EnemyHealthBarS healthBarReference;
 
+	private TrackingEffectS _myTracker;
+	public TrackingEffectS myTracker { get { return _myTracker; } }
+
 	private Vector3 startSize;
 
 	private int flashFrames;
@@ -413,7 +416,7 @@ public class EnemyS : MonoBehaviour {
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);
 
-
+		_myTracker = GetComponentInChildren<TrackingEffectS>();
 
 		damageMultiplier/=CorruptedMult();
 

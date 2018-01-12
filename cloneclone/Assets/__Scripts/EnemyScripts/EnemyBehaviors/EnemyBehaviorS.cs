@@ -100,6 +100,15 @@ public class EnemyBehaviorS : MonoBehaviour {
 
 	}
 
+	public virtual void SetSecondBehaviorStart(float difficultyMult, EnemyS enemyRef){
+		_behaviorActing = true;
+
+		myEnemy = enemyRef;
+		behaviorActTime = 0f;
+
+		currentDifficultyMult = difficultyMult;
+	}
+
 	public virtual void BehaviorUpdate(){
 		if (_behaviorActing){
 			behaviorActTime += Time.deltaTime;

@@ -38,7 +38,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			if (!foundTrackingTarget){
 				trackingCountdown -= Time.deltaTime*currentDifficultyMult;
 				if (trackingCountdown <= 0){
-					SetAttackDirection();
+					SetAttackDirection(true);
 					foundTrackingTarget = true;
 				}
 			}
@@ -115,8 +115,9 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 				foundTrackingTarget = true;
 			}else{
 				trackingCountdown = trackingTime;
+				foundTrackingTarget = false;
 			}
-			
+				
 	
 			if (attackDragAmt > 0){
 				myEnemyReference.myRigidbody.drag = attackDragAmt*EnemyS.FIX_DRAG_MULT;
@@ -138,6 +139,17 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 		if (retarget){
 			SetAttackDirection();
 		}
+		if (retarget || momsEye){
+			if (myEnemyReference.myTracker){
+				if (myEnemyReference.transform.localScale.x < 0){
+					Vector3 reverseDir = attackDirection*momsEyeMult;
+					reverseDir.x*=-1f;
+					myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				}else{
+					myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				}
+			}
+		}
 	}
 
 	private bool AttackInRange(){
@@ -155,10 +167,19 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
 	}
 
-	private void SetAttackDirection(){
+	private void SetAttackDirection(bool doTracker = false){
 
 		attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 		attackDirection.z = 0;
+		if (myEnemyReference.myTracker && doTracker){
+			if (myEnemyReference.transform.localScale.x < 0){
+				Vector3 reverseDir = attackDirection*momsEyeMult;
+				reverseDir.x*=-1f;
+				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+			}else{
+				myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+			}
+		}
 
 	}
 

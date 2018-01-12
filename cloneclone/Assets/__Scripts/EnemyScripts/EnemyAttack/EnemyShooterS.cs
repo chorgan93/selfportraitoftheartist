@@ -8,6 +8,7 @@ public class EnemyShooterS : MonoBehaviour {
 	private float rotateAnimCountdown;
 
 	[Header("Attack Properties")]
+	public bool bulletHell = false;
 	public GameObject projectileToSpawn;
 	public float spawnTime;
 	private float startSpawnTime;
@@ -21,7 +22,6 @@ public class EnemyShooterS : MonoBehaviour {
 	public int startFlashFrames = 3;
 	public int endFlashFrames = 3;
 	public float rotateRate;
-	public Vector3 rotateBase;
 	public float growRate = 1.3f;
 	public float fadeRate = 2f;
 	private int flashFrames;
@@ -35,15 +35,22 @@ public class EnemyShooterS : MonoBehaviour {
 	private Vector3 timingIndicatorStartSize;
 	private Transform poi;
 
+	private EnemyS myEnemy;
+	private TrackingEffectS myTracker;
+
 	private bool firedProjectile = false;
 
 	// Use this for initialization
 	void Start () {
 
-		poi = GameObject.Find("Player").transform;
+		if (!bulletHell){
+			poi = GameObject.Find("Player").transform;
+		}
 		myRenderer = GetComponentInChildren<Renderer>();
 		startTexture = myRenderer.material.GetTexture("_MainTex");
 		myColor = myRenderer.material.color;
+
+		myTracker = GetComponentInChildren<TrackingEffectS>();
 
 		rotateAnimCountdown = rotateAnimRate;
 
@@ -68,13 +75,27 @@ public class EnemyShooterS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (bulletHell && myEnemy && !foundTarget){
+			foundTarget = true;
+			poi = myEnemy.transform;
+			aimDirection = transform.position-poi.position;
+			aimDirection = aimDirection.normalized;
+			aimDirection.z = 1f;
+			if (myTracker){
+				myTracker.FireEffect(aimDirection, myColor, spawnTime);
+			}
+		}
+
 		if (useTracking && !foundTarget){
 			trackingTime -= Time.deltaTime;
 			if (trackingTime <= 0){
 				foundTarget = true;
-				aimDirection = poi.transform.position-transform.position;
+				aimDirection = poi.position-transform.position;
 				aimDirection = aimDirection.normalized;
 				aimDirection.z = 1f;
+				if (myTracker){
+					myTracker.FireEffect(aimDirection, myRenderer.material.color, spawnTime);
+				}
 			}
 		}
 
@@ -145,6 +166,10 @@ public class EnemyShooterS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	public void SetEnemy(EnemyS newSet){
+		myEnemy = newSet;
 	}
 
 	private void DoShake(){

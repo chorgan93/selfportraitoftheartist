@@ -22,6 +22,9 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	public float recenterMax;
 	private Vector3 recenterTarget;
 	private float recenterCountdown;
+
+	[Header("Double Action Properties")]
+	public EnemySpawnBehavior secondarySpawnBehavior;
 	
 	private float currentchaseSpeed;
 	
@@ -107,6 +110,10 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 		if (chaseDragAmt > 0){
 			myEnemyReference.myRigidbody.drag = chaseDragAmt;
 		}
+
+			if (secondarySpawnBehavior){
+				secondarySpawnBehavior.SetSecondBehaviorStart(currentDifficultyMult, myEnemyReference);
+			}
 		}
 		else{
 			myEnemyReference.myAnimator.SetTrigger("Idle");
@@ -158,6 +165,8 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 				}
 				myEnemyReference.myRigidbody.AddForce((recenterTarget
 					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
+
+
 			}else{
 			myEnemyReference.myRigidbody.AddForce((myEnemyReference.GetTargetReference().transform.position
 					-transform.position).normalized*currentchaseSpeed*currentDifficultyMult*Time.deltaTime);
@@ -178,6 +187,9 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	{
 		if (currentAttackPrefab){
 			Destroy(currentAttackPrefab);
+		}
+		if (secondarySpawnBehavior){
+			secondarySpawnBehavior.EndAction(false);
 		}
 		base.EndAction (doNextAction);
 	}

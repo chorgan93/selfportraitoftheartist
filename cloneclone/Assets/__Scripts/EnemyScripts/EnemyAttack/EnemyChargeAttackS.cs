@@ -38,6 +38,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public float knockbackTime = 0.8f;
 
 	public bool standalone = false;
+	public bool shakeOverride = false;
 	public float standaloneTurnOnTime = 0.6f;
 
 	[Header("Spawn Properties")]
@@ -163,13 +164,17 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myRenderer.enabled = true;
 		flashFrames = flashMax;
 
-		if (!standalone){
+		if (!standalone && !shakeOverride){
 		CameraShakeS.C.TimeSleep(0.06f);
 		}
 		if (soundObj){
 			Instantiate(soundObj);
 		}
+		if (shakeOverride){
+			CameraShakeS.C.LargeShake();
+		}else{
 		CameraShakeS.C.SmallShake();
+		}
 
 		charging = false;
 

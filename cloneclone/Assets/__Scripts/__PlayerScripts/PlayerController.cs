@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour {
 	private int flashChargeFrames;
 	private int flashDamageFrames;
 
+	private TrackingEffectS myTracker;
+
 	private PlayerAnimationFaceS _myFace;
 
 	private float startDrag;
@@ -477,6 +479,8 @@ public class PlayerController : MonoBehaviour {
 		_playerSound = GetComponent<PlayerSoundS>();
 
 		_projectilePool = GetComponent<ProjectilePoolS>();
+
+		myTracker = GetComponentInChildren<TrackingEffectS>();
 
 		PlayerInventoryS.I.dManager.SpawnBlood();
 		//_specialFlash = CameraEffectsS.E.specialFlash;
@@ -1596,6 +1600,8 @@ public class PlayerController : MonoBehaviour {
 						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					}
 					attackTriggered = true;
+
+						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay);
 						//weaponTriggered = equippedWeapon;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){

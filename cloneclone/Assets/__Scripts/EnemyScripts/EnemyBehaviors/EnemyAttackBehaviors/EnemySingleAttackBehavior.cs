@@ -41,7 +41,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 			attackTimeCountdown -= Time.deltaTime;
 			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)/currentDifficultyMult){
-				SetAttackDirection();
+				SetAttackDirection(true);
 				foundTarget = true;
 				if (lockDirectionOnTargeting){
 					lockFacing = true;
@@ -74,6 +74,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 		//Debug.Log(AttackInRange());
 		lockFacing = false;
+		foundTarget = false;
 		if (numToSpawn <= 0){
 			numToSpawn = 1;
 		}
@@ -81,7 +82,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 			launchedAttack = false;
 			attackTimeCountdown = attackDuration/currentDifficultyMult;
-			SetAttackDirection();
+			SetAttackDirection(trackingTime < 0);
 			
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 			//Debug.Log("Attempting to animate single attack!");
@@ -138,7 +139,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
 	}
 
-	private void SetAttackDirection(){
+	private void SetAttackDirection(bool doTracker){
 
 		myEnemyReference.RefreshTarget();
 		if (trackingTime >= 0 && myEnemyReference.GetTargetReference() != null){
@@ -153,6 +154,16 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				myEnemyReference.SetFaceForAttack(attackDirection);
 			}
 		}
+		if (myEnemyReference.myTracker && doTracker){
+			if (myEnemyReference.transform.localScale.x < 0){
+				Vector3 reverseDir = attackDirection;
+				reverseDir.x*=-1f;
+				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+			}else{
+				myEnemyReference.myTracker.FireEffect(attackDirection, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+			}
+		}
+
 
 	}
 
