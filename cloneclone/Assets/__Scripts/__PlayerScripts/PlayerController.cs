@@ -623,7 +623,7 @@ public class PlayerController : MonoBehaviour {
 		ButtonCheck();
 		ManageCounterTimer();
 
-		DemoResetCheck();
+		//DemoResetCheck();
 		ManageFlash();
 		ManageAugments();
 
