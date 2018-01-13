@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
@@ -23,6 +24,8 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	public bool setVelocityToZeroOnStart = false;
 	public bool momsEye = false;
 	private float momsEyeMult = 1f;
+	public Transform[] attackSetTargets;
+	private List<Vector3> setTargetPositions;
 
 	private Vector3 attackDirection;
 
@@ -91,6 +94,20 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 	private void InitializeAction(){
 
 		if (AttackInRange()){
+
+			if (attackSetTargets.Length > 0 && setTargetPositions == null){
+				setTargetPositions = new List<Vector3>();
+				Vector3 setTarget = Vector3.zero;
+				for (int i = 0; i < attackSetTargets.Length; i++){
+					if (attackSetTargets[i] != null){
+					setTarget = attackSetTargets[i].localPosition.normalized;
+					setTarget.z = 0f;
+					}else{
+						setTarget = Vector3.zero;
+					}
+					setTargetPositions.Add(setTarget);
+				}
+			}
 
 			momsEyeMult = 1f;
 			launchedAttack = false;
@@ -169,7 +186,15 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 
 	private void SetAttackDirection(bool doTracker = false){
 
+		if (attackSetTargets.Length > 0){
+			if (setTargetPositions[currentAttack] == Vector3.zero){
+				attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
+			}else{
+				attackDirection = (setTargetPositions[currentAttack]);
+			}
+		}else{
 		attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
+		}
 		attackDirection.z = 0;
 		if (myEnemyReference.myTracker && doTracker){
 			if (myEnemyReference.transform.localScale.x < 0){

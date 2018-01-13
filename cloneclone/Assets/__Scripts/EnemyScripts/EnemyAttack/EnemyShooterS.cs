@@ -16,6 +16,7 @@ public class EnemyShooterS : MonoBehaviour {
 	private bool useTracking = false;
 	private bool foundTarget = false;
 	private Vector3 aimDirection;
+	public Vector3 aimDirRef { get { return aimDirection; } }
 
 	[Header("Effect Properties")]
 	public int shakeAmt = 0;
@@ -37,6 +38,7 @@ public class EnemyShooterS : MonoBehaviour {
 
 	private EnemyS myEnemy;
 	private TrackingEffectS myTracker;
+	private EnemyShooterS extShooterRef;
 
 	private bool firedProjectile = false;
 
@@ -90,8 +92,12 @@ public class EnemyShooterS : MonoBehaviour {
 			trackingTime -= Time.deltaTime;
 			if (trackingTime <= 0){
 				foundTarget = true;
+				if (extShooterRef){
+					aimDirection = extShooterRef.aimDirRef;
+				}else{
 				aimDirection = poi.position-transform.position;
 				aimDirection = aimDirection.normalized;
+				}
 				aimDirection.z = 1f;
 				if (myTracker){
 					myTracker.FireEffect(aimDirection, myRenderer.material.color, spawnTime);
@@ -166,6 +172,10 @@ public class EnemyShooterS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	public void SetTargetRef(EnemyShooterS newRef){
+		extShooterRef = newRef;
 	}
 
 	public void SetEnemy(EnemyS newSet){

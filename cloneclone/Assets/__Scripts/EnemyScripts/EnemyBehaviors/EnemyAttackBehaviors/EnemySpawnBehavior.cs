@@ -17,6 +17,9 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 	public GameObject spawnObject;
 	private GameObject currentSpawnObject;
 	public bool parentSpawn = false;
+	public bool singleTargetSpawns = false;
+	private EnemyShooterS targetShooter;
+	private EnemyShooterS shooterRef;
 
 	private float currentSpawnDelay;
 	private int currentSpawnStep;
@@ -69,7 +72,23 @@ public class EnemySpawnBehavior : EnemyBehaviorS {
 					(GameObject)Instantiate(spawnObject, transform.position+spawnPositions[currentSpawnStep], Quaternion.identity);
 
 				if (currentSpawnObject.GetComponent<EnemyShooterS>()){
-					currentSpawnObject.GetComponent<EnemyShooterS>().SetEnemy(myEnemyReference);
+					if (singleTargetSpawns){
+						if (currentSpawnStep == 0){
+							shooterRef = currentSpawnObject.GetComponent<EnemyShooterS>();
+							targetShooter = shooterRef;
+							shooterRef.SetTargetRef(null);
+						}
+						else{
+							if (!targetShooter){
+								targetShooter = shooterRef;
+							}
+							shooterRef = currentSpawnObject.GetComponent<EnemyShooterS>();
+							shooterRef.SetTargetRef(targetShooter);
+						}
+					}else{
+						shooterRef = currentSpawnObject.GetComponent<EnemyShooterS>();
+					shooterRef.SetEnemy(myEnemyReference);
+					}
 				}
 				if (parentSpawn){
 					currentSpawnObject.transform.parent = spawnReferences[currentSpawnStep].parent;
