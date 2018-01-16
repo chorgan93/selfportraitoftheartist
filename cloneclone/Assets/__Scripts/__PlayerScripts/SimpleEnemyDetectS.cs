@@ -51,6 +51,15 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 			}
 
 		}
+		// check for duplicates
+		for (int i = enemiesInRange.Count-1; i >= 0; i--){
+			for (int j = 0; j < enemiesInRange.Count; j++){
+				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner){
+					enemiesInRange.RemoveAt(i);
+					j--;
+				}
+			}
+		}
 
 	}
 
@@ -104,8 +113,11 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy" && initialized){
 
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
+			if (!otherEnemy){
+				otherEnemy = other.transform.GetComponentInParent<EnemyS>();
+			}
 
-			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly && !hasEnemy(otherEnemy.mySpawner)){
 				enemiesInRange.Add(otherEnemy);
 			}
 
@@ -118,8 +130,11 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy" && initialized){
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
+			if (!otherEnemy){
+				otherEnemy = other.transform.GetComponentInParent<EnemyS>();
+			}
 			
-			if (!otherEnemy.isDead && enemiesInRange.Count > 0){
+			if (!otherEnemy.isDead && enemiesInRange.Count > 0 && hasEnemy(otherEnemy.mySpawner)){
 				enemiesInRange.Remove(otherEnemy);
 			}
 			
@@ -138,5 +153,17 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		}else{
 			return false;
 		}
+	}
+
+	private bool hasEnemy(EnemySpawnerS enemyCheck){
+		bool hasEnemy = false;
+		if (enemyCheck != null){
+		for (int i = 0; i < enemiesInRange.Count; i++){
+			if (enemiesInRange[i].mySpawner == enemyCheck){
+				hasEnemy = true;
+			}
+		}
+		}
+		return hasEnemy;
 	}
 }

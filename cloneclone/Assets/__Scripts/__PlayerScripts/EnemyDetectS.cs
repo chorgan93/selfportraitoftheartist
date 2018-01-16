@@ -143,6 +143,16 @@ public class EnemyDetectS : MonoBehaviour {
 			
 		}
 
+		// check for duplicates
+		for (int i = enemiesInRange.Count-1; i >= 0; i--){
+			for (int j = 0; j < enemiesInRange.Count; j++){
+				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner){
+						enemiesInRange.RemoveAt(i);
+					j--;
+				}
+			}
+		}
+
 		for (int i = 0; i < friendliesInRange.Count; i++){
 
 			if (friendliesInRange[i] == null){
@@ -207,11 +217,15 @@ public class EnemyDetectS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
+			if (!otherEnemy){
+				otherEnemy = other.gameObject.GetComponentInParent<EnemyS>();
+			}
 			
-			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly && !hasEnemy(otherEnemy.mySpawner)){
+				Debug.Log(otherEnemy.mySpawner.name);
 				enemiesInRange.Add(otherEnemy);
 			}
-			if (!otherEnemy.isDead && otherEnemy.isFriendly){
+			if (!otherEnemy.isDead && otherEnemy.isFriendly && !hasFriendly(otherEnemy.mySpawner)){
 				friendliesInRange.Add(otherEnemy);
 			}
 			
@@ -224,11 +238,14 @@ public class EnemyDetectS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
-			
-			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
+			if (!otherEnemy){
+				otherEnemy = other.gameObject.GetComponentInParent<EnemyS>();
+			}
+
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly && hasEnemy(otherEnemy.mySpawner)){
 				enemiesInRange.Remove(otherEnemy);
 			}
-			if (!otherEnemy.isDead && otherEnemy.isFriendly){
+			if (!otherEnemy.isDead && otherEnemy.isFriendly && hasFriendly(otherEnemy.mySpawner)){
 				friendliesInRange.Remove(otherEnemy);
 			}
 			
@@ -302,4 +319,29 @@ public class EnemyDetectS : MonoBehaviour {
 		}
 		return closestEnemyToAngle;
 	}
+
+	private bool hasEnemy(EnemySpawnerS enemyCheck){
+		bool hasEnemy = false;
+		if (enemyCheck != null){
+		for (int i = 0; i < enemiesInRange.Count; i++){
+			if (enemiesInRange[i].mySpawner == enemyCheck){
+				hasEnemy = true;
+			}
+		}
+		}
+		return hasEnemy;
+	}
+
+	private bool hasFriendly(EnemySpawnerS enemyCheck){
+		bool hasEnemy = false;
+		if (enemyCheck != null){
+		for (int i = 0; i < friendliesInRange.Count; i++){
+			if (friendliesInRange[i].mySpawner == enemyCheck){
+				hasEnemy = true;
+			}
+		}
+		}
+		return hasEnemy;
+	}
+
 }

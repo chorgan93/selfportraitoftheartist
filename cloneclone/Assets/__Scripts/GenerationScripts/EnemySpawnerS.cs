@@ -17,6 +17,7 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	public GameObject[] enemyPool;
 	public int enemySpawnID = -1;
+	public Transform matchPosition;
 
 	//private RoomClearCheck parentClear;
 	private InfinitySpawnS parentClear;
@@ -91,11 +92,20 @@ public class EnemySpawnerS : MonoBehaviour {
 		if (chanceEnemySpawns <= chanceToSpawn){
 	
 			int enemyToSpawn = Mathf.RoundToInt(Random.Range(0, enemyPool.Length));
+
+			GameObject newEnemy;
+			if (matchPosition){
 	
-			GameObject newEnemy = Instantiate(enemyPool[enemyToSpawn], transform.position, Quaternion.identity)
+				newEnemy = Instantiate(enemyPool[enemyToSpawn], matchPosition.position, Quaternion.identity)
 				as GameObject;
 
-			savedSpawnPt = transform.position;
+				savedSpawnPt = matchPosition.position;
+			}else{
+				newEnemy = Instantiate(enemyPool[enemyToSpawn], transform.position, Quaternion.identity)
+					as GameObject;
+
+				savedSpawnPt = transform.position;
+			}
 	
 			currentEnemyReference = newEnemy.GetComponent<EnemyS>();
 			currentEnemyReference.mySpawner = this;

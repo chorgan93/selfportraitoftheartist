@@ -55,6 +55,8 @@ public class EnemyS : MonoBehaviour {
 	public Material flashMaterial;
 	private Material startMaterial;
 
+	private bool _preventKnockback = false;
+
 	private float currentDifficultyMult;
 
 	[HideInInspector]
@@ -443,6 +445,9 @@ public class EnemyS : MonoBehaviour {
 		_killScreen = CameraEffectsS.E.killFlash;
 
 		_myRigidbody = GetComponent<Rigidbody>();
+		if (_myRigidbody.mass >= 999){
+			_preventKnockback = true;
+		}
 		_myCollider = GetComponent<Collider>();
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMaterial = myRenderer.material;
@@ -1219,6 +1224,7 @@ public class EnemyS : MonoBehaviour {
 		
 		yield return new WaitForSeconds(knockbackDelay);
 
+		if (!_preventKnockback){
 		hitVelocity = forceAmt;
 		if (!touchingWall){
 			if (inWitchTime){
@@ -1228,6 +1234,7 @@ public class EnemyS : MonoBehaviour {
 			}
 		}else{
 			StartCoroutine(WallBounce(currentWallNormal, true));
+		}
 		}
 		
 	}
@@ -1287,8 +1294,10 @@ public class EnemyS : MonoBehaviour {
 	}
 
 	public void AttackKnockback(Vector3 knockbackForce){
-		
+
+		if (!_preventKnockback){
 		_myRigidbody.AddForce(knockbackForce, ForceMode.Impulse);
+		}
 		
 	}
 
