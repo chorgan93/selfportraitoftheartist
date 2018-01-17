@@ -51,6 +51,11 @@ public class CameraFollowS : MonoBehaviour {
 	private float zoomMult = 0.5f;
 	private float dialogueZoomMult = 0.75f;
 
+	private float orthoSizeMult = 1f;
+	public float orthoMultRef { get { return orthoSizeMult; } }
+	private bool slowChange = false;
+	private float slowChangeCount = 0f;
+
 	private PlayerController playerRef;
 
 	public static CameraFollowS F;
@@ -85,7 +90,7 @@ public class CameraFollowS : MonoBehaviour {
 		if (PlayerStatDisplayS.RECORD_MODE){
 			startOrthoSize*=RECORD_MODE_ORTHO_MULT;
 		}
-		myCam.orthographicSize = startOrthoSize*ZOOM_LEVEL;
+		myCam.orthographicSize = startOrthoSize*ZOOM_LEVEL*orthoSizeMult;
 		stunOrthoSize = startOrthoSize*STUN_ORTHO_MULT;
 
 		poiQueue = new List<GameObject>();
@@ -162,26 +167,34 @@ public class CameraFollowS : MonoBehaviour {
 			if (zoomingIn){
 				if (!slowerZoom){
 					if (dialogueZoom){
-						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL;
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}else{
-						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult*ZOOM_LEVEL;
+						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}
 				}else{
 					if (dialogueZoom){
 						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
-							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL;
+							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}else{
 						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
-							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL;
+							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}
 				}
 			}else if (stunnedEnemies.Count > 0){
 				myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize
-					+ _camEasing*stunOrthoSize*ZOOM_LEVEL;
+					+ _camEasing*stunOrthoSize*ZOOM_LEVEL*orthoSizeMult;
 			}
 			else{
 				if (!CameraShakeS.C.isSleeping){
-					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*startOrthoSize*ZOOM_LEVEL;
+					if (!slowChange){
+					myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*startOrthoSize*ZOOM_LEVEL*orthoSizeMult;
+					}else{
+						myCam.orthographicSize = (1-_camEasing*0.5f)*myCam.orthographicSize*ZOOM_LEVEL + _camEasing*0.5f*startOrthoSize*ZOOM_LEVEL*orthoSizeMult;
+						slowChangeCount -= Time.deltaTime;
+						if (slowChangeCount <= 0){
+							slowChange = false;
+						}
+					}
 				
 	
 				}
@@ -226,20 +239,20 @@ public class CameraFollowS : MonoBehaviour {
 	}
 	public void PunchIn(){
 
-		myCam.orthographicSize =  (startOrthoSize * punchInMult)*ZOOM_LEVEL;
+		myCam.orthographicSize =  (startOrthoSize * punchInMult)*ZOOM_LEVEL*orthoSizeMult;
 
 	}
 
 	public void PunchInCustom(float punchMult, float punchHangTime){
 		
-		myCam.orthographicSize =  (startOrthoSize * punchMult)*ZOOM_LEVEL;
+		myCam.orthographicSize =  (startOrthoSize * punchMult)*ZOOM_LEVEL*orthoSizeMult;
 		_punchHangTime = punchHangTime;
 		
 	}
 
 	public void PunchInBig(){
 
-		myCam.orthographicSize =  (startOrthoSize * punchInMultDeath)*ZOOM_LEVEL;
+		myCam.orthographicSize =  (startOrthoSize * punchInMultDeath)*ZOOM_LEVEL*orthoSizeMult;
 
 	}
 
@@ -270,7 +283,7 @@ public class CameraFollowS : MonoBehaviour {
 		
 			transform.position = _currentPos;
 
-			myCam.orthographicSize =  startOrthoSize * punchInMultDeath;
+		myCam.orthographicSize =  startOrthoSize * punchInMultDeath * orthoSizeMult;
 
 
 
@@ -358,6 +371,14 @@ public class CameraFollowS : MonoBehaviour {
 	}
 	public void ClearStunnedEnemies(){
 		stunnedEnemies.Clear();
+	}
+
+	public void ChangeOrthoSizeMult(float newSize = 1f, float changeTime = 1f){
+		orthoSizeMult = newSize;
+		slowChangeCount = changeTime;
+		if (slowChangeCount > 0){
+		slowChange = true;
+		}
 	}
 
 

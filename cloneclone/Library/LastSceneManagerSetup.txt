@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_00_TheStranger.unity
+- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_08_TheDepths.unity
   isLoaded: 1
   isActive: 1

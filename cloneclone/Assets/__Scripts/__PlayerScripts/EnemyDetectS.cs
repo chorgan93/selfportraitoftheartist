@@ -222,7 +222,6 @@ public class EnemyDetectS : MonoBehaviour {
 			}
 			
 			if (!otherEnemy.isDead && !otherEnemy.isFriendly && !hasEnemy(otherEnemy.mySpawner)){
-				Debug.Log(otherEnemy.mySpawner.name);
 				enemiesInRange.Add(otherEnemy);
 			}
 			if (!otherEnemy.isDead && otherEnemy.isFriendly && !hasFriendly(otherEnemy.mySpawner)){

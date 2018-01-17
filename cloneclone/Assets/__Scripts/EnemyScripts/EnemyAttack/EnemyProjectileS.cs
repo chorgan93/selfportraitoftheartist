@@ -405,6 +405,10 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (other.gameObject.tag == "Enemy"){
 				
 				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+
+				if (!hitEnemy){
+					hitEnemy = other.GetComponentInParent<EnemyS>();
+				}
 				
 				if (hitEnemy.isFriendly && !hitEnemy.isDead && !hitEnemy.invulnerable){
 					

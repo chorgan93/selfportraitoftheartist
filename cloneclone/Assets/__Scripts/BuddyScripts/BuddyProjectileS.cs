@@ -308,6 +308,9 @@ public class BuddyProjectileS : MonoBehaviour {
 		if (other.gameObject.tag == "Enemy"){
 			
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+			if (!hitEnemy){
+				hitEnemy = other.GetComponentInParent<EnemyS>();
+			}
 
 			if (!hitEnemy.isDead && !hitEnemy.isFriendly && !hitEnemy.invulnerable){
 			

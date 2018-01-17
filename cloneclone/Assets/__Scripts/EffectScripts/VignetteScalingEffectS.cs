@@ -42,7 +42,7 @@ public class VignetteScalingEffectS : MonoBehaviour {
 				newScale = originalScale;
 				newScale.x += Random.insideUnitCircle.x * xChangeAmt;
 				newScale.y += Random.insideUnitCircle.y * yChangeAmt;
-				newScale*=CameraFollowS.ZOOM_LEVEL;
+				newScale*=CameraFollowS.ZOOM_LEVEL*CameraFollowS.F.orthoMultRef;
 				if (CameraFollowS.ZOOM_LEVEL > 1){
 					newScale*=bigFOVScalar;
 				}

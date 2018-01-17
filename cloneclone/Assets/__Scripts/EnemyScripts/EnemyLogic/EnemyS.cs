@@ -56,6 +56,8 @@ public class EnemyS : MonoBehaviour {
 	private Material startMaterial;
 
 	private bool _preventKnockback = false;
+	private bool _preventFace = false;
+	public bool preventFace { get { return _preventFace; } }
 
 	private float currentDifficultyMult;
 
@@ -447,6 +449,7 @@ public class EnemyS : MonoBehaviour {
 		_myRigidbody = GetComponent<Rigidbody>();
 		if (_myRigidbody.mass >= 999){
 			_preventKnockback = true;
+			_preventFace = true;
 		}
 		_myCollider = GetComponent<Collider>();
 		_myAnimator = myRenderer.GetComponent<Animator>();
@@ -857,7 +860,7 @@ public class EnemyS : MonoBehaviour {
 	private void ManageFacing(){
 		if (!inWitchTime){
 		Vector3 newSize = startSize;
-			if (!_faceLocked){
+			if (!_faceLocked && !_preventFace){
 		if (!_hitStunned && !_isCritical){
 		if (_facePlayer && GetTargetReference() != null){
 			float playerX = GetTargetReference().transform.position.x;
