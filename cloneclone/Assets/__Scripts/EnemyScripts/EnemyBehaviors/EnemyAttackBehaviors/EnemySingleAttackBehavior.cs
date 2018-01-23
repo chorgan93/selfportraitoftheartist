@@ -158,9 +158,9 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			if (myEnemyReference.transform.localScale.x < 0){
 				Vector3 reverseDir = attackDirection;
 				reverseDir.x*=-1f;
-				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 			}else{
-				myEnemyReference.myTracker.FireEffect(attackDirection, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(attackDirection, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 			}
 		}
 

@@ -403,7 +403,7 @@ public class ProjectileS : MonoBehaviour {
 					currentStartPos.y = hitInfo.point.y;
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
-						hitEnemy.TakeDamage(knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+						hitEnemy.TakeDamage(hitEnemy.transform, knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt, 0f, false, killAtLessThan*DeterminedMult());
 					}
 				}
@@ -536,7 +536,7 @@ public class ProjectileS : MonoBehaviour {
 
 				//DoShake();
 				float dmgDealt = hitEnemy.TakeDamage
-					(actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), hitStopAmt, 0f,
 					false, killAtLessThan*DeterminedMult());
 

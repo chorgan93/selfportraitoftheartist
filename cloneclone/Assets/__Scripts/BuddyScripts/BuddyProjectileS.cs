@@ -111,7 +111,7 @@ public class BuddyProjectileS : MonoBehaviour {
 
 
 					for (int i = 0; i < auraTrigger.EnemiesInRange.Count; i++){
-						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(auraTrigger.EnemiesInRange[i].transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 							auraDamage*actingDamageMult, actingStunMult, 2f, 0f, 0f);
 						RankManagerS.R.ScoreHit(3, dmgDealt);
 
@@ -323,7 +323,7 @@ public class BuddyProjectileS : MonoBehaviour {
 				}
 				
 				float dmgDealt = hitEnemy.TakeDamage
-					(actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					damage*actingDamageMult, actingStunMult, 2f);
 
 				//_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);

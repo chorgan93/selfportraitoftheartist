@@ -95,7 +95,6 @@ public class GiantEnemySingleAttackBehavior : EnemyBehaviorS {
 			if (!setArmStart){
 				armStartPos = armTransform.position;
 				setArmStart = true;
-				Debug.Log("set arm start pos!");
 			}
 			attackTimeCountdown = attackDuration/currentDifficultyMult;
 			SetAttackDirection(trackingTime < 0);
@@ -157,7 +156,6 @@ public class GiantEnemySingleAttackBehavior : EnemyBehaviorS {
 	}
 
 	private void SetAttackDirection(bool doTracker){
-
 		myEnemyReference.RefreshTarget();
 		if (!aimPos){
 		if (trackingTime >= 0 && myEnemyReference.GetTargetReference() != null){
@@ -184,15 +182,14 @@ public class GiantEnemySingleAttackBehavior : EnemyBehaviorS {
 				armAttackPos.x = armStartPos.x-xRange;
 			}
 			armTransform.position = armAttackPos;
-			foundTarget = true;
 		}
 		if (myEnemyReference.myTracker && doTracker){
 			if (myEnemyReference.transform.localScale.x < 0){
 				Vector3 reverseDir = attackDirection;
 				reverseDir.x*=-1f;
-				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime, startPos.position);
 			}else{
-				myEnemyReference.myTracker.FireEffect(attackDirection, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(attackDirection, myEnemyReference.bloodColor, attackWarmup-trackingTime, startPos.position);
 			}
 		}
 

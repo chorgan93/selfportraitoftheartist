@@ -80,6 +80,10 @@ public class PlayerController : MonoBehaviour {
 	public float parryForce = 1000f;
 	public float parryKnockbackMult = -2f;
 
+	private Vector3 parrySizeStart;
+	private Vector3 currentParrySize;
+	private bool dontSlowWhenClose = false;
+
 	private PlayerSlowTimeS witchReference;
 
 	private Vector3 _counterNormal = Vector3.zero;
@@ -569,6 +573,8 @@ public class PlayerController : MonoBehaviour {
 
 		resetCountdown = resetTimeMax;
 
+		parrySizeStart = currentParrySize = superCloseEnemyDetect.GetComponent<BoxCollider>().size;
+
 	}
 
 	void PlayerFixedUpdate(){
@@ -819,7 +825,7 @@ public class PlayerController : MonoBehaviour {
 					float actingWalkSpeed = walkSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingWalkSpeed;
-					if (!dontWalkIntoEnemiesCheck.NoEnemies() && gameObject.layer == START_PHYSICS_LAYER){
+					if (!dontWalkIntoEnemiesCheck.NoEnemies() && !dontSlowWhenClose && gameObject.layer == START_PHYSICS_LAYER){
 						moveVelocity *= PUSH_ENEMY_MULT;
 					}
 					if (_myRigidbody.velocity.magnitude < walkSpeedMax){
@@ -831,7 +837,7 @@ public class PlayerController : MonoBehaviour {
 					float actingRunSpeed = runSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingRunSpeed;
-					if (!dontWalkIntoEnemiesCheck.NoEnemies() && gameObject.layer == START_PHYSICS_LAYER){
+					if (!dontWalkIntoEnemiesCheck.NoEnemies() && !dontSlowWhenClose && gameObject.layer == START_PHYSICS_LAYER){
 						moveVelocity *= PUSH_ENEMY_MULT;
 					}
 
@@ -923,6 +929,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 		// first, check for parry, otherwise dodge
+		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
 		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 
 			_myRigidbody.AddForce(ShootDirection().normalized*parryForce*Time.deltaTime, ForceMode.Impulse);
@@ -1601,7 +1608,7 @@ public class PlayerController : MonoBehaviour {
 					}
 					attackTriggered = true;
 
-						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay);
+						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay, Vector3.zero);
 						//weaponTriggered = equippedWeapon;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
@@ -1842,6 +1849,19 @@ public class PlayerController : MonoBehaviour {
 
 	public void SendCritMessage(){
 		staggerBonusTime = staggerBonusTimeMax;
+	}
+
+	public void ChangeParryRange(float newRange = -1, bool newSlowing = false){
+		if (newRange > 0){
+			currentParrySize.y = newRange;
+			superCloseEnemyDetect.GetComponent<BoxCollider>().size = currentParrySize;
+			dontSlowWhenClose = true;
+		}else{
+
+			currentParrySize = superCloseEnemyDetect.GetComponent<BoxCollider>().size = parrySizeStart;
+			dontSlowWhenClose = false;
+		}
+		dontSlowWhenClose = newSlowing;
 	}
 
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
@@ -2622,7 +2642,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 ShootDirectionAssisted(){
 
 		if (enemyDetect.closestEnemy != null){
-			return (enemyDetect.closestEnemy.transform.position - transform.position).normalized;
+			return (enemyDetect.closestEnemyTransform.position - transform.position).normalized;
 		}
 		else{
 			return ShootDirection();

@@ -45,6 +45,9 @@ public class EnemyS : MonoBehaviour {
 	public float damageMultiplier = 1f;
 	public Vector3 healthBarOffset = new Vector3(0f,1.5f,1f);
 	public float healthBarXSize = 2f;
+	[Header("Special Animation Properties")]
+	public bool dontRepeatHitInCrit = false;
+	private bool didFirstCritHit = false;
 	[Header ("Death Properties")]
 	public int sinAmt;
 	public Color bloodColor = Color.red;
@@ -513,6 +516,8 @@ public class EnemyS : MonoBehaviour {
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
 		CameraFollowS.F.RemoveStunnedEnemy(this);
 
+		didFirstCritHit = false;
+
 		ResetFaceLock();
 		if (healthSpawn){
 			healthSpawn.ResetSpawn();
@@ -592,6 +597,12 @@ public class EnemyS : MonoBehaviour {
 					currentCritTime += Time.deltaTime;
 					if (vulnerableCountdown <= 0 || currentCritTime >= maxCritTime){
 					_isCritical = false;
+						didFirstCritHit = false;
+
+						_breakAmt = 0f;
+						_isVulnerable = false;
+						_behaviorBroken = false;
+						vulnerableCountdown = 0;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 						currentCritTime = 0f;
@@ -1001,7 +1012,10 @@ public class EnemyS : MonoBehaviour {
 		if ((_canBeStunned||overrideStun||_behaviorBroken||inWitchTime) && sTime > 0){
 			_hitStunned = true;
 			currentKnockbackCooldown = sTime;
+			if (!dontRepeatHitInCrit || (dontRepeatHitInCrit && !didFirstCritHit)){
 			_myAnimator.SetTrigger("Hit");
+				didFirstCritHit = true;
+			}
 			_myAnimator.SetLayerWeight(1,1f);
 			if (inWitchTime){
 				hitInWitchTime = true;
@@ -1016,11 +1030,11 @@ public class EnemyS : MonoBehaviour {
 		_isVulnerable = true;
 		_breakAmt = _breakThreshold+1f;
 		_myRigidbody.velocity = Vector3.zero;
-		TakeDamage(knockback, 0f, 0f, 0f, 0.12f, critTime, false, 0f, true);
+		TakeDamage(transform, knockback, 0f, 0f, 0f, 0.12f, critTime, false, 0f, true);
 		canBeParried = false;
 	}
 
-	public float TakeDamage(Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
+	public float TakeDamage(Transform hitTransform, Vector3 knockbackForce, float dmg, float stunMult, float critDmg, 
 		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, float killAtLess = 0f, bool fromParry = false){
 
 		if (GetPlayerReference()){
@@ -1048,7 +1062,11 @@ public class EnemyS : MonoBehaviour {
 			currentCritDamage += (dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
-					_isCritical = false;
+				_isCritical = false;
+				_breakAmt = 0f;
+				_isVulnerable = false;
+				_behaviorBroken = false;
+				didFirstCritHit = false;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 
@@ -1057,7 +1075,6 @@ public class EnemyS : MonoBehaviour {
 				if (!_hitStunned && !inWitchTime){
 						_myAnimator.SetLayerWeight(1, 0f);
 					}
-
 					// reset whichever state should be active
 				_currentBehavior.CancelAction();
 					_currentState.StartActions();
@@ -1138,11 +1155,16 @@ public class EnemyS : MonoBehaviour {
 					CameraShakeS.C.TimeSleep(0.1f);
 					CameraShakeS.C.SloAndPunch(0.1f, 0.85f, 0.1f);
 					_isCritical = true;
+				//	Debug.Log("Enemy is critical! " + _isVulnerable + " : " + _behaviorBroken + " : " + _breakAmt + "/" + _breakThreshold + " : " + _currentBehavior.behaviorName);
 					ResetFaceLock();
 					GetPlayerReference().myStats.DrivenCheck();
 					if (breakSound){
 						Instantiate(breakSound);
 					}
+					_isVulnerable = false;
+					_breakAmt = 0f;
+					_behaviorBroken = false;
+					vulnerableCountdown = 0f;
 					currentCritDamage = 0;
 					currentCritTime = 0f;
 					CameraFollowS.F.AddStunnedEnemy(this);
@@ -1216,7 +1238,7 @@ public class EnemyS : MonoBehaviour {
 			healthSpawn.CheckSpawn(_currentHealth/actingMaxHealth);
 		}
 
-		EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, true, false, damageTaken, transform);
+		EffectSpawnManagerS.E.SpawnDamangeNum(hitTransform.position, true, false, damageTaken, transform);
 
 		//healthBarReference.ResizeForDamage();
 		return damageTaken;

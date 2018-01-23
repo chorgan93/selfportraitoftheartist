@@ -24,7 +24,7 @@ public class TrackingEffectS : MonoBehaviour {
 	
 	}
 	
-	public void FireEffect(Vector3 aimDirection, Color newCol, float delayMult){
+	public void FireEffect(Vector3 aimDirection, Color newCol, float delayMult, Vector3 offCenter){
 		changeCol = newCol;
 		changeCol.a = myRenderer.color.a;
 		myRenderer.color = changeCol;
@@ -32,9 +32,13 @@ public class TrackingEffectS : MonoBehaviour {
 		myAnimator.SetFloat(multName, 0.5f/delayMult);
 		myAnimator.SetTrigger(animatorTrigger);
 		FaceDirection(aimDirection);
-		offsetPos = aimDirection.normalized*offsetDistance;
+		offsetPos = offCenter+aimDirection.normalized*offsetDistance;
 		offsetPos.z = 0f;
-		transform.localPosition = startPos+offsetPos;
+		if (offCenter.x != 0 && offCenter.y != 0){
+			transform.position = offsetPos;
+		}else{
+			transform.localPosition = startPos+offsetPos;
+		}
 	}
 
 	private void FaceDirection(Vector3 direction){

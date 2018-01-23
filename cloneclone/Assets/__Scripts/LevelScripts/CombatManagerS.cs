@@ -39,6 +39,10 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
 
+	[Header("Special Player Properties")]
+	public float changeParryRange = -1;
+	public bool turnOffSlowing = false;
+
 	[Header("Scoring Settings")]
 	public bool turnOnScoring = false;
 	public bool turnOffScoring = false;
@@ -83,7 +87,7 @@ public class CombatManagerS : MonoBehaviour {
 		for (int i = 0; i < enemies.Length; i++){
 			if (enemies[i].enemySpawned){
 				if (enemies[i].currentSpawnedEnemy.GetPlayerReference() != null){
-					enemies[i].currentSpawnedEnemy.TakeDamage(Vector3.zero, 9999f, 1f, 1f, 0f, 0f);
+					enemies[i].currentSpawnedEnemy.TakeDamage(enemies[i].currentSpawnedEnemy.transform, Vector3.zero, 9999f, 1f, 1f, 0f, 0f);
 				}
 			}
 		}
@@ -228,6 +232,7 @@ public class CombatManagerS : MonoBehaviour {
 			if (clearBloodOnComplete){
 				PlayerInventoryS.I.dManager.SetBattleBlood();
 			}
+			playerRef.ChangeParryRange(changeParryRange, turnOffSlowing);
 		}
 
 		if (combatCondition != CombatSpecialCondition.None){

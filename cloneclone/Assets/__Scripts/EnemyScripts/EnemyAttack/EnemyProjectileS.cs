@@ -414,7 +414,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					
 					
 					hitEnemy.TakeDamage
-						(selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						 0, 1f, 1.5f);
 					
 					if (hitSoundObj){
@@ -445,7 +445,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 					
 					hitEnemy.TakeDamage
-						(playerKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, playerKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage, 1f, 1.5f, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){

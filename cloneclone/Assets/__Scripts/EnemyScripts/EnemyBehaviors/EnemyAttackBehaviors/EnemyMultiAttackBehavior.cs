@@ -161,9 +161,9 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 				if (myEnemyReference.transform.localScale.x < 0){
 					Vector3 reverseDir = attackDirection*momsEyeMult;
 					reverseDir.x*=-1f;
-					myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+					myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 				}else{
-					myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+					myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 				}
 			}
 		}
@@ -200,9 +200,9 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			if (myEnemyReference.transform.localScale.x < 0){
 				Vector3 reverseDir = attackDirection*momsEyeMult;
 				reverseDir.x*=-1f;
-				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(reverseDir, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 			}else{
-				myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime);
+				myEnemyReference.myTracker.FireEffect(attackDirection*momsEyeMult, myEnemyReference.bloodColor, attackWarmup-trackingTime, Vector3.zero);
 			}
 		}
 

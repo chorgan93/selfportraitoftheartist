@@ -84,7 +84,7 @@ public class EnemyShooterS : MonoBehaviour {
 			aimDirection = aimDirection.normalized;
 			aimDirection.z = 1f;
 			if (myTracker){
-				myTracker.FireEffect(aimDirection, myColor, spawnTime);
+				myTracker.FireEffect(aimDirection, myColor, spawnTime, Vector3.zero);
 			}
 		}
 
@@ -100,7 +100,7 @@ public class EnemyShooterS : MonoBehaviour {
 				}
 				aimDirection.z = 1f;
 				if (myTracker){
-					myTracker.FireEffect(aimDirection, myRenderer.material.color, spawnTime);
+					myTracker.FireEffect(aimDirection, myRenderer.material.color, spawnTime, Vector3.zero);
 				}
 			}
 		}

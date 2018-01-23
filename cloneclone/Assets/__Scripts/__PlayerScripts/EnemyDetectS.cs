@@ -9,8 +9,11 @@ public class EnemyDetectS : MonoBehaviour {
 	public float inputRange;
 	private EnemyS _closestEnemy;
 	public EnemyS closestEnemy { get { return _closestEnemy; } }
+	private Transform _closestEnemyTransform;
+	public Transform closestEnemyTransform { get { return _closestEnemyTransform; } }
 	
 	private List<EnemyS> enemiesInRange;
+	private List<Transform> enemyTransforms;
 	private List<EnemyS> friendliesInRange;
 	public List<EnemyS> allEnemiesInRange { get { return enemiesInRange; } }
 	private Vector3 _enemyCenterpoint;
@@ -34,6 +37,9 @@ public class EnemyDetectS : MonoBehaviour {
 	
 	public bool faceVector = false;
 	private Vector3 currentRotation = Vector3.zero;
+
+	[Header("Testing Properties")]
+	public bool debugCollider = false;
 	
 	void Start(){
 		
@@ -43,6 +49,7 @@ public class EnemyDetectS : MonoBehaviour {
 		
 		enemiesInRange = new List<EnemyS>();
 		friendliesInRange = new List<EnemyS>();
+		enemyTransforms = new List<Transform>();
 		
 	}
 	
@@ -86,33 +93,33 @@ public class EnemyDetectS : MonoBehaviour {
 		if (enemiesInRange.Count > 0){
 			lowestX = lowestY = largestX = largestY = 0f;
 			lowestCritX = lowestCritY = largestCritX = largestCritY = 0f;
-			for (int i = 0; i < enemiesInRange.Count; i++){
-				if (enemiesInRange[i].transform.position.x < lowestX || lowestX == 0f){
-					lowestX = enemiesInRange[i].transform.position.x;
+			for (int i = 0; i < enemyTransforms.Count; i++){
+				if (enemyTransforms[i].position.x < lowestX || lowestX == 0f){
+					lowestX = enemyTransforms[i].position.x;
 				}
-				if (enemiesInRange[i].transform.position.x > largestX || largestX == 0f){
-					largestX = enemiesInRange[i].transform.position.x;
+				if (enemyTransforms[i].position.x > largestX || largestX == 0f){
+					largestX = enemyTransforms[i].position.x;
 				}
-				if (enemiesInRange[i].transform.position.y < lowestY || lowestY == 0f){
-					lowestY = enemiesInRange[i].transform.position.y;
+				if (enemyTransforms[i].position.y < lowestY || lowestY == 0f){
+					lowestY = enemyTransforms[i].position.y;
 				}
-				if (enemiesInRange[i].transform.position.y > largestY || largestY == 0f){
-					largestY = enemiesInRange[i].transform.position.y;
+				if (enemyTransforms[i].position.y > largestY || largestY == 0f){
+					largestY = enemyTransforms[i].position.y;
 				}
 
 				if (enemiesInRange[i].isCritical){
 					critEnemies++;
-					if (enemiesInRange[i].transform.position.x < lowestCritX || lowestCritX == 0f){
-						lowestCritX = enemiesInRange[i].transform.position.x;
+					if (enemyTransforms[i].position.x < lowestCritX || lowestCritX == 0f){
+						lowestCritX = enemyTransforms[i].position.x;
 					}
-					if (enemiesInRange[i].transform.position.x > largestCritX || largestCritX == 0f){
-						largestCritX = enemiesInRange[i].transform.position.x;
+					if (enemyTransforms[i].position.x > largestCritX || largestCritX == 0f){
+						largestCritX = enemyTransforms[i].position.x;
 					}
-					if (enemiesInRange[i].transform.position.y < lowestCritY || lowestCritY == 0f){
-						lowestCritY = enemiesInRange[i].transform.position.y;
+					if (enemyTransforms[i].position.y < lowestCritY || lowestCritY == 0f){
+						lowestCritY = enemyTransforms[i].position.y;
 					}
-					if (enemiesInRange[i].transform.position.y > largestCritY || largestCritY == 0f){
-						largestCritY = enemiesInRange[i].transform.position.y;
+					if (enemyTransforms[i].position.y > largestCritY || largestCritY == 0f){
+						largestCritY = enemyTransforms[i].position.y;
 					}
 				}
 			}
@@ -125,6 +132,7 @@ public class EnemyDetectS : MonoBehaviour {
 				critCenterpoint.y = (lowestCritY+largestCritY)/2f;
 				_enemyCenterpoint = (_enemyCenterpoint+critCenterpoint*critEnemyWeight)/(1f + critEnemyWeight);
 			}
+
 		}
 		
 	}
@@ -135,23 +143,26 @@ public class EnemyDetectS : MonoBehaviour {
 			
 			if (enemiesInRange[i] == null){
 				enemiesInRange.RemoveAt(i);
+				enemyTransforms.RemoveAt(i);
 			}else{
 				if (enemiesInRange[i].isDead || !enemiesInRange[i].gameObject.activeSelf){
 					enemiesInRange.RemoveAt(i);
+					enemyTransforms.RemoveAt(i);
 				}
 			}
 			
 		}
 
 		// check for duplicates
-		for (int i = enemiesInRange.Count-1; i >= 0; i--){
+		/*for (int i = enemiesInRange.Count-1; i >= 0; i--){
 			for (int j = 0; j < enemiesInRange.Count; j++){
-				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner){
+				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner && i != j){
 						enemiesInRange.RemoveAt(i);
 					j--;
 				}
 			}
-		}
+		}**/
+
 
 		for (int i = 0; i < friendliesInRange.Count; i++){
 
@@ -177,25 +188,27 @@ public class EnemyDetectS : MonoBehaviour {
 			
 			float closestDistance = 0;
 			
-			foreach (EnemyS enemy in enemiesInRange){
+			for (int i = 0; i < enemiesInRange.Count; i++){
 				if (_closestEnemy == null){
 					
-					_closestEnemy = enemy;
-					closestEnemyPosition.x = _closestEnemy.transform.position.x;
-					closestEnemyPosition.y = _closestEnemy.transform.position.y;
+					_closestEnemy = enemiesInRange[i];
+					_closestEnemyTransform = enemyTransforms[i];
+					closestEnemyPosition.x = enemyTransforms[i].position.x;
+					closestEnemyPosition.y = enemyTransforms[i].position.y;
 					
 					closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 				}
 				else{
 					
-					otherEnemyPosition.x = enemy.transform.position.x;
-					otherEnemyPosition.y = enemy.transform.position.y;
+					otherEnemyPosition.x = enemyTransforms[i].position.x;
+					otherEnemyPosition.y = enemyTransforms[i].position.y;
 					float newDistance = Vector2.SqrMagnitude(otherEnemyPosition-playerPosition2D());
 					
 					if (newDistance < closestDistance){
-						_closestEnemy = enemy;
-						closestEnemyPosition.x = _closestEnemy.transform.position.x;
-						closestEnemyPosition.y = _closestEnemy.transform.position.y;
+						_closestEnemy = enemiesInRange[i];
+						_closestEnemyTransform = enemyTransforms[i];
+						closestEnemyPosition.x = enemyTransforms[i].position.x;
+						closestEnemyPosition.y = enemyTransforms[i].position.y;
 						
 						closestDistance = Vector2.SqrMagnitude(closestEnemyPosition-playerPosition2D());
 					}
@@ -221,8 +234,12 @@ public class EnemyDetectS : MonoBehaviour {
 				otherEnemy = other.gameObject.GetComponentInParent<EnemyS>();
 			}
 			
-			if (!otherEnemy.isDead && !otherEnemy.isFriendly && !hasEnemy(otherEnemy.mySpawner)){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
 				enemiesInRange.Add(otherEnemy);
+				enemyTransforms.Add(other.transform);
+				if (debugCollider){
+					Debug.Log("added " + otherEnemy.enemyName + " to enemy list! : " + enemiesInRange.Count);
+				}
 			}
 			if (!otherEnemy.isDead && otherEnemy.isFriendly && !hasFriendly(otherEnemy.mySpawner)){
 				friendliesInRange.Add(otherEnemy);
@@ -241,7 +258,8 @@ public class EnemyDetectS : MonoBehaviour {
 				otherEnemy = other.gameObject.GetComponentInParent<EnemyS>();
 			}
 
-			if (!otherEnemy.isDead && !otherEnemy.isFriendly && hasEnemy(otherEnemy.mySpawner)){
+			if (!otherEnemy.isDead && !otherEnemy.isFriendly){
+				enemyTransforms.Remove(other.transform);
 				enemiesInRange.Remove(otherEnemy);
 			}
 			if (!otherEnemy.isDead && otherEnemy.isFriendly && hasFriendly(otherEnemy.mySpawner)){

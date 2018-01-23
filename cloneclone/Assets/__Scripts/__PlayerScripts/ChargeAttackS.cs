@@ -237,7 +237,7 @@ public class ChargeAttackS : MonoBehaviour {
 				actingDmg*=BiosAugMult();
 
 				float dmgDealt = hitEnemy.TakeDamage
-				(knockBackDir*knockbackForce*Time.deltaTime, 
+					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, 
 					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
