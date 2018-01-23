@@ -47,6 +47,7 @@ public class CameraEffectsS : MonoBehaviour {
 	private Tonemapping toneEffect;
 	private SunShafts sunEffect;
 	private BloomOptimized bloomEffect;
+	private ColorCorrectionCurves colorCorrection;
 
 	private Antialiasing antiAliasEffect;
 	public static bool aliasOn = false;
@@ -113,11 +114,13 @@ public class CameraEffectsS : MonoBehaviour {
 			if (!debugEffects){
 			toneEffect = GetComponent<Tonemapping>();
 			bloomEffect = GetComponent<BloomOptimized>();
-			sunEffect = GetComponent<SunShafts>();
+				sunEffect = GetComponent<SunShafts>();
+				colorCorrection = GetComponent<ColorCorrectionCurves>();
 			sunEffect.enabled = false;
 			bloomEffect.enabled = false;
 			toneEffect.enabled = false;
 			contrastEffect.enabled = false;
+				colorCorrection.enabled = false;
 			}
 
 			#elif UNITY_STANDALONE_OSX || UNITY_STANDALONE
@@ -125,10 +128,12 @@ public class CameraEffectsS : MonoBehaviour {
 			toneEffect = GetComponent<Tonemapping>();
 			bloomEffect = GetComponent<BloomOptimized>();
 			sunEffect = GetComponent<SunShafts>();
+			colorCorrection = GetComponent<ColorCorrectionCurves>();
 			sunEffect.enabled = false;
 			bloomEffect.enabled = false;
 			toneEffect.enabled = false;
 			contrastEffect.enabled = false;
+			colorCorrection.enabled = false;
 			}
 			#endif
 		}

@@ -20,6 +20,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public bool flipOnX = false;
 	public bool dontRotate = false;
 	public float hitStopAmount = 0.2f;
+	public bool autoCritOnReflect = false;
 
 	[Header("Attack Properties")]
 	public float range;
@@ -443,10 +444,15 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (other.gameObject.tag == "Enemy"){
 				
 				EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
+				if (!hitEnemy){
+					hitEnemy = other.GetComponentInParent<EnemyS>();
+				}
 				
 				if (!hitEnemy.isFriendly && !hitEnemy.isDead && !hitEnemy.invulnerable){
 
-					
+					if (autoCritOnReflect){
+						hitEnemy.AutoCrit(Vector3.zero, hitEnemy.maxCritTime);
+					}
 					hitEnemy.TakeDamage
 					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage, 1f, 1.5f, hitStopAmount, 0f, true);
