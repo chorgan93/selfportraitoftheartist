@@ -112,7 +112,7 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		}
 
 		spawnObj.GetComponent<DamageNumberS>().Initialize(isE, dmgAmt, playerHit);
-		spawnObj.transform.parent = null;
+			spawnObj.transform.parent = null;
 		}
 
 		return spawnObj;

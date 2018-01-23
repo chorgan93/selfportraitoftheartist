@@ -158,6 +158,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public void Fire(Vector3 aimDirection, EnemyS enemyReference, float difficultyModifier = 1f){
 
 		_fired = true;
+		startDamage = damage;
 		if (soundObj){
 			Instantiate(soundObj);
 		}
