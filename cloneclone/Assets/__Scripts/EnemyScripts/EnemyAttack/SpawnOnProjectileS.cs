@@ -152,4 +152,10 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		}
 	
 	}
+
+	public void SetNewParticleColor(Color newCol){
+		Color switchCol = newCol;
+		switchCol.a = trailColor.a;
+		trailColor = switchCol;
+	}
 }

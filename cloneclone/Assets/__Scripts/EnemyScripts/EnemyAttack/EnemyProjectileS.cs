@@ -564,6 +564,17 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (myCollider){
 			myCollider.enabled = false;
 		}
+		if (_myRenderer3D){
+			doFlashLogic = true;
+			_myRenderer3D.material.color = Color.white;
+			_myRenderer3D.material.SetTexture("_MainTex", flashTexture);
+		}
+		if (_myRenderer){
+			doFlashLogic = true;
+			_myRenderer.material.SetFloat("_FlashAmount", 1f);
+		}
+		didFlashLogic = false;
+		flashFrames = 4;
 		yield return new WaitForSeconds(0.2f);
 
 		if (myCollider){
@@ -583,13 +594,19 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	}
 
-	public void ReflectProjectile(Vector3 aimDir){
+	public void ReflectProjectile(Vector3 aimDir, ProjectileS myReflector){
 		if (!isFriendly){
 		isFriendly = true;
 		range = _maxRange+0.2f;
+			damage = startDamage*1.5f;
 		_rigidbody.velocity = Vector3.zero;
 		StartCoroutine(ReflectCoroutine(aimDir));
 		CameraShakeS.C.MicroShake();
+			myReflector.StartReflect(this);
+			AnimObjS[] myAnims = GetComponentsInChildren<AnimObjS>();
+			for (int i = 0; i < myAnims.Length; i++){
+				myAnims[i].ActivateReflect();
+			}
 		}
 
 	}

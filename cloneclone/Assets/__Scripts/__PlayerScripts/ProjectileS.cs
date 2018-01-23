@@ -26,6 +26,7 @@ public class ProjectileS : MonoBehaviour {
 	public GameObject hitObj;
 	public GameObject hitObjInanimate;
 	public GameObject endObj;
+	public GameObject reflectObj;
 	public bool useAltAnim = false;
 
 	[Header("Shot Effects")]
@@ -113,6 +114,7 @@ public class ProjectileS : MonoBehaviour {
 	private PlayerController _myPlayer;
 	public PlayerController myPlayer { get { return _myPlayer; } }
 
+
 	private bool hitAllTargets = false;
 
 	private bool isDashAttack = false;
@@ -198,6 +200,25 @@ public class ProjectileS : MonoBehaviour {
 	
 	}
 
+	public void StartReflect(EnemyProjectileS reflectTarget){
+		currentRange += 0.2f;
+		StartCoroutine(ReflectCoroutine());
+		if (reflectObj){
+			GameObject newReflect = Instantiate(reflectObj, transform.position, reflectObj.transform.rotation)
+				as GameObject;
+			newReflect.GetComponent<ReflectObjEffectS>().Spawn(reflectTarget);
+		}
+
+	}
+	private IEnumerator ReflectCoroutine(){
+		Color startCol = myRenderer.color;
+		myRenderer.color = Color.white;
+		StartMoveStop(0.2f);
+		yield return new WaitForSeconds(0.2f);
+		myRenderer.color = startCol;
+	}
+
+
 	public void StartKnockback(PlayerController playerReference, Vector3 aimDirection){
 		if (startKnockbackSpeed > 0){
 			Vector3 startKForce = aimDirection.normalized*startKnockbackSpeed*Time.fixedDeltaTime;
@@ -226,7 +247,6 @@ public class ProjectileS : MonoBehaviour {
 			startDmg = dmg;
 			stopTime = 0f;
 			isStopped = false;
-
 			for (int i=0;i < biosAnimators.Count; i++){
 				biosAnimators[i].gameObject.SetActive(false);
 			}
@@ -587,7 +607,7 @@ public class ProjectileS : MonoBehaviour {
 
 		if (other.gameObject.tag == "EnemyProjectile"){
 			if (_canReflect && range-currentRange <= reflectMaxTime && range-currentRange >= reflectMinTime){
-				other.GetComponent<EnemyProjectileS>().ReflectProjectile(_rigidbody.velocity.normalized);
+				other.GetComponent<EnemyProjectileS>().ReflectProjectile(_rigidbody.velocity.normalized, this);
 		}
 		}
 

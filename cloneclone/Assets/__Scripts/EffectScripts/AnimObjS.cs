@@ -30,6 +30,8 @@ public class AnimObjS : MonoBehaviour {
 	private bool _initialized = false;
 	public bool initialize { get { return _initialized; } }
 
+	private ReflectColorChange myReflect;
+
 	// Use this for initialization
 	void Awake(){
 
@@ -40,6 +42,7 @@ public class AnimObjS : MonoBehaviour {
 	void Start () {
 
 		mySprite = GetComponent<SpriteRenderer>();
+		myReflect = GetComponent<ReflectColorChange>();
 		currentFrame = 0;
 		mySprite.sprite = animFrames[currentFrame];
 		animRateCountdown = animRate+firstFrameDelay/DifficultyMult();
@@ -162,4 +165,10 @@ public class AnimObjS : MonoBehaviour {
 		replaceCol.a = mySprite.color.a;
 		mySprite.color = replaceCol;
 	} 
+
+	public void ActivateReflect(){
+		if (myReflect){
+			myReflect.ActivateReflect();
+		}
+	}
 }
