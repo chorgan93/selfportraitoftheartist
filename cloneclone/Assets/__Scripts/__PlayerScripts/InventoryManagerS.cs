@@ -49,6 +49,12 @@ public class InventoryManagerS : MonoBehaviour {
 				}
 			}
 		}
+
+		/*if (Input.GetKeyDown(KeyCode.R)){
+			Debug.Log(
+				(equippedInventory.Contains(0) && equippedInventory.Contains(1)) + " / In cutscene? "
+				+ CinematicHandlerS.inCutscene + " / In main? " + MainMenuNavigationS.inMain);
+		}**/
 	
 	}
 

@@ -25,6 +25,7 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 	public bool stateIgnoresHitstun = false; // if TRUE, cannot be interrupted by hitstun
 
 	public EnemyBehaviorS[] behaviorSet;
+	public int critResetStep = 0;
 
 	private int currentActingBehavior = 0;
 	public int currentBehaviorStep { get { return currentActingBehavior; } }
@@ -73,9 +74,13 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	}
 
-	public void StartActions(){
+	public void StartActions(bool fromCrit = false){
 
+		if (fromCrit){
+			currentActingBehavior = critResetStep;
+		}else{
 		currentActingBehavior = 0;
+		}
 		behaviorSet[currentActingBehavior].StartAction();
 
 	}

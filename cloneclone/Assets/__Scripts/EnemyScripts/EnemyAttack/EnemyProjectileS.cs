@@ -10,6 +10,8 @@ public class EnemyProjectileS : MonoBehaviour {
 	private EnemyS _myEnemy;
 	public EnemyS myEnemy { get { return _myEnemy; } }
 	private bool isFriendly = false;
+
+	private float reflectSpeedMult = 1.5f;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -445,7 +447,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 					
 					hitEnemy.TakeDamage
-					(other.transform, playerKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage, 1f, 1.5f, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){
@@ -556,5 +558,39 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	public void AllowMultiHit(){
 		allowMultiHit = true;
+	}
+
+	private IEnumerator ReflectCoroutine(Vector3 newForce){
+		if (myCollider){
+			myCollider.enabled = false;
+		}
+		yield return new WaitForSeconds(0.2f);
+
+		if (myCollider){
+			myCollider.enabled = true;
+		}
+		CameraShakeS.C.SmallShake();
+		Vector3 rotateForce = Vector3.zero;
+		if (_myEnemy){
+			rotateForce = (_myEnemy.transform.position-transform.position).normalized*shotSpeed*Time.fixedDeltaTime*reflectSpeedMult;
+			_rigidbody.AddForce(rotateForce,
+				ForceMode.Impulse);
+		}else{
+			rotateForce = newForce*shotSpeed*Time.fixedDeltaTime*reflectSpeedMult;
+			_rigidbody.AddForce(rotateForce, ForceMode.Impulse);
+		}
+		FaceDirection(rotateForce.normalized);
+
+	}
+
+	public void ReflectProjectile(Vector3 aimDir){
+		if (!isFriendly){
+		isFriendly = true;
+		range = _maxRange+0.2f;
+		_rigidbody.velocity = Vector3.zero;
+		StartCoroutine(ReflectCoroutine(aimDir));
+		CameraShakeS.C.MicroShake();
+		}
+
 	}
 }

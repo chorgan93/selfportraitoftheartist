@@ -15,6 +15,10 @@ public class ProjectileS : MonoBehaviour {
 	public int projectileID = -1;
 
 	private const float damageVariance = 0.2f;
+
+	private const float reflectMaxTime = 0.6f;
+	private const float reflectMinTime = 0.1f;
+	private bool _canReflect = true;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;
@@ -579,6 +583,12 @@ public class ProjectileS : MonoBehaviour {
 				HitEffect(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 			}
 
+		}
+
+		if (other.gameObject.tag == "EnemyProjectile"){
+			if (_canReflect && range-currentRange <= reflectMaxTime && range-currentRange >= reflectMinTime){
+				other.GetComponent<EnemyProjectileS>().ReflectProjectile(_rigidbody.velocity.normalized);
+		}
 		}
 
 	}

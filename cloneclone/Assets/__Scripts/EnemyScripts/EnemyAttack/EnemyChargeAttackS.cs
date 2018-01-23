@@ -36,6 +36,10 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public float dmg = 5f;
 	private Vector3 knockBackDir;
 	public float knockbackTime = 0.8f;
+	public float offsetChargeRange = 0f;
+	private Vector3 chargeStartPos;
+	private Vector3 renderStartPos;
+	private Vector3 chargeOffsetPos;
 
 	public bool standalone = false;
 	public bool shakeOverride = false;
@@ -63,6 +67,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		if (!standalone){
 		myEnemy = GetComponentInParent<EnemyS>();
+			chargeStartPos = transform.position;
+			renderStartPos = _myRenderer.transform.position;
 		if (myEnemy){
 			isFriendly = myEnemy.isFriendly;
 		}
@@ -276,6 +282,12 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 	public void TurnOn(float attackWarmup, bool killOnCast = false){
 
+		if (!standalone){
+			chargeOffsetPos = offsetChargeRange*Random.insideUnitSphere;
+			chargeOffsetPos.z = 0f;
+			transform.position = chargeOffsetPos+chargeStartPos;
+			_myRenderer.transform.position = renderStartPos+chargeOffsetPos;
+		}
 		doKill = killOnCast;
 		capturedChargeTime = chargeUpTime = attackWarmup;
 		_myRenderer.material.SetTexture("_MainTex", startFlash);

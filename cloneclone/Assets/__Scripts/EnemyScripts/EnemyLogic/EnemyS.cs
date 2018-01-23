@@ -614,7 +614,7 @@ public class EnemyS : MonoBehaviour {
 
 					// reset whichever state should be active
 					_currentState.CancelAllActions();
-					_currentState.StartActions();
+					_currentState.StartActions(true);
 				}
 				}
 			}else{

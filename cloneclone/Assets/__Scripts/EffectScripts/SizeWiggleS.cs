@@ -7,9 +7,12 @@ public class SizeWiggleS : MonoBehaviour {
 	public float wiggleRate;
 	private float wiggleCountdown;
 	private Vector3 startSize;
+	public bool setCutscene = true;
 
 	void Awake(){
+		if (setCutscene){
 		CinematicHandlerS.inCutscene = true;
+		}
 	}
 
 	// Use this for initialization
