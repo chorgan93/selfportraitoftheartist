@@ -26,9 +26,9 @@ public class CameraFollowS : MonoBehaviour {
 	public float followSpeedMultiplier = 1f;
 
 	private float startOrthoSize;
-	private float focusMult = 0.9f;
-	private float punchInMult = 0.8f;
-	private float punchInMultDeath = 0.4f;
+	private float focusMult = 0.95f;
+	private float punchInMult = 0.9f;
+	private float punchInMultDeath = 0.6f;
 	private Camera myCam;
 	private float _punchHangTime = 0f;
 
