@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class FadeScreenUI : MonoBehaviour {
 
@@ -39,6 +40,10 @@ public class FadeScreenUI : MonoBehaviour {
 	private bool _triggeredWakeUp = false;
 	private PlayerController pRef;
 
+	private Image uiFadeAssist;
+	private Color fadeAssistColor;
+	private bool doNotUseAssist = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -60,6 +65,10 @@ public class FadeScreenUI : MonoBehaviour {
 
 		if (GameObject.Find("In Game UI")){
 			darknessTracker = GameObject.Find("In Game UI").GetComponentInChildren<DarknessPercentUIS>();
+			uiFadeAssist = GameObject.Find("FadeUIBlack").GetComponent<Image>();
+			fadeAssistColor = uiFadeAssist.color;
+			fadeAssistColor.a = _myColor.a;
+			uiFadeAssist.color = fadeAssistColor;
 		}
 
 		if (_delayWakeUp){
@@ -79,6 +88,12 @@ public class FadeScreenUI : MonoBehaviour {
 				if (_delayWakeUp && !_triggeredWakeUp){
 					pRef.TriggerWakeUp();
 					_triggeredWakeUp = true;
+				}
+
+
+				if (!doNotUseAssist && uiFadeAssist != null){
+					fadeAssistColor.a = _myColor.a;
+					uiFadeAssist.color = fadeAssistColor;
 				}
 			
 				_myColor = _myRenderer.color;
@@ -105,6 +120,11 @@ public class FadeScreenUI : MonoBehaviour {
 				}
 			}
 			_myRenderer.color = _myColor;
+
+			if (!doNotUseAssist && uiFadeAssist != null){
+				fadeAssistColor.a = _myColor.a;
+				uiFadeAssist.color = fadeAssistColor;
+			}
 
 			_textColor.a = _myColor.a;
 			loadingText.color = _textColor;
@@ -203,6 +223,7 @@ public class FadeScreenUI : MonoBehaviour {
 		Color changeCol = newCol;
 		changeCol.a = _myRenderer.color.a;
 		_myRenderer.color = changeCol;
+		doNotUseAssist = true;
 	}
 
 	public void FadeIn(string nextScene, float newRate = 0){

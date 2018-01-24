@@ -56,7 +56,7 @@ public class CameraEffectsS : MonoBehaviour {
 	public bool arcadeMode = false;
 
 	#if UNITY_EDITOR_OSX
-	private static bool debugEffects = false;
+	public static bool debugEffects = false;
 	#endif
 
 	// Use this for initialization
@@ -83,6 +83,26 @@ public class CameraEffectsS : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.P)){
 			debugEffects = !debugEffects;
 			Debug.Log("Setting camera effects: " + debugEffects);
+			if (!sunEffect){
+				toneEffect = GetComponent<Tonemapping>();
+				bloomEffect = GetComponent<BloomOptimized>();
+				sunEffect = GetComponent<SunShafts>();
+				colorCorrection = GetComponent<ColorCorrectionCurves>();
+			}
+			if (debugEffects){
+
+				sunEffect.enabled = true;
+				bloomEffect.enabled = true;
+				toneEffect.enabled = true;
+				contrastEffect.enabled = true;
+				colorCorrection.enabled = true;
+			}else{
+				sunEffect.enabled = false;
+				bloomEffect.enabled = false;
+				toneEffect.enabled = false;
+				contrastEffect.enabled = false;
+				colorCorrection.enabled = false;
+			}
 		}
 		#endif
 	}

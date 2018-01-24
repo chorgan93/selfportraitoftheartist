@@ -154,7 +154,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				myEnemyReference.SetFaceForAttack(attackDirection);
 			}
 		}
-		if (myEnemyReference.myTracker && doTracker){
+		if (myEnemyReference.myTracker && doTracker && trackingTime > 0){
 			if (myEnemyReference.transform.localScale.x < 0){
 				Vector3 reverseDir = attackDirection;
 				reverseDir.x*=-1f;

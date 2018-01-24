@@ -67,8 +67,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		if (!standalone){
 		myEnemy = GetComponentInParent<EnemyS>();
-			chargeStartPos = transform.position;
-			renderStartPos = _myRenderer.transform.position;
+			chargeStartPos = transform.localPosition;
+			renderStartPos = _myRenderer.transform.localPosition;
 		if (myEnemy){
 			isFriendly = myEnemy.isFriendly;
 		}
@@ -285,8 +285,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		if (!standalone){
 			chargeOffsetPos = offsetChargeRange*Random.insideUnitSphere;
 			chargeOffsetPos.z = 0f;
-			transform.position = chargeOffsetPos+chargeStartPos;
-			_myRenderer.transform.position = renderStartPos+chargeOffsetPos;
+			transform.localPosition = chargeOffsetPos+chargeStartPos;
+			_myRenderer.transform.localPosition = renderStartPos+chargeOffsetPos;
 		}
 		doKill = killOnCast;
 		capturedChargeTime = chargeUpTime = attackWarmup;

@@ -157,7 +157,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			SetAttackDirection();
 		}
 		if (retarget || momsEye){
-			if (myEnemyReference.myTracker){
+			if (myEnemyReference.myTracker && trackingTime > 0){
 				if (myEnemyReference.transform.localScale.x < 0){
 					Vector3 reverseDir = attackDirection*momsEyeMult;
 					reverseDir.x*=-1f;
@@ -196,7 +196,7 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 		attackDirection = (myEnemyReference.GetTargetReference().transform.position - transform.position).normalized;
 		}
 		attackDirection.z = 0;
-		if (myEnemyReference.myTracker && doTracker){
+		if (myEnemyReference.myTracker && doTracker && trackingTime > 0){
 			if (myEnemyReference.transform.localScale.x < 0){
 				Vector3 reverseDir = attackDirection*momsEyeMult;
 				reverseDir.x*=-1f;

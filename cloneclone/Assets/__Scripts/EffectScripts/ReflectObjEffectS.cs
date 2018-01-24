@@ -23,7 +23,7 @@ public class ReflectObjEffectS : MonoBehaviour {
 		if (!_initialized){
 			myRenderer = GetComponent<Renderer>();
 			startScale = transform.localScale;
-			transform.localScale = startScale*newProj.transform.localScale.x;
+			transform.localScale = startScale*newProj.transform.localScale.x*newProj.reflectSizeMult;
 			myGrow = GetComponent<GrowEffectS>();
 			myGrow.enabled = false;
 			startTex = myRenderer.material.GetTexture("_MainTex");

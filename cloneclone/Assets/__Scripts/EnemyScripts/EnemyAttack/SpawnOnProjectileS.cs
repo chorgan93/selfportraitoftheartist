@@ -12,6 +12,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	[Header("Prefab-based Spawning")]
 	public GameObject spawnObject;
 	public GameObject[] spawnObjects;
+	public bool dontSpawnOnReflect = false;
 
 	[Header("Trail-based Spawning")]
 	public bool useSpawnPool = false;
@@ -36,6 +37,8 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	public bool enemyChargeSpawner = false;
 	private PlayerController playerRef;
 	private EnemyS myEnemyRef;
+	private EnemyProjectileS myEnemyProj;
+	private bool stopSpawningFriendly = false;
 	public bool turnOffStun = false;
 
 	public float spawnOnHitEnemyDelay = -1f;
@@ -61,13 +64,22 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		if (enemyChargeSpawner){
 			myEnemyRef = GetComponent<EnemyProjectileS>().myEnemy;
 		}
+
+		if (dontSpawnOnReflect){
+		myEnemyProj = GetComponent<EnemyProjectileS>();
+		}
 	
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-		if (infiniteSpawn || (!infiniteSpawn && maxSpawns > 0)){
+		if (dontSpawnOnReflect){
+			if (myEnemyProj.isFriend){
+				stopSpawningFriendly = true;
+			}
+		}
+		if ((infiniteSpawn || (!infiniteSpawn && maxSpawns > 0)) && !stopSpawningFriendly){
 			spawnRateCountdown -= Time.deltaTime;
 			if (spawnRateCountdown <= 0){
 				spawnRateCountdown = spawnRate;

@@ -81,7 +81,7 @@ public class GameOverS : MonoBehaviour {
 			}
 			// TODO change back after magfest!!
 			//reviveScene = "MenuScene";
-			reviveScene = "MenuSceneMAGFEST";
+			reviveScene = "MenuScene";
 			MainMenuNavigationS.inMain = true;
 		}
 	}

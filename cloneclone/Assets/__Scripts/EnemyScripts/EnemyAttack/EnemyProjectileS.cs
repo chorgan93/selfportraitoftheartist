@@ -10,6 +10,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	private EnemyS _myEnemy;
 	public EnemyS myEnemy { get { return _myEnemy; } }
 	private bool isFriendly = false;
+	public bool isFriend { get { return isFriendly; } }
 
 	private float reflectSpeedMult = 1.5f;
 	
@@ -21,6 +22,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public bool dontRotate = false;
 	public float hitStopAmount = 0.2f;
 	public bool autoCritOnReflect = false;
+	public float reflectSizeMult = 1f;
 
 	[Header("Attack Properties")]
 	public float range;
@@ -111,7 +113,7 @@ public class EnemyProjectileS : MonoBehaviour {
 			}
 		}
 
-		if (trackPlayer){
+		if (trackPlayer && !isFriendly){
 			TrackTarget();
 		}
 	}

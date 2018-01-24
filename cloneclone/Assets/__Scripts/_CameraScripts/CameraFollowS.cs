@@ -223,7 +223,7 @@ public class CameraFollowS : MonoBehaviour {
 						overrideResetPoi = null;
 						queueOver = true;
 					}else{
-						ResetPOI();
+						ResetPOI(InGameCinematicS.inGameCinematic);
 					}
 				}
 
