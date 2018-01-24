@@ -13,6 +13,11 @@ public class TrackingEffectS : MonoBehaviour {
 	private Vector3 offsetPos;
 	private Vector3 startPos;
 
+	//private Transform startParent;
+	//private float resetParentCount = 0.8f;
+	//private float resetParentCountdown;
+	//private bool checkReset = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -21,8 +26,20 @@ public class TrackingEffectS : MonoBehaviour {
 		startRotateZ = transform.rotation.eulerAngles.z;
 		startPos = transform.localPosition;
 		startPos.z+=3f;
+
+		//startParent = transform.parent;
 	
 	}
+
+	/*void Update(){
+		if (checkReset){
+			resetParentCountdown -= Time.deltaTime;
+			if (resetParentCountdown <= 0){
+				transform.parent = startParent;
+				checkReset = false;
+			}
+		}
+	}**/
 	
 	public void FireEffect(Vector3 aimDirection, Color newCol, float delayMult, Vector3 offCenter){
 		changeCol = newCol;
@@ -39,6 +56,9 @@ public class TrackingEffectS : MonoBehaviour {
 		}else{
 			transform.localPosition = startPos+offsetPos;
 		}
+		/*transform.parent = null;
+		resetParentCountdown = resetParentCount;
+		checkReset = true;**/
 	}
 
 	private void FaceDirection(Vector3 direction){

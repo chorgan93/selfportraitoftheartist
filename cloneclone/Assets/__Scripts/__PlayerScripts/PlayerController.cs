@@ -2899,6 +2899,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public Vector3 SprintProjection(){
+		return (transform.position+_myRigidbody.velocity.normalized*3f);
+	}
+		
+
 	public bool AllowDodgeEffect(){
 		// turned on for witch testing
 		if (_isDashing && dashDurationTime <= dashEffectThreshold && _playerAug.HasWitchAug()){

@@ -8,6 +8,8 @@ public class CameraPOIS : MonoBehaviour {
 	private EnemyDetectS enemyReference;
 
 	public float playerWeight = 1f;
+	private float sprintingWeightMult = 1.5f;
+	private float currentSprintMult = 1f;
 	public float enemyWeight = 0.5f;
 
 	public float moveEasing = 0.1f;
@@ -68,11 +70,12 @@ public class CameraPOIS : MonoBehaviour {
 			//lookVector.x = controlRef.RightHorizontal() + controlRef.Horizontal()*subtleLookAmt;
 			//lookVector.y = controlRef.RightVertical() + controlRef.Vertical()*subtleLookAmt;
 
-			lookVector.x = controlRef.RightHorizontal();
+			/*lookVector.x = controlRef.RightHorizontal();
 			lookVector.y = controlRef.RightVertical();
-			lookVector.z = 0;
+			lookVector.z = 0;**/
 
-			
+			currentSprintMult = 1f;
+
 			newPos = Vector3.zero;
 			if (enemyReference.closestEnemy != null && !playerReference.myStats.PlayerIsDead()){
 
@@ -80,7 +83,12 @@ public class CameraPOIS : MonoBehaviour {
 					currentPosition = (playerReference.transform.position*playerWeight 
 					                   + playerReference.myLockOn.myEnemy.transform.position*enemyWeight)/
 						(playerWeight+enemyWeight);
-				}else{
+				}/*else if (playerReference.isSprinting){
+					currentPosition = (playerReference.SprintProjection()*playerWeight 
+						+ enemyReference.enemyCenterpoint*enemyWeight)/
+						(playerWeight+enemyWeight);
+				}**/
+				else{
 					currentPosition = (playerReference.transform.position*playerWeight 
 					                   + enemyReference.enemyCenterpoint*enemyWeight)/
 					(playerWeight+enemyWeight);
@@ -95,7 +103,13 @@ public class CameraPOIS : MonoBehaviour {
 				}
 
 			}else{
-				newPos = currentPosition = playerReference.transform.position;
+				/*if (playerReference.isSprinting){
+					currentPosition = playerReference.SprintProjection();
+					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
+					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
+				}else{**/
+					currentPosition = newPos = playerReference.transform.position;
+				//}
 			}
 
 			if (!playerReference.myLockOn.lockedOn){
