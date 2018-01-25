@@ -391,7 +391,7 @@ public class PlayerController : MonoBehaviour {
 
 		// active bios
 		if (Input.GetKeyDown(KeyCode.B)){
-			ActivateBios();
+			_myAnimator.SetTrigger("Chill");
 		}
 	}
 

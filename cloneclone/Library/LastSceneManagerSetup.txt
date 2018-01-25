@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area00(Forest)Scenes/Area00_15_TheGauntlet.unity
+- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
   isLoaded: 1
   isActive: 1
