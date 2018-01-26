@@ -18,7 +18,7 @@ public class ProjectileS : MonoBehaviour {
 
 	private const float reflectMaxTime = 0.6f;
 	private const float reflectMinTime = 0.1f;
-	private bool _canReflect = true;
+	private bool _canReflect = false;
 	
 	[Header("Projectile Properties")]
 	public GameObject soundObj;

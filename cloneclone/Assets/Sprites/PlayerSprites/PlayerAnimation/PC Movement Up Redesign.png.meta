@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aa424be9bdd0048ba8c075ad3d0caea4
-timeCreated: 1490224239
+timeCreated: 1516932073
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -53,6 +53,9 @@ TextureImporter:
     21300092: PC Movement Up Redesign_12
     21300094: PC Movement Up Redesign_13
     21300096: PC Movement Up Redesign_14
+    21300098: PC Movement Up Redesign_15
+    21300100: PC Movement Up Redesign_16
+    21300102: PC Movement Up Redesign_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,7 +69,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -86,20 +89,69 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: PC Movement Up Redesign_0
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_4
       rect:
         serializedVersion: 2
         x: 0
@@ -109,7 +161,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_1
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_5
       rect:
         serializedVersion: 2
         x: 64
@@ -119,7 +173,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_2
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_6
       rect:
         serializedVersion: 2
         x: 128
@@ -129,7 +185,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_3
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_7
       rect:
         serializedVersion: 2
         x: 192
@@ -139,7 +197,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_4
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_8
       rect:
         serializedVersion: 2
         x: 0
@@ -149,7 +209,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_5
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_9
       rect:
         serializedVersion: 2
         x: 64
@@ -159,7 +221,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_6
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_10
       rect:
         serializedVersion: 2
         x: 128
@@ -169,7 +233,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_7
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_11
       rect:
         serializedVersion: 2
         x: 192
@@ -179,7 +245,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_8
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_12
       rect:
         serializedVersion: 2
         x: 0
@@ -189,7 +257,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_9
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_13
       rect:
         serializedVersion: 2
         x: 64
@@ -199,7 +269,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_10
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_14
       rect:
         serializedVersion: 2
         x: 128
@@ -209,7 +281,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_11
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_15
       rect:
         serializedVersion: 2
         x: 192
@@ -219,7 +293,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_12
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_16
       rect:
         serializedVersion: 2
         x: 0
@@ -229,7 +305,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_13
+      outline: []
+    - serializedVersion: 2
+      name: PC Movement Up Redesign_17
       rect:
         serializedVersion: 2
         x: 64
@@ -239,16 +317,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PC Movement Up Redesign_14
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

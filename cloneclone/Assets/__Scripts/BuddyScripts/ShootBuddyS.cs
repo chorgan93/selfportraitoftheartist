@@ -140,7 +140,10 @@ public class ShootBuddyS : BuddyS {
 								aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
 								aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
 							}
-							else if (shootDetect.closestEnemy != null){
+							else if (playerRef.enemyDetect.closestEnemy != null){
+								aimDir.x = playerRef.enemyDetect.closestEnemy.transform.position.x - transform.position.x;
+								aimDir.y = playerRef.enemyDetect.closestEnemy.transform.position.y - transform.position.y;
+							}else if (shootDetect.closestEnemy != null){
 								aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
 								aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
 							}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){

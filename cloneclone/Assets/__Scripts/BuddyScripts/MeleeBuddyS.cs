@@ -167,6 +167,14 @@ public class MeleeBuddyS : BuddyS {
 			aimDir.x = playerRef.myLockOn.myEnemy.transform.position.x - transform.position.x;
 			aimDir.y = playerRef.myLockOn.myEnemy.transform.position.y - transform.position.y;
 		}
+		else if (playerRef.targetEnemy != null){
+			aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
+		}
+		else if (playerRef.enemyDetect.closestEnemy != null){
+			aimDir.x = playerRef.enemyDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.enemyDetect.closestEnemy.transform.position.y - transform.position.y;
+		}
 		else if (myEnemyDetect.closestEnemy != null){
 			aimDir.x = myEnemyDetect.closestEnemy.transform.position.x - transform.position.x;
 			aimDir.y = myEnemyDetect.closestEnemy.transform.position.y - transform.position.y;
