@@ -2390,6 +2390,14 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	public bool CanBeCountered(float allowTime){
+		if (attackTriggered && attackDelay <= allowTime){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	private Vector3 ShootDirectionUnlocked(){
 
 		Vector3 inputDirection = Vector3.zero;
