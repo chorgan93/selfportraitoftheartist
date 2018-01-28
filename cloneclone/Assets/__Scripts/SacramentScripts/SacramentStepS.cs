@@ -18,12 +18,18 @@ public class SacramentStepS : MonoBehaviour {
 	private int currentText = 0;
 	public SacramentOptionS[] sacramentOptions;
 	public SacramentImageS[] sacramentImages;
+	public SacramentCombatS sacramentCombat;
 	private bool imageStep = false;
+	private bool combatStep = false;
 	private int currentImage;
 	private bool delayOptionSetup = false;
 
 	[Header("Navigation Properties")]
 	public SacramentStepS nextStep;
+
+	[Header("Background Properties")]
+	public SacramentBackgroundS backgroundFadeIn;
+	public SacramentBackgroundS backgroundFadeOut;
 
 	[Header("Sound Properties")]
 	public GameObject onSound;
@@ -74,7 +80,16 @@ public class SacramentStepS : MonoBehaviour {
 		SetUpImages();
 		SetUpOptions();
 		SetUpTexts();
+		SetUpCombats();
 		gameObject.SetActive(true);
+
+		if (backgroundFadeIn){
+			backgroundFadeIn.ActivateBackground();
+		}
+		if (backgroundFadeOut){
+			backgroundFadeOut.DeactivateBackground();
+		}
+
 		if (onSound){
 			Instantiate(onSound);
 		}
@@ -138,6 +153,17 @@ public class SacramentStepS : MonoBehaviour {
 					sacramentImages[i].Hide();}
 			}
 		}
+	}
+
+	void SetUpCombats(){
+		if (sacramentCombat != null){
+			combatStep = true;
+			sacramentCombat.StartCombat(this);
+		}
+	}
+
+	public void EndCombat(SacramentStepS nextStep){
+		_myHandler.GoToStep(nextStep);
 	}
 
 	void DelayedOptionSetup(){

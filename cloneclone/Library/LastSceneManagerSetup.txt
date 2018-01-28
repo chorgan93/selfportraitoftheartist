@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area01(Sanctum)Scenes/Area01_03_Messiah.unity
+- path: Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-00.unity
   isLoaded: 1
   isActive: 1
