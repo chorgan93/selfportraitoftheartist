@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bbd2fb5ded28645f585acb571f75f8f1
-timeCreated: 1517103407
+timeCreated: 1517172885
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -240,6 +240,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_11
+      rect:
+        serializedVersion: 2
+        x: 512
         y: 0
         width: 512
         height: 256

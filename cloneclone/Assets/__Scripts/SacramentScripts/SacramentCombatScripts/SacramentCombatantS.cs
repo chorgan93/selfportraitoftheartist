@@ -37,11 +37,19 @@ public class SacramentCombatantS : MonoBehaviour {
 	public bool startHiddenState = false;
 	private bool _isHiding = false;
 	public bool isHiding { get {return _isHiding; } }
-	private float baseAccuracy = 0.8f;
-	private float workingAccuracy;
+
+	[Header("Combat Stats")]
+	public float baseStrength = 1f;
+	private float workingStrength = 1f;
+	public float currentStrength {get {return workingStrength; } }
+	public float baseDefense = 1f;
+	private float workingDefense = 1f;
+	public float currentDefense {get {return workingStrength; } }
+	public float baseAccuracy = 0.8f;
+	private float workingAccuracy = 0.8f;
 	public float currentAccuracy { get { return workingAccuracy; } }
-	private float baseEvasion = 1f;
-	private float workingEvasion;
+	public float baseEvasion = 1f;
+	private float workingEvasion = 1f;
 	public float currentEvasion { get { return workingEvasion; } }
 	public float hiddenEvadeMult = 0.2f;
 
@@ -54,6 +62,10 @@ public class SacramentCombatantS : MonoBehaviour {
 	private SacramentCombatActionS _queuedAction;
 	public SacramentCombatActionS[] possibleActions;
 	public SacramentCombatActionOptionS[] possibleActionSelectors;
+
+	private List<int> buffNums = new List<int>();
+	private List<float> buffMults = new List<float>();
+	private List<int> buffDecays = new List<int>();
 
 	public List<SacramentCombatActionS> possAIActions;
 
@@ -195,6 +207,65 @@ public class SacramentCombatantS : MonoBehaviour {
 		Vector2 newSize = startHealthSize;
 		newSize.x *= currentHealth/maxHealth;
 		healthBar.rectTransform.sizeDelta = newSize;
+		}
+	}
+
+	public void ApplyBuffs(){
+		workingStrength = baseStrength;
+		workingDefense = baseDefense;
+		workingAccuracy = baseAccuracy;
+		workingEvasion = baseEvasion;
+		for (int i = 0; i < buffNums.Count; i++){
+			switch (buffNums[i]){
+			case (0):
+				workingStrength*=buffMults[i];
+				break;
+			case (1):
+				workingDefense*=buffMults[i];
+				break;
+			case (2):
+				workingAccuracy*=buffMults[i];
+				break;
+			case (3):
+				workingEvasion*=buffMults[i];
+				break;
+				default:
+				break;
+			}
+		}
+	}
+
+	public void DecayBuffs(){
+		for (int i = 0; i < buffDecays.Count; i++){
+			buffDecays[i]--;
+		}
+		RemoveBuffs();
+	}
+
+	public void RemoveBuffs(){
+		for (int i = buffNums.Count; i >= 0; i--){
+			if (buffDecays[i]<=0){
+					switch (buffNums[i]){
+					case (0):
+						workingStrength/=buffMults[i];
+						break;
+					case (1):
+						workingDefense/=buffMults[i];
+						break;
+					case (2):
+						workingAccuracy/=buffMults[i];
+						break;
+					case (3):
+						workingEvasion/=buffMults[i];
+						break;
+					default:
+						break;
+					}
+
+				buffNums.RemoveAt(i);
+				buffDecays.RemoveAt(i);
+				buffMults.RemoveAt(i);
+			}
 		}
 	}
 

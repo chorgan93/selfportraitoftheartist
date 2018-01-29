@@ -50,12 +50,16 @@ public class SacramentCombatActionS : MonoBehaviour {
 	
 	}
 
-	public virtual void StartAction(SacramentCombatantS myC, bool wasChosen = false){
+	public virtual void StartAction(SacramentCombatantS myC, bool wasChosen = false, bool isInterrupt = false){
 		if (!_initialized){
 			Initialize(myC);
 		}
 		if (!_currentTarget || (!targetsEnemy && !targetsAlly)){
 			_currentTarget = myC;
+		}
+
+		if (!isInterrupt){
+			myC.DecayBuffs();
 		}
 
 		if (myC.isEnemy && targetsEnemy){
@@ -137,6 +141,8 @@ public class SacramentCombatActionS : MonoBehaviour {
 				}
 			}
 		}
+
+		_myActor.RemoveBuffs();
 	}
 
 	public virtual void Initialize(SacramentCombatantS myCombatant){
