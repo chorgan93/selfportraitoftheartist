@@ -15,6 +15,8 @@ public class SpriteDistortionS : MonoBehaviour {
 	private Vector3 currentPos;
 
 	public bool matchColor = false;
+	public bool matchAlpha = false;
+	private Color matchAlphaCol;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,9 @@ public class SpriteDistortionS : MonoBehaviour {
 		parentSprite = transform.parent.GetComponent<SpriteRenderer>();
 		if(matchColor){
 		mySprite.material.SetColor("_FlashColor", parentSprite.color);
+		}
+		if (matchAlpha){
+			matchAlphaCol = mySprite.color;
 		}
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
@@ -39,6 +44,10 @@ public class SpriteDistortionS : MonoBehaviour {
 
 			if (matchColor){
 				mySprite.color = parentSprite.color;
+			}
+			if (matchAlpha){
+				matchAlphaCol.a = parentSprite.color.a;
+				mySprite.color = matchAlphaCol;
 			}
 	
 

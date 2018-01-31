@@ -17,6 +17,8 @@ public class UIDistortionS : MonoBehaviour {
 	private Vector2 startPos;
 	private RectTransform myTransform;
 
+	private bool hyperMode = false;
+
 	public bool matchColor = false;
 
 	// Use this for initialization
@@ -47,6 +49,9 @@ public class UIDistortionS : MonoBehaviour {
 	
 
 				changeCountdown -= Time.deltaTime;
+			if (hyperMode){
+				changeCountdown -= Time.deltaTime;
+			}
 
 			if (changeCountdown <= 0){
 				ChangeSize();
@@ -57,12 +62,28 @@ public class UIDistortionS : MonoBehaviour {
 
 	private void ChangeSize(){
 	
-		myTransform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
+		if (hyperMode){
+		myTransform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt*15f;
+		}else{
+			myTransform.localScale = Vector3.one+Random.insideUnitSphere*changeSizeAmt;
+		}
 
 		changeCountdown = changeRate;
 		currentPos = startPos;
+		if (hyperMode){
+			currentPos.x += 2f*changePosAmtX*Random.insideUnitCircle.x;
+			currentPos.y += 2f*changePosAmtY*Random.insideUnitCircle.y;
+		}else{
 		currentPos.x += changePosAmtX*Random.insideUnitCircle.x;
 		currentPos.y += changePosAmtY*Random.insideUnitCircle.y;
+		}
 		myTransform.anchoredPosition = currentPos;
+	}
+
+	public void TurnOnHyper(){
+		hyperMode = true;
+	}
+	public void TurnOffHyper(){
+		hyperMode = false;
 	}
 }

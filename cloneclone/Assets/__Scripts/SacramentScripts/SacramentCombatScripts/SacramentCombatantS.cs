@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SacramentCombatantS : MonoBehaviour {
+public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	public enum SacramentIVID {C, K, AA, Nightmare};
 	public SacramentIVID combatID = SacramentIVID.Nightmare;
@@ -23,12 +24,17 @@ public class SacramentCombatantS : MonoBehaviour {
 
 	[Header("Display Properties")]
 	public Image combatantImage;
+	public UIDistortionS combatantShadow;
 	private Color startColor;
 	public Color koColor = Color.grey;
 	public string[] startTurnString;
 	public Image healthBar;
 	public Text healthPercent;
 	private Vector2 startHealthSize;
+
+
+	[Header("Text Properties")]
+	public string[] criticalStrings;
 
 	[Header("Status Properties")]
 	public float startHealth;
@@ -60,20 +66,31 @@ public class SacramentCombatantS : MonoBehaviour {
 	public SacramentCombatActionS currentAction { get { return _currentAction; } }
 
 	private SacramentCombatActionS _queuedAction;
+	public SacramentCombatActionS queuedAction { get { return _queuedAction; } }
 	public SacramentCombatActionS[] possibleActions;
 	public SacramentCombatActionOptionS[] possibleActionSelectors;
 
 	private List<int> buffNums = new List<int>();
 	private List<float> buffMults = new List<float>();
-	private List<int> buffDecays = new List<int>();
+	private List<float> buffDecays = new List<float>();
 
 	public List<SacramentCombatActionS> possAIActions;
+
+	private SacramentCombatantS _overwatchTarget;
+	public SacramentCombatantS overwatchTarget { get { return _overwatchTarget; } }
 
 	private float hideRate = 1f;
 	private float revealRate = 3f;
 	private Color fadeCol;
 
 	private bool _optionsShowing = false;
+	private bool _isHovering = false;
+
+	private SacramentCombatantS _savedTarget;
+	public SacramentCombatantS savedTarget { get { return _savedTarget; } }
+
+	[HideInInspector]
+	public bool canBeSelected = false;
 
 	// Use this for initialization
 	void Start () {
@@ -83,8 +100,12 @@ public class SacramentCombatantS : MonoBehaviour {
 		if (healthBar){
 		startHealthSize = healthBar.rectTransform.sizeDelta;
 		}
+		startColor = combatantImage.color;
 		if (combatID == SacramentIVID.Nightmare){ 
 			currentHealth = maxHealth = startHealth;
+			if (!_isHiding ){
+				SetHiding(false);
+			}
 		}else if (combatID == SacramentIVID.C){
 			currentHealth = allyHealth_C;
 		}else if (combatID == SacramentIVID.K){
@@ -96,19 +117,36 @@ public class SacramentCombatantS : MonoBehaviour {
 
 		SetHealthBar();
 
-		startColor = combatantImage.color;
 		workingEvasion = baseEvasion;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (canBeSelected && _isHovering && Input.GetMouseButtonDown(0)){
+			_myManager.ChooseActionTarget(this);
+		}
 	
+	}
+
+	public void SaveTarget(SacramentCombatantS newS){
+		_savedTarget = newS;
+	}
+
+	public void SetManager(SacramentCombatS myC){
+		_myManager= myC;
 	}
 
 	public void StartActing(SacramentCombatS myC){
 		if (!_myManager){
 			_myManager = myC;
 			workingAccuracy = baseAccuracy;
+		}
+		if (_queuedAction != null){
+			if (_queuedAction.actionType == SacramentCombatActionS.SacramentActionType.Overwatch){
+				_queuedAction = null;
+				ResetOverwatchTarget();
+			}
 		}
 		if (_queuedAction != null){
 			_queuedAction.StartAction(this);
@@ -138,6 +176,9 @@ public class SacramentCombatantS : MonoBehaviour {
 	}
 	public void SetActionQueue (SacramentCombatActionS newA){
 		_queuedAction = newA;
+		if (_queuedAction){
+		_queuedAction.SetActor(this);
+		}
 	}
 
 	public void SetHiding(bool newH){
@@ -151,7 +192,7 @@ public class SacramentCombatantS : MonoBehaviour {
 
 	IEnumerator HideRoutine(){
 		fadeCol = startColor;
-		while (fadeCol.a > 0f){
+		while (fadeCol.a > 0f && _isHiding){
 			fadeCol.a -= Time.deltaTime*hideRate;
 			combatantImage.color = fadeCol;
 			yield return null;
@@ -163,7 +204,7 @@ public class SacramentCombatantS : MonoBehaviour {
 	IEnumerator RevealRoutine(){
 		fadeCol = startColor;
 		fadeCol.a = 0f;
-		while (fadeCol.a < 1f){
+		while (fadeCol.a < 1f && !_isHiding){
 			fadeCol.a += Time.deltaTime*revealRate;
 			combatantImage.color = fadeCol;
 			yield return null;
@@ -189,14 +230,22 @@ public class SacramentCombatantS : MonoBehaviour {
 	}
 
 	public void TakeDamage(float dmgAmount){
-		currentHealth -= dmgAmount;
+		if(dmgAmount > 0){
+		currentHealth -= dmgAmount/(currentDefense*CriticalMult());
+		}else{
+			currentHealth -= dmgAmount*CriticalMult();	
+		}
 		if (currentHealth <= 0f){
 			currentHealth = 0f;
 
 			if (healthPercent){
 				healthPercent.text = "CRITICAL";
 			}
+			_myManager.combatText.AddToString(criticalStrings[Mathf.FloorToInt(Random.Range(0, criticalStrings.Length))],null);
 		}else if (healthPercent){
+			if (currentHealth >= 100f){
+				currentHealth = 100f;
+			}
 			healthPercent.text = Mathf.RoundToInt(currentHealth/maxHealth*100f) + " %";
 		}
 		SetHealthBar();
@@ -208,6 +257,15 @@ public class SacramentCombatantS : MonoBehaviour {
 		newSize.x *= currentHealth/maxHealth;
 		healthBar.rectTransform.sizeDelta = newSize;
 		}
+	}
+
+	public void AddBuffs(int[] buffIds, float[] buffTimes, float[] buffAmts){
+		for (int i = 0; i < buffIds.Length; i++){
+			buffNums.Add(buffIds[i]);
+			buffDecays.Add(buffTimes[i]);
+			buffMults.Add(buffAmts[i]);
+		}
+		ApplyBuffs();
 	}
 
 	public void ApplyBuffs(){
@@ -242,9 +300,10 @@ public class SacramentCombatantS : MonoBehaviour {
 		RemoveBuffs();
 	}
 
-	public void RemoveBuffs(){
-		for (int i = buffNums.Count; i >= 0; i--){
-			if (buffDecays[i]<=0){
+	public void RemoveBuffs(float removeAmt = 0f){
+		if (buffNums.Count > 0){
+		for (int i = buffNums.Count-1; i >= 0; i--){
+				if (buffDecays[i]<=removeAmt){
 					switch (buffNums[i]){
 					case (0):
 						workingStrength/=buffMults[i];
@@ -267,6 +326,45 @@ public class SacramentCombatantS : MonoBehaviour {
 				buffMults.RemoveAt(i);
 			}
 		}
+		}
+	}
+
+	public float CriticalMult(){
+		float mult = 1f;
+		if (currentHealth <= 0f){
+			mult =0.4f;
+		}
+		return mult;
+	}
+
+	public void OnPointerEnter(PointerEventData eventData)
+	{
+		_isHovering = true;
+		if (canBeSelected){
+			combatantShadow.TurnOnHyper();
+		}
+
+	}
+
+	public void OnPointerExit(PointerEventData eventData)
+	{
+		_isHovering = false;
+		combatantShadow.TurnOffHyper();
+
+	}
+
+	public void TurnOffChoosing(){
+		canBeSelected = false;
+		_isHovering = false;
+		combatantShadow.TurnOffHyper();
+	}
+
+	public void SetOverwatchTarget(SacramentCombatantS newC){
+		_overwatchTarget = newC;
+	}
+
+	void ResetOverwatchTarget(){
+		_overwatchTarget = null;
 	}
 
 }

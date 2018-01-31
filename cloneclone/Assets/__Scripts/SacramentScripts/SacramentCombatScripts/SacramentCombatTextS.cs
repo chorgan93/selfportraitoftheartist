@@ -9,6 +9,7 @@ public class SacramentCombatTextS : MonoBehaviour {
 
 	private Text myText;
 	private bool _initialized;
+	public float delayCombatStartTime = 0.6f;
 
 	[Header("Appear Properties")]
 	public float delayAppearance = 0f;
@@ -50,6 +51,8 @@ public class SacramentCombatTextS : MonoBehaviour {
 
 	private bool awaitingInput = false;
 	private bool inputGiven = false;
+	private bool selectingAlly = false;
+	private bool beginCombatOnEnd = true;
 
 	// Use this for initialization
 	void Start () {
@@ -91,9 +94,15 @@ public class SacramentCombatTextS : MonoBehaviour {
 					if (currentChar >= fullText.Length){
 						isScrolling = false;
 						_readyToAdvance = true;
+							if (beginCombatOnEnd){
+								StartCoroutine(SendBeginMessage());
+								beginCombatOnEnd = false;
+							}
 							if (awaitingInput){
-								AddToString("", null, true, false);
+								AddToString("", null, true, false, selectingAlly);
+							
 								textActive = false;
+								
 							}
 					}else{
 						currentText += fullText[currentChar];
@@ -117,17 +126,27 @@ public class SacramentCombatTextS : MonoBehaviour {
 
 						myText.text = currentText = fullText;
 						isScrolling = false;
-						AddToString("", null, true, false);
+
+						AddToString("", null, true, false, selectingAlly);
 						textActive = false;
 
 					}
 				}
 				else if (!_readyToAdvance){
 					myText.text = currentText = fullText;
-					isScrolling = false;
+					isScrolling = false;if (beginCombatOnEnd){
+						StartCoroutine(SendBeginMessage());
+						beginCombatOnEnd = false;
+					}
 					_readyToAdvance = true;
 				}else if (actionWaitingToAdvance){
-					actionWaitingToAdvance.AdvanceAction();
+					// first, check if action is interrupted by overwatch
+					if (_myCombat.CheckOverwatchAction(actionWaitingToAdvance)){
+					actionWaitingToAdvance.AdvanceAction(true);
+						_myCombat.StartOverwatchAction();
+					}else{
+						actionWaitingToAdvance.AdvanceAction();
+					}
 				}else{
 					_myCombat.AdvanceTurn();
 				}
@@ -136,7 +155,7 @@ public class SacramentCombatTextS : MonoBehaviour {
 	
 	}
 
-	public void ActivateText(SacramentCombatS myCom){
+	public void ActivateText(SacramentCombatS myCom, string startCombatString){
 		if (!_initialized){
 			myText = GetComponent<Text>();
 			fullText = myText.text = "";
@@ -164,6 +183,9 @@ public class SacramentCombatTextS : MonoBehaviour {
 		setStrings = new List<string>();
 		textActive = true;
 		gameObject.SetActive(true);
+
+		AddToString(startCombatString, null);
+		beginCombatOnEnd = true;
 		
 	}
 	public void DeactivateText(){
@@ -171,7 +193,12 @@ public class SacramentCombatTextS : MonoBehaviour {
 		_readyToAdvance = false;
 	}
 
-	public void AddToString(string newString, SacramentCombatActionS advanceAct, bool awaitInput = false, bool givingInput = false){
+	public IEnumerator SendBeginMessage(){
+		yield return new WaitForSeconds(delayCombatStartTime);
+		_myCombat.Begin();
+	}
+
+	public void AddToString(string newString, SacramentCombatActionS advanceAct, bool awaitInput = false, bool givingInput = false, bool allyTarget = false){
 		
 		if (currentLines > maxLines){
 			if (setStrings[0].Length+1 > currentText.Length){
@@ -194,6 +221,13 @@ public class SacramentCombatTextS : MonoBehaviour {
 		setStrings.Add(newString);
 		_readyToAdvance = false;
 		actionWaitingToAdvance = advanceAct;
+		selectingAlly = allyTarget;
+		if (advanceAct != null){
+			if (advanceAct.actionType == SacramentCombatActionS.SacramentActionType.Overwatch ||
+				advanceAct.actionType == SacramentCombatActionS.SacramentActionType.FirstAid){
+				selectingAlly = true;
+			}
+		}
 		scrollCountdown = scrollRate;
 		currentChar = currentText.Length-1;
 		isScrolling = true;
@@ -209,7 +243,7 @@ public class SacramentCombatTextS : MonoBehaviour {
 			textActive = true;
 		}
 
-		if (newString == ""){
+		if (newString == "" && !selectingAlly){
 			_myCombat.ShowChoices();
 		}
 	}

@@ -8,6 +8,8 @@ public class SacramentCombatS : MonoBehaviour {
 	public SacramentCombatantS[] playerParty;
 	private SacramentStepS _myStep;
 	public SacramentHurtEffectS hurtEffect;
+	public int endAtXTurns = -1;
+	private bool timedBattle = false;
 
 	[Header("ProgressionProperties")]
 	public SacramentStepS winStep;
@@ -21,10 +23,25 @@ public class SacramentCombatS : MonoBehaviour {
 
 	[Header("Display Properties")]
 	public SacramentCombatTextS combatText;
+	public string startCombatString;
+
+	private SacramentCombatActionS choosingAction;
+	private SacramentCombatActionS overwatchAction;
 
 	// Use this for initialization
 	void Start () {
 	
+		for (int i = 0; i < playerParty.Length; i++){
+			playerParty[i].SetManager(this);
+		}
+		for (int i = 0; i < targetEnemies.Length; i++){
+			targetEnemies[i].SetManager(this);
+		}
+		if (endAtXTurns > 0){
+			timedBattle = true;
+		}
+
+
 	}
 	
 	// Update is called once per frame
@@ -70,12 +87,19 @@ public class SacramentCombatS : MonoBehaviour {
 
 	public void StartCombat(SacramentStepS myStep){
 		_myStep = myStep;
+		//combatActive = true;
+		combatText.ActivateText(this, startCombatString);
+	}
+	public void Begin(){
 		combatActive = true;
-		combatText.ActivateText(this);
 	}
 
 	public void AdvanceTurn(){
+		if(!CheckCombatEnd()){
 		_combatantActing = false;
+		}else{
+			EndCombat();
+		}
 	}
 
 	public void EndCombat(){
@@ -88,10 +112,94 @@ public class SacramentCombatS : MonoBehaviour {
 	}
 
 	public void ShowChoices(){
+		if (currentTurn){
 		currentTurn.ShowOptions();
+		}
 	}
 
 	public void HideChoices(){
+		if (currentTurn){
 		currentTurn.ShowOptions(false);
+		}
+	}
+
+	public void StartAllyChoose(SacramentCombatantS choosingCombatant, SacramentCombatActionS chooseAction){
+		choosingAction = chooseAction;
+		/*if (chooseAction.actionType == SacramentCombatActionS.SacramentActionType.FirstAid){
+
+			TurnOnAllyChoose(null);
+		}else{
+		TurnOnAllyChoose(choosingCombatant);
+		}**/
+		TurnOnAllyChoose(choosingCombatant);
+	}
+
+	void TurnOnAllyChoose(SacramentCombatantS chooser){
+		for (int i = 0; i < playerParty.Length; i++){
+			if (chooser != playerParty[i]){
+				playerParty[i].canBeSelected = true;
+			}
+		}
+		if(chooser){
+		chooser.canBeSelected = false;
+		}
+	}
+
+	public void ChooseActionTarget(SacramentCombatantS newTarget){
+		choosingAction.SetActionTargetExt(newTarget);
+		for (int i = 0; i < playerParty.Length; i++){
+			playerParty[i].TurnOffChoosing();
+		}
+	}
+
+	bool CheckCombatEnd(){
+		bool combatOver = false;
+		if (timedBattle){
+			endAtXTurns--;
+			if (endAtXTurns <= 0){
+				combatOver = true;
+			}
+		}
+		if (!combatOver){
+		int koCount = 0;
+		for (int i = 0; i < targetEnemies.Length; i++){
+			if (targetEnemies[i].returnHealth <= 0){
+				koCount++;
+			}
+		}
+		if (koCount >= targetEnemies.Length){
+			combatOver = true;
+			wonCombat = true;
+		}else{
+			koCount = 0;
+			for (int i = 0; i < playerParty.Length; i++){
+				if (playerParty[i].returnHealth <= 0){
+					koCount++;
+				}
+			}
+			if (koCount >= playerParty.Length){
+				combatOver = true;
+				wonCombat = false;
+		}
+		}
+		}
+		return combatOver;
+	}
+
+	public bool CheckOverwatchAction(SacramentCombatActionS checkAction){
+		bool actionInterrupted = false;
+
+		if (checkAction.myActor.isEnemy && checkAction.targetsEnemy){
+			for (int i = 0; i < playerParty.Length; i++){
+				if (playerParty[i].overwatchTarget != null && playerParty[i].overwatchTarget == checkAction.currentTarget){
+					overwatchAction = playerParty[i].queuedAction;
+					actionInterrupted = true;
+				}
+			}
+		}
+		return actionInterrupted;
+	}
+	public void StartOverwatchAction(){
+		overwatchAction.StartAction(overwatchAction.myActor);
 	}
 }
