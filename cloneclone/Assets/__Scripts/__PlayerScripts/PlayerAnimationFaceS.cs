@@ -54,7 +54,16 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 					if (myController.myControl.Horizontal() > 0){
 						currentSize = mySize;
 					}
-				}else{
+					}else if (myController.inAttackDelay){
+						if (myController.attackStartDirection.x < 0){
+							currentSize = mySize;
+							currentSize.x *= -1f;
+						}
+						if (myController.attackStartDirection.x > 0){
+							currentSize = mySize;
+						}
+					}
+						else{
 					if (rigidReference.velocity.x < 0){
 						currentSize = mySize;
 						currentSize.x *= -1f;

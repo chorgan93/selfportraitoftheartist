@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour {
 
 	private bool _shoot8Dir = true;
 	private Vector3 savedDir = Vector3.zero;
+	private Vector3 _attackStartDirection = Vector3.zero;
+	public Vector3 attackStartDirection { get { return _attackStartDirection; } }
 
 	private bool allowChainHeavy;
 	private bool allowChainLight;
@@ -237,6 +239,7 @@ public class PlayerController : MonoBehaviour {
 	private int prevChain = 0;
 	private float comboDuration = 0f;
 	private float attackDelay;
+	public bool inAttackDelay { get { return (attackDelay > 0 && attackTriggered);} }
 	private float attackDuration;
 	public GameObject attackEffectObj;
 	private float allowParryInput = 0.1f;
@@ -560,6 +563,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (doWakeUp){
 			TriggerWakeUp();
+			PlayerStatsS.PlayerCantDie = false;
 		}
 		_subParadigm=_currentParadigm+1;
 		if (_subParadigm>1){
@@ -1600,10 +1604,12 @@ public class PlayerController : MonoBehaviour {
 					}
 					if (_doingCounterAttack && _counterTarget != null){
 						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
+							_attackStartDirection = targetDir;
 						currentAttackS.StartKnockback(this, targetDir);
 						equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay);
 					}else{
-						currentAttackS.StartKnockback(this, ShootDirection());
+							currentAttackS.StartKnockback(this, ShootDirection());
+							_attackStartDirection = ShootDirection();
 						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					}
 					attackTriggered = true;
@@ -2181,6 +2187,7 @@ public class PlayerController : MonoBehaviour {
 			wakeUpCountdown = wakeUpTime;
 			_myAnimator.SetTrigger("Wake");
 			doWakeUp = false;
+
 	}
 
 	public void TriggerItemAnimation(){
