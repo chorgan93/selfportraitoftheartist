@@ -22,6 +22,11 @@ public class SacramentBackgroundS : MonoBehaviour {
 
 	private bool showedWaitSymbol = false;
 
+	[Header("Legibility Properties")]
+	public SacramentTextBGS textBG;
+	public float delayBGTime = 0f;
+
+
 	[Header("Sound Properties")]
 	public GameObject onSound;
 	public GameObject offSound;
@@ -46,9 +51,9 @@ public class SacramentBackgroundS : MonoBehaviour {
 				if (myCol.a <= 0){
 					myCol.a = 0;
 					fadingOut = false;
+					DeactivateImage();
 				}
 				myImage.color  = myCol;
-				DeactivateImage();
 			}
 		}
 	
@@ -86,6 +91,9 @@ public class SacramentBackgroundS : MonoBehaviour {
 		gameObject.SetActive(true);
 		imageActive = true;
 
+		if (textBG){
+			textBG.FadeIn(delayBGTime);
+		}
 
 		if (onSound){
 			Instantiate(onSound);
@@ -96,6 +104,10 @@ public class SacramentBackgroundS : MonoBehaviour {
 	}
 	public void DeactivateBackground(){
 		fadingOut = true;
+		imageFadesOut= true;
+		if (textBG){
+			textBG.FadeOut();
+		}
 	}
 	public void DeactivateImage(){
 		gameObject.SetActive(false);

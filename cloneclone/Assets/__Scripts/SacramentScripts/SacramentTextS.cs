@@ -24,6 +24,11 @@ public class SacramentTextS : MonoBehaviour {
 	private bool fadingIn = false;
 	private Color myCol;
 
+	[Header("Legibility Properties")]
+	public SacramentTextBGS textBGFadeIn;
+	public SacramentTextBGS textBGFadeOut;
+	public float delayBGTime;
+
 
 	[Header("Scroll Properties")]
 	public float scrollRate;
@@ -138,6 +143,9 @@ public class SacramentTextS : MonoBehaviour {
 		if (useAutoAdvance){
 			autoAdvanceCount = autoAdvanceTime;
 		}
+		if (textBGFadeIn){
+			textBGFadeIn.FadeIn(delayBGTime);
+		}
 		playedAppearSound = false;
 		delayAppearanceCountdown = delayAppearance;
 		if (textType == SacramentTextType.Instant){
@@ -166,5 +174,8 @@ public class SacramentTextS : MonoBehaviour {
 					textActive = false;
 		_readyToAdvance = false;
 		_stepRef.myHandler.DeactivateWait();
+		if (textBGFadeOut){
+			textBGFadeOut.FadeOut();
+		}
 	}
 }
