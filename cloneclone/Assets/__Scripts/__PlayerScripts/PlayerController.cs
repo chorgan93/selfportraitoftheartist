@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 	private const int DODGE_PHYSICS_LAYER = 12;
 
 
-	private const float ADAPTIVE_WINDOW = 0.32f;
+	private const float ADAPTIVE_WINDOW = 0.3f;
 
 	private static float SMASH_THRESHOLD = 0.75f;
 	
@@ -238,6 +238,8 @@ public class PlayerController : MonoBehaviour {
 	private int currentChain = 0;
 	private int prevChain = 0;
 	private float comboDuration = 0f;
+	private float adaptComboCutoff = 0f;
+	private float adaptPostRecover = 0.06f;
 	private float attackDelay;
 	public bool inAttackDelay { get { return (attackDelay > 0 && attackTriggered);} }
 	private float attackDuration;
@@ -547,7 +549,6 @@ public class PlayerController : MonoBehaviour {
 		_buddyEffect = GetComponentInChildren<BuddySwitchEffectS>();
 
 		currentChain = -1;
-		comboDuration = 0f;
 
 		queuedAttacks = new List<GameObject>();
 		queuedAttackDelays = new List<float>();
@@ -767,6 +768,7 @@ public class PlayerController : MonoBehaviour {
 					_myStats.ResetStamina(true);
 				}**/
 			}
+			_myStats.WitchStaminaCorrect();
 			_playerAug.EnragedTrigger();
 			_allowCounterAttack = true;
 			counterAttackTime = counterAttackTimeMax;
@@ -931,6 +933,7 @@ public class PlayerController : MonoBehaviour {
 		FlashMana();
 		resetCountdown = resetTimeMax;
 		_myRigidbody.velocity = Vector3.zero;
+		canDoAdaptive = false;
 
 		// first, check for parry, otherwise dodge
 		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
@@ -1375,6 +1378,7 @@ public class PlayerController : MonoBehaviour {
 
 
 			comboDuration = currentAttackS.comboDuration;
+			adaptComboCutoff = comboDuration-adaptPostRecover;
 
 			currentAttackS = newProjectile.GetComponent<ProjectileS>();
 
@@ -1451,10 +1455,6 @@ public class PlayerController : MonoBehaviour {
 
 
 			FlashMana();
-
-			if (_myStats.currentMana <= 0){
-				comboDuration = 0f;
-			}
 
 				if (myRenderer.transform.localScale.x > 0){
 					if (!currentAttackS.useAltAnim){
@@ -1768,12 +1768,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AdaptiveCheck(){
-		if (_isShooting){
-			if (_playerAug.adaptiveAug && _isShooting && !_chargingAttack && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+			if (_playerAug.adaptiveAug && (_isShooting || comboDuration > adaptComboCutoff) && !_chargingAttack && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
 				_myStats.ResetStamina(true, true, 0.8f);
 			}
 			canDoAdaptive = false;
-		}
+
 	}
 
 	private void LockOnControl(){

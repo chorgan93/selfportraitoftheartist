@@ -26,6 +26,8 @@ public class SacramentStepS : MonoBehaviour {
 
 	[Header("Navigation Properties")]
 	public SacramentStepS nextStep;
+	public string ChangeNextScene = "";
+	public int changeStartStep = 0;
 
 	[Header("Background Properties")]
 	public SacramentBackgroundS backgroundFadeIn;
@@ -80,8 +82,8 @@ public class SacramentStepS : MonoBehaviour {
 		SetUpImages();
 		SetUpOptions();
 		SetUpTexts();
-		SetUpCombats();
 		gameObject.SetActive(true);
+		SetUpCombats();
 
 		if (backgroundFadeIn){
 			backgroundFadeIn.ActivateBackground();
@@ -92,6 +94,11 @@ public class SacramentStepS : MonoBehaviour {
 
 		if (onSound){
 			Instantiate(onSound);
+		}
+
+		if (ChangeNextScene != ""){
+			_myHandler.nextSceneString = ChangeNextScene;
+			SacramentHandlerS.startStep = changeStartStep;
 		}
 	}
 

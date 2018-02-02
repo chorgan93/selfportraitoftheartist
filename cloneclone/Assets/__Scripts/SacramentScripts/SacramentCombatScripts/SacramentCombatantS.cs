@@ -32,9 +32,26 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	public Text healthPercent;
 	private Vector2 startHealthSize;
 
+	[Header("Effect Properties")]
+	public RectTransform[] shakeItems;
+	private List<Vector2> shakeOrigins = new List<Vector2>();
+	public float shakeMax = 15;
+	public float shakeTime = 0.2f;
+	private float shakeCountdown = 0f;
+	public int flashFramesOn = 2;
+	private int flashCountdown = 0;
 
 	[Header("Text Properties")]
 	public string[] criticalStrings;
+
+	[Header("Appear Properties")]
+	public int yOffset = -50;
+	private Vector2 startAnchorPos;
+	private Vector2 originAnchorPos;
+	public float delayAppearTime = 0f;
+	public float lerpTime = 1f;
+	private float lerpCount = 0f;
+	public GameObject appearSound;
 
 	[Header("Status Properties")]
 	public float startHealth;
@@ -108,16 +125,44 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			}
 		}else if (combatID == SacramentIVID.C){
 			currentHealth = allyHealth_C;
+			StartCoroutine(StartAppear());
 		}else if (combatID == SacramentIVID.K){
 			currentHealth = allyHealth_K;
+			StartCoroutine(StartAppear());
 		}else if (combatID == SacramentIVID.AA){
 			currentHealth = allyHealth_AA;
+			StartCoroutine(StartAppear());
 		}
 		_currentPriority = startPriority;
 
 		SetHealthBar();
 
 		workingEvasion = baseEvasion;
+	}
+
+	IEnumerator StartAppear(){
+		RectTransform myTransform = GetComponent<RectTransform>();
+		originAnchorPos = myTransform.anchoredPosition;
+		startAnchorPos = originAnchorPos;
+		startAnchorPos.y -= yOffset;
+		myTransform.anchoredPosition = startAnchorPos;
+
+		yield return new WaitForSeconds(delayAppearTime);
+
+		float lerpT = 0f;
+		while (lerpCount < lerpTime){
+			lerpCount += Time.deltaTime;
+			if (lerpCount >= lerpTime){
+				lerpCount = lerpTime;
+			}
+			lerpT = Mathf.Sin(lerpCount/lerpTime * Mathf.PI * 0.5f);
+			myTransform.anchoredPosition = Vector2.Lerp(startAnchorPos, originAnchorPos, lerpT);
+			yield return null;
+		}
+
+		if (appearSound){
+			Instantiate(appearSound);
+		}
 	}
 	
 	// Update is called once per frame
@@ -232,6 +277,7 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	public void TakeDamage(float dmgAmount){
 		if(dmgAmount > 0){
 		currentHealth -= dmgAmount/(currentDefense*CriticalMult());
+			StartShake();
 		}else{
 			currentHealth -= dmgAmount*CriticalMult();	
 		}
@@ -257,6 +303,41 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 		newSize.x *= currentHealth/maxHealth;
 		healthBar.rectTransform.sizeDelta = newSize;
 		}
+
+		if (shakeItems.Length > 0){
+			for (int i = 0 ; i < shakeItems.Length; i++){
+				shakeOrigins.Add(shakeItems[i].anchoredPosition);
+			}
+		}
+	}
+
+	public void StartShake(){
+		if (shakeItems.Length > 0){
+			shakeCountdown = shakeTime;
+			combatantImage.enabled = false;
+			StartCoroutine(ShakeCoroutine());
+			flashCountdown = flashFramesOn;
+		}
+
+	}
+	IEnumerator ShakeCoroutine(){
+		while (shakeCountdown > 0){
+			shakeCountdown -= Time.deltaTime;
+			if (shakeCountdown <= 0){
+				shakeCountdown = 0f;
+			}
+			for (int i = 0; i < shakeItems.Length; i++){
+				shakeItems[i].anchoredPosition = shakeOrigins[i]+(shakeCountdown/shakeTime)*Random.insideUnitCircle*shakeMax;
+			}
+			flashCountdown--;
+			if (flashCountdown <= 0){
+				flashCountdown = flashFramesOn;
+				combatantImage.enabled = !combatantImage.enabled;
+			}
+			yield return null;
+		}
+		combatantImage.enabled = true;
+
 	}
 
 	public void AddBuffs(int[] buffIds, float[] buffTimes, float[] buffAmts){

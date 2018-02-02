@@ -405,6 +405,19 @@ public class PlayerStatsS : MonoBehaviour {
 		}**/
 	}
 
+	public void WitchStaminaCorrect(){
+		if(_currentMana <= 0f){
+			_currentMana = 1f;
+			_currentManaUsed -= 1f;
+			_currentCooldownTimer = 0f;
+		}
+		_overchargeMana = 0f;
+
+
+		warningReference.EndShow("! ! STAMINA OUT ! !");
+		_uiReference.UpdateFills();
+	}
+
 	public void AddUIReference(PlayerStatDisplayS sd){
 		_uiReference = sd;
 	}
@@ -663,12 +676,19 @@ public class PlayerStatsS : MonoBehaviour {
 	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false, float comboReduction = 1f){
 
 		if (onlyCombo){
-			if (_comboStartMana > _currentMana){
+			if (_comboStartMana*comboReduction > _currentMana){
 				_currentMana = _comboStartMana*comboReduction;
 				_comboStartMana = _currentMana;
 
 				_currentManaUsed = maxMana-_comboStartMana*comboReduction;
-				_currentCooldownTimer = recoveryCooldownMax;
+				//_currentCooldownTimer = recoveryCooldownMax;
+				currentRegenCountdown = GetRegenTime();
+			}else{
+				_currentMana = _comboStartMana;
+				_comboStartMana = _currentMana;
+
+				_currentManaUsed = maxMana-_comboStartMana;
+				//_currentCooldownTimer = recoveryCooldownMax;
 				currentRegenCountdown = GetRegenTime();
 			}
 		}else{

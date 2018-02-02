@@ -24,6 +24,7 @@ public class SacramentCombatS : MonoBehaviour {
 	[Header("Display Properties")]
 	public SacramentCombatTextS combatText;
 	public string startCombatString;
+	public float delayStringStart = 1f;
 
 	private SacramentCombatActionS choosingAction;
 	private SacramentCombatActionS overwatchAction;
@@ -88,6 +89,10 @@ public class SacramentCombatS : MonoBehaviour {
 	public void StartCombat(SacramentStepS myStep){
 		_myStep = myStep;
 		//combatActive = true;
+		StartCoroutine(StartCombatEffects());
+	}
+	IEnumerator StartCombatEffects(){
+		yield return new WaitForSeconds(delayStringStart);
 		combatText.ActivateText(this, startCombatString);
 	}
 	public void Begin(){

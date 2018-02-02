@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SacramentHandlerS : MonoBehaviour {
 
+	public static int startStep = 0;
+
 	public List<SacramentStepS> sacramentSteps;
 	public Image waitForAdvanceImage;
 
@@ -31,7 +33,8 @@ public class SacramentHandlerS : MonoBehaviour {
 	}
 
 	void Start () {
-		currentStep = 0;
+		currentStep = startStep;
+		startStep = 0;
 		InitializeSteps();
 		sacramentSteps[currentStep].ActivateStep();
 	}

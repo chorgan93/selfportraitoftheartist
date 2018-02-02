@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bbd2fb5ded28645f585acb571f75f8f1
-timeCreated: 1517296127
+timeCreated: 1517532573
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -72,6 +72,13 @@ TextureImporter:
     21300130: Sacrament IV Art_25
     21300132: Sacrament IV Art_26
     21300134: Sacrament IV Art_27
+    21300136: Sacrament IV Art_28
+    21300138: Sacrament IV Art_29
+    21300140: Sacrament IV Art_30
+    21300142: Sacrament IV Art_31
+    21300144: Sacrament IV Art_32
+    21300146: Sacrament IV Art_33
+    21300148: Sacrament IV Art_34
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -123,7 +130,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1536
+        y: 2048
         width: 512
         height: 256
       alignment: 0
@@ -135,7 +142,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1536
+        y: 2048
         width: 512
         height: 256
       alignment: 0
@@ -147,7 +154,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1536
+        y: 2048
         width: 512
         height: 256
       alignment: 0
@@ -159,7 +166,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 1536
+        y: 2048
         width: 512
         height: 256
       alignment: 0
@@ -171,7 +178,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1280
+        y: 1792
         width: 512
         height: 256
       alignment: 0
@@ -183,7 +190,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1280
+        y: 1792
         width: 512
         height: 256
       alignment: 0
@@ -195,7 +202,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1280
+        y: 1792
         width: 512
         height: 256
       alignment: 0
@@ -207,7 +214,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 1280
+        y: 1792
         width: 512
         height: 256
       alignment: 0
@@ -219,7 +226,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
+        y: 1536
         width: 512
         height: 256
       alignment: 0
@@ -231,7 +238,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
+        y: 1536
         width: 512
         height: 256
       alignment: 0
@@ -243,7 +250,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 1024
+        y: 1536
         width: 512
         height: 256
       alignment: 0
@@ -255,7 +262,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 1024
+        y: 1536
         width: 512
         height: 256
       alignment: 0
@@ -267,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 768
+        y: 1280
         width: 512
         height: 256
       alignment: 0
@@ -279,7 +286,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 768
+        y: 1280
         width: 512
         height: 256
       alignment: 0
@@ -291,7 +298,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 768
+        y: 1280
         width: 512
         height: 256
       alignment: 0
@@ -303,7 +310,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 768
+        y: 1280
         width: 512
         height: 256
       alignment: 0
@@ -315,7 +322,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 1024
         width: 512
         height: 256
       alignment: 0
@@ -327,7 +334,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 512
+        y: 1024
         width: 512
         height: 256
       alignment: 0
@@ -339,7 +346,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 512
+        y: 1024
         width: 512
         height: 256
       alignment: 0
@@ -351,7 +358,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 512
+        y: 1024
         width: 512
         height: 256
       alignment: 0
@@ -363,7 +370,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 768
         width: 512
         height: 256
       alignment: 0
@@ -375,7 +382,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 256
+        y: 768
         width: 512
         height: 256
       alignment: 0
@@ -387,7 +394,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 256
+        y: 768
         width: 512
         height: 256
       alignment: 0
@@ -399,7 +406,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
-        y: 256
+        y: 768
         width: 512
         height: 256
       alignment: 0
@@ -411,7 +418,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 512
         width: 512
         height: 256
       alignment: 0
@@ -423,7 +430,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 0
+        y: 512
         width: 512
         height: 256
       alignment: 0
@@ -435,7 +442,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 0
+        y: 512
         width: 512
         height: 256
       alignment: 0
@@ -447,6 +454,90 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1536
+        y: 512
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_29
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_30
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_31
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 256
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_33
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art_34
+      rect:
+        serializedVersion: 2
+        x: 1024
         y: 0
         width: 512
         height: 256
