@@ -154,6 +154,7 @@ public class SacramentCombatActionS : MonoBehaviour {
 		if (revealsActor){
 			_myActor.SetHiding(false);
 		}
+			AddBuffs();
 		if (attackPower > 0){
 			if (targetsEnemy){
 				if (actionHit){

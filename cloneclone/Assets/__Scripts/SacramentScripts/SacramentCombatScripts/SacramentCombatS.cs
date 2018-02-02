@@ -14,7 +14,10 @@ public class SacramentCombatS : MonoBehaviour {
 	[Header("ProgressionProperties")]
 	public SacramentStepS winStep;
 	public SacramentStepS loseStep;
+	public string winLine = "";
+	public string loseLine = "";
 	private bool wonCombat = false;
+	private bool endTextGiven = false;
 	private bool combatActive = false;
 	private bool _combatantActing = false;
 	public bool combatantActing { get {return _combatantActing; } }
@@ -108,12 +111,21 @@ public class SacramentCombatS : MonoBehaviour {
 	}
 
 	public void EndCombat(){
+		if (!endTextGiven){
+			endTextGiven = true;
+			if (wonCombat){
+				combatText.AddToString(winLine, null);
+			}else{
+				combatText.AddToString(loseLine, null);
+			}
+		}else{
 		if (wonCombat){
 			_myStep.EndCombat(winStep);
 		}else{
 			_myStep.EndCombat(loseStep);
 		}
 		combatActive = false;
+		}
 	}
 
 	public void ShowChoices(){

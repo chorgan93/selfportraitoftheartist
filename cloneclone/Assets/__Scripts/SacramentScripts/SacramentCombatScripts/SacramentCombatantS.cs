@@ -67,7 +67,7 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	public float currentStrength {get {return workingStrength; } }
 	public float baseDefense = 1f;
 	private float workingDefense = 1f;
-	public float currentDefense {get {return workingStrength; } }
+	public float currentDefense {get {return workingDefense; } }
 	public float baseAccuracy = 0.8f;
 	private float workingAccuracy = 0.8f;
 	public float currentAccuracy { get { return workingAccuracy; } }
@@ -202,6 +202,7 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			possAIActions[actionToDo].StartAction(this);
 			_currentAction = possibleActions[actionToDo];
 		}else{
+			ResetOverwatchTarget();
 			_myManager.combatText.AddToString(startTurnString[Mathf.FloorToInt(Random.Range(0, startTurnString.Length))],
 				null, true);
 		}
