@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: 9b3e39cb7a5b34d44a1b9bbf781992aa
+timeCreated: 1517729082
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Sacrament I_0
+    21300002: Sacrament I_1
+    21300004: Sacrament I_2
+    21300006: Sacrament I_3
+    21300008: Sacrament I_4
+    21300010: Sacrament I_5
+    21300012: Sacrament I_6
+    21300014: Sacrament I_7
+    21300016: Sacrament I_8
+    21300018: Sacrament I_9
+    21300020: Sacrament I_10
+    21300022: Sacrament I_11
+    21300024: Sacrament I_12
+    21300026: Sacrament I_13
+    21300028: Sacrament I_14
+    21300030: Sacrament I_15
+    21300032: Sacrament I_16
+    21300034: Sacrament I_17
+    21300036: Sacrament I_18
+    21300038: Sacrament I_19
+    21300040: Sacrament I_20
+    21300042: Sacrament I_21
+    21300044: Sacrament I_22
+    21300046: Sacrament I_23
+    21300048: Sacrament I_24
+    21300050: Sacrament I_25
+    21300052: Sacrament I_26
+    21300054: Sacrament I_27
+    21300056: Sacrament I_28
+    21300058: Sacrament I_29
+    21300060: Sacrament I_30
+    21300062: Sacrament I_31
+    21300064: Sacrament I_32
+    21300066: Sacrament I_33
+    21300068: Sacrament I_34
+    21300070: Sacrament I_35
+    21300072: Sacrament I_36
+    21300074: Sacrament I_37
+    21300076: Sacrament I_38
+    21300078: Sacrament I_39
+    21300080: Sacrament IV Art_0
+    21300082: Sacrament IV Art_1
+    21300084: Sacrament IV Art_2
+    21300086: Sacrament IV Art_3
+    21300088: Sacrament IV Art_4
+    21300090: Sacrament IV Art_5
+    21300092: Sacrament IV Art_6
+    21300094: Sacrament IV Art_7
+    21300096: Sacrament IV Art_8
+    21300098: Sacrament IV Art_9
+    21300100: Sacrament IV Art_10
+    21300102: Sacrament IV Art_11
+    21300104: Sacrament IV Art_12
+    21300106: Sacrament IV Art_13
+    21300108: Sacrament IV Art_14
+    21300110: Sacrament IV Art_15
+    21300112: Sacrament IV Art_16
+    21300114: Sacrament IV Art_17
+    21300116: Sacrament IV Art_18
+    21300118: Sacrament IV Art_19
+    21300120: Sacrament IV Art_20
+    21300122: Sacrament IV Art_21
+    21300124: Sacrament IV Art_22
+    21300126: Sacrament IV Art_23
+    21300128: Sacrament IV Art_24
+    21300130: Sacrament IV Art_25
+    21300132: Sacrament IV Art_26
+    21300134: Sacrament IV Art_27
+    21300136: Sacrament IV Art_28
+    21300138: Sacrament IV Art_29
+    21300140: Sacrament IV Art_30
+    21300142: Sacrament IV Art_31
+    21300144: Sacrament IV Art_32
+    21300146: Sacrament IV Art_33
+    21300148: Sacrament IV Art_34
+    21300150: Sacrament IV Art 2_0
+    21300152: Sacrament IV Art 2_1
+    21300154: Sacrament IV Art 2_2
+    21300156: Sacrament IV Art 2_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sacrament IV Art 2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art 2_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art 2_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament IV Art 2_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
