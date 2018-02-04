@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private const string currentVer = "— v. 0.6.0 —";
+	private const string currentVer = "— v. 0.6.1 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -371,11 +371,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 							showOnOverride.gameObject.SetActive(false);
 							if (currentSelection == 0 || publicDemoVersion){
 							StoryProgressionS.NewGame(); // reset for new game progress
-								if (currentSelection == 0){
+								/*if (currentSelection == 0){
 									newGameScene = demoOneScene;
 								}else{
 									newGameScene = demoTwoScene;
-								}
+								}**/
 						}else{
 							SaveLoadS.Load();
 							newGameScene = GameOverS.reviveScene;
