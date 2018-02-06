@@ -9,9 +9,9 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	public enum SacramentIVID {C, K, AA, Nightmare};
 	public SacramentIVID combatID = SacramentIVID.Nightmare;
 
-	private static float allyHealth_C = 100f;
-	private static float allyHealth_K = 100f;
-	private static float allyHealth_AA = 100f;
+	//private static float allyHealth_C = 100f;
+	//private static float allyHealth_K = 100f;
+	//private static float allyHealth_AA = 100f;
 
 	private float maxHealth = 100f;
 
@@ -55,6 +55,7 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	[Header("Status Properties")]
 	public float startHealth;
+	public float weakenStart = 0f;
 	private float currentHealth;
 	public float returnHealth { get { return currentHealth; } }
 	public bool startHiddenState = false;
@@ -118,19 +119,20 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 		startHealthSize = healthBar.rectTransform.sizeDelta;
 		}
 		startColor = combatantImage.color;
+		currentHealth = maxHealth = startHealth;
+		currentHealth-=weakenStart;
 		if (combatID == SacramentIVID.Nightmare){ 
-			currentHealth = maxHealth = startHealth;
 			if (!_isHiding ){
 				SetHiding(false);
 			}
 		}else if (combatID == SacramentIVID.C){
-			currentHealth = allyHealth_C;
+			//currentHealth = allyHealth_C;
 			StartCoroutine(StartAppear());
 		}else if (combatID == SacramentIVID.K){
-			currentHealth = allyHealth_K;
+			//currentHealth = allyHealth_K;
 			StartCoroutine(StartAppear());
 		}else if (combatID == SacramentIVID.AA){
-			currentHealth = allyHealth_AA;
+			//currentHealth = allyHealth_AA;
 			StartCoroutine(StartAppear());
 		}
 		_currentPriority = startPriority;

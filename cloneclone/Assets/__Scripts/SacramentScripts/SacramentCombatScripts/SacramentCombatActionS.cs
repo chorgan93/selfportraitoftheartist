@@ -40,6 +40,7 @@ public class SacramentCombatActionS : MonoBehaviour {
 	[Header("AI Properties")]
 	public bool randomTargeting;
 	public bool viciousTargeting;
+	public SacramentCombatantS setTarget;
 	private bool actionHit = false;
 
 	private bool _initialized = false;
@@ -62,8 +63,14 @@ public class SacramentCombatActionS : MonoBehaviour {
 		if (!_initialized){
 			Initialize(myC);
 		}
-		if (!_currentTarget || (!targetsEnemy && !targetsAlly)){
+		if (setTarget){
+			_currentTarget = setTarget;
+		}else if (!_currentTarget || (!targetsEnemy && !targetsAlly)){
+			if (myC.savedTarget != null){
+				_currentTarget = myC.savedTarget;
+			}else{
 			_currentTarget = myC;
+			}
 		}
 
 		if (myC.isEnemy && targetsEnemy){
@@ -87,6 +94,7 @@ public class SacramentCombatActionS : MonoBehaviour {
 				myC.DecayBuffs();
 			}
 		actionHit = true;
+
 		if (_currentTarget != myC){
 				float accuracyTarget = 1f;
 				if (actionType == SacramentActionType.FirstAid || (actionType == SacramentActionType.Overwatch && targetsAlly)){
