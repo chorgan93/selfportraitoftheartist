@@ -28,6 +28,7 @@ public class SacramentStepS : MonoBehaviour {
 	public SacramentStepS nextStep;
 	public string ChangeNextScene = "";
 	public int changeStartStep = 0;
+	public SacramentChangeNextStep changeStep;
 
 	[Header("Background Properties")]
 	public SacramentBackgroundS backgroundFadeIn;
@@ -75,6 +76,9 @@ public class SacramentStepS : MonoBehaviour {
 	public void ActivateStep(){
 		if (musicTrigger){
 			musicTrigger.Activate();
+		}
+		if (changeStep){
+			changeStep.Activate();
 		}
 		_stepActive = true;
 	delayOptionSetup = false;

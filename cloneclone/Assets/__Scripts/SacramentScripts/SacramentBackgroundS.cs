@@ -76,6 +76,7 @@ public class SacramentBackgroundS : MonoBehaviour {
 			myCol = myImage.color;
 			maxAlpha = myCol.a;
 		}
+		if (!imageActive){
 		if (imageFadesIn){
 			myCol = myImage.color;
 			myCol.a = 0;
@@ -98,15 +99,18 @@ public class SacramentBackgroundS : MonoBehaviour {
 		if (onSound){
 			Instantiate(onSound);
 		}
+		}
 	}
 	public void ActivateBackground(){
 		ActivateImage();
 	}
 	public void DeactivateBackground(){
+		if (imageActive){
 		fadingOut = true;
 		imageFadesOut= true;
 		if (textBG){
 			textBG.FadeOut();
+		}
 		}
 	}
 	public void DeactivateImage(){
