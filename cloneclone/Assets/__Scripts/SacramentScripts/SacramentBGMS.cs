@@ -13,11 +13,13 @@ public class SacramentBGMS : MonoBehaviour {
 	// Use this for initialization
 	public void Activate () {
 	
+		if (myTarget){
 		if (fadeIn){
 			myTarget.FadeIn(instant);
 		}
 		if (fadeOut){
 			myTarget.FadeOut(instant, destroyOnFade);
+		}
 		}
 
 	}
