@@ -120,7 +120,10 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 		}
 		startColor = combatantImage.color;
 		currentHealth = maxHealth = startHealth;
+		if (weakenStart > 0){
 		currentHealth-=weakenStart;
+			UpdateHealthPercent();
+		}
 		if (combatID == SacramentIVID.Nightmare){ 
 			if (!_isHiding ){
 				SetHiding(false);
@@ -298,6 +301,16 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			healthPercent.text = Mathf.RoundToInt(currentHealth/maxHealth*100f) + " %";
 		}
 		SetHealthBar();
+	}
+
+	void UpdateHealthPercent(){
+		if (healthPercent){
+			if (currentHealth <= 0){
+			healthPercent.text = "CRITICAL";
+			}else{
+				healthPercent.text = Mathf.RoundToInt(currentHealth/maxHealth*100f) + " %";
+			}
+		}
 	}
 
 	void SetHealthBar(){
