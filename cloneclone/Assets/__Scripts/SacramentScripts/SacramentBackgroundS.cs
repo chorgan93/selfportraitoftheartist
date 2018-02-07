@@ -76,7 +76,7 @@ public class SacramentBackgroundS : MonoBehaviour {
 			myCol = myImage.color;
 			maxAlpha = myCol.a;
 		}
-		if (!imageActive){
+		if (!imageActive || fadingOut){
 		if (imageFadesIn){
 			myCol = myImage.color;
 			myCol.a = 0;
@@ -91,6 +91,7 @@ public class SacramentBackgroundS : MonoBehaviour {
 		showedWaitSymbol = false;
 		gameObject.SetActive(true);
 		imageActive = true;
+			fadingOut = false;
 
 		if (textBG){
 			textBG.FadeIn(delayBGTime);

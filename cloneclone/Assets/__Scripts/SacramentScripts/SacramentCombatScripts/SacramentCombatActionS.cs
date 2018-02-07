@@ -77,8 +77,11 @@ public class SacramentCombatActionS : MonoBehaviour {
 			if (randomTargeting){
 				_currentTarget = myC.myManager.playerParty[Mathf.FloorToInt(Random.Range(0,myC.myManager.playerParty.Length))];
 			}
-			if (viciousTargeting){
+			else if (viciousTargeting){
 				_currentTarget = WeakestTarget(myC.myManager.playerParty);
+			}
+			else{
+			_currentTarget = myC.savedTarget;
 			}
 		}
 		if (!myC.isEnemy && targetsEnemy){
