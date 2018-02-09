@@ -933,7 +933,7 @@ public class PlayerController : MonoBehaviour {
 		FlashMana();
 		resetCountdown = resetTimeMax;
 		_myRigidbody.velocity = Vector3.zero;
-		canDoAdaptive = false;
+		canDoAdaptive = true;
 
 		// first, check for parry, otherwise dodge
 		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
@@ -1613,6 +1613,7 @@ public class PlayerController : MonoBehaviour {
 						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
 					}
 					attackTriggered = true;
+						canDoAdaptive = false;
 
 						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay, Vector3.zero);
 						//weaponTriggered = equippedWeapon;
@@ -1768,9 +1769,18 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void AdaptiveCheck(){
-			if (_playerAug.adaptiveAug && (_isShooting || comboDuration > adaptComboCutoff) && !_chargingAttack && canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+		if (_isDashing){
+			if (_playerAug.adaptiveAug && canDoAdaptive && ((dashDurationTimeMax - dashDurationTime) <= ADAPTIVE_WINDOW
+				|| (dashCooldown > 0 && !_isDashing))){
 				_myStats.ResetStamina(true, true, 0.8f);
 			}
+		}
+		else if (_playerAug.adaptiveAug && (_isShooting || comboDuration > adaptComboCutoff) 
+			&& (!_chargingAttack || (_chargingAttack && _chargeAttackTriggered)) 
+			&& canDoAdaptive && attackDuration <=  ADAPTIVE_WINDOW+currentAttackS.chainAllow){
+				_myStats.ResetStamina(true, true, 0.8f);
+			}
+		
 			canDoAdaptive = false;
 
 	}

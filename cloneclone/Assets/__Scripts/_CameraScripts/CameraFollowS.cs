@@ -216,6 +216,9 @@ public class CameraFollowS : MonoBehaviour {
 				if (poiQueue.Count > 0){
 					SetNewPOI(poiQueue[0]);
 					delayMoveTime = poiDelayTimes[0];
+					if (poiDelayTimes.Count == 1){
+						delayMoveTime*=1.5f;
+					}
 				}else{
 					if (overrideResetPoi){
 						SetNewPOI(overrideResetPoi);

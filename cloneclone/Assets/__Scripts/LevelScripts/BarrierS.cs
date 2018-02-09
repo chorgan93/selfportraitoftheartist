@@ -7,10 +7,14 @@ public class BarrierS : MonoBehaviour {
 
 	public int barrierNum = -1;
 
+	private float fixTurnOffTime = 1.4f;
+
 	public Collider barrierCollider;
 	private Renderer _myRenderer;
 	public Texture flashTexture;
 	private Texture startTexture;
+
+	bool firstBarrier = false;
 
 	public float delayTurnOffTime = 0.4f;
 	public float turnOffTime = 0.9f;
@@ -56,10 +60,14 @@ public class BarrierS : MonoBehaviour {
 						if (_myRenderer.material.color == Color.white){
 							_myRenderer.material.SetTexture("_MainTex", startTexture);
 							_myRenderer.material.color = myColor;
-							
+
+							/*if (firstBarrier){
+								CameraShakeS.C.SmallSleep();
+							}
+							CameraShakeS.C.SmallShake();
 							if (turnOffSound){
 								Instantiate(turnOffSound);
-							}
+							}**/
 						}
 						myColor.a -= fadeRate*Time.deltaTime;
 						if (myColor.a <= 0){
@@ -104,13 +112,16 @@ public class BarrierS : MonoBehaviour {
 		if (gameObject.activeSelf){
 
 			activeBarriers++;
+			if (activeBarriers == 1){
+				firstBarrier = true;
+			}
 
-			CameraFollowS.F.AddToQueue(gameObject, delayTurnOffTime+turnOffTime+extraCameraTime);
+			CameraFollowS.F.AddToQueue(gameObject, delayTurnOffTime+turnOffTime*fixTurnOffTime+extraCameraTime);
 			if (overrideResetPOI != null){
 				CameraFollowS.F.SetOverrideResetPOI(overrideResetPOI);
 			}
 
-			delayTurnOffTime = delayTurnOffTime*activeBarriers*1f + turnOffTime*((activeBarriers*1f)-1f);
+			delayTurnOffTime = delayTurnOffTime*activeBarriers*1f + turnOffTime*fixTurnOffTime*((activeBarriers*1f)-1f);
 	
 			turningOff = true;
 

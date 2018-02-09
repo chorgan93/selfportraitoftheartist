@@ -196,4 +196,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		}
 		startedNewScene = true;
 	}
+
+	void OnDisable(){
+		if (examining && pRef != null){
+			examining = false;
+			pRef.SetExamining(false, Vector3.zero);
+		}
+	}
 }

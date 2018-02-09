@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyProjectileS : MonoBehaviour {
 
+	private float fixAlpha = 0.95f;
 
 	private Rigidbody _rigidbody;
 	private SpriteRenderer _myRenderer;
@@ -86,6 +87,9 @@ public class EnemyProjectileS : MonoBehaviour {
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
 			startDamage = damage;
+			fadeColor = _myRenderer.color;
+			fadeColor.a = fixAlpha;
+			_myRenderer.color = fadeColor;
 
 		}
 
@@ -335,7 +339,7 @@ public class EnemyProjectileS : MonoBehaviour {
 			if (!myCollider){
 				myCollider = GetComponent<Collider>();
 			}
-			if (!isPiercing){
+			if (!isPiercing && range < _maxRange-0.12f){
 				_rigidbody.velocity = Vector3.zero;
 				range = fadeThreshold;
 				myCollider.enabled = false;

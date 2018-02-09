@@ -581,6 +581,8 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 
+		_myRigidbody.velocity = Vector3.zero;
+
 		/*if (healthBarReference != null){
 			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
 		}**/

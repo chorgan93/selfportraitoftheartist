@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-Battle03.unity
+- path: Assets/_Scenes/Area01(Sanctum)Scenes/Area01_01_Worshippers.unity
   isLoaded: 1
   isActive: 1
