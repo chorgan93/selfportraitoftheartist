@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AttractModeS : MonoBehaviour {
 
+	#if !UNITY_WEBGL
 	private MovieTexture myMovie;
 
 	private bool isLoading = false;
@@ -39,7 +40,7 @@ public class AttractModeS : MonoBehaviour {
 		}
 
 		if (!isLoading){
-			if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || myControl.StartButton() || myControl.TalkButton() || myControl.ExitButton()){
+			if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || myControl.GetCustomInput(10) || myControl.GetCustomInput(3) || myControl.ExitButton()){
 				StartLoading();
 			}
 		}else{
@@ -72,4 +73,5 @@ public class AttractModeS : MonoBehaviour {
 		async.allowSceneActivation = false;
 		yield return async;
 	}
+	#endif
 }

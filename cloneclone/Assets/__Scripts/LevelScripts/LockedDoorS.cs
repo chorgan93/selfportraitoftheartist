@@ -81,7 +81,7 @@ public class LockedDoorS : MonoBehaviour {
 
 		if (pRef){
 			if (!pRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse && !inKeypad){
-			if (pRef.myControl.TalkButton()){
+			if (pRef.myControl.GetCustomInput(3)){
 
 				if (!talkButtonDown){
 					if (!isTalking && !fading && !pRef.talking){

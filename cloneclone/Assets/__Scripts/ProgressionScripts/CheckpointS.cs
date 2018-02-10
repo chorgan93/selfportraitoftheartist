@@ -74,7 +74,7 @@ public class CheckpointS : MonoBehaviour {
 				_playerDetect.player.SetExamining(true, examinePos, _playerDetect.examineStringNoController);
 			}
 
-			if (_playerDetect.player.myControl.TalkButton() && _talkButtonUp
+			if (_playerDetect.player.myControl.GetCustomInput(3) && _talkButtonUp
 			    && !_playerDetect.player.talking && !CameraEffectsS.E.isFading){
 				
 				if (fullCheckpoint){
@@ -150,7 +150,7 @@ public class CheckpointS : MonoBehaviour {
 			_exitButtonUp = false;
 		}
 		
-		if (!_playerDetect.player.myControl.TalkButton()){
+		if (!_playerDetect.player.myControl.GetCustomInput(3)){
 			_talkButtonUp = true;
 		}else{
 			_talkButtonUp = false;

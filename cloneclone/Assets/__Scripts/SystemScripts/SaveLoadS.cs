@@ -16,11 +16,13 @@ public class SaveLoadS : MonoBehaviour {
 		}else{
 			SaveLoadS.savedGames.Add(GameDataS.current);
 		}
+		if (Application.platform != RuntimePlatform.WebGLPlayer){
 		BinaryFormatter bf = new BinaryFormatter();
 		//Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
 		FileStream file = File.Create (Application.persistentDataPath + "/savedGames.gd"); //you can call it anything you want
 		bf.Serialize(file, SaveLoadS.savedGames);
 		file.Close();
+		}
 	}  
 
 	public static void OverriteCurrentSave(){
@@ -56,7 +58,10 @@ public class SaveLoadS : MonoBehaviour {
 	}
 
 	public static bool SaveFileExists(){
-		if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
+		if (Application.platform == RuntimePlatform.WebGLPlayer){
+			return false;
+		}
+		else if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
 			return true;
 		}else{
 			Debug.Log("Save does not exist");

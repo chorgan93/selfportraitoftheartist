@@ -66,7 +66,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 				}
 			}
 
-			if (pRef.myControl.TalkButton()){
+			if (pRef.myControl.GetCustomInput(3)){
 				if (!talkButtonDown && pRef.examining && !pRef.talking){
 					if (!requiresResponse){
 					StartNextScene();
@@ -82,7 +82,7 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			}
 		}else if (awaitingResponse){
 			if (!DialogueManagerS.D.doneScrolling){
-				if (pRef.myControl.TalkButton()){
+				if (pRef.myControl.GetCustomInput(3)){
 					if (!talkButtonDown){
 						DialogueManagerS.D.CompleteText();
 					}

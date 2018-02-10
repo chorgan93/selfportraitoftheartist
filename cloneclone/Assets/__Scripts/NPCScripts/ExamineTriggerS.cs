@@ -101,11 +101,11 @@ public class ExamineTriggerS : MonoBehaviour {
 			}
 			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading  && !InGameMenuManagerS.menuInUse){
 
-				if (!pRef.myControl.TalkButton() && delayOnTime <= 0){
+				if (!pRef.myControl.GetCustomInput(3) && delayOnTime <= 0){
 				talkButtonDown = false;
 			}
 
-				if (pRef.myControl.TalkButton() && !talkButtonDown && delayOnTime <= 0f){
+				if (pRef.myControl.GetCustomInput(3) && !talkButtonDown && delayOnTime <= 0f){
 				talkButtonDown = true;
 
 					if (!talking && examineString != "" && !pRef.talking){

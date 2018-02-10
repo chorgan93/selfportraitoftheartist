@@ -76,7 +76,7 @@ public class VideotapePlayerS : MonoBehaviour {
 				backFromTape = false;
 			}
 				if (!playerRef.inCombat && !CameraEffectsS.E.isFading && !InGameMenuManagerS.menuInUse){
-					if (playerRef.myControl.TalkButton()){
+					if (playerRef.myControl.GetCustomInput(3)){
 
 						if (!talkButtonDown){
 						if (!talking && !playerRef.talking && playerDetect.PlayerInRange()){

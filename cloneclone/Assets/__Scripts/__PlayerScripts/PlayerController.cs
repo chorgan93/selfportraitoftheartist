@@ -1088,7 +1088,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isDashing){
 			dashCooldown -= Time.deltaTime;
-			if (myControl.DashTrigger() && dashButtonUp && CanInputDash() && StaminaCheck(1f, false)){
+			if (myControl.GetCustomInput(4) && dashButtonUp && CanInputDash() && StaminaCheck(1f, false)){
 
 				TriggerDash();
 				dashButtonUp = false;
@@ -1099,7 +1099,7 @@ public class PlayerController : MonoBehaviour {
 		else{
 			
 			// allow for second dash
-			if (controller.DashTrigger()){
+			if (controller.GetCustomInput(4)){
 				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash())){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
@@ -1128,10 +1128,10 @@ public class PlayerController : MonoBehaviour {
 			
 			if ((!chargingAttack && dashDurationTime >= dashDurationTimeMax) ||
 			    (!chargingAttack && dashDurationTime >= dashDurationTimeMax*dashSprintAllowMult 
-			 && controller.DashTrigger() && !dashButtonUp) ||
+			 && controller.GetCustomInput(4) && !dashButtonUp) ||
 			    (chargingAttack && !_chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult) ||
 			    (chargingAttack && _chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax) ||
-			    (controller.DashTrigger() && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
+			    (controller.GetCustomInput(4) && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -1156,7 +1156,7 @@ public class PlayerController : MonoBehaviour {
 						_chargeAttackTriggered = false;
 						_isShooting = false;
 					}
-				}else if (controller.DashTrigger() && !dashButtonUp && !_isSprinting && SprintMoveCondition()){
+				}else if (controller.GetCustomInput(4) && !dashButtonUp && !_isSprinting && SprintMoveCondition()){
 					TriggerSprint();
 				}
 			}
@@ -1168,7 +1168,7 @@ public class PlayerController : MonoBehaviour {
 			_isSprinting = false;
 			_myRigidbody.drag = startDrag;
 		}else{
-			if (!myControl.DashTrigger()){
+			if (!myControl.GetCustomInput(4)){
 				dashButtonUp = true;
 				_triggerBlock = false;
 				_dashStickReset = true;
@@ -1507,7 +1507,7 @@ public class PlayerController : MonoBehaviour {
 						PrepParryAnimation();
 					}
 					else**/ if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
-						if (controller.HeavyButton()){
+						if (controller.GetCustomInput(1)){
 							heavyCounterQueued = true;
 						}
 						counterQueued = true;
@@ -1526,7 +1526,7 @@ public class PlayerController : MonoBehaviour {
 
 					if (counterQueued || _allowCounterAttack){
 
-						if ((counterQueued && heavyCounterQueued) || (controller.HeavyButton() && !counterQueued)){
+							if ((counterQueued && heavyCounterQueued) || (controller.GetCustomInput(1) && !counterQueued)){
 							_doingHeavyAttack = true;
 							currentAttackS = equippedWeapon.counterAttackHeavy.GetComponent<ProjectileS>();
 						}else{
@@ -1566,7 +1566,7 @@ public class PlayerController : MonoBehaviour {
 
 					}else{
 						int nextAttack = currentChain+1;
-						if (myControl.HeavyButton()){
+							if (myControl.GetCustomInput(1)){
 								if (!allowChainHeavy){
 									nextAttack = 0;
 								}
@@ -1706,14 +1706,14 @@ public class PlayerController : MonoBehaviour {
 
 	private void SwapControl(){
 
-		if (!myControl.SwitchButton()){
+		if (!myControl.GetCustomInput(5)){
 			switchButtonUp = true;
 		}
 
 		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap){
 		
 			if (switchButtonUp && _myBuddy.canSwitch){
-				if (myControl.SwitchButton()){
+				if (myControl.GetCustomInput(5)){
 
 					resetCountdown = resetTimeMax;
 					_currentParadigm++;
@@ -1762,7 +1762,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (myControl.SwitchButton()){
+		if (myControl.GetCustomInput(5)){
 			switchButtonUp = false;
 		}
 
@@ -1998,7 +1998,7 @@ public class PlayerController : MonoBehaviour {
 			allowChargeAttack = false;
 		}
 
-		if (!controller.ShootButton() && !controller.HeavyButton()){
+		if (!controller.GetCustomInput(0) && !controller.GetCustomInput(1)){
 			shootButtonUp = true;
 			allowChargeAttack = false;
 		}
@@ -2706,7 +2706,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private bool ShootInputPressed(){
-		return (controller.ShootButton() || controller.HeavyButton());
+		return (controller.GetCustomInput(0) || controller.GetCustomInput(1));
 	}
 	
 

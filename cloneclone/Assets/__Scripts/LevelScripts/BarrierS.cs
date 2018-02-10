@@ -64,10 +64,10 @@ public class BarrierS : MonoBehaviour {
 							/*if (firstBarrier){
 								CameraShakeS.C.SmallSleep();
 							}
-							CameraShakeS.C.SmallShake();
+							CameraShakeS.C.SmallShake();**/
 							if (turnOffSound){
 								Instantiate(turnOffSound);
-							}**/
+							}
 						}
 						myColor.a -= fadeRate*Time.deltaTime;
 						if (myColor.a <= 0){

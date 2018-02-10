@@ -27,7 +27,7 @@ public class DialogueResponseS : MonoBehaviour {
 				delayChoice -= Time.deltaTime;
 			}else{
 
-			if (myControl.TalkButton()){
+			if (myControl.GetCustomInput(3)){
 				if (!selectButtonDown){
 					_choiceMade = currentPos;
 					TurnOff();

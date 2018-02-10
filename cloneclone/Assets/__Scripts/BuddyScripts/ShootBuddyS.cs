@@ -127,7 +127,7 @@ public class ShootBuddyS : BuddyS {
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
-				if (!playerRef.myControl.FamiliarControl()){
+				if (!playerRef.myControl.GetCustomInput(2)){
 					chargeButtonUp = true;
 				}else{
 					if (chargeButtonUp){

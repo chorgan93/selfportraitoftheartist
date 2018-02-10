@@ -34,7 +34,7 @@ public class MemoS : MonoBehaviour {
 	void Update () {
 
 		if (pRef != null){
-			if (pRef.myControl.TalkButton()){
+			if (pRef.myControl.GetCustomInput(3)){
 
 				if (!talkButtonDown){
 					if (!isTalking){

@@ -81,19 +81,19 @@ public class KeypadS : MonoBehaviour {
 				selectButtonDown = false;
 			}
 
-			if (!backButtonDown && myControl.BackButton()){
+			if (!backButtonDown && myControl.GetCustomInput(11)){
 				backButtonDown = true;
 				PressDel(true);
 			}
-			if (backButtonDown && !myControl.BackButton()){
+			if (backButtonDown && !myControl.GetCustomInput(11)){
 				backButtonDown = false;
 			}
 
-			if (!startButtonDown && myControl.StartButton()){
+			if (!startButtonDown && myControl.GetCustomInput(10)){
 				startButtonDown = true;
 				PressEnter();
 			}
-			if (startButtonDown && !myControl.StartButton()){
+			if (startButtonDown && !myControl.GetCustomInput(10)){
 				startButtonDown = false;
 			}
 		}

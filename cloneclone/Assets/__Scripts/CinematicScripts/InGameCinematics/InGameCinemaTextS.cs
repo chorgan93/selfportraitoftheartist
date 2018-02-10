@@ -62,7 +62,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 					}
 				}
 			}
-		if (!advanceButtonDown && _myControl.TalkButton()){
+		if (!advanceButtonDown && _myControl.GetCustomInput(3)){
 				advanceButtonDown = true;
 			if (DialogueManagerS.D.doneScrolling){
 				currentString++;
@@ -87,7 +87,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 				}
 		}
 
-			if (!_myControl.TalkButton() && advanceButtonDown){
+			if (!_myControl.GetCustomInput(3) && advanceButtonDown){
 			advanceButtonDown = false;
 			}
 		}

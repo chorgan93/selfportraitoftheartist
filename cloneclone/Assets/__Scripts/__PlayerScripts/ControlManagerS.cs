@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class ControlManagerS : MonoBehaviour {
@@ -16,6 +17,8 @@ public class ControlManagerS : MonoBehaviour {
 	public bool CanSelectPS4 { get { return canSelectPS4; } }
 
 	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard, 3 = PS4 on Mac/PC
+	public static List<int> savedGamepadControls;
+	private List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,0,1};
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,17 @@ public class ControlManagerS : MonoBehaviour {
 		}
 		platformType = GetPlatform();
 		truePlatform = GetTruePlatform();
+
+		if (savedGamepadControls == null){
+			savedGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,0,1};
+		}else{
+			if (savedGamepadControls.Count < defaultGamepadControls.Count){
+				savedGamepadControls.Clear();
+				for (int i = 0; i < defaultGamepadControls.Count; i++){
+					savedGamepadControls.Add(defaultGamepadControls[i]);
+				}
+			}
+		}
 
 	}
 
@@ -277,6 +291,21 @@ public class ControlManagerS : MonoBehaviour {
 		
 	}
 
+	public bool TransformButton(){
+		if (controlProfile == 3){
+			if (truePlatform == "PC"){
+				return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType + "PC")) > 0.1f ||
+					(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType + "PC")) > 0.1f));
+			}else{
+				return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType)) > 0.1f ||
+					(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType)) > 0.1f));
+			}
+		}else{
+			return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType)) > 0.1f ||
+				(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType)) > 0.1f));
+		}
+	}
+
 	public bool BlockTrigger(){
 
 		/*if (ControllerAttached()){
@@ -288,6 +317,78 @@ public class ControlManagerS : MonoBehaviour {
 		}**/
 		return false;
 
+	}
+
+	public bool GetCustomInput(int inputIndex){
+		return (GetInputPressed(savedGamepadControls[inputIndex]));
+	}
+
+	private bool GetInputPressed(int inputValue){
+		bool inputPressed = false;
+		switch (inputValue){
+		case (0):
+			// return default light attack
+			inputPressed = ShootButton();
+			break;
+		case (1):
+			// return default heavy attack
+			inputPressed = HeavyButton();
+			break;
+		case (2):
+			// return default familiar attack
+			inputPressed = FamiliarControl();
+			break;
+		case (3):
+			// return default talk button
+			inputPressed = TalkButton();
+			break;
+		case (4):
+			// return default dodge input
+			inputPressed = DashTrigger();
+			break;
+		case (5):
+			// return default shift input
+			inputPressed = SwitchButton();
+			break;
+		case (6):
+			// return default use item button
+			inputPressed = UseItemButton();
+			break;
+		case (7):
+			// return default switch item button
+			inputPressed = ToggleItemButton();
+			break;
+		case (8):
+			// return default taunt input
+			inputPressed = TauntButton();
+			break;
+		case (9):
+			// return default transform input 
+			inputPressed = TransformButton();
+			break;
+		case (10):
+			// return default equip menu button
+			inputPressed = StartButton();
+			break;
+		case (11):
+			// return default game menu button
+			inputPressed = BackButton();
+			break;
+		case (12):
+			// return default menu select button
+			inputPressed = MenuSelectButton();
+			break;
+		case (13):
+			// return default menu cancel button
+			inputPressed = ExitButton();
+			break;
+
+
+		default:
+			inputPressed = false;
+			break;
+		}
+		return inputPressed;
 	}
 
 	public bool FamiliarControl(){
@@ -596,7 +697,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (WeaponButtonA() || TalkButton());
+			return (WeaponButtonA() || GetCustomInput(3));
 			}else{
 				return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
 			}
@@ -608,7 +709,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (!WeaponButtonA() && !TalkButton());
+			return (!WeaponButtonA() && !GetCustomInput(3));
 			}else{
 				return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
 			}
@@ -670,6 +771,23 @@ public class ControlManagerS : MonoBehaviour {
 		}else{
 			return (Input.GetKey(KeyCode.Tab));
 		}
+	}
+	public bool TauntButton(){
+		//TODO test this please, add rest of dpad and add keyboard default
+		if (ControllerAttached()){
+			if (platformType == "Mac"){
+				return (Input.GetButton("SwitchItemButtonLeftMac") || Input.GetButton("SwitchItemButtonLeftMac"));
+			}else{
+				if (controlProfile == 3){
+					return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPS4")) > 0.1f);
+				}else{
+					return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPC")) > 0.1f);
+				}
+			}
+		}else{
+			return false;
+		}
+
 	}
 	public bool ScrollItemLeftButton(){
 		//TODO add functionality for keyboard/mouse and linux

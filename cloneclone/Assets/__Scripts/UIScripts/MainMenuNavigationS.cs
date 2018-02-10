@@ -69,6 +69,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private bool loading = false;
 	
 	private string newGameScene = "TutorialIntro";
+	private string webStartScene = "Dream00a_IntroCutsceneSHORT";
 	//private string newGameScene = "InfiniteScene";
 	private string twitterLink = "http://www.twitter.com/melessthanthree";
 	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
@@ -94,6 +95,12 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void Awake(){
 		versionText.text = currentVer;
 		inMain = true;
+
+		#if UNITY_WEBGL
+		attractEnabled = false;
+		menuSelections[menuSelections.Length-1].gameObject.SetActive(false);
+		newGameScene = webStartScene;
+		#endif
 	}
 	
 	// Use this for initialization
@@ -192,7 +199,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 			HandleBlur();
 
-			if (allowStartTime <= 0 && (myController.TalkButton() || Input.GetKeyDown(KeyCode.Return))){
+			if (allowStartTime <= 0 && (myController.GetCustomInput(3) || Input.GetKeyDown(KeyCode.Return))){
 				started = true;
 				selectReset = false;
 				CancelBlur();
@@ -225,8 +232,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				}
 			}else{
 
-				if (!Input.GetKeyDown(KeyCode.Return) && !myController.TalkButton() && !Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.Backspace)
-					&& !Input.GetKeyDown(KeyCode.Delete) && !Input.GetKeyDown(KeyCode.Escape) && !myController.HeavyButton() && !Input.GetKeyDown(KeyCode.E)){
+				if (!Input.GetKeyDown(KeyCode.Return) && !myController.GetCustomInput(3) && !Input.GetKeyDown(KeyCode.Q) && !Input.GetKeyDown(KeyCode.Backspace)
+					&& !Input.GetKeyDown(KeyCode.Delete) && !Input.GetKeyDown(KeyCode.Escape) && !myController.GetCustomInput(1) && !Input.GetKeyDown(KeyCode.E)){
 					selectReset = true;
 				}
 
@@ -237,7 +244,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 				if (selectingOverride){
 
 					if (selectReset && ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Backspace)
-						|| Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Escape) || myController.HeavyButton()))){
+						|| Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Escape) || myController.GetCustomInput(1)))){
 						selectReset = false;
 						selectingOverride = false;
 						currentSelection = 0;
@@ -247,7 +254,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 						attractCountdown = attractCountdownMax;
 					}
 
-					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton())){
+					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.GetCustomInput(3))){
 						attractCountdown = attractCountdownMax;
 						if (currentSelection == 0){
 							startMusic.FadeOut();
@@ -299,6 +306,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection ++;
+						#if UNITY_WEBGL
+						if (currentSelection == 1 && !canContinue){
+							currentSelection = 2;
+						}
+						if (currentSelection > menuSelections.Length-2){
+							currentSelection = 0;
+						}
+						#else
 						if (!publicDemoVersion){
 					if (currentSelection == 1 && !canContinue){
 						currentSelection = 2;
@@ -311,6 +326,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 								currentSelection = 0;
 							}
 						}
+						#endif
 					
 					SetSelection();
 				}
@@ -322,6 +338,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection --;
+						#if UNITY_WEBGL
+						if (currentSelection == 1 && !canContinue){
+							currentSelection = 0;
+						}
+						if (currentSelection < 0){
+							currentSelection = menuSelections.Length-2;
+						}
+						#else
 						if (!publicDemoVersion){
 					if (currentSelection == 1 && !canContinue){
 						currentSelection = 0;
@@ -334,14 +358,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 								currentSelection = 1;
 							}
 						}
-					
+						#endif
 					SetSelection();
 				}
 
 				// control settings
 					if (currentSelection == 2){
 						if ((myController.HorizontalMenu() > 0.1f && stickReset) || 
-							(selectReset && (myController.TalkButton() || Input.GetKeyDown(KeyCode.KeypadEnter) 
+							(selectReset && (myController.GetCustomInput(3) || Input.GetKeyDown(KeyCode.KeypadEnter) 
 								|| Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)))){
 							attractCountdown = attractCountdownMax;
 						myController.ChangeControlProfile(1);
@@ -357,7 +381,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 				}
 				
-					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.TalkButton()) 
+					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.GetCustomInput(3)) 
 						&& !loading && !quitting){
 						attractCountdown = attractCountdownMax;
 						if (currentSelection == 1 || (currentSelection == 0 && (!canContinue || publicDemoVersion))){

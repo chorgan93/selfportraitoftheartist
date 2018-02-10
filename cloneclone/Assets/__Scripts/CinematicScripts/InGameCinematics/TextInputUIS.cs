@@ -91,13 +91,13 @@ public class TextInputUIS : MonoBehaviour {
 				backButtonDown = false;
 			}
 
-			if (!startButtonDown && myControl.StartButton()){
+			if (!startButtonDown && myControl.GetCustomInput(10)){
 				startButtonDown = true;
 				if (canEnter){
 					FinishInput();
 				}
 			}
-			if (startButtonDown && !myControl.StartButton()){
+			if (startButtonDown && !myControl.GetCustomInput(10)){
 				startButtonDown = false;
 			}
 		}

@@ -61,7 +61,7 @@ public class CombatGiverS : MonoBehaviour {
 				controlRef = playerRef.myControl;
 			}
 			else{
-				if (controlRef.TalkButton()){
+				if (controlRef.GetCustomInput(3)){
 					if (!selectButtonDown){
 						selectButtonDown = true;
 						if (!talking){

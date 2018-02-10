@@ -33,6 +33,9 @@ public class CinematicHandlerS : MonoBehaviour {
 	public bool healPlayer = false;
 	public int setProgress = -1;
 	public bool noFade = false;
+
+	[Header("Web Properties")]
+	public bool disableSkip = false;
 	
 	AsyncOperation async;
 	
@@ -53,8 +56,10 @@ public class CinematicHandlerS : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+
+		if (!disableSkip){
 		_controller = GetComponent<ControlManagerS>();
+		}
 		skipCol = skipText.color;
 		skipCol.a = 0;
 		loadText.color = skipText.color = skipCol;
@@ -74,8 +79,9 @@ public class CinematicHandlerS : MonoBehaviour {
 	void Update () {
 		
 		if (!startedLoading){
-			
-			if (_controller.StartButton() && !skipActivated){
+
+			if (!disableSkip){
+				if (_controller.GetCustomInput(10) && !skipActivated){
 				if (skipCol.a < 1f){
 					skipCol = skipText.color;
 					skipCol.a += skipFadeRate*Time.deltaTime;
@@ -100,7 +106,7 @@ public class CinematicHandlerS : MonoBehaviour {
 					skipText.color = skipCol;
 				}
 			}
-			
+			}
 			currentCountdown -= Time.deltaTime;
 			
 			if (skipActivated){

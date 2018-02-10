@@ -91,7 +91,7 @@ public class InventoryManagerS : MonoBehaviour {
 
 	private void UseItemControl(){
 		if (equippedInventory.Contains(0) && equippedInventory.Contains(1)){
-			if (!toggleItemButtonDown && _pRef.myControl.ToggleItemButton()){
+			if (!toggleItemButtonDown && _pRef.myControl.GetCustomInput(7)){
 			_currentSelection++;
 			if (_currentSelection > 1){
 				_currentSelection = 0;
@@ -106,14 +106,14 @@ public class InventoryManagerS : MonoBehaviour {
 		}
 		}
 
-		if (toggleItemButtonDown && !_pRef.myControl.ToggleItemButton()){
+		if (toggleItemButtonDown && !_pRef.myControl.GetCustomInput(7)){
 			toggleItemButtonDown = false;
 		}
-		if (!useItemButtonDown && _pRef.myControl.UseItemButton() && !_pRef.usingitem && _pRef.CanUseItem()){
+		if (!useItemButtonDown && _pRef.myControl.GetCustomInput(6) && !_pRef.usingitem && _pRef.CanUseItem()){
 			UseItem(_equippedInventory[_currentSelection]);
 			useItemButtonDown = true;
 		}
-		if (useItemButtonDown && !_pRef.myControl.UseItemButton()){
+		if (useItemButtonDown && !_pRef.myControl.GetCustomInput(6)){
 			useItemButtonDown = false;
 		}
 	}

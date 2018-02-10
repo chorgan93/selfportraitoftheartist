@@ -118,13 +118,13 @@ public class BuddyNPCS : MonoBehaviour {
 			transform.position = Vector3.Lerp(startMovePos,endMovePos,nudgeT);
 		}else{
 			if (myDetect.PlayerInRange()){
-				if (talkButtonDown && !myDetect.player.myControl.TalkButton()){
+				if (talkButtonDown && !myDetect.player.myControl.GetCustomInput(3)){
 					talkButtonDown = false;
 				}
-				if (!myDetect.player.talking && myDetect.player.myControl.TalkButton() && !talkButtonDown){
+				if (!myDetect.player.talking && myDetect.player.myControl.GetCustomInput(3) && !talkButtonDown){
 					StartNudge();
 				}
-				if (!talkButtonDown && myDetect.player.myControl.TalkButton()){
+				if (!talkButtonDown && myDetect.player.myControl.GetCustomInput(3)){
 					talkButtonDown = true;
 				}
 			}

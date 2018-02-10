@@ -93,11 +93,11 @@ public class NPCS : MonoBehaviour {
 		
 		if (playerInRange && pRef.myDetect.closestEnemy == null){
 			
-			if (!pRef.myControl.TalkButton()){
+			if (!pRef.myControl.GetCustomInput(3)){
 				talkButtonDown = false;
 			}
 			
-			if (pRef.myControl.TalkButton() && !talkButtonDown){
+			if (pRef.myControl.GetCustomInput(3) && !talkButtonDown){
 				talkButtonDown = true;
 				
 				if (!talking){

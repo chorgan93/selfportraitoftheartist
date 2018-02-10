@@ -32,6 +32,10 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public GameObject hoverSound;
 	public GameObject selectSound;
 
+	[Header("Web Properties")]
+	public string URLoption = "";
+	private bool isURL = false;
+
 	private bool _isHovering = false;
 	public bool isHovering {get { return _isHovering; } }
 
@@ -76,6 +80,10 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			}
 			fadeCol = mainText.color;
 			maxFade = fadeCol.a;
+
+			if (URLoption != ""){
+				isURL = true;
+			}
 		}
 		ActivateOption();
 	}
@@ -113,6 +121,9 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	}
 
 	public void SelectOption(){
+		if (isURL){
+			Application.OpenURL(URLoption);
+		}else{
 		if (isLimited){
 			limitedOption--;
 		}
@@ -122,6 +133,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 		_isHovering = false;
 			myHandler.GoToStep(ChooseNextStep());
 			numTimesChosen++;
+		}
 	}
 
 	SacramentStepS ChooseNextStep(){
