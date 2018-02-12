@@ -52,9 +52,9 @@ public class ControlManagerS : MonoBehaviour {
 
 	void Update(){
 
-		if (Input.GetKeyDown(KeyCode.B)){
+		/*if (Input.GetKeyDown(KeyCode.B)){
 			Debug.Log("current control type: " + controlProfile); 
-		}
+		}**/
 
 	}
 

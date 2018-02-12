@@ -133,26 +133,7 @@ public class ShootBuddyS : BuddyS {
 					if (chargeButtonUp){
 						if (shootCountdown <= allowChainTime && playerRef.myStats.ChargeCheck(costPerUse)){
 							myAnimator.SetTrigger(fireAnimatorTrigger);
-							aimDir = Vector3.zero;
 
-
-							if (playerRef.targetEnemy != null){
-								aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
-								aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
-							}
-							else if (playerRef.enemyDetect.closestEnemy != null){
-								aimDir.x = playerRef.enemyDetect.closestEnemy.transform.position.x - transform.position.x;
-								aimDir.y = playerRef.enemyDetect.closestEnemy.transform.position.y - transform.position.y;
-							}else if (shootDetect.closestEnemy != null){
-								aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
-								aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
-							}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){
-								aimDir.x = playerRef.myRigidbody.velocity.x;
-								aimDir.y = playerRef.myRigidbody.velocity.y;
-							}else{
-								aimDir.x = myRigid.velocity.x;
-								aimDir.y = myRigid.velocity.y;
-							}
 							if (shotDelay <= 0){
 								FireProjectile();
 							}else{
@@ -182,6 +163,31 @@ public class ShootBuddyS : BuddyS {
 		}
 
 		canSwitch = true;
+		aimDir = Vector3.zero;
+
+
+		if (playerRef.targetEnemy != null){
+			//Debug.Log("using player target enemy!");
+			aimDir.x = playerRef.targetEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.targetEnemy.transform.position.y - transform.position.y;
+		}
+		else if (playerRef.enemyDetect.closestEnemy != null){
+			//Debug.Log("using player closest enemy!");
+			aimDir.x = playerRef.enemyDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = playerRef.enemyDetect.closestEnemy.transform.position.y - transform.position.y;
+		}else if (shootDetect.closestEnemy != null){
+			//Debug.Log("using my closest enemy!");
+			aimDir.x = shootDetect.closestEnemy.transform.position.x - transform.position.x;
+			aimDir.y = shootDetect.closestEnemy.transform.position.y - transform.position.y;
+		}else if (playerRef.myRigidbody.velocity.x != 0 || playerRef.myRigidbody.velocity.y != 0){
+			//Debug.Log("using player velocity!");
+			aimDir.x = playerRef.myRigidbody.velocity.x;
+			aimDir.y = playerRef.myRigidbody.velocity.y;
+		}else{
+			//Debug.Log("using my velocity!");
+			aimDir.x = myRigid.velocity.x;
+			aimDir.y = myRigid.velocity.y;
+		}
 
 		GameObject myProj = Instantiate(myProjectile, transform.position, Quaternion.identity)
 			as GameObject;
