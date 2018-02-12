@@ -37,6 +37,14 @@ public class EnemyS : MonoBehaviour {
 	private float currentCritTime = 0f;
 	private float currentCritDamage;
 	public float cinematicKillAt = 0f;
+	[Header("Stunlock Properties")]
+	public float stunLockHealthMult = 0.4f;
+	public float stunlockTimeMult;
+	private float stunLockTarget = 4f;
+	private float currentStunLock = 0f;
+	public float stunRecoverDelay = 2f;
+	private float currentStunRecoverDelay = 0f;
+	public float stunRecoverRate = 1f;
 	[HideInInspector]
 	public float actingMaxHealth;
 	public bool showHealth;
@@ -599,6 +607,7 @@ public class EnemyS : MonoBehaviour {
 					currentCritTime += Time.deltaTime;
 					if (vulnerableCountdown <= 0 || currentCritTime >= maxCritTime){
 					_isCritical = false;
+						Debug.Log("Crit timed out");
 						didFirstCritHit = false;
 
 						_breakAmt = 0f;
@@ -633,7 +642,35 @@ public class EnemyS : MonoBehaviour {
 
 
 		}else{
+			if (currentStunLock > 0 && !_isCritical){
+			if (currentStunRecoverDelay > 0){
+					currentStunRecoverDelay -= Time.deltaTime*currentDifficultyMult;
+				}else{
+					currentStunLock -= Time.deltaTime*stunRecoverRate;
+				}
+			}
 			EndVulnerableEffect();
+			/*if (_isCritical){
+				_isCritical = false;
+				didFirstCritHit = false;
+
+				_breakAmt = 0f;
+				_isVulnerable = false;
+				_behaviorBroken = false;
+				vulnerableCountdown = 0;
+				CameraFollowS.F.RemoveStunnedEnemy(this);
+				_isVulnerable = false;
+				currentCritTime = 0f;
+				_myAnimator.SetBool("Crit", false);
+
+				if (!_hitStunned && !inWitchTime){
+					_myAnimator.SetLayerWeight(1, 0f);
+				}
+
+				// reset whichever state should be active
+				_currentState.CancelAllActions();
+				_currentState.StartActions(true);
+			}**/
 
 			vulnerableDelay -= Time.deltaTime;
 			if (vulnerableDelay <= 0 && vulnerableCountdown > 0){
@@ -1014,6 +1051,11 @@ public class EnemyS : MonoBehaviour {
 		if ((_canBeStunned||overrideStun||_behaviorBroken||inWitchTime) && sTime > 0){
 			_hitStunned = true;
 			currentKnockbackCooldown = sTime;
+			if (_isCritical && currentStunLock >= stunLockTarget){
+				currentStunLock = 0f;
+				currentStunRecoverDelay = 0f;
+				currentKnockbackCooldown *= stunlockTimeMult;
+			}
 			if (!dontRepeatHitInCrit || (dontRepeatHitInCrit && !didFirstCritHit)){
 			_myAnimator.SetTrigger("Hit");
 				didFirstCritHit = true;
@@ -1046,7 +1088,11 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		float damageTaken = 0;
-		_breakAmt += dmg*stunMult;
+		_breakAmt += dmg*stunMult*currentStunResistMult*currentDefenseMult;
+		if (!_isCritical){
+			currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
+			currentStunRecoverDelay = stunRecoverDelay;
+		}
 
 		knockbackDelay = hitStopAmt;
 
@@ -1054,8 +1100,9 @@ public class EnemyS : MonoBehaviour {
 
 
 
-		if (_breakAmt >= _breakThreshold){
+		if (_breakAmt >= _breakThreshold || currentStunLock >= stunLockTarget){
 			_behaviorBroken = true;
+			Debug.Log("Broke behavior!");
 		}
 
 		if (_isCritical){
@@ -1150,7 +1197,7 @@ public class EnemyS : MonoBehaviour {
 
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
-
+					Debug.Log("Going critical...");
 					_myAnimator.SetBool("Crit", true);
 					_myAnimator.SetBool("Hit", true);
 					//CameraShakeS.C.TimeSleep(0.2f);
