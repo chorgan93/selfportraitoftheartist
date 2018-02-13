@@ -2848,6 +2848,18 @@ public class PlayerController : MonoBehaviour {
 			if (!_playerSound){
 				_playerSound = GetComponent<PlayerSoundS>();
 			}
+			_myAnimator.SetBool("Evading", false);
+			_isDashing = false;
+			_myRigidbody.drag = startDrag;
+
+			if (dontGetStuckInEnemiesCheck.NoEnemies() && !PlayerSlowTimeS.witchTimeActive){
+				gameObject.layer = START_PHYSICS_LAYER;
+			}
+
+			if (!myRenderer.enabled){
+				myRenderer.enabled = true;
+			}
+			dashDurationTime = 0f;
 			_playerSound.SetWalking(false);
 			CancelAttack();
 		}

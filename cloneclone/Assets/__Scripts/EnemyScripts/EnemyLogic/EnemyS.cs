@@ -39,9 +39,11 @@ public class EnemyS : MonoBehaviour {
 	public float cinematicKillAt = 0f;
 	[Header("Stunlock Properties")]
 	public float stunLockHealthMult = 0.4f;
-	public float stunlockTimeMult;
+	public float stunlockTimeMult = 0.6f;
 	private float stunLockTarget = 4f;
 	private float currentStunLock = 0f;
+	public float preventStunLockMax = 1.5f;
+	private float preventStunLock = 0f;
 	public float stunRecoverDelay = 2f;
 	private float currentStunRecoverDelay = 0f;
 	public float stunRecoverRate = 1f;
@@ -428,6 +430,7 @@ public class EnemyS : MonoBehaviour {
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
 		actingMaxHealth = maxHealth*currentDifficultyMult*CorruptedMult();
+		stunLockTarget = actingMaxHealth*stunLockHealthMult;
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);
 
@@ -607,9 +610,8 @@ public class EnemyS : MonoBehaviour {
 					currentCritTime += Time.deltaTime;
 					if (vulnerableCountdown <= 0 || currentCritTime >= maxCritTime){
 					_isCritical = false;
-						Debug.Log("Crit timed out");
 						didFirstCritHit = false;
-
+						preventStunLock = preventStunLockMax;
 						_breakAmt = 0f;
 						_isVulnerable = false;
 						_behaviorBroken = false;
@@ -705,7 +707,9 @@ public class EnemyS : MonoBehaviour {
 			currentKnockbackCooldown -= Time.deltaTime;
 		}
 		else{
-				
+				if (preventStunLock > 0){
+				preventStunLock -= Time.deltaTime;
+				}
 				_myAnimator.SetLayerWeight(1, 0f);
 			_hitStunned = false;
 		}
@@ -1089,7 +1093,7 @@ public class EnemyS : MonoBehaviour {
 
 		float damageTaken = 0;
 		_breakAmt += dmg*stunMult*currentStunResistMult*currentDefenseMult;
-		if (!_isCritical){
+		if (!_isCritical && preventStunLock <= 0f){
 			currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
 			currentStunRecoverDelay = stunRecoverDelay;
 		}
@@ -1102,7 +1106,6 @@ public class EnemyS : MonoBehaviour {
 
 		if (_breakAmt >= _breakThreshold || currentStunLock >= stunLockTarget){
 			_behaviorBroken = true;
-			Debug.Log("Broke behavior!");
 		}
 
 		if (_isCritical){
@@ -1112,6 +1115,7 @@ public class EnemyS : MonoBehaviour {
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
 				_isCritical = false;
+				preventStunLock = preventStunLockMax;
 				_breakAmt = 0f;
 				_isVulnerable = false;
 				_behaviorBroken = false;
@@ -1197,7 +1201,6 @@ public class EnemyS : MonoBehaviour {
 
 			if (_isVulnerable || _behaviorBroken){
 				if (!_isCritical){
-					Debug.Log("Going critical...");
 					_myAnimator.SetBool("Crit", true);
 					_myAnimator.SetBool("Hit", true);
 					//CameraShakeS.C.TimeSleep(0.2f);
@@ -1206,7 +1209,9 @@ public class EnemyS : MonoBehaviour {
 					_isCritical = true;
 				//	Debug.Log("Enemy is critical! " + _isVulnerable + " : " + _behaviorBroken + " : " + _breakAmt + "/" + _breakThreshold + " : " + _currentBehavior.behaviorName);
 					ResetFaceLock();
+					if (GetPlayerReference()){
 					GetPlayerReference().myStats.DrivenCheck();
+					}
 					if (breakSound){
 						Instantiate(breakSound);
 					}
@@ -1221,7 +1226,7 @@ public class EnemyS : MonoBehaviour {
 					GetPlayerReference().SendCritMessage();
 				
 					// spawn break object on parry
-					/*if (dmg <= 0){
+					//if (dmg <= 0){
 				GameObject critBreak = Instantiate(critObjRef, transform.position, Quaternion.identity)
 					as GameObject;
 				EnemyBreakS breakRef = critBreak.GetComponent<EnemyBreakS>();
@@ -1229,7 +1234,7 @@ public class EnemyS : MonoBehaviour {
 				breakRef.pieceColor = bloodColor;
 						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
 						vulnerableCountdown = criticalRecoverTime*2f;
-					}**/
+					//}
 				}
 				if (vulnerableCountdown < criticalRecoverTime){
 					vulnerableCountdown = criticalRecoverTime;
