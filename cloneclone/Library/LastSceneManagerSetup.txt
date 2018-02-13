@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_09_Christian.unity
   isLoaded: 1
   isActive: 1
