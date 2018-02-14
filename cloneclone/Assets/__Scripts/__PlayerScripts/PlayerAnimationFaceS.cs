@@ -33,7 +33,7 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 			rigidReference = GetComponentInParent<PlayerController>().myRigidbody;
 		}
 
-		if (Time.timeScale != 0 && !dontFace){
+		if (Time.timeScale != 0 && !dontFace && !myController.isStunned){
 		currentSize = transform.localScale;
 
 		if (myController.facingUp){

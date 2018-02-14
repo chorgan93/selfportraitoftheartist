@@ -25,6 +25,8 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 	public int nextActionEnd = 0;
 	public int nextActionOutOfRange = 0;
 
+	private BlockDisplay3DS parryEffect;
+
 	private float limitReachedTime = 0.3f;
 
 	private bool limitReached = false;
@@ -43,6 +45,10 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 				if (!limitReached && defendTimeCountdown >= currentStartCounterTime && myEnemyReference.GetPlayerReference().CanBeCountered(currentEndCounterTime)){
 				limitReached = true;
 				defendTimeCountdown = limitReachedTime;
+					if (parryEffect){
+						/*parryEffect.FireParry(myEnemyReference.transform.position, myEnemyReference.GetPlayerReference().transform.position,
+							myEnemyReference.bloodColor, Color.red);**/
+							}
 			}
 			}
 
@@ -122,6 +128,12 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 				myEnemyReference.GetPlayerReference().myStats.TakeDamage(myEnemyReference,0,
 					counterKnockback*(myEnemyReference.GetPlayerReference().transform.position-transform.position).normalized,
 					0.3f,true,true);
+				CameraShakeS.C.SmallShake();
+				CameraShakeS.C.SmallSleep();
+				CameraShakeS.C.SloAndPunch(0.5f, 0.7f, 0.35f);
+				if (parryEffect){
+					parryEffect.FireParryEffect(myEnemyReference.GetPlayerReference().transform.position);
+				}
 
 				// continue actions
 				stateRef.behaviorSet[nextActionCounter].SetEnemy(myEnemyReference);
@@ -139,5 +151,9 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 		}else{
 			base.EndAction();
 		}
+	}
+
+	public void SetBlockRef(BlockDisplay3DS myBlock){
+		parryEffect = myBlock;
 	}
 }

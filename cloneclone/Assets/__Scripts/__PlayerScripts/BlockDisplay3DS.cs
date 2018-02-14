@@ -33,14 +33,22 @@ public class BlockDisplay3DS : MonoBehaviour {
 	private Vector3 startSize;
 
 	public GameObject parryEffectPrefab;
+	public EnemyParryBehavior enemyRef;
+	private bool isEnemy = false;
 
 	// Use this for initialization
 	void Start () {
 
 		myRenderer = GetComponent<Renderer>();
+		if (enemyRef){
+			isEnemy = true;
+			enemyRef.SetBlockRef(this);
+			initialized = true;
+		}else{
 		myPlayer = GetComponentInParent<PlayerController>();
 		myPlayer.SetBlockReference(this);
 		startRotation = transform.rotation;
+		}
 		myRenderer.material.color = currentColor = colorFullPower;
 
 		startSize = transform.localScale;
@@ -54,6 +62,7 @@ public class BlockDisplay3DS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (!isEnemy){
 		if (!initialized){
 			myPlayer.myStats.AddBlocker(this);
 			initialized = true;
@@ -106,6 +115,54 @@ public class BlockDisplay3DS : MonoBehaviour {
 			}
 
 		}
+		}else{
+			if (parryEffect){
+				if (!myRenderer.enabled){
+					myRenderer.enabled = true;
+					DoFlash(parryEffect);
+					transform.rotation = startRotation;
+					rotateCountdown = rotateCountdownMax;
+				}
+				ApplyRotation();
+				if (parryEffect){
+					if (!isFlashing){
+						parryEffectTime -= Time.unscaledDeltaTime;
+						if (parryEffectTime <= 0){
+							currentColor = myRenderer.material.color;
+							currentColor.a -= parryFadeRate*Time.unscaledDeltaTime;
+							transform.localScale += parryGrowRate*Time.unscaledDeltaTime;
+							if (currentColor.a <= 0){
+								currentColor.a = 0;
+								parryEffect = false;
+							}
+							myRenderer.material.color = currentColor;
+						}
+					}
+				}
+
+				if (isFlashing){
+					currentFlashFrames--;
+					if (currentFlashFrames <= 0){
+						isFlashing = false;
+						myRenderer.material.color = currentColor;
+						myRenderer.material.SetTexture("_MainTex", startTexture);
+					}
+				}
+			}
+			else{
+				if (isFlashing){
+					currentFlashFrames--;
+					if (currentFlashFrames <= 0){
+						isFlashing = false;
+						myRenderer.material.color = currentColor;
+						myRenderer.material.SetTexture("_MainTex", startTexture);
+						myRenderer.enabled = false;
+					}
+				}else{
+					myRenderer.enabled = false;
+				}
+			}
+		}
 	
 	}
 
@@ -129,7 +186,11 @@ public class BlockDisplay3DS : MonoBehaviour {
 			currentFlashFrames = flashFramesMax;
 			parryEffect = false;
 		}
+		if (!isEnemy){
 		currentColor = Color.Lerp(colorNoPower, colorFullPower, myPlayer.myStats.currentDefense/myPlayer.myStats.maxDefense);
+		}else{
+			currentColor = Color.Lerp(colorNoPower, colorFullPower, 1f);
+		}
 
 	}
 
@@ -142,8 +203,13 @@ public class BlockDisplay3DS : MonoBehaviour {
 			spawnPos.z = +1f;
 			GameObject newEffect = Instantiate(parryEffectPrefab, spawnPos, parryEffectPrefab.transform.rotation)
 				as GameObject;
+			if (!isEnemy){
 				newEffect.GetComponent<ParryEffectS>().FireParry(transform.position, enemyPosition, myPlayer.EquippedWeapon().swapColor,
 				myPlayer.EquippedWeapon().flashSubColor);
+			}else{
+				newEffect.GetComponent<ParryEffectS>().FireParry(transform.position, enemyPosition, enemyRef.myEnemyReference.bloodColor,
+					Color.red);
+			}
 		}
 	}
 
@@ -163,8 +229,10 @@ public class BlockDisplay3DS : MonoBehaviour {
 
 		SetNoPowerColor();
 	
+		if (!isEnemy){
 		if (myPlayer.showBlock){
 			DoStartFlash();
+		}
 		}
 
 	}

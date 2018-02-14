@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour {
 	// Status Properties
 	private float delayAttackAllow = 0f;
 	private bool _isStunned = false;
+	public bool isStunned { get { return _isStunned; } }
 	private bool attackTriggered;
 	private bool allowItemUse = true;
 	//private PlayerWeaponS weaponTriggered;
@@ -314,7 +315,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isDashing		{get { return _isDashing; } }
 	public bool isSprinting		{get { return _isSprinting; } }
 	public bool isShooting		{get { return _isShooting; } }
-	public bool isStunned		{get { return _isStunned; } }
 	public Rigidbody myRigidbody	{ get { return _myRigidbody; } }
 	public Animator myAnimator		{ get { return _myAnimator; } }
 	public EnemyDetectS myDetect	{ get { return enemyDetect; } }

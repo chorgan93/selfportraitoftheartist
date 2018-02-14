@@ -178,7 +178,7 @@ public class ProjectileS : MonoBehaviour {
 		}**/
 		
 
-			if (currentRange <= 0 || myPlayer.isDashing){
+			if (currentRange <= 0 || myPlayer.isDashing || _myPlayer.isStunned){
 
 			if (projectileID < 0){
 			Destroy(gameObject);
