@@ -255,6 +255,7 @@ public class ProjectileS : MonoBehaviour {
 				extraRangeAnim = extraRangeSprite.GetComponent<AnimObjS>();
 			}
 		}else{
+			_rigidbody.velocity = Vector3.zero;
 			dmg = startDmg;
 			transform.localScale = startScale;
 		}

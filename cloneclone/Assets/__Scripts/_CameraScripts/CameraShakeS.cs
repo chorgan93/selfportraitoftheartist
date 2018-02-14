@@ -292,6 +292,15 @@ public class CameraShakeS : MonoBehaviour {
 
 	}
 
+	public void DelaySleep(float delayTime, float sleepTime){
+		StartCoroutine(TimeSleepOnDelay(sleepTime, delayTime));
+	}
+
+	private IEnumerator TimeSleepOnDelay(float sleep, float delay){
+		yield return new WaitForSeconds(delay);
+		TimeSleep(sleep);
+	}
+
 	public void TimeSleepEndCombat(float sleepTime){
 		
 		if (_isSleeping){

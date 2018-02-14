@@ -129,8 +129,8 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 					counterKnockback*(myEnemyReference.GetPlayerReference().transform.position-transform.position).normalized,
 					0.3f,true,true);
 				CameraShakeS.C.SmallShake();
-				CameraShakeS.C.SmallSleep();
 				CameraShakeS.C.SloAndPunch(0.5f, 0.7f, 0.35f);
+				//CameraShakeS.C.DelaySleep(0.3f, 0.1f);
 				if (parryEffect){
 					parryEffect.FireParryEffect(myEnemyReference.GetPlayerReference().transform.position);
 				}
