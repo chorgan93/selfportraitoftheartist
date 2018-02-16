@@ -519,6 +519,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 					chargeBarCurrentSize.y = chargeFillMaxHeight;
 					chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize;
 					chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, chargeBarCurrentSize.x/chargeBarMaxSize.x);
+					chargeBarCurrentSize.x = 0f;
+					chargeBarCurrentSize.y = rechargeFillMaxHeight;
+					rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
 				}else{
 				chargeBarCurrentSize.y = chargeFillMaxHeight;
 				if (chargeBarCurrentSize.x/chargeBarMaxSize.x < playerStats.EnoughChargeForBuddyPercent()){
