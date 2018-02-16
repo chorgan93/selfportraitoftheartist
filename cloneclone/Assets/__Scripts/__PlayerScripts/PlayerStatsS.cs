@@ -89,6 +89,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float _addedCharge = 0;
 	public float addedCharge { get { return _addedCharge; }}
 	private static float _currentCharge = 0f;
+	private float minBuddyChargeUse = 0f;
 
 	public float addedChargeLv {get { return Mathf.Round(_addedCharge/10f); } }
 	
@@ -309,9 +310,12 @@ public class PlayerStatsS : MonoBehaviour {
 		return baseBurden - baseBurden*0.2f*(currentRecovery-1f);
 	}
 
-	public bool ChargeCheck(float reqCharge, bool useCharge = true){
+	public bool ChargeCheck(float reqCharge, bool useCharge = true, bool buddyCheck = false){
 
 		bool canUse =  (_currentCharge > 0);
+		if (buddyCheck){
+			canUse = _currentCharge >= minBuddyChargeUse;
+		}
 		if (arcadeMode){
 			return true;
 		}else{
@@ -1074,5 +1078,27 @@ public class PlayerStatsS : MonoBehaviour {
 			inCondemned = true;
 		}
 		return inCondemned;
+	}
+
+	public void SetMinChargeUse(float minUse, bool useAll = false){
+		if (useAll){
+			minBuddyChargeUse = maxCharge;
+			_uiReference.SetChargeMin(1f);
+		}else{
+			minBuddyChargeUse = minUse;
+			_uiReference.SetChargeMin(minBuddyChargeUse/maxCharge);
+		}
+	}
+
+	public float EnoughChargeForBuddyPercent(){
+		return minBuddyChargeUse/maxCharge;
+	}
+
+	public bool EnoughChargeForBuddy(){
+		if (minBuddyChargeUse <= _currentCharge){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

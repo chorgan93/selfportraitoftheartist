@@ -544,6 +544,7 @@ public class PlayerController : MonoBehaviour {
 		if (!InGameCinematicS.turnOffBuddies){
 			_myBuddy.gameObject.SetActive(true);
 		}
+		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
 		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
 
 		_buddyEffect = GetComponentInChildren<BuddySwitchEffectS>();
@@ -1757,6 +1758,7 @@ public class PlayerController : MonoBehaviour {
 						tutorialRef.AddShift();
 					}
 					switchButtonUp = false;
+					_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
 	
 				}
 			}

@@ -9,6 +9,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	public const float ADAPTIVE_DAMAGE_BOOST = 1.5f;
 	//public const float ENRAGED_DAMAGE_BOOST = 2f; // old
 	public const float ENRAGED_DAMAGE_BOOST = 1.5f;
+	public const float CAUTIOUS_MULT = 0.88f;
 	public const float CONDEMNED_TIME = 3f;
 	public const float HATED_MULT = 1.5f;
 	public const float BIOS_MULT = 1.32f;
@@ -128,6 +129,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _lovedAug = false;
 	public bool lovedAug { get { return _lovedAug; } }
 
+	// index 16 (slower enemies)
+	private bool _cautiousAug = false;
+	public bool cautiousAug { get { return _cautiousAug; } }
+
 	// index 19 (super dodge-y)
 	private bool _incensedAug = false;
 	public bool incensedAug { get { return _incensedAug; } }
@@ -215,6 +220,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_hatedAug = false;
 		_paranoidAug = false;
 		_incensedAug = false;
+		_cautiousAug = false;
 
 
 	}
@@ -328,6 +334,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 		if (PlayerController.equippedVirtues.Contains(19)){
 			_incensedAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(16)){
+			_cautiousAug = true;
 		}
 
 	}

@@ -131,7 +131,8 @@ public class ShootBuddyS : BuddyS {
 					chargeButtonUp = true;
 				}else{
 					if (chargeButtonUp){
-						if (shootCountdown <= allowChainTime && playerRef.myStats.ChargeCheck(costPerUse)){
+						if (shootCountdown <= allowChainTime && playerRef.myStats.ChargeCheck(costPerUse, false,true)){
+							playerRef.myStats.ChargeCheck(costPerUse);
 							myAnimator.SetTrigger(fireAnimatorTrigger);
 
 							if (shotDelay <= 0){

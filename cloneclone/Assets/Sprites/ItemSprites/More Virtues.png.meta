@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ef547e6d7c6224874ac8dff48941521e
-timeCreated: 1505844865
+timeCreated: 1518751021
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,6 +88,10 @@ TextureImporter:
     21300162: More Virtues_1
     21300164: More Virtues_2
     21300166: More Virtues_3
+    21300168: More Virtues_4
+    21300170: More Virtues_5
+    21300172: More Virtues_6
+    21300174: More Virtues_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -144,7 +148,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -156,7 +160,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -165,6 +169,54 @@ TextureImporter:
       outline: []
     - serializedVersion: 2
       name: More Virtues_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: More Virtues_6
       rect:
         serializedVersion: 2
         x: 0
@@ -176,7 +228,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: More Virtues_3
+      name: More Virtues_7
       rect:
         serializedVersion: 2
         x: 64

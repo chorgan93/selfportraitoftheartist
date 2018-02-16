@@ -5,6 +5,7 @@ public class BuddyS : MonoBehaviour {
 
 	public int buddyNum = 0;
 	public float costPerUse = 20f;
+	public bool useAllCharge = false;
 
 	private PlayerController _playerRef;
 	public PlayerController playerRef { get { return _playerRef; } }
