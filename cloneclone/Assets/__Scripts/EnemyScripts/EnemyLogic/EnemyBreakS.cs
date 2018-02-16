@@ -20,22 +20,45 @@ public class EnemyBreakS : MonoBehaviour {
 	private int flashFrames = 4;
 	public Texture nonFlashTexture;
 
+	public EnemyBreakLettersS[] breakLetters;
+	public EnemyBreakLettersS[] subLetters;
+	private string breakString = "BREAK";
+	private string parryString = "PARRY";
+
 	public Transform transformRef;
 	private Vector3 followPos;
 
-	public BuddySwitchEffectS breakBodyEffect;
+	private float activateLetterTime = 0.04f;
+	private float subLetterTime = 0.02f;
 
-	void Start(){
+	public BuddySwitchEffectS breakBodyEffect;
+	private bool activated = false;
+
+	public void Activate(bool fromParry = false){
 
 		breakBodyEffect.ChangeEffect(Color.red, transformRef);
+		if (fromParry){
+			breakString = parryString;
+		}
+		StartCoroutine(ActivateLetters());
+		activated = true;
 
+	}
+
+	IEnumerator ActivateLetters(){
+		for (int i = 0; i < breakLetters.Length; i ++){
+			breakLetters[i].Activate(breakString[i].ToString());
+			yield return new WaitForSeconds(subLetterTime);
+			subLetters[i].Activate(breakString[i].ToString());
+			yield return new WaitForSeconds(activateLetterTime);
+		}
 	}
 
 
 	// Update is called once per frame
 	void Update () {
 
-
+		if (activated){
 		followPos = transformRef.position;
 		followPos.z -= 1f;
 		transform.position = followPos;
@@ -85,6 +108,7 @@ public class EnemyBreakS : MonoBehaviour {
 					}
 				}
 			}
+		}
 		}
 	
 	}

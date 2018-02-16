@@ -171,7 +171,6 @@ public class LevelUpItemS : MonoBehaviour {
 		cDisplay.AddCurrency(-upgradeCost);
 		if (!shuffleUpgrade && !revertUpgrade){
 		PlayerInventoryS.I.AddToUpgrades(upgradeNum);
-			Debug.Log("Adding upgrade num " + upgradeNum);
 		lvH.nextLevelUps.RemoveAt(index);
 		if (upgradeRef.addUpgrades.Length > 0){
 			foreach(LevelUpS u in upgradeRef.addUpgrades){

@@ -1043,7 +1043,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_overchargeMana = 0f;
 		_currentMana = maxMana;
 		warningReference.EndAll();
-		_uiReference.UpdateFills();
+		_uiReference.UpdateFills(true);
 	}
 
 	public void SaveStats ()

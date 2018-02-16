@@ -135,6 +135,7 @@ public class EnemyS : MonoBehaviour {
 	private float _flashAmt;
 	private Color _flashCol;
 	public GameObject critObjRef;
+	private bool wasParried = false;
 	public GameObject deathObjRef;
 	private bool spawnedDeathObj = false;
 	private int deathFrameDelay = 1;
@@ -541,6 +542,7 @@ public class EnemyS : MonoBehaviour {
 		currentCritDamage = 0;
 		currentCritTime = 0f;
 		killAtLessThan = 0f;
+		wasParried = false;
 
 		//EndAllBehaviors();
 
@@ -1078,6 +1080,7 @@ public class EnemyS : MonoBehaviour {
 		_isVulnerable = true;
 		_breakAmt = _breakThreshold+1f;
 		_myRigidbody.velocity = Vector3.zero;
+		wasParried = true;
 		TakeDamage(transform, knockback, 0f, 0f, 0f, 0.12f, critTime, false, 0f, true);
 		canBeParried = false;
 	}
@@ -1106,6 +1109,9 @@ public class EnemyS : MonoBehaviour {
 
 		if (_breakAmt >= _breakThreshold || currentStunLock >= stunLockTarget){
 			_behaviorBroken = true;
+			if (dmg > 0){
+				wasParried = false;
+			}
 		}
 
 		if (_isCritical){
@@ -1234,6 +1240,8 @@ public class EnemyS : MonoBehaviour {
 				breakRef.pieceColor = bloodColor;
 						breakRef.ChangeScale(Mathf.Abs(transform.localScale.x*3f/4f));
 						vulnerableCountdown = criticalRecoverTime*2f;
+					breakRef.Activate(wasParried);
+					wasParried = false;
 					//}
 				}
 				if (vulnerableCountdown < criticalRecoverTime){

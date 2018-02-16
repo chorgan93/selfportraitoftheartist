@@ -144,11 +144,13 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		recoveryBarMaxSize = recoveryBar.rectTransform.sizeDelta;
 		chargeStartPos = chargeBar.rectTransform.anchoredPosition;
 		chargeStartYMult = chargeStartPos.y/backgroundMaxSize.y;
+		if (chargeBarMaxSize.x <= 0){
 		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 		chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
 
 		chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 		rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+		}
 
 		//chargeMinStartX = minChargeUseBar.rectTransform.anchoredPosition.x;
 
@@ -605,8 +607,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (chargeBarMaxSize.x <= 0){
 			chargeMinStartX = minChargeUseBar.rectTransform.anchoredPosition.x;
 			chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
+			chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
+			chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
+			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 		}
 		newMinPos.x = chargeBarMaxSize.x * newMin + chargeMinStartX;
 		minChargeUseBar.rectTransform.anchoredPosition = newMinPos;
+		if (!refillingCharge){
+			SetChargeImmediate();
+		}
 	}
 }
