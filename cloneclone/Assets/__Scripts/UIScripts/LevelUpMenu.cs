@@ -53,6 +53,8 @@ public class LevelUpMenu : MonoBehaviour {
 
 	private LevelUpHandlerS levelHandler;
 	private bool canTravel = false;
+	private bool canShuffle = false;
+	private bool canRevert = false;
 
 	[HideInInspector]
 	public bool sendExitMessage = false;
@@ -69,6 +71,19 @@ public class LevelUpMenu : MonoBehaviour {
 
 		if (PlayerInventoryS.I.CheckpointsReached() > 1){
 			canTravel = true;
+		}
+		if (PlayerInventoryS.I.CheckForItem(421)){
+			canShuffle = true;
+		}
+		if (PlayerInventoryS.I.CheckForItem(422)){
+			canRevert = true;
+		}
+		if (canShuffle && !canRevert){
+			levelMenuPositions[levelMenuPositions.Length-2].anchoredPosition 
+			= levelMenuPositions[levelMenuPositions.Length-1].anchoredPosition;
+			levelMenuItemOutlines[levelMenuItemOutlines.Length-2].rectTransform.anchoredPosition 
+			= levelMenuItemOutlines[levelMenuPositions.Length-1].rectTransform.anchoredPosition; 
+				
 		}
 
 	}
@@ -146,6 +161,12 @@ public class LevelUpMenu : MonoBehaviour {
 					myControl.Vertical() < 0f){
 					pRef.ResetTimeMax();
 					currentPos++;
+					if (currentPos == levelMenuItems.Length-2 && !PlayerInventoryS.I.CheckForItem(421)){
+						currentPos++;
+					}
+					if (currentPos == levelMenuItems.Length-1 && !PlayerInventoryS.I.CheckForItem(422)){
+						currentPos++;
+					}
 					if (currentPos > levelMenuItems.Length-1){
 						currentPos = 0;
 					}
@@ -154,6 +175,12 @@ public class LevelUpMenu : MonoBehaviour {
 					pRef.ResetTimeMax();
 					if (currentPos < 0){
 						currentPos = levelMenuItems.Length-1;
+						if (currentPos == levelMenuItems.Length-1 && !PlayerInventoryS.I.CheckForItem(422)){
+							currentPos--;
+						}
+						if (currentPos == levelMenuItems.Length-2 && !PlayerInventoryS.I.CheckForItem(421)){
+							currentPos--;
+						}
 					}
 				}
 
@@ -169,7 +196,9 @@ public class LevelUpMenu : MonoBehaviour {
 				if (levelMenuItems[currentPos].CanBeUpgraded()){
 					pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
 					levelMenuItems[currentPos].BuyUpgrade(currentPos, levelHandler);
+					if (currentPos <= 3){
 					currentPos = 0;
+					}
 					UpdateAvailableLevelUps();
 				}
 			}
@@ -267,6 +296,20 @@ public class LevelUpMenu : MonoBehaviour {
 		pRef.myStats.uiReference.cDisplay.SetShowing (true);
 		cursorObj.gameObject.SetActive(false);
 		levelMenuProper.gameObject.SetActive(true);
+		if (canShuffle){
+			levelMenuItems[levelMenuItems.Length-2].gameObject.SetActive(true);
+			levelMenuItemOutlines[levelMenuItemOutlines.Length-2].gameObject.SetActive(true);
+		}else{
+			levelMenuItems[levelMenuItems.Length-2].gameObject.SetActive(false);
+			levelMenuItemOutlines[levelMenuItemOutlines.Length-2].gameObject.SetActive(false);
+		}
+		if (canRevert){
+			levelMenuItems[levelMenuItems.Length-1].gameObject.SetActive(true);
+			levelMenuItemOutlines[levelMenuItemOutlines.Length-1].gameObject.SetActive(true);
+		}else{
+			levelMenuItems[levelMenuItems.Length-1].gameObject.SetActive(false);
+			levelMenuItemOutlines[levelMenuItemOutlines.Length-1].gameObject.SetActive(false);
+		}
 		mainMenuObj.SetActive(false);
 		_canBeExited = false;
 		currentPos = 0;
@@ -300,10 +343,14 @@ public class LevelUpMenu : MonoBehaviour {
 	}
 
 	private void UpdateAvailableLevelUps(){
-		int i = 0;
-		foreach (LevelUpItemS l in levelMenuItems){
-			l.Initialize(levelHandler.nextLevelUps[i], pRef.myStats.uiReference.cDisplay);
-			i++;
+		for (int i = 0; i < levelMenuItems.Length; i++){
+			if (i < 4){
+			levelMenuItems[i].Initialize(levelHandler.nextLevelUps[i], pRef.myStats.uiReference.cDisplay);
+			}else if (i == 4){
+				levelMenuItems[i].Initialize(null, pRef.myStats.uiReference.cDisplay, true);
+			}else{
+				levelMenuItems[i].Initialize(null, pRef.myStats.uiReference.cDisplay, false, true);
+			}
 		}
 		levelMenuItems[currentPos].ShowText();
 		UpdateUpgradeEffect();
@@ -386,8 +433,11 @@ public class LevelUpMenu : MonoBehaviour {
 	private void UpdateUpgradeEffect(){
 		int index = 0;
 		foreach (LevelUpItemS l in levelMenuItems){
+
+			if (index < 4){
 			l.TurnOffVisual();
 			levelMenuItemOutlines[index].enabled = false;
+			}
 			index++;
 		}
 		if (pRef.myStats.currentLevel < 10){

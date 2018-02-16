@@ -644,6 +644,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void AddStat(int i){
+		if (i > -1){
 		if (i == 0){
 			_addedHealth+= HEALTH_ADD_AMT;
 			_currentHealth+= HEALTH_ADD_AMT;
@@ -671,6 +672,7 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		_addedLevel++;
 		_uiReference.UpdateFills();
+		}
 	}
 
 	public void ResetStamina(bool fromVirtue = false, bool onlyCombo = false, float comboReduction = 1f){

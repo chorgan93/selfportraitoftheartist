@@ -284,6 +284,16 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 	}
 
+	public int GetMinRevertLevelAdd(){
+		int numAdd = 0;
+		for (int i = 0; i < _earnedUpgrades.Count; i++){
+			if (i > 6){
+				numAdd++;
+			}
+		}
+		return numAdd;
+	}
+
 	public void AddEarnedVirtue(int i){
 		if (!_earnedVirtues.Contains(i)){
 			_earnedVirtues.Add(i);

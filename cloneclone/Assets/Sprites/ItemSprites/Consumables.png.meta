@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a80e881e625144e54887d9ceb938b91f
-timeCreated: 1500434012
+timeCreated: 1518747253
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -22,6 +22,10 @@ TextureImporter:
     21300030: Consumables_7
     21300032: Consumables_8
     21300034: Consumables_9
+    21300036: Consumables_10
+    21300038: Consumables_11
+    21300040: Consumables_12
+    21300042: Consumables_13
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -113,8 +117,8 @@ TextureImporter:
       name: Consumables_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 96
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -125,7 +129,7 @@ TextureImporter:
       name: Consumables_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 64
         width: 32
         height: 32
@@ -137,7 +141,7 @@ TextureImporter:
       name: Consumables_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 64
         width: 32
         height: 32
@@ -149,8 +153,8 @@ TextureImporter:
       name: Consumables_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -161,8 +165,8 @@ TextureImporter:
       name: Consumables_7
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -173,7 +177,7 @@ TextureImporter:
       name: Consumables_8
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -185,7 +189,55 @@ TextureImporter:
       name: Consumables_9
       rect:
         serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_12
+      rect:
+        serializedVersion: 2
         x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Consumables_13
+      rect:
+        serializedVersion: 2
+        x: 32
         y: 0
         width: 32
         height: 32
