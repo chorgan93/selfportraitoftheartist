@@ -675,7 +675,7 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedStrength ++;
 		}
 		_addedLevel++;
-		_uiReference.UpdateFills();
+			_uiReference.UpdateFills(true,true);
 		}
 	}
 
@@ -1027,7 +1027,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedCharge += numToAdd;
 		_currentCharge += numToAdd;
 		_addedLevel++;
-		_uiReference.UpdateFills();
+		_uiReference.UpdateFills(true, true);
 	}
 
 	public void ChangeVirtue(float numChange){

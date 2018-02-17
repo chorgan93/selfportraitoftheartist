@@ -149,14 +149,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
 
 		chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
-		rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
+			chargeBorderMaxSize.x+= playerStats.addedCharge*chargeAddSize;
 		}
 
 		//chargeMinStartX = minChargeUseBar.rectTransform.anchoredPosition.x;
 
 		healthBorderMaxSize = healthBorder.rectTransform.sizeDelta;
 		staminaBorderMaxSize = staminaBorder.rectTransform.sizeDelta;
-		chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
 
 		
 
@@ -213,74 +214,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		staminaBorder.rectTransform.anchoredPosition = proportionalPosition+staminaOffset*(orthoRef/followRef.orthographicSize);
 	}
 
-	private void UpdateMaxSizes(){
-
-		Vector2 reposition = Vector2.zero;
-
-		// bg stuff
-		backgroundCurrentSize = backgroundMaxSize*ScreenMultiplier();
-		background.rectTransform.sizeDelta=backgroundCurrentSize;
-		//backgroundFill.rectTransform.sizeDelta = backgroundCurrentSize*0.99f;
-
-		// recover stuff
-		recoveryBarCurrentSize = recoveryBarMaxSize;
-		recoveryBarCurrentSize.x = playerStats.addedMana*barAddSize;
-		recoveryBarCurrentSize.y = recoveryBar.rectTransform.sizeDelta.y;
-		recoveryBar.rectTransform.sizeDelta=recoveryBarCurrentSize;
-
-		
-		reposition = recoveryBar.rectTransform.anchoredPosition;
-		reposition.x = recoveryStartPos.x*ScreenMultiplier();
-		reposition.y = backgroundCurrentSize.y*recoveryStartYMult;
-		recoveryBar.rectTransform.anchoredPosition = reposition;
-
-		// health stuff
-		healthBarCurrentSize = healthBarMaxSize*ScreenMultiplier();
-		healthBarCurrentSize.x = playerStats.addedHealth*barAddSize;
-		healthBar.rectTransform.sizeDelta=healthBarCurrentSize;
-
-		healthBorder.rectTransform.sizeDelta= healthBorderBG.rectTransform.sizeDelta 
-			=new Vector2(healthBorderMaxSize.x+playerStats.addedHealth*barAddSize, healthBorderMaxSize.y);
-
-		
-		/*reposition = healthBar.rectTransform.anchoredPosition;
-		reposition.x = healthStartPos.x*ScreenMultiplier();
-		reposition.y = backgroundCurrentSize.y*healthStartYMult;
-		healthBar.rectTransform.anchoredPosition = reposition;**/
-
-		// stamina stuff
-		staminaBarCurrentSize = staminaBarMaxSize*ScreenMultiplier();
-		staminaBarCurrentSize.x = playerStats.addedMana*barAddSize;
-		staminaBarCurrentSize.y = staminaFill.rectTransform.sizeDelta.y;
-		staminaBar.rectTransform.sizeDelta=staminaBarCurrentSize;
-
-		/*reposition = staminaBar.rectTransform.anchoredPosition;
-		reposition.x = staminaStartPos.x*ScreenMultiplier();
-		reposition.y = backgroundCurrentSize.y*staminaStartYMult;
-		staminaBar.rectTransform.anchoredPosition = reposition;**/
-
-		overchargeBar.rectTransform.anchoredPosition = reposition;
-		overchargeBarCurrentSize = staminaBarCurrentSize;
-		overchargeBarCurrentSize.x = 0;
-		overchargeBar.rectTransform.sizeDelta = overchargeBarCurrentSize;
-
-		// charge stuff
-		chargeBarCurrentSize = chargeBarMaxSize*ScreenMultiplier();
-		chargeBarCurrentSize.x = playerStats.addedCharge*barAddSize;
-		chargeBar.rectTransform.sizeDelta=chargeBarCurrentSize;
 
 
-		chargeBorder.rectTransform.sizeDelta= chargeBorderBG.rectTransform.sizeDelta 
-			=new Vector2(chargeBorderMaxSize.x, chargeBorderMaxSize.y);
-
-		/*reposition = chargeBar.rectTransform.anchoredPosition;
-		reposition.x = chargeStartPos.x*ScreenMultiplier();
-		reposition.y = backgroundCurrentSize.y*chargeStartYMult;
-		chargeBar.rectTransform.anchoredPosition = reposition;**/
-
-	}
-
-	public void UpdateFills(bool chargeRefill = false){
+	public void UpdateFills(bool chargeRefill = false, bool levelUp = false){
 
 		if (!healthBarDesperate.enabled){
 			if (playerStats.canRecoverHealth > 0){
@@ -403,6 +339,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		overchargeBar.rectTransform.sizeDelta = overchargeBarCurrentSize = fillSize;
 
 		// charge fill
+		if (levelUp){
+			chargeBarMaxSize.x += chargeAddSize;
+			chargeBorderMaxSize.x += chargeAddSize;
+		}
 		if (chargeRefill){
 			updateChargeFills(true);
 		}
@@ -610,6 +550,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
 			chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
+			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
+			chargeBorderMaxSize.x += playerStats.addedCharge*chargeAddSize;
 		}
 		newMinPos.x = chargeBarMaxSize.x * newMin + chargeMinStartX;
 		minChargeUseBar.rectTransform.anchoredPosition = newMinPos;
