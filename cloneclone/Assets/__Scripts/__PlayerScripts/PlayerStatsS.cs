@@ -675,7 +675,11 @@ public class PlayerStatsS : MonoBehaviour {
 			_addedStrength ++;
 		}
 		_addedLevel++;
+			if (i == 2){
 			_uiReference.UpdateFills(true,true);
+			}else{
+				_uiReference.UpdateFills();
+			}
 		}
 	}
 

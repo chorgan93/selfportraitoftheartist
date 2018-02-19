@@ -69,6 +69,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Vector2 backgroundMaxSize = new Vector2(520,130);
 	private Vector2 backgroundCurrentSize;
 	private Image background; 
+	public Image mantraHighlight;
 	//public Image backgroundFill;
 
 	private float xPositionMultiplier = 0.1f;
@@ -164,6 +165,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		playerTransform = playerStats.transform;
 		pController = playerStats.GetComponent<PlayerController>();
 		playerRender = pController.myRenderer;
+		mantraHighlight.color = playerRender.color;
 
 		followRef = Camera.main;
 		orthoRef = followRef.orthographicSize;
@@ -557,6 +559,10 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		minChargeUseBar.rectTransform.anchoredPosition = newMinPos;
 		if (!refillingCharge){
 			SetChargeImmediate();
+		}
+		if (playerRender){
+
+			mantraHighlight.color = playerRender.color;
 		}
 	}
 }

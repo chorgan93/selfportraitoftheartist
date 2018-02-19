@@ -39,6 +39,7 @@ public class CountLines: EditorWindow
 		window.DoCountLines();
 	}
 
+
 	void DoCountLines()
 	{		
 		string strDir = System.IO.Directory.GetCurrentDirectory();

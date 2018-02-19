@@ -552,6 +552,7 @@ public class EnemyS : MonoBehaviour {
 
 		_myAnimator.SetLayerWeight(2, 0f);
 		_myAnimator.SetBool("Death", false);
+		_myAnimator.SetBool("Crit", false);
 		ResetAnimatorTriggers();
 		_currentHealth = actingMaxHealth;
 			_isActive = false;

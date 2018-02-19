@@ -384,5 +384,13 @@ public class CameraFollowS : MonoBehaviour {
 		}
 	}
 
+	public float GetFullQueueTime(){
+		float qTime = 0;
+		for (int i = 0; i < poiDelayTimes.Count; i++){
+			qTime += poiDelayTimes[i];	
+		}
+		return qTime;
+	}
+
 
 }

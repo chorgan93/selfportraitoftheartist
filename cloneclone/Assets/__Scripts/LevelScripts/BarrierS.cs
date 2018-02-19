@@ -116,12 +116,15 @@ public class BarrierS : MonoBehaviour {
 				firstBarrier = true;
 			}
 
-			CameraFollowS.F.AddToQueue(gameObject, delayTurnOffTime+turnOffTime*fixTurnOffTime+extraCameraTime);
+			delayTurnOffTime = delayTurnOffTime*fixTurnOffTime;
+			float timeToAdd = delayTurnOffTime;
+			delayTurnOffTime += CameraFollowS.F.GetFullQueueTime();
+			CameraFollowS.F.AddToQueue(gameObject, timeToAdd+turnOffTime*fixTurnOffTime*0.3f+extraCameraTime);
+
 			if (overrideResetPOI != null){
 				CameraFollowS.F.SetOverrideResetPOI(overrideResetPOI);
 			}
 
-			delayTurnOffTime = delayTurnOffTime*activeBarriers*1f + turnOffTime*fixTurnOffTime*((activeBarriers*1f)-1f);
 	
 			turningOff = true;
 
