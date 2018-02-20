@@ -31,6 +31,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	public Image healthBar;
 	private Vector2 healthBarDesperateCurrentSize;
 	public Image healthBarDesperate;
+	public Image[] healthIconsArcade;
+	private static bool usingArcadeIcons = false;
 
 	private Vector2 staminaBarMaxSize;
 	private Vector2 staminaStartPos;
@@ -178,7 +180,15 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene || RECORD_MODE){
 			DisableUI ();
 		}
-
+		if (playerStats.arcadeMode){
+			if (!usingArcadeIcons){
+				playerStats.ResetArcadeHP();
+				usingArcadeIcons = true;
+			}
+			RefreshArcadeIcons();
+		}else{
+			usingArcadeIcons = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -214,6 +224,16 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			((viewportPosition.x*parentRect.sizeDelta.x)-(parentRect.sizeDelta.x*0.5f)),
 			((viewportPosition.y*parentRect.sizeDelta.y)-(parentRect.sizeDelta.y*0.5f)));
 		staminaBorder.rectTransform.anchoredPosition = proportionalPosition+staminaOffset*(orthoRef/followRef.orthographicSize);
+	}
+
+	public void RefreshArcadeIcons(){
+		for (int i = 0; i < healthIconsArcade.Length; i++){
+			if (i+1 <= PlayerStatsS.currentArcadeHealth){
+				healthIconsArcade[i].enabled = true;
+			}else{
+				healthIconsArcade[i].enabled = false;
+			}
+		}
 	}
 
 

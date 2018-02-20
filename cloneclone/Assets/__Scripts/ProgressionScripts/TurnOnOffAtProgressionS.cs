@@ -8,6 +8,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	public bool triggerIfContainsGreater = false;
 	public GameObject[] onAtProgressObjects;
 	public GameObject[] offAtProgressObjects;
+	public BarrierS[] offBarriers;
 
 	[Header("Alt progress checks")]
 	public int turnOnOffAtItemInInventory = -1;
@@ -74,6 +75,9 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 		}
 		for (int i = 0; i < offAtProgressObjects.Length; i++){
 			offAtProgressObjects[i].gameObject.SetActive(false);
+		}
+		foreach (BarrierS bleh in offBarriers){
+			bleh.TurnOff();
 		}
 	}
 }

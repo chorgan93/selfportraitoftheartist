@@ -47,6 +47,9 @@ public class PlayerStatsS : MonoBehaviour {
 	public float addedHealth { get { return _addedHealth; } }
 	private static float _currentHealth;
 
+	private int arcadeHealthMax = 3;
+	public static int currentArcadeHealth = 3;
+
 	public float currentHealth { get { return _currentHealth; } }
 	private float _canRecoverHealth = 0f;
 	private float _canRecoverHealthStart;
@@ -821,7 +824,14 @@ public class PlayerStatsS : MonoBehaviour {
 					if (myPlayerController.currentCombatManager){
 					myPlayerController.currentCombatManager.SentHurtMessage(true);
 					}
-					if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable 
+					if (arcadeMode){
+						currentArcadeHealth--;
+						if (currentArcadeHealth <= 0){
+							_currentHealth = 0;
+						}
+						_uiReference.RefreshArcadeIcons();
+					}
+					else if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable 
 						&&_currentHealth > maxHealth*0.01f){
 						_currentHealth = maxHealth*0.01f;
 						myPlayerController.playerAug.canUseUnstoppable = false;
@@ -838,7 +848,7 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 				if (_currentHealth <= 0){
 					_currentHealth = 0;
-					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && delayDeath)){
+					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && !arcadeMode && delayDeath)){
 					myPlayerController.playerSound.PlayDeathSound();
 					myPlayerController.playerSound.SetWalking(false);
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
@@ -909,7 +919,7 @@ public class PlayerStatsS : MonoBehaviour {
 						}
 					}
 
-					if(_currentHealth<maxHealth*0.33f){
+					if(_currentHealth<maxHealth*0.33f || (arcadeMode && currentArcadeHealth <= 1)){
 
 						warningReference.NewMessage("! ! HEALTH LOW ! !", Color.white, Color.red, false, 2);
 					}
@@ -1104,5 +1114,13 @@ public class PlayerStatsS : MonoBehaviour {
 		}else{
 			return false;
 		}
+	}
+
+	public int ResetArcadeHP(){
+		currentArcadeHealth = arcadeHealthMax;
+		if (PlayerController.equippedVirtues.Contains(0)){
+			currentArcadeHealth+=1;
+		}
+		return currentArcadeHealth;
 	}
 }
