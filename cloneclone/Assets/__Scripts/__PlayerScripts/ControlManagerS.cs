@@ -65,7 +65,6 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (controlProfile == 3){
 			platform = "PS4";
-			canSelectPS4 = true;
 		}
 		else if (Application.platform == RuntimePlatform.OSXEditor ||
 		    Application.platform == RuntimePlatform.OSXPlayer){
@@ -838,8 +837,11 @@ public class ControlManagerS : MonoBehaviour {
 	public void ChangeControlProfile(int dir){
 		if (dir > 0){
 			controlProfile ++;
-			if ((controlProfile > 3 && canSelectPS4) || (controlProfile > 2 && !canSelectPS4)){
-				if (ControllerAttached() && !canSelectPS4){
+			if (controlProfile > 3){
+				controlProfile = 1;
+			}
+			if (controlProfile > 2 && !canSelectPS4){
+				if (ControllerAttached()){
 					controlProfile = 0;
 				}else{
 					controlProfile = 1;
@@ -847,16 +849,18 @@ public class ControlManagerS : MonoBehaviour {
 			}
 		}else{
 			controlProfile --;
-			if (ControllerAttached() && !canSelectPS4){
-				if (controlProfile < 0){
-					controlProfile = 2;
+			if (canSelectPS4){
+				if (controlProfile < 1){
+					controlProfile = 3;
 				}
 			}else{
-				if (controlProfile < 1){
-					if (canSelectPS4){
+				if (ControllerAttached()){
+					if (controlProfile < 0){
+						controlProfile = 2;
+					}
+				}else{
+					if (controlProfile < 1){
 						controlProfile = 3;
-					}else{
-					controlProfile = 2;
 					}
 				}
 			}
