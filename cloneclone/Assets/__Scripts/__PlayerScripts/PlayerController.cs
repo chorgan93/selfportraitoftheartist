@@ -452,6 +452,22 @@ public class PlayerController : MonoBehaviour {
 			_myFace.AllowFace();
 		}
 	}
+	public void SetFaceDirection(PlayerAnimationFaceS.PlayerFaceState newFace){
+		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceDown){
+			FaceDown();
+		}
+		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceUp){
+			FaceUp();
+		}
+		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceLeft){
+			FaceLeftRight();
+			_myRigidbody.velocity = new Vector3(-1f,0f,0f); 
+		}
+		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceRight){
+			FaceLeftRight();
+			_myRigidbody.velocity = new Vector3(1f,0f,0f); 
+		}
+	}
 
 	public void StartEmbrace(){
 		SetTalking(true);

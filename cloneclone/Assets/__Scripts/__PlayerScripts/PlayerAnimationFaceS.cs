@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerAnimationFaceS : MonoBehaviour {
 
+	public enum PlayerFaceState { noFace, faceLeft, faceRight, faceUp, faceDown } ;
+
 	private Rigidbody rigidReference;
 	private Vector3 mySize;
 	private Vector3 currentSize;
