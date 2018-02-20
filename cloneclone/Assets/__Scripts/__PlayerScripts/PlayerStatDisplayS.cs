@@ -178,6 +178,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		UpdateFills(true);
 
 		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene || RECORD_MODE){
+			Debug.Log("HIDE!");
 			DisableUI ();
 		}
 		if (playerStats.arcadeMode){

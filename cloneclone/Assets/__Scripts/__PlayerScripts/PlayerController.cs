@@ -544,6 +544,9 @@ public class PlayerController : MonoBehaviour {
 		if (!InGameCinematicS.turnOffBuddies){
 			_myBuddy.gameObject.SetActive(true);
 		}
+		if (!_myStats){
+			_myStats = GetComponent<PlayerStatsS>();
+		}
 		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
 		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
 

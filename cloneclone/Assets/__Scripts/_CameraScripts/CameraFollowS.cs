@@ -41,7 +41,7 @@ public class CameraFollowS : MonoBehaviour {
 	private bool useLimits = false;
 
 	private List<GameObject> poiQueue;
-	private List<float> poiDelayTimes;
+	private List<float> poiDelayTimes = new List<float>();
 	private float delayMoveTime;
 	private bool queueOver = true;
 
