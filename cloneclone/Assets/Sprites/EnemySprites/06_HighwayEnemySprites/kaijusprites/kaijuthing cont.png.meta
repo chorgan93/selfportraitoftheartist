@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5e6472554194549fa8160b527083c7cd
-timeCreated: 1516654729
+timeCreated: 1519171516
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -131,6 +131,30 @@ TextureImporter:
     21300248: kaijuthing cont_15
     21300250: kaijuthing cont_16
     21300252: kaijuthing cont_17
+    21300254: kaijuthing cont_18
+    21300256: kaijuthing cont_19
+    21300258: kaijuthing cont_20
+    21300260: kaijuthing cont_21
+    21300262: kaijuthing cont_22
+    21300264: kaijuthing cont_23
+    21300266: kaijuthing cont_24
+    21300268: kaijuthing cont_25
+    21300270: kaijuthing cont_26
+    21300272: kaijuthing cont_27
+    21300274: kaijuthing cont_28
+    21300276: kaijuthing cont_29
+    21300278: kaijuthing cont_30
+    21300280: kaijuthing cont_31
+    21300282: kaijuthing cont_32
+    21300284: kaijuthing cont_33
+    21300286: kaijuthing cont_34
+    21300288: kaijuthing cont_35
+    21300290: kaijuthing cont_36
+    21300292: kaijuthing cont_37
+    21300294: kaijuthing cont_38
+    21300296: kaijuthing cont_39
+    21300298: kaijuthing cont_40
+    21300300: kaijuthing cont_41
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -182,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1024
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -194,7 +218,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 1024
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -206,7 +230,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 1024
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -218,7 +242,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 1024
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -229,8 +253,8 @@ TextureImporter:
       name: kaijuthing cont_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 768
+        x: 1024
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -241,8 +265,8 @@ TextureImporter:
       name: kaijuthing cont_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 768
+        x: 1280
+        y: 1536
         width: 256
         height: 256
       alignment: 0
@@ -253,8 +277,8 @@ TextureImporter:
       name: kaijuthing cont_6
       rect:
         serializedVersion: 2
-        x: 512
-        y: 768
+        x: 0
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -265,8 +289,8 @@ TextureImporter:
       name: kaijuthing cont_7
       rect:
         serializedVersion: 2
-        x: 768
-        y: 768
+        x: 256
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -277,8 +301,8 @@ TextureImporter:
       name: kaijuthing cont_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 512
+        x: 512
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -289,8 +313,8 @@ TextureImporter:
       name: kaijuthing cont_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 512
+        x: 768
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -301,8 +325,8 @@ TextureImporter:
       name: kaijuthing cont_10
       rect:
         serializedVersion: 2
-        x: 512
-        y: 512
+        x: 1024
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -313,8 +337,8 @@ TextureImporter:
       name: kaijuthing cont_11
       rect:
         serializedVersion: 2
-        x: 768
-        y: 512
+        x: 1280
+        y: 1280
         width: 256
         height: 256
       alignment: 0
@@ -326,7 +350,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -338,7 +362,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -350,7 +374,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 512
-        y: 256
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -362,7 +386,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 768
-        y: 256
+        y: 1024
         width: 256
         height: 256
       alignment: 0
@@ -371,6 +395,246 @@ TextureImporter:
       outline: []
     - serializedVersion: 2
       name: kaijuthing cont_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_17
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_21
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_22
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_23
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_28
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_29
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_33
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_34
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_35
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_36
       rect:
         serializedVersion: 2
         x: 0
@@ -382,10 +646,58 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: kaijuthing cont_17
+      name: kaijuthing cont_37
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_38
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_39
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_40
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: kaijuthing cont_41
+      rect:
+        serializedVersion: 2
+        x: 1280
         y: 0
         width: 256
         height: 256
