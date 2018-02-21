@@ -325,6 +325,10 @@ public class EnemyHealthUIS : MonoBehaviour {
 		barFullImage.gameObject.SetActive(false);
 		enemyNameText.gameObject.SetActive(false);
 
+		if (myEnemies != null){
+		myEnemies.Clear();
+		}
+
 		showing = false;
 	}
 
