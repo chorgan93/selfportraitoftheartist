@@ -32,7 +32,7 @@ public class DarknessS : MonoBehaviour {
 	}
 
 	IEnumerator TurnOffEffect(){
-		for (int i = darkBits.Length-1; i > 0; i--){
+		for (int i = darkBits.Length-1; i >= 0; i--){
 			darkBits[i].GetComponent<DarkBitS>().ActivateFadeOut();
 			yield return new WaitForSeconds(turnOnCountdown);
 		}
