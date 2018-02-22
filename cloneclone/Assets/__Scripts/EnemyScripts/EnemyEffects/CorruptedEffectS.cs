@@ -14,22 +14,37 @@ public class CorruptedEffectS : MonoBehaviour {
 
 	[Header("Object Assignments")]
 	public GameObject[] backingObjs;
-
+	public bool ignoreEnemy = false;
 	private EnemyS myEnemy;
 	private bool _effectActive = false;
 	private bool _initialized = false;
 
+	void Start(){
+		if (ignoreEnemy){
+			Initialize(null);
+		}
+	}
 
 	// Use this for initialization
 	public void Initialize (EnemyS enemyRef) {
 	
 		if (!_initialized){
+			if (!ignoreEnemy){
 			myEnemy = enemyRef;
+			}
 			startPos = new List<Vector3>();
 			for (int i = 0; i < animObjs.Length; i++){
 				startPos.Add(animObjs[i].transform.localPosition);
 			}
 		}
+		if (ignoreEnemy){
+
+			currentObj = 0;
+			activateCountdown = activateRates[currentObj];
+
+
+			TurnOnAll();
+		}else{
 		if (myEnemy.isCorrupted){
 			currentObj = 0;
 			activateCountdown = activateRates[currentObj];
@@ -38,6 +53,7 @@ public class CorruptedEffectS : MonoBehaviour {
 			TurnOnAll();
 		}else{
 			TurnOffAll();
+		}
 		}
 
 	}

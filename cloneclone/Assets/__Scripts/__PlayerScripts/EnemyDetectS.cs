@@ -107,6 +107,7 @@ public class EnemyDetectS : MonoBehaviour {
 					largestY = enemyTransforms[i].position.y;
 				}
 
+				if (i < enemiesInRange.Count){
 				if (enemiesInRange[i].isCritical){
 					critEnemies++;
 					if (enemyTransforms[i].position.x < lowestCritX || lowestCritX == 0f){
@@ -121,6 +122,7 @@ public class EnemyDetectS : MonoBehaviour {
 					if (enemyTransforms[i].position.y > largestCritY || largestCritY == 0f){
 						largestCritY = enemyTransforms[i].position.y;
 					}
+				}
 				}
 			}
 			_enemyCenterpoint.x = (lowestX+largestX)/2f;

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2146ed7bc9aa24a9ea84d99c66cce27f
-timeCreated: 1519026432
+timeCreated: 1519260654
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -347,6 +347,7 @@ TextureImporter:
     21300680: Cranes_0
     21300682: Cranes_1
     21300684: Cranes_2
+    21300686: Cranes_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -427,6 +428,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Cranes_3
+      rect:
+        serializedVersion: 2
+        x: 256
         y: 0
         width: 256
         height: 256

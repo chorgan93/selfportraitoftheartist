@@ -18,6 +18,9 @@ public class DarknessS : MonoBehaviour {
 
 	}
 
+	public void TurnOff(){
+		StartCoroutine(TurnOffEffect());
+	}
 
 	IEnumerator TurnOn(){
 
@@ -26,5 +29,12 @@ public class DarknessS : MonoBehaviour {
 			yield return new WaitForSeconds(turnOnCountdown);
 		}
 
+	}
+
+	IEnumerator TurnOffEffect(){
+		for (int i = darkBits.Length-1; i > 0; i--){
+			darkBits[i].GetComponent<DarkBitS>().ActivateFadeOut();
+			yield return new WaitForSeconds(turnOnCountdown);
+		}
 	}
 }
