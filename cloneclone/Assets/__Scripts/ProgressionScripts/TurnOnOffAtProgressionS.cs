@@ -76,8 +76,10 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 		for (int i = 0; i < offAtProgressObjects.Length; i++){
 			offAtProgressObjects[i].gameObject.SetActive(false);
 		}
+		if (offBarriers != null){
 		foreach (BarrierS bleh in offBarriers){
 			bleh.TurnOff();
+		}
 		}
 	}
 }

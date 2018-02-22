@@ -18,6 +18,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 	public bool skipAfterTimePasses = false;
 
 	public bool textZoom = false;
+	public bool hideTextOnEnd = false;
 
 	private bool textAfter = false;
 
@@ -50,7 +51,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 				skipAfterTime -= Time.deltaTime;
 				if (skipAfterTime <= 0){
 					if (!textInputRef){
-						if (!textAfter){
+						if (!textAfter || hideTextOnEnd){
 							DialogueManagerS.D.EndText(!dontTurnOnStats);
 						}
 						_myHandler.dialogueDone = true;

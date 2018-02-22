@@ -246,6 +246,7 @@ public class FadeScreenUI : MonoBehaviour {
 		_myRenderer.color = _myColor;
 		
 		_fadingIn = true;
+		DeathCountdownS.DC.FadeOutCountdown();
 
 	}
 

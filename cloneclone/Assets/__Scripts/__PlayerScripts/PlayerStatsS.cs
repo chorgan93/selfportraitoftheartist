@@ -769,7 +769,8 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false){
+	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false,
+		bool noUnstoppable = false){
 
 		unstoppableActivatedOnHit = false;
 		dmg*=DifficultyS.GetPunishMult();
@@ -832,7 +833,7 @@ public class PlayerStatsS : MonoBehaviour {
 						_uiReference.RefreshArcadeIcons();
 					}
 					else if (_currentHealth-dmg <= 0 && myPlayerController.playerAug.unstoppableAug && myPlayerController.playerAug.canUseUnstoppable 
-						&&_currentHealth > maxHealth*0.01f){
+						&&_currentHealth > maxHealth*0.01f && !noUnstoppable){
 						_currentHealth = maxHealth*0.01f;
 						myPlayerController.playerAug.canUseUnstoppable = false;
 						//unstoppableActivatedOnHit = true;
@@ -848,7 +849,7 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 				if (_currentHealth <= 0){
 					_currentHealth = 0;
-					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && !arcadeMode && delayDeath)){
+					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && !overrideAll && !arcadeMode && delayDeath)){
 					myPlayerController.playerSound.PlayDeathSound();
 					myPlayerController.playerSound.SetWalking(false);
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
