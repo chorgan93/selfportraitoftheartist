@@ -49,6 +49,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
+	public bool hasTextFollowUp = false;
 
 	[Header("FOR DEMO REWORK AFTER")]
 	public bool teleportItem = false;
@@ -155,10 +156,12 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 						if (DialogueManagerS.D.doneScrolling){
 								if (!teleportItem){
-							pRef.SetTalking(false);
 									CameraFollowS.F.ResetPOI();
 									//Debug.Log("End text!");
+									if (!hasTextFollowUp){
+										pRef.SetTalking(false);
 									DialogueManagerS.D.EndText();
+									}
 							talking = false;
 								}else{
 									DialogueManagerS.D.SetDisplayText("");

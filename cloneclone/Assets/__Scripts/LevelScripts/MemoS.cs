@@ -18,6 +18,12 @@ public class MemoS : MonoBehaviour {
 	private PlayerController pRef;
 	private bool playerInRange;
 
+	public ActivateOnExamineS activateOnEnd;
+
+	[Header("Instruct Properties")]
+	public MovieTexture instructTexture;
+	public float textureSizeMult = 0.4f;
+	public bool activateOnStart= false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +32,9 @@ public class MemoS : MonoBehaviour {
 			TurnOff();
 		}else{
 			AddLineBreaks();
+			if (activateOnStart){
+				TriggerExamine(true);
+			}
 		}
 	
 	}
@@ -46,7 +55,8 @@ public class MemoS : MonoBehaviour {
 							if (currentStep < examineStrings.Length-1){
 								currentStep++;
 								DialogueManagerS.D.SetDisplayText(examineStrings[currentStep], 
-								                                  (currentStep>=startMemoIndex && currentStep < endMemoIndex));
+								                                  (currentStep>=startMemoIndex && currentStep < endMemoIndex),
+									false,false,false,instructTexture, textureSizeMult);
 							}
 							else{
 								DialogueManagerS.D.EndText();
@@ -74,14 +84,21 @@ public class MemoS : MonoBehaviour {
 		}
 	}
 
-	private void TriggerExamine(){
+	private void TriggerExamine(bool findPlayer = false){
 
+		if (findPlayer){
+			pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+			playerInRange = true;
+			talkButtonDown = true;
+		}
 		if (playerInRange){
 		pRef.SetTalking(true);
 		pRef.SetExamining(true, examinePos);
 		isTalking = true;
-		currentStep = 0;
-		DialogueManagerS.D.SetDisplayText(examineStrings[currentStep]);
+			currentStep = 0;
+			DialogueManagerS.D.SetDisplayText(examineStrings[currentStep], 
+				(currentStep>=startMemoIndex && currentStep < endMemoIndex),
+				false,false,false,instructTexture, textureSizeMult);
 		}
 
 
@@ -101,6 +118,9 @@ public class MemoS : MonoBehaviour {
 		PlayerInventoryS.I.AddKeyItem(memoID);
 		isTalking = false;
 		TurnOff();
+		if (activateOnEnd){
+			activateOnEnd.TurnOn();
+		}
 	}
 
 	void OnTriggerEnter(Collider other){

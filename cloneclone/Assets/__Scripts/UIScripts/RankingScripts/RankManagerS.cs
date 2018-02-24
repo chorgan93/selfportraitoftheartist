@@ -203,7 +203,7 @@ public class RankManagerS : MonoBehaviour {
 		}
 	}
 
-	public void EndCombat(bool checkpoint = false){
+	public void EndCombat(bool checkpoint = false, bool endVerse = false){
 		if (rankEnabled){
 			if (!checkpoint){
 				EndCombo();
@@ -227,8 +227,9 @@ public class RankManagerS : MonoBehaviour {
 				}
 			}
 		}else{
-
-			VerseDisplayS.V.EndVerse();
+			if (!endVerse){
+				VerseDisplayS.V.EndVerse();
+			}
 		}
 	}
 	public void DieInCombat(){

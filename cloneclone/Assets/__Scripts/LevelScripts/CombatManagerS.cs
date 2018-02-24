@@ -31,6 +31,7 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOffOnEnd;
 	public GameObject[] turnOnOnEnd;
 	public InstantiateOnCombatRestartS restartSpawn;
+	public bool doNotEndVerse = false;
 
 	[Header("Fight Once Properties")]
 	public bool onlyFightOnce = false;
@@ -147,7 +148,7 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1 && !RankManagerS.rankEnabled){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}
-		RankManagerS.R.EndCombat(hasContinuation);
+		RankManagerS.R.EndCombat(hasContinuation, doNotEndVerse);
 		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();

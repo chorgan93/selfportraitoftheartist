@@ -13,6 +13,9 @@ public class DialogueManagerS : MonoBehaviour {
 	private Vector2 boxTopStartPos;
 	private Vector2 boxTopHidePos;
 
+	private Vector2 memoTextStartPos;
+	private Vector2 memoTextMoviePos;
+
 	public DialogueResponseS dialogueResponse;
 
 	public GameObject advanceIndicator;
@@ -27,6 +30,7 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool statsOn;
 
 	public Image memoBG;
+	public RawImage memoMovie;
 	public Text memoText;
 
 	private string currentDisplayString;
@@ -62,6 +66,10 @@ public class DialogueManagerS : MonoBehaviour {
 		dialogueText.enabled = false;
 		memoBG.enabled = false;
 		memoText.enabled = false;
+		memoTextStartPos = memoText.rectTransform.anchoredPosition;
+		memoTextMoviePos = memoTextStartPos;
+		memoTextMoviePos.y+=85f;
+		memoMovie.enabled = false;
 		_doneScrolling = true;
 
 		advanceIndicator.SetActive(false);
@@ -143,7 +151,8 @@ public class DialogueManagerS : MonoBehaviour {
 	
 	}
 
-	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, bool endWithResponse = false){
+	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, 
+		bool endWithResponse = false, MovieTexture movieText = null, float movieSizeMult = 1f){
 
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
@@ -196,6 +205,22 @@ public class DialogueManagerS : MonoBehaviour {
 			dialogueBox.enabled = dialogueBoxTop.enabled = false;
 			dialogueText.enabled = false;
 
+			if (movieText){
+			if (!memoMovie.enabled){
+				memoText.rectTransform.anchoredPosition = memoTextMoviePos;
+				memoMovie.enabled = true;
+				memoMovie.texture = movieText;
+				memoMovie.SetNativeSize();
+					memoMovie.rectTransform.sizeDelta *= movieSizeMult;
+				MovieTexture playMovie = (MovieTexture)memoMovie.mainTexture;
+				playMovie.loop = true;
+				playMovie.Play();
+			}
+			}else{
+
+				memoText.rectTransform.anchoredPosition = memoTextStartPos;
+			}
+
 			memoText.text = newText;
 			_doneScrolling = true;
 			//Debug.LogError("Done scrolling bc memo!");
@@ -233,6 +258,7 @@ public class DialogueManagerS : MonoBehaviour {
 		memoBG.enabled = false;
 		memoText.enabled = false;
 		_textActive = false;
+		memoMovie.enabled = false;
 
 		//CompleteText();
 

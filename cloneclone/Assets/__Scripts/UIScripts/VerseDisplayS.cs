@@ -139,6 +139,7 @@ public class VerseDisplayS : MonoBehaviour {
 	}
 
 	public void NewVerse(string verseString){
+		if (verseTitle.text == ""){
 		verseTitle.text = verseTitleBg.text = currentVerse = verseString;
 		fadingIn = true;
 		fadingOut = false;
@@ -158,6 +159,7 @@ public class VerseDisplayS : MonoBehaviour {
 		currentCol = iconBG.color;
 		currentCol.a = 0f;
 		iconBG.color = currentCol;
+		}
 
 		if (_isShowing){
 			verseIcon.enabled = iconBG.enabled = true;

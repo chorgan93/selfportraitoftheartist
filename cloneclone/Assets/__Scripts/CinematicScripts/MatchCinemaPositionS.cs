@@ -7,7 +7,7 @@ public class MatchCinemaPositionS : MonoBehaviour {
 	public EnemySpawnerS targetEnemy;
 	public Vector3 offsetPos = Vector3.zero;
 
-	void Start(){
+	void Awake(){
 		if (targetEnemy){
 			transform.position = targetEnemy.currentSpawnedEnemy.transform.position+offsetPos;
 		}else if (targetPos){

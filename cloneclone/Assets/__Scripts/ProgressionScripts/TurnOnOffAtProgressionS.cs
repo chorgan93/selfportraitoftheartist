@@ -12,6 +12,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 
 	[Header("Alt progress checks")]
 	public int turnOnOffAtItemInInventory = -1;
+	public int turnOnOffAtKeyInInventory = -1;
 	public PlayerWeaponS turnOnOffAtMantraInInventory;
 	public BuddyS turnOnOffAtBuddyInInventory;
 	public int turnOnOffAtTechEarned = -1;
@@ -39,12 +40,16 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 				//Debug.Log("Player has hit progression " + progressNum + " !");
 			}
 		}
-		else if (turnOnOffAtItemInInventory > -1){
+		else if (turnOnOffAtItemInInventory > -1 && PlayerInventoryS.I != null){
 			if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory)){
 				TurnObjectsOnOff();
 			}	
 		}
-
+		else if (turnOnOffAtKeyInInventory > -1 && PlayerInventoryS.I != null){
+			if (PlayerInventoryS.I.collectedKeyItems.Contains(turnOnOffAtKeyInInventory)){
+				TurnObjectsOnOff();
+			}	
+		}
 
 		else if (turnOnOffAtMantraInInventory != null){
 			if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory)){
@@ -57,7 +62,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 				TurnObjectsOnOff();
 			}
 		}
-		else if (turnOnOffAtTechEarned > -1){
+		else if (turnOnOffAtTechEarned > -1 && PlayerInventoryS.I != null){
 			if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned)){
 				TurnObjectsOnOff();
 			}	
