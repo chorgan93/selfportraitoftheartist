@@ -21,6 +21,8 @@ public class EnemyS : MonoBehaviour {
 	private const float VULN_EFFECT_RATE = 0.083f;
 	private const float VULN_EFFECT_AMT = 0.9f;
 
+	private const float CRIT_PENALTY = 3f;
+
 	
 	//____________________________________ENEMY PROPERTIES
 
@@ -286,7 +288,9 @@ public class EnemyS : MonoBehaviour {
 
 	void OnCollisionStay(Collision other){
 		if (other.gameObject.tag == "Wall"){
-			currentWallNormal = other.contacts[0].normal;
+			if (other.contacts.Length > 0){
+				currentWallNormal = other.contacts[0].normal;
+			}
 		}
 	}
 
@@ -1116,9 +1120,9 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (_isCritical){
-			_currentHealth -= (dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
-			damageTaken+=(dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
-			currentCritDamage += (dmg*critDmg+0.5f*killAtLess)*damageMultiplier;
+			_currentHealth -= (dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*damageMultiplier;
+			damageTaken+=(dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*damageMultiplier;
+			currentCritDamage += (dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*damageMultiplier;
 			if (currentCritDamage > maxCritDamage){
 				vulnerableCountdown = 0;
 				_isCritical = false;

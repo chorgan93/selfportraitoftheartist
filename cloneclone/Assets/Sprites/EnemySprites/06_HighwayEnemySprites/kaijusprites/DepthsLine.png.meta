@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 59323cdb5e20c43a2b41285dd50944b1
-timeCreated: 1519243250
+timeCreated: 1519764148
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -181,6 +181,10 @@ TextureImporter:
     21300348: DepthsLine_1
     21300350: DepthsLine_2
     21300352: DepthsLine_3
+    21300354: DepthsLine_4
+    21300356: DepthsLine_5
+    21300358: DepthsLine_6
+    21300360: DepthsLine_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -232,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -244,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -253,6 +257,54 @@ TextureImporter:
       outline: []
     - serializedVersion: 2
       name: DepthsLine_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: DepthsLine_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: DepthsLine_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: DepthsLine_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: DepthsLine_6
       rect:
         serializedVersion: 2
         x: 0
@@ -264,7 +316,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: DepthsLine_3
+      name: DepthsLine_7
       rect:
         serializedVersion: 2
         x: 256

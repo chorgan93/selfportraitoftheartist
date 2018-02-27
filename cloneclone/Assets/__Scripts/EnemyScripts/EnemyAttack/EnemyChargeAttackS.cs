@@ -124,6 +124,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 									if (doKill){
 										myEnemy.KillWithoutXP();
 									}
+								}else{
+									_myRenderer.enabled = false;
 								}
 							}else if (!myEnemy){
 							_myCollider.enabled = true;

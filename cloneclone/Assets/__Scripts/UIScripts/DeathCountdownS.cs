@@ -8,6 +8,7 @@ public class DeathCountdownS : MonoBehaviour {
 	private float deathCountdownTimer; // counted down
 	private float deathCountShow; // showing time rounded to two decimal places
 	private Text myText;
+	public Image deathScreen;
 
 	private bool _initialized = false;
 	private bool countdownActive = false;
@@ -39,6 +40,7 @@ public class DeathCountdownS : MonoBehaviour {
 			myText = GetComponent<Text>();
 			startCol = myCol = myText.color;
 			_initialized = true;
+			deathScreen.gameObject.SetActive(false);
 		}
 		if(deathCountdown > 0){
 			countdownActive = true;
@@ -89,6 +91,7 @@ public class DeathCountdownS : MonoBehaviour {
 		myText.color = endCol;
 		myText.text = "0.00";
 		countdownActive = false;
+		deathScreen.gameObject.SetActive(true);
 		if (currentHandler != null){
 			currentHandler.ActivateDeath();
 		}
@@ -114,13 +117,15 @@ public class DeathCountdownS : MonoBehaviour {
 	}
 
 	public void FadeOutCountdown(){
-		if (countdownActive){
+		if (myText.color.a > 0){
 		myCol.a = 1f;
 		myText.color = myCol;
 		fadingOut = true;
-		if (deathCountdownTimer > 0){
+			if (deathCountdownTimer > 0 && countdownActive){
 			deathCountdown = deathCountdownTimer;
 		}
+		}else{
+			myText.text = "";
 		}
 	}
 }

@@ -5,14 +5,20 @@ public class DeathCountdownHandlerS : MonoBehaviour {
 
 	public PlayerStatsS playerRef;
 	public float newDeathTime = -1f;
+	public bool endTimer = false;
+	private float timerAtStart;
 
 	// Use this for initialization
 	void Start () {
 
 		DeathCountdownS.DC.currentHandler = this;
-		if (newDeathTime > 0){
+		if (endTimer){
+			DeathCountdownS.DC.TurnOffCountdown();
+		}
+		else if (newDeathTime > 0){
 			DeathCountdownS.DC.ActivateCountdown(newDeathTime);
 		}
+		timerAtStart = DeathCountdownS.deathCountdown;
 	
 	}
 
@@ -20,5 +26,6 @@ public class DeathCountdownHandlerS : MonoBehaviour {
 	public void ActivateDeath(){
 		playerRef.TakeDamage(null, 99999f, Vector3.zero, 0.2f, true, true, true);
 		Debug.Log("PLAYER DIE!");
+		DeathCountdownS.deathCountdown = timerAtStart;
 	}
 }
