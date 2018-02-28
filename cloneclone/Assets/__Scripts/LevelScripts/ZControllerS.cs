@@ -29,6 +29,12 @@ public class ZControllerS : MonoBehaviour {
 	
 	}
 
+	void Update(){
+		if (Input.GetKeyDown(KeyCode.K)){
+			Debug.Log(currentList.Count);
+		}
+	}
+
 	private void CleanList(){
 
 		for (int i = 0; i < allTargets.Count; i++){
@@ -48,7 +54,7 @@ public class ZControllerS : MonoBehaviour {
 			zPlaced = false;
 			if (currentList.Count > 0){
 				for (int i = 0; i < currentList.Count; i++){
-					if (currentList[i].myTargetRef.position.y < allTargets[j].myTargetRef.position.y){
+					if (currentList[i].GetCurrentY() < allTargets[j].GetCurrentY()){
 						if (i == currentList.Count-1 && !zPlaced){
 							currentList.Add(allTargets[j]);
 							zPlaced = true;

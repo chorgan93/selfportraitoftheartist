@@ -4,6 +4,7 @@ using System.Collections;
 public class ZControlTargetS : MonoBehaviour {
 
 	public Transform myTargetRef;
+	public float targetRefYOffset;
 
 	// Use this for initialization
 	void Start () {
@@ -15,5 +16,9 @@ public class ZControlTargetS : MonoBehaviour {
 		ZControllerS.Z.AddTarget(this);
 		}
 	
+	}
+
+	public float GetCurrentY(){
+		return (myTargetRef.position.y + targetRefYOffset);
 	}
 }

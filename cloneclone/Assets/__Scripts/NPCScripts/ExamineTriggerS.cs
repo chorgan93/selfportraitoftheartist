@@ -44,12 +44,16 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
+	public int removeProgress = -1;
 	public bool saveOnPickup = false;
 	public bool isTapeTV = false;
 
 	public bool inInfiniteMode = false;
 	private InfinitySpawnS parentInfinite;
 	public bool hasTextFollowUp = false;
+
+	[Header("Special Trigger Properties")]
+	public GameObject highwaySwitchSpawn;
 
 	[Header("FOR DEMO REWORK AFTER")]
 	public bool teleportItem = false;
@@ -192,6 +196,10 @@ public class ExamineTriggerS : MonoBehaviour {
 							if (myTrigger){
 								myTrigger.TurnOn();
 							}
+								if (highwaySwitchSpawn){
+									GameObject switchSpawn = Instantiate(highwaySwitchSpawn) as GameObject;
+									switchSpawn.SetActive(true);
+								}
 	
 							if (inventoryNum >= -1){
 								AddPickup();
@@ -348,6 +356,9 @@ public class ExamineTriggerS : MonoBehaviour {
 
 		if (setProgress > -1){
 			StoryProgressionS.SetStory(setProgress);
+		}
+		if (removeProgress > -1){
+			StoryProgressionS.RemoveProgress(removeProgress);
 		}
 		
 		if (saveOnPickup){
