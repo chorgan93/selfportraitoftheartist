@@ -259,6 +259,7 @@ public class ProjectileS : MonoBehaviour {
 			dmg = startDmg;
 			transform.localScale = startScale;
 		}
+		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
 		touchingWall = false;
 		enemiesHit.Clear();

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_16_HighwaysBridge.unity
+- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_14_HighwaysKey.unity
   isLoaded: 1
   isActive: 1
