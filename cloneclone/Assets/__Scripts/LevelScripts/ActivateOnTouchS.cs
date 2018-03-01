@@ -11,6 +11,7 @@ public class ActivateOnTouchS : MonoBehaviour {
 	private bool didCombatCheck = false;
 	private bool doNotTrigger = false;
 
+	public bool allowMultipleUse = false;
 	private bool turnedOn = false;
 
 
@@ -29,7 +30,9 @@ public class ActivateOnTouchS : MonoBehaviour {
 				bleh.SetActive(false);
 			}
 
+			if (!allowMultipleUse){
 			turnedOn = true;
+			}
 		}
 	}
 
