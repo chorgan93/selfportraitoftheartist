@@ -1,2 +1,4 @@
 Base path: /Applications/Unity 5.3.8f1/Unity.app/Contents
 Cmd: getPlatforms
+Cmd: compileSnippet
+  api=1 type=0 insize=818 outsize=232 kw= pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING ok=1
