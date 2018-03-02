@@ -11,6 +11,7 @@ public class MerchantItemS : MonoBehaviour {
 	[Header("Item Properties")]
 	public int giveVirtue = -1;
 	public PlayerWeaponS giveWeapon;
+	public BuddyS buddyToGive;
 	public int giveItem = -1;
 	public int giveRewind = -1;
 	public int giveHeal = -1;
@@ -63,6 +64,11 @@ public class MerchantItemS : MonoBehaviour {
 				available = false;
 			}
 		}
+		if (buddyToGive){
+			if (PlayerInventoryS.I.unlockedBuddies.Contains(buddyToGive)){
+				available = false;
+			}
+		}
 
 		return available;
 	}
@@ -106,6 +112,9 @@ public class MerchantItemS : MonoBehaviour {
 
 		if (giveWeapon){
 			PlayerInventoryS.I.unlockedWeapons.Add(giveWeapon);
+		}
+		if (buddyToGive){
+			PlayerInventoryS.I.unlockedBuddies.Add(buddyToGive);
 		}
 	}
 }

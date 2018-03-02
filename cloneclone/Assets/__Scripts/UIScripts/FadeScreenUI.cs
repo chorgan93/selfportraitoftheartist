@@ -158,6 +158,7 @@ public class FadeScreenUI : MonoBehaviour {
 				async.allowSceneActivation = true;
 			}
 			}else{
+					Debug.Log(async.progress);
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && !RankManagerS.R.delayLoad){	
 						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 						if (PlayerInventoryS.I != null){
@@ -259,6 +260,7 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void StartLoading(){
 		StartCoroutine(LoadNextScene());
+		Debug.Log("Start loading!!");
 		dontAllowReset = true;
 		startedLoading = true;
 		SetText();

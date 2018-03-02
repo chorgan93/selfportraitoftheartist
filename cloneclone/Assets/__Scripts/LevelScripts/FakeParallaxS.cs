@@ -16,7 +16,6 @@ public class FakeParallaxS : MonoBehaviour {
 		startPosition = transform.position;
 		targetStartX = spawnManager.spawnPts[SpawnPosManager.whereToSpawn].position.x;
 
-		Debug.Log(targetStartX + " " + targetTransform.position);
 
 	}
 	

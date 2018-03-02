@@ -36,7 +36,7 @@ public class CheckpointS : MonoBehaviour {
 
 		_playerDetect = GetComponentInChildren<PlayerDetectS>();
 
-		DeathCountdownS.DC.TurnOffCountdown();
+		DeathCountdownS.DC.TurnOffCountdown(true);
 
 		if (!fullCheckpoint){
 			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();

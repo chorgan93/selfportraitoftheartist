@@ -103,7 +103,10 @@ public class DeathCountdownS : MonoBehaviour {
 		FadeInCountdown();
 	}
 
-	public void TurnOffCountdown(){
+	public void TurnOffCountdown(bool eraseCount = false){
+		if (eraseCount){
+			deathCountdown = deathCountdownTimer = 0;
+		}
 		countdownActive = false;
 		myCol = offCol;
 		FadeOutCountdown();
