@@ -260,7 +260,6 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void StartLoading(){
 		StartCoroutine(LoadNextScene());
-		Debug.Log("Start loading!!");
 		dontAllowReset = true;
 		startedLoading = true;
 		SetText();

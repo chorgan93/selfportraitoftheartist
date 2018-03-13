@@ -8,6 +8,8 @@ public class LevelUpItemS : MonoBehaviour {
 	private int _upgradeID = -1;
 	public int upgradeID { get { return _upgradeID; } }
 
+	public const int MAX_LEVEL_UP = 49;
+
 	[Header("UI Properties")]
 	public Image upgradeImage;
 	public Text upgradeNameText;
@@ -114,7 +116,8 @@ public class LevelUpItemS : MonoBehaviour {
 			upgradeName = revertName;
 		}
 
-		if (upgradeCost > PlayerCollectionS.currencyCollected || (isRevert && statRef.currentLevel <= minRevert())){
+		if ((upgradeCost > PlayerCollectionS.currencyCollected && PlayerInventoryS.I.earnedUpgrades.Count < MAX_LEVEL_UP) 
+			|| (isRevert && statRef.currentLevel <= minRevert())){
 			if (isRevert){
 				upgradeImage.sprite = revertLockedSprite;
 			}else if (isShuffle){
@@ -163,6 +166,9 @@ public class LevelUpItemS : MonoBehaviour {
 		bool canBuy = false;
 		if (PlayerCollectionS.currencyCollected >= upgradeCost){
 			canBuy = true;
+		}
+		if (PlayerInventoryS.I.earnedUpgrades.Count >= MAX_LEVEL_UP){
+			canBuy = false;
 		}
 		return canBuy;
 	}

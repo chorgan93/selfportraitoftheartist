@@ -22,6 +22,7 @@ public class LevelUpMenu : MonoBehaviour {
 	public GameObject mainMenuObj;
 
 	[Header("Level Up Menu Selections")]
+	public GameObject levelUpSound;
 	public Text playerName;
 	public Text playerLvl;
 	public GameObject levelMenuProper;
@@ -196,6 +197,9 @@ public class LevelUpMenu : MonoBehaviour {
 				if (levelMenuItems[currentPos].CanBeUpgraded()){
 					pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
 					levelMenuItems[currentPos].BuyUpgrade(currentPos, levelHandler);
+					if (levelUpSound){
+						Instantiate(levelUpSound);
+					}
 					if (currentPos <= 3){
 					currentPos = 0;
 					}

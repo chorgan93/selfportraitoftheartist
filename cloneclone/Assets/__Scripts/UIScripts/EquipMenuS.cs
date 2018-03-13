@@ -150,6 +150,9 @@ public class EquipMenuS : MonoBehaviour {
 			}
 		}
 
+		if (PlayerInventoryS.I.earnedUpgrades.Count >= LevelUpItemS.MAX_LEVEL_UP){
+			playerLevel.text = "LV. MAX";
+		} 
 		if (pRef.myStats.currentLevel < 10){
 			playerLevel.text = "LV. 0" + pRef.myStats.currentLevel;
 		}else{

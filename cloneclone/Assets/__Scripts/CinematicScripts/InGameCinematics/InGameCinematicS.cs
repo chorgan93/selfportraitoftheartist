@@ -73,6 +73,7 @@ public class InGameCinematicS : MonoBehaviour {
 		timedStep = false;
 		currentCountdown = 0f;
 
+		if (!pRef.myStats.PlayerIsDead()){
 		currentStep++;
 
 		if (CheckCurrentStep()){
@@ -88,6 +89,7 @@ public class InGameCinematicS : MonoBehaviour {
 			}else{
 				EndCinematic();
 			}
+		}
 		}
 
 	}

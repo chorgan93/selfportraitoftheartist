@@ -568,7 +568,7 @@ public class PlayerStatsS : MonoBehaviour {
 			}else{
 			delayDeathCountdown -= Time.deltaTime*delayDeathCountdownMult;
 			if (delayDeathCountdown <= 0){
-				TakeDamage(null, 1f, Vector3.zero, 0.2f, true, true);
+				TakeDamage(null, 1f, Vector3.zero, 0.2f, true, true, true);
 				delayDeath = false;
 			}
 			}
@@ -849,7 +849,7 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 				if (_currentHealth <= 0){
 					_currentHealth = 0;
-					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && !overrideAll && !arcadeMode && delayDeath)){
+					if (!myPlayerController.playerAug.condemnedAug || (myPlayerController.playerAug.condemnedAug && !arcadeMode && delayDeath)){
 					myPlayerController.playerSound.PlayDeathSound();
 					myPlayerController.playerSound.SetWalking(false);
 						myPlayerController.myRigidbody.drag = DEATH_DRAG;
