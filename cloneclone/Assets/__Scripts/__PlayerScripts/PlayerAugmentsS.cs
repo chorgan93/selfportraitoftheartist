@@ -234,7 +234,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 
 		// turn on virtues
-		if (PlayerController.equippedVirtues.Count > 0){
+		if (PlayerController.equippedVirtues.Count > 0 && !_playerReference.myStats.arcadeMode){
 			TurnOnVirtueAugs();
 		}
 	}

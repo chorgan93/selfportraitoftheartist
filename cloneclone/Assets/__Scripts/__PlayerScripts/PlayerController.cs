@@ -502,6 +502,9 @@ public class PlayerController : MonoBehaviour {
 		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
+		if (!_myStats){
+			_myStats = GetComponent<PlayerStatsS>();
+		}
 
 		_projectilePool = GetComponent<ProjectilePoolS>();
 
@@ -559,9 +562,6 @@ public class PlayerController : MonoBehaviour {
 		_myBuddy.SetPositions(buddyPos, buddyPosLower);
 		if (!InGameCinematicS.turnOffBuddies){
 			_myBuddy.gameObject.SetActive(true);
-		}
-		if (!_myStats){
-			_myStats = GetComponent<PlayerStatsS>();
 		}
 		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
 		_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);

@@ -187,6 +187,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 
 		totalMaxHealth = getCurrentMaxHealth();
 		currentCombinedHealth = getCurrentCombinedHealth();
+		lengthPerHealth = getCurrentXPerHealth();
 		numEnemiesDivider = getNumEnemiesDivider();
 
 		// resize ui elements
@@ -234,6 +235,17 @@ public class EnemyHealthUIS : MonoBehaviour {
 			combinedHealth += myEnemies[i].currentHealth;
 		}
 		return combinedHealth;
+	}
+
+	float getCurrentXPerHealth(){
+		float combinedXPerHealth = 0f;
+		for (int i = 0; i < myEnemies.Count; i++){
+			combinedXPerHealth += myEnemies[i].healthBarXSize/myEnemies[i].maxHealth;
+		}
+		if (myEnemies.Count > 0){
+			combinedXPerHealth/=(myEnemies.Count*1f);
+		}
+		return combinedXPerHealth;
 	}
 
 	float getNumEnemiesDivider(){

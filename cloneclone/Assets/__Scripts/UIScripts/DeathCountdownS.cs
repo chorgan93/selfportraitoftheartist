@@ -124,7 +124,7 @@ public class DeathCountdownS : MonoBehaviour {
 		myCol.a = 1f;
 		myText.color = myCol;
 		fadingOut = true;
-			if (deathCountdownTimer > 0 && countdownActive){
+			if (deathCountdownTimer > 0 && countdownActive && !currentHandler.playerRef.PlayerIsDead()){
 			deathCountdown = deathCountdownTimer;
 		}
 		}else{

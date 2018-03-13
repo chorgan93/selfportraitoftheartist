@@ -611,7 +611,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		if (!isFriendly){
 		isFriendly = true;
 		range = _maxRange+0.2f;
-			damage = startDamage*1.5f;
+			damage = startDamage*3f;
 		_rigidbody.velocity = Vector3.zero;
 		StartCoroutine(ReflectCoroutine(aimDir));
 		CameraShakeS.C.MicroShake();

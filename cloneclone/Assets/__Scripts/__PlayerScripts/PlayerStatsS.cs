@@ -47,8 +47,8 @@ public class PlayerStatsS : MonoBehaviour {
 	public float addedHealth { get { return _addedHealth; } }
 	private static float _currentHealth;
 
-	private int arcadeHealthMax = 3;
-	public static int currentArcadeHealth = 3;
+	private int arcadeHealthMax = 4;
+	public static int currentArcadeHealth = 4;
 
 	public float currentHealth { get { return _currentHealth; } }
 	private float _canRecoverHealth = 0f;
@@ -1119,9 +1119,6 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public int ResetArcadeHP(){
 		currentArcadeHealth = arcadeHealthMax;
-		if (PlayerController.equippedVirtues.Contains(0)){
-			currentArcadeHealth+=1;
-		}
 		return currentArcadeHealth;
 	}
 }

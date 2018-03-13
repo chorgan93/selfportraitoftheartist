@@ -16,8 +16,8 @@ public class ProjectileS : MonoBehaviour {
 
 	private const float damageVariance = 0.2f;
 
-	private const float reflectMaxTime = 0.6f;
-	private const float reflectMinTime = 0.1f;
+	private const float reflectMaxTime = 0.8f;
+	private const float reflectMinTime = 0f;
 	private bool _canReflect = false;
 	
 	[Header("Projectile Properties")]
@@ -779,12 +779,14 @@ public class ProjectileS : MonoBehaviour {
 	}
 
 	float DeterminedMult(){
+		float killatlessmult = 1f;
 		if (_myPlayer.playerAug.determinedAug && addOnDetermined){
-			return 1.4f;
-		}else{
-			return 1f;
+			killatlessmult = 1.4f;
 		}
+		if (_myPlayer != null){
+			killatlessmult *= 1f+(_myPlayer.myStats.addedStrength/5f);
+		}
+		return killatlessmult;
 	}
-
 
 }
