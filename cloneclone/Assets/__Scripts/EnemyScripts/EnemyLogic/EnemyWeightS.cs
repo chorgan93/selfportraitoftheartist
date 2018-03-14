@@ -31,7 +31,7 @@ public class EnemyWeightS : MonoBehaviour {
 				}
 			}
 			if (pRange){
-				if (!playerInRange.myStats.PlayerIsDead() && !playerInRange.InAttack()){
+				if (!playerInRange.myStats.PlayerIsDead() && !playerInRange.InAttack() && !playerInRange.InWitchAnimation()){
 					forceDir = playerInRange.transform.position-transform.position;
 					playerInRange.myRigidbody.AddForce(forceDir.normalized*forceAmt*Time.deltaTime, ForceMode.Force);
 				}

@@ -15,7 +15,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DESPERATE_MULT = 0.8f;
 	private const float DESPERATE_HEAL_MULT = 0.6f;
 
-	public const float STAMINA_ADD_PER_LVL = 0.3f;
+	public const float STAMINA_ADD_PER_LVL = 0.28f;
 	public const float HEALTH_ADD_AMT = 1f;
 
 	private const float anxiousChargeRate = 0.025f;
@@ -43,7 +43,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	//________________________________HEALTH
 	private float _baseHealth = 6;
-	private float _addedHealth = 0; // max 8 (for 12 total)
+	private float _addedHealth = 0; 
 	public float addedHealth { get { return _addedHealth; } }
 	private static float _currentHealth;
 
@@ -62,7 +62,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float allowHealthT;
 
 	public float canRecoverHealth { get { return _canRecoverHealth; } }
-	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
+	public float maxHealth { get { return (_baseHealth+_addedHealth*1.5f);}}
 	private float _savedHealth = 8f;
 	public float savedHealth { get { return _savedHealth; } }
 
@@ -166,13 +166,13 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private float _recoverRateMin = 0.35f;
 	private float _recoverRateMultiplier = 1f; // higher = faster recovery (upgradeable)
-	private float recoverRateAddPerLevel = 0.02f;
+	private float recoverRateAddPerLevel = 0.012f;
 
 	public float recoverRate { get { return (_recoverRateMin*(_recoverRateMultiplier+recoverRateAddPerLevel*(currentRecoverRateLv-1)));}}
 
 	private float recoverRateIncrease;
 	private float recoverRateAccelBase = .5f;
-	private float recoverRateAccelAddPerLevel = 0.15f;
+	private float recoverRateAccelAddPerLevel = 0.1f;
 		private float recoverRateAccel { get { return recoverRateAccelBase+recoverRateAccelAddPerLevel*(currentRecoverRateLv-1); } }
 	private int _recoverRateLv = 1;
 	private int _addedRateLv = 0;

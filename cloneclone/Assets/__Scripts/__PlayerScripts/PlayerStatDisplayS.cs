@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class PlayerStatDisplayS : MonoBehaviour {
 
-	private const float barAddSize = 3f;
-	private const float chargeAddSize = 3f;
+	private const float barAddSize = 8f;
+	private const float staminaBarAddSize = 5f;
+	private const float chargeAddSize = 4f;
 
 	public const bool RECORD_MODE = false;
 	
@@ -309,7 +310,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 		// stamina fill & recharge fill
 		fillSize = staminaBarMaxSize;
-		fillSize.x += playerStats.addedMana*barAddSize;
+		fillSize.x += playerStats.addedMana*staminaBarAddSize;
 		fillSize.x *= playerStats.currentMana/playerStats.maxMana;
 		fillSize.y = staminaFill.rectTransform.sizeDelta.y;
 		staminaFill.rectTransform.sizeDelta = fillSize;
@@ -349,7 +350,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		recoveryFill.rectTransform.sizeDelta = fillSize;
 
 		borderSize = staminaBorderMaxSize;
-		borderSize.x += playerStats.addedMana*barAddSize;
+		borderSize.x += playerStats.addedMana*staminaBarAddSize;
 		staminaBorder.rectTransform.sizeDelta =  borderSize;
 
 		fillSize = staminaBarMaxSize;

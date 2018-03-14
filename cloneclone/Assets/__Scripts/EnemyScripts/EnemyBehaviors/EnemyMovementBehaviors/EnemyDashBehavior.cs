@@ -15,10 +15,16 @@ public class EnemyDashBehavior : EnemyBehaviorS {
 	public GameObject poi;
 	public float dashDragAmt = -1f;
 	public float dashForce = 50f;
+	public float applyDashTimeMult = 0.8f;
 
 	[Header("Target Variables")]
 	public float moveTargetRange = 5f;
 	private Vector3 currentDashTarget;
+	private Vector3 currentPOIPos;
+
+	private float applyDashCountdown;
+	private Vector3 dashNormal = Vector3.zero;
+	private float dashDirection = 1f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -29,6 +35,13 @@ public class EnemyDashBehavior : EnemyBehaviorS {
 
 
 			dashDuration -= Time.deltaTime*currentDifficultyMult;
+			applyDashCountdown -= Time.deltaTime*currentDifficultyMult;
+			if (applyDashCountdown > 0){
+				DetermineAndAddForce();
+				if (myEnemyReference.hitWall){
+					dashDirection *= -1f;
+				}
+			}
 			if (dashDuration <= 0){
 				numDashesRemain--;
 				if (numDashesRemain <= 0){
@@ -70,18 +83,34 @@ public class EnemyDashBehavior : EnemyBehaviorS {
 
 	private void TriggerDash(){
 
-		DetermineTarget();
+		//DetermineTarget();
 
 		if (animationKey != ""){
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 		}
 
+		currentPOIPos = poi.transform.position+ Random.insideUnitSphere*moveTargetRange;
+		currentPOIPos.z = transform.position.z;
+
 		dashDuration = timeBetweenDashes;
+		applyDashCountdown = timeBetweenDashes*applyDashTimeMult;
 		myEnemyReference.myRigidbody.velocity = Vector3.zero;
-		myEnemyReference.myRigidbody.AddForce((currentDashTarget-transform.position).normalized
-			*dashForce*Time.deltaTime, ForceMode.Impulse);
+		if (Random.Range(0f,1f) < 0.5f){
+			dashDirection*= -1f;
+		}
+		/*myEnemyReference.myRigidbody.AddForce((currentDashTarget-transform.position).normalized
+			*dashForce*Time.deltaTime, ForceMode.Impulse);**/
 		
 
+	}
+
+	void DetermineAndAddForce(){
+		currentDashTarget = (currentPOIPos-myEnemyReference.transform.position).normalized;
+		dashNormal = Vector3.zero;
+		dashNormal.x = currentDashTarget.y;
+		dashNormal.y = -currentDashTarget.x;
+		myEnemyReference.myRigidbody.AddForce(dashNormal*dashDirection
+			*dashForce*Time.deltaTime, ForceMode.Acceleration);
 	}
 
 	private void DetermineTarget(){
