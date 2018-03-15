@@ -9,6 +9,9 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	public enum SacramentIVID {C, K, AA, Nightmare};
 	public SacramentIVID combatID = SacramentIVID.Nightmare;
 
+	private Vector2 combatChooseOffset = new Vector2(0f,20f);
+	private Vector2 combatChooseOffsetAlly = new Vector2(0f,50f);
+
 	//private static float allyHealth_C = 100f;
 	//private static float allyHealth_K = 100f;
 	//private static float allyHealth_AA = 100f;
@@ -107,6 +110,12 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	private SacramentCombatantS _savedTarget;
 	public SacramentCombatantS savedTarget { get { return _savedTarget; } }
 
+	// controller option properties
+	private int _currentOption = 0;
+	public int currentOption { get { return _currentOption; } }
+
+	private bool stickMoved = false;
+
 	[HideInInspector]
 	public bool canBeSelected = false;
 
@@ -173,8 +182,28 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	// Update is called once per frame
 	void Update () {
 
-		if (canBeSelected && _isHovering && Input.GetMouseButtonDown(0)){
+		if (canBeSelected && _isHovering){
+			if ((myManager.myStep.myHandler.usingMouse && Input.GetMouseButtonDown(0)) 
+				|| (myManager.myStep.myHandler.TalkButton() && !myManager.myStep.myHandler.usingMouse)){ 
 			_myManager.ChooseActionTarget(this);
+			}
+		}
+		if (_optionsShowing && !_myManager.myStep.myHandler.usingMouse){
+			if (!stickMoved){
+				if (_myManager.myStep.myHandler.StickMoved() > 0f || _myManager.myStep.myHandler.StickMoved() < 0f){
+					stickMoved = true;
+					if (_myManager.myStep.myHandler.StickMoved() > 0f){
+						ChangeCurrentOptionSelect(1);
+					}else{
+						ChangeCurrentOptionSelect(-1);
+					}
+				}
+			}
+			else{
+				if (Mathf.Abs(_myManager.myStep.myHandler.StickMoved()) < 0.1f){
+					stickMoved = false;
+				}
+			}
 		}
 	
 	}
@@ -188,6 +217,8 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 	}
 
 	public void StartActing(SacramentCombatS myC){
+		_currentOption = 0;
+		myManager.myStep.myHandler.chooseOptionImage.gameObject.SetActive(false);
 		if (!_myManager){
 			_myManager = myC;
 			workingAccuracy = baseAccuracy;
@@ -274,6 +305,11 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			}
 		}
 		_optionsShowing = newShow;
+		if (_optionsShowing){
+			_currentOption = 0;
+			possibleActionSelectors[_currentOption].StartHover();
+		}
+
 	}
 	public void SelectAction(int actionToChoose){
 		possibleActions[actionToChoose].StartAction(this, true);
@@ -436,18 +472,32 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		_isHovering = true;
-		if (canBeSelected){
-			combatantShadow.TurnOnHyper();
+		if (_myManager.myStep.myHandler.usingMouse){
+			StartHover();
 		}
 
 	}
 
+	public void StartHover(){
+			_isHovering = true;
+		if (canBeSelected){
+			SetOptionMark(combatantImage.rectTransform.anchoredPosition, combatantImage, true);
+				combatantShadow.TurnOnHyper();
+			}
+	}
+
 	public void OnPointerExit(PointerEventData eventData)
 	{
+
+		if (_myManager.myStep.myHandler.usingMouse){
+			EndHover();
+		}
+
+	}
+
+	public void EndHover(){
 		_isHovering = false;
 		combatantShadow.TurnOffHyper();
-
 	}
 
 	public void TurnOffChoosing(){
@@ -462,6 +512,65 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	void ResetOverwatchTarget(){
 		_overwatchTarget = null;
+	}
+
+	public void EndHovering(){
+		for (int i = 0; i < possibleActionSelectors.Length; i++){
+			possibleActionSelectors[i].EndHover();
+		}
+	}
+
+	public void SetOptionMark(Vector2 newPos, Text matchColor, bool useAllyPos = false){
+		if (!_myManager.myStep.myHandler.usingMouse){
+			_myManager.myStep.myHandler.chooseOptionImage.rectTransform.parent = matchColor.rectTransform.parent;
+			if (!useAllyPos){
+				_myManager.myStep.myHandler.chooseOptionImage.rectTransform.anchoredPosition = newPos+combatChooseOffset;
+			}else{
+				_myManager.myStep.myHandler.chooseOptionImage.rectTransform.anchoredPosition = newPos+combatChooseOffsetAlly;
+			}
+			_myManager.myStep.myHandler.SetChooseColor(matchColor);
+			_myManager.myStep.myHandler.chooseOptionImage.gameObject.SetActive(true);
+		}else{
+			_myManager.myStep.myHandler.chooseOptionImage.gameObject.SetActive(false);
+		}
+	}
+	public void SetOptionMark(Vector2 newPos, Image matchColor, bool useAllyPos = false){
+		if (!_myManager.myStep.myHandler.usingMouse){
+			_myManager.myStep.myHandler.chooseOptionImage.rectTransform.parent = matchColor.rectTransform.parent;
+			if (!useAllyPos){
+				_myManager.myStep.myHandler.chooseOptionImage.rectTransform.anchoredPosition = newPos+combatChooseOffset;
+			}else{
+				_myManager.myStep.myHandler.chooseOptionImage.rectTransform.anchoredPosition = newPos+combatChooseOffsetAlly;
+			}
+			_myManager.myStep.myHandler.SetChooseColorImage(matchColor);
+			_myManager.myStep.myHandler.chooseOptionImage.gameObject.SetActive(true);
+		}else{
+			_myManager.myStep.myHandler.chooseOptionImage.gameObject.SetActive(false);
+		}
+	}
+
+	void ChangeCurrentOptionSelect(int dir){
+		if (dir > 0){
+			_currentOption++;
+			if (_currentOption > possibleActionSelectors.Length-1){
+				_currentOption = 0;
+			}
+			if (!possibleActionSelectors[_currentOption].canBeSelected){
+				ChangeCurrentOptionSelect(1);
+			}else{
+				possibleActionSelectors[_currentOption].StartHover();
+			}
+		}else{
+			_currentOption--;
+			if (_currentOption < 0){
+				_currentOption = possibleActionSelectors.Length-1;
+			}
+			if (!possibleActionSelectors[_currentOption].canBeSelected){
+				ChangeCurrentOptionSelect(-1);
+			}else{
+				possibleActionSelectors[_currentOption].StartHover();
+			}
+		}
 	}
 
 }

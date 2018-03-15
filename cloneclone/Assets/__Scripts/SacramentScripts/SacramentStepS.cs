@@ -39,6 +39,7 @@ public class SacramentStepS : MonoBehaviour {
 	public GameObject offSound;
 	public SacramentBGMS musicTrigger;
 
+	// controller option properties
 	private int _currentOption = 0;
 	public int currentOption { get { return _currentOption; } }
 	private bool _optionsActive = false;

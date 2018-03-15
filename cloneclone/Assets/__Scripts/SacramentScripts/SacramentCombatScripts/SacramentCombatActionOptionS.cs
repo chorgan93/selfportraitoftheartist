@@ -34,6 +34,7 @@ public class SacramentCombatActionOptionS : MonoBehaviour, IPointerEnterHandler,
 	public bool isHovering {get { return _isHovering; } }
 
 	private bool optionActive = false;
+	public bool canBeSelected { get { return optionActive; } }
 
 	// Use this for initialization
 	void Start () {
@@ -58,8 +59,11 @@ public class SacramentCombatActionOptionS : MonoBehaviour, IPointerEnterHandler,
 				mainText.color = fadeCol;
 				}
 			}
-			else if (Input.GetMouseButtonDown(0) && _isHovering){
-				SelectOption();
+			else if (_isHovering){
+				if ((myHandler.myManager.myStep.myHandler.usingMouse && Input.GetMouseButtonDown(0)) 
+					|| (myHandler.myManager.myStep.myHandler.TalkButton() && !myHandler.myManager.myStep.myHandler.usingMouse)){ 
+					SelectOption();
+				}
 			}
 		}
 	
@@ -115,13 +119,29 @@ public class SacramentCombatActionOptionS : MonoBehaviour, IPointerEnterHandler,
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
+		if (myHandler.myManager.myStep.myHandler.usingMouse){
 			_isHovering = true;
+		}
 
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
+
+		if (myHandler.myManager.myStep.myHandler.usingMouse){
 			_isHovering = false;
-		
+		}
+
+	}
+
+	public void StartHover(){
+		myHandler.EndHovering();
+		_isHovering = true;
+		myHandler.SetOptionMark(mainText.rectTransform.anchoredPosition, mainText);
+		//Debug.Log("I should be selectable!! " + gameObject.name); 
+	}
+	public void EndHover(){
+		_isHovering = false;
+		//Debug.Log("I am no longer selectable!! " + gameObject.name); 
 	}
 }

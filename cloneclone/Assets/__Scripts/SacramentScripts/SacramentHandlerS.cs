@@ -12,6 +12,9 @@ public class SacramentHandlerS : MonoBehaviour {
 	public Image chooseOptionImage;
 	private Vector2 chooseOptionOffset = new Vector2(0f,25f);
 	private Text matchColorOption;
+	private Image matchColorOptionImage;
+	private bool useImageMatch = false;
+	private bool useTextMatch = false;
 
 	public string nextSceneString;
 	public int nextSceneSpawnPos;
@@ -64,7 +67,11 @@ public class SacramentHandlerS : MonoBehaviour {
 			}
 		}
 		if (chooseOptionImage.gameObject.activeSelf){
+			if (useTextMatch){
 			chooseOptionImage.color = matchColorOption.color;
+			}if (useImageMatch){
+				chooseOptionImage.color = matchColorOptionImage.color;
+			}
 		}
 	}
 
@@ -184,5 +191,16 @@ public class SacramentHandlerS : MonoBehaviour {
 		}else{
 			chooseOptionImage.gameObject.SetActive(false);
 		}
+	}
+
+	public void SetChooseColor(Text matchColor){
+		matchColorOption = matchColor;
+		useImageMatch = false;
+		useTextMatch = true;
+	}
+	public void SetChooseColorImage(Image matchColorImage){
+		matchColorOptionImage = matchColorImage;
+		useImageMatch = true;
+		useTextMatch = false;
 	}
 }

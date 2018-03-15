@@ -7,6 +7,7 @@ public class SacramentCombatS : MonoBehaviour {
 	public SacramentCombatantS[] targetEnemies;
 	public SacramentCombatantS[] playerParty;
 	private SacramentStepS _myStep;
+	public SacramentStepS myStep { get { return _myStep; } }
 	public SacramentHurtEffectS hurtEffect;
 	public int endAtXTurns = -1;
 	private bool timedBattle = false;
@@ -32,6 +33,13 @@ public class SacramentCombatS : MonoBehaviour {
 	private SacramentCombatActionS choosingAction;
 	private SacramentCombatActionS overwatchAction;
 
+	// gamepad choosing properties
+	private bool _choosingActionTarget = false;
+	private int _currentOption = 0;
+	public int currentOption { get { return _currentOption; } }
+
+	private bool stickMoved = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -56,6 +64,24 @@ public class SacramentCombatS : MonoBehaviour {
 			if (!_combatantActing){
 			GetNextCombatant();
 			_combatantActing = true;
+			}else{
+				if (_choosingActionTarget && !myStep.myHandler.usingMouse){
+					if (!stickMoved){
+						if (myStep.myHandler.StickMoved() > 0f || myStep.myHandler.StickMoved() < 0f){
+							stickMoved = true;
+							if (myStep.myHandler.StickMoved() > 0f){
+								ChangeCurrentAllySelect(1);
+							}else{
+								ChangeCurrentAllySelect(-1);
+							}
+						}
+					}
+					else{
+						if (Mathf.Abs(myStep.myHandler.StickMoved()) < 0.1f){
+							stickMoved = false;
+						}
+					}
+				}
 			}
 		}
 	
@@ -160,6 +186,14 @@ public class SacramentCombatS : MonoBehaviour {
 		if(chooser){
 		chooser.canBeSelected = false;
 		}
+		_choosingActionTarget = true;
+		_currentOption = 0;
+		if (playerParty[0] == chooser){
+			ChangeCurrentAllySelect(1);
+		}
+		else{
+			playerParty[0].StartHover();
+		}
 	}
 
 	public void ChooseActionTarget(SacramentCombatantS newTarget){
@@ -167,6 +201,8 @@ public class SacramentCombatS : MonoBehaviour {
 		for (int i = 0; i < playerParty.Length; i++){
 			playerParty[i].TurnOffChoosing();
 		}
+		_choosingActionTarget = false;
+		myStep.myHandler.chooseOptionImage.gameObject.SetActive(false);
 	}
 
 	bool CheckCombatEnd(){
@@ -218,5 +254,36 @@ public class SacramentCombatS : MonoBehaviour {
 	}
 	public void StartOverwatchAction(){
 		overwatchAction.StartAction(overwatchAction.myActor);
+	}
+	void ChangeCurrentAllySelect(int dir){
+		if (!_myStep.myHandler.usingMouse){
+			EndAllyHovering();
+		}
+		if (dir > 0){
+			_currentOption++;
+			if (_currentOption > playerParty.Length-1){
+				_currentOption = 0;
+			}
+			if (!playerParty[_currentOption].canBeSelected){
+				ChangeCurrentAllySelect(1);
+			}else{
+				playerParty[_currentOption].StartHover();
+			}
+		}else{
+			_currentOption--;
+			if (_currentOption < 0){
+				_currentOption = playerParty.Length-1;
+			}
+			if (!playerParty[_currentOption].canBeSelected){
+				ChangeCurrentAllySelect(-1);
+			}else{
+				playerParty[_currentOption].StartHover();
+			}
+		}
+	}
+	public void EndAllyHovering(){
+		for (int i = 0; i < playerParty.Length; i++){
+			playerParty[i].EndHover();
+		}
 	}
 }

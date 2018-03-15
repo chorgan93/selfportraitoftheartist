@@ -79,7 +79,8 @@ public class SacramentCombatTextS : MonoBehaviour {
 		if (fadingIn){
 				myCol = myText.color;
 				myCol.a += fadeRate*Time.deltaTime;
-					if (myCol.a >= maxAlpha || Input.GetMouseButtonDown(0)){
+					if (myCol.a >= maxAlpha || ((Input.GetMouseButtonDown(0) && _myCombat.myStep.myHandler.usingMouse) 
+						|| (!_myCombat.myStep.myHandler.usingMouse && _myCombat.myStep.myHandler.TalkButton()))){
 					myCol.a = maxAlpha;
 					fadingIn = false;
 					_readyToAdvance = true;
@@ -120,7 +121,9 @@ public class SacramentCombatTextS : MonoBehaviour {
 				
 		}
 			}
-			if (Input.GetMouseButtonDown(0) && inputGiven){
+			if (((Input.GetMouseButtonDown(0) && _myCombat.myStep.myHandler.usingMouse) ||
+				(!_myCombat.myStep.myHandler.usingMouse && _myCombat.myStep.myHandler.TalkButton()))
+				&& inputGiven){
 				if (awaitingInput){
 					if (isScrolling){
 
