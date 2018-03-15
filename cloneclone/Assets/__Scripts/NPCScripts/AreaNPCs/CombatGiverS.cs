@@ -209,7 +209,7 @@ public class CombatGiverS : MonoBehaviour {
 						stickReset = true;
 					}
 
-					if (controlRef.ExitButton()){
+					if (controlRef.GetCustomInput(13)){
 						if (!cancelButtonDown){
 							combatChooseUI.ExitOption();
 						}

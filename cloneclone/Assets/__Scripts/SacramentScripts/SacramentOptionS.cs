@@ -40,6 +40,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public bool isHovering {get { return _isHovering; } }
 
 	private bool optionActive = false;
+	public bool canBeSelected { get { return optionActive; } }
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +52,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 		// change for controller once non-standalone
 		if (optionActive && _initialized){
+
 			if (fadingIn){
 				if (delayFadeCountdown > 0){
 					delayFadeCountdown -= Time.deltaTime;
@@ -64,9 +66,13 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 				mainText.color = fadeCol;
 				}
 			}
-			else if (Input.GetMouseButtonDown(0) && _isHovering){
+			else if (_isHovering){
+				if ((myHandler.usingMouse && Input.GetMouseButtonDown(0)) || (myHandler.TalkButton() && !myHandler.usingMouse)){ 
 				SelectOption();
+				}
 			}
+
+
 		}
 	
 	}
@@ -146,13 +152,28 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-			_isHovering = true;
+		if (myHandler.usingMouse){
+		StartHover();
+		}
 
 	}
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-			_isHovering = false;
+		if (myHandler.usingMouse){
+		EndHover();
+		}
 		
+	}
+
+	public void StartHover(){
+		myHandler.EndHovering();
+		_isHovering = true;
+		myHandler.SetOptionMark(mainText.rectTransform.anchoredPosition, mainText);
+		//Debug.Log("I should be selectable!! " + gameObject.name); 
+	}
+	public void EndHover(){
+		_isHovering = false;
+		//Debug.Log("I am no longer selectable!! " + gameObject.name); 
 	}
 }

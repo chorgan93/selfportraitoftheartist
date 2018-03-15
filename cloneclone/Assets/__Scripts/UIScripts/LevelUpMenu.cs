@@ -129,7 +129,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 			cursorObj.anchoredPosition = mainMenuSelectPositions[currentPos].anchoredPosition;
 
-			if (!_selectButtonDown && myControl.MenuSelectButton()){
+			if (!_selectButtonDown && myControl.GetCustomInput(12)){
 				_selectButtonDown = true;
 				if (currentPos == 0){
 					pRef.ResetTimeMax();
@@ -191,7 +191,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 			cursorObjLvl.anchoredPosition = levelMenuPositions[currentPos].anchoredPosition;
 
-			if (!_selectButtonDown && myControl.MenuSelectButton()){
+			if (!_selectButtonDown && myControl.GetCustomInput(12)){
 				_selectButtonDown = true;
 				pRef.ResetTimeMax();
 				if (levelMenuItems[currentPos].CanBeUpgraded()){
@@ -207,7 +207,7 @@ public class LevelUpMenu : MonoBehaviour {
 				}
 			}
 
-			if (!_exitButtonDown && myControl.ExitButton() && !doingEffect){
+			if (!_exitButtonDown && myControl.GetCustomInput(13) && !doingEffect){
 				TurnOffLevelUpMenu();
 			}
 		}
@@ -239,7 +239,7 @@ public class LevelUpMenu : MonoBehaviour {
 			
 			cursorObjTravel.anchoredPosition = travelMenuPositions[currentPos].anchoredPosition;
 
-			if (!_selectButtonDown && myControl.MenuSelectButton()){
+			if (!_selectButtonDown && myControl.GetCustomInput(12)){
 				_selectButtonDown = true;
 				pRef.ResetTimeMax();
 
@@ -273,7 +273,7 @@ public class LevelUpMenu : MonoBehaviour {
 
 				}
 			}
-			if (!_exitButtonDown && myControl.ExitButton() && !travelStarted && !doingEffect){
+			if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted && !doingEffect){
 				TurnOffTravelMenu();
 				pRef.ResetTimeMax();
 			}

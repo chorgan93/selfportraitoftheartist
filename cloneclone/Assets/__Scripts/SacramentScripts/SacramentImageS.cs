@@ -72,7 +72,7 @@ public class SacramentImageS : MonoBehaviour {
 					showedWaitSymbol = true;
 					_myStep.myHandler.ActivateWait();
 				}
-				if (Input.GetMouseButtonDown(0)){
+				if (Input.GetMouseButtonDown(0) || _myStep.myHandler.myControl.TalkButton()){
 					_myStep.AdvanceImage();
 				}
 			}else{

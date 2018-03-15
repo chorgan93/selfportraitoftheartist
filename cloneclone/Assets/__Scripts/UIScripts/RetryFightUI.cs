@@ -62,7 +62,7 @@ public class RetryFightUI : MonoBehaviour {
 			}else{
 				stickReset = true;
 			}
-			if (myController.MenuSelectButton()){
+			if (myController.GetCustomInput(12)){
 				if (!selectButtonDown){
 				if (currentPos == 0){
 					GameOverS.tempReviveScene = Application.loadedLevelName;

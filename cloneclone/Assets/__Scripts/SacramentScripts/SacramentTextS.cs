@@ -74,13 +74,13 @@ public class SacramentTextS : MonoBehaviour {
 					}
 					playedAppearSound = true;
 				}
-				if (_readyToAdvance && ((Input.GetMouseButtonDown(0) && !disableAdvance) || (useAutoAdvance && autoAdvanceCount <= 0f))){
+				if (_readyToAdvance && (((Input.GetMouseButtonDown(0) || _stepRef.myHandler.TalkButton()) && !disableAdvance) || (useAutoAdvance && autoAdvanceCount <= 0f))){
 				_stepRef.AdvanceText();
 			}
 		if (fadingIn){
 				myCol = myText.color;
 				myCol.a += fadeRate*Time.deltaTime;
-					if (myCol.a >= maxAlpha || Input.GetMouseButtonDown(0)){
+					if (myCol.a >= maxAlpha || Input.GetMouseButtonDown(0) || _stepRef.myHandler.TalkButton()){
 					myCol.a = maxAlpha;
 					fadingIn = false;
 					_readyToAdvance = true;
@@ -114,7 +114,7 @@ public class SacramentTextS : MonoBehaviour {
 					}
 				}
 
-				if (Input.GetMouseButtonDown(0)){
+					if (Input.GetMouseButtonDown(0) || _stepRef.myHandler.TalkButton()){
 					myText.text = currentText = fullText;
 					isScrolling = false;
 					_readyToAdvance = true;

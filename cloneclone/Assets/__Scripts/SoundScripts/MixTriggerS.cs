@@ -19,13 +19,13 @@ public class MixTriggerS : MonoBehaviour {
 		if (activateOnStart){
 			if (fadeIn){
 				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
+					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant, targetLayer.maxVolume);
 				}else{
 					targetLayer.transform.parent = BGMHolderS.BG.transform;
 					if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
 						targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
 					}
-					targetLayer.FadeIn(instant);
+					targetLayer.FadeIn(instant, targetLayer.maxVolume);
 					
 				}
 			}
@@ -45,13 +45,13 @@ public class MixTriggerS : MonoBehaviour {
 			if (((activateOnce && !activated) || !activateOnce) && targetLayer != null){
 				if (fadeIn){
 					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant);
+						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant, targetLayer.maxVolume);
 					}else{
 						targetLayer.transform.parent = BGMHolderS.BG.transform;
 						if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
 							targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
 						}
-							targetLayer.FadeIn(instant);
+						targetLayer.FadeIn(instant, targetLayer.maxVolume);
 						
 					}
 				}

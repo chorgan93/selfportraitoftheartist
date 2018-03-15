@@ -379,7 +379,7 @@ public class ControlManagerS : MonoBehaviour {
 			break;
 		case (13):
 			// return default menu cancel button
-			inputPressed = ExitButton();
+			inputPressed = GetCustomInput(13);
 			break;
 
 
@@ -708,7 +708,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (!WeaponButtonA() && !GetCustomInput(3));
+			return (!GetCustomInput(12));
 			}else{
 				return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
 			}
@@ -736,7 +736,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ExitButtonUp(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (!WeaponButtonB() && !WeaponButtonC());
+				return (!GetCustomInput(13));
 			}else{
 				return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
 			}

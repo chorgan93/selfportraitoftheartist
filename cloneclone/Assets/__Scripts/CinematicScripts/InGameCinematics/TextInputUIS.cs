@@ -75,7 +75,7 @@ public class TextInputUIS : MonoBehaviour {
 				stickReset = true;
 			}
 
-			if (!selectButtonDown && myControl.MenuSelectButton()){
+			if (!selectButtonDown && myControl.GetCustomInput(12)){
 				selectButtonDown = true;
 				SetLetter(true);
 			}
@@ -83,7 +83,7 @@ public class TextInputUIS : MonoBehaviour {
 				selectButtonDown = false;
 			}
 
-			if (!backButtonDown && myControl.ExitButton()){
+			if (!backButtonDown && myControl.GetCustomInput(13)){
 				backButtonDown = true;
 				PressDel();
 			}

@@ -16,6 +16,9 @@ public class InventoryManagerS : MonoBehaviour {
 	private PlayerInventoryS _inventoryRef;
 	private PlayerInteractCheckS _interactRef;
 
+	public GameObject useRewindSound;
+	public GameObject useHealSound;
+
 	private bool useItemButtonDown = false;
 	private bool toggleItemButtonDown = false;
 	private bool scrollItemButtonDown = false;
@@ -119,6 +122,9 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private IEnumerator ResetFunction(){
+		if (useRewindSound){
+			Instantiate(useRewindSound);
+		}
 		_pRef.TriggerItemAnimation();
 		_pRef.myStats.itemEffect.Flash(Color.white);
 		yield return new WaitForSeconds(0.1f);

@@ -34,6 +34,9 @@ public class BGMLayerS : MonoBehaviour {
 	private float currentWitchCount;
 	private float witchT;
 
+	private bool adjustingUp = false;
+	private bool adjustingDown = false;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -94,6 +97,21 @@ public class BGMLayerS : MonoBehaviour {
 			}
 		}
 
+		if (adjustingUp){
+			mySource.volume += fadeInRate*Time.unscaledDeltaTime;
+			if (mySource.volume >= maxVolume*BGMHolderS.volumeMult){
+				mySource.volume = maxVolume*BGMHolderS.volumeMult;
+				adjustingUp = false;
+			}
+		}
+		if (adjustingDown){
+			mySource.volume -= fadeOutRate*Time.unscaledDeltaTime;
+			if (mySource.volume <= maxVolume*BGMHolderS.volumeMult){
+				mySource.volume = maxVolume*BGMHolderS.volumeMult;
+				adjustingDown = false;
+			}
+		}
+
 		if (checkForceRestart){
 			if (prevData > mySource.timeSamples){
 				BGMHolderS.BG.ForceReset(forceRestartOnLoop, mySource.timeSamples);
@@ -103,12 +121,12 @@ public class BGMLayerS : MonoBehaviour {
 	
 	}
 
-	public void FadeIn(bool instant = false){
+	public void FadeIn(bool instant = false, float maxV = -1f){
 
 		if (!PlayerStatDisplayS.RECORD_MODE && !NO_MUSIC){
 		if (!mySource.isPlaying){
 			mySource.Play();
-		}
+		
 
 		if (!instant){
 			fadingIn = true;
@@ -120,6 +138,9 @@ public class BGMLayerS : MonoBehaviour {
 			fadingOut = false;
 			mySource.volume = maxVolume*BGMHolderS.volumeMult;
 		}
+			}else if (maxV > 0){
+				ChangeMaxVolume(maxV);
+			}
 		}
 
 		destroyOnFade = false;
@@ -179,6 +200,18 @@ public class BGMLayerS : MonoBehaviour {
 	
 					fadingIn = true;
 			}
+		}
+	}
+
+	public void ChangeMaxVolume(float newVolume){
+		adjustingUp = false;
+		adjustingDown = false;
+		maxVolume = newVolume;
+		if (mySource.volume > maxVolume*BGMHolderS.volumeMult){
+			adjustingUp = true;
+		}
+		if (mySource.volume < maxVolume*BGMHolderS.volumeMult){
+			adjustingDown = true;
 		}
 	}
 

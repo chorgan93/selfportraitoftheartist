@@ -103,7 +103,7 @@ public class GameMenuS : MonoBehaviour {
 				SetSelection(currentSelection);
 			}
 
-			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 0)){
+			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 0)){
 				TurnOff();
 				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
@@ -111,7 +111,7 @@ public class GameMenuS : MonoBehaviour {
 				myManager.TurnOffFromGameMenu();
 			}
 
-			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 2){
+			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 2){
 				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
 				inOptionsMenu = true;
@@ -120,12 +120,12 @@ public class GameMenuS : MonoBehaviour {
 				optionsMenuProper.gameObject.SetActive(true);
 			}
 
-			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
+			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
 				RespawnAtLastCheckpoint();
 				myManager.pRef.ResetTimeMax();
 			}
 
-			if (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
+			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
 				(PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu)){
 				RespawnAtLastCheckpoint(true);
 				myManager.pRef.ResetTimeMax();
@@ -151,7 +151,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.ExitButton()) || (selectButtonUp && myControl.MenuSelectButton() && currentSelection == 9
+			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 9
 			)){
 
 				selectButtonUp = false;
@@ -340,7 +340,7 @@ public class GameMenuS : MonoBehaviour {
 			UpdateControlSettingText();
 		}
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 			
 			ControlManagerS.controlProfile++;
 			if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4)){
@@ -399,7 +399,7 @@ public class GameMenuS : MonoBehaviour {
 			UpdateSinSettingText();
 		}
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetSinInt();
@@ -452,7 +452,7 @@ public class GameMenuS : MonoBehaviour {
 			UpdatePunishSettingText();
 		}
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
@@ -491,7 +491,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 		}
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
 			if (CameraEffectsS.E){
 				CameraEffectsS.E.MatchAlias();
@@ -520,7 +520,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 		}
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 			if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER == 1f){
 				CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
 				shakeText.text = "OFF";
@@ -556,7 +556,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(1);
 			}else{
@@ -583,7 +583,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 
 			selectButtonUp = false;
 			SFXObjS.SetVolumeSetting(1);
@@ -607,7 +607,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 			selectButtonUp = false;
 			CameraFollowS.ChangeZoomLevel(1);
 			UpdateCameraZoomSettingText();
@@ -623,7 +623,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 
-		if (selectButtonUp && myControl.MenuSelectButton()){
+		if (selectButtonUp && myControl.GetCustomInput(12)){
 
 			selectButtonUp = false;
 			CameraShakeS.ChangeTurbo(1);

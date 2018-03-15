@@ -93,6 +93,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	public InfiniteBGM startMusic;
 
+	[Header("Sound Properties")]
+	public GameObject newGameSound;
+
 	void Awake(){
 		versionText.text = currentVer;
 		inMain = true;
@@ -267,7 +270,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 							showOnOverride.gameObject.SetActive(false);
 							selectReset = false;
 							StoryProgressionS.NewGame(); // reset for new game progress
-							
+						
 							PlayerStatsS.healOnStart = true;
 							StartNextLoad();
 						}else{
@@ -539,7 +542,10 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	private void StartNextLoad(){
 		StartCoroutine(LoadNextScene());
-		startedLoading = true;
+		startedLoading = true;	
+		if (newGameSound){
+			Instantiate(newGameSound);
+		}
 	}
 	
 	private IEnumerator LoadNextScene(){

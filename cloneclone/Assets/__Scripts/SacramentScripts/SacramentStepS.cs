@@ -39,6 +39,12 @@ public class SacramentStepS : MonoBehaviour {
 	public GameObject offSound;
 	public SacramentBGMS musicTrigger;
 
+	private int _currentOption = 0;
+	public int currentOption { get { return _currentOption; } }
+	private bool _optionsActive = false;
+
+	private bool stickMoved = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -46,6 +52,24 @@ public class SacramentStepS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (_optionsActive && !_myHandler.usingMouse){
+			if (!stickMoved){
+			if (_myHandler.StickMoved() > 0f || _myHandler.StickMoved() < 0f){
+					stickMoved = true;
+				if (_myHandler.StickMoved() > 0f){
+					ChangeCurrentOptionSelect(1);
+				}else{
+					ChangeCurrentOptionSelect(-1);
+				}
+			}
+		}
+			else{
+				if (Mathf.Abs(_myHandler.StickMoved()) < 0.1f){
+					stickMoved = false;
+				}
+			}
+		}
 
 	}
 
@@ -80,6 +104,9 @@ public class SacramentStepS : MonoBehaviour {
 		if (changeStep){
 			changeStep.Activate();
 		}
+		stickMoved = true;
+		_optionsActive = false;
+		_currentOption=0;
 		_stepActive = true;
 	delayOptionSetup = false;
 		_myHandler.DeactivateWait();
@@ -145,9 +172,17 @@ public class SacramentStepS : MonoBehaviour {
 			}
 		}else{
 		if (sacramentOptions.Length > 0){
-			for (int i = 0; i < sacramentOptions.Length; i++){
-				sacramentOptions[i].Initialize(_myHandler);
-			}
+				_currentOption = 0;
+				_optionsActive = true;
+				for (int i = 0; i < sacramentOptions.Length; i++){
+					sacramentOptions[i].Initialize(_myHandler);
+					if (i == _currentOption && !sacramentOptions[i].canBeSelected){
+						_currentOption++;
+					}
+					else if (i == _currentOption && sacramentOptions[i].canBeSelected && !_myHandler.usingMouse){
+						sacramentOptions[i].StartHover();
+					}
+				}
 			waitOnOption = true;
 		}
 		}
@@ -178,8 +213,40 @@ public class SacramentStepS : MonoBehaviour {
 	}
 
 	void DelayedOptionSetup(){
+		_currentOption = 0;
+		_optionsActive = true;
 		for (int i = 0; i < sacramentOptions.Length; i++){
 			sacramentOptions[i].Initialize(_myHandler);
+			if (i == _currentOption && !sacramentOptions[i].canBeSelected){
+				_currentOption++;
+			}
+			else if (i == _currentOption && sacramentOptions[i].canBeSelected && !_myHandler.usingMouse){
+				sacramentOptions[i].StartHover();
+			}
+		}
+	}
+
+	void ChangeCurrentOptionSelect(int dir){
+		if (dir > 0){
+			_currentOption++;
+			if (_currentOption > sacramentOptions.Length-1){
+				_currentOption = 0;
+			}
+			if (!sacramentOptions[_currentOption].canBeSelected){
+				ChangeCurrentOptionSelect(1);
+			}else{
+				sacramentOptions[_currentOption].StartHover();
+			}
+		}else{
+			_currentOption--;
+			if (_currentOption < 0){
+				_currentOption = sacramentOptions.Length-1;
+			}
+			if (!sacramentOptions[_currentOption].canBeSelected){
+				ChangeCurrentOptionSelect(-1);
+			}else{
+			sacramentOptions[_currentOption].StartHover();
+		}
 		}
 	}
 }

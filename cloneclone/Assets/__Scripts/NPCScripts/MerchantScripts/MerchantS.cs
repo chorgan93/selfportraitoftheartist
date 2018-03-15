@@ -124,7 +124,7 @@ public class MerchantS : MonoBehaviour {
 						stickReset = true;
 					}
 
-					if (controlRef.ExitButton()){
+					if (controlRef.GetCustomInput(13)){
 						if (!cancelButtonDown){
 							merchantUIRef.ExitOption();
 						}

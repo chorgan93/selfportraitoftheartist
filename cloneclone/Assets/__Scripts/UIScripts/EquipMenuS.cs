@@ -52,6 +52,13 @@ public class EquipMenuS : MonoBehaviour {
 	public Image[] selectorElements;
 	private int currentPos = 0;
 
+	[Header("Sound Properties")]
+	public GameObject openSound;
+	public GameObject moveSound;
+	public GameObject selectSound;
+	public GameObject cancelSound;
+	public GameObject closeSound;
+
 	private float startElementAlpha;
 
 	private bool onMainScreen = true;
@@ -181,6 +188,10 @@ public class EquipMenuS : MonoBehaviour {
 		onMainScreen = true;
 		mapScreen.gameObject.SetActive(false);
 
+		if (openSound){
+			Instantiate(openSound);
+		}
+
 		if (goToMap){
 			TurnOnMapScreen();
 		}
@@ -244,8 +255,11 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 
-			if (pRef.myControl.MenuSelectButton() && !selectButtonDown){
+			if (pRef.myControl.GetCustomInput(12) && !selectButtonDown){
 				pRef.ResetTimeMax();
+				if (openSound){
+					Instantiate(openSound);
+				}
 				if (currentPos == 0){
 					GoToParadigmISetUp();
 				}
@@ -309,7 +323,10 @@ public class EquipMenuS : MonoBehaviour {
 
 			// changing mantra function
 			if (!changingWeapon){
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
+					if (openSound){
+						Instantiate(openSound);
+					}
 					pRef.ResetTimeMax();
 					changingWeapon = true;
 					selectButtonDown = true;
@@ -325,10 +342,13 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			else{
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
 					pRef.ResetTimeMax();
 					changingWeapon = false;
 					selectButtonDown = true;
+					if (selectSound){
+						Instantiate(selectSound);
+					}
 
 					// swap actual mantra equip & update display
 					if (currentWeaponSelected == 0){
@@ -347,7 +367,10 @@ public class EquipMenuS : MonoBehaviour {
 					SetSelectorParadigmI(currentWeaponSelected, 0); // replace with swapped mantra's position
 
 				}
-				if (!exitButtonDown && pRef.myControl.ExitButton()){
+				if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
+					if (cancelSound){
+						Instantiate(cancelSound);
+					}
 					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingWeapon = false;
@@ -356,7 +379,7 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 
-			if (!exitButtonDown && pRef.myControl.ExitButton()){
+			if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 				pRef.ResetTimeMax();
 				SetSelector(0);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
@@ -366,6 +389,9 @@ public class EquipMenuS : MonoBehaviour {
 				inParadigmIMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+				if (cancelSound){
+					Instantiate(cancelSound);
+				}
 
 				toggleTextLeft.enabled = toggleTextRight.enabled = true;
 				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
@@ -417,7 +443,10 @@ public class EquipMenuS : MonoBehaviour {
 
 			// changing mantra function
 			if (!changingWeapon){
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
+					if (selectSound){
+						Instantiate(selectSound);
+					}
 					pRef.ResetTimeMax();
 					changingWeapon = true;
 					selectButtonDown = true;
@@ -433,7 +462,10 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			else{
-				if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
+					if (selectSound){
+						Instantiate(selectSound);
+					}
 					pRef.ResetTimeMax();
 					changingWeapon = false;
 					selectButtonDown = true;
@@ -454,16 +486,19 @@ public class EquipMenuS : MonoBehaviour {
 					SetSelectorParadigmII(currentWeaponSelected); // replace with swapped mantra's position
 
 				}
-				if (!exitButtonDown && pRef.myControl.ExitButton()){
+				if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingWeapon = false;
 					exitButtonDown = true;
+					if (cancelSound){
+						Instantiate(cancelSound);
+					}
 					SetSelectorParadigmII(currentWeaponSelected); // replace with selected mantra's position
 				}
 			}
 				
-			if (!exitButtonDown && pRef.myControl.ExitButton()){
+			if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 				pRef.ResetTimeMax();
 				SetSelector(1);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
@@ -473,6 +508,9 @@ public class EquipMenuS : MonoBehaviour {
 				inParadigmIIMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+				if (cancelSound){
+					Instantiate(cancelSound);
+				}
 
 				toggleTextLeft.enabled = toggleTextRight.enabled = true;
 				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
@@ -503,21 +541,26 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 			// changing virtue function
-			if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+			if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
 				pRef.ResetTimeMax();
 					//changingVirtue = false;
 					selectButtonDown = true;
-
 					// swap actual virtue equip & update display
 					if (PlayerController.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
 							PlayerController.equippedVirtues.Remove(allVirtueItems[currentPos].virtueNum);
 						pRef.myStats.ChangeVirtue(-allVirtueItems[currentPos].virtueCost);
 					allVirtueItems[currentPos].Unequip();
+					if (cancelSound){
+						Instantiate(cancelSound);
+					}
 					}else{
 						if (pRef.myStats.usedVirtue + allVirtueItems[currentPos].virtueCost <= pRef.myStats.virtueAmt){
 							PlayerController.equippedVirtues.Add (allVirtueItems[currentPos].virtueNum);
 							pRef.myStats.ChangeVirtue(allVirtueItems[currentPos].virtueCost);
 						allVirtueItems[currentPos].Equip();
+						if (selectSound){
+							Instantiate(selectSound);
+						}
 						}
 					}
 
@@ -525,15 +568,18 @@ public class EquipMenuS : MonoBehaviour {
 					
 					UpdateVirtueDisplay();
 
-				if (!exitButtonDown && pRef.myControl.ExitButton()){
+				if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 					pRef.ResetTimeMax();
 					// exit out of mantra swap
 					changingVirtue = false;
 					exitButtonDown = true;
+					if (cancelSound){
+						Instantiate(cancelSound);
+					}
 					SetSelectorVirtue(currentVirtueSelected); // replace with selected mantra's position
 				}
 			}
-			if (!exitButtonDown && pRef.myControl.ExitButton()){
+			if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 				pRef.ResetTimeMax();
 				virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 				currentPos = 0;
@@ -546,6 +592,9 @@ public class EquipMenuS : MonoBehaviour {
 				inVirtueMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+				if (cancelSound){
+					Instantiate(cancelSound);
+				}
 
 				toggleTextLeft.enabled = toggleTextRight.enabled = true;
 				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
@@ -574,13 +623,22 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 
-			if (!selectButtonDown && pRef.myControl.MenuSelectButton()){
+			if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
 				pRef.ResetTimeMax();
 				selectButtonDown = true;
 					
 				// toggle unlocked tech
 				if (allInventoryItems[currentPos].unlocked){
 					allInventoryItems[currentPos].ToggleOnOff();
+					if (allInventoryItems[currentPos].techEquipped){
+						if (selectSound){
+							Instantiate(selectSound);
+						}
+					}else{
+						if (cancelSound){
+							Instantiate(cancelSound);
+						}
+					}
 				}
 					
 					
@@ -589,7 +647,7 @@ public class EquipMenuS : MonoBehaviour {
 					
 			}
 
-			if (!exitButtonDown && pRef.myControl.ExitButton()){
+			if (!exitButtonDown && pRef.myControl.GetCustomInput(13)){
 				pRef.ResetTimeMax();
 				currentPos = 0;
 				SetSelector(3);
@@ -602,6 +660,9 @@ public class EquipMenuS : MonoBehaviour {
 				inVirtueMenu = false;
 				onMainScreen = true;
 				exitButtonDown = true;
+				if (cancelSound){
+					Instantiate(cancelSound);
+				}
 
 				toggleTextLeft.enabled = toggleTextRight.enabled = true;
 				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
@@ -617,9 +678,6 @@ public class EquipMenuS : MonoBehaviour {
 
 		if (pRef.myControl.ExitButtonUp()){
 			exitButtonDown = false;
-			if (exitButtonDown){
-				Debug.Log("Exit reset!");
-			}
 			if (onMainScreen){
 				_canBeQuit = true;
 			}else{
@@ -663,7 +721,10 @@ public class EquipMenuS : MonoBehaviour {
 		if (newPos == 3){
 			descriptionText.text = inventoryString;
 		}
-		
+
+		if (moveSound){
+			Instantiate(moveSound);
+		}
 		currentPos = newPos;
 		selector.anchoredPosition = selectorPositions[currentPos].anchoredPosition;
 	}
@@ -702,6 +763,9 @@ public class EquipMenuS : MonoBehaviour {
 		}else{
 			descriptionText.text = "";
 		}
+		if (moveSound){
+			Instantiate(moveSound);
+		}
 
 	}
 
@@ -730,7 +794,9 @@ public class EquipMenuS : MonoBehaviour {
 
 		descriptionText.text = allInventoryItems[currentPos].techDescription;
 			
-		
+		if (moveSound){
+			Instantiate(moveSound);
+		}
 	}
 
 	public void SetSelectorParadigmI(int newPos, int paradigmNum, int dir = 0){
@@ -794,6 +860,9 @@ public class EquipMenuS : MonoBehaviour {
 
 		currentPos = nextAvailable;
 		changeCols.a = 1f;
+		if (moveSound){
+			Instantiate(moveSound);
+		}
 		
 		if (!paradigmBuddySubscreen.gameObject.activeSelf || currentPos <= 2){
 			if (paradigmNum == 0){
@@ -857,6 +926,10 @@ public class EquipMenuS : MonoBehaviour {
 		gameObject.SetActive(false);
 		InGameMenuManagerS.menuInUse = false;
 		onMapScreen = false;
+
+		if (closeSound){
+			Instantiate(closeSound);
+		}
 	}
 
 	void TurnOnMapScreen(){
@@ -880,6 +953,9 @@ public class EquipMenuS : MonoBehaviour {
 		toggleTextLeft.text = toggleTextRight.text = toMenuString;
 		mapScreen.Activate(mapToUse, Application.loadedLevel);
 		onMapScreen = true;
+		if (moveSound){
+			Instantiate(moveSound);
+		}
 	}
 
 	private void UpdateMantras(){

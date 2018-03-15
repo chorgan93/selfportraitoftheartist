@@ -20,6 +20,7 @@ public class EquipTechItemS : MonoBehaviour {
 	public bool unlocked { get { return _unlocked; } }
 
 	private bool _techEquipped = false;
+	public bool techEquipped {get { return _techEquipped; } }
 
 	public PlayerStatDisplayS statUIRef;
 	public EnemyHealthUIS bossUIRef;

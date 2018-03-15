@@ -280,10 +280,10 @@ public class DifficultySelectS : MonoBehaviour {
 			difficultyDisclaimer.gameObject.SetActive(true);
 			while (choosingSin || choosingPunishment){
 				
-				if (!controller.MenuSelectButton()){
+				if (!controller.GetCustomInput(12)){
 					selectButtonUp = true;
 				}
-				if (!controller.ExitButton()){
+				if (!controller.GetCustomInput(13)){
 					cancelButtonUp = true;
 				}
 
@@ -297,10 +297,10 @@ public class DifficultySelectS : MonoBehaviour {
 				}
 
 				if (choosingSin){
-					if (controller.ExitButton() && cancelButtonUp){
+					if (controller.GetCustomInput(13) && cancelButtonUp){
 						cancelButtonUp = false;
 					}
-					if (controller.MenuSelectButton() && selectButtonUp){
+					if (controller.GetCustomInput(12) && selectButtonUp){
 						choosingPunishment = true;
 						choosingSin = false;
 						selectButtonUp = false;
@@ -343,13 +343,13 @@ public class DifficultySelectS : MonoBehaviour {
 					}
 				}
 				else if (choosingPunishment){
-					if (controller.ExitButton() && cancelButtonUp){
+					if (controller.GetCustomInput(13) && cancelButtonUp){
 						choosingPunishment = false;
 						choosingSin = true;
 						cancelButtonUp = false;
 						setText();
 					}
-					else if (controller.MenuSelectButton() && selectButtonUp){
+					else if (controller.GetCustomInput(12) && selectButtonUp){
 						choosingPunishment = false;
 						choosingSin = false;
 						selectButtonUp = false;

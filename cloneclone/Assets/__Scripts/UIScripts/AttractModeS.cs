@@ -40,7 +40,7 @@ public class AttractModeS : MonoBehaviour {
 		}
 
 		if (!isLoading){
-			if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || myControl.GetCustomInput(10) || myControl.GetCustomInput(3) || myControl.ExitButton()){
+			if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || myControl.GetCustomInput(10) || myControl.GetCustomInput(3) || myControl.GetCustomInput(13)){
 				StartLoading();
 			}
 		}else{

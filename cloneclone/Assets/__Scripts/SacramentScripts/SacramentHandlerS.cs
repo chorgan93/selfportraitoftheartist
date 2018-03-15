@@ -9,6 +9,9 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	public List<SacramentStepS> sacramentSteps;
 	public Image waitForAdvanceImage;
+	public Image chooseOptionImage;
+	private Vector2 chooseOptionOffset = new Vector2(0f,25f);
+	private Text matchColorOption;
 
 	public string nextSceneString;
 	public int nextSceneSpawnPos;
@@ -25,11 +28,22 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	bool startedLoading = false;
 
+	private ControlManagerS myManager;
+	public ControlManagerS myControl { get { return myManager; } }
+	private bool _usingMouse = true;
+	public bool usingMouse { get { return _usingMouse; } }
+	private bool talkButtonDown = false;
+
 	AsyncOperation async;
 
 	// Use this for initialization
 	void Awake(){
 		CinematicHandlerS.inCutscene = true;
+		myManager = GetComponent<ControlManagerS>();
+		if (ControlManagerS.controlProfile != 1){
+			_usingMouse = false;
+			chooseOptionImage.gameObject.SetActive(false);
+		}
 	}
 
 	void Start () {
@@ -49,10 +63,20 @@ public class SacramentHandlerS : MonoBehaviour {
 				Application.Quit();
 			}
 		}
+		if (chooseOptionImage.gameObject.activeSelf){
+			chooseOptionImage.color = matchColorOption.color;
+		}
+	}
+
+	void LateUpdate(){
+		if (!myControl.GetCustomInput(3)){
+			talkButtonDown = false;
+		}
 	}
 
 	public void GoToStep(SacramentStepS nextStep){
 
+		chooseOptionImage.gameObject.SetActive(false);
 		sacramentSteps[currentStep].DeactivateStep();
 		currentStep = sacramentSteps.IndexOf(nextStep);
 		if (currentStep < sacramentSteps.Count){
@@ -67,6 +91,7 @@ public class SacramentHandlerS : MonoBehaviour {
 	}
 
 	void InitializeSteps(){
+		chooseOptionImage.gameObject.SetActive(false);
 		for (int i = 0; i < sacramentSteps.Count; i++){
 			sacramentSteps[i].Initialize(this);
 			sacramentSteps[i].gameObject.SetActive(false);
@@ -75,6 +100,7 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	public void AdvanceStep(){
 
+		chooseOptionImage.gameObject.SetActive(false);
 		sacramentSteps[currentStep].DeactivateStep();
 		if (sacramentSteps[currentStep].nextStep != null){
 			GoToStep(sacramentSteps[currentStep].nextStep);
@@ -114,5 +140,49 @@ public class SacramentHandlerS : MonoBehaviour {
 		async = Application.LoadLevelAsync(nextSceneString);
 		async.allowSceneActivation = false;
 		yield return async;
+	}
+
+	public bool TalkButton(){
+		if (myControl.GetCustomInput(3) && !talkButtonDown){
+			talkButtonDown = true;
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public float StickMoved(){
+		if ((Mathf.Abs(myControl.HorizontalMenu()) > 0.1f || Mathf.Abs(myControl.VerticalMenu()) > 0.1f)){
+			float valueToReturn = 0f;
+			if (myControl.HorizontalMenu() > 0.1f){
+				valueToReturn = 1f;
+			}else if (myControl.HorizontalMenu() < -0.1f){
+				valueToReturn = -1f;
+			}else if (myControl.VerticalMenu() > 0.1f){
+				valueToReturn = -1f;
+			}else{
+				valueToReturn = 1f;
+			}
+			return valueToReturn;
+		}else{
+			return 0f;
+		}
+	}
+
+	public void EndHovering(){
+		for (int i = 0; i < sacramentSteps[currentStep].sacramentOptions.Length; i++){
+			sacramentSteps[currentStep].sacramentOptions[i].EndHover();
+		}
+	}
+
+	public void SetOptionMark(Vector2 newPos, Text matchColor){
+		if (!_usingMouse){
+			chooseOptionImage.rectTransform.parent = matchColor.rectTransform.parent;
+			chooseOptionImage.rectTransform.anchoredPosition = newPos+chooseOptionOffset;
+			matchColorOption = matchColor;
+			chooseOptionImage.color = matchColorOption.color;
+			chooseOptionImage.gameObject.SetActive(true);
+		}else{
+			chooseOptionImage.gameObject.SetActive(false);
+		}
 	}
 }
