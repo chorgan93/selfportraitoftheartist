@@ -44,7 +44,6 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -80,6 +79,7 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public void Initialize(SacramentHandlerS newH){
 		if (!_initialized){
 			myHandler = newH;
+			newH.ReevaluateMouse();
 			_initialized = true;
 			if (limitedOption > 0){
 				isLimited = true;

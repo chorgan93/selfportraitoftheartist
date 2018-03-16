@@ -43,13 +43,16 @@ public class SacramentHandlerS : MonoBehaviour {
 	void Awake(){
 		CinematicHandlerS.inCutscene = true;
 		myManager = GetComponent<ControlManagerS>();
-		if (ControlManagerS.controlProfile != 1){
-			_usingMouse = false;
-			chooseOptionImage.gameObject.SetActive(false);
-		}
+		chooseOptionImage.gameObject.SetActive(false);
 	}
 
 	void Start () {
+
+		if (ControlManagerS.controlProfile == 1){
+			_usingMouse = true;
+		}else{
+			_usingMouse = false;
+		}
 		currentStep = startStep;
 		startStep = 0;
 		InitializeSteps();
@@ -202,5 +205,13 @@ public class SacramentHandlerS : MonoBehaviour {
 		matchColorOptionImage = matchColorImage;
 		useImageMatch = true;
 		useTextMatch = false;
+	}
+
+	public void ReevaluateMouse(){
+		if (ControlManagerS.controlProfile == 1){
+			_usingMouse = true;
+		}else{
+			_usingMouse = false;
+		}
 	}
 }
