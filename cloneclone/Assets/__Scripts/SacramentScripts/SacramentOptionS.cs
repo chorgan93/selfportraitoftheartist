@@ -23,6 +23,8 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 
 	[Header("Navigation Properties")]
+	public int[] requiresSteps;
+	private bool isLocked = false;
 	public int limitedOption = -1;
 	private bool isLimited = false;
 	public SacramentStepS[] possNextSteps;
@@ -84,6 +86,9 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			if (limitedOption > 0){
 				isLimited = true;
 			}
+			if (requiresSteps.Length > 0){
+				isLocked = true;
+			}
 			fadeCol = mainText.color;
 			maxFade = fadeCol.a;
 
@@ -97,6 +102,8 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public void ActivateOption(){
 
 		if (isLimited && limitedOption <= 0){
+			DeactivateOption();
+		}else if(isLocked && HasNotSeenSteps()){
 			DeactivateOption();
 		}else{
 		for (int i = 0; i < textJumps.Length; i++){
@@ -175,5 +182,15 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 	public void EndHover(){
 		_isHovering = false;
 		//Debug.Log("I am no longer selectable!! " + gameObject.name); 
+	}
+
+	private bool HasNotSeenSteps(){
+		int numSeen = 0;
+		for (int i = 0; i < requiresSteps.Length; i++){
+			if (myHandler.stepsSeen.Contains(requiresSteps[i])){
+				numSeen++;
+			}
+		}
+		return (numSeen < requiresSteps.Length);
 	}
 }

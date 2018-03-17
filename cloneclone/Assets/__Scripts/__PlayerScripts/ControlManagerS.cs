@@ -18,7 +18,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard, 3 = PS4 on Mac/PC
 	public static List<int> savedGamepadControls;
-	private List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,0,1};
+	private List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,12,13};
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +38,7 @@ public class ControlManagerS : MonoBehaviour {
 		truePlatform = GetTruePlatform();
 
 		if (savedGamepadControls == null){
-			savedGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,0,1};
+			savedGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,12,13};
 		}else{
 			if (savedGamepadControls.Count < defaultGamepadControls.Count){
 				savedGamepadControls.Clear();
@@ -379,7 +379,7 @@ public class ControlManagerS : MonoBehaviour {
 			break;
 		case (13):
 			// return default menu cancel button
-			inputPressed = GetCustomInput(13);
+			inputPressed = ExitButton();
 			break;
 
 
@@ -696,7 +696,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (WeaponButtonA() || GetCustomInput(3));
+			return (GetCustomInput(3));
 			}else{
 				return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
 			}

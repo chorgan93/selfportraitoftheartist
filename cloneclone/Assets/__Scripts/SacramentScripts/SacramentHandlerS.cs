@@ -20,6 +20,8 @@ public class SacramentHandlerS : MonoBehaviour {
 	public int nextSceneSpawnPos;
 
 	private int currentStep = 0;
+	private List<int> _stepsSeen = new List<int>();
+	public List<int> stepsSeen { get { return _stepsSeen; } }
 
 	[Header("Standalone Properties")]
 	public bool quitGameOnEnd = false;
@@ -55,6 +57,7 @@ public class SacramentHandlerS : MonoBehaviour {
 		}
 		currentStep = startStep;
 		startStep = 0;
+		_stepsSeen = new List<int>();
 		InitializeSteps();
 		sacramentSteps[currentStep].ActivateStep();
 	}
@@ -189,6 +192,8 @@ public class SacramentHandlerS : MonoBehaviour {
 			chooseOptionImage.rectTransform.parent = matchColor.rectTransform.parent;
 			chooseOptionImage.rectTransform.anchoredPosition = newPos+chooseOptionOffset;
 			matchColorOption = matchColor;
+			useTextMatch = true;
+			useImageMatch = false;
 			chooseOptionImage.color = matchColorOption.color;
 			chooseOptionImage.gameObject.SetActive(true);
 		}else{
@@ -212,6 +217,12 @@ public class SacramentHandlerS : MonoBehaviour {
 			_usingMouse = true;
 		}else{
 			_usingMouse = false;
+		}
+	}
+
+	public void AddStepSeen(int newStep){
+		if (!_stepsSeen.Contains(newStep)){
+			_stepsSeen.Add(newStep);
 		}
 	}
 }

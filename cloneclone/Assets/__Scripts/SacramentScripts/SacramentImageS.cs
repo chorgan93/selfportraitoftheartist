@@ -38,6 +38,10 @@ public class SacramentImageS : MonoBehaviour {
 	public GameObject onSound;
 	public GameObject offSound;
 
+	[Header("Conditional Images")]
+	public Sprite[] conditionalImages;
+	private int numTimesSeen = 0;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -97,6 +101,7 @@ public class SacramentImageS : MonoBehaviour {
 		if (!_initialized){
 			_myStep = newStep;
 			_initialized = true;
+			numTimesSeen = 0;
 
 			if (fadeInRate > 0){
 				imageFadesIn = true;
@@ -114,6 +119,14 @@ public class SacramentImageS : MonoBehaviour {
 				distortionStartSize = distortionTransform.sizeDelta;
 			}
 		}
+
+		if (conditionalImages.Length > 0){
+			if (numTimesSeen < conditionalImages.Length){
+				myImage.sprite = distortion.sprite = conditionalImages[numTimesSeen];
+				numTimesSeen++;
+			}
+		}
+
 		if (imageFadesIn){
 			myCol = myImage.color;
 			myCol.a = 0;

@@ -132,6 +132,7 @@ public class SacramentStepS : MonoBehaviour {
 			_myHandler.nextSceneString = ChangeNextScene;
 			SacramentHandlerS.startStep = changeStartStep;
 		}
+		_myHandler.AddStepSeen(_myHandler.sacramentSteps.IndexOf(this));
 	}
 
 	public void DeactivateStep(){
