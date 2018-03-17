@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1e0ef2f45f93b409fb9ba236cd573f3c
-timeCreated: 1521229719
+timeCreated: 1521249109
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,6 +82,7 @@ TextureImporter:
     21300150: Sacrament VII Art_35
     21300152: Sacrament VII Art_36
     21300154: Sacrament VII Art_37
+    21300156: Sacrament VII Art_38
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -577,6 +578,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Sacrament VII Art_38
+      rect:
+        serializedVersion: 2
+        x: 512
         y: 0
         width: 256
         height: 128
