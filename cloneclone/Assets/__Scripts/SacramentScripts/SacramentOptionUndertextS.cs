@@ -83,10 +83,12 @@ public class SacramentOptionUndertextS : MonoBehaviour {
 	}
 
 	public void DeactivateUndertext(){
-		if (!myTransform){
-			myTransform = GetComponent<RectTransform>();
+
+		if (myTransform){
+			myTransform.anchoredPosition = startPos;
 		}
-		myTransform.anchoredPosition = startPos;
+
+		
 	}
 
 	private void Initialize(SacramentOptionS myOpt){

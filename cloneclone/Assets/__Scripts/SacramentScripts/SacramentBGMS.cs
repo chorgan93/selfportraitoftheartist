@@ -4,6 +4,7 @@ using System.Collections;
 public class SacramentBGMS : MonoBehaviour {
 
 	public BGMLayerS myTarget;
+	public BGMLayerS matchTarget;
 
 	public bool fadeIn;
 	public bool fadeOut;
@@ -15,6 +16,9 @@ public class SacramentBGMS : MonoBehaviour {
 	
 		if (myTarget){
 		if (fadeIn){
+				if (matchTarget){
+					myTarget.sourceRef.timeSamples = matchTarget.sourceRef.timeSamples;
+				}
 			myTarget.FadeIn(instant);
 		}
 		if (fadeOut){

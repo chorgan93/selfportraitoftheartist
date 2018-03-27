@@ -86,8 +86,10 @@ public class SacramentOptionS : MonoBehaviour, IPointerEnterHandler, IPointerExi
 			if (limitedOption > 0){
 				isLimited = true;
 			}
+			if (requiresSteps != null){
 			if (requiresSteps.Length > 0){
 				isLocked = true;
+			}
 			}
 			fadeCol = mainText.color;
 			maxFade = fadeCol.a;
