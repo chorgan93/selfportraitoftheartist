@@ -114,11 +114,11 @@ public class CameraPOIS : MonoBehaviour {
 				currentPosition += currentNoiseAdd;
 
 				if (!playerReference.myLockOn.lockedOn){
-					newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x;
-					newPos.y = (1-moveEasing)*(transform.position.y-lookVector.y) + moveEasing*currentPosition.y;
+					newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x+poiOffset.x;
+					newPos.y = (1-moveEasing)*(transform.position.y-lookVector.y) + moveEasing*currentPosition.y+poiOffset.y;
 				}else{
-					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
-					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
+					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x+poiOffset.x;
+					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y+poiOffset.y;
 				}
 
 			}else{
@@ -129,15 +129,15 @@ public class CameraPOIS : MonoBehaviour {
 				}else{**/
 				currentPosition = playerReference.transform.position+currentNoiseAdd;
 
-				newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
-				newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
+				newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x+poiOffset.x;
+				newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y+poiOffset.y;
 				//}
 			}
 
 			if (!playerReference.myLockOn.lockedOn){
 				newPos += lookVector*lookAmt;
 			}
-			newPos += poiOffset;
+			//newPos += poiOffset;
 
 			if (!CAMERA_LOCK){
 				transform.position = newPos;
