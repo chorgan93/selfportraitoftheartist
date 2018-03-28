@@ -11,6 +11,19 @@ public class CameraPOIS : MonoBehaviour {
 	private float sprintingWeightMult = 1.5f;
 	private float currentSprintMult = 1f;
 	public float enemyWeight = 0.5f;
+	private float startEnemyWeight;
+
+	private float currentNoiseMult = 0f;
+	private float noiseMultStanding = 0f;
+	private float noiseMultCombat = 0.8f;
+	private float noiseMultMoving = .115f;
+	private const float noiseTimeMin = 0.6f;
+	private const float noiseTimeMax = 1f;
+	private Vector3 noiseAdd = new Vector3(0.9f,0.65f,0f);
+	private Vector3 currentNoiseAdd;
+
+	private float noiseRevisitTime = 1f;
+	private float combatRevisitMult = 0.44f;
 
 	public float moveEasing = 0.1f;
 
@@ -44,14 +57,19 @@ public class CameraPOIS : MonoBehaviour {
 		playerReference = GetComponentInParent<PlayerController>();
 		controlRef = playerReference.myControl;
 		transform.parent = null;
+		startEnemyWeight = enemyWeight;
 
 		lookVector = Vector3.zero;
+		StartCoroutine(DetermineNoise());
 	
 	}
 
 	#if UNITY_EDITOR_OSX || UNITY_EDITOR || UNITY_EDITOR_64
 	void Update(){
 		CheckLock();
+		if (Input.GetKeyDown(KeyCode.C)){
+			Debug.Log(enemyReference.allEnemiesInRange.Count, enemyReference.gameObject);
+		}
 	}
 	#endif
 	
@@ -93,6 +111,7 @@ public class CameraPOIS : MonoBehaviour {
 					                   + enemyReference.enemyCenterpoint*enemyWeight)/
 					(playerWeight+enemyWeight);
 				}
+				currentPosition += currentNoiseAdd;
 
 				if (!playerReference.myLockOn.lockedOn){
 					newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x;
@@ -108,7 +127,10 @@ public class CameraPOIS : MonoBehaviour {
 					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
 					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
 				}else{**/
-					currentPosition = newPos = playerReference.transform.position;
+				currentPosition = playerReference.transform.position+currentNoiseAdd;
+
+				newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
+				newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
 				//}
 			}
 
@@ -151,5 +173,34 @@ public class CameraPOIS : MonoBehaviour {
 
 	public void ResetOffset(){
 		poiOffset = Vector3.zero;
+	}
+
+	public void ChangeEnemyWeight(float newW = -1){
+		if (newW > 0){
+			enemyWeight = newW;
+		}	else{
+			enemyWeight = startEnemyWeight;
+		}
+	}
+
+	private IEnumerator DetermineNoise(){
+		if (playerReference.inCombat && !playerReference.myStats.PlayerIsDead()){
+			currentNoiseMult = noiseMultCombat;
+		}else if (playerReference.isDoingMovement){
+			currentNoiseMult = noiseMultMoving;
+		}else{
+			currentNoiseMult = noiseMultStanding;
+		}
+		currentNoiseAdd.x = noiseAdd.x*Random.insideUnitSphere.x*currentNoiseMult;
+		currentNoiseAdd.y = noiseAdd.y*Random.insideUnitSphere.x*currentNoiseMult;
+		currentNoiseAdd.z = 0f;
+
+		noiseRevisitTime = Random.Range(noiseTimeMin, noiseTimeMax);
+		if (playerReference.inCombat){
+		noiseRevisitTime *= combatRevisitMult;
+		}
+
+		yield return new WaitForSeconds(noiseRevisitTime);
+		StartCoroutine(DetermineNoise());
 	}
 }

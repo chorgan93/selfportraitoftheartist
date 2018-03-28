@@ -43,6 +43,8 @@ public class CombatManagerS : MonoBehaviour {
 	[Header("Special Player Properties")]
 	public float changeParryRange = -1;
 	public bool turnOffSlowing = false;
+	public float newWeight = -1;
+	public float enemyDetectionMult = 1f;
 
 	[Header("Scoring Settings")]
 	public bool turnOnScoring = false;
@@ -233,7 +235,7 @@ public class CombatManagerS : MonoBehaviour {
 			if (clearBloodOnComplete){
 				PlayerInventoryS.I.dManager.SetBattleBlood();
 			}
-			playerRef.ChangeParryRange(changeParryRange, turnOffSlowing);
+			playerRef.ChangeParryRange(changeParryRange, turnOffSlowing, enemyDetectionMult);
 		}
 
 		if (combatCondition != CombatSpecialCondition.None){
@@ -247,6 +249,7 @@ public class CombatManagerS : MonoBehaviour {
 		}
 
 		ChangeFeatherCols(playerRef.EquippedWeapon().swapColor);
+		CameraPOIS.POI.ChangeEnemyWeight(newWeight);
 		
 	}
 	void TurnOnObjects(){

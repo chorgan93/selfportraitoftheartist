@@ -8,7 +8,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private const float staminaBarAddSize = 5f;
 	private const float chargeAddSize = 4f;
 
-	public const bool RECORD_MODE = false;
+	public const bool RECORD_MODE = true; // TODO turn off after build!
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;
@@ -179,7 +179,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		UpdateFills(true);
 
 		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene || RECORD_MODE){
-			Debug.Log("HIDE!");
+			//Debug.Log("HIDE!");
 			DisableUI ();
 		}
 		if (playerStats.arcadeMode){

@@ -107,6 +107,13 @@ public class ProjectileS : MonoBehaviour {
 	private float maxSizeMult = 0.5f;
 	private float maxKnockbackMult = 0.5f;
 
+	[Header("Style Properties")]
+
+	public float slowTime = 0f;
+	public float hangTime = 0f;
+	public float punchMult = 1f;
+	public bool extraSlow = false;
+
 	private Rigidbody _rigidbody;
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }

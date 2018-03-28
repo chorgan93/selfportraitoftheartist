@@ -37,7 +37,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 			if (StoryProgressionS.storyProgress.Contains(progressNum) 
 				|| (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum)){
 				TurnObjectsOnOff();
-				Debug.Log("Progression triggered! " + progressNum);
+				//Debug.Log("Progression triggered! " + progressNum);
 			}
 		}
 		else if (turnOnOffAtItemInInventory > -1 && PlayerInventoryS.I != null){

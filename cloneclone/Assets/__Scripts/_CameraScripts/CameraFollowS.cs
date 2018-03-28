@@ -46,6 +46,10 @@ public class CameraFollowS : MonoBehaviour {
 	private bool queueOver = true;
 
 	private bool zoomingIn = false;
+	private bool tempZoom =false;
+	private float tempZoomMult = 1f;
+	private float tempZoomCountdown = 0f;
+	private const float tempZoomSpeedMult = 1.25f;
 	private bool dialogueZoom = false;
 	private bool slowerZoom = false;
 	private float zoomMult = 0.5f;
@@ -168,6 +172,12 @@ public class CameraFollowS : MonoBehaviour {
 				if (!slowerZoom){
 					if (dialogueZoom){
 						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL*orthoSizeMult;
+					}else if (tempZoom){
+						myCam.orthographicSize = (1-_camEasing*tempZoomSpeedMult)*myCam.orthographicSize + _camEasing*tempZoomSpeedMult*startOrthoSize*tempZoomMult*ZOOM_LEVEL*orthoSizeMult;
+						tempZoomCountdown -= Time.unscaledDeltaTime;
+						if (tempZoomCountdown <= 0f){
+							tempZoom = zoomingIn = false;
+						}
 					}else{
 						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}
@@ -243,19 +253,31 @@ public class CameraFollowS : MonoBehaviour {
 	public void PunchIn(){
 
 		myCam.orthographicSize =  (startOrthoSize * punchInMult)*ZOOM_LEVEL*orthoSizeMult;
+		zoomingIn = tempZoom = false;
+		tempZoomCountdown = 0f;
 
 	}
 
-	public void PunchInCustom(float punchMult, float punchHangTime){
-		
+	public void PunchInCustom(float punchMult, float punchHangTime, bool lerp = false){
+
+		if (!lerp){
 		myCam.orthographicSize =  (startOrthoSize * punchMult)*ZOOM_LEVEL*orthoSizeMult;
-		_punchHangTime = punchHangTime;
+			zoomingIn = tempZoom = false;
+			_punchHangTime = punchHangTime;
+			tempZoomCountdown = 0f;
+		}else{
+			zoomingIn = tempZoom = true;
+			tempZoomMult = punchMult;
+			tempZoomCountdown = punchHangTime;
+		}
 		
 	}
 
 	public void PunchInBig(){
 
 		myCam.orthographicSize =  (startOrthoSize * punchInMultDeath)*ZOOM_LEVEL*orthoSizeMult;
+		zoomingIn = tempZoom = false;
+		tempZoomCountdown = 0f;
 
 	}
 

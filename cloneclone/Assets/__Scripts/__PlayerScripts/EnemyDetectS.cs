@@ -45,7 +45,7 @@ public class EnemyDetectS : MonoBehaviour {
 		
 		
 		playerReference = GetComponentInParent<PlayerController>();
-		playerReference.SetDetect(this);
+		//playerReference.SetDetect(this);
 		
 		enemiesInRange = new List<EnemyS>();
 		friendliesInRange = new List<EnemyS>();

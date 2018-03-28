@@ -54,6 +54,7 @@ public class CameraShakeS : MonoBehaviour {
 	private bool 				_dodgeSloMoStart;
 	private float 				_dodgeSloTime;
 	private bool 				dodgeSloMo;
+	private bool				attackSlow = false;
 	private bool 				doDeathTime = false;
 
 	private bool 				timePaused = false;
@@ -147,11 +148,15 @@ public class CameraShakeS : MonoBehaviour {
 		else{
 			if (_sloMoOn){
 
-				if (_dodgeSloMoStart){
+				if (_dodgeSloMoStart || attackSlow){
 					Time.timeScale = 0.4f*turboMultiplier;
+					if (!attackSlow){
 					_dodgeSloTime -= Time.unscaledDeltaTime;
 					if (_dodgeSloTime <= 0){
 						_dodgeSloMoStart = false;
+					}
+					}else{
+						_slowTimeAmount -= Time.unscaledDeltaTime;
 					}
 				}
 				else if (dodgeSloMo){
@@ -164,6 +169,7 @@ public class CameraShakeS : MonoBehaviour {
 
 				if (_slowTimeAmount <= 0){
 					_sloMoOn = false;
+					attackSlow = false;
 				}
 			}
 			else{
@@ -345,14 +351,15 @@ public class CameraShakeS : MonoBehaviour {
 		GetComponent<CameraFollowS>().PunchInCustom(punchMult, punchHangTime);
 	}
 
-	public void SloAndPunch(float slowTime, float punchMult, float hangTime){
+	public void SloAndPunch(float slowTime, float punchMult, float hangTime, bool lerpIn = false, bool extraSlow = false){
 		dodgeSloMo = true;
-		SloMo(slowTime);
-		GetComponent<CameraFollowS>().PunchInCustom(punchMult, hangTime);
+		SloMo(slowTime, extraSlow);
+		CameraFollowS.F.PunchInCustom(punchMult, hangTime, lerpIn);
 	}
 
-	public void SloMo(float slowTime){
+	public void SloMo(float slowTime, bool slower = false){
 
+		attackSlow = slower;
 		_slowTimeAmount = slowTime;
 		_sloMoOn = true;
 

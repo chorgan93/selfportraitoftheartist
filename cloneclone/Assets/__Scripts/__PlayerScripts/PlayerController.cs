@@ -172,6 +172,11 @@ public class PlayerController : MonoBehaviour {
 	private bool newAttack = true;
 	private bool counterQueued = false;
 	private bool heavyCounterQueued;
+	private bool preAttackSlowdown = false;
+	private float preAttackSlowTime = 0f;
+	private float preAttackPunchMult = 1f;
+	private float preAttackHangTime = 1f;
+	private bool preAttackExtraSlow = false;
 
 	// Charging Properties
 	private bool _chargingAttack;
@@ -251,6 +256,8 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 capturedShootDirection;
 	[Header ("Enemy Detection References")]
 	public EnemyDetectS enemyDetect;
+	private BoxCollider enemyDetectCollider;
+	private Vector3 startDetectSize; 
 	public EnemyDetectS lockOnEnemyDetect;
 	public EnemyDetectS superCloseEnemyDetect;
 	public EnemyDetectS dontWalkIntoEnemiesCheck;
@@ -495,7 +502,8 @@ public class PlayerController : MonoBehaviour {
 	void InitializePlayer(){
 
 		_myRigidbody = GetComponent<Rigidbody>();
-		//enemyDetect = GetComponentInChildren<EnemyDetectS>();
+		enemyDetectCollider = enemyDetect.GetComponent<BoxCollider>();
+		startDetectSize = enemyDetectCollider.size;
 		startDrag = _myRigidbody.drag;
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		_myFace = myRenderer.GetComponent<PlayerAnimationFaceS>();
@@ -1226,6 +1234,12 @@ public class PlayerController : MonoBehaviour {
 		if (_chargingAttack && (ShootInputPressed() || _chargeAttackTriggered)){
 			if (!_isDashing){
 				_chargeAttackTime+= Time.deltaTime;
+				if (preAttackSlowdown && ((!speedUpChargeAttack && _chargeAttackTime >= _chargeAttackTrigger-preAttackSlowTime) ||
+					(speedUpChargeAttack && _chargeAttackTime >= dashChargeAllowMult*_chargeAttackTrigger-preAttackSlowTime))){
+					CameraShakeS.C.SloAndPunch(preAttackSlowTime, preAttackPunchMult, preAttackHangTime, true, preAttackExtraSlow);
+					preAttackSlowdown = false;
+					Debug.Log("Charge attack slowdown!");
+				}
 			}
 			if (!_chargeAttackTriggered && ((!speedUpChargeAttack && _chargeAttackTime >= _chargeAttackTrigger) ||
 			                                (speedUpChargeAttack && _chargeAttackTime >= dashChargeAllowMult*_chargeAttackTrigger))){
@@ -1267,6 +1281,10 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		attackDelay -= Time.deltaTime;
+		if (preAttackSlowdown && attackDelay <= preAttackSlowTime){
+			CameraShakeS.C.SloAndPunch(preAttackSlowTime, preAttackPunchMult, preAttackHangTime, true, preAttackExtraSlow);
+			preAttackSlowdown = false;
+		}
 		allowParryCountdown -= Time.deltaTime;
 		// check if parry conditions are met before attack fires off
 		/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)
@@ -1514,19 +1532,7 @@ public class PlayerController : MonoBehaviour {
 					// demo reset count
 					resetCountdown = resetTimeMax;
 
-					// first, check for parry, then counter attack, then regular attack
-					/*if (superCloseEnemyDetect.EnemyToParry() != null && !_allowCounterAttack && equippedUpgrades.Contains(5)){
-						List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
-						for (int i = 0; i < enemiesToParry.Count; i++){
-							enemiesToParry[i].AutoCrit(enemiesToParry[i].myRigidbody.velocity.normalized*-2f, 3f);
-						}
-						CameraShakeS.C.SmallShake();
-						CameraShakeS.C.SmallSleep();
-						DelayWitchTimeActivate(enemiesToParry[0]);
-						shootButtonUp = false;
-						PrepParryAnimation();
-					}
-					else**/ if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
+					if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
 						if (controller.GetCustomInput(1)){
 							heavyCounterQueued = true;
 						}
@@ -1566,8 +1572,6 @@ public class PlayerController : MonoBehaviour {
 							}
 						CameraShakeS.C.CancelSloMo();
 
-							// removing attack effect because it needs optimization, otherwise chance of memory leak in build
-						//attackEffectRef.StartAttackEffect(equippedWeapon.swapColor, equippedWeapon.flashSubColor);
 					}
 					else if ((_isDashing || _isSprinting) && _allowDashAttack){
 
@@ -1622,6 +1626,18 @@ public class PlayerController : MonoBehaviour {
 					if (_playerAug.animaAug){
 							attackDelay*=PlayerAugmentsS.animaAugAmt;
 					}
+
+						// add slow effect (melee attack)
+						if (currentAttackS.slowTime > 0){
+							preAttackSlowdown = true;
+							preAttackSlowTime = currentAttackS.slowTime;
+							preAttackPunchMult = currentAttackS.punchMult;
+							preAttackHangTime = currentAttackS.hangTime;
+							preAttackExtraSlow = currentAttackS.extraSlow;
+						}else{
+							preAttackSlowdown = false;
+						}
+
 					if (_doingCounterAttack && _counterTarget != null){
 						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
 							_attackStartDirection = targetDir;
@@ -1695,6 +1711,17 @@ public class PlayerController : MonoBehaviour {
 					_chargeAttackTime = 0;
 						ChargeAnimationTrigger();
 					allowChargeAttack = false;
+						// add slow effect (chargeattack
+						if (chargeAttackRef.slowTime > 0){
+							//Debug.Log("Charge slowdown set!");
+							preAttackSlowdown = true;
+							preAttackSlowTime = chargeAttackRef.slowTime;
+							preAttackPunchMult = chargeAttackRef.punchMult;
+							preAttackHangTime = chargeAttackRef.hangTime;
+							preAttackExtraSlow = chargeAttackRef.extraSlow;
+						}else{
+							preAttackSlowdown = false;
+						}
 					}else{
 						allowChargeAttack = false;
 					}
@@ -1887,7 +1914,7 @@ public class PlayerController : MonoBehaviour {
 		staggerBonusTime = staggerBonusTimeMax;
 	}
 
-	public void ChangeParryRange(float newRange = -1, bool newSlowing = false){
+	public void ChangeParryRange(float newRange = -1, bool newSlowing = false, float newDetectionMult = 1f){
 		if (newRange > 0){
 			currentParrySize.y = newRange;
 			superCloseEnemyDetect.GetComponent<BoxCollider>().size = currentParrySize;
@@ -1898,6 +1925,12 @@ public class PlayerController : MonoBehaviour {
 			dontSlowWhenClose = false;
 		}
 		dontSlowWhenClose = newSlowing;
+
+		if (newDetectionMult > 0){
+			enemyDetectCollider.size = startDetectSize*newDetectionMult;
+		}else{
+			enemyDetectCollider.size = startDetectSize;
+		}
 	}
 
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
