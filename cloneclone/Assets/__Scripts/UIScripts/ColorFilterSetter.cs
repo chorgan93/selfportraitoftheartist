@@ -7,6 +7,7 @@ public class ColorFilterSetter : MonoBehaviour {
 	public Color raysColor = new Color(0,1,1);
 	public Color filterColorNoEffects = Color.white;
 
+
 	// Use this for initialization
 	void Awake () {
 	

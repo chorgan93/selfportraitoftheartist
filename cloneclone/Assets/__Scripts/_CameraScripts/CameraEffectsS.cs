@@ -17,6 +17,9 @@ public class CameraEffectsS : MonoBehaviour {
 	public FlashEffectS deathFlash;
 	public FlashEffectS critFlash;
 	public FlashEffectS specialFlash;
+	public SpriteRenderer transformFilter;
+	private Color transformFilterColor;
+	public Color transformFilterNoEffect;
 
 	public SpriteRenderer[] vignetteSprites;
 	private Color vignetteFade;
@@ -119,6 +122,9 @@ public class CameraEffectsS : MonoBehaviour {
 
 			vignetteFade = vignetteSprites[0].color;
 			vignetteFadeMax = vignetteFade.a;
+
+			transformFilterColor = transformFilter.color;
+			transformFilter.gameObject.SetActive(false);
 
 			blurEffect = GetComponent<BlurOptimized>();
 			blurEffect.enabled = false;
@@ -223,6 +229,28 @@ public class CameraEffectsS : MonoBehaviour {
 		foreach(SpriteRenderer f in vignetteSprites){
 			f.color = vignetteFade;
 		}
+	}
+	public void SetTransformFilter(bool onOff){
+		#if UNITY_EDITOR_OSX
+		if (onOff){
+			if (debugEffects){
+				transformFilter.color = transformFilterColor;
+			}else{
+				transformFilter.color = transformFilterNoEffect;
+			}
+			transformFilter.gameObject.SetActive(true);
+		}else{
+			transformFilter.gameObject.SetActive(false);
+		}
+		#elif
+		if (onOff){
+			transformFilter.color = transformFilterColor;
+
+			transformFilter.gameObject.SetActive(true);
+		}else{
+			transformFilter.gameObject.SetActive(false);
+		}
+		#endif
 	}
 	public void HealEffect(){
 		blurEnabled = true;

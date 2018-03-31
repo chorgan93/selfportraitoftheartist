@@ -148,6 +148,7 @@ public class CombatManagerS : MonoBehaviour {
 		playerRef.SetCombat(false);
 		playerRef.EndWitchTime();
 		CameraEffectsS.E.ResetEffect(true);
+		playerRef.DeactivateTransform();
 		if (combatID > -1 && !RankManagerS.rankEnabled){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}

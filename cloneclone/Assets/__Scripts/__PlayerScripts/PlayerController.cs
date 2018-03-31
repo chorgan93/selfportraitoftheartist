@@ -139,12 +139,11 @@ public class PlayerController : MonoBehaviour {
 	// transform activation properties
 	private float _transformRequireHoldTime = 0.3f;
 	public float transformRequireHoldTime { get { return _transformRequireHoldTime; } }
+	private float _revertRequireHoldTime = 0.04f;
+	public float revertRequireHoldTime { get { return _revertRequireHoldTime; } }
 	private float _transformHoldTime = 0f;
 	public float transformHoldTime { get { return _transformHoldTime; } }
-	private float _tranformHoldDecayTime = 0.2f;
-	public float transformHoldDecayTime { get { return _tranformHoldDecayTime; } }
-	private float _transformHoldDecayCount = 0f;
-	public float transformHoldDecayCount { get { return _transformHoldDecayCount; } }
+	public GameObject transformEcho;
 	
 	//_________________________________________INSTANCE PROPERTIES
 
@@ -658,6 +657,7 @@ public class PlayerController : MonoBehaviour {
 				BlockControl();
 				DashControl();
 				AttackControl();
+			TransformControl();
 			//}
 
 			MovementControl();
@@ -1148,6 +1148,42 @@ public class PlayerController : MonoBehaviour {
 		if (tutorialRef != null){
 			tutorialRef.AddSprint();
 		}
+	}
+
+	private void TransformControl(){
+		if (myControl.GetCustomInput(9)){
+			_transformHoldTime += Time.deltaTime;
+		}else{
+			if (!_isTransformed){
+			if (_transformHoldTime >= _transformRequireHoldTime){
+						ActivateTransform();
+				}
+			}else{
+				if (_transformHoldTime >= _revertRequireHoldTime){
+						DeactivateTransform();
+					}
+				}
+			_transformHoldTime = 0f;
+		}
+	}
+
+	private void ActivateTransform(){
+		_isTransformed = true;
+		transformActiveEffect.gameObject.SetActive(true);
+		SwitchParadigm(currentParadigm);
+		CameraEffectsS.E.SetTransformFilter(true);
+		Instantiate(transformEcho, transform.position, Quaternion.identity);
+		CameraShakeS.C.TimeSleepCustomPunch(0.12f, 0.86f, 0.1f);
+		
+	}
+	public void DeactivateTransform(){
+
+		_isTransformed = false;
+		transformActiveEffect.gameObject.SetActive(false);
+		SwitchParadigm(currentParadigm);
+		CameraEffectsS.E.SetTransformFilter(false);
+		CameraShakeS.C.SloAndPunch(0.3f, 0.95f, 0.12f, true, false);
+		CameraShakeS.C.SmallShake();
 	}
 
 	private void DashControl(){

@@ -337,10 +337,25 @@ public class CameraShakeS : MonoBehaviour {
 			_sleepTimeAmount += sleepTime;
 			
 	
-			GetComponent<CameraFollowS>().PunchInBig();
+		CameraFollowS.F.PunchInBig();
 
 		
 		
+	}
+	public void TimeSleepCustomPunch(float sleepTime, float punchAmt, float punchHang){
+
+
+		_isSleeping = true;
+
+		Time.timeScale = 0;
+
+		_sleepTimeAmount += sleepTime;
+
+
+		CameraFollowS.F.PunchInCustom(punchAmt, punchHang, false);
+
+
+
 	}
 
 	public void DodgeSloMo(float slowTime, float sleepTime, float punchMult, float punchHangTime){

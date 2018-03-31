@@ -22,8 +22,8 @@ public class CameraPOIS : MonoBehaviour {
 	private Vector3 noiseAdd = new Vector3(0.9f,0.65f,0f);
 	private Vector3 currentNoiseAdd;
 
-	private float moveLookXMax = 0.7f;
-	private float moveLookYMax = 0.9f;
+	private float moveLookXMax = 0.35f;
+	private float moveLookYMax = 0.45f;
 	private float sprintLookXMult = 5f;
 	private float sprintLookYMult = 2f;
 	private Vector3 currentMoveAdd;
