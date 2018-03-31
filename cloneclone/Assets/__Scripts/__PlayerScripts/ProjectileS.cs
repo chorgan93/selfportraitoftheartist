@@ -117,6 +117,7 @@ public class ProjectileS : MonoBehaviour {
 	private Rigidbody _rigidbody;
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }
+	private Color renderColor;
 	private Collider myCollider;
 	private PlayerController _myPlayer;
 	public PlayerController myPlayer { get { return _myPlayer; } }
@@ -248,6 +249,7 @@ public class ProjectileS : MonoBehaviour {
 		if (!firedOnce){
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
+			renderColor = myRenderer.color;
 			_myPlayer = playerReference;
 			myPool = _myPlayer.projectilePool;
 			weaponNum = _myPlayer.EquippedWeapon().weaponNum;
@@ -266,6 +268,11 @@ public class ProjectileS : MonoBehaviour {
 			dmg = startDmg;
 			transform.localScale = startScale;
 		}
+		if (_myPlayer.isTransformed){
+			myRenderer.color = _myPlayer.transformedColor;
+		}else{
+			myRenderer.color = renderColor;
+		}
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
 		touchingWall = false;
@@ -277,6 +284,10 @@ public class ProjectileS : MonoBehaviour {
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt();
 		dmg *= _myPlayer.playerAug.GetParanoidMult();
+		if (_myPlayer.isTransformed){
+			dmg*=_myPlayer.transformedDamageMult;
+			_myPlayer.myStats.TranformedDarknessAttackAdd();
+		}
 		dmg*=BiosAugMult();
 		if (dashAttack || counterAttack && _myPlayer.playerAug.incensedAug){
 			dmg *= _myPlayer.playerAug.incensedPowerMult;

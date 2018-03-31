@@ -30,6 +30,7 @@ public class CombatManagerS : MonoBehaviour {
 	public ActivateOnCombatS turnOnAtStart;
 	public GameObject[] turnOffOnEnd;
 	public GameObject[] turnOnOnEnd;
+	public ChangeCameraSizeOnTouch revertCameraSize;
 	public InstantiateOnCombatRestartS restartSpawn;
 	public bool doNotEndVerse = false;
 
@@ -163,6 +164,9 @@ public class CombatManagerS : MonoBehaviour {
 		}
 
 		RetryFightUI.allowRetry = false;
+		if (revertCameraSize){
+			revertCameraSize.CombatEndRevertSize();
+		}
 	}
 
 	void AddDefeatedEnemies(){

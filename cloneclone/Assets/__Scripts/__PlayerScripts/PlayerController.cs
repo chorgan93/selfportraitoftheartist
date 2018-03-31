@@ -119,6 +119,32 @@ public class PlayerController : MonoBehaviour {
 	private ProjectilePoolS _projectilePool;
 	public ProjectilePoolS projectilePool {get { return _projectilePool; } }
 
+	[Header("Transform Properties")]
+	private bool _isTransformed = false;
+	public bool isTransformed { get { return _isTransformed; } }
+	private CorruptedEffectS transformActiveEffect;
+	private bool _transformReady = false;
+	public bool transformReady { get { return _transformReady; } }
+	public Color transformedColor = Color.magenta;
+	private float transformMoveSpeedMult = 1.4f;
+	private float transformedAttackSpeedMult = 0.88f;
+	private float _transformedStaminaMult = 0.1f;
+	public float transformedStaminaMult { get { return _transformedStaminaMult; } }
+	private float _transformedRecoveryMult = 3f;
+	public float transformedRecoverMult { get { return _transformedRecoveryMult; } }
+	private float _transformedDamageMult = 3f;
+	public float transformedDamageMult { get { return _transformedDamageMult; } }
+	private float _transformedAbsorbMult = 3f;
+	public float transformedAbsorbMult { get { return _transformedAbsorbMult; } }
+	// transform activation properties
+	private float _transformRequireHoldTime = 0.3f;
+	public float transformRequireHoldTime { get { return _transformRequireHoldTime; } }
+	private float _transformHoldTime = 0f;
+	public float transformHoldTime { get { return _transformHoldTime; } }
+	private float _tranformHoldDecayTime = 0.2f;
+	public float transformHoldDecayTime { get { return _tranformHoldDecayTime; } }
+	private float _transformHoldDecayCount = 0f;
+	public float transformHoldDecayCount { get { return _transformHoldDecayCount; } }
 	
 	//_________________________________________INSTANCE PROPERTIES
 
@@ -518,6 +544,11 @@ public class PlayerController : MonoBehaviour {
 
 		myTracker = GetComponentInChildren<TrackingEffectS>();
 
+		transformActiveEffect = GetComponentInChildren<CorruptedEffectS>();
+		if (!_isTransformed){
+			transformActiveEffect.gameObject.SetActive(false);
+		}
+
 		PlayerInventoryS.I.dManager.SpawnBlood();
 		//_specialFlash = CameraEffectsS.E.specialFlash;
 
@@ -602,7 +633,11 @@ public class PlayerController : MonoBehaviour {
 		ResetBios();
 
 		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
+		if (!_isTransformed){
 		myRenderer.color = equippedWeapon.swapColor;
+		}else{
+			myRenderer.color = transformedColor;
+		}
 
 		resetCountdown = resetTimeMax;
 
@@ -733,7 +768,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void AttackDuration(float aTime){
-		attackDuration = aTime;
+		attackDuration = aTime*TransformedAttackSpeedMult();
 		if (_playerAug.animaAug){
 			attackDuration*=PlayerAugmentsS.animaAugAmt;
 		}
@@ -859,6 +894,9 @@ public class PlayerController : MonoBehaviour {
 					float actingWalkSpeed = walkSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingWalkSpeed;
+					if (_isTransformed){
+						moveVelocity *= transformMoveSpeedMult;
+					}
 					if (!dontWalkIntoEnemiesCheck.NoEnemies() && !dontSlowWhenClose && gameObject.layer == START_PHYSICS_LAYER){
 						moveVelocity *= PUSH_ENEMY_MULT;
 					}
@@ -871,6 +909,9 @@ public class PlayerController : MonoBehaviour {
 					float actingRunSpeed = runSpeed*equippedWeapon.speedMult; 
 
 					moveVelocity *= actingRunSpeed;
+					if (_isTransformed){
+						moveVelocity *= transformMoveSpeedMult;
+					}
 					if (!dontWalkIntoEnemiesCheck.NoEnemies() && !dontSlowWhenClose && gameObject.layer == START_PHYSICS_LAYER){
 						moveVelocity *= PUSH_ENEMY_MULT;
 					}
@@ -1433,17 +1474,21 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(equippedWeapon.counterAttack);
 						}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
+								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
+								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}
 					else if (_doingDashAttack){
 						queuedAttacks.Add(equippedWeapon.dashAttack);
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
+								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
+								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}else{
 						if (_doingHeavyAttack){
@@ -1452,9 +1497,11 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
 						}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
+								*TransformedAttackSpeedMult()*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
+								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}
 					}
 				}
@@ -1621,7 +1668,8 @@ public class PlayerController : MonoBehaviour {
 
 					}
 					
-						attackDelay = currentAttackS.delayShotTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
+						attackDelay = currentAttackS.delayShotTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+							*TransformedAttackSpeedMult();
 
 					if (_playerAug.animaAug){
 							attackDelay*=PlayerAugmentsS.animaAugAmt;
@@ -1936,10 +1984,10 @@ public class PlayerController : MonoBehaviour {
 	private void ChargeAttackSet(GameObject chargePrefab, float chargeTime, float chargeCost, float cDuration,
 		float animationSpeed, string animationTrigger, bool useAll = false){
 		_chargePrefab = chargePrefab;
-		_chargeAttackTrigger = chargeTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
+		_chargeAttackTrigger = chargeTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)*TransformedAttackSpeedMult();
 		_chargeAttackCost = chargeCost;
-		_chargeAttackDuration = cDuration*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
-		_chargeAnimationSpeed = animationSpeed*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios);
+		_chargeAttackDuration = cDuration*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)*TransformedAttackSpeedMult();
+		_chargeAnimationSpeed = animationSpeed*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)*TransformedAttackSpeedMult();
 		_chargeAttackUseAll = useAll;
 
 		if (_playerAug.animaAug){
@@ -2023,7 +2071,11 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetInteger("WeaponNumber",equippedWeapon.weaponNum);
 		_myLockOn.SetSprite();
 		weaponSwitchIndicator.Flash(equippedWeapon);
+		if (!_isTransformed){
 		myRenderer.color = equippedWeapon.swapColor;
+		}else{
+			myRenderer.color = transformedColor;
+		}
 
 		if (_currentCombatManager && _inCombat){
 			_currentCombatManager.ChangeFeatherCols(equippedWeapon.swapColor);
@@ -2296,9 +2348,11 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetTrigger("AttackTrigger");
 
 		if (_playerAug.animaAug){
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+				/TransformedAttackSpeedMult());
 		}else{
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+				/TransformedAttackSpeedMult());
 		}
 		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
 		if (heavy){
@@ -2318,10 +2372,27 @@ public class PlayerController : MonoBehaviour {
 		ProjectileS currentProj = _chargePrefab.GetComponent<ProjectileS>();
 
 		_myAnimator.SetTrigger(currentProj.attackAnimationTrigger);
+
+		if (_playerAug.animaAug){
 		if (inDash){
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult/dashChargeAllowMult);
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult/dashChargeAllowMult
+					/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/TransformedAttackSpeedMult());
 		}else{
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult);
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult
+					/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/TransformedAttackSpeedMult());
+		}
+		}else{
+			if (inDash){
+				_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult/dashChargeAllowMult
+					/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/TransformedAttackSpeedMult());
+			}else{
+				_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult
+					/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/TransformedAttackSpeedMult());
+			}
 		}
 		speedUpChargeAttack = inDash;
 
@@ -3078,6 +3149,13 @@ public class PlayerController : MonoBehaviour {
 		return returnMult;
 	}
 
+	private float TransformedAttackSpeedMult(){
+		float returnMult = 1f;
+		if (_isTransformed){
+			returnMult = transformedAttackSpeedMult;
+		}
+		return returnMult;
+	}
 
 	IEnumerator HitStopRoutine(float sTime){
 

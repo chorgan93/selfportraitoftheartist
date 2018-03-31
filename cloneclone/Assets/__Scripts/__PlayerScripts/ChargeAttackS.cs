@@ -155,6 +155,10 @@ public class ChargeAttackS : MonoBehaviour {
 		flashFrames = flashMax;
 
 		dmg*=myPlayer.playerAug.GetParanoidMult();
+		if (myPlayer.isTransformed){
+			dmg*=myPlayer.transformedDamageMult;
+			myPlayer.myStats.TranformedDarknessAttackAdd();
+		}
 
 		if (shakeAmt == 1){
 		CameraShakeS.C.TimeSleep(0.1f);

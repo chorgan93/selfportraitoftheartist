@@ -16,4 +16,10 @@ public class ChangeCameraSizeOnTouch : MonoBehaviour {
 			}
 			}
 		}
+
+	public void CombatEndRevertSize(){
+		if (activated){
+			CameraFollowS.F.ChangeOrthoSizeMult(1f/newSize, changeTime);
+		}
+	}
 	}

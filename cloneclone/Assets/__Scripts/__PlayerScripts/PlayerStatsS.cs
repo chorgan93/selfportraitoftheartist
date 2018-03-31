@@ -21,6 +21,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float anxiousChargeRate = 0.025f;
 
 	private const float DARKNESS_ADD_RATE = 0.003f;
+	private const float TRANSFORMED_RATE = 10f;
 	private const float DARKNESS_ADD_DEATH = 1.75f;
 	public const float DARKNESS_MAX = 100f;
 	
@@ -258,6 +259,9 @@ public class PlayerStatsS : MonoBehaviour {
 		else{
 		if (_currentMana > 0){
 			if (reduce){
+					if (myPlayerController.isTransformed){
+						useAmount*=myPlayerController.transformedStaminaMult;
+					}
 					if (_currentCooldownTimer <= 0){
 						_comboStartMana = _currentMana;
 					}
@@ -357,6 +361,9 @@ public class PlayerStatsS : MonoBehaviour {
 	public void RecoverCharge(float addPercent, bool itemEffect = false, bool anxiousEffect = false){
 		// add to charge (old)
 		float amtAdded = addPercent*maxCharge*currentChargeRecover;
+		if (myPlayerController.isTransformed){
+			amtAdded*=myPlayerController.transformedAbsorbMult;
+		}
 		if (_currentCharge + amtAdded > maxCharge){
 			amtAdded = maxCharge-_currentCharge;
 		}
@@ -432,8 +439,22 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________PRIVATE FUNCTIONS
 
 	private void DarknessAdd(){
-		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode){
+		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && _currentDarkness < 100f){
 			_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE;
+			if (myPlayerController.isTransformed){
+				_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE*TRANSFORMED_RATE;
+			}
+			if (_currentDarkness > 100f){
+				_currentDarkness = 100f;
+			}
+		}
+	}
+	public void TranformedDarknessAttackAdd(){
+		if (_currentDarkness < 100f){
+		_currentDarkness += 0.1f;
+		if (_currentDarkness > 100f){
+			_currentDarkness = 100f;
+		}
 		}
 	}
 
@@ -466,7 +487,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 			// first burn down cooldown, then recover
 			if (_currentCooldownTimer > 0){
-				_currentCooldownTimer -= Time.deltaTime;
+				if (myPlayerController.isTransformed){
+					_currentCooldownTimer -= myPlayerController.transformedRecoverMult*Time.deltaTime;
+				}else{
+					_currentCooldownTimer -= Time.deltaTime;
+				}
 				if (_currentCooldownTimer < 0){
 					
 					_currentCooldownTimer = 0;
@@ -481,7 +506,11 @@ public class PlayerStatsS : MonoBehaviour {
 				if (myPlayerController.isBlocking){
 					actingRecoverRate*=blockRecoverMult;
 				}else{
+					if (myPlayerController.isTransformed){
+						recoverRateIncrease+=recoverRateAccel*Time.deltaTime*myPlayerController.transformedRecoverMult;
+					}else{
 					recoverRateIncrease+=recoverRateAccel*Time.deltaTime;
+					}
 				}
 				if (_overchargeMana <= 0){
 					_currentMana+=actingRecoverRate*Time.deltaTime*maxMana;

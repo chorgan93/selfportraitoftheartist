@@ -22,6 +22,7 @@ public class EnemyBreakS : MonoBehaviour {
 
 	public EnemyBreakLettersS[] breakLetters;
 	public EnemyBreakLettersS[] subLetters;
+	public EnemyBreakLettersS[] dropShadows;
 	private string breakString = "BREAK";
 	private string parryString = "PARRY";
 
@@ -48,6 +49,7 @@ public class EnemyBreakS : MonoBehaviour {
 	IEnumerator ActivateLetters(){
 		for (int i = 0; i < breakLetters.Length; i ++){
 			breakLetters[i].Activate(breakString[i].ToString());
+			dropShadows[i].Activate(breakString[i].ToString());
 			yield return new WaitForSeconds(subLetterTime);
 			subLetters[i].Activate(breakString[i].ToString());
 			yield return new WaitForSeconds(activateLetterTime);

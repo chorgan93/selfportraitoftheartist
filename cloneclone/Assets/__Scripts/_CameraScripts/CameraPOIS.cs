@@ -22,6 +22,12 @@ public class CameraPOIS : MonoBehaviour {
 	private Vector3 noiseAdd = new Vector3(0.9f,0.65f,0f);
 	private Vector3 currentNoiseAdd;
 
+	private float moveLookXMax = 0.7f;
+	private float moveLookYMax = 0.9f;
+	private float sprintLookXMult = 5f;
+	private float sprintLookYMult = 2f;
+	private Vector3 currentMoveAdd;
+
 	private float noiseRevisitTime = 1f;
 	private float combatRevisitMult = 0.44f;
 
@@ -93,7 +99,7 @@ public class CameraPOIS : MonoBehaviour {
 			lookVector.z = 0;**/
 
 			currentSprintMult = 1f;
-
+			DetermineMoveAdd();
 			newPos = Vector3.zero;
 			if (enemyReference.closestEnemy != null && !playerReference.myStats.PlayerIsDead()){
 
@@ -111,7 +117,7 @@ public class CameraPOIS : MonoBehaviour {
 					                   + enemyReference.enemyCenterpoint*enemyWeight)/
 					(playerWeight+enemyWeight);
 				}
-				currentPosition += currentNoiseAdd;
+				currentPosition += currentNoiseAdd+currentMoveAdd;
 
 				if (!playerReference.myLockOn.lockedOn){
 					newPos.x = (1-moveEasing)*(transform.position.x-lookVector.x) + moveEasing*currentPosition.x+poiOffset.x;
@@ -127,7 +133,7 @@ public class CameraPOIS : MonoBehaviour {
 					newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x;
 					newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y;
 				}else{**/
-				currentPosition = playerReference.transform.position+currentNoiseAdd;
+				currentPosition = playerReference.transform.position+currentNoiseAdd+currentMoveAdd;
 
 				newPos.x = (1-moveEasing)*(transform.position.x) + moveEasing*currentPosition.x+poiOffset.x;
 				newPos.y = (1-moveEasing)*(transform.position.y) + moveEasing*currentPosition.y+poiOffset.y;
@@ -180,6 +186,18 @@ public class CameraPOIS : MonoBehaviour {
 			enemyWeight = newW;
 		}	else{
 			enemyWeight = startEnemyWeight;
+		}
+	}
+
+	private void DetermineMoveAdd(){
+		currentMoveAdd = Vector3.zero;
+		if (playerReference.isDoingMovement){
+			currentMoveAdd.x = playerReference.myRigidbody.velocity.normalized.x*moveLookXMax;
+			currentMoveAdd.y = playerReference.myRigidbody.velocity.normalized.y*moveLookYMax;
+			if (playerReference.isSprinting){
+				currentMoveAdd.x*=sprintLookXMult;
+				currentMoveAdd.y*=sprintLookYMult;
+			}
 		}
 	}
 
