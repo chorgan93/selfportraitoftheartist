@@ -8,7 +8,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private const float staminaBarAddSize = 5f;
 	private const float chargeAddSize = 4f;
 
-	public const bool RECORD_MODE = true; // TODO turn off after build!
+	public const bool RECORD_MODE = false; // TODO turn off after build!
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;

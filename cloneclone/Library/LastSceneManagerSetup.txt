@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_21_TheDepthsIV.unity
+- path: Assets/_Scenes/Area06(Trail)Scenes/Area06_08_Test01.unity
   isLoaded: 1
   isActive: 1
