@@ -1448,9 +1448,15 @@ public class PlayerController : MonoBehaviour {
 						newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 							transform.position, Quaternion.identity).gameObject;
 					}else{
+						if (_doingHeavyAttack){
+							newProjectile = (GameObject)Instantiate(EquippedWeaponAug().dashAttack, 
+								transform.position, 
+								Quaternion.identity);
+						}else{
 				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
 				                                        transform.position, 
 				                                        Quaternion.identity);
+						}
 					}
 			}else{
 
@@ -1460,13 +1466,13 @@ public class PlayerController : MonoBehaviour {
 						}else{
 							currentChain = 0;
 						}
-						if (currentChain > equippedWeapon.heavyChain.Length-1){
+						if (currentChain > EquippedWeaponAug().heavyChain.Length-1){
 							currentChain = 0;
 						}
 
 						// Opportunistic effect
 						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-							currentChain = equippedWeapon.heavyChain.Length-1;
+							currentChain = EquippedWeaponAug().heavyChain.Length-1;
 						}
 
 						if (_projectilePool.ContainsProjectileID
@@ -1474,7 +1480,7 @@ public class PlayerController : MonoBehaviour {
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position,Quaternion.identity).gameObject;
 						}else{
-						newProjectile = (GameObject)Instantiate(equippedWeapon.heavyChain[currentChain], 
+							newProjectile = (GameObject)Instantiate(EquippedWeaponAug().heavyChain[currentChain], 
 						                                        transform.position, 
 						                                        Quaternion.identity);
 						}
@@ -1547,7 +1553,7 @@ public class PlayerController : MonoBehaviour {
 						}
 					}else{
 						if (_doingHeavyAttack){
-							queuedAttacks.Add(equippedWeapon.heavyChain[prevChain]);
+							queuedAttacks.Add(EquippedWeaponAug().heavyChain[prevChain]);
 						}else{
 						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
 						}
@@ -1656,7 +1662,7 @@ public class PlayerController : MonoBehaviour {
 
 							if ((counterQueued && heavyCounterQueued) || (controller.GetCustomInput(1) && !counterQueued)){
 							_doingHeavyAttack = true;
-							currentAttackS = equippedWeapon.counterAttackHeavy.GetComponent<ProjectileS>();
+								currentAttackS = EquippedWeaponAug().counterAttackHeavy.GetComponent<ProjectileS>();
 						}else{
 							currentAttackS = equippedWeapon.counterAttack.GetComponent<ProjectileS>();
 						}
@@ -1677,7 +1683,12 @@ public class PlayerController : MonoBehaviour {
 					}
 					else if ((_isDashing || _isSprinting) && _allowDashAttack){
 
+							if (controller.GetCustomInput(1)){
+								_doingHeavyAttack = true;
+								currentAttackS = EquippedWeaponAug().dashAttack.GetComponent<ProjectileS>();
+							}else{
 						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
+							}
 
 						//_isSprinting = false;
 						_doingDashAttack = true;
@@ -1696,14 +1707,14 @@ public class PlayerController : MonoBehaviour {
 								if (!allowChainHeavy){
 									nextAttack = 0;
 								}
-							if (nextAttack > equippedWeapon.heavyChain.Length-1){
+								if (nextAttack > EquippedWeaponAug().heavyChain.Length-1){
 								nextAttack = 0;
 							}
 							// Opportunistic effect
 							if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-								nextAttack = equippedWeapon.heavyChain.Length-1;
+									nextAttack = EquippedWeaponAug().heavyChain.Length-1;
 							}
-							currentAttackS = equippedWeapon.heavyChain[nextAttack].GetComponent<ProjectileS>();
+								currentAttackS = EquippedWeaponAug().heavyChain[nextAttack].GetComponent<ProjectileS>();
 							_doingHeavyAttack = true;
 						}else{
 								if (!allowChainLight){
@@ -1797,8 +1808,8 @@ public class PlayerController : MonoBehaviour {
 
 						ProjectileS chargeAttackRef;
 						if (_doingHeavyAttack){
-							if (prevChain > equippedWeapon.heavyChain.Length-1){
-								prevChain = equippedWeapon.heavyChain.Length-1;
+							if (prevChain > EquippedWeaponAug().heavyChain.Length-1){
+								prevChain = EquippedWeaponAug().heavyChain.Length-1;
 							}
 							chargeAttackRef = 
 								equippedWeapon.heavyChain[prevChain].GetComponent<ProjectileS>()
@@ -2127,8 +2138,8 @@ public class PlayerController : MonoBehaviour {
 		/*if (currentChain > equippedWeapon.attackChain.Length-1){
 			currentChain = -1;
 		}**/
-		if (currentChain < equippedWeapon.heavyChain.Length && currentChain > -1){
-			allowChainHeavy = equippedWeapon.heavyChain[currentChain].GetComponent<ProjectileS>().allowChainHeavy;
+		if (currentChain < EquippedWeaponAug().heavyChain.Length && currentChain > -1){
+			allowChainHeavy = EquippedWeaponAug().heavyChain[currentChain].GetComponent<ProjectileS>().allowChainHeavy;
 		}else{
 			allowChainHeavy = false;
 		}
@@ -2412,9 +2423,13 @@ public class PlayerController : MonoBehaviour {
 	private void AttackAnimationTrigger(bool heavy = false){
 
 		if (heavy){
+			if (!_doingDashAttack){
 			_myAnimator.SetBool("HeavyAttacking", true);
+			}
+			_myAnimator.SetInteger("WeaponNumber", EquippedWeaponAug().weaponNum);
 		}else{
 			_myAnimator.SetBool("HeavyAttacking", false);
+			_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
 		}
 		_myAnimator.SetTrigger("AttackTrigger");
 
