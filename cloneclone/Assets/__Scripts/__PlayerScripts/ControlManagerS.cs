@@ -299,9 +299,11 @@ public class ControlManagerS : MonoBehaviour {
 				return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType)) > 0.1f ||
 					(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType)) > 0.1f));
 			}
-		}else{
+		}else if (controlProfile == 0){
 			return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType)) > 0.1f ||
 				(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType)) > 0.1f));
+		}else{
+			return (Input.GetKey(KeyCode.F));
 		}
 	}
 

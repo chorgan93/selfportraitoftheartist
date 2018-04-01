@@ -123,12 +123,13 @@ public class PlayerController : MonoBehaviour {
 	private bool _isTransformed = false;
 	public bool isTransformed { get { return _isTransformed; } }
 	private CorruptedEffectS transformActiveEffect;
+	private TransformStartEffectS transformStartEffect;
 	private bool _transformReady = false;
 	public bool transformReady { get { return _transformReady; } }
 	public Color transformedColor = Color.magenta;
-	private float transformMoveSpeedMult = 1.4f;
-	private float transformedAttackSpeedMult = 0.88f;
-	private float _transformedStaminaMult = 0.1f;
+	private float transformMoveSpeedMult = 1.2f;
+	private float transformedAttackSpeedMult = 0.8f;
+	private float _transformedStaminaMult = 0.3f;
 	public float transformedStaminaMult { get { return _transformedStaminaMult; } }
 	private float _transformedRecoveryMult = 3f;
 	public float transformedRecoverMult { get { return _transformedRecoveryMult; } }
@@ -143,6 +144,8 @@ public class PlayerController : MonoBehaviour {
 	public float revertRequireHoldTime { get { return _revertRequireHoldTime; } }
 	private float _transformHoldTime = 0f;
 	public float transformHoldTime { get { return _transformHoldTime; } }
+	private float _transformDefenseMult = 3f;
+	public float transformDefenseMult { get { return _transformDefenseMult; } }
 	public GameObject transformEcho;
 	
 	//_________________________________________INSTANCE PROPERTIES
@@ -437,6 +440,9 @@ public class PlayerController : MonoBehaviour {
 	public void SetWitchObject(PlayerSlowTimeS newSlow){
 		witchReference = newSlow;
 	}
+	public void SetTransformStartEffect(TransformStartEffectS newT){
+		transformStartEffect = newT;
+	}
 
 	void TriggerWitchTime(){
 
@@ -720,11 +726,13 @@ public class PlayerController : MonoBehaviour {
 		_myBuddy = newBud;
 	}
 
-	public void Stun(float sTime){
+	public void Stun(float sTime, bool overrideTransform = false){
 
+		if (!_isTransformed && !overrideTransform){
 		stunTime = sTime;
 		_isStunned = true;
 		CancelAttack();
+		}
 
 	}
 
@@ -1153,6 +1161,7 @@ public class PlayerController : MonoBehaviour {
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
 			_transformHoldTime += Time.deltaTime;
+			transformStartEffect.StartCharge();
 		}else{
 			if (!_isTransformed){
 			if (_transformHoldTime >= _transformRequireHoldTime){
@@ -1163,27 +1172,37 @@ public class PlayerController : MonoBehaviour {
 						DeactivateTransform();
 					}
 				}
+			if (_transformHoldTime > 0){
 			_transformHoldTime = 0f;
+			transformStartEffect.TurnOffChargeAnims(true);
+			}
 		}
 	}
 
 	private void ActivateTransform(){
 		_isTransformed = true;
+		transformStartEffect.ActivateEffect();
 		transformActiveEffect.gameObject.SetActive(true);
 		SwitchParadigm(currentParadigm);
+		_myBuddy.gameObject.SetActive(false);
 		CameraEffectsS.E.SetTransformFilter(true);
 		Instantiate(transformEcho, transform.position, Quaternion.identity);
 		CameraShakeS.C.TimeSleepCustomPunch(0.12f, 0.86f, 0.1f);
 		
 	}
 	public void DeactivateTransform(){
-
-		_isTransformed = false;
+		if (_isTransformed){
+			_isTransformed = false;
+			transformStartEffect.DeactivateEffect();
 		transformActiveEffect.gameObject.SetActive(false);
+		_myBuddy.transform.position = buddyPos.position;
+		_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+		_myBuddy.gameObject.SetActive(true);
 		SwitchParadigm(currentParadigm);
 		CameraEffectsS.E.SetTransformFilter(false);
 		CameraShakeS.C.SloAndPunch(0.3f, 0.95f, 0.12f, true, false);
 		CameraShakeS.C.SmallShake();
+		}
 	}
 
 	private void DashControl(){
@@ -1726,16 +1745,28 @@ public class PlayerController : MonoBehaviour {
 						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
 							_attackStartDirection = targetDir;
 						currentAttackS.StartKnockback(this, targetDir);
-						equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay);
+							if (_isTransformed){
+								equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, transformedColor);
+							}else{
+								equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, equippedWeapon.swapColor);
+							}
 					}else{
 							currentAttackS.StartKnockback(this, ShootDirection());
 							_attackStartDirection = ShootDirection();
-						equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay);
+							if (_isTransformed){
+								equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, transformedColor);
+							}else{
+								equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, equippedWeapon.swapColor);
+							}
 					}
 					attackTriggered = true;
 						canDoAdaptive = false;
 
+						if (_isTransformed){
+							myTracker.FireEffect(ShootDirection(), transformedColor, attackDelay, Vector3.zero);
+						}else{
 						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay, Vector3.zero);
+						}
 						//weaponTriggered = equippedWeapon;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
@@ -1879,8 +1910,12 @@ public class PlayerController : MonoBehaviour {
 					}
 					_altBuddy = tempSwap;
 					_altBuddy.gameObject.SetActive(false);
+					if (_isTransformed){
+						_myBuddy.gameObject.SetActive(false);
+					}else{
 					
 					_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+					}
 
 					_playerAug.RefreshAll();
 
@@ -2997,6 +3032,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		_isTalking = nEx;
 		if (_isTalking){
+			DeactivateTransform();
 			if (!_myRigidbody){
 				_myRigidbody = GetComponent<Rigidbody>();
 			}

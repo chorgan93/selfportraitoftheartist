@@ -21,7 +21,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float anxiousChargeRate = 0.025f;
 
 	private const float DARKNESS_ADD_RATE = 0.003f;
-	private const float TRANSFORMED_RATE = 10f;
+	private const float TRANSFORMED_RATE = 50f;
 	private const float DARKNESS_ADD_DEATH = 1.75f;
 	public const float DARKNESS_MAX = 100f;
 	
@@ -451,7 +451,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 	public void TranformedDarknessAttackAdd(){
 		if (_currentDarkness < 100f){
-		_currentDarkness += 0.1f;
+		_currentDarkness += 0.5f;
 		if (_currentDarkness > 100f){
 			_currentDarkness = 100f;
 		}
@@ -803,6 +803,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 		unstoppableActivatedOnHit = false;
 		dmg*=DifficultyS.GetPunishMult();
+		if (myPlayerController.isTransformed){
+			dmg/=myPlayerController.transformDefenseMult;
+		}
 		float healthBeforeTakingDmg = _currentHealth;
 		if (myPlayerController.playerAug.lovedAug){
 			dmg*=0.75f;
@@ -842,7 +845,7 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 			}else{
 				
-				myPlayerController.Stun(knockbackTime);
+				myPlayerController.Stun(knockbackTime, (_currentHealth-dmg <= 0 && !godMode));
 				myPlayerController.myAnimator.SetTrigger("Hurt");
 				myPlayerController.FlashDamage();
 

@@ -28,7 +28,8 @@ public class PlayerWeaponS : MonoBehaviour {
 	private const float _spawnRange = 1.3f;
 	private float doFlip = 1f;
 
-	public void AttackFlash(Vector3 startPos, Vector3 dir, Transform newParent, float delay, int numFlashes = 0){
+	public void AttackFlash(Vector3 startPos, Vector3 dir, Transform newParent, float delay, 
+		Color overrideColor){
 
 		Vector3 spawnPos = startPos;
 		spawnPos -= dir.normalized*_spawnRange;
@@ -39,7 +40,11 @@ public class PlayerWeaponS : MonoBehaviour {
 			as GameObject;
 		SpriteRenderer flashRender = attackFlash1.GetComponent<SpriteRenderer>();
 		Color fixCol = flashRender.color;
+		if (overrideColor != null){
+			fixCol = overrideColor;
+		}else{
 		fixCol = swapColor;
+		}
 		fixCol.a = flashRender.color.a;
 		flashRender.color = fixCol;
 		attackFlash1.transform.parent = newParent;
@@ -89,9 +94,6 @@ public class PlayerWeaponS : MonoBehaviour {
 
 		doFlip *= -1f;
 
-		for (int i = 0; i < numFlashes; i++){
-			AttackFlash(startPos, dir, newParent, delay);
-		}
 
 	}
 

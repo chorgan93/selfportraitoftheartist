@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area06(Trail)Scenes/Area06_08_Test01.unity
+- path: Assets/_Scenes/Area00(Forest)Scenes/Area00_04_EnterTheForest.unity
   isLoaded: 1
   isActive: 1
