@@ -11,6 +11,8 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 	private PlayerController myController;
 	private EnemyDetectS enemyDetect;
 
+	private bool lockAttackFace = false;
+
 	private bool dontFace = false;
 
 	// Use this for initialization
@@ -65,7 +67,7 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 							currentSize = mySize;
 						}
 					}
-						else{
+					else if (!lockAttackFace){
 					if (rigidReference.velocity.x < 0){
 						currentSize = mySize;
 						currentSize.x *= -1f;
@@ -99,4 +101,11 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 	public void StopFace(){
 		dontFace = true;
 	}
+
+
+
+	public void SetAttackLock(bool newLock){
+		lockAttackFace = newLock;
+	}
+
 }

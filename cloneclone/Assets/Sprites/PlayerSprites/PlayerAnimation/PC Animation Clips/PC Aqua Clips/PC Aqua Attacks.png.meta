@@ -1,0 +1,1008 @@
+fileFormatVersion: 2
+guid: 1e1669bd220b647b1be78f804addfb92
+timeCreated: 1522694083
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Anima Attacks_0
+    21300118: PC Anima Attacks_1
+    21300120: PC Anima Attacks_2
+    21300122: PC Anima Attacks_3
+    21300124: PC Anima Attacks_4
+    21300126: PC Anima Attacks_5
+    21300128: PC Anima Attacks_6
+    21300130: PC Anima Attacks_7
+    21300132: PC Anima Attacks_8
+    21300134: PC Anima Attacks_9
+    21300136: PC Anima Attacks_10
+    21300138: PC Anima Attacks_11
+    21300140: PC Anima Attacks_12
+    21300142: PC Anima Attacks_13
+    21300144: PC Anima Attacks_14
+    21300146: PC Anima Attacks_15
+    21300148: PC Anima Attacks_16
+    21300150: PC Anima Attacks_17
+    21300152: PC Anima Attacks_18
+    21300154: PC Anima Attacks_19
+    21300156: PC Anima Attacks_20
+    21300158: PC Anima Attacks_21
+    21300160: PC Anima Attacks_22
+    21300162: PC Anima Attacks_23
+    21300164: PC Anima Attacks_24
+    21300166: PC Anima Attacks_25
+    21300168: PC Anima Attacks_26
+    21300170: PC Anima Attacks_27
+    21300172: PC Anima Attacks_28
+    21300174: PC Anima Attacks_29
+    21300176: PC Anima Attacks_30
+    21300178: PC Anima Attacks_31
+    21300180: PC Anima Attacks_32
+    21300182: PC Anima Attacks_33
+    21300184: PC Anima Attacks_34
+    21300186: PC Anima Attacks_35
+    21300188: PC Anima Attacks_36
+    21300190: PC Anima Attacks_37
+    21300192: PC Anima Attacks_38
+    21300194: PC Anima Attacks_39
+    21300196: PC Anima Attacks_40
+    21300198: PC Anima Attacks_41
+    21300200: PC Anima Attacks_42
+    21300202: PC Anima Attacks_43
+    21300204: PC Anima Attacks_44
+    21300206: PC Anima Attacks_45
+    21300208: PC Anima Attacks_46
+    21300210: PC Anima Attacks_47
+    21300212: PC Anima Attacks_48
+    21300214: PC Anima Attacks_49
+    21300216: PC Anima Attacks_50
+    21300218: PC Anima Attacks_51
+    21300220: PC Anima Attacks_52
+    21300222: PC Anima Attacks_53
+    21300224: PC Anima Attacks_54
+    21300226: PC Anima Attacks_55
+    21300228: PC Anima Attacks_56
+    21300230: PC Anima Attacks_57
+    21300232: PC Anima Attacks_58
+    21300234: PC Anima Attacks_59
+    21300236: PC Anima Attacks_60
+    21300238: PC Anima Attacks_61
+    21300240: PC Anima Attacks_62
+    21300242: PC Anima Attacks_63
+    21300244: PC Anima Attacks_64
+    21300246: PC Anima Attacks_65
+    21300248: PC Anima Attacks_66
+    21300250: PC Anima Attacks_67
+    21300252: PC Anima Attacks_68
+    21300254: PC Anima Attacks_69
+    21300256: PC Anima Attacks_70
+    21300258: PC Anima Attacks_71
+    21300260: PC Anima Attacks_72
+    21300262: PC Anima Attacks_73
+    21300264: PC Aqua Attacks_0
+    21300266: PC Aqua Attacks_1
+    21300268: PC Aqua Attacks_2
+    21300270: PC Aqua Attacks_3
+    21300272: PC Aqua Attacks_4
+    21300274: PC Aqua Attacks_5
+    21300276: PC Aqua Attacks_6
+    21300278: PC Aqua Attacks_7
+    21300280: PC Aqua Attacks_8
+    21300282: PC Aqua Attacks_9
+    21300284: PC Aqua Attacks_10
+    21300286: PC Aqua Attacks_11
+    21300288: PC Aqua Attacks_12
+    21300290: PC Aqua Attacks_13
+    21300292: PC Aqua Attacks_14
+    21300294: PC Aqua Attacks_15
+    21300296: PC Aqua Attacks_16
+    21300298: PC Aqua Attacks_17
+    21300300: PC Aqua Attacks_18
+    21300302: PC Aqua Attacks_19
+    21300304: PC Aqua Attacks_20
+    21300306: PC Aqua Attacks_21
+    21300308: PC Aqua Attacks_22
+    21300310: PC Aqua Attacks_23
+    21300312: PC Aqua Attacks_24
+    21300314: PC Aqua Attacks_25
+    21300316: PC Aqua Attacks_26
+    21300318: PC Aqua Attacks_27
+    21300320: PC Aqua Attacks_28
+    21300322: PC Aqua Attacks_29
+    21300324: PC Aqua Attacks_30
+    21300326: PC Aqua Attacks_31
+    21300328: PC Aqua Attacks_32
+    21300330: PC Aqua Attacks_33
+    21300332: PC Aqua Attacks_34
+    21300334: PC Aqua Attacks_35
+    21300336: PC Aqua Attacks_36
+    21300338: PC Aqua Attacks_37
+    21300340: PC Aqua Attacks_38
+    21300342: PC Aqua Attacks_39
+    21300344: PC Aqua Attacks_40
+    21300346: PC Aqua Attacks_41
+    21300348: PC Aqua Attacks_42
+    21300350: PC Aqua Attacks_43
+    21300352: PC Aqua Attacks_44
+    21300354: PC Aqua Attacks_45
+    21300356: PC Aqua Attacks_46
+    21300358: PC Aqua Attacks_47
+    21300360: PC Aqua Attacks_48
+    21300362: PC Aqua Attacks_49
+    21300364: PC Aqua Attacks_50
+    21300366: PC Aqua Attacks_51
+    21300368: PC Aqua Attacks_52
+    21300370: PC Aqua Attacks_53
+    21300372: PC Aqua Attacks_54
+    21300374: PC Aqua Attacks_55
+    21300376: PC Aqua Attacks_56
+    21300378: PC Aqua Attacks_57
+    21300380: PC Aqua Attacks_58
+    21300382: PC Aqua Attacks_59
+    21300384: PC Aqua Attacks_60
+    21300386: PC Aqua Attacks_61
+    21300388: PC Aqua Attacks_62
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Aqua Attacks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_4
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_5
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_6
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_7
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 490
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_9
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_10
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_11
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_12
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_13
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_14
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_15
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 420
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_17
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_18
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_19
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_20
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_21
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_22
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_23
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 350
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_25
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_26
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_27
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_28
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_29
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_30
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_31
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 280
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_33
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_34
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_35
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_36
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_37
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_38
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_39
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 210
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_41
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_42
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_43
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_44
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_45
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_46
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_47
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_49
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_50
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_51
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_52
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_53
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_54
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_55
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 70
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_57
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_58
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_59
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_60
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_61
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Aqua Attacks_62
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 0
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour {
 	// Attack Properties
 	//public GameObject[] attackChain;
 	//public GameObject dashAttack;
-	private PlayerWeaponS equippedWeapon;
+	private PlayerWeaponS equippedWeapon,  attackingWeapon, attackingWeaponAug;
 	public PlayerWeaponS getEWeapon { get { return equippedWeapon; } }
 	public List<PlayerWeaponS> equippedWeapons;
 	public List<PlayerWeaponS> subWeapons;
@@ -583,7 +583,8 @@ public class PlayerController : MonoBehaviour {
 			_currentParadigm = 1;
 		}
 
-		equippedWeapon = equippedWeapons[_currentParadigm];
+		equippedWeapon = attackingWeapon =equippedWeapons[_currentParadigm];
+		attackingWeaponAug = subWeapons[_currentParadigm];
 
 
 		if (equippedVirtues == null){
@@ -637,7 +638,7 @@ public class PlayerController : MonoBehaviour {
 
 		ResetBios();
 
-		currentAttackS = equippedWeapon.attackChain[0].GetComponent<ProjectileS>();
+		currentAttackS = attackingWeapon.attackChain[0].GetComponent<ProjectileS>();
 		if (!_isTransformed){
 		myRenderer.color = equippedWeapon.swapColor;
 		}else{
@@ -753,6 +754,8 @@ public class PlayerController : MonoBehaviour {
 
 	private void CancelAttack(bool allowChain = false){
 		attackTriggered = false;
+		attackingWeapon = equippedWeapon;
+		attackingWeaponAug = EquippedWeaponAug();
 		attackDuration = 0f;
 		if (!allowChain){
 			currentChain = 0;
@@ -1039,6 +1042,8 @@ public class PlayerController : MonoBehaviour {
 				_canSwap = true;
 			allowChargeAttack = false;
 			_chargeAttackTriggered = false;
+				attackingWeapon = equippedWeapon;
+				attackingWeaponAug = EquippedWeaponAug();
 			_chargeAttackTime = 0f;
 			_myAnimator.SetBool("Charging", false);
 			}
@@ -1426,7 +1431,7 @@ public class PlayerController : MonoBehaviour {
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position, Quaternion.identity).gameObject;
 						}else{
-						newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttackHeavy, 
+							newProjectile = (GameObject)Instantiate(attackingWeaponAug.counterAttackHeavy, 
 						                                        transform.position, 
 						                                        Quaternion.identity);
 						}
@@ -1436,7 +1441,7 @@ public class PlayerController : MonoBehaviour {
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position, Quaternion.identity).gameObject;
 						}else{
-					newProjectile = (GameObject)Instantiate(equippedWeapon.counterAttack, 
+							newProjectile = (GameObject)Instantiate(attackingWeapon.counterAttack, 
 					                                        transform.position, 
 					                                        Quaternion.identity);
 						}
@@ -1449,11 +1454,11 @@ public class PlayerController : MonoBehaviour {
 							transform.position, Quaternion.identity).gameObject;
 					}else{
 						if (_doingHeavyAttack){
-							newProjectile = (GameObject)Instantiate(EquippedWeaponAug().dashAttack, 
+							newProjectile = (GameObject)Instantiate(attackingWeaponAug.dashAttack, 
 								transform.position, 
 								Quaternion.identity);
 						}else{
-				newProjectile = (GameObject)Instantiate(equippedWeapon.dashAttack, 
+							newProjectile = (GameObject)Instantiate(attackingWeapon.dashAttack, 
 				                                        transform.position, 
 				                                        Quaternion.identity);
 						}
@@ -1466,13 +1471,13 @@ public class PlayerController : MonoBehaviour {
 						}else{
 							currentChain = 0;
 						}
-						if (currentChain > EquippedWeaponAug().heavyChain.Length-1){
+						if (currentChain > attackingWeaponAug.heavyChain.Length-1){
 							currentChain = 0;
 						}
 
 						// Opportunistic effect
 						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-							currentChain = EquippedWeaponAug().heavyChain.Length-1;
+							currentChain = attackingWeaponAug.heavyChain.Length-1;
 						}
 
 						if (_projectilePool.ContainsProjectileID
@@ -1480,7 +1485,7 @@ public class PlayerController : MonoBehaviour {
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position,Quaternion.identity).gameObject;
 						}else{
-							newProjectile = (GameObject)Instantiate(EquippedWeaponAug().heavyChain[currentChain], 
+							newProjectile = (GameObject)Instantiate(attackingWeaponAug.heavyChain[currentChain], 
 						                                        transform.position, 
 						                                        Quaternion.identity);
 						}
@@ -1492,13 +1497,13 @@ public class PlayerController : MonoBehaviour {
 						}else{
 							currentChain = 0;
 						}
-					if (currentChain > equippedWeapon.attackChain.Length-1){
+						if (currentChain > attackingWeapon.attackChain.Length-1){
 						currentChain = 0;
 					}
 
 						// Opportunistic effect
 						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-							currentChain = equippedWeapon.attackChain.Length-1;
+							currentChain = attackingWeapon.attackChain.Length-1;
 						}
 
 						if (_projectilePool.ContainsProjectileID
@@ -1506,7 +1511,7 @@ public class PlayerController : MonoBehaviour {
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position, Quaternion.identity).gameObject;
 						}else{
-							newProjectile = (GameObject)Instantiate(equippedWeapon.attackChain[currentChain], 
+							newProjectile = (GameObject)Instantiate(attackingWeapon.attackChain[currentChain], 
 								transform.position, 
 								Quaternion.identity);
 						}
@@ -1530,9 +1535,9 @@ public class PlayerController : MonoBehaviour {
 				for (int i = 0; i < currentAttackS.numAttacks - 1; i++){
 					if (_doingCounterAttack){
 						if (_doingHeavyAttack){
-							queuedAttacks.Add(equippedWeapon.counterAttackHeavy);
+							queuedAttacks.Add(attackingWeaponAug.counterAttackHeavy);
 						}else{
-						queuedAttacks.Add(equippedWeapon.counterAttack);
+							queuedAttacks.Add(attackingWeapon.counterAttack);
 						}
 						if (_playerAug.animaAug){
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
@@ -1543,7 +1548,11 @@ public class PlayerController : MonoBehaviour {
 						}
 					}
 					else if (_doingDashAttack){
-						queuedAttacks.Add(equippedWeapon.dashAttack);
+						if (_doingHeavyAttack){
+							queuedAttacks.Add(attackingWeaponAug.dashAttack);
+					}else{
+						queuedAttacks.Add(attackingWeapon.dashAttack);
+					}
 						if (_playerAug.animaAug){
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
 								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
@@ -1553,9 +1562,9 @@ public class PlayerController : MonoBehaviour {
 						}
 					}else{
 						if (_doingHeavyAttack){
-							queuedAttacks.Add(EquippedWeaponAug().heavyChain[prevChain]);
+							queuedAttacks.Add(attackingWeaponAug.heavyChain[prevChain]);
 						}else{
-						queuedAttacks.Add(equippedWeapon.attackChain[currentChain]);
+							queuedAttacks.Add(attackingWeapon.attackChain[currentChain]);
 						}
 						if (_playerAug.animaAug){
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
@@ -1623,6 +1632,8 @@ public class PlayerController : MonoBehaviour {
 				queuedAttackDelays.RemoveAt(0);
 			}else{
 				attackTriggered = false;
+				attackingWeapon = equippedWeapon;
+				attackingWeaponAug = EquippedWeaponAug();
 			}
 		}
 		else{
@@ -1662,9 +1673,9 @@ public class PlayerController : MonoBehaviour {
 
 							if ((counterQueued && heavyCounterQueued) || (controller.GetCustomInput(1) && !counterQueued)){
 							_doingHeavyAttack = true;
-								currentAttackS = EquippedWeaponAug().counterAttackHeavy.GetComponent<ProjectileS>();
+								currentAttackS = attackingWeaponAug.counterAttackHeavy.GetComponent<ProjectileS>();
 						}else{
-							currentAttackS = equippedWeapon.counterAttack.GetComponent<ProjectileS>();
+							currentAttackS = attackingWeapon.counterAttack.GetComponent<ProjectileS>();
 						}
 						_doingCounterAttack = true;
 						_allowCounterAttack = false;
@@ -1685,9 +1696,9 @@ public class PlayerController : MonoBehaviour {
 
 							if (controller.GetCustomInput(1)){
 								_doingHeavyAttack = true;
-								currentAttackS = EquippedWeaponAug().dashAttack.GetComponent<ProjectileS>();
+								currentAttackS = attackingWeaponAug.dashAttack.GetComponent<ProjectileS>();
 							}else{
-						currentAttackS = equippedWeapon.dashAttack.GetComponent<ProjectileS>();
+						currentAttackS = attackingWeapon.dashAttack.GetComponent<ProjectileS>();
 							}
 
 						//_isSprinting = false;
@@ -1707,27 +1718,27 @@ public class PlayerController : MonoBehaviour {
 								if (!allowChainHeavy){
 									nextAttack = 0;
 								}
-								if (nextAttack > EquippedWeaponAug().heavyChain.Length-1){
+								if (nextAttack > attackingWeaponAug.heavyChain.Length-1){
 								nextAttack = 0;
 							}
 							// Opportunistic effect
 							if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-									nextAttack = EquippedWeaponAug().heavyChain.Length-1;
+									nextAttack = attackingWeaponAug.heavyChain.Length-1;
 							}
-								currentAttackS = EquippedWeaponAug().heavyChain[nextAttack].GetComponent<ProjectileS>();
+								currentAttackS = attackingWeaponAug.heavyChain[nextAttack].GetComponent<ProjectileS>();
 							_doingHeavyAttack = true;
 						}else{
 								if (!allowChainLight){
 									nextAttack = 0;
 								}
-							if (nextAttack > equippedWeapon.attackChain.Length-1){
+								if (nextAttack > attackingWeapon.attackChain.Length-1){
 								nextAttack = 0;
 							}
 							// Opportunistic effect
 							if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-								nextAttack = equippedWeapon.attackChain.Length-1;
+									nextAttack = attackingWeapon.attackChain.Length-1;
 							}
-							currentAttackS = equippedWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
+							currentAttackS = attackingWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
 						}
 							
 							allowParryCountdown = allowParryInput;
@@ -1752,6 +1763,9 @@ public class PlayerController : MonoBehaviour {
 							preAttackSlowdown = false;
 						}
 
+						attackingWeapon = equippedWeapon;
+						attackingWeaponAug = EquippedWeaponAug();
+
 					if (_doingCounterAttack && _counterTarget != null){
 						Vector3 targetDir = (_counterTarget.transform.position-transform.position).normalized;
 							_attackStartDirection = targetDir;
@@ -1759,7 +1773,11 @@ public class PlayerController : MonoBehaviour {
 							if (_isTransformed){
 								equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, transformedColor);
 							}else{
-								equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, equippedWeapon.swapColor);
+								if (_doingHeavyAttack){
+									attackingWeaponAug.AttackFlash(transform.position, targetDir, transform, attackDelay, attackingWeaponAug.swapColor);
+								}else{
+									attackingWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, attackingWeapon.swapColor);
+								}
 							}
 					}else{
 							currentAttackS.StartKnockback(this, ShootDirection());
@@ -1767,7 +1785,11 @@ public class PlayerController : MonoBehaviour {
 							if (_isTransformed){
 								equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, transformedColor);
 							}else{
-								equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, equippedWeapon.swapColor);
+								if (_doingHeavyAttack){
+									attackingWeaponAug.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, attackingWeaponAug.swapColor);
+								}else{
+									attackingWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, attackingWeapon.swapColor);
+								}
 							}
 					}
 					attackTriggered = true;
@@ -1805,21 +1827,23 @@ public class PlayerController : MonoBehaviour {
 						if (prevChain < 0){
 							prevChain = 0;
 						}
+						attackingWeapon = EquippedWeapon();
+						attackingWeaponAug = EquippedWeaponAug();
 
 						ProjectileS chargeAttackRef;
 						if (_doingHeavyAttack){
-							if (prevChain > EquippedWeaponAug().heavyChain.Length-1){
-								prevChain = EquippedWeaponAug().heavyChain.Length-1;
+							if (prevChain > attackingWeaponAug.heavyChain.Length-1){
+								prevChain =attackingWeaponAug.heavyChain.Length-1;
 							}
 							chargeAttackRef = 
-								equippedWeapon.heavyChain[prevChain].GetComponent<ProjectileS>()
+								attackingWeapon.heavyChain[prevChain].GetComponent<ProjectileS>()
 									.chargeAttackPrefab.GetComponent<ProjectileS>();
 						}else{
-							if (prevChain > equippedWeapon.attackChain.Length-1){
-								prevChain = equippedWeapon.attackChain.Length-1;
+							if (prevChain > attackingWeapon.attackChain.Length-1){
+								prevChain = attackingWeapon.attackChain.Length-1;
 							}
 							chargeAttackRef = 
-								equippedWeapon.attackChain[prevChain].GetComponent<ProjectileS>()
+								attackingWeapon.attackChain[prevChain].GetComponent<ProjectileS>()
 									.chargeAttackPrefab.GetComponent<ProjectileS>();
 						}
 						ChargeAttackSet(chargeAttackRef.gameObject, 
@@ -1835,6 +1859,8 @@ public class PlayerController : MonoBehaviour {
 						//EquippedWeapon().AttackFlash(transform.position, ShootDirection(), transform, _chargeAttackTrigger,1);
 					_chargeAttackTriggered = false;
 					_chargeAttackTime = 0;
+
+						_myAnimator.SetInteger("WeaponNumber",attackingWeapon.weaponNum);
 						ChargeAnimationTrigger();
 					allowChargeAttack = false;
 						// add slow effect (chargeattack
@@ -1848,6 +1874,9 @@ public class PlayerController : MonoBehaviour {
 						}else{
 							preAttackSlowdown = false;
 						}
+
+						attackingWeapon = equippedWeapon;
+						attackingWeaponAug = EquippedWeaponAug();
 					}else{
 						allowChargeAttack = false;
 					}
@@ -1935,6 +1964,11 @@ public class PlayerController : MonoBehaviour {
 					}
 					switchButtonUp = false;
 					_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
+
+					if (!attackTriggered){
+						attackingWeapon = equippedWeapon;
+						attackingWeaponAug = EquippedWeaponAug();
+					}
 	
 				}
 			}
@@ -2426,10 +2460,10 @@ public class PlayerController : MonoBehaviour {
 			if (!_doingDashAttack){
 			_myAnimator.SetBool("HeavyAttacking", true);
 			}
-			_myAnimator.SetInteger("WeaponNumber", EquippedWeaponAug().weaponNum);
+			_myAnimator.SetInteger("WeaponNumber", attackingWeaponAug.weaponNum);
 		}else{
 			_myAnimator.SetBool("HeavyAttacking", false);
-			_myAnimator.SetInteger("WeaponNumber", equippedWeapon.weaponNum);
+			_myAnimator.SetInteger("WeaponNumber", attackingWeapon.weaponNum);
 		}
 		_myAnimator.SetTrigger("AttackTrigger");
 
@@ -2985,7 +3019,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool InAttack(){
-		if (attackTriggered || attackDuration > 0){
+		if (attackTriggered || attackDelay > 0 || _chargingAttack || attackDuration > 0){
 			return true;
 		}
 		else{

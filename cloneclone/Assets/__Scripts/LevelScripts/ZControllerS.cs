@@ -29,11 +29,11 @@ public class ZControllerS : MonoBehaviour {
 	
 	}
 
-	void Update(){
+	/*void Update(){
 		if (Input.GetKeyDown(KeyCode.K)){
 			Debug.Log(currentList.Count);
 		}
-	}
+	}**/
 
 	private void CleanList(){
 

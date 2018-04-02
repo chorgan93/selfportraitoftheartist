@@ -271,7 +271,7 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
 		}else{
-			myRenderer.color = _myPlayer.EquippedWeapon().swapColor;
+			myRenderer.color = renderColor;
 		}
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
