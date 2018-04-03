@@ -1022,7 +1022,8 @@ public class PlayerController : MonoBehaviour {
 			_myRigidbody.AddForce(ShootDirection().normalized*parryForce*Time.deltaTime, ForceMode.Impulse);
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
-				enemiesToParry[i].AutoCrit(parryForce*ShootDirection().normalized*Time.deltaTime*parryKnockbackMult, 3f);
+				enemiesToParry[i].AutoCrit(parryForce*ShootDirection().normalized*Time.deltaTime*parryKnockbackMult, 3f,
+					_playerAug.aquaAug);
 			}
 			if (_playerAug.incensedAug){
 				_myStats.ManaCheck(_dodgeCost*_playerAug.incensedStaminaMult);
@@ -1165,8 +1166,10 @@ public class PlayerController : MonoBehaviour {
 
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
+			if (equippedUpgrades.Contains(8)){
 			_transformHoldTime += Time.deltaTime;
 			transformStartEffect.StartCharge();
+			}
 		}else{
 			if (!_isTransformed){
 			if (_transformHoldTime >= _transformRequireHoldTime){
@@ -1324,7 +1327,7 @@ public class PlayerController : MonoBehaviour {
 	private void AttackControl(){
 
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
-			comboDuration -= Time.deltaTime*0.3f;
+			comboDuration -= Time.deltaTime*0.6f;
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
 				enemiesHitByLastAttack.Clear();
@@ -1356,10 +1359,12 @@ public class PlayerController : MonoBehaviour {
 
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
 
+				if (!_playerAug.fosAug){
 				if (_chargeAttackUseAll){
 					_myStats.ChargeCheck(9999f);
 				}else{
 				_myStats.ChargeCheck(_chargeAttackCost);
+				}
 				}
 				_playerSound.PlayChargeSound();
 
@@ -1798,7 +1803,11 @@ public class PlayerController : MonoBehaviour {
 						if (_isTransformed){
 							myTracker.FireEffect(ShootDirection(), transformedColor, attackDelay, Vector3.zero);
 						}else{
-						myTracker.FireEffect(ShootDirection(), equippedWeapon.swapColor, attackDelay, Vector3.zero);
+							if (_doingHeavyAttack){
+								myTracker.FireEffect(ShootDirection(), attackingWeaponAug.swapColor, attackDelay, Vector3.zero);
+							}else{
+							myTracker.FireEffect(ShootDirection(), attackingWeapon.swapColor, attackDelay, Vector3.zero);
+							}
 						}
 						//weaponTriggered = equippedWeapon;
 					_isShooting = true;

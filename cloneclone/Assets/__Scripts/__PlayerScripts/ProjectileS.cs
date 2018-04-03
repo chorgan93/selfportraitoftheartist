@@ -67,12 +67,16 @@ public class ProjectileS : MonoBehaviour {
 	public bool addOnDetermined = false;
 	private float startDmg;
 	public float stunMult = 1f;
+	public bool ignoreEnemyDefense = false;
+	private bool startIgnoreDefense = false;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float absorbPercent = 0.1f;
 	public float reloadTime = 1f;
 	public float numAttacks = 1;
 	public float timeBetweenAttacks = 0.1f;
+
+	private bool doubleStunTime = false;
 
 	[Header("Combo Properties")]
 	public bool allowChainHeavy = true;
@@ -256,6 +260,7 @@ public class ProjectileS : MonoBehaviour {
 			startDmg = dmg;
 			stopTime = 0f;
 			isStopped = false;
+			startIgnoreDefense = ignoreEnemyDefense;
 			for (int i=0;i < biosAnimators.Count; i++){
 				biosAnimators[i].gameObject.SetActive(false);
 			}
@@ -278,8 +283,14 @@ public class ProjectileS : MonoBehaviour {
 		touchingWall = false;
 		enemiesHit.Clear();
 		// powerLvl = dmg;
-
+		doubleStunTime = playerReference.playerAug.aquaAug;
 		playerReference.SetFace(lockFaceDirection);
+
+		if (playerReference.playerAug.solAug){
+			ignoreEnemyDefense = true;
+		}else{
+			ignoreEnemyDefense = startIgnoreDefense;
+		}
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt();
@@ -448,7 +459,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(hitEnemy.transform, knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							dmg, stunMult, critDmg*SolAugMult(), hitStopAmt, 0f, false, killAtLessThan*DeterminedMult());
+							dmg, stunMult, critDmg, ignoreEnemyDefense, hitStopAmt, 0f, doubleStunTime, false, killAtLessThan*DeterminedMult());
 					}
 				}
 			}
@@ -581,8 +592,8 @@ public class ProjectileS : MonoBehaviour {
 				//DoShake();
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), hitStopAmt, 0f,
-					false, killAtLessThan*DeterminedMult());
+					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), ignoreEnemyDefense,
+						hitStopAmt, 0f,false, doubleStunTime, killAtLessThan*DeterminedMult());
 
 				_myPlayer.myStats.DesperateRecover(dmgDealt);
 

@@ -42,6 +42,8 @@ public class ChargeAttackS : MonoBehaviour {
 	public int shakeAmt = 1;
 	public float hitStopTime = 0.2f;
 
+	private bool ignoreDefenses = false;
+
 	private bool _firstSpawned = false;
 
 	private bool standAlone = false;
@@ -153,6 +155,7 @@ public class ChargeAttackS : MonoBehaviour {
 		_myRenderer.material.SetTexture("_MainTex", startFlash);
 		_myRenderer.enabled = true;
 		flashFrames = flashMax;
+		ignoreDefenses = myPlayer.playerAug.solAug;
 
 		dmg*=myPlayer.playerAug.GetParanoidMult();
 		if (myPlayer.isTransformed){
@@ -242,7 +245,8 @@ public class ChargeAttackS : MonoBehaviour {
 
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, 
-					actingDmg, stunMult, 2f, hitStopTime, 0f, false, killAtLessThan*DeterminedMult());
+						actingDmg, stunMult, 2f, myPlayer.playerAug.solAug, hitStopTime, 0f, false, 
+						myPlayer.playerAug.aquaAug, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
 				RankManagerS.R.ScoreHit(2, dmgDealt);

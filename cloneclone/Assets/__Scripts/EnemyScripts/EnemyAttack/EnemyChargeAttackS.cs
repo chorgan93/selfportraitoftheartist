@@ -253,7 +253,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 
 				hitEnemy.TakeDamage
-					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, actingDamage, 1f, 1f, 0.1f, knockbackTime, true);
+					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, actingDamage, 1f, 1f, false, 0.1f, knockbackTime, true);
 			
 			}
 			}

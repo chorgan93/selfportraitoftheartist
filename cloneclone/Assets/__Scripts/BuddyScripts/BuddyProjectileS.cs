@@ -35,6 +35,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	public float accuracyMult = 0f;
 	public bool stopBuddy = false;
 	public bool stopTime = false;
+	public bool ignoreEnemyDefense = false;
 	
 	[Header("Enemy Interaction")]
 	public bool isPiercing = false;
@@ -112,7 +113,7 @@ public class BuddyProjectileS : MonoBehaviour {
 
 					for (int i = 0; i < auraTrigger.EnemiesInRange.Count; i++){
 						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(auraTrigger.EnemiesInRange[i].transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							auraDamage*actingDamageMult, actingStunMult, 2f, 0f, 0f);
+							auraDamage*actingDamageMult, actingStunMult, 2f, ignoreEnemyDefense, 0f, 0f);
 						RankManagerS.R.ScoreHit(3, dmgDealt);
 
 

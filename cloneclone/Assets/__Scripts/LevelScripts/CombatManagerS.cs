@@ -91,7 +91,7 @@ public class CombatManagerS : MonoBehaviour {
 		for (int i = 0; i < enemies.Length; i++){
 			if (enemies[i].enemySpawned){
 				if (enemies[i].currentSpawnedEnemy.GetPlayerReference() != null){
-					enemies[i].currentSpawnedEnemy.TakeDamage(enemies[i].currentSpawnedEnemy.transform, Vector3.zero, 9999f, 1f, 1f, 0f, 0f);
+					enemies[i].currentSpawnedEnemy.TakeDamage(enemies[i].currentSpawnedEnemy.transform, Vector3.zero, 9999f, 1f, 1f, false, 0f, 0f);
 				}
 			}
 		}

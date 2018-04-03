@@ -1,0 +1,338 @@
+fileFormatVersion: 2
+guid: ae1697185b1bb4e429c727353c758c5c
+timeCreated: 1522714996
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Luna Attacks_0
+    21300002: PC Luna Attacks_1
+    21300004: PC Luna Attacks_2
+    21300006: PC Luna Attacks_3
+    21300008: PC Luna Attacks_4
+    21300010: PC Luna Attacks_5
+    21300012: PC Luna Attacks_6
+    21300014: PC Luna Attacks_7
+    21300016: PC Luna Attacks_8
+    21300018: PC Luna Attacks_9
+    21300020: PC Luna Attacks_10
+    21300022: PC Luna Attacks_11
+    21300024: PC Luna Attacks_12
+    21300026: PC Luna Attacks_13
+    21300028: PC Luna Attacks_14
+    21300030: PC Luna Attacks_15
+    21300032: PC Luna Attacks_16
+    21300034: PC Luna Attacks_17
+    21300036: PC Luna Attacks_18
+    21300038: PC Luna Attacks_19
+    21300040: PC Luna Attacks_20
+    21300042: PC Luna Attacks_21
+    21300044: PC Luna Attacks_22
+    21300046: PC Luna Attacks_23
+    21300048: PC Luna Attacks_24
+    21300050: PC Luna Attacks_25
+    21300052: PC Luna Attacks_26
+    21300054: PC Luna Attacks Redesign_0
+    21300056: PC Luna Attacks Redesign_1
+    21300058: PC Luna Attacks Redesign_2
+    21300060: PC Luna Attacks Redesign_3
+    21300062: PC Luna Attacks Redesign_4
+    21300064: PC Luna Attacks Redesign_5
+    21300066: PC Luna Attacks Redesign_6
+    21300068: PC Luna Attacks Redesign_7
+    21300070: PC Luna Attacks Redesign_8
+    21300072: PC Luna Attacks Redesign_9
+    21300074: PC Luna Attacks Redesign_10
+    21300076: PC Luna Attacks Redesign_11
+    21300078: PC Luna Attacks Redesign_12
+    21300080: PC Luna Attacks Redesign_13
+    21300082: PC Luna Attacks Redesign_14
+    21300084: PC Luna Attacks Redesign_15
+    21300086: PC Luna Attacks Redesign_16
+    21300088: PC Luna Attacks Redesign_17
+    21300090: PC Luna Attacks Redesign_18
+    21300092: PC Luna Attacks Redesign_19
+    21300094: PC Luna Attacks Redesign_20
+    21300096: PC Luna Attacks Redesign_21
+    21300098: PC Luna Attacks Redesign_22
+    21300100: PC Luna Attacks Redesign_23
+    21300102: PC Luna Attacks Redesign_24
+    21300104: PC Luna Attacks Redesign_25
+    21300106: PC Luna Attacks Redesign_26
+    21300108: PC Luna Attacks Redesign_27
+    21300110: PC Luna Attacks Redesign_28
+    21300112: PC Luna Attacks Redesign_29
+    21300114: PC Luna Attacks Redesign_30
+    21300116: PC Luna Attacks Redesign_31
+    21300118: PC Luna Attacks Redesign_32
+    21300120: PC Luna Attacks Redesign_33
+    21300122: PC Luna Attacks Redesign_34
+    21300124: PC Luna Attacks Redesign_35
+    21300126: PC Luna Attacks Redesign_36
+    21300128: PC Luna Attacks Redesign_37
+    21300130: PC Luna Attacks Redesign_38
+    21300132: PC Luna Attacks Redesign_39
+    21300134: PC Luna Attacks Redesign_40
+    21300136: PC Luna Attacks Redesign_41
+    21300138: PC Luna Attacks Redesign_42
+    21300140: PC Luna Attacks Redesign_43
+    21300142: PC Luna Attacks Redesign_44
+    21300144: PC Luna Attacks Redesign_45
+    21300146: PC Luna Attacks Redesign_46
+    21300148: PC Luna Attacks Redesign_47
+    21300150: PC Luna Attacks Redesign_48
+    21300152: PC Luna Attacks Redesign_49
+    21300154: PC Luna Attacks Redesign_50
+    21300156: PC Luna Attacks Redesign_51
+    21300158: PC Luna Attacks Redesign_52
+    21300160: PC Luna Attacks Redesign_53
+    21300162: PC Luna Attacks Redesign_54
+    21300164: PC Luna Attacks Redesign_55
+    21300166: PC Luna Attacks Redesign_56
+    21300168: PC Luna Attacks Redesign_57
+    21300170: PC Luna Attacks Redesign_58
+    21300172: PC Luna Attacks Redesign_59
+    21300174: PC Luna Attacks Redesign_60
+    21300176: PC Luna Attacks Redesign_61
+    21300178: PC Luna Attacks Redesign_62
+    21300180: PC Luna Attacks Redesign_63
+    21300182: PC Luna Attacks Redesign_64
+    21300184: PC Luna Attacks Redesign_65
+    21300186: PC Luna Attacks Redesign_66
+    21300188: PC Luna Attacks Redesign_67
+    21300190: PC Luna New Heavy Attack_0
+    21300192: PC Luna New Heavy Attack_1
+    21300194: PC Luna New Heavy Attack_2
+    21300196: PC Luna New Heavy Attack_3
+    21300198: PC Luna New Heavy Attack_4
+    21300200: PC Luna New Heavy Attack_5
+    21300202: PC Luna New Heavy Attack_6
+    21300204: PC Luna New Heavy Attack_7
+    21300206: PC Luna New Heavy Attack_8
+    21300208: PC Luna New Heavy Attack_9
+    21300210: PC Luna New Heavy Attack_10
+    21300212: PC Luna New Heavy Attack_11
+    21300214: PC Sol Heavy_0
+    21300216: PC Sol Heavy_1
+    21300218: PC Sol Heavy_2
+    21300220: PC Sol Heavy_3
+    21300222: PC Sol Heavy_4
+    21300224: PC Sol Heavy_5
+    21300226: PC Sol Heavy_6
+    21300228: PC Sol Heavy_7
+    21300230: PC Sol Heavy_8
+    21300232: PC Sol Heavy_9
+    21300234: PC Sol Heavy_10
+    21300236: PC Sol Heavy_11
+    21300238: PC Sol Heavy_12
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Sol Heavy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Sol Heavy_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

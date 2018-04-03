@@ -44,11 +44,19 @@ public class PlayerAugmentsS : MonoBehaviour {
 	public bool erebosAug { get { return _erebosAug; } }
 	public const float erebosAugAmt = 2f;
 
+	private bool _aquaAug = false;
+	public bool aquaAug { get { return _aquaAug; } }
+	public const float aquaAugMult = 1.75f;
+
 	private bool _aeroAug = false;
 	public bool aeroAug { get { return _aeroAug; } }
 
 	private bool _biosAug = false;
 	public bool biosAug { get { return _biosAug; } }
+
+
+	private bool _fosAug = false;
+	public bool fosAug { get { return _fosAug; } }
 
 	//____________________________________________________________virtue augmentations
 	// index 0
@@ -199,6 +207,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_realGaeaAug = false;
 		_erebosAug = false;
 		_biosAug = false;
+		_aquaAug = false;
+		_fosAug = false;
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
@@ -271,6 +281,14 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 		if (_playerReference.EquippedWeaponAug().weaponNum == 8){
 			_biosAug = true;
+		}
+
+		if (_playerReference.EquippedWeaponAug().weaponNum == 9){
+			_fosAug = true;
+		}
+
+		if (_playerReference.EquippedWeaponAug().weaponNum == 10){
+			_aquaAug = true;
 		}
 	}
 

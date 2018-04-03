@@ -461,7 +461,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					}
 					hitEnemy.TakeDamage
 					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						damage, 1f, 1.5f, hitStopAmount, 0f, true);
+						damage, 1f, 1.5f, false, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);
