@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyChargeAttackS : MonoBehaviour {
 
 	private EnemyS myEnemy;
+	public EnemyS enemyReference { get { return myEnemy; } }
 	public Renderer _myRenderer;
 	private Collider _myCollider;
 	private float _animateRate = 0.033f;

@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 
 	[Header("Dash Variables")]
 	public float dashSpeed;
+	public Collider dashCollider;
 	private float evadeSpeed = 2000f;
 	private bool _isDashing;
 	private bool _triggerBlock;
@@ -548,6 +549,7 @@ public class PlayerController : MonoBehaviour {
 		_projectilePool = GetComponent<ProjectilePoolS>();
 
 		myTracker = GetComponentInChildren<TrackingEffectS>();
+		dashCollider.enabled = false;
 
 		transformActiveEffect = GetComponentInChildren<CorruptedEffectS>();
 		if (!_isTransformed){
@@ -1017,7 +1019,8 @@ public class PlayerController : MonoBehaviour {
 
 		// first, check for parry, otherwise dodge
 		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
-		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() && !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() 
+			&& !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
 
 			_myRigidbody.AddForce(ShootDirection().normalized*parryForce*Time.deltaTime, ForceMode.Impulse);
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
@@ -1057,6 +1060,8 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", true);
 		TurnOffBlockAnimation();
 		_triggerBlock = false;
+
+			dashCollider.enabled = true;
 
 			_allowCounterAttack = false;
 			_delayWitchTime = false;
@@ -1150,6 +1155,8 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
 		_myRigidbody.drag = startDrag*sprintDragMult;
+
+		dashCollider.enabled = false;
 
 		_myRigidbody.AddForce(sprintStartForce*Time.deltaTime*_myRigidbody.velocity.normalized, ForceMode.Impulse);
 
@@ -1267,6 +1274,7 @@ public class PlayerController : MonoBehaviour {
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
+				dashCollider.enabled = false;
 				_myRigidbody.drag = startDrag;
 
 				if (dontGetStuckInEnemiesCheck.NoEnemies() && !PlayerSlowTimeS.witchTimeActive){
@@ -1324,6 +1332,12 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void CloseCallCheck(EnemyS attemptedSource){
+		if (AllowDodgeEffect() && attemptedSource != null){
+			WitchTime(attemptedSource);
+		}
+	}
+
 	private void AttackControl(){
 
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
@@ -1357,15 +1371,14 @@ public class PlayerController : MonoBehaviour {
 				SpawnAttackPuff();
 				canDoAdaptive = true;
 
-				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult());
+				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult(), !_playerAug.fosAug);
 
-				if (!_playerAug.fosAug){
 				if (_chargeAttackUseAll){
 					_myStats.ChargeCheck(9999f);
 				}else{
 				_myStats.ChargeCheck(_chargeAttackCost);
 				}
-				}
+
 				_playerSound.PlayChargeSound();
 
 				//_specialFlash.Flash();
@@ -1712,6 +1725,7 @@ public class PlayerController : MonoBehaviour {
 							
 							_myAnimator.SetBool("Evading", false);
 							_isDashing = false;
+							dashCollider.enabled = false;
 							_myRigidbody.drag = startDrag;
 
 							allowParryCountdown = allowParryInput;
@@ -3196,7 +3210,6 @@ public class PlayerController : MonoBehaviour {
 		
 
 	public bool AllowDodgeEffect(){
-		// turned on for witch testing
 		if (_isDashing && dashDurationTime <= dashEffectThreshold && _playerAug.HasWitchAug()){
 			return true;
 		}else{

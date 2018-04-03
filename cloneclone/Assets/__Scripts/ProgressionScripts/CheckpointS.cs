@@ -28,6 +28,8 @@ public class CheckpointS : MonoBehaviour {
 	private string healMessageWithItem =  "Health restored. Progress saved.\nREWINDs restored.";
 	public int spawnNum = 0;
 
+	public GameObject checkpointSound;
+
 	
 	public BGMLayerS[] musicAtPoint;
 
@@ -84,10 +86,16 @@ public class CheckpointS : MonoBehaviour {
 						_menuManager.TurnOnLevelUpMenu();
 					_playerDetect.player.SetTalking(true);
 					_playerDetect.player.SetExamining(true, examinePos, "");
+					if (checkpointSound){
+						Instantiate(checkpointSound);
+					}
 
 				}
 				else{
 					_playerDetect.player.TriggerResting(3f);
+					if (checkpointSound){
+						Instantiate(checkpointSound);
+					}
 					if (!PlayerStatDisplayS.RECORD_MODE){
 						if (PlayerInventoryS.I.CheckForItem(1)){
 							if (SceneManagerS.inInfiniteScene){

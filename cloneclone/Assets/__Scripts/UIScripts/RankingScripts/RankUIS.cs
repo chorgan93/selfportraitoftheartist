@@ -29,6 +29,7 @@ public class RankUIS : MonoBehaviour {
 	public Color[] multiplierColors;
 	public string[] multiplierColorStrings;
 	public Color[] finalRankColors;
+	public GameObject[] finalRankSounds;
 	private List<float> imageMaxAlphas = new List<float>();
 	public Text totalRankText;
 	private Color totalRankStartCol;
@@ -329,6 +330,7 @@ public class RankUIS : MonoBehaviour {
 		finalRankLetter.text = "(" + myRankManager.ReturnRank() + ")";
 		totalRankText.color = finalRankLetter.color;
 		myRankManager.finalCombatManager.CheckCondition();
+		Instantiate(finalRankSounds[myRankManager.GetRankInt()]);
 		yield return new WaitForSeconds(showAfterRankTime);
 		VerseDisplayS.V.EndVerse(0.1f);
 		myRankManager.AddFinalScore();
