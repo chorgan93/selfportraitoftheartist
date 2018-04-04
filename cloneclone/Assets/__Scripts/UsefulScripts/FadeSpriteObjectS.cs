@@ -11,7 +11,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 
 	public float fadeRate = 1f;
 	public float delayFadeTime;
-	private float startDelayFadeTime;
+	private float startDelayFadeTime = -1f;
 	public float startFadeAlpha = 1f;
 	public bool destroyOnFade = true;
 	public bool ignoreWitchTime = false;
@@ -35,7 +35,7 @@ public class FadeSpriteObjectS : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		myRenderer = GetComponent<SpriteRenderer>();
 		currentCol = myRenderer.color;
@@ -152,6 +152,13 @@ public class FadeSpriteObjectS : MonoBehaviour {
 		_myManager = e;
 		_spawnCode = sCode;
 		Reinitialize();
+	}
+
+	public void SetTempFadeDelay(float newFadeDelay){
+		if (startDelayFadeTime < 0){
+			startDelayFadeTime = delayFadeTime;
+		}
+		delayFadeTime = newFadeDelay;
 	}
 
 	public void SetDrift(float newDrift){

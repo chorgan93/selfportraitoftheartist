@@ -23,11 +23,17 @@ public class PlayerDashEffectS : MonoBehaviour {
 	private Color mainCol;
 	private Color altCol;
 
+	private float disconnectEffectNum = 0.6f;
+	private int disconnectedSpriteToUse = 0;
+
 	Vector3 spawnPos;
 	GameObject newSpawn;
 	private SpriteRenderer newSprite;
 
 	private EffectSpawnManagerS spawnManager;
+	public Sprite[] disconnectedSprites;
+
+	private bool disconnectAltCol = true;
 
 
 	// Use this for initialization
@@ -106,6 +112,30 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 	}
 
+	void StandaloneShadowSpawn(Vector3 shadowPos,bool useAlt, float addFade){
+		spawnPos = shadowPos;
+		spawnPos.z += 1f;
+
+
+		newSpawn = spawnManager.SpawnPlayerFade(spawnPos, 0.3f*addFade);
+
+		newSprite = newSpawn.GetComponent<SpriteRenderer>();
+		newSprite.sprite = disconnectedSprites[disconnectedSpriteToUse];
+		disconnectedSpriteToUse++;
+		if (disconnectedSpriteToUse > disconnectedSprites.Length-1){
+			disconnectedSpriteToUse = 0;
+		}
+
+		newSpawn.transform.localScale = myController.transform.localScale.x * myController.myRenderer.transform.localScale;
+		newSpawn.transform.localScale*=0.9f;
+
+		if (useAlt){
+		newSprite.material.SetColor("_FlashColor", myController.EquippedWeapon().flashSubColor);
+		}else{
+			newSprite.material.SetColor("_FlashColor", myController.EquippedWeapon().swapColor);
+		}
+	}
+
 	public void StartAttackEffect(Color mCol, Color aCol){
 		attackEffectCountdown = 0f;
 		useAltColor = false;
@@ -116,5 +146,16 @@ public class PlayerDashEffectS : MonoBehaviour {
 
 	public void EndAttackEffect(){
 		doingAttackEffect = false;
+	}
+
+	public void DisconnectEffect(Vector3 startPos, Vector3 endPos){
+		float effectDistance = Vector3.Distance(startPos, endPos);
+		int numEffects = Mathf.CeilToInt(effectDistance*disconnectEffectNum);
+		disconnectAltCol = true;
+		disconnectedSpriteToUse = 0;
+		for (int i = 0; i < numEffects; i++){
+			StandaloneShadowSpawn(startPos+(endPos-startPos).normalized*effectDistance*((i*1f)/(numEffects*1f)),disconnectAltCol, i+1);
+			disconnectAltCol = !disconnectAltCol;
+		}
 	}
 }

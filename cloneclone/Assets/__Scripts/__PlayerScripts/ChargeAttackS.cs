@@ -50,6 +50,28 @@ public class ChargeAttackS : MonoBehaviour {
 
 	private FlashEffectS flashEffect;
 
+	[Header("Fos Charge Properties")]
+	public bool isFosCharge = false;
+	private bool fosFired = false;
+	private float floatRadius = 3f;
+	public float fosVisibleTime = 6f;
+	public float shootLifetime = 3f;
+	public float shootSpeed = 1000f;
+	private Rigidbody _myRigid;
+	private Vector3 currentFosPos = Vector3.zero;
+	private float floatAxisA = 3f;
+	private float floatAxisB = 1.75f;
+	private float currentAngle = 0f;
+	private float angleRate = 8f;
+	private int maxHits = 1;
+	private int currentHit = 0;
+	private float startRotate = -1;
+	private float fosFadeRate = 2f;
+	private float fosFiredFade = 5f;
+	public float punchMult = 1f;
+	public float slowTime = 0.2f;
+	public float hangTime = 0.3f;
+	private Vector3 savedFireDirection = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +90,15 @@ public class ChargeAttackS : MonoBehaviour {
 		startTexture = _myRenderer.material.GetTexture("_MainTex");
 		_myRenderer.enabled = false;
 
-		fadeRate = startAlpha/visibleTime;
+		if (isFosCharge){
+			visibleTime = fosVisibleTime;
+			startRotate = transform.rotation.eulerAngles.z;
+			fadeRate = fosFadeRate;
+			_myRigid = GetComponent<Rigidbody>();
+			myPlayer.AddFosCharge(this);
+		}else{
+			fadeRate = startAlpha/visibleTime;
+		}
 
 		fadeColor = _myRenderer.material.color;
 
@@ -87,14 +117,23 @@ public class ChargeAttackS : MonoBehaviour {
 			transform.parent = null;
 		}
 
+		if (isFosCharge){
+			FosMovement();
+		}
+
 		if (_myRenderer.enabled){
 		
 
 			flashFrames--;
 			if (flashFrames < 0){
 				
-				if (_myCollider.enabled && flashFrames < -colliderFrames){
+				if (_myCollider.enabled && flashFrames < -colliderFrames && (!isFosCharge || (isFosCharge && currentHit >= maxHits))){
 					_myCollider.enabled = false;
+					if (isFosCharge && fosFired){
+						_myRigid.velocity = Vector3.zero;
+						visibleTime = 0f;
+					}
+					myPlayer.RemoveFosCharge(this);
 				}
 
 				if (_myRenderer.material.GetTexture("_MainTex") == startFlash){
@@ -112,8 +151,9 @@ public class ChargeAttackS : MonoBehaviour {
 					}
 				}else{
 
-
-			fadeColor.a -= Time.deltaTime*fadeRate;
+					if (!isFosCharge || (isFosCharge && visibleTime <= 0)){
+						fadeColor.a -= Time.deltaTime*fadeRate;
+					}
 			if (fadeColor.a <= 0){
 						if (!standAlone){
 				fadeColor.a = 0;
@@ -137,6 +177,126 @@ public class ChargeAttackS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	void FosMovement(){
+		if (myPlayer && visibleTime > 0 && visibleTime < 10 && !fosFired){
+							if (currentHit >= maxHits){
+								visibleTime = 0f;
+			}else{
+							visibleTime -= Time.deltaTime;
+				if (visibleTime <= 0){
+					FosEndFire();
+				}
+			}
+			currentAngle += angleRate*Time.deltaTime;
+			currentFosPos.x = floatAxisA * Mathf.Cos(currentAngle);
+			currentFosPos.y = floatAxisB * Mathf.Sin(currentAngle);
+			transform.position = myPlayer.transform.position + currentFosPos;
+			DoRotation();
+		}
+	}
+
+	public void FosPause(Vector3 newDir){
+		float rotateZ = 0;
+
+		newDir = savedFireDirection = newDir.normalized;
+
+			if(newDir.x == 0){
+				if (newDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+				rotateZ = Mathf.Rad2Deg*Mathf.Atan((newDir.y/newDir.x));
+		}	
+
+
+				if (newDir.x < 0){
+			rotateZ += 180;
+		}
+
+
+		_myCollider.enabled = false;
+		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ+startRotate+90f));
+		visibleTime = 9999f;
+		if (currentHit < maxHits){
+			currentHit = maxHits - 1;
+		}
+	}
+
+	public void FosDirectedFire(bool first = false){
+		Vector3 shootForce = savedFireDirection;
+		shootForce.z = 0f;
+		shootForce = shootForce*shootSpeed*Time.unscaledDeltaTime;
+		_myRigid.AddForce(shootForce, ForceMode.Impulse);
+		visibleTime = shootLifetime;
+		fosFired = true;
+		_myCollider.enabled = true;
+
+		CameraShakeS.C.SmallShake();
+		if (first){
+			CameraShakeS.C.SmallSleep();
+			CameraShakeS.C.SloAndPunch(slowTime,punchMult,hangTime);
+		}
+		if (currentHit < maxHits){
+			currentHit = maxHits - 1;
+		}
+		fadeRate = fosFiredFade;
+	}
+
+	public void FosEndFire(bool fromPlayer = false){
+		
+		Vector3 shootForce = myPlayer.transform.position-transform.position;
+		shootForce.z = 0f;
+		shootForce = shootForce.normalized*shootSpeed*Time.unscaledDeltaTime;
+		_myRigid.AddForce(shootForce, ForceMode.Impulse);
+		visibleTime = shootLifetime;
+		fosFired = true;
+		_myCollider.enabled = true;
+		if (currentHit < maxHits){
+			currentHit = maxHits - 1;
+		}
+
+		if (!fromPlayer){
+			CameraShakeS.C.SmallShake();
+			CameraShakeS.C.SmallSleep();
+			CameraShakeS.C.SloAndPunch(slowTime,punchMult,hangTime);
+		myPlayer.TriggerAllFos(this);
+		}
+		fadeRate = fosFiredFade;
+
+	}
+
+	void DoRotation(){
+		float rotateZ = 0;
+
+		Vector3 targetDir = (transform.position-myPlayer.transform.position).normalized;
+
+		if(targetDir.x == 0){
+			if (targetDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+			rotateZ = Mathf.Rad2Deg*Mathf.Atan((targetDir.y/targetDir.x));
+		}	
+
+
+		if (targetDir.x < 0){
+			rotateZ += 180;
+		}
+
+
+
+		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ+startRotate+90f));
+
 	}
 
 	public void TriggerAttack(Vector3 startPos, Vector3 attackDir, Color fadeCol){
@@ -216,6 +376,9 @@ public class ChargeAttackS : MonoBehaviour {
 			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
 			destructible.TakeDamage(dmg,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
 			HitEffectDestructible(destructible.myRenderer, other.transform.position);
+			if (isFosCharge){
+				currentHit++;
+			}
 		}
 		
 		if (other.gameObject.tag == "Enemy"){
@@ -262,6 +425,9 @@ public class ChargeAttackS : MonoBehaviour {
 
 				HitEffect(other.transform.position, hitEnemy.bloodColor);
 				myPlayer.ExtendWitchTime();
+				if (isFosCharge){
+					currentHit++;
+				}
 			}
 		}
 		

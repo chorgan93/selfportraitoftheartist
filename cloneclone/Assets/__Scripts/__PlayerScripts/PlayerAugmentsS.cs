@@ -129,6 +129,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _untetheredAug = false;
 	public bool untetheredAug { get { return _untetheredAug; } }
 
+	// index 17 (teleport)
+	private bool _disconnectedAug = false;
+	public bool disconnectedAug { get { return _disconnectedAug; } }
+
 	// index 12 (bloodborne rally)
 	private bool _desperateAug = false;
 	public bool desperateAug { get { return _desperateAug; } }
@@ -231,6 +235,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_paranoidAug = false;
 		_incensedAug = false;
 		_cautiousAug = false;
+		_disconnectedAug = false;
 
 
 	}
@@ -338,6 +343,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		if (PlayerController.equippedVirtues.Contains(17)){
 		_untetheredAug = true;
+		}
+		if (PlayerController.equippedVirtues.Contains(18)){
+			_disconnectedAug = true;
 		}
 		if (PlayerController.equippedVirtues.Contains(14)){
 			_lovedAug = true;

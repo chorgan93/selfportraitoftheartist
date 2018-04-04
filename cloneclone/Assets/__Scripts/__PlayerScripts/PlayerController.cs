@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_TIME_ALLOW = 0.2f;
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
+	private static float TELEPORT_INPUT_THRESHOLD = 0.33f;
 	private static float ALLOW_DASHATTACK_TIME = 0.34f;
 	private static float ENEMY_TOO_CLOSE_DISTANCE = 8f;
 
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 	public float runSpeedMax;
 	public float walkThreshold = 0.8f;
 	private bool _isSprinting = false;
+	private bool allowSprint = false;
 	public float sprintMult = 1.4f;
 	public float sprintStaminaRate = .75f;
 	private float sprintNoDrainTime = 0f;
@@ -76,6 +78,18 @@ public class PlayerController : MonoBehaviour {
 	private bool _delayWitchTime = false;
 	public bool delayWitchTime { get { return _delayWitchTime; } }
 	private EnemyS _counterTarget;
+
+	[Header("Disconnected Variables")]
+	public LayerMask disconnectedMask;
+	private float disconnectedMaxDistance = 15f;
+	private float disconnectedMinDistance = 6f;
+	private float disconnectedNoTargetDistance = 7f;
+	private float disconnectedTeleportDistance = 1f;
+	private Vector3 disconnectedTeleportTarget = Vector3.zero;
+	private float disconnectedChargeCost = 1f;
+	private float disconnectedCooldown = 0.4f;
+	private float disconnectedEndSpeed = 1200f;
+	private float disconnectDragMult = 0.8f;
 
 	[Header("Parry Variables")]
 	public float parryForce = 1000f;
@@ -320,6 +334,8 @@ public class PlayerController : MonoBehaviour {
 	public bool usingitem { get { return _usingItem; } }
 	private float usingItemTime = 0f;
 	private float usingItemTimeMax = 0.8f;
+
+	private List<ChargeAttackS> fosCharges = new List<ChargeAttackS>();
 
 	private PlayerSoundS _playerSound;
 	private PlayerAugmentsS _playerAug;
@@ -1009,6 +1025,57 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	private void DisconnectedTeleport(){
+		float testDistance = 0f;
+		RaycastHit teleportHit = new RaycastHit();
+		if (Physics.Raycast(transform.position, ShootDirectionUnlocked(), out teleportHit, disconnectedMaxDistance, disconnectedMask)){
+			//Debug.LogError(teleportHit.collider.gameObject.name, teleportHit.collider.gameObject);
+			testDistance = Vector3.Distance(teleportHit.point, transform.position);
+			if (testDistance > disconnectedMinDistance){
+			float sizeHit = 0f;
+			if (teleportHit.collider.tag != "Wall"){
+				sizeHit = teleportHit.collider.transform.localScale.x;
+				if (teleportHit.collider.transform.parent){
+					sizeHit/=teleportHit.collider.transform.parent.localScale.x;
+				}
+
+				disconnectedTeleportTarget = teleportHit.point
+					-(teleportHit.point-transform.position).normalized*(disconnectedTeleportDistance+Mathf.Abs(sizeHit));
+			}else if (testDistance < disconnectedNoTargetDistance){
+				disconnectedTeleportTarget = teleportHit.point
+					-(teleportHit.point-transform.position).normalized*(disconnectedTeleportDistance+Mathf.Abs(sizeHit));
+			}else{
+				disconnectedTeleportTarget = transform.position+ShootDirectionUnlocked()*disconnectedNoTargetDistance;
+			}
+		}}else{
+			disconnectedTeleportTarget = transform.position+ShootDirectionUnlocked()*disconnectedNoTargetDistance;
+		}
+
+
+		disconnectedTeleportTarget.z = transform.position.z;
+		testDistance = Vector3.Distance(disconnectedTeleportTarget, transform.position);
+		if (testDistance <= disconnectedMaxDistance){
+		_myAnimator.SetBool("Evading", true);
+		_myAnimator.SetTrigger("Dash");
+		attackEffectRef.DisconnectEffect(transform.position, disconnectedTeleportTarget);
+
+		_myRigidbody.AddForce((disconnectedTeleportTarget-transform.position).normalized*Time.deltaTime*disconnectedEndSpeed,
+			ForceMode.Impulse);
+		transform.position = disconnectedTeleportTarget;
+		allowSprint = true;
+		dashDurationTime = 0;
+		dashDurationTimeMax = disconnectedCooldown;
+		dashCooldown = dashCooldownMax;
+		_myRigidbody.drag = disconnectDragMult*startDrag;
+
+		_isDashing = true;
+		_myStats.ChargeCheck(disconnectedChargeCost);
+		triggerDashSlideTime = 0f;
+			CameraFollowS.F.FasterFollow(1f);
+		}
+	}
+
+
 	private void TriggerDash(bool fullDash = false){
 
 
@@ -1132,6 +1199,7 @@ public class PlayerController : MonoBehaviour {
 		triggerDashSlideTime = dashDurationTimeMax*dashSlideTime;
 
 		dashCooldown = dashCooldownMax;
+			allowSprint = true;
 
 		if (!_isDashing){
 			_isDashing = true;
@@ -1151,6 +1219,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TriggerSprint(){
 		_isSprinting = true;
+		allowSprint = false;
 		resetCountdown = resetTimeMax;
 		_myAnimator.SetBool("Evading", false);
 		_isDashing = false;
@@ -1239,7 +1308,11 @@ public class PlayerController : MonoBehaviour {
 			
 			// allow for second dash
 			if (controller.GetCustomInput(4)){
-				if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
+				if (dashButtonUp && (dashDurationTime < TELEPORT_INPUT_THRESHOLD) && CanInputDash(true) 
+					&& _myStats.ChargeCheck(disconnectedChargeCost, false) && _playerAug.disconnectedAug){
+					DisconnectedTeleport();
+				}
+				else if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash())){
 					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
 						TriggerDash();
@@ -1249,6 +1322,7 @@ public class PlayerController : MonoBehaviour {
 				dashButtonUp = false;
 			}else{
 				dashButtonUp = true;
+				allowSprint = false;
 			}
 			
 			
@@ -1296,7 +1370,7 @@ public class PlayerController : MonoBehaviour {
 						_chargeAttackTriggered = false;
 						_isShooting = false;
 					}
-				}else if (controller.GetCustomInput(4) && !dashButtonUp && !_isSprinting && SprintMoveCondition()){
+				}else if (controller.GetCustomInput(4) && !dashButtonUp && !_isSprinting && SprintMoveCondition() && allowSprint){
 					TriggerSprint();
 				}
 			}
@@ -1811,7 +1885,8 @@ public class PlayerController : MonoBehaviour {
 								}
 							}
 					}
-					attackTriggered = true;
+						attackTriggered = true;
+						TriggerFosAttack();
 						canDoAdaptive = false;
 
 						if (_isTransformed){
@@ -2571,6 +2646,54 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	void TriggerFosAttack(){
+		if (fosCharges.Count > 0){
+			Vector3 targetDir = Vector3.zero;
+			for (int i = 0; i < fosCharges.Count; i++){
+
+				if (currentTargetEnemy){
+					targetDir = currentTargetEnemy.transform.position-fosCharges[i].transform.position;
+				}else if (_counterTarget){
+					targetDir = _counterTarget.transform.position-fosCharges[i].transform.position;
+				}else if (enemyDetect.closestEnemyTransform){
+					targetDir = enemyDetect.closestEnemyTransform.position-fosCharges[i].transform.position;
+				}else{
+					targetDir = ShootDirectionAssisted();
+				}
+				targetDir.z = 0f;
+				fosCharges[i].FosPause(targetDir);
+			}
+			StartCoroutine(FireFosCharges());
+		}
+	}
+
+	IEnumerator FireFosCharges(){
+
+		yield return new WaitForSeconds(0.2f);
+		bool firstFired = true;
+		while (fosCharges.Count > 0){
+			fosCharges[0].FosDirectedFire(firstFired);
+			fosCharges.RemoveAt(0);
+			firstFired = false;
+			yield return new WaitForSeconds(0.12f);
+		}
+	}
+
+	public void AddFosCharge(ChargeAttackS newCharge){
+		fosCharges.Add(newCharge);
+	}
+	public void RemoveFosCharge(ChargeAttackS usedCharge){
+		if (fosCharges.Contains(usedCharge)){
+			fosCharges.Remove(usedCharge);
+		}
+	}
+	public void TriggerAllFos(ChargeAttackS removeCharge){
+		fosCharges.Remove(removeCharge);
+		for (int i=0; i < fosCharges.Count; i++){
+			fosCharges[i].FosEndFire(true);
+		}
+	}
+
 	public void TurnOffResting(){
 		_myAnimator.SetBool("Resting", false);
 	}
@@ -2622,7 +2745,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private bool CanInputDash(){
+	private bool CanInputDash(bool ignoreCooldown = false){
 
 		bool dashAllow = false;
 
@@ -2630,7 +2753,8 @@ public class PlayerController : MonoBehaviour {
 		    (controller.Horizontal() != 0 || controller.Vertical() != 0) && !_isDashing
 		    && !_isStunned && _myStats.currentDefense > 0 && (!_examining || enemyDetect.closestEnemy)){**/
 		
-		if (!_isTalking && !_isStunned && !_delayWitchTime && !_usingItem && dashCooldown <= CHAIN_DASH_THRESHOLD){
+		if (!_isTalking && !_isStunned && !_delayWitchTime && !_usingItem  
+			&& (dashCooldown <= CHAIN_DASH_THRESHOLD || ignoreCooldown)){
 			// && attackDuration <= currentAttackS.chainAllow
 			dashAllow = true;
 		}

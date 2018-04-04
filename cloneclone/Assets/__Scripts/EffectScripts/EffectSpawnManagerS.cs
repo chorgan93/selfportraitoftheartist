@@ -30,7 +30,7 @@ public class EffectSpawnManagerS : MonoBehaviour {
 	
 	}
 
-	public GameObject SpawnPlayerFade(Vector3 spawnPos){
+	public GameObject SpawnPlayerFade(Vector3 spawnPos, float newFadeDelay = -1f){
 
 		GameObject spawnObj;
 
@@ -44,7 +44,12 @@ public class EffectSpawnManagerS : MonoBehaviour {
 		}
 
 		spawnObj.transform.parent = null;
-		spawnObj.GetComponent<FadeSpriteObjectS>().SetManager(this, 1);
+		FadeSpriteObjectS fadeObj = spawnObj.GetComponent<FadeSpriteObjectS>();
+		fadeObj.SetManager(this, 1);
+
+		if (newFadeDelay >= 0){
+			fadeObj.SetTempFadeDelay(newFadeDelay);
+		}
 
 		return spawnObj;
 	}

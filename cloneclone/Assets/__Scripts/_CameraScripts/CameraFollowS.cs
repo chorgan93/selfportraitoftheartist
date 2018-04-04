@@ -71,6 +71,11 @@ public class CameraFollowS : MonoBehaviour {
 
 	private List<EnemyS> stunnedEnemies;
 
+	private float fasterFollowTime = 0f;
+	private float fasterFollowMult = 1.5f;
+	private float startFollowEase = 0f;
+	private bool _fasterFollow = false;
+
 	
 	//_________________________________________________GETTERS AND SETTERS
 	
@@ -97,6 +102,8 @@ public class CameraFollowS : MonoBehaviour {
 		myCam.orthographicSize = startOrthoSize*ZOOM_LEVEL*orthoSizeMult;
 		stunOrthoSize = startOrthoSize*STUN_ORTHO_MULT;
 
+		startFollowEase = _camEasing;
+
 		poiQueue = new List<GameObject>();
 		poiDelayTimes = new List<float>();
 
@@ -116,6 +123,13 @@ public class CameraFollowS : MonoBehaviour {
 
 		if (_punchHangTime > 0f){
 			_punchHangTime -= Time.deltaTime;
+		}
+		if (_fasterFollow){
+			fasterFollowTime -= Time.deltaTime;
+			if (fasterFollowTime <= 0){
+				_fasterFollow = false;
+				_camEasing = startFollowEase;
+			}
 		}
 
 	}
@@ -414,5 +428,10 @@ public class CameraFollowS : MonoBehaviour {
 		return qTime;
 	}
 
+	public void FasterFollow(float newFastTime){
+		fasterFollowTime = newFastTime;
+		_camEasing = startFollowEase*fasterFollowMult;
+		_fasterFollow = true;
+	}
 
 }

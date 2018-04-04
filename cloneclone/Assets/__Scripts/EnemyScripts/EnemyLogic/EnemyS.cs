@@ -1162,8 +1162,12 @@ public class EnemyS : MonoBehaviour {
 						_myAnimator.SetLayerWeight(1, 0f);
 					}
 					// reset whichever state should be active
-				_currentBehavior.CancelAction();
+				if (_currentBehavior != null){
+					_currentBehavior.CancelAction();
+				}
+				if(_currentState != null){ 
 					_currentState.StartActions();
+				}
 
 			}
 		}else{

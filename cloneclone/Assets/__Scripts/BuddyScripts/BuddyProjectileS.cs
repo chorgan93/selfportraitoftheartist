@@ -40,6 +40,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	[Header("Enemy Interaction")]
 	public bool isPiercing = false;
 	public float damage;
+	public float stunMult = 1f;
 	public float knockbackTime;
 	public float knockbackMult;
 	
@@ -103,7 +104,7 @@ public class BuddyProjectileS : MonoBehaviour {
 				auraDamageCountdown = auraDamageRate;
 				if (auraTrigger.EnemiesInRange.Count > 0){
 					float actingKnockbackSpeed = shotSpeed*knockbackMult*auraKnockbackMult;
-					float actingStunMult = 1f;
+					float actingStunMult = stunMult;
 					float actingDamageMult = 1f;
 					if (_myBuddy.playerRef.playerAug.trustingAug){
 						actingStunMult = 1.5f;
