@@ -40,6 +40,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	[Header("Enemy Interaction")]
 	public bool isPiercing = false;
 	public float damage;
+	public float damageMultAddPerLevel = 0.01f;
 	public float stunMult = 1f;
 	public float knockbackTime;
 	public float knockbackMult;
@@ -114,7 +115,9 @@ public class BuddyProjectileS : MonoBehaviour {
 
 					for (int i = 0; i < auraTrigger.EnemiesInRange.Count; i++){
 						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(auraTrigger.EnemiesInRange[i].transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							auraDamage*actingDamageMult, actingStunMult, 2f, ignoreEnemyDefense, 0f, 0f);
+							auraDamage*actingDamageMult
+							+(auraDamage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), 
+							actingStunMult, 2f, ignoreEnemyDefense, 0f, 0f);
 						RankManagerS.R.ScoreHit(3, dmgDealt);
 
 
@@ -326,7 +329,7 @@ public class BuddyProjectileS : MonoBehaviour {
 				
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-					damage*actingDamageMult, actingStunMult, 2f);
+						damage*actingDamageMult+(damage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), actingStunMult, 2f);
 
 				//_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 

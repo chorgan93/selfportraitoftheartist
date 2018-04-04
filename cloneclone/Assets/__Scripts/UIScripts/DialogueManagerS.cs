@@ -52,6 +52,7 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool triggerResponse = false;
 
 	public static DialogueManagerS D;
+	public GameObject dialogueAdvanceSound;
 
 	void Awake(){
 
@@ -156,6 +157,11 @@ public class DialogueManagerS : MonoBehaviour {
 
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
+		}
+		if (_textActive){
+
+			Instantiate(dialogueAdvanceSound);
+
 		}
 		if (!isMemo){
 			memoBG.enabled = false;
@@ -278,6 +284,8 @@ public class DialogueManagerS : MonoBehaviour {
 		
 		dialogueText.text = currentDisplayString = targetDisplayString = "";
 		}
+			
+		Instantiate(dialogueAdvanceSound);
 		
 		scrollCountdown = 0f;
 		currentChar = 0;

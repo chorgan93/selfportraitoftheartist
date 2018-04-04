@@ -118,6 +118,11 @@ public class ProjectileS : MonoBehaviour {
 	public float punchMult = 1f;
 	public bool extraSlow = false;
 
+
+	[Header("Special Properties")]
+	public bool dontDestroyOnStun = false;
+	public bool dontDestroyOnDodge = false;
+
 	private Rigidbody _rigidbody;
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer projRenderer { get { return myRenderer; } }
@@ -190,7 +195,7 @@ public class ProjectileS : MonoBehaviour {
 		}**/
 		
 
-			if (currentRange <= 0 || myPlayer.isDashing || _myPlayer.isStunned){
+			if (currentRange <= 0 || (myPlayer.isDashing && !dontDestroyOnDodge) || (_myPlayer.isStunned && !dontDestroyOnStun)){
 
 			if (projectileID < 0){
 			Destroy(gameObject);
@@ -276,7 +281,7 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
 		}else{
-			myRenderer.color = renderColor;
+			myRenderer.color = _myPlayer.attackingWeapon.swapColor;
 		}
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
