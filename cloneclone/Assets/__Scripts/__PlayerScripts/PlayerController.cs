@@ -351,6 +351,9 @@ public class PlayerController : MonoBehaviour {
 	private CombatManagerS _currentCombatManager;
 	public CombatManagerS currentCombatManager { get { return _currentCombatManager; } }
 
+	private List<ProjectileS> _activeProjectiles = new List<ProjectileS>();
+	public List<ProjectileS> activeProjectiles { get { return _activeProjectiles; } }
+
 	//_________________________________________AUGMENT-SPECIFIC
 
 	private float staggerBonusTimeMax = 1f;
@@ -1451,6 +1454,7 @@ public class PlayerController : MonoBehaviour {
 				_chargeAttackTriggered = true;
 				//_chargeCollider.TriggerAttack(transform.position, ShootDirection());
 
+				TurnOffProjectileAnimStop();
 				GameObject newCharge = Instantiate(_chargePrefab, transform.position, Quaternion.identity)
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(false,
@@ -1486,7 +1490,9 @@ public class PlayerController : MonoBehaviour {
 			allowChargeAttack = true;
 		}
 
+		if (!hitStopped){
 		attackDelay -= Time.deltaTime;
+		}
 		if (preAttackSlowdown && attackDelay <= preAttackSlowTime){
 			CameraShakeS.C.SloAndPunch(preAttackSlowTime, preAttackPunchMult, preAttackHangTime, true, preAttackExtraSlow);
 			preAttackSlowdown = false;
@@ -1688,6 +1694,7 @@ public class PlayerController : MonoBehaviour {
 
 			newProjectile.transform.position += savedDir.normalized*currentAttackS.spawnRange;
 
+			TurnOffProjectileAnimStop();
 			if (newAttack){
 				allowChainHeavy = currentAttackS.allowChainHeavy;
 				allowChainLight = currentAttackS.allowChainLight;
@@ -2641,6 +2648,12 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetTrigger("Parry");
 		FaceLeftRight();
+	}
+
+	private void TurnOffProjectileAnimStop(){
+		for (int i = 0; i < _activeProjectiles.Count; i++){
+			_activeProjectiles[i].TurnOffAnimationStop();
+		}
 	}
 	
 	private void TurnOffBlockAnimation(){

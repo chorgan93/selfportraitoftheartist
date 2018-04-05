@@ -34,6 +34,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 	private Vector3 spawnPosAdd = Vector3.zero;
 
 	public bool chargeSpawner = false;
+	public bool laserSpawn = false;
 	public bool enemyChargeSpawner = false;
 	private PlayerController playerRef;
 	private EnemyS myEnemyRef;
@@ -131,6 +132,12 @@ public class SpawnOnProjectileS : MonoBehaviour {
 					if (turnOffStun){
 						newSpawn.GetComponent<ChargeAttackS>().TurnOffStun();
 					}
+
+					if (laserSpawn){
+						Vector3 targetPoint = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*(spawnObjectRadius+1f);
+						newSpawn.transform.position = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*spawnObjectRadius+Random.insideUnitSphere*spawnRadiusAdd;
+						newSpawn.transform.Rotate(new Vector3(0,0, LaserFace(targetPoint-newSpawn.transform.position)-90f));
+					}
 				}
 				firstSpawned = true;
 			}
@@ -156,6 +163,12 @@ public class SpawnOnProjectileS : MonoBehaviour {
 						if (turnOffStun){
 							newSpawn.GetComponent<ChargeAttackS>().TurnOffStun();
 						}
+
+							if (laserSpawn){
+								Vector3 targetPoint = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*(spawnObjectRadius+1f);
+								newSpawn.transform.position = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*spawnObjectRadius+Random.insideUnitSphere*spawnRadiusAdd;
+								newSpawn.transform.Rotate(new Vector3(0,0, LaserFace(targetPoint-newSpawn.transform.position)-90f));
+							}
 					}
 				}
 			}
@@ -164,6 +177,35 @@ public class SpawnOnProjectileS : MonoBehaviour {
 		}
 	
 	}
+
+	private float LaserFace(Vector3 direction){
+
+		float rotateZ = 0;
+
+		Vector3 targetDir = direction.normalized;
+
+		if(targetDir.x == 0){
+			if (targetDir.y > 0){
+				rotateZ = 90;
+			}
+			else{
+				rotateZ = -90;
+			}
+		}
+		else{
+			rotateZ = Mathf.Rad2Deg*Mathf.Atan((targetDir.y/targetDir.x));
+		}	
+
+
+		if (targetDir.x < 0){
+			rotateZ += 180;
+		}
+
+
+
+		return rotateZ;
+
+	}							
 
 	public void SetNewParticleColor(Color newCol){
 		Color switchCol = newCol;

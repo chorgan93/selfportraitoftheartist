@@ -58,6 +58,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _fosAug = false;
 	public bool fosAug { get { return _fosAug; } }
 
+	private bool _aetherAug = false;
+	public bool aetherAug { get { return _aetherAug; } }
+
 	//____________________________________________________________virtue augmentations
 	// index 0
 	private bool _unstoppableAug = false;
@@ -213,6 +216,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_biosAug = false;
 		_aquaAug = false;
 		_fosAug = false;
+		_aetherAug = false;
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
@@ -294,6 +298,54 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 		if (_playerReference.EquippedWeaponAug().weaponNum == 10){
 			_aquaAug = true;
+		}
+		if (_playerReference.EquippedWeaponAug().weaponNum == 11){
+			_aetherAug = true;
+		}
+		if (_playerReference.SubWeaponAug() != null){
+			if (_playerReference.SubWeaponAug().weaponNum == 0){
+				_lunaAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 1){
+				_thanaAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 2){
+				_aeroAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 3){
+				_gaeaAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 4){
+				_animaAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 5){
+				_solAug = true;
+			}
+			if (_playerReference.SubWeaponAug().weaponNum == 6){
+				_realGaeaAug = true;
+			}
+			if (_playerReference.SubWeaponAug().weaponNum == 7){
+				_erebosAug = true;
+			}
+			if (_playerReference.SubWeaponAug().weaponNum == 8){
+				_biosAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 9){
+				_fosAug = true;
+			}
+
+			if (_playerReference.SubWeaponAug().weaponNum == 10){
+				_aquaAug = true;
+			}
+			if (_playerReference.SubWeaponAug().weaponNum == 11){
+				_aetherAug = true;
+			}
 		}
 	}
 

@@ -111,6 +111,8 @@ public class ProjectileS : MonoBehaviour {
 	private float maxSizeMult = 0.5f;
 	private float maxKnockbackMult = 0.5f;
 
+	private Color matchColor;
+
 	[Header("Style Properties")]
 
 	public float slowTime = 0f;
@@ -122,6 +124,7 @@ public class ProjectileS : MonoBehaviour {
 	[Header("Special Properties")]
 	public bool dontDestroyOnStun = false;
 	public bool dontDestroyOnDodge = false;
+	public GameObject shockwaveObj;
 
 	private Rigidbody _rigidbody;
 	public SpriteRenderer myRenderer;
@@ -158,6 +161,8 @@ public class ProjectileS : MonoBehaviour {
 	public ChargeProjectileS chargeProjectileRef;
 	private bool useBios = false;
 
+	private bool _animationStopActive = false;
+
 	// hitStopTest
 	bool isStopped = false;
 	float stopTime = 0f;
@@ -193,10 +198,10 @@ public class ProjectileS : MonoBehaviour {
 				colliderTurnedOff = true;
 			}
 		}**/
-		
 
 			if (currentRange <= 0 || (myPlayer.isDashing && !dontDestroyOnDodge) || (_myPlayer.isStunned && !dontDestroyOnStun)){
 
+				_myPlayer.activeProjectiles.Remove(this);
 			if (projectileID < 0){
 			Destroy(gameObject);
 			}else{
@@ -281,7 +286,9 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
 		}else{
-			myRenderer.color = _myPlayer.attackingWeapon.swapColor;
+			matchColor = _myPlayer.attackingWeapon.swapColor;
+			matchColor.a = renderColor.a;
+			myRenderer.color = matchColor;
 		}
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
@@ -296,6 +303,9 @@ public class ProjectileS : MonoBehaviour {
 		}else{
 			ignoreEnemyDefense = startIgnoreDefense;
 		}
+
+		_animationStopActive = true;
+		_myPlayer.activeProjectiles.Add(this);
 
 		// calculate attack power
 		dmg *= _myPlayer.myStats.strengthAmt();
@@ -425,6 +435,16 @@ public class ProjectileS : MonoBehaviour {
 			playerReference.ActivateBios();
 		}
 
+		if (dmg > 0 && _myPlayer.playerAug.aetherAug && shockwaveObj){
+			GameObject newShock = Instantiate(shockwaveObj,transform.position,transform.rotation) as GameObject;
+			ProjectileS shockProj = newShock.GetComponent<ProjectileS>();
+			shockProj.transform.localScale = transform.localScale;
+			shockProj.shotSpeed = shotSpeed;
+			shockProj.enemyKnockbackMult = enemyKnockbackMult*0.5f;
+			shockProj.dmg = startDmg*0.1f;
+			shockProj.absorbPercent = absorbPercent*0.1f;
+			shockProj.Fire(tooCloseForKnockback, aimDirection, knockbackDirection, playerReference, false, 0);
+		}
 
 	}
 
@@ -609,7 +629,9 @@ public class ProjectileS : MonoBehaviour {
 				}
 
 				StartMoveStop(hitStopAmt);
+				if (_animationStopActive){
 				_myPlayer.AnimationStop(hitStopAmt);
+				}
 				_myPlayer.ExtendWitchTime();
 
 				if (!hitEnemy.isDead){
@@ -822,5 +844,10 @@ public class ProjectileS : MonoBehaviour {
 		}
 		return killatlessmult;
 	}
+
+	public void TurnOffAnimationStop(){
+		_animationStopActive = false;
+	}
+
 
 }
