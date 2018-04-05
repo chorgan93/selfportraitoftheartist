@@ -56,9 +56,15 @@ public class TrackingEffectS : MonoBehaviour {
 		}else{
 			transform.localPosition = startPos+offsetPos;
 		}
+		myRenderer.enabled = true;
 		/*transform.parent = null;
 		resetParentCountdown = resetParentCount;
 		checkReset = true;**/
+	}
+
+	public void TurnOffEffect(){
+
+		myRenderer.enabled = false;
 	}
 
 	private void FaceDirection(Vector3 direction){

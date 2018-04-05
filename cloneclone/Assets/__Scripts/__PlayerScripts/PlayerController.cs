@@ -776,8 +776,18 @@ public class PlayerController : MonoBehaviour {
 		_attackingWeapon = equippedWeapon;
 		attackingWeaponAug = EquippedWeaponAug();
 		attackDuration = 0f;
+		myTracker.TurnOffEffect();
 		if (!allowChain){
 			currentChain = 0;
+		}else{
+			if (currentAttackS){
+				comboDuration = currentAttackS.chainAllow*2f;
+				allowChainLight = currentAttackS.allowChainLight;
+				allowChainHeavy = currentAttackS.allowChainHeavy;
+			}else{
+				comboDuration = 0.3f;
+			}
+			currentChain++;
 		}
 		if (queuedAttackDelays != null){
 		queuedAttackDelays.Clear();
@@ -1084,6 +1094,8 @@ public class PlayerController : MonoBehaviour {
 		resetCountdown = resetTimeMax;
 		_myRigidbody.velocity = Vector3.zero;
 		canDoAdaptive = true;
+
+		myTracker.TurnOffEffect();
 
 		// first, check for parry, otherwise dodge
 		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
