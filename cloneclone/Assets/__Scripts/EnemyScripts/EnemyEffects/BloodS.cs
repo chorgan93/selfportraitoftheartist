@@ -4,8 +4,11 @@ using System.Collections;
 public class BloodS : MonoBehaviour {
 	
 	public Color startColor;
+	public Color kidStartColor;
 	public Color[] bloodColors;
+	public Color[] kidBloodColors;
 	public Sprite[] bloodSprites;
+	private bool kidsMode = true;
 	
 	public float waitToAppearTime = 0.02f;
 	private float waitToAppearCountdown;
@@ -67,9 +70,16 @@ public class BloodS : MonoBehaviour {
 					if (bloodColorCountdown <= 0){
 						bloodColorCountdown = bloodColorRate;
 						currentColor++;
-						myRenderer.color = bloodColors[currentColor];
-						if (currentColor == bloodColors.Length-1){
-							enabled = false;
+						if (kidsMode){
+							myRenderer.color = kidBloodColors[currentColor];
+							if (currentColor == kidBloodColors.Length-1){
+								enabled = false;
+							}
+						}else{
+							myRenderer.color = bloodColors[currentColor];
+							if (currentColor == bloodColors.Length-1){
+								enabled = false;
+							}
 						}
 					}                                       
 				}
@@ -84,7 +94,11 @@ public class BloodS : MonoBehaviour {
 			
 			myRenderer = GetComponent<SpriteRenderer>();
 			//myRenderer.enabled = false;
-			myRenderer.color = startColor;
+			if (kidsMode){
+				myRenderer.color = startColor;
+			}else{
+				myRenderer.color = kidStartColor;
+			}
 			myRenderer.sprite = bloodSprites[0];
 			
 			bloodAnimCountdown = 0;

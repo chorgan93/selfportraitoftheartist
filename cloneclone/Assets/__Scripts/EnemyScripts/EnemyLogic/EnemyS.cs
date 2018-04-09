@@ -32,6 +32,7 @@ public class EnemyS : MonoBehaviour {
 	public bool debugMark = false;
 	public bool isGold = false;
 	public bool isCorrupted = false;
+	private bool _startCorruption = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
@@ -376,6 +377,10 @@ public class EnemyS : MonoBehaviour {
 		//	ManageZ();
 
 			#if UNITY_EDITOR
+			/*if (Input.GetKeyDown(KeyCode.I)){
+				Debug.Log("Corrupt debug!");
+				SetCorruption(!isCorrupted);
+			}**/
 			if (debugMark){
 				if (Input.GetKeyDown(KeyCode.Alpha9)){
 					Debug.Log(enemyName + " : " + GetNumberOfActiveBehaviors(), gameObject);
@@ -440,6 +445,8 @@ public class EnemyS : MonoBehaviour {
 		stunLockTarget = actingMaxHealth*stunLockHealthMult;
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);
+
+		_startCorruption = isCorrupted;
 
 		_myTracker = GetComponentInChildren<TrackingEffectS>();
 
@@ -552,6 +559,11 @@ public class EnemyS : MonoBehaviour {
 		killAtLessThan = 0f;
 		wasParried = false;
 
+		isCorrupted = _startCorruption;
+		if (corruptionManager){
+			corruptionManager.Initialize(this);
+		}
+
 		//EndAllBehaviors();
 
 		//CheckBehaviorStateSwitch(false);
@@ -586,7 +598,7 @@ public class EnemyS : MonoBehaviour {
 		}
 		CancelBehaviors();
 		//EndAllBehaviors();
-		CheckStates(false);
+		CheckStates(false, true);
 		if (showHealth){
 			healthUIReference.NewTarget(this);
 		}
@@ -745,6 +757,19 @@ public class EnemyS : MonoBehaviour {
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
+	public void SetCorruption(bool newC, bool doEffect = false){
+		isCorrupted = newC;
+		if (corruptionManager){
+			corruptionManager.Initialize(this, doEffect);
+		}
+	}
+	public void ResetCorruption(){
+		isCorrupted = _startCorruption;
+		if (corruptionManager){
+			corruptionManager.Initialize(this, false);
+		}
+	}
+
 	private void VulnerableEffect(){
 		vulnerableEffectEnded = false;
 		vulnEffectCountdown -= Time.deltaTime;
@@ -796,15 +821,15 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	private void ChangeBehaviorState(EnemyBehaviorStateS newState){
+	private void ChangeBehaviorState(EnemyBehaviorStateS newState, bool fromReset = false){
 
 		_currentState = newState;
-		_currentState.StartActions();
+		_currentState.StartActions(false, fromReset);
 		
 			
 	}
 
-	private void CheckStates(bool dontAllowStateChange){
+	private void CheckStates(bool dontAllowStateChange, bool fromReset = false){
 
 		if (!_isDead){
 
@@ -823,20 +848,28 @@ public class EnemyS : MonoBehaviour {
 
 		if (stateToChangeTo != null){
 			if (_currentState == null){
-				ChangeBehaviorState(stateToChangeTo);
+						ChangeBehaviorState(stateToChangeTo, fromReset);
 			}
 			else{
 				if (_currentState != stateToChangeTo){
 							_currentState.EndBehavior(false);
-					ChangeBehaviorState(stateToChangeTo);
+					ChangeBehaviorState(stateToChangeTo, fromReset);
 				}
 				else{
+							if (fromReset){
+								_currentState.StartActions(false,true);
+							}else{
 					_currentState.NextBehavior();
+							}
 				}
 			}
 				}}
 			else{
-				_currentState.NextBehavior();
+				if (fromReset){
+					_currentState.StartActions(false,true);
+				}else{
+					_currentState.NextBehavior();
+				}
 			}
 
 

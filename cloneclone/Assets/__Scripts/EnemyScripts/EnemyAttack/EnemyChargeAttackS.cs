@@ -58,6 +58,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	[Header("Friendly Properties")]
 	public bool isFriendly = false;
 
+	[Header("Corrupt Properties")]
+	public bool corruptEnemies = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -220,7 +223,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		
-		if (other.gameObject.tag == "Player" && !isFriendly){
+		if (other.gameObject.tag == "Player" && !isFriendly &&!corruptEnemies){
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
@@ -245,8 +248,12 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
 			if (hitEnemy != null && !myEnemy != null){
-			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead && (hitEnemy.isFriendly != isFriendly)){
+			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead 
+					&& ((hitEnemy.isFriendly != isFriendly) || (hitEnemy.isFriendly == isFriendly && corruptEnemies))){
 
+					if (hitEnemy.isFriendly == isFriendly && corruptEnemies){
+						myEnemy.myStatusMessenger.AddBuffedEnemy(hitEnemy);
+					}else{
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
 
@@ -257,6 +264,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, actingDamage, 1f, 1f, false, 0.1f, knockbackTime, true);
 			
 			}
+				}
 			}
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);

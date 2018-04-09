@@ -10,6 +10,7 @@ public class InGameCinematicS : MonoBehaviour {
 	public InGameCinemaCameraS[] cinemaCameraMoves;
 	public InGameCinemaActivateS[] cinemaOnOff;
 	public InGameCinemaMoveObjS[] cinemaMoveObj;
+	public InGameCinemaLerpObjS[] cinemaLerpObj;
 	public InGameCinemaWaitS[] cinemaWait;
 
 	private int currentStep = 0;
@@ -142,6 +143,26 @@ public class InGameCinematicS : MonoBehaviour {
 				}
 			}
 		}
+		}
+		if (cinemaLerpObj != null){
+			foreach (InGameCinemaLerpObjS c in cinemaLerpObj){
+				if (c.myCinemaStep == currentStep){
+					cinematicDone = false;
+					c.gameObject.SetActive(true);
+					if (c.moveTime > 0){
+						timedStep = true;
+						if (c.turnOnEnd != null){
+							if (c.moveTime+c.turnOnTime > currentCountdown){
+								currentCountdown = c.moveTime+c.turnOnTime;
+							}
+						}else{
+							if (c.moveTime > currentCountdown){
+								currentCountdown = c.moveTime;
+							}
+						}
+					}
+				}
+			}
 		}
 		if (cinemaOnOff != null){
 		foreach (InGameCinemaActivateS a in cinemaOnOff){

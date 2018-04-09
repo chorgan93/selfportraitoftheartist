@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 
 	public static bool doWakeUp = true;
 	public static bool dontHealWakeUp = false;
+	public static bool familiarUnlocked = true;
 	private bool wakingUp = false;
 	public bool isWaking  { get { return  wakingUp; } }
 	private float wakeUpTime = 3f;
@@ -627,7 +628,7 @@ public class PlayerController : MonoBehaviour {
 		startBuddy.transform.parent = transform;
 		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
 		_myBuddy.SetPositions(buddyPos, buddyPosLower);
-		if (!InGameCinematicS.turnOffBuddies){
+		if (!InGameCinematicS.turnOffBuddies && familiarUnlocked){
 			_myBuddy.gameObject.SetActive(true);
 		}
 		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
@@ -747,6 +748,11 @@ public class PlayerController : MonoBehaviour {
 
 	public void EquipBuddy(BuddyS newBud){
 		_myBuddy = newBud;
+	}
+	public void TurnOnBuddy(){
+		_myBuddy.transform.position = buddyPos.position;
+		_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+		_myBuddy.gameObject.SetActive(true);
 	}
 
 	public void Stun(float sTime, bool overrideTransform = false){

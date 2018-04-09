@@ -370,4 +370,36 @@ public class CombatManagerS : MonoBehaviour {
 			return false;
 		}
 	}
+
+	public bool GetNotAlone(EnemySpawnerS currentEnemy){
+		bool amIAlone = true;
+		if (enemies.Length > 1){
+			for (int i = 0; i < enemies.Length; i++){
+				if (enemies[i] != currentEnemy && enemies[i].currentSpawnedEnemy != null && amIAlone){
+					if (!enemies[i].currentSpawnedEnemy.isDead){
+						amIAlone = false;
+					}
+				}
+			}
+		}
+
+		return amIAlone;
+	}
+
+	public EnemyS GetCrowdPoint(EnemySpawnerS currentEnemy){
+		List<EnemyS> possibleEnemies = new List<EnemyS>();
+		for (int i = 0; i < enemies.Length; i++){
+			if (enemies[i] != currentEnemy && enemies[i].currentSpawnedEnemy){
+				if (!enemies[i].currentSpawnedEnemy.isDead){
+					possibleEnemies.Add(enemies[i].currentSpawnedEnemy);
+				}
+			}
+		}
+		if (possibleEnemies.Count > 1){
+			return possibleEnemies[(Mathf.FloorToInt(Random.Range(0, possibleEnemies.Count)))];
+		}else{
+			return possibleEnemies[0];
+		}
+	}
+
 }

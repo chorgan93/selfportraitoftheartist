@@ -5,7 +5,22 @@ using System.Collections.Generic;
 public class EnemyStatusReferencesS : MonoBehaviour {
 
 	public List<EnemySpawnEnemyBehavior> spawnEnemyReferences = new List<EnemySpawnEnemyBehavior>();
+	public List<EnemyS> buffedEnemies = new List<EnemyS>();
 
+
+	public void AddBuffedEnemy(EnemyS newBuff){
+		if (!buffedEnemies.Contains(newBuff) && !newBuff.isCorrupted){
+			newBuff.SetCorruption(true, true);
+			buffedEnemies.Add(newBuff);
+		}
+	}
+
+	public void RemoveBuffs(){
+		for (int i = 0; i < buffedEnemies.Count; i++){
+			buffedEnemies[i].ResetCorruption();
+		}
+		buffedEnemies.Clear();
+	}
 
 	public void ResetMessage(){
 		if (spawnEnemyReferences.Count > 0){
@@ -13,6 +28,7 @@ public class EnemyStatusReferencesS : MonoBehaviour {
 				spawnEnemyReferences[i].ResetSpawn();
 			}
 		}
+		RemoveBuffs();
 	}
 
 	public void KillMessage(){
@@ -21,6 +37,8 @@ public class EnemyStatusReferencesS : MonoBehaviour {
 				spawnEnemyReferences[i].KillAll();
 			}
 		}
+
+		RemoveBuffs();
 	}
 
 	public void StartWitchTime(){
@@ -45,4 +63,5 @@ public class EnemyStatusReferencesS : MonoBehaviour {
 			}
 		}
 	}
+
 }

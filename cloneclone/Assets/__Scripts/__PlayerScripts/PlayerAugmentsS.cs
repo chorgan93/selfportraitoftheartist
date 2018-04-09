@@ -259,93 +259,60 @@ public class PlayerAugmentsS : MonoBehaviour {
 	}
 
 	private void TurnOnWeaponAugs(){
-		if (_playerReference.EquippedWeaponAug().weaponNum == 0){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 0 ||
+			_playerReference.EquippedWeapon().weaponNum == 0){
 			_lunaAug = true;
 		}
 		
-		if (_playerReference.EquippedWeaponAug().weaponNum == 1){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 1 ||
+			_playerReference.EquippedWeapon().weaponNum == 1){
 			_thanaAug = true;
 		}
 		
-		if (_playerReference.EquippedWeaponAug().weaponNum == 2){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 2 ||
+			_playerReference.EquippedWeapon().weaponNum == 2){
 			_aeroAug = true;
 		}
 		
-		if (_playerReference.EquippedWeaponAug().weaponNum == 3){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 3 ||
+			_playerReference.EquippedWeapon().weaponNum == 3){
 			_gaeaAug = true;
 		}
 		
-		if (_playerReference.EquippedWeaponAug().weaponNum == 4){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 4 ||
+			_playerReference.EquippedWeapon().weaponNum == 4){
 			_animaAug = true;
 		}
 		
-		if (_playerReference.EquippedWeaponAug().weaponNum == 5){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 5 ||
+			_playerReference.EquippedWeapon().weaponNum == 5){
 			_solAug = true;
 		}
-		if (_playerReference.EquippedWeaponAug().weaponNum == 6){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 6 ||
+			_playerReference.EquippedWeapon().weaponNum == 6){
 			_realGaeaAug = true;
 		}
-		if (_playerReference.EquippedWeaponAug().weaponNum == 7){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 7 ||
+			_playerReference.EquippedWeapon().weaponNum == 7){
 			_erebosAug = true;
 		}
-		if (_playerReference.EquippedWeaponAug().weaponNum == 8){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 8 ||
+			_playerReference.EquippedWeapon().weaponNum == 8){
 			_biosAug = true;
 		}
 
-		if (_playerReference.EquippedWeaponAug().weaponNum == 9){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 9 ||
+			_playerReference.EquippedWeapon().weaponNum == 9){
 			_fosAug = true;
 		}
 
-		if (_playerReference.EquippedWeaponAug().weaponNum == 10){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 10 ||
+			_playerReference.EquippedWeapon().weaponNum == 10){
 			_aquaAug = true;
 		}
-		if (_playerReference.EquippedWeaponAug().weaponNum == 11){
+		if (_playerReference.EquippedWeaponAug().weaponNum == 11 ||
+			_playerReference.EquippedWeapon().weaponNum == 11){
 			_aetherAug = true;
-		}
-		if (_playerReference.SubWeaponAug() != null){
-			if (_playerReference.SubWeaponAug().weaponNum == 0){
-				_lunaAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 1){
-				_thanaAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 2){
-				_aeroAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 3){
-				_gaeaAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 4){
-				_animaAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 5){
-				_solAug = true;
-			}
-			if (_playerReference.SubWeaponAug().weaponNum == 6){
-				_realGaeaAug = true;
-			}
-			if (_playerReference.SubWeaponAug().weaponNum == 7){
-				_erebosAug = true;
-			}
-			if (_playerReference.SubWeaponAug().weaponNum == 8){
-				_biosAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 9){
-				_fosAug = true;
-			}
-
-			if (_playerReference.SubWeaponAug().weaponNum == 10){
-				_aquaAug = true;
-			}
-			if (_playerReference.SubWeaponAug().weaponNum == 11){
-				_aetherAug = true;
-			}
 		}
 	}
 

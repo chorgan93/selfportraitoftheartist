@@ -74,9 +74,9 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	}
 
-	public void StartActions(bool fromCrit = false){
+	public void StartActions(bool fromCrit = false, bool fromReset = false){
 
-		if (fromCrit){
+		if (fromCrit || fromReset){
 			currentActingBehavior = critResetStep;
 		}else{
 		currentActingBehavior = 0;

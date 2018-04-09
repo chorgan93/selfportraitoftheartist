@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	public PlayerDetectS rangeCheck;
+	public EnemyDetectS enrageCheck;
 	public EnemyDodgeBehaviorS dodgeCheck;
 	private bool doDodge = false;
 
@@ -88,6 +89,11 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 		if (rangeCheck != null){
 			rangeCheck.FindTarget();
 			if (!rangeCheck.PlayerInRange()){
+				canContinue = false;
+			}
+		}
+		if (enrageCheck != null){
+			if (enrageCheck.allEnemiesInRange.Count < 2){
 				canContinue = false;
 			}
 		}
