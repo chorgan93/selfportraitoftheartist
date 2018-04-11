@@ -33,6 +33,12 @@ public class CheckpointS : MonoBehaviour {
 	
 	public BGMLayerS[] musicAtPoint;
 
+	void Awake(){
+		if (fullCheckpoint){
+			PlayerController.familiarUnlocked = true;
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 

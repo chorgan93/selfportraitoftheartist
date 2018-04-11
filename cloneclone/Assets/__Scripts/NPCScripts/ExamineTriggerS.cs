@@ -34,6 +34,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int vpNum = -1;
 	public int numToAdd = 1;
 	public bool keyItem = false;
+	public Sprite keyItemSprite;
 	public ActivateOnExamineS myTrigger;
 	public BuddyS buddyToGive;
 	public bool forceBuddySwitch = false;
@@ -136,6 +137,9 @@ public class ExamineTriggerS : MonoBehaviour {
 						}
 	
 						if (!unlocking){
+									if (keyItemSprite){
+										DialogueManagerS.D.SetItemFind(keyItemSprite);
+									}
 							DialogueManagerS.D.SetDisplayText(examineString);
 
 									//Debug.Log("Set text! " + DialogueManagerS.D.doneScrolling);
@@ -330,6 +334,7 @@ public class ExamineTriggerS : MonoBehaviour {
 		for (int i = 0; i < numToAdd; i++){
 			if (inventoryNum >= 0){
 				PlayerInventoryS.I.AddToInventory(inventoryNum, keyItem);
+				KeyItemUIS.K.EvaluateItems();
 			}
 
 			// add rewind

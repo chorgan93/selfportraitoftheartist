@@ -33,6 +33,10 @@ public class DialogueManagerS : MonoBehaviour {
 	public RawImage memoMovie;
 	public Text memoText;
 
+	public Image itemPopup;
+	public Image itemPopupBG;
+	private float popMaxHeight;
+
 	private string currentDisplayString;
 	private string targetDisplayString;
 	private int currentChar = 0;
@@ -72,6 +76,10 @@ public class DialogueManagerS : MonoBehaviour {
 		memoTextMoviePos.y+=85f;
 		memoMovie.enabled = false;
 		_doneScrolling = true;
+
+		itemPopup.enabled = itemPopupBG.enabled = false;
+		popMaxHeight = itemPopupBG.rectTransform.sizeDelta.y;
+		itemPopupBG.gameObject.SetActive(false);
 
 		advanceIndicator.SetActive(false);
 
@@ -150,6 +158,28 @@ public class DialogueManagerS : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	public void SetItemFind(Sprite newItem){
+		StartCoroutine(ItemFindEffect());
+		itemPopup.sprite = newItem;
+		itemPopup.enabled = itemPopupBG.enabled = true;
+		itemPopupBG.gameObject.SetActive(true);
+	}
+
+	IEnumerator ItemFindEffect(){
+		float itemEffectCount = 0f;
+		float itemEffectTime = 0.2f;
+		Vector2 popUpSize = itemPopupBG.rectTransform.sizeDelta;
+		while (itemEffectCount < itemEffectTime){
+			itemEffectCount += Time.deltaTime;
+			if (itemEffectCount >= itemEffectTime){
+				itemEffectCount = itemEffectTime;
+			}
+			popUpSize.y = Mathf.Lerp(0f, popMaxHeight, itemEffectCount/itemEffectTime);
+			itemPopupBG.rectTransform.sizeDelta = popUpSize;
+			yield return null;
+		}
 	}
 
 	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, 
@@ -265,6 +295,9 @@ public class DialogueManagerS : MonoBehaviour {
 		memoText.enabled = false;
 		_textActive = false;
 		memoMovie.enabled = false;
+
+		itemPopup.enabled = itemPopupBG.enabled = false;
+		itemPopupBG.gameObject.SetActive(false);
 
 		//CompleteText();
 

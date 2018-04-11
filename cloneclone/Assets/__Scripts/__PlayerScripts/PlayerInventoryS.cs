@@ -560,6 +560,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerStatsS._currentDarkness = 0f;
 		PlayerCollectionS.currencyCollected = 0;
 		PlayerController._currentParadigm = 0;
+		PlayerController.familiarUnlocked = false;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
 		CameraShakeS.SetTurbo();
@@ -637,6 +638,9 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 
 		PlayerController._currentParadigm = inventoryData.currentParadigm;
+		if (inventoryData.familiarUnlocked != null){
+		PlayerController.familiarUnlocked = inventoryData.familiarUnlocked;
+		}
 		
 		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
 		PlayerController.equippedUpgrades = inventoryData.equippedTech;
@@ -752,6 +756,7 @@ public class PlayerInventoryS : MonoBehaviour {
 				inventoryData.lockedUpgrades.Add(lHandler.lockedLevelUps[i].lockedUpgradeID);
 			}
 
+				inventoryData.familiarUnlocked = PlayerController.familiarUnlocked;
 			inventoryData.currentParadigm = PlayerController._currentParadigm;
 
 			inventoryData.sinLevel = DifficultyS.GetSinInt();
@@ -798,6 +803,7 @@ public class InventorySave {
 	
 	public List<int> equippedBuddies;
 	public int currentParadigm;
+	public bool familiarUnlocked = true;
 
 	public List<int> equippedInventory;
 	public int currentSelection = 0;
@@ -862,6 +868,7 @@ public class InventorySave {
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1, 2};
+		familiarUnlocked = true;
 
 		tvNumber = Mathf.FloorToInt(Random.Range(100, 999));
 

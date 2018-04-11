@@ -139,6 +139,7 @@ public class LockedDoorS : MonoBehaviour {
 				differentLook = true;
 			}
 		}
+		KeyItemUIS.K.EvaluateItems(true);
 		pRef.SetTalking(true);
 		pRef.SetExamining(true, examinePos);
 		isTalking = true;
@@ -156,8 +157,8 @@ public class LockedDoorS : MonoBehaviour {
 		if (playerInRange || keypadFail){
 		inKeypadFail = keypadFail;
 		if (PlayerInventoryS.I.CheckForItem(keyID)){
-			TriggerUnlock();
-			PlayerInventoryS.I.AddClearedWall(keyID);
+				PlayerInventoryS.I.AddClearedWall(keyID);
+				TriggerUnlock();
 		}
 		else{
 			if (setLook != null){
