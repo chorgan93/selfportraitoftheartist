@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	private static float SMASH_MIN_SPEED = 0.042f;
 	private static float CHAIN_DASH_THRESHOLD = 0.12f; // was 0.4f
 	private static float TELEPORT_INPUT_THRESHOLD = 0.33f;
-	private static float ALLOW_DASHATTACK_TIME = 0.34f;
+	private static float ALLOW_DASHATTACK_TIME = 0.14f;
 	private static float ENEMY_TOO_CLOSE_DISTANCE = 8f;
 
 	private const float PUSH_ENEMY_MULT = 0.2f;
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 	public float dashDragSlideMult;
 	private float dashDurationTime;
 	private float dashDurationTimeMax;
+	private float flourishLockTime = 0.5f;
 	private float dashEffectThreshold = 0.2f;
 	private float dashCooldown = 0.4f;
 	private float dashCooldownMax = 0.2f;
@@ -106,8 +107,9 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 counterNormal { get { return _counterNormal; } }
 
 	private float dashChargeAllowMult = 0.75f;
-	private float dashSprintAllowMult = 0.45f;
-	private float sprintStartForce = 600f;
+	private float dashSprintAllowMult = 0.55f;
+	private float attackBufferAllowMult = 0.88f;
+	private float sprintStartForce = 1200f;
 	private bool speedUpChargeAttack = false;
 
 	private bool _isShooting;
@@ -127,6 +129,7 @@ public class PlayerController : MonoBehaviour {
 	public bool doingCounterAttack { get { return _doingCounterAttack; } } 
 	private bool _allowDashAttack = false;
 	private bool _doingHeavyAttack = false;
+	private bool _attackBuffered = false;
 	public bool doingSpecialAttack { get { return _doingDashAttack; } }
 
 	private Vector2 _inputDirectionLast;
@@ -781,6 +784,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void CancelAttack(bool allowChain = false){
+		_attackBuffered = false;
 		attackTriggered = false;
 		_attackingWeapon = equippedWeapon;
 		attackingWeaponAug = EquippedWeaponAug();
@@ -790,7 +794,7 @@ public class PlayerController : MonoBehaviour {
 			currentChain = 0;
 		}else{
 			if (currentAttackS){
-				comboDuration = currentAttackS.chainAllow*2f;
+				comboDuration = currentAttackS.comboDuration;
 				allowChainLight = currentAttackS.allowChainLight;
 				allowChainHeavy = currentAttackS.allowChainHeavy;
 			}else{
@@ -870,6 +874,7 @@ public class PlayerController : MonoBehaviour {
 				}
 				_myRigidbody.AddForce(-evadeSpeed*Time.deltaTime*_counterNormal, ForceMode.Impulse);
 				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.8f, counterAttackTimeMax*0.3f);
+				dashDurationTime = dashDurationTimeMax-flourishLockTime;
 				_myAnimator.SetTrigger("Evade");
 				_dodgeEffectRef.FireEffect();
 				FlashMana();
@@ -1366,7 +1371,8 @@ public class PlayerController : MonoBehaviour {
 			 && controller.GetCustomInput(4) && !dashButtonUp) ||
 			    (chargingAttack && !_chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult) ||
 			    (chargingAttack && _chargeAttackTriggered && dashDurationTime >= dashDurationTimeMax) ||
-			    (controller.GetCustomInput(4) && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)){
+			    (controller.GetCustomInput(4) && dashDurationTime >= dashDurationTimeMax*dashChargeAllowMult)
+				|| (_attackBuffered && dashDurationTime >= dashDurationTimeMax*attackBufferAllowMult)){
 				
 				_myAnimator.SetBool("Evading", false);
 				_isDashing = false;
@@ -1436,6 +1442,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void AttackControl(){
 
+
 		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
 			comboDuration -= Time.deltaTime*0.6f;
 			if (comboDuration <= 0 && currentChain != -1){
@@ -1494,6 +1501,77 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetBool("Charging", false);
 			shootButtonUp = false;
 			allowChargeAttack = true;
+		}
+
+		if (_attackBuffered && CanInputShoot() && !_isDashing && !counterQueued && !_delayWitchTime){
+
+			_attackBuffered = false;
+			// started buffered attack
+			attackDelay = currentAttackS.delayShotTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+				*TransformedAttackSpeedMult();
+
+			if (_playerAug.animaAug){
+				attackDelay*=PlayerAugmentsS.animaAugAmt;
+			}
+
+			// add slow effect (melee attack)
+			if (currentAttackS.slowTime > 0){
+				preAttackSlowdown = true;
+				preAttackSlowTime = currentAttackS.slowTime;
+				preAttackPunchMult = currentAttackS.punchMult;
+				preAttackHangTime = currentAttackS.hangTime;
+				preAttackExtraSlow = currentAttackS.extraSlow;
+			}else{
+				preAttackSlowdown = false;
+			}
+
+			_attackingWeapon = equippedWeapon;
+			attackingWeaponAug = EquippedWeaponAug();
+
+
+				currentAttackS.StartKnockback(this, ShootDirection());
+				_attackStartDirection = ShootDirection();
+				if (_isTransformed){
+					equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, transformedColor);
+				}else{
+					if (_doingHeavyAttack){
+					attackingWeaponAug.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, attackingWeaponAug.swapColor);
+					}else{
+						_attackingWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, _attackingWeapon.swapColor);
+					}
+				}
+
+			attackTriggered = true;
+			TriggerFosAttack();
+			canDoAdaptive = false;
+
+			if (_isTransformed){
+				myTracker.FireEffect(ShootDirection(), transformedColor, attackDelay, Vector3.zero);
+			}else{
+				if (_doingHeavyAttack){
+					myTracker.FireEffect(ShootDirection(), _attackingWeapon.swapColor, attackDelay, Vector3.zero);
+				}else{
+					myTracker.FireEffect(ShootDirection(), _attackingWeapon.swapColor, attackDelay, Vector3.zero);
+				}
+			}
+			//weaponTriggered = equippedWeapon;
+			_isShooting = true;
+			if (currentAttackS.chargeAttackTime <=  0){
+				allowChargeAttack = true;
+			}
+			else{
+				allowChargeAttack = false;
+			}
+
+			AttackAnimationTrigger(_doingHeavyAttack);
+
+			if (tutorialRef != null){
+				if (_doingHeavyAttack){
+					tutorialRef.AddHeavyAttack();
+				}else{
+					tutorialRef.AddLightAttack();
+				}
+			}
 		}
 
 		if (!hitStopped){
@@ -1810,8 +1888,9 @@ public class PlayerController : MonoBehaviour {
 						CameraShakeS.C.CancelSloMo();
 
 					}
-					else if ((_isDashing || _isSprinting) && _allowDashAttack){
+					else if (_isDashing || _isSprinting){
 
+							if (_allowDashAttack || _isSprinting){
 							if (controller.GetCustomInput(1)){
 								_doingHeavyAttack = true;
 								currentAttackS = attackingWeaponAug.dashAttack.GetComponent<ProjectileS>();
@@ -1829,6 +1908,40 @@ public class PlayerController : MonoBehaviour {
 							_myRigidbody.drag = startDrag;
 
 							allowParryCountdown = allowParryInput;
+							}else if (!_attackBuffered){
+
+								// input buffer
+								_attackBuffered = true;
+
+								int nextAttack = currentChain+1;
+								if (myControl.GetCustomInput(1)){
+									if (!allowChainHeavy){
+										nextAttack = 0;
+									}
+									if (nextAttack > attackingWeaponAug.heavyChain.Length-1){
+										nextAttack = 0;
+									}
+									// Opportunistic effect
+									if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+										nextAttack = attackingWeaponAug.heavyChain.Length-1;
+									}
+									currentAttackS = attackingWeaponAug.heavyChain[nextAttack].GetComponent<ProjectileS>();
+									_doingHeavyAttack = true;
+								}else{
+									if (!allowChainLight){
+										nextAttack = 0;
+									}
+									if (nextAttack > _attackingWeapon.attackChain.Length-1){
+										nextAttack = 0;
+									}
+
+									currentAttackS = _attackingWeapon.attackChain[nextAttack].GetComponent<ProjectileS>();
+								}
+
+								allowParryCountdown = allowParryInput;
+
+
+							}
 
 
 					}else{
@@ -1864,6 +1977,7 @@ public class PlayerController : MonoBehaviour {
 
 					}
 					
+						if (!_attackBuffered){
 						attackDelay = currentAttackS.delayShotTime*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 							*TransformedAttackSpeedMult();
 
@@ -1893,7 +2007,7 @@ public class PlayerController : MonoBehaviour {
 								equippedWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, transformedColor);
 							}else{
 								if (_doingHeavyAttack){
-									attackingWeaponAug.AttackFlash(transform.position, targetDir, transform, attackDelay, _attackingWeapon.swapColor);
+										attackingWeaponAug.AttackFlash(transform.position, targetDir, transform, attackDelay, attackingWeaponAug.swapColor);
 								}else{
 									_attackingWeapon.AttackFlash(transform.position, targetDir, transform, attackDelay, _attackingWeapon.swapColor);
 								}
@@ -1905,7 +2019,7 @@ public class PlayerController : MonoBehaviour {
 								equippedWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, transformedColor);
 							}else{
 								if (_doingHeavyAttack){
-									attackingWeaponAug.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, _attackingWeapon.swapColor);
+									attackingWeaponAug.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, attackingWeaponAug.swapColor);
 								}else{
 									_attackingWeapon.AttackFlash(transform.position, ShootDirection(), transform, attackDelay, _attackingWeapon.swapColor);
 								}
@@ -1941,6 +2055,7 @@ public class PlayerController : MonoBehaviour {
 							}else{
 								tutorialRef.AddLightAttack();
 							}
+						}
 						}
 				}
 			
@@ -2796,7 +2911,7 @@ public class PlayerController : MonoBehaviour {
 
 	private bool CanInputShoot(){
 
-		if (!attackTriggered && !_isStunned && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
+		if (!attackTriggered && !_isStunned // && (!_isDashing || (_isDashing && _allowDashAttack) || (_isDashing && _allowCounterAttack))
 			&& !_triggerBlock && attackDuration <= currentAttackS.chainAllow && !_chargingAttack && !_usingItem && !hitStopped && delayAttackAllow <= 0f){
 			return true;
 		}

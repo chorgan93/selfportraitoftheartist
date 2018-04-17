@@ -242,7 +242,7 @@ public class CameraEffectsS : MonoBehaviour {
 		}else{
 			transformFilter.gameObject.SetActive(false);
 		}
-		#elif
+		#else
 		if (onOff){
 			transformFilter.color = transformFilterColor;
 

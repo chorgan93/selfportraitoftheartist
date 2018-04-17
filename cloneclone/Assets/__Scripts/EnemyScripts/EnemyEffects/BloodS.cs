@@ -8,7 +8,7 @@ public class BloodS : MonoBehaviour {
 	public Color[] bloodColors;
 	public Color[] kidBloodColors;
 	public Sprite[] bloodSprites;
-	private bool kidsMode = true;
+	private bool kidsMode = false;
 	
 	public float waitToAppearTime = 0.02f;
 	private float waitToAppearCountdown;

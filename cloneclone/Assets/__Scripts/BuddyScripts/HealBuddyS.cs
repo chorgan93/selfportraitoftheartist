@@ -108,6 +108,8 @@ public class HealBuddyS : BuddyS {
 								as GameObject;
 							newSpawn.transform.parent = transform;
 							
+						}else if (!playerRef.myStats.ChargeCheck(costPerUse, false,true)){
+							outOfCharge.FireEffect();
 						}
 						chargeButtonUp = false;
 					}

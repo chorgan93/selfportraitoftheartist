@@ -24,6 +24,7 @@ public class ProjectileS : MonoBehaviour {
 	public GameObject soundObj;
 	public GameObject hitSoundObj;
 	public GameObject hitObj;
+	private SlashEffectS hitSlash;
 	public GameObject hitObjInanimate;
 	public GameObject endObj;
 	public GameObject reflectObj;
@@ -286,9 +287,10 @@ public class ProjectileS : MonoBehaviour {
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
 		}else{
-			matchColor = _myPlayer.attackingWeapon.swapColor;
-			matchColor.a = renderColor.a;
-			myRenderer.color = matchColor;
+			//matchColor = _myPlayer.attackingWeapon.swapColor;
+			//matchColor.a = renderColor.a;
+			//myRenderer.color = matchColor;
+			myRenderer.color = renderColor;
 		}
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
@@ -717,6 +719,9 @@ public class ProjectileS : MonoBehaviour {
 		hitObjSpawn.z -= 1f;
 		GameObject newHitObj = Instantiate(hitObj, hitObjSpawn, transform.rotation)
 			as GameObject;
+
+		hitSlash = newHitObj.GetComponentInChildren<SlashEffectS>();
+		hitSlash.SetColors(myRenderer.color);
 
 		newHitObj.transform.Rotate(new Vector3(0,0,Random.Range(-20f, 20f)));
 		if (transform.localScale.y < 0){

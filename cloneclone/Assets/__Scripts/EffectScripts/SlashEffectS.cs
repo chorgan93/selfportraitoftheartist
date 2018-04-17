@@ -77,4 +77,8 @@ public class SlashEffectS : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+
+	public void SetColors(Color newCol){
+		myTrail00.materials[0].color = myTrail01.materials[0].color = newCol;
+	}
 }

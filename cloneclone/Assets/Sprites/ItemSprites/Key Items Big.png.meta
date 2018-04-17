@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ac9263ee6860142cfb33758172bbd939
-timeCreated: 1523423448
+timeCreated: 1523513626
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,6 +17,10 @@ TextureImporter:
     21300020: Key Items Big_0
     21300022: Key Items Big_1
     21300024: Key Items Big_2
+    21300026: Key Items Big_3
+    21300028: Key Items Big_4
+    21300030: Key Items Big_5
+    21300032: Key Items Big_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,7 +77,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -85,7 +89,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -94,6 +98,54 @@ TextureImporter:
       outline: []
     - serializedVersion: 2
       name: Key Items Big_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_6
       rect:
         serializedVersion: 2
         x: 0

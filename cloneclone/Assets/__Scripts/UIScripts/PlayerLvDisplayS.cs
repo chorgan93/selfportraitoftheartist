@@ -51,7 +51,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 
 		hpStat.color = stStat.color = mnStat.color = vtStat.color = 
 			pwStat.color = rcStat.color = abStat.color = textStartColor;
-		hpStat.text = (playerStatRef.maxHealth*1f).ToString();
+		hpStat.text = (Mathf.FloorToInt(playerStatRef.maxHealth*1f)).ToString();
 		stStat.text = (playerStatRef.manaLevel*1f).ToString();
 		mnStat.text = (playerStatRef.maxCharge).ToString();
 		vtStat.text = (playerStatRef.virtueAmt).ToString();
@@ -67,7 +67,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 		default: 
 			break;
 		case (0):
-			hpStat.text = (playerStatRef.maxHealth*1f+1f).ToString();
+			hpStat.text = (Mathf.FloorToInt(playerStatRef.maxHealth*1f+1.5f)).ToString();
 			hpStat.color = highlightColor;
 			break;
 		case (1):

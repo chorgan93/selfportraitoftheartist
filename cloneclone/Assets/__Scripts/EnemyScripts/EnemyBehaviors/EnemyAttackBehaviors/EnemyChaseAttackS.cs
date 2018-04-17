@@ -194,6 +194,16 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 		base.EndAction (doNextAction);
 	}
 
+	public override void CancelAction(){
+		if (currentAttackPrefab){
+			Destroy(currentAttackPrefab);
+		}
+		if (secondarySpawnBehavior){
+			secondarySpawnBehavior.EndAction(false);
+		}
+		base.CancelAction ();
+	}
+
 	void WallRedirect(){
 		redirectTarget = Vector3.zero;
 		float targetDistance = (recenterTarget-transform.position).magnitude;

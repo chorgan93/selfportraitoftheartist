@@ -35,6 +35,9 @@ public class BuddyS : MonoBehaviour {
 	private Animator _myAnimator;
 	public Animator myAnimator { get { return _myAnimator; } }
 
+	private BuddyNoChargeEffectS _outOfCharge;
+	public BuddyNoChargeEffectS outOfCharge { get {return _outOfCharge; } }
+
 	[HideInInspector]
 	public bool canSwitch = true;
 
@@ -106,5 +109,7 @@ public class BuddyS : MonoBehaviour {
 		_buddyPosLower = lowerPos;
 	}
 
-
+	public void SetBuddyNoCharge(BuddyNoChargeEffectS newEffect){
+		_outOfCharge = newEffect;
+	}
 }

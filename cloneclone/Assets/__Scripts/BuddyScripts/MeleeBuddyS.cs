@@ -140,6 +140,8 @@ public class MeleeBuddyS : BuddyS {
 								shotTriggered = true;
 								LungeAtEnemy();
 							}
+						}else if (!playerRef.myStats.ChargeCheck(costPerUse, false,true)){
+							outOfCharge.FireEffect();
 						}
 						chargeButtonUp = false;
 					}

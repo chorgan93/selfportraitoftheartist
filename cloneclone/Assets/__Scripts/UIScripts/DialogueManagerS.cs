@@ -171,6 +171,8 @@ public class DialogueManagerS : MonoBehaviour {
 		float itemEffectCount = 0f;
 		float itemEffectTime = 0.2f;
 		Vector2 popUpSize = itemPopupBG.rectTransform.sizeDelta;
+		//itemPopupBG.rectTransform.pivot = new Vector2(0.5f, 1f);
+		//itemPopupBG.rectTransform.anchoredPosition = new Vector2(0f, -95);
 		while (itemEffectCount < itemEffectTime){
 			itemEffectCount += Time.deltaTime;
 			if (itemEffectCount >= itemEffectTime){
@@ -180,6 +182,25 @@ public class DialogueManagerS : MonoBehaviour {
 			itemPopupBG.rectTransform.sizeDelta = popUpSize;
 			yield return null;
 		}
+	}
+	IEnumerator ItemFindDisable(){
+		float itemEffectCount = 0f;
+		float itemEffectTime = 0.12f;
+		Vector2 popUpSize = itemPopupBG.rectTransform.sizeDelta;
+		//itemPopupBG.rectTransform.pivot = new Vector2(0.5f, 0f);
+		//itemPopupBG.rectTransform.anchoredPosition = new Vector2(0f, -295f);
+		while (itemEffectCount < itemEffectTime){
+			itemEffectCount += Time.deltaTime;
+			if (itemEffectCount >= itemEffectTime){
+				itemEffectCount = itemEffectTime;
+			}
+			popUpSize.y = Mathf.Lerp(popMaxHeight, 0f, itemEffectCount/itemEffectTime);
+			itemPopupBG.rectTransform.sizeDelta = popUpSize;
+			yield return null;
+		}
+
+		itemPopup.enabled = itemPopupBG.enabled = false;
+		itemPopupBG.gameObject.SetActive(false);
 	}
 
 	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, 
@@ -296,8 +317,12 @@ public class DialogueManagerS : MonoBehaviour {
 		_textActive = false;
 		memoMovie.enabled = false;
 
+		if (itemPopupBG.gameObject.activeSelf){
+			StartCoroutine(ItemFindDisable());
+		}else{
 		itemPopup.enabled = itemPopupBG.enabled = false;
 		itemPopupBG.gameObject.SetActive(false);
+		}
 
 		//CompleteText();
 

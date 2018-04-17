@@ -16,7 +16,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DESPERATE_HEAL_MULT = 0.6f;
 
 	public const float STAMINA_ADD_PER_LVL = 0.28f;
-	public const float HEALTH_ADD_AMT = 1f;
+	public const float HEALTH_ADD_AMT = 1.5f;
 
 	private const float anxiousChargeRate = 0.025f;
 
@@ -63,7 +63,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private float allowHealthT;
 
 	public float canRecoverHealth { get { return _canRecoverHealth; } }
-	public float maxHealth { get { return (_baseHealth+_addedHealth*1.5f);}}
+	public float maxHealth { get { return (_baseHealth+_addedHealth);}}
 	private float _savedHealth = 8f;
 	public float savedHealth { get { return _savedHealth; } }
 
@@ -209,6 +209,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private PlayerStatDisplayS _uiReference;
 	public PlayerStatDisplayS uiReference { get { return _uiReference; } }
 	private WarningManagerS warningReference;
+	public WarningManagerS warningRef { get { return warningReference; } }
 
 	private ItemEffectS _itemEffect;
 	public ItemEffectS itemEffect { get { return _itemEffect; } }
@@ -370,6 +371,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_uiReference.ChargeAddEffect(amtAdded);
 		_currentCharge += amtAdded;
 		warningReference.EndShow("! Charge OUT !");
+		warningReference.EndShow("— INSUFFICIENT Charge —");
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}

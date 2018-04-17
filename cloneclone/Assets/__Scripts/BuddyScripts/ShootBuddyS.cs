@@ -142,6 +142,8 @@ public class ShootBuddyS : BuddyS {
 								shotTriggered = true;
 								canSwitch = false;
 							}
+						}else if (!playerRef.myStats.ChargeCheck(costPerUse, false,true)){
+							outOfCharge.FireEffect();
 						}
 						chargeButtonUp = false;
 

@@ -10,6 +10,7 @@ public class CameraFollowS : MonoBehaviour {
 	private Vector3 _camPosOffset = new Vector3(0,0,-10);
 
 	private float slowZoomMult = 0.1f;
+	private float midZoomMult = 0.5f;
 
 	private Vector3 _currentPos;
 
@@ -52,6 +53,7 @@ public class CameraFollowS : MonoBehaviour {
 	private const float tempZoomSpeedMult = 1.25f;
 	private bool dialogueZoom = false;
 	private bool slowerZoom = false;
+	private bool midZoom = false;
 	private float zoomMult = 0.5f;
 	private float dialogueZoomMult = 0.75f;
 
@@ -190,7 +192,10 @@ public class CameraFollowS : MonoBehaviour {
 						myCam.orthographicSize = (1-_camEasing*tempZoomSpeedMult)*myCam.orthographicSize + _camEasing*tempZoomSpeedMult*startOrthoSize*tempZoomMult*ZOOM_LEVEL*orthoSizeMult;
 						tempZoomCountdown -= Time.unscaledDeltaTime;
 						if (tempZoomCountdown <= 0f){
-							tempZoom = zoomingIn = false;
+							tempZoom = false;
+							if (!slowerZoom){
+								zoomingIn = false;
+							}
 						}
 					}else{
 						myCam.orthographicSize = (1-_camEasing)*myCam.orthographicSize + _camEasing*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
@@ -199,6 +204,9 @@ public class CameraFollowS : MonoBehaviour {
 					if (dialogueZoom){
 						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
 							+ _camEasing*slowZoomMult*startOrthoSize*dialogueZoomMult*ZOOM_LEVEL*orthoSizeMult;
+					}else if (midZoom){
+						myCam.orthographicSize = (1-_camEasing*midZoomMult)*myCam.orthographicSize
+							+ _camEasing*midZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
 					}else{
 						myCam.orthographicSize = (1-_camEasing*slowZoomMult)*myCam.orthographicSize
 							+ _camEasing*slowZoomMult*startOrthoSize*zoomMult*ZOOM_LEVEL*orthoSizeMult;
@@ -267,7 +275,10 @@ public class CameraFollowS : MonoBehaviour {
 	public void PunchIn(){
 
 		myCam.orthographicSize =  (startOrthoSize * punchInMult)*ZOOM_LEVEL*orthoSizeMult;
-		zoomingIn = tempZoom = false;
+		tempZoom = false;
+		if (!slowerZoom){
+			zoomingIn = false;
+		}
 		tempZoomCountdown = 0f;
 
 	}
@@ -276,7 +287,10 @@ public class CameraFollowS : MonoBehaviour {
 
 		if (!lerp){
 		myCam.orthographicSize =  (startOrthoSize * punchMult)*ZOOM_LEVEL*orthoSizeMult;
-			zoomingIn = tempZoom = false;
+			tempZoom = false;
+			if (!slowerZoom){
+				zoomingIn = false;
+			}
 			_punchHangTime = punchHangTime;
 			tempZoomCountdown = 0f;
 		}else{
@@ -290,15 +304,19 @@ public class CameraFollowS : MonoBehaviour {
 	public void PunchInBig(){
 
 		myCam.orthographicSize =  (startOrthoSize * punchInMultDeath)*ZOOM_LEVEL*orthoSizeMult;
-		zoomingIn = tempZoom = false;
+		tempZoom = false;
+		if (!slowerZoom){
+			zoomingIn = false;
+		}
 		tempZoomCountdown = 0f;
 
 	}
 
-	public void SetZoomIn(bool zoom, bool slowZoom = false){
+	public void SetZoomIn(bool zoom, bool slowZoom = false,bool setMidZoom = false){
 		zoomingIn = zoom;
 		dialogueZoom = false;
 		slowerZoom = slowZoom;
+		midZoom = setMidZoom;
 	}
 	public void SetDialogueZoomIn(bool zoom){
 		zoomingIn = zoom;
@@ -306,7 +324,7 @@ public class CameraFollowS : MonoBehaviour {
 		slowerZoom = false;
 	}
 	public void EndZoom(){
-		zoomingIn = dialogueZoom = slowerZoom = false;
+		zoomingIn = dialogueZoom = false;
 	}
 
 	public void PunchCombatEnd(Vector3 targetPos){

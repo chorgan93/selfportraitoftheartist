@@ -442,7 +442,11 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	private void updateChargeFills(bool singleRefill = false, float startRefill = -1f){
 		if (singleRefill){
-			chargeBarCurrentSize = chargeBarMaxSize* playerStats.currentCharge/playerStats.maxCharge;
+			if (playerStats.currentCharge >= playerStats.maxCharge){
+				chargeBarCurrentSize.x = chargeBarMaxSize.x;
+			}else{
+			chargeBarCurrentSize.x = chargeBarMaxSize.x* playerStats.currentCharge/playerStats.maxCharge;
+			}
 			chargeBarCurrentSize.y = chargeFillMaxHeight;
 			if (!playerStats.EnoughChargeForBuddy()){
 				chargeBarCurrentSize.y *= notEnoughChargeMult;
@@ -481,7 +485,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 				chargeBarCurrentSize.x += refillSizeRate*Time.deltaTime;
 				if (chargeBarCurrentSize.x >= rechargeRecoveryBar.rectTransform.sizeDelta.x){
 					refillingCharge = false;
-					chargeBarCurrentSize.x = rechargeRecoveryBar.rectTransform.sizeDelta.x;
+					chargeBarCurrentSize.x = chargeBarMaxSize.x*playerStats.currentCharge/playerStats.maxCharge;
 					chargeBarCurrentSize.y = chargeFillMaxHeight;
 					chargeFill.rectTransform.sizeDelta = chargeBarCurrentSize;
 					chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, chargeBarCurrentSize.x/chargeBarMaxSize.x);
