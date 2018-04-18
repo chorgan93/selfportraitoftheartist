@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: dfeb9f4368dbe4563b021db7ae32b1d0
-timeCreated: 1523428125
+timeCreated: 1524030227
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,11 @@ TextureImporter:
     21300016: Key Items_0
     21300018: Key Items_1
     21300020: Key Items_2
+    21300022: Key Items_3
+    21300024: Key Items_4
+    21300026: Key Items_5
+    21300028: Key Items_6
+    21300030: Key Items_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -37,7 +42,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: 0
@@ -71,7 +76,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -83,7 +88,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -94,7 +99,67 @@ TextureImporter:
       name: Key Items_2
       rect:
         serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items_3
+      rect:
+        serializedVersion: 2
         x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items_7
+      rect:
+        serializedVersion: 2
+        x: 32
         y: 0
         width: 32
         height: 32

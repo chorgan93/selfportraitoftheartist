@@ -64,6 +64,8 @@ public class EnemyS : MonoBehaviour {
 	[Header ("Death Properties")]
 	public int sinAmt;
 	public Color bloodColor = Color.red;
+	public Color deadColor = new Color(0.3f, 0.3f, 0.3f);
+	private Color startColor;
 	public float knockbackTime;
 	private float criticalRecoverTime = 0.5f;
 	private float _currentHealth;
@@ -459,6 +461,7 @@ public class EnemyS : MonoBehaviour {
 		_invulnerable = false;
 		doubleCriticalTime = false;
 
+
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
 			_isActive = false;
@@ -483,6 +486,8 @@ public class EnemyS : MonoBehaviour {
 		_myCollider = GetComponent<Collider>();
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		startMaterial = myRenderer.material;
+		startColor = myRenderer.color;
+		startColor.a = 1f;
 
 		_myAnimator.SetFloat("WitchSpeed", 1f);
 
@@ -616,6 +621,8 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		_myRigidbody.velocity = Vector3.zero;
+
+		myRenderer.color = startColor;
 
 		/*if (healthBarReference != null){
 			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
@@ -893,7 +900,23 @@ public class EnemyS : MonoBehaviour {
 		//deathObj.GetComponent<EnemyDeathShadowS>().StartFade(myRenderer.sprite, myRenderer.transform.localScale);
 
 		spawnedDeathObj = true;
+				StartCoroutine(DeathFade());
 			}
+		}
+	}
+
+	IEnumerator DeathFade(){
+		float deathColorTime = 1f, deathColorCount = 1f, deathT = 1f;
+
+		while (deathColorCount > 0f && _isDead){
+			deathColorCount -= Time.deltaTime;
+			if (deathColorCount < 0f){
+				deathColorCount = 0f;
+			}
+			deathT = deathColorCount/deathColorTime;
+			myRenderer.color = Color.Lerp(deadColor, startColor, deathT);
+
+			yield return null;
 		}
 	}
 

@@ -53,6 +53,7 @@ public class MeleeBuddyS : BuddyS {
 		myRender = GetComponent<SpriteRenderer>();
 		flashFramesMax = flashFrames;
 		myRender.material.SetFloat("_FlashAmount", 0);
+		myRender.material.SetColor("_FlashColor", shadowColor);
 	}
 
 	public override void FaceDirection(){
@@ -142,6 +143,10 @@ public class MeleeBuddyS : BuddyS {
 							}
 						}else if (!playerRef.myStats.ChargeCheck(costPerUse, false,true)){
 							outOfCharge.FireEffect();
+
+							flashFrames = flashFramesMax;
+							flashReset = true;
+							myRender.material.SetFloat("_FlashAmount", 1);
 						}
 						chargeButtonUp = false;
 					}

@@ -25,7 +25,7 @@ public class ControlManagerS : MonoBehaviour {
 
 		if (controlProfile < 0){
 			if (ControllerAttached()){
-				Debug.Log("Controller attached !! " + Input.GetJoystickNames()[0]);
+				// Debug.Log("Controller attached !! " + Input.GetJoystickNames()[0]);
 				if (DetermineControllerType() == 1){
 					controlProfile = 3;
 				}else{

@@ -37,6 +37,7 @@ public class BuddyNoChargeEffectS : MonoBehaviour {
 			Instantiate(soundObj);
 		}
 
+		StopCoroutine(ExclamationEffect());
 		myBuddy.playerRef.myStats.warningRef.NewMessage("— INSUFFICIENT Charge —", Color.white, Color.magenta, false, 0);
 		StartCoroutine(ExclamationEffect());
 	}

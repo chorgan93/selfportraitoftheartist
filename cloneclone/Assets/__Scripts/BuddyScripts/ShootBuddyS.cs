@@ -29,6 +29,11 @@ public class ShootBuddyS : BuddyS {
 	public string chargeAnimatorTrigger;
 	public string fireAnimatorTrigger;
 
+	private SpriteRenderer myRender;
+	private bool flashReset = false;
+	public int flashFrames = 8;
+	private int flashFramesMax;
+
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +56,10 @@ public class ShootBuddyS : BuddyS {
 		base.Initialize();
 		myEnemyDetect = playerRef.enemyDetect;
 		shootDetect = GetComponentInChildren<SimpleEnemyDetectS>();
+		myRender = GetComponent<SpriteRenderer>();
+		flashFramesMax = flashFrames;
+		myRender.material.SetColor("_FlashColor", shadowColor);
+		myRender.material.SetFloat("_FlashAmount", 0);
 	}
 
 	public override void FaceDirection(){
@@ -115,6 +124,14 @@ public class ShootBuddyS : BuddyS {
 
 	private void ShootControl(){
 
+		if (flashReset){
+			flashFrames--;
+			if (flashFrames <= 0){
+				flashReset = false;
+				myRender.material.SetFloat("_FlashAmount", 0);
+			}
+		}
+
 		if (shotTriggered){
 			shotDelayCountdown -= Time.deltaTime;
 			if (shotDelayCountdown <= 0){
@@ -144,6 +161,10 @@ public class ShootBuddyS : BuddyS {
 							}
 						}else if (!playerRef.myStats.ChargeCheck(costPerUse, false,true)){
 							outOfCharge.FireEffect();
+
+							flashFrames = flashFramesMax;
+							flashReset = true;
+							myRender.material.SetFloat("_FlashAmount", 1);
 						}
 						chargeButtonUp = false;
 
@@ -215,6 +236,11 @@ public class ShootBuddyS : BuddyS {
 			effectDir *= -1f;
 			Instantiate(shootEffect, transform.position, Quaternion.Euler(pRotation));
 		}
+
+
+		flashFrames = flashFramesMax;
+		flashReset = true;
+		myRender.material.SetFloat("_FlashAmount", 1);
 
 	}
 }

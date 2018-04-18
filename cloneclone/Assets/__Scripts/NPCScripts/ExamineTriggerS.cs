@@ -35,6 +35,8 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int numToAdd = 1;
 	public bool keyItem = false;
 	public Sprite keyItemSprite;
+	public Color keyItemSpriteColor = Color.white;
+	public Color keyItemOutlineColor = Color.red;
 	public ActivateOnExamineS myTrigger;
 	public BuddyS buddyToGive;
 	public bool forceBuddySwitch = false;
@@ -138,7 +140,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	
 						if (!unlocking){
 									if (keyItemSprite){
-										DialogueManagerS.D.SetItemFind(keyItemSprite);
+										DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
 									}
 							DialogueManagerS.D.SetDisplayText(examineString);
 

@@ -803,7 +803,7 @@ public class InventorySave {
 	
 	public List<int> equippedBuddies;
 	public int currentParadigm;
-	public bool familiarUnlocked = true;
+	public bool familiarUnlocked = false;
 
 	public List<int> equippedInventory;
 	public int currentSelection = 0;
@@ -868,7 +868,7 @@ public class InventorySave {
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1, 2};
-		familiarUnlocked = true;
+		familiarUnlocked = false;
 
 		tvNumber = Mathf.FloorToInt(Random.Range(100, 999));
 

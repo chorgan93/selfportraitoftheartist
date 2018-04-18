@@ -16,6 +16,7 @@ public class DialogueManagerS : MonoBehaviour {
 	private Vector2 memoTextStartPos;
 	private Vector2 memoTextMoviePos;
 
+
 	public DialogueResponseS dialogueResponse;
 
 	public GameObject advanceIndicator;
@@ -36,6 +37,8 @@ public class DialogueManagerS : MonoBehaviour {
 	public Image itemPopup;
 	public Image itemPopupBG;
 	private float popMaxHeight;
+	private Outline popUpOutline;
+	private Color outlineColor;
 
 	private string currentDisplayString;
 	private string targetDisplayString;
@@ -79,6 +82,8 @@ public class DialogueManagerS : MonoBehaviour {
 
 		itemPopup.enabled = itemPopupBG.enabled = false;
 		popMaxHeight = itemPopupBG.rectTransform.sizeDelta.y;
+		popUpOutline = itemPopup.GetComponent<Outline>();
+		outlineColor = popUpOutline.effectColor;
 		itemPopupBG.gameObject.SetActive(false);
 
 		advanceIndicator.SetActive(false);
@@ -160,9 +165,14 @@ public class DialogueManagerS : MonoBehaviour {
 	
 	}
 
-	public void SetItemFind(Sprite newItem){
+	public void SetItemFind(Sprite newItem, Color spriteCol, Color outlineCol){
 		StartCoroutine(ItemFindEffect());
 		itemPopup.sprite = newItem;
+		itemPopup.color = spriteCol;
+		outlineColor.r = outlineCol.r;
+		outlineColor.g = outlineCol.g;
+		outlineColor.b = outlineCol.b;
+		popUpOutline.effectColor = outlineCol;
 		itemPopup.enabled = itemPopupBG.enabled = true;
 		itemPopupBG.gameObject.SetActive(true);
 	}
