@@ -8,11 +8,25 @@ public class EnemyStatusReferencesS : MonoBehaviour {
 	public List<EnemyS> buffedEnemies = new List<EnemyS>();
 
 
+	void LateUpdate(){
+		CleanBuffList();
+	}
+
+	void CleanBuffList(){
+		if (buffedEnemies.Count > 0){
+			for (int i = buffedEnemies.Count-1; i >= 0; i--){
+				if (!buffedEnemies[i].isCorrupted){
+					buffedEnemies.RemoveAt(i);
+				}
+			}
+		}
+	}
+
 	public void AddBuffedEnemy(EnemyS newBuff){
 		if (!buffedEnemies.Contains(newBuff) && !newBuff.isCorrupted){
-			newBuff.SetCorruption(true, true);
 			buffedEnemies.Add(newBuff);
 		}
+		newBuff.SetCorruption(true);
 	}
 
 	public void RemoveBuffs(){

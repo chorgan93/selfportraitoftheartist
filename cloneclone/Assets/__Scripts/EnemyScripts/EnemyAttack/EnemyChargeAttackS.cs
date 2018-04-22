@@ -60,6 +60,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 	[Header("Corrupt Properties")]
 	public bool corruptEnemies = false;
+	public ChargeRiseEffectS riseEffect;
 
 
 	// Use this for initialization
@@ -91,6 +92,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		else{
 			TurnOn(standaloneTurnOnTime);
 		}
+
 	
 	}
 	
@@ -190,7 +192,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		charging = false;
 
-
+		if (riseEffect){
+			riseEffect.TriggerEffect(Vector3.zero);
+		}
 	}
 
 	private float FaceDirection(Vector3 direction){
@@ -231,6 +235,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			float actingDamage = dmg*Random.Range(1f - EnemyS.DAMAGE_VARIANCE, 1f + EnemyS.DAMAGE_VARIANCE);
 
 			if (myEnemy){
+				actingDamage*=myEnemy.CorruptedPowerMult();
 			other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
 				(myEnemy, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
 			}
@@ -248,7 +253,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			EnemyS hitEnemy = other.gameObject.GetComponent<EnemyS>();
 
 			if (hitEnemy != null && !myEnemy != null){
-			if (hitEnemy.enemyName != myEnemy.enemyName && !hitEnemy.isDead 
+			if (hitEnemy != myEnemy && !hitEnemy.isDead 
 					&& ((hitEnemy.isFriendly != isFriendly) || (hitEnemy.isFriendly == isFriendly && corruptEnemies))){
 
 					if (hitEnemy.isFriendly == isFriendly && corruptEnemies){
@@ -307,6 +312,8 @@ public class EnemyChargeAttackS : MonoBehaviour {
 		_myCollider.enabled = false;
 		_myRenderer.enabled = true;
 		charging = true;
+
+
 
 		/*if (soundObj && standalone){
 			Instantiate(soundObj);

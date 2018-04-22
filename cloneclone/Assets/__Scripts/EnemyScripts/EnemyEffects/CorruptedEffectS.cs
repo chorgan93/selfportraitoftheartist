@@ -26,7 +26,7 @@ public class CorruptedEffectS : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	public void Initialize (EnemyS enemyRef, bool doEffect = false) {
+	public void Initialize (EnemyS enemyRef) {
 	
 		if (!_initialized){
 			if (!ignoreEnemy){

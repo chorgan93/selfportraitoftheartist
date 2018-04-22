@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 46b583a7a529e4bb881c134b0404ec3e
+timeCreated: 1524205536
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: EnemyHealthFeather_0
+    21300002: EnemyHealthFeather_1
+    21300004: EnemyHealthFeather_2
+    21300006: EnemyHealthFeather_3
+    21300008: EnemyHealthFeather_4
+    21300010: EnemyHealthFeather_5
+    21300012: EnemyHealthFeather_6
+    21300014: EnemyHealthFeather_7
+    21300016: EnemyHealthFeather_8
+    21300018: EnemyHealthFeather_9
+    21300020: EnemyHealthFeather_10
+    21300022: EnemyHealthFeather_11
+    21300024: EnemyHealthFeather_12
+    21300026: EnemyHealthFeather_13
+    21300028: EnemyHealthFeather_14
+    21300030: EnemyHealthFeather_15
+    21300032: Corrupted Effects_0
+    21300034: Corrupted Effects_1
+    21300036: Corrupted Effects_2
+    21300038: Corrupted Effects_3
+    21300040: Corrupted Effects_4
+    21300042: Corrupted Effects_5
+    21300044: Corrupted Effects_6
+    21300046: Corrupted Effects_7
+    21300048: Corrupted Effects_8
+    21300050: Corrupted Effects_9
+    21300052: Corrupted Effects_10
+    21300054: Corrupted Effects_11
+    21300056: Corrupted Effects_12
+    21300058: Corrupted Effects_13
+    21300060: Corrupted Effects_14
+    21300062: Corrupted Effects_15
+    21300064: Corrupted Effects_16
+    21300066: Corrupted Effects_17
+    21300068: Corrupted Effects_18
+    21300070: Corrupted Effects_19
+    21300072: Corrupted Effects_20
+    21300074: Corrupted Effects_21
+    21300076: Corrupted Effects_22
+    21300078: Corrupted Effects_23
+    21300080: Corrupted Effects_24
+    21300082: Corrupted Effects_25
+    21300084: Corrupted Effects_26
+    21300086: EnrageFireEffect_0
+    21300088: EnrageFireEffect_1
+    21300090: EnrageFireEffect_2
+    21300092: EnrageFireEffect_3
+    21300094: EnrageFireEffect_4
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnrageFireEffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: EnrageFireEffect_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: EnrageFireEffect_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: EnrageFireEffect_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: EnrageFireEffect_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

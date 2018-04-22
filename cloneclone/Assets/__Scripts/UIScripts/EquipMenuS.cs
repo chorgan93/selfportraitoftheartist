@@ -835,15 +835,20 @@ public class EquipMenuS : MonoBehaviour {
 				paradigmMantraSubscreen.gameObject.SetActive(true);
 				if (paradigmNum == 0){
 					if (newPos == 0){
-						descriptionText.text = allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain;
-					}else{
-						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub;
+					descriptionText.text = allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain 
+						+ "\n" + allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionSub;
+					}else if (newPos == 1){
+						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionMain 
+							+ "\n" + allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub;
 					}
+					
 				}else{
 					if (newPos == 0){
-						descriptionText.text = allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain;
-					}else{
-						descriptionText.text = allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub;
+					descriptionText.text = allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain 
+						+ "\n" + allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionSub;
+					}else if (newPos == 1){
+						descriptionText.text = allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionMain 
+							+ "\n" + allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub;
 					}
 				}
 			}
@@ -870,11 +875,9 @@ public class EquipMenuS : MonoBehaviour {
 				selector.anchoredPosition = selectorPositionsParadigmI[currentPos].anchoredPosition;
 				if(currentPos > 2){
 
-					if (currentWeaponSelected == 0){
-						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain;
-					}else{
-						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionSub;
-					}
+						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain + "\n"
+						+ allMantraItems[nextAvailable-3].weaponDescriptionSub;
+
 
 				}
 			}else{
@@ -882,11 +885,9 @@ public class EquipMenuS : MonoBehaviour {
 				selector.anchoredPosition = selectorPositionsParadigmII[currentPos].anchoredPosition;
 				if(currentPos > 2){
 
-					if (currentWeaponSelected == 0){
-						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain;
-					}else{
-						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionSub;
-					}
+					descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain + "\n"
+						+ allMantraItems[nextAvailable-3].weaponDescriptionSub;;
+					
 
 				}
 			}

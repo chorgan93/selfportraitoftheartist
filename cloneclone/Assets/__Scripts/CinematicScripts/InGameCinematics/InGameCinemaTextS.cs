@@ -4,7 +4,9 @@ using System.Collections;
 public class InGameCinemaTextS : MonoBehaviour {
 
 	private InGameCinematicS _myHandler;
+	public InGameCinematicS myHandler { get { return _myHandler; } }
 	private ControlManagerS _myControl;
+	public ControlManagerS myControl { get { return _myControl; } }
 
 	public int myCinemaStep = 0;
 
@@ -15,6 +17,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 	private bool dialogueComplete = false;
 
 	public float skipAfterTime = 2f;
+	public bool waitForSkip = false;
 	public bool skipAfterTimePasses = false;
 
 	public bool textZoom = false;
@@ -25,8 +28,10 @@ public class InGameCinemaTextS : MonoBehaviour {
 	[Header ("First Scene Info")]
 	public bool dontTurnOnStats = false;
 	public bool waitForInput = false;
+	private bool waitForDialogueOption = false;
 	public TextInputUIS textInputRef;
 	private bool awaitingInput = false;
+	public InGameCinemaDialogueOptionS[] dialogueOptions;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +45,10 @@ public class InGameCinemaTextS : MonoBehaviour {
 
 		CheckForDialogueAfter();
 		advanceButtonDown = true;
+
+		if (dialogueOptions.Length > 0){
+			waitForDialogueOption = true;
+		}
 
 	}
 	
@@ -65,17 +74,24 @@ public class InGameCinemaTextS : MonoBehaviour {
 			}
 		if (!advanceButtonDown && _myControl.GetCustomInput(3)){
 				advanceButtonDown = true;
+				if (!waitForSkip){
 			if (DialogueManagerS.D.doneScrolling){
 				currentString++;
 				if (currentString > textStrings.Length-1){
-							if (!textInputRef){
+							if (!textInputRef && !waitForDialogueOption){
 						if (!textAfter){
 								DialogueManagerS.D.EndText(!dontTurnOnStats);
 						}
 						_myHandler.dialogueDone = true;
 						_myHandler.TurnOnTime();
 						dialogueComplete = true;
-						}else{
+							}else if (waitForDialogueOption){
+								awaitingInput = true;
+								for (int i = 0; i < dialogueOptions.Length; i++){
+									dialogueOptions[i].Initialize(this);
+								}
+							}
+							else{
 							textInputRef.Activate(this);
 							awaitingInput = true;
 						}
@@ -85,6 +101,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 					
 				}else{
 					DialogueManagerS.D.CompleteText();
+				}
 				}
 		}
 
@@ -118,5 +135,20 @@ public class InGameCinemaTextS : MonoBehaviour {
 		_myHandler.dialogueDone = true;
 		_myHandler.TurnOnTime();
 		dialogueComplete = true;
+	}
+	public void SelectDialogueOption(InGameCinemaDialogueOptionS selectedOption){
+		awaitingInput = false;
+		if (!textAfter){
+			DialogueManagerS.D.EndText();
+		}
+		_myHandler.dialogueDone = true;
+		_myHandler.TurnOnTime();
+		dialogueComplete = true;
+
+		for (int i = 0; i < dialogueOptions.Length; i++){
+			if (dialogueOptions[i] != selectedOption){
+				dialogueOptions[i].gameObject.SetActive(false);
+			}
+		}
 	}
 }

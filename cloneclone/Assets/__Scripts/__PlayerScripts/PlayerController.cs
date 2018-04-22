@@ -166,6 +166,13 @@ public class PlayerController : MonoBehaviour {
 	private float _transformDefenseMult = 3f;
 	public float transformDefenseMult { get { return _transformDefenseMult; } }
 	public GameObject transformEcho;
+
+	[Header("Taunt Properties")]
+	public GameObject tauntPrefab;
+	public ChargeRiseEffectS tauntEffect;
+	public EnemyDetectS tauntTrigger;
+	public TauntDialogueS tauntText;
+	private bool tauntButtonUp = true;
 	
 	//_________________________________________INSTANCE PROPERTIES
 
@@ -332,6 +339,7 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 _examineStringPos;
 	public Vector3 examineStringPos { get { return _examineStringPos; } }
 	private bool _isTalking = false;
+	private bool _allowWalk = false;
 	private float delayTurnOffTalk;
 	private bool delayTalkTriggered = false;
 
@@ -682,18 +690,21 @@ public class PlayerController : MonoBehaviour {
 		StatusCheck();
 
 		// Control Methods
-		if (!_myStats.PlayerIsDead() && !_isTalking){
+		if (!_myStats.PlayerIsDead()){
 
 			//if (_inCombat){
 				//LockOnControl();
+			if (!_isTalking){
 				SwapControl();
 				BlockControl();
 				DashControl();
 				AttackControl();
 			TransformControl();
+			}
 			//}
-
-			MovementControl();
+			if (!_isTalking || _allowWalk){
+				MovementControl();
+			}
 		}
 
 		StickResetCheck();
@@ -789,7 +800,9 @@ public class PlayerController : MonoBehaviour {
 		_attackingWeapon = equippedWeapon;
 		attackingWeaponAug = EquippedWeaponAug();
 		attackDuration = 0f;
+		if (myTracker){
 		myTracker.TurnOffEffect();
+		}
 		if (!allowChain){
 			currentChain = 0;
 		}else{
@@ -931,7 +944,7 @@ public class PlayerController : MonoBehaviour {
 				}
 
 
-				if (_isBlocking || _chargingAttack){
+				if (_isBlocking || _chargingAttack || _allowWalk){
 					moveVelocity *= walkSpeedBlockMult;
 					RunAnimationCheck(input2.magnitude*walkSpeedBlockMult);
 				}else if (_isSprinting){
@@ -1131,7 +1144,7 @@ public class PlayerController : MonoBehaviour {
 			CameraShakeS.C.SmallSleep();
 			CameraShakeS.C.SloAndPunch(0f, 0.7f, 0.2f);
 			DelayWitchTimeActivate(enemiesToParry[0]);
-			shootButtonUp = false;
+			//shootButtonUp = false;
 			PrepParryAnimation();
 			_isDashing = false;
 			dashDurationTime = dashDurationTimeMax;
@@ -1687,6 +1700,7 @@ public class PlayerController : MonoBehaviour {
 						prevChain = currentChain;
 					}
 					else{
+						if (!currentAttackS.isTaunt){
 						if (allowChainLight){
 							currentChain++;
 						}else{
@@ -1695,22 +1709,31 @@ public class PlayerController : MonoBehaviour {
 						if (currentChain > _attackingWeapon.attackChain.Length-1){
 						currentChain = 0;
 					}
+						}
 
 						// Opportunistic effect
-						if (_playerAug.opportunisticAug && staggerBonusTime > 0){
-							currentChain = _attackingWeapon.attackChain.Length-1;
-						}
+						//if (_playerAug.opportunisticAug && staggerBonusTime > 0){
+					//		currentChain = _attackingWeapon.attackChain.Length-1;
+					//	}
 
 						if (_projectilePool.ContainsProjectileID
 							(currentAttackS.projectileID)){
 							newProjectile = _projectilePool.GetProjectile(currentAttackS.projectileID,
 								transform.position, Quaternion.identity).gameObject;
 						}else{
+							if (currentAttackS.isTaunt){
+								newProjectile = (GameObject)Instantiate(tauntPrefab, 
+									transform.position, 
+									Quaternion.identity);
+							}else{
 							newProjectile = (GameObject)Instantiate(_attackingWeapon.attackChain[currentChain], 
 								transform.position, 
 								Quaternion.identity);
+							}
 						}
+						if (!currentAttackS.isTaunt){
 						prevChain = currentChain;
+						}
 					}
 				
 			}
@@ -1839,7 +1862,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (CanInputShoot()){
 				if (
-					ShootInputPressed() && shootButtonUp && !counterQueued && !_delayWitchTime
+					((ShootInputPressed() && shootButtonUp) || (tauntButtonUp && controller.GetCustomInput(8))) 
+					&& !counterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
 				){
@@ -1847,7 +1871,7 @@ public class PlayerController : MonoBehaviour {
 					// demo reset count
 					resetCountdown = resetTimeMax;
 
-					if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime()){
+					if (_allowCounterAttack && !_dodgeEffectRef.AllowAttackTime() && ShootInputPressed()){
 						if (controller.GetCustomInput(1)){
 							heavyCounterQueued = true;
 						}
@@ -1858,14 +1882,16 @@ public class PlayerController : MonoBehaviour {
 					}
 					else{
 
+						if (ShootInputPressed()){
 				shootButtonUp = false;
+						}
 					_doingDashAttack = false;
 					_doingHeavyAttack = false;
 					_doingCounterAttack = false;
 
 					attackEffectRef.EndAttackEffect();
 
-					if (counterQueued || _allowCounterAttack){
+						if ((counterQueued || _allowCounterAttack) && ShootInputPressed()){
 
 							if ((counterQueued && heavyCounterQueued) || (controller.GetCustomInput(1) && !counterQueued)){
 							_doingHeavyAttack = true;
@@ -1888,7 +1914,7 @@ public class PlayerController : MonoBehaviour {
 						CameraShakeS.C.CancelSloMo();
 
 					}
-					else if (_isDashing || _isSprinting){
+						else if ((_isDashing || _isSprinting) && ShootInputPressed()){
 
 							if (_allowDashAttack || _isSprinting){
 							if (controller.GetCustomInput(1)){
@@ -1945,6 +1971,11 @@ public class PlayerController : MonoBehaviour {
 
 
 					}else{
+							if (myControl.GetCustomInput(8)){
+								// trigger taunt!
+								currentAttackS = tauntPrefab.GetComponent<ProjectileS>();
+								tauntButtonUp = false;
+							}else{
 						int nextAttack = currentChain+1;
 							if (myControl.GetCustomInput(1)){
 								if (!allowChainHeavy){
@@ -1974,6 +2005,7 @@ public class PlayerController : MonoBehaviour {
 						}
 							
 							allowParryCountdown = allowParryInput;
+							}
 
 					}
 					
@@ -2029,6 +2061,7 @@ public class PlayerController : MonoBehaviour {
 						TriggerFosAttack();
 						canDoAdaptive = false;
 
+							if (!myControl.GetCustomInput(8)){
 						if (_isTransformed){
 							myTracker.FireEffect(ShootDirection(), transformedColor, attackDelay, Vector3.zero);
 						}else{
@@ -2038,6 +2071,7 @@ public class PlayerController : MonoBehaviour {
 							myTracker.FireEffect(ShootDirection(), _attackingWeapon.swapColor, attackDelay, Vector3.zero);
 							}
 						}
+							}
 						//weaponTriggered = equippedWeapon;
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
@@ -2047,9 +2081,9 @@ public class PlayerController : MonoBehaviour {
 						allowChargeAttack = false;
 					}
 
-					AttackAnimationTrigger(_doingHeavyAttack);
+							AttackAnimationTrigger(_doingHeavyAttack, currentAttackS.isTaunt);
 
-						if (tutorialRef != null){
+							if (tutorialRef != null && !myControl.GetCustomInput(8)){
 							if (_doingHeavyAttack){
 								tutorialRef.AddHeavyAttack();
 							}else{
@@ -2456,12 +2490,17 @@ public class PlayerController : MonoBehaviour {
 
 		if (_isTalking){
 			shootButtonUp = false;
+			tauntButtonUp = false;
 			allowChargeAttack = false;
 		}
 
 		if (!controller.GetCustomInput(0) && !controller.GetCustomInput(1)){
 			shootButtonUp = true;
 			allowChargeAttack = false;
+		}
+
+		if (!controller.GetCustomInput(8)){
+			tauntButtonUp = true;
 		}
 
 
@@ -2681,6 +2720,8 @@ public class PlayerController : MonoBehaviour {
 			_myStats.ResetCombatStats();
 			_isStunned = false;
 			hitStopped = false;
+			tauntEffect.gameObject.SetActive(false);
+			tauntText.SetEffect(EquippedWeapon().swapColor, 1f, false);
 		}
 	}
 
@@ -2693,13 +2734,16 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	private void AttackAnimationTrigger(bool heavy = false){
+	private void AttackAnimationTrigger(bool heavy = false, bool taunt = false){
 
 		if (heavy){
 			if (!_doingDashAttack){
 			_myAnimator.SetBool("HeavyAttacking", true);
 			}
 			_myAnimator.SetInteger("WeaponNumber", attackingWeaponAug.weaponNum);
+		}else if (taunt){
+			_myAnimator.SetBool("HeavyAttacking", false);
+			_myAnimator.SetInteger("WeaponNumber", 0);
 		}else{
 			_myAnimator.SetBool("HeavyAttacking", false);
 			_myAnimator.SetInteger("WeaponNumber", _attackingWeapon.weaponNum);
@@ -2883,7 +2927,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (!_isDashing && !_isStunned && attacksRemaining <= 0 && !attackTriggered 
 		    && !_doingCounterAttack && !counterQueued && !_delayWitchTime && !_allowCounterAttack
-		    && !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered && !_isTalking && !_usingItem){
+			&& !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered 
+			&& (!_isTalking || _allowWalk) && !_usingItem){
 			return true;
 		}
 		else{
@@ -3368,12 +3413,13 @@ public class PlayerController : MonoBehaviour {
 		_examining = nEx;
 	}
 
-	public void SetTalking(bool nEx){
+	public void SetTalking(bool nEx, bool allowWalk = false){
 
 		if (_isTalking && !nEx){
 			delayAttackAllow = 0.2f;
 		}
 		_isTalking = nEx;
+		_allowWalk = allowWalk;
 		if (_isTalking){
 			DeactivateTransform();
 			if (!_myRigidbody){

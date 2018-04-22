@@ -68,6 +68,9 @@ public class BuddyProjectileS : MonoBehaviour {
 	private bool isAura = false;
 	private Vector3 auraPos;
 
+	private bool saveCritical = false;
+	private bool saveEnraged = false;
+
 	void Start(){
 		_maxRange = range;
 		if (auraTrigger){
@@ -114,11 +117,13 @@ public class BuddyProjectileS : MonoBehaviour {
 
 
 					for (int i = 0; i < auraTrigger.EnemiesInRange.Count; i++){
+						saveCritical = auraTrigger.EnemiesInRange[i].isCritical;
+						saveEnraged = auraTrigger.EnemiesInRange[i].isEnraged;
 						float dmgDealt = auraTrigger.EnemiesInRange[i].TakeDamage(auraTrigger.EnemiesInRange[i].transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 							auraDamage*actingDamageMult
 							+(auraDamage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), 
 							actingStunMult, 2f, ignoreEnemyDefense, 0f, 0f);
-						RankManagerS.R.ScoreHit(3, dmgDealt);
+						RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical);
 
 
 					}
@@ -326,14 +331,15 @@ public class BuddyProjectileS : MonoBehaviour {
 					actingStunMult = 1.5f;
 					actingDamageMult = 1.4f;
 				}
-				
+				saveEnraged = hitEnemy.isEnraged;
+				saveCritical = hitEnemy.isCritical;
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage*actingDamageMult+(damage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), actingStunMult, 2f);
 
 				//_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 
-				RankManagerS.R.ScoreHit(3, dmgDealt);
+				RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical);
 
 				if (_myBuddy){
 					_myBuddy.playerRef.ExtendWitchTime();

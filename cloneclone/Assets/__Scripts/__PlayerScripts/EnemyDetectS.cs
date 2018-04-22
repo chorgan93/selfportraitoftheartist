@@ -12,9 +12,9 @@ public class EnemyDetectS : MonoBehaviour {
 	private Transform _closestEnemyTransform;
 	public Transform closestEnemyTransform { get { return _closestEnemyTransform; } }
 	
-	private List<EnemyS> enemiesInRange;
+	private List<EnemyS> enemiesInRange = new List<EnemyS>();
 	private List<Transform> enemyTransforms;
-	private List<EnemyS> friendliesInRange;
+	private List<EnemyS> friendliesInRange = new List<EnemyS>();
 	public List<EnemyS> allEnemiesInRange { get { return enemiesInRange; } }
 	private Vector3 _enemyCenterpoint;
 	public Vector3 enemyCenterpoint { get { return _enemyCenterpoint; } }
@@ -361,6 +361,15 @@ public class EnemyDetectS : MonoBehaviour {
 		}
 		}
 		return hasEnemy;
+	}
+
+
+	public void TauntAllEnemies(){
+		if (enemiesInRange.Count > 0){
+			for (int i =0; i < enemiesInRange.Count; i++){
+				enemiesInRange[i].SetEnraged(true);
+			}
+		}
 	}
 
 }

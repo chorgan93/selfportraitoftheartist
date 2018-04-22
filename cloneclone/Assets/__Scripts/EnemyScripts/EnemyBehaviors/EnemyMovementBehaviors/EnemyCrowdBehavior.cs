@@ -50,7 +50,7 @@ public class EnemyCrowdBehavior : EnemyBehaviorS {
 	
 	private void InitializeAction(){
 
-		if (myEnemyReference.mySpawner.myManager.GetNotAlone(myEnemyReference.mySpawner)){
+		if (!myEnemyReference.mySpawner.myManager.GetNotAlone(myEnemyReference.mySpawner)){ // make sure enemy is not alone
 
 			FindCrowdTarget();
 		didWallRedirect  = false;
@@ -73,7 +73,7 @@ public class EnemyCrowdBehavior : EnemyBehaviorS {
 
 		changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
 		
-		currentMoveTarget = transform.position + Random.insideUnitSphere*moveTargetRange;
+			currentMoveTarget = targetEnemy.position + Random.insideUnitSphere*moveTargetRange;
 		currentMoveTarget.z = transform.position.z;
 
 		if (wanderDragAmt > 0){

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: aa07d0f795c3a4a22a340bf5d80ae847
-timeCreated: 1492717900
+timeCreated: 1524102139
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,6 +59,19 @@ TextureImporter:
     21300104: PC Special Actions Redesign_19
     21300106: PC Special Actions Redesign_20
     21300108: PC Special Actions Redesign_21
+    21300110: PC Special Actions Redesign_22
+    21300112: PC Special Actions Redesign_23
+    21300114: PC Special Actions Redesign_24
+    21300116: PC Special Actions Redesign_25
+    21300118: PC Special Actions Redesign_26
+    21300120: PC Special Actions Redesign_27
+    21300122: PC Special Actions Redesign_28
+    21300124: PC Special Actions Redesign_29
+    21300126: PC Special Actions Redesign_30
+    21300128: PC Special Actions Redesign_31
+    21300130: PC Special Actions Redesign_32
+    21300132: PC Special Actions Redesign_33
+    21300134: PC Special Actions Redesign_34
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -110,7 +123,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -122,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -134,7 +147,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -146,7 +159,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -158,7 +171,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 256
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -169,8 +182,8 @@ TextureImporter:
       name: PC Special Actions Redesign_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -181,8 +194,8 @@ TextureImporter:
       name: PC Special Actions Redesign_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 0
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -193,8 +206,8 @@ TextureImporter:
       name: PC Special Actions Redesign_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 64
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -205,8 +218,8 @@ TextureImporter:
       name: PC Special Actions Redesign_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 128
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -217,8 +230,8 @@ TextureImporter:
       name: PC Special Actions Redesign_9
       rect:
         serializedVersion: 2
-        x: 256
-        y: 192
+        x: 192
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -229,8 +242,8 @@ TextureImporter:
       name: PC Special Actions Redesign_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -241,6 +254,102 @@ TextureImporter:
       name: PC Special Actions Redesign_11
       rect:
         serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_19
+      rect:
+        serializedVersion: 2
         x: 64
         y: 128
         width: 64
@@ -250,7 +359,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_12
+      name: PC Special Actions Redesign_20
       rect:
         serializedVersion: 2
         x: 128
@@ -262,7 +371,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_13
+      name: PC Special Actions Redesign_21
       rect:
         serializedVersion: 2
         x: 192
@@ -274,7 +383,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_14
+      name: PC Special Actions Redesign_22
       rect:
         serializedVersion: 2
         x: 256
@@ -286,7 +395,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_15
+      name: PC Special Actions Redesign_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_24
       rect:
         serializedVersion: 2
         x: 0
@@ -298,7 +419,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_16
+      name: PC Special Actions Redesign_25
       rect:
         serializedVersion: 2
         x: 64
@@ -310,7 +431,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_17
+      name: PC Special Actions Redesign_26
       rect:
         serializedVersion: 2
         x: 128
@@ -322,7 +443,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_18
+      name: PC Special Actions Redesign_27
       rect:
         serializedVersion: 2
         x: 192
@@ -334,7 +455,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_19
+      name: PC Special Actions Redesign_28
       rect:
         serializedVersion: 2
         x: 256
@@ -346,7 +467,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_20
+      name: PC Special Actions Redesign_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_30
       rect:
         serializedVersion: 2
         x: 0
@@ -358,10 +491,46 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: PC Special Actions Redesign_21
+      name: PC Special Actions Redesign_31
       rect:
         serializedVersion: 2
         x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: PC Special Actions Redesign_34
+      rect:
+        serializedVersion: 2
+        x: 256
         y: 0
         width: 64
         height: 64

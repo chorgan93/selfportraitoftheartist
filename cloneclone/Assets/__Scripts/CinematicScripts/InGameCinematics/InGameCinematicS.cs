@@ -24,6 +24,7 @@ public class InGameCinematicS : MonoBehaviour {
 	public bool wakeNextScene = true;
 	public bool noBuddy = false;
 	public bool resetPOIOnEnd = false;
+	public bool allowWalk = false;
 
 	[HideInInspector]
 	public bool dialogueDone = true;
@@ -49,7 +50,7 @@ public class InGameCinematicS : MonoBehaviour {
 		CheckCurrentStep();
 
 
-		_pRef.SetTalking(true);
+		_pRef.SetTalking(true, allowWalk);
 
 	}
 	

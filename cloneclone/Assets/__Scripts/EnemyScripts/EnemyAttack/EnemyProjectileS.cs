@@ -202,6 +202,7 @@ public class EnemyProjectileS : MonoBehaviour {
 				trackingCountdown  = trackingDelay;
 				trackingRef = _myEnemy.GetTargetReference();
 			}
+			damage*=_myEnemy.CorruptedPowerMult();
 		}
 
 		if (!aoe){

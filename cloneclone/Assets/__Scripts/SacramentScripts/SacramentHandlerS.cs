@@ -45,7 +45,9 @@ public class SacramentHandlerS : MonoBehaviour {
 	void Awake(){
 		CinematicHandlerS.inCutscene = true;
 		myManager = GetComponent<ControlManagerS>();
-		chooseOptionImage.gameObject.SetActive(false);
+		if (chooseOptionImage){
+			chooseOptionImage.gameObject.SetActive(false);
+		}
 	}
 
 	void Start () {

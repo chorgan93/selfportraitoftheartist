@@ -174,7 +174,7 @@ public class RankUIS : MonoBehaviour {
 		}
 	}
 
-	public void AddScoreItem(int dmgType, float dmgAmount){
+	public void AddScoreItem(int dmgType, float dmgAmount, bool enraged = false, bool isCritical = false){
 		// ui management
 		if (activeScoreObjs.Count >= maxScoreObjs){
 			MoveTopItemOff();

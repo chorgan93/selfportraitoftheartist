@@ -73,6 +73,9 @@ public class ChargeAttackS : MonoBehaviour {
 	public float hangTime = 0.3f;
 	private Vector3 savedFireDirection = Vector3.zero;
 
+	private bool saveEnraged = false;
+	private bool saveCritical = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -406,13 +409,15 @@ public class ChargeAttackS : MonoBehaviour {
 				}
 				actingDmg*=BiosAugMult();
 
+				saveEnraged = hitEnemy.isEnraged;
+				saveCritical = hitEnemy.isCritical;
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, 
 						actingDmg, stunMult, 2f, myPlayer.playerAug.solAug, hitStopTime, 0f, false, 
 						myPlayer.playerAug.aquaAug, killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
-				RankManagerS.R.ScoreHit(2, dmgDealt);
+				RankManagerS.R.ScoreHit(2, dmgDealt, saveEnraged, saveCritical);
 
 
 				myPlayer.myStats.DesperateRecover(dmgDealt);

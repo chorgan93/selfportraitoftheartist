@@ -23,6 +23,13 @@ public class EnemyS : MonoBehaviour {
 
 	private const float CRIT_PENALTY = 3f;
 
+	private const float corruptedSpeedMult = 1.25f;
+	private const float corruptedPowerMult = 1.25f;
+	private const float corruptedDefenseMult = 0.5f;
+	private const float enragedSpeedMult = 1.1f;
+	private const float enragedPowerMult = 2.5f;
+	private const float enragedDefenseMult = 2f;
+
 	
 	//____________________________________ENEMY PROPERTIES
 
@@ -32,6 +39,12 @@ public class EnemyS : MonoBehaviour {
 	public bool debugMark = false;
 	public bool isGold = false;
 	public bool isCorrupted = false;
+	private bool _isEnraged = false;
+	public bool isEnraged { get { return _isEnraged; } }
+	private float tempCorruptionTimeMax = 10f;
+	private float tempCorruptionTime;
+	private float tempEnragedTimeMax = 8f;
+	private float tempEnragedTime;
 	private bool _startCorruption = false;
 	[Header ("Health Properties")]
 	public float maxHealth;
@@ -107,6 +120,8 @@ public class EnemyS : MonoBehaviour {
 	private TrackingEffectS _myTracker;
 	public TrackingEffectS myTracker { get { return _myTracker; } }
 
+	private EnragedEffectS myEnraged;
+
 	private Vector3 startSize;
 
 	private int flashFrames;
@@ -158,6 +173,8 @@ public class EnemyS : MonoBehaviour {
 	public EnemyStatusReferencesS myStatusMessenger;
 	public CorruptedEffectS corruptionManager;
 	public InstantiateOnEnemyHealthS healthSpawn;
+
+	private TransformStartEffectS corruptStartEffect;
 
 	
 	[Header("Sound Properties")]
@@ -346,6 +363,10 @@ public class EnemyS : MonoBehaviour {
 		_faceLocked = false;
 	}
 
+	public void SetTransformStartEffect(TransformStartEffectS newEffect){
+		corruptStartEffect = newEffect;
+	}
+
 	public void SetBreakState(float newBreakAmt, float newRecover){
 		_breakThreshold = newBreakAmt;
 		_breakAmt = 0f;
@@ -377,6 +398,20 @@ public class EnemyS : MonoBehaviour {
 		if (!_isDead){
 			ManageFacing();
 		//	ManageZ();
+
+			if (isCorrupted && !_startCorruption){
+				tempCorruptionTime += Time.deltaTime/currentDifficultyMult;
+				if (tempCorruptionTime >= tempCorruptionTimeMax || _isDead){
+					SetCorruption(false);
+				}
+			}
+
+			if (_isEnraged && !_hitStunned){
+				tempEnragedTime += Time.deltaTime;
+				if (tempEnragedTime >= tempEnragedTimeMax){
+					SetEnraged(false);
+				}
+			}
 
 			#if UNITY_EDITOR
 			/*if (Input.GetKeyDown(KeyCode.I)){
@@ -443,7 +478,7 @@ public class EnemyS : MonoBehaviour {
 	private void Initialize(){
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
-		actingMaxHealth = maxHealth*currentDifficultyMult*CorruptedMult();
+		actingMaxHealth = maxHealth*currentDifficultyMult;
 		stunLockTarget = actingMaxHealth*stunLockHealthMult;
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);
@@ -451,8 +486,6 @@ public class EnemyS : MonoBehaviour {
 		_startCorruption = isCorrupted;
 
 		_myTracker = GetComponentInChildren<TrackingEffectS>();
-
-		damageMultiplier/=CorruptedMult();
 
 		ResetFaceLock();
 
@@ -539,6 +572,8 @@ public class EnemyS : MonoBehaviour {
 			}
 		}
 
+
+
 	}
 
 	public void Reinitialize(){
@@ -568,6 +603,8 @@ public class EnemyS : MonoBehaviour {
 		if (corruptionManager){
 			corruptionManager.Initialize(this);
 		}
+
+		ResetEnraged();
 
 		//EndAllBehaviors();
 
@@ -764,17 +801,51 @@ public class EnemyS : MonoBehaviour {
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
-	public void SetCorruption(bool newC, bool doEffect = false){
+	public void SetCorruption(bool newC){
 		isCorrupted = newC;
 		if (corruptionManager){
-			corruptionManager.Initialize(this, doEffect);
+			corruptionManager.Initialize(this);
+		}
+		if (corruptStartEffect){
+			if (isCorrupted){
+				tempCorruptionTime = 0f;
+				corruptStartEffect.ActivateEffect();
+			}else{
+				corruptStartEffect.DeactivateEffect();
+			}
+		}
+	}
+	public void SetEnragedEffect(EnragedEffectS myEffect){
+		myEnraged = myEffect;
+	}
+	public void SetEnraged(bool newE){
+		_isEnraged = newE;
+		if (corruptStartEffect){
+			if (_isEnraged){
+				tempEnragedTime = 0f;
+				SpawnDeathObj(false);
+				corruptStartEffect.ActivateEffect(false);
+				myEnraged.ActivateEffect();
+			}else{
+				corruptStartEffect.DeactivateEffect();
+				myEnraged.DeactivateEffect();
+			}
 		}
 	}
 	public void ResetCorruption(){
 		isCorrupted = _startCorruption;
-		if (corruptionManager){
-			corruptionManager.Initialize(this, false);
+		if (!isCorrupted){
+			tempCorruptionTime = 0f;
 		}
+		if (corruptionManager){
+			corruptionManager.Initialize(this);
+		}
+	}
+
+	public void ResetEnraged(){
+		_isEnraged = false;
+		tempEnragedTime = 0f;
+		myEnraged.DeactivateEffect();
 	}
 
 	private void VulnerableEffect(){
@@ -885,7 +956,7 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	private void SpawnDeathObj(){
+	private void SpawnDeathObj(bool enragedEffect = false){
 
 		if (!spawnedDeathObj){
 			deathFrameDelay--;
@@ -898,9 +969,10 @@ public class EnemyS : MonoBehaviour {
 					deathObj.transform.localScale = flipScale;
 				}
 		//deathObj.GetComponent<EnemyDeathShadowS>().StartFade(myRenderer.sprite, myRenderer.transform.localScale);
-
+				if (!enragedEffect){
 		spawnedDeathObj = true;
 				StartCoroutine(DeathFade());
+				}
 			}
 		}
 	}
@@ -1166,7 +1238,7 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		float damageTaken = 0;
-		float actingDamageMultiplier = damageMultiplier;
+		float actingDamageMultiplier = damageMultiplier*CorruptedDefenseMult();
 		if (ignoreDefense){
 			actingDamageMultiplier = 1f;
 			_breakAmt += dmg*stunMult*currentStunResistMult;
@@ -1177,7 +1249,7 @@ public class EnemyS : MonoBehaviour {
 			if (ignoreDefense){
 				currentStunLock += dmg*stunMult*currentStunResistMult;
 			}else{
-			currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
+				currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
 			}
 			currentStunRecoverDelay = stunRecoverDelay;
 		}
@@ -1350,6 +1422,7 @@ public class EnemyS : MonoBehaviour {
 			}
 			_killScreen.Flash();
 			_isDead = true;
+			ResetEnraged();
 			if (corruptionManager){
 				corruptionManager.SendDeathMessage();
 			}
@@ -1456,6 +1529,7 @@ public class EnemyS : MonoBehaviour {
 
 		_currentHealth = 0;
 		_isDead = true;
+		ResetEnraged();
 		if (corruptionManager){
 			corruptionManager.SendDeathMessage();
 		}
@@ -1522,9 +1596,33 @@ public class EnemyS : MonoBehaviour {
 	public float CorruptedMult(){
 		float returnMult = 1f;
 		if (isCorrupted){
-			returnMult = 1.075f;
+			returnMult = corruptedSpeedMult;
+		}
+		if (isEnraged){
+			returnMult*=enragedSpeedMult;
 		}
 		return returnMult;
+	}
+	public float CorruptedPowerMult(){
+		float powerMult = 1f;
+		if (isCorrupted){
+			powerMult = corruptedPowerMult;
+		}
+		if (isEnraged){
+			powerMult*=enragedPowerMult;
+		}
+		return powerMult;
+	}
+
+	public float CorruptedDefenseMult(){
+		float defenseMult = 1f;
+		if (isCorrupted){
+			defenseMult = corruptedDefenseMult;
+		}
+		if (isEnraged){
+			defenseMult*=enragedDefenseMult;
+		}
+		return defenseMult;
 	}
 
 }

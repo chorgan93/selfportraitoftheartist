@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 
 	public PlayerDetectS rangeCheck;
-	public EnemyDetectS enrageCheck;
+	public SimpleEnemyDetectS enrageCheck;
 	public EnemyDodgeBehaviorS dodgeCheck;
 	private bool doDodge = false;
 
@@ -93,7 +93,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 			}
 		}
 		if (enrageCheck != null){
-			if (enrageCheck.allEnemiesInRange.Count < 2){
+			if (enrageCheck.EnemiesInRange.Count < 2){
 				canContinue = false;
 			}
 		}

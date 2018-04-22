@@ -778,7 +778,8 @@ public class ControlManagerS : MonoBehaviour {
 		//TODO test this please, add rest of dpad and add keyboard default
 		if (ControllerAttached()){
 			if (platformType == "Mac"){
-				return (Input.GetButton("SwitchItemButtonLeftMac") || Input.GetButton("SwitchItemButtonLeftMac"));
+				return (Input.GetButton("SwitchItemButtonLeftMac") || Input.GetButton("SwitchItemButtonRightMac")
+					|| Input.GetButton("SwitchItemButtonUpMac") || Input.GetButton("SwitchItemButtonUpMac"));
 			}else{
 				if (controlProfile == 3){
 					return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPS4")) > 0.1f);
@@ -787,7 +788,7 @@ public class ControlManagerS : MonoBehaviour {
 				}
 			}
 		}else{
-			return false;
+			return (Input.GetKey(KeyCode.Q));
 		}
 
 	}

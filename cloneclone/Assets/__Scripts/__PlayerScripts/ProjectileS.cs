@@ -40,6 +40,7 @@ public class ProjectileS : MonoBehaviour {
 	public float hitStopAmt = 0.1f;
 
 	[Header("Control Type")]
+	public bool isTaunt = false;
 	public bool lock4Directional = false;
 	public bool lock8Directional = false;
 	public bool lockFaceDirection = false;
@@ -168,6 +169,9 @@ public class ProjectileS : MonoBehaviour {
 	bool isStopped = false;
 	float stopTime = 0f;
 	Vector3 savedVelocity;
+
+	private bool saveEnraged = false;
+	private bool saveCritical = false;
 
 
 	void FixedUpdate () {
@@ -448,6 +452,14 @@ public class ProjectileS : MonoBehaviour {
 			shockProj.Fire(tooCloseForKnockback, aimDirection, knockbackDirection, playerReference, false, 0);
 		}
 
+		if (isTaunt){
+			_myPlayer.tauntEffect.ChangeStartColor(_myPlayer.EquippedWeapon().swapColor);
+			_myPlayer.tauntText.SetEffect(_myPlayer.EquippedWeapon().swapColor, _myPlayer.myRenderer.transform.localScale.x, true);
+			_myPlayer.tauntEffect.TriggerEffect(aimDirection);
+			_myPlayer.tauntTrigger.TauntAllEnemies();
+			RankManagerS.R.TauntEffect();
+		}
+
 	}
 
 	private void HitscanAttack(Vector3 aimDirection){
@@ -617,6 +629,8 @@ public class ProjectileS : MonoBehaviour {
 				}
 
 				//DoShake();
+				saveEnraged = hitEnemy.isEnraged;
+				saveCritical = hitEnemy.isCritical;
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, actingKnockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 					dmg, stunMult*_myPlayer.playerAug.GetGaeaAug(), critDmg*_myPlayer.playerAug.GetErebosAug(), ignoreEnemyDefense,
@@ -624,10 +638,10 @@ public class ProjectileS : MonoBehaviour {
 
 				_myPlayer.myStats.DesperateRecover(dmgDealt);
 
-				if (isFinisher || counterAttack || hitEnemy.isCritical){
-					RankManagerS.R.ScoreHit(1, dmgDealt);
+				if (isFinisher || counterAttack || saveCritical){
+					RankManagerS.R.ScoreHit(1, dmgDealt, saveEnraged, saveCritical);
 				}else{
-					RankManagerS.R.ScoreHit(0, dmgDealt);
+					RankManagerS.R.ScoreHit(0, dmgDealt, saveEnraged, saveCritical);
 				}
 
 				StartMoveStop(hitStopAmt);
@@ -832,7 +846,6 @@ public class ProjectileS : MonoBehaviour {
 
 	float BiosAugMult(){
 		if (_myPlayer.playerAug.biosAug && isFinisher){
-			Debug.Log("Increasing dmg for bios!");
 			return PlayerAugmentsS.BIOS_MULT;
 		}else{
 			return 1f;

@@ -14,6 +14,11 @@ public class TransformStartEffectS : MonoBehaviour {
 	private bool chargingUp = false;
 
 	private PlayerController myControl;
+	private EnemyS myEnemyControl;
+	public GameObject enemyEcho;
+
+	private float enemyTimeCharges = 0.08f;
+	private float enemyActivateDelays = 0.1f;
 
 	// Use this for initialization
 	void Start () {
@@ -22,9 +27,16 @@ public class TransformStartEffectS : MonoBehaviour {
 		TurnOffActivateAnims();
 		TurnOffDeactivateAnims();
 		myControl = GetComponentInParent<PlayerController>();
-		myControl.SetTransformStartEffect(this);
-		timeBetweenCharges = myControl.transformRequireHoldTime/(1f*chargeAnims.Length);
-		activateTimeDelays = myControl.revertRequireHoldTime;
+		if (!myControl){
+			myEnemyControl = GetComponentInParent<EnemyS>();
+			myEnemyControl.SetTransformStartEffect(this);
+			timeBetweenCharges = enemyTimeCharges;
+			activateTimeDelays = enemyActivateDelays;
+		}else{
+			myControl.SetTransformStartEffect(this);
+			timeBetweenCharges = myControl.transformRequireHoldTime/(1f*chargeAnims.Length);
+			activateTimeDelays = myControl.revertRequireHoldTime;
+		}
 
 	}
 	
@@ -33,8 +45,8 @@ public class TransformStartEffectS : MonoBehaviour {
 		StartCoroutine(ChargeUp());
 		}
 	}
-	public void ActivateEffect(){
-		StartCoroutine(ActivateTransform());
+	public void ActivateEffect(bool showCharge = true){
+		StartCoroutine(ActivateTransform(showCharge));
 	}
 	public void DeactivateEffect(){
 		StartCoroutine(DeactivateTransform());
@@ -49,9 +61,18 @@ public class TransformStartEffectS : MonoBehaviour {
 			yield return new WaitForSeconds(timeBetweenCharges);
 		}
 	}
-	private IEnumerator ActivateTransform(){
+	private IEnumerator ActivateTransform(bool fullEffect = true){
 		TurnOffChargeAnims(true);
 		TurnOffDeactivateAnims();
+		if (enemyEcho){
+			if (fullEffect){
+			Instantiate(enemyEcho, transform.position,Quaternion.identity);
+			}else{
+				GameObject turnOffEffect = Instantiate(enemyEcho, transform.position,Quaternion.identity)
+					as GameObject;
+				turnOffEffect.transform.GetChild(0).gameObject.SetActive(false);
+			}
+		}
 		for (int i = 0; i < activateAnims.Length; i++){
 			activateAnims[i].ResetAnimation();
 			yield return new WaitForSeconds(activateTimeDelays);

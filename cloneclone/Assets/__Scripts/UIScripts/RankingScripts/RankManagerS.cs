@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class RankManagerS : MonoBehaviour {
 
+	public const float ENRAGE_SCORE_MULT = 2.5f;
+	public const float CRIT_SCORE_MULT = 3f;
+
 	[HideInInspector]
 	public int totalRank = 0;
 	private int rankCountUp = 0;
@@ -292,9 +295,18 @@ public class RankManagerS : MonoBehaviour {
 		delayLoad = false;
 	}
 
-	public void ScoreHit(int dmgType, float dmgAmount){
+	public void ScoreHit(int dmgType, float dmgAmount, bool isEnraged = false, bool isCritical = false){
 		if (rankEnabled && !stopScoring){
-		currentRankAdd += scoreTypeAmts[dmgType];
+
+			float scoreToAdd = scoreTypeAmts[dmgType];
+			if (isEnraged){
+				scoreToAdd *= ENRAGE_SCORE_MULT;
+			}
+			if (isCritical){
+				scoreToAdd *= CRIT_SCORE_MULT;
+			}	
+			currentRankAdd += Mathf.RoundToInt(scoreToAdd);
+
 			if (currentDmgAdvance < 0){
 				currentDmgAdvance = 0;
 			}
@@ -312,10 +324,16 @@ public class RankManagerS : MonoBehaviour {
 			myUI.UpdateMultBar();
 		timeSinceDealingDmg = 0f;
 		currentReductionState = 0;
-			myUI.AddScoreItem(dmgType, scoreTypeAmts[dmgType]);
+			myUI.AddScoreItem(dmgType, scoreToAdd, isEnraged, isCritical);
 		myUI.UpdateCurrentCombo();
 		}
 
+	}
+
+	public void TauntEffect(){
+		if (rankEnabled && !stopScoring){
+			timeSinceDealingDmg = -0.5f;
+		}
 	}
 
 	public void AddBonuses(){
