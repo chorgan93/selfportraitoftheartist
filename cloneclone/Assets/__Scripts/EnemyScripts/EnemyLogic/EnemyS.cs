@@ -1420,6 +1420,7 @@ public class EnemyS : MonoBehaviour {
 			if (deathSound){
 				Instantiate(deathSound);
 			}
+			_currentHealth = 0f;
 			_killScreen.Flash();
 			_isDead = true;
 			ResetEnraged();

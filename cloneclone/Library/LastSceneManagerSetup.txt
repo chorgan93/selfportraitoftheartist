@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area06(Trail)Scenes/Area06_00_DejaVu.unity
+- path: Assets/_Scenes/Area02(Metro)Scenes/Area02_25_TrainCheckpoint.unity
   isLoaded: 1
   isActive: 1

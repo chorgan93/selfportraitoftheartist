@@ -611,6 +611,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public void ReflectProjectile(Vector3 aimDir, ProjectileS myReflector){
 		if (!isFriendly){
 		isFriendly = true;
+			isPiercing = false;
 		range = _maxRange+0.2f;
 			damage = startDamage*3f;
 		_rigidbody.velocity = Vector3.zero;

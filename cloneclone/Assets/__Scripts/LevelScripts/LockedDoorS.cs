@@ -41,6 +41,11 @@ public class LockedDoorS : MonoBehaviour {
 	public string keypadFailString;
 	private bool inKeypadFail = false;
 
+	[Header("Sprite Properties")]
+	public Sprite keyItemSprite;
+	public Color keyItemSpriteColor = Color.white;
+	public Color keyItemOutlineColor = Color.red;
+
 	// Use this for initialization
 	void Start () {
 
@@ -144,6 +149,9 @@ public class LockedDoorS : MonoBehaviour {
 		pRef.SetExamining(true, examinePos);
 		isTalking = true;
 		unlocking = true;
+		if (keyItemSprite){
+			DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
+		}
 		DialogueManagerS.D.SetDisplayText(unlockString);
 		fading = true;
 

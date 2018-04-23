@@ -1862,7 +1862,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (CanInputShoot()){
 				if (
-					((ShootInputPressed() && shootButtonUp) || (tauntButtonUp && controller.GetCustomInput(8))) 
+					((ShootInputPressed() && shootButtonUp) || (tauntButtonUp && controller.GetCustomInput(8) &&
+						equippedUpgrades.Contains(7))) 
 					&& !counterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())

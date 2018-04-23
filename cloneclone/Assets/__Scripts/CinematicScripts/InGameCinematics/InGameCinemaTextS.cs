@@ -46,8 +46,10 @@ public class InGameCinemaTextS : MonoBehaviour {
 		CheckForDialogueAfter();
 		advanceButtonDown = true;
 
-		if (dialogueOptions.Length > 0){
-			waitForDialogueOption = true;
+		if (dialogueOptions != null){
+			if (dialogueOptions.Length > 0){
+				waitForDialogueOption = true;
+			}
 		}
 
 	}

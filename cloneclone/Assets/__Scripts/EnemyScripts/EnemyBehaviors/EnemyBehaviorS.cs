@@ -129,15 +129,17 @@ public class EnemyBehaviorS : MonoBehaviour {
 	public virtual void EndAction(bool doNextAction = true){
 
 		_behaviorActing = false;
-		myEnemy.SetActing(false);
+		if (myEnemy){
+			myEnemy.SetActing(false);
 
-		myEnemy.canBeParried = false;
-		myEnemy.OverrideSpacingRequirement = false;
+			myEnemy.canBeParried = false;
+			myEnemy.OverrideSpacingRequirement = false;
+	
+			if (doNextAction){
+	
+				myEnemy.CheckBehaviorStateSwitch(dontAllowStateChange);
 
-		if (doNextAction){
-
-			myEnemy.CheckBehaviorStateSwitch(dontAllowStateChange);
-
+			}
 		}
 
 	}

@@ -48,6 +48,11 @@ public class VideotapePlayerS : MonoBehaviour {
 	public static bool backFromTape = false;
 	private static bool hasSeenLoadMessage = false;
 
+
+	public Sprite keyItemSprite;
+	public Color keyItemSpriteColor = Color.white;
+	public Color keyItemOutlineColor = Color.red;
+
 	void Start(){
 		playerDetect = GetComponentInChildren<PlayerDetectS>();
 		tvAmbient.examineString = tvAmbient.examineString.Replace("[TVNUM]", PlayerInventoryS.I.tvNum.ToString());
@@ -121,16 +126,25 @@ public class VideotapePlayerS : MonoBehaviour {
 				break;
 			case 1:
 			// insert tape a 
+			if (keyItemSprite){
+				DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
+			}
 			DialogueManagerS.D.SetDisplayText(examineTapeA);
 			LookAtTV();
 				break;
 			case 2:
 			// insert tape b
+			if (keyItemSprite){
+				DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
+			}
 			DialogueManagerS.D.SetDisplayText(examineTapeB);
 			LookAtTV();
 				break;
 			case 3:
 			// insert tape c
+			if (keyItemSprite){
+				DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
+			}
 			DialogueManagerS.D.SetDisplayText(examineTapeC);
 			LookAtTV();
 				break;

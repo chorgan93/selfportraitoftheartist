@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ac9263ee6860142cfb33758172bbd939
-timeCreated: 1524030242
+timeCreated: 1524428312
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -26,6 +26,10 @@ TextureImporter:
     21300038: Key Items Big_9
     21300040: Key Items Big_10
     21300042: Key Items Big_11
+    21300044: Key Items Big_12
+    21300046: Key Items Big_13
+    21300048: Key Items Big_14
+    21300050: Key Items Big_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -117,8 +121,8 @@ TextureImporter:
       name: Key Items Big_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 384
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -129,7 +133,7 @@ TextureImporter:
       name: Key Items Big_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 256
         width: 128
         height: 128
@@ -141,7 +145,7 @@ TextureImporter:
       name: Key Items Big_5
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 256
         width: 128
         height: 128
@@ -153,8 +157,8 @@ TextureImporter:
       name: Key Items Big_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 256
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -165,8 +169,8 @@ TextureImporter:
       name: Key Items Big_7
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 384
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -177,7 +181,7 @@ TextureImporter:
       name: Key Items Big_8
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 128
         width: 128
         height: 128
@@ -189,6 +193,42 @@ TextureImporter:
       name: Key Items Big_9
       rect:
         serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_12
+      rect:
+        serializedVersion: 2
         x: 0
         y: 0
         width: 128
@@ -198,7 +238,7 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Key Items Big_10
+      name: Key Items Big_13
       rect:
         serializedVersion: 2
         x: 128
@@ -210,10 +250,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - serializedVersion: 2
-      name: Key Items Big_11
+      name: Key Items Big_14
       rect:
         serializedVersion: 2
         x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Key Items Big_15
+      rect:
+        serializedVersion: 2
+        x: 384
         y: 0
         width: 128
         height: 128
