@@ -1863,7 +1863,7 @@ public class PlayerController : MonoBehaviour {
 		if (CanInputShoot()){
 				if (
 					((ShootInputPressed() && shootButtonUp) || (tauntButtonUp && controller.GetCustomInput(8) &&
-						equippedUpgrades.Contains(7))) 
+						equippedUpgrades.Contains(9))) 
 					&& !counterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
@@ -2388,7 +2388,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void ParadigmCheck(){
-		SwitchParadigm(_currentParadigm);
+		SwitchParadigm(_currentParadigm, true);
 	}
 	public void BuddyLoad(int buddyIndex, GameObject buddyPrefab){
 
@@ -2419,7 +2419,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	private void SwitchParadigm (int newPara){
+	private void SwitchParadigm (int newPara, bool fromMenu = false){
 
 		_currentParadigm = newPara;
 		if (newPara == 1){
@@ -2473,6 +2473,11 @@ public class PlayerController : MonoBehaviour {
 
 		if (_blockRef){
 			_blockRef.ChangeColors(equippedWeapon.swapColor);
+		}
+
+		if (fromMenu){
+			_attackingWeapon = equippedWeapon;
+			attackingWeaponAug = EquippedWeaponAug();
 		}
 	}
 

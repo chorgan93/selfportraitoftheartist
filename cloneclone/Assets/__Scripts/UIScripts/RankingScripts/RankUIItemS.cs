@@ -117,7 +117,7 @@ public class RankUIItemS : MonoBehaviour {
 		}
 		if (!isBonusAdd){
 		if (isScoreAdd){
-			scoreAmt.text = "+ " + scoreAmount.ToString();
+				scoreAmt.text = "+ " + scoreAmount.ToString();
 		}else{
 		scoreAmt.text = scoreAmount.ToString();
 		}

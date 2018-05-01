@@ -98,6 +98,7 @@ public class ProjectileS : MonoBehaviour {
 	public bool stopOnEnemyContact = false;
 	public float reduceHitVelocityMult = 0.5f;
 	public float startKnockbackSpeed = 1200f;
+	private float firedKnockbackSpeed;
 	public float knockbackSpeed = 1200f;
 	public float knockbackMult = 1.25f;
 	public float enemyKnockbackMult = 1.25f;
@@ -276,6 +277,7 @@ public class ProjectileS : MonoBehaviour {
 			stopTime = 0f;
 			isStopped = false;
 			startIgnoreDefense = ignoreEnemyDefense;
+			firedKnockbackSpeed = knockbackSpeed;
 			for (int i=0;i < biosAnimators.Count; i++){
 				biosAnimators[i].gameObject.SetActive(false);
 			}
@@ -287,6 +289,7 @@ public class ProjectileS : MonoBehaviour {
 			_rigidbody.velocity = Vector3.zero;
 			dmg = startDmg;
 			transform.localScale = startScale;
+			knockbackSpeed = firedKnockbackSpeed;
 		}
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
@@ -423,9 +426,9 @@ public class ProjectileS : MonoBehaviour {
 			_myPlayer.Knockback(knockbackForce, actingKnockbackTime, true);
 
 		}
-		//if (tooCloseForKnockback){
-		//	knockbackSpeed*=1.4f;
-		//}
+		if (tooCloseForKnockback){
+			knockbackSpeed*=1.33f;
+		}
 
 		currentRange = range;
 		InitializeSprites(_myPlayer.playerAug.aeroAug, activeBio);

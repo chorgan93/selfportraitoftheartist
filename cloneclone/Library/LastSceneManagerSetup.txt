@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area03(Suburb)Scenes/Area03_14_UpperHouseBasement.unity
+- path: Assets/_Scenes/Area06(Trail)Scenes/Area06_02_NoWarmth.unity
   isLoaded: 1
   isActive: 1

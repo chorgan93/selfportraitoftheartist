@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private const string currentVer = "— v. 0.7.0 —";
+	private const string currentVer = "— v. 0.8.0 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]

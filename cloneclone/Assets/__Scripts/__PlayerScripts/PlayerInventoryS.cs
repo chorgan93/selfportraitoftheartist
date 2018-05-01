@@ -547,6 +547,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 
 		healNums.Clear();
+		chargeNums.Clear();
 		vpNums.Clear();
 		laPickupNums.Clear();
 		if (unlockedWeapons.Count > 1){

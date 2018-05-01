@@ -64,6 +64,9 @@ public class RankManagerS : MonoBehaviour {
 	private int timeBonus = 1000;
 	private List<int> rankScoreTargets;
 
+	private int _currentRound = 1;
+	public int currentRound { get { return _currentRound; } }
+
 	private int currentCombatID = -1;
 	private List<int> savedCombatIDs = new List<int>();
 	private CombatManagerS _finalCombatManager;
@@ -180,7 +183,9 @@ public class RankManagerS : MonoBehaviour {
 		scoreOnReset = 0;
 			doNotResetNoDamage = false;
 			savedCombatIDs = new List<int>(){currentCombatID};
+			_currentRound = 1;
 		}else{
+			_currentRound++;
 			goalTimeInSeconds += targetTime;
 			for (int i = 0; i < rankScoreTargets.Count; i++){
 				rankScoreTargets[i] += scores[i];
