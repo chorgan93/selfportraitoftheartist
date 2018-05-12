@@ -1282,7 +1282,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
-			if (equippedUpgrades.Contains(8)){
+			if (equippedUpgrades.Contains(8)){ // TODO change back to 8
 			_transformHoldTime += Time.deltaTime;
 			transformStartEffect.StartCharge();
 			}

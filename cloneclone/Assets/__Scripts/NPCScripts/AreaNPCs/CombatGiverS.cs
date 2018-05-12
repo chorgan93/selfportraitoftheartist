@@ -35,6 +35,12 @@ public class CombatGiverS : MonoBehaviour {
 	public string talkKey;
 	public string idleKey;
 
+	[Header("Item Properties")]
+	public Sprite giveHealSprite;
+	public Color giveHealColor;
+	public Color giveHealOutlineColor;
+	public int giveHealInt = 1;
+
 	public static int chosenSpecialCombat = -1;
 
 	[HideInInspector]
@@ -180,7 +186,15 @@ public class CombatGiverS : MonoBehaviour {
 													myAnimator.SetTrigger(idleKey);
 												}
 											}else{
-												DialogueManagerS.D.SetDisplayText(giveHealSet.dialogueStrings[currentDialogue], false, true, true);
+												if (currentDialogue == giveHealInt){
+													DialogueManagerS.D.SetItemFind(giveHealSprite, giveHealColor, giveHealOutlineColor);
+													DialogueManagerS.D.SetDisplayText(giveHealSet.dialogueStrings[currentDialogue], false, true, true);
+												}else{
+													if (currentDialogue == giveHealInt+1){
+														DialogueManagerS.D.EndItemFind();
+													}
+													DialogueManagerS.D.SetDisplayText(giveHealSet.dialogueStrings[currentDialogue], false, true, true);
+												}
 											}
 										}
 								}

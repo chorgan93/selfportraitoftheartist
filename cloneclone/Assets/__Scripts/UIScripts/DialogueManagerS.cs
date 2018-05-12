@@ -316,6 +316,12 @@ public class DialogueManagerS : MonoBehaviour {
 		}
 	}
 
+	public void EndItemFind(){
+		if (itemPopupBG.gameObject.activeSelf){
+			StartCoroutine(ItemFindDisable());
+		}
+	}
+
 	public void EndText(bool newStatOn = true){
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
