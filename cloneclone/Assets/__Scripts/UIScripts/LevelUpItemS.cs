@@ -103,7 +103,7 @@ public class LevelUpItemS : MonoBehaviour {
 			upgradeCost*=10;
 		}
 		}else if (isShuffle){
-			upgradeCost = statRef.currentLevel*50;
+			upgradeCost = statRef.currentLevel*10;
 			shuffleUpgrade = true;
 
 			upgradeDescription = shuffleDescription;

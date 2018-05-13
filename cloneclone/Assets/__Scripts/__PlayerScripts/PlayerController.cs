@@ -2833,6 +2833,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	private void TurnOffAttackAnimation(){
+		_myAnimator.SetBool("Charging", false);
 		_myAnimator.SetBool("Attacking", false);
 		_myAnimator.SetBool("HeavyAttacking", false);
 		if (attackEffectRef){

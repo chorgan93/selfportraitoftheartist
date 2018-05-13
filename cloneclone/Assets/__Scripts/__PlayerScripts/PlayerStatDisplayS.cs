@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerStatDisplayS : MonoBehaviour {
 
 	private const float barAddSize = 8f;
-	private const float staminaBarAddSize = 5f;
+	private const float staminaBarAddSize = 7f;
 	private const float chargeAddSize = 4f;
 
 	public const bool RECORD_MODE = false; // TODO turn off after build!
@@ -151,7 +151,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (chargeBarMaxSize.x <= 0){
 		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 		chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
-
+			Debug.Log("setting charge bar max size! " + chargeBarMaxSize.x);
 		chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
@@ -576,6 +576,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeMinStartX = minChargeUseBar.rectTransform.anchoredPosition.x;
 			chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 			chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
+
+			//Debug.Log("setting charge bar max size! " + chargeBarMaxSize.x);
+
 			chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
