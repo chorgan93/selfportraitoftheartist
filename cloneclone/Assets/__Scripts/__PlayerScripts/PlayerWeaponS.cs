@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerWeaponS : MonoBehaviour {
 
+	public string weaponName = "L U N A";
 	public int weaponNum = 0;
 	public int displayNum = 0;
 	public float speedMult = 1f;

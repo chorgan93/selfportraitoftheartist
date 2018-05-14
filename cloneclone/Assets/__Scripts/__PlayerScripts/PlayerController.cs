@@ -192,6 +192,8 @@ public class PlayerController : MonoBehaviour {
 	private int flashChargeFrames;
 	private int flashDamageFrames;
 
+	private MantraSwitchS mantraText;
+
 	private TrackingEffectS myTracker;
 
 	private PlayerAnimationFaceS _myFace;
@@ -574,6 +576,7 @@ public class PlayerController : MonoBehaviour {
 		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();
 		startMat = myRenderer.material;
 		_playerSound = GetComponent<PlayerSoundS>();
+		mantraText = GetComponentInChildren<MantraSwitchS>();
 		if (!_myStats){
 			_myStats = GetComponent<PlayerStatsS>();
 		}
@@ -2238,6 +2241,8 @@ public class PlayerController : MonoBehaviour {
 					}
 					switchButtonUp = false;
 					_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
+
+					mantraText.ShowMantraText(EquippedWeapon().weaponName);
 
 					if (!attackTriggered){
 						_attackingWeapon = equippedWeapon;
