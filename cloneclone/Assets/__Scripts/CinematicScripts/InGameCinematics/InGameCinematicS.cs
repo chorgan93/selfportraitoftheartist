@@ -32,6 +32,9 @@ public class InGameCinematicS : MonoBehaviour {
 	public static bool turnOffBuddies = false;
 
 	public static bool inGameCinematic = false;
+
+	[Header("Ending Properties")]
+	public bool healDarknessScene = false;
 	
 
 	// Use this for initialization
@@ -48,7 +51,6 @@ public class InGameCinematicS : MonoBehaviour {
 	void Start () {
 
 		CheckCurrentStep();
-
 
 		_pRef.SetTalking(true, allowWalk);
 
@@ -79,12 +81,23 @@ public class InGameCinematicS : MonoBehaviour {
 		currentStep++;
 
 		if (CheckCurrentStep()){
-			if (endCinemaScene != ""){
+				if (endCinemaScene != ""){
+
+					if (healDarknessScene){
+						DarknessPercentUIS.DPERCENT.ActivateColinReset();
+						CameraEffectsS.E.SetNextScene(GameOverS.tempReviveScene);
+						SpawnPosManager.whereToSpawn = GameOverS.tempRevivePosition;
+					//	GameOverS.tempReviveScene = "";
+					//	GameOverS.tempRevivePosition = 0;
+						BGMHolderS.BG.FadeInAll();
+					}else{
+
+						CameraEffectsS.E.SetNextScene(endCinemaScene);
+						SpawnPosManager.whereToSpawn = endCinemaSpawn;
+					}
 				if (resetInventoryStats){
 					pRef.GetComponent<GameOverS>().PrepareForRespawn();
 				}
-				SpawnPosManager.whereToSpawn = endCinemaSpawn;
-				CameraEffectsS.E.SetNextScene(endCinemaScene);
 				CameraEffectsS.E.FadeIn(fadeRate);
 				PlayerController.doWakeUp = wakeNextScene;
 				turnOffBuddies = false;
@@ -198,7 +211,6 @@ public class InGameCinematicS : MonoBehaviour {
 	}
 
 	private void EndCinematic(){
-
 		inGameCinematic = false;
 		turnOffBuddies = false;
 		pRef.SetTalking(false);

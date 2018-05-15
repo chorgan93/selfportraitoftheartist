@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MenuScenes/MenuScene.unity
+- path: Assets/_Scenes/Area07(Radio)Scenes/Area07_00_TheLongWalk.unity
   isLoaded: 1
   isActive: 1

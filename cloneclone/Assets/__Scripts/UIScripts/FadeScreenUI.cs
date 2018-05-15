@@ -229,6 +229,15 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void FadeIn(string nextScene, float newRate = 0){
 
+		if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f){
+			BGMHolderS.BG.FadeOutAll();
+			GameOverS.tempReviveScene = destinationScene;
+			GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;
+			nextScene = DarknessPercentUIS.DPERCENT.Return100Scene();
+			if (!DarknessPercentUIS.DPERCENT.pStatRef.PlayerIsDead()){
+				DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
+			}
+		}
 		if (nextScene != ""){
 			destinationScene = nextScene;
 		}

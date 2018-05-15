@@ -23,6 +23,7 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DARKNESS_ADD_RATE = 0.003f;
 	private const float TRANSFORMED_RATE = 50f;
 	private const float DARKNESS_ADD_DEATH = 1.75f;
+	private const float DARKNESS_COLIN_HEAL = 75f;
 	public const float DARKNESS_MAX = 100f;
 	
 	private const float VIRTUE_ADD_AMT = 5f;
@@ -244,6 +245,9 @@ public class PlayerStatsS : MonoBehaviour {
 		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 		if (Input.GetKeyDown(KeyCode.G)){
 			godMode = !godMode;
+		}
+		if (Input.GetKey(KeyCode.Alpha5)){
+			_currentDarkness += 10f;
 		}
 		#endif
 	}
@@ -1010,6 +1014,13 @@ public class PlayerStatsS : MonoBehaviour {
 		}else{
 		_currentDarkness += DARKNESS_ADD_DEATH;
 		}
+		if (_currentDarkness > 100f){
+			_currentDarkness = 100f;
+		}
+	}
+
+	public void DeathColinReset(){
+		_currentDarkness = DARKNESS_COLIN_HEAL;
 	}
 
 	public void DesperateRecover(float amtToRecover){

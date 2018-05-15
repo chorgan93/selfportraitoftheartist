@@ -529,7 +529,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		return vpNums.Contains(v);
 	}
 
-	public void NewGame(){
+	public void NewGame(bool newGamePlus = false){
 		_dManager.ClearAllSaved();
 		_collectedItems.Clear();
 		_collectedItemCount.Clear();
@@ -541,42 +541,52 @@ public class PlayerInventoryS : MonoBehaviour {
 		checkpointsReachedScenes.Clear();
 		checkpointsReachedSpawns.Clear();
 
-		if (_iManager){
+		if (_iManager && !newGamePlus){
 			_iManager.equippedInventory.Clear();
 			_iManager.equippedInventory.Add(0);
 		}
 
-		healNums.Clear();
-		chargeNums.Clear();
-		vpNums.Clear();
-		laPickupNums.Clear();
-		if (unlockedWeapons.Count > 1){
-			unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
+		if (!newGamePlus){
+			healNums.Clear();
+			chargeNums.Clear();
+			vpNums.Clear();
+			laPickupNums.Clear();
+			if (unlockedWeapons.Count > 1){
+				unlockedWeapons.RemoveRange(1, unlockedWeapons.Count-1);
+			}
+			if (unlockedBuddies.Count > 1){
+				unlockedBuddies.RemoveRange(1, unlockedBuddies.Count-1);
+			}
+			SetUpStartTech();
 		}
-		if (unlockedBuddies.Count > 1){
-			unlockedBuddies.RemoveRange(1, unlockedBuddies.Count-1);
-		}
-		SetUpStartTech();
 		PlayerStatsS.healOnStart = true;
 		PlayerStatsS._currentDarkness = 0f;
-		PlayerCollectionS.currencyCollected = 0;
+		if (!newGamePlus){
+			PlayerCollectionS.currencyCollected = 0;
+		}
 		PlayerController._currentParadigm = 0;
 		PlayerController.familiarUnlocked = false;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
 		CameraShakeS.SetTurbo();
 		List<int> buddyList = new List<int>();
+		if (!newGamePlus){
 		buddyList.Add(unlockedBuddies[0].buddyNum);
 		equippedWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
 		subWeapons = new List<PlayerWeaponS>{unlockedWeapons[0]};
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		lHandler.ResetUpgrades();
+		}
 		_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
 		if (unlockForDemo){
 			DemoUnlocks(null);
 		}
-		SaveLoadout(equippedWeapons, subWeapons, buddyList);
-		GameMenuS.ResetOptions();
+		if (!newGamePlus){
+			SaveLoadout(equippedWeapons, subWeapons, buddyList);
+			GameMenuS.ResetOptions();
+		}else{
+			DarknessPercentUIS.hasReached100 = true;
+		}
 		OverwriteInventoryData(eraseOnNewGame);
 	}
 
@@ -682,7 +692,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		_iManager.RefreshUI();
 	}
 	 
-	public void OverwriteInventoryData(bool erase = false){
+	public void OverwriteInventoryData(bool erase = false, bool newGamePlus = false){
 
 		if (erase){
 			inventoryData = null;
@@ -763,6 +773,8 @@ public class PlayerInventoryS : MonoBehaviour {
 			inventoryData.sinLevel = DifficultyS.GetSinInt();
 			inventoryData.punishLevel = DifficultyS.GetPunishInt();
 
+				inventoryData.hasReached100 = DarknessPercentUIS.hasReached100;
+
 			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
 			if (_tvNum < 100 || _tvNum == 999){
@@ -827,6 +839,8 @@ public class InventorySave {
 
 	public string playerName;
 
+	public bool hasReached100 = false;
+
 
 	public InventorySave(){
 		playerName = "LUCAH";
@@ -877,6 +891,8 @@ public class InventorySave {
 
 		punishLevel = 1;
 		sinLevel = 1;
+
+		hasReached100 = false;
 
 	}
 }

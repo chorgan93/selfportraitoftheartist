@@ -96,6 +96,16 @@ public class DarknessPercentUIS : MonoBehaviour {
 	[Header("Special Case Properties")]
 	public bool doNotShowInScene = false;
 
+	public static bool hasReached100 = false;
+	private string firstTime100Scene = "DarknessReviveScene";
+	private string terribleFateScene = "EndingB_ColinFarewell";
+
+	public static DarknessPercentUIS DPERCENT = null;
+
+	void Awake(){
+		DPERCENT = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 
@@ -212,7 +222,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 			
 			if (fadeCount >= fadeOutTime){
 				fadeT = 1f;
-				if (RetryFightUI.allowRetry){
+				if (RetryFightUI.allowRetry && pStats.currentDarkness < 100f){
 					allowRetryUI.TurnOn();
 				}else{
 					_allowAdvance = true;
@@ -253,6 +263,15 @@ public class DarknessPercentUIS : MonoBehaviour {
 					fadeCount = 0f;
 				}
 			}
+		}
+
+	}
+
+	public string Return100Scene(){
+		if (!hasReached100){
+			return firstTime100Scene;
+		}else{
+			return terribleFateScene;
 		}
 
 	}
@@ -391,6 +410,23 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 		fadeCount = 0f;
 
+	}
+
+	public void ActivateColinReset(){
+		delayFadeOut = delayFadeInTime;
+		saveDeathAmt = displayAmt = pStats.currentDarkness;
+		pStats.DeathColinReset();
+		_allowAdvance = false;
+		fadeInDeathNumbers = true;
+
+		deathTextDisplay.text = deathRedTextDisplay.text = displayString;
+
+		deathTextDisplay.enabled = true;
+		deathRedTextDisplay.enabled = true;
+		deathSequence = true;
+		fadeOutRegNumbers = true;
+
+		fadeCount = 0f;
 	}
 
 	public void SetAdvance(){

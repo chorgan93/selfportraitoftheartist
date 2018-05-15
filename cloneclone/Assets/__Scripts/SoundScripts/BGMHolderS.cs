@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BGMHolderS : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class BGMHolderS : MonoBehaviour {
 	public static float volumeMult = 1f;
 	private const float volumeSettingChangeAmt = 0.25f;
 
+	private List<BGMLayerS> fadeBackInLayers;
+
 	// Use this for initialization
 	void Awake(){
 		if (BG != null){
@@ -15,6 +18,43 @@ public class BGMHolderS : MonoBehaviour {
 		}else{
 			BG = this;
 			DontDestroyOnLoad(gameObject);
+		}
+	}
+
+	public void FadeInAll(){
+		if (fadeBackInLayers.Count > 0){
+
+			for (int i = 0; i < fadeBackInLayers.Count; i++){
+				
+				fadeBackInLayers[i].FadeIn(false);
+
+
+			}
+
+			fadeBackInLayers.Clear();
+		}
+	}
+
+	public void FadeOutAll(){
+
+		if (fadeBackInLayers == null){
+			fadeBackInLayers = new List<BGMLayerS>();
+		}else{
+			fadeBackInLayers.Clear();
+		}
+		if (transform.childCount > 0){
+
+			BGMLayerS currentLayer = null;
+			for (int i = 0; i < transform.childCount; i++){
+				currentLayer = transform.GetChild(i).gameObject.GetComponent<BGMLayerS>();
+				if (currentLayer != null){
+					if (currentLayer.isPlayingAndHeard()){
+						fadeBackInLayers.Add(currentLayer);
+						currentLayer.FadeOut(false, false);
+					}
+				}
+			}
+
 		}
 	}
 

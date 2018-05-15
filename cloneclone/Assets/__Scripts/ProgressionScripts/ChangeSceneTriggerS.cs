@@ -161,7 +161,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	}
 
 	void TransitionScene(){
+			
 		GameOverS.tempReviveScene = "";
+
 		if (SceneManagerS.inInfiniteScene){
 			PlayerInventoryS.I.dManager.ClearAll();
 		}
@@ -176,13 +178,13 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			StoryProgressionS.SetStory(setProgressOnActivate);
 		}
 
+		SpawnPosManager.whereToSpawn = whereToSpawn;
 		CameraEffectsS.E.SetNextScene(nextSceneString);
 		CameraEffectsS.E.FadeIn();
 		loading = true;
 
 		VerseDisplayS.V.EndVerse();
 
-		SpawnPosManager.whereToSpawn = whereToSpawn;
 
 		if (doWakeUp){
 			PlayerController.doWakeUp = true;

@@ -151,7 +151,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (chargeBarMaxSize.x <= 0){
 		chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
 		chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
-			Debug.Log("setting charge bar max size! " + chargeBarMaxSize.x);
+			// Debug.Log("setting charge bar max size! " + chargeBarMaxSize.x);
 		chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
