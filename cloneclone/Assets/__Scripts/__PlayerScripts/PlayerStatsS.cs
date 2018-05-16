@@ -814,7 +814,11 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		float healthBeforeTakingDmg = _currentHealth;
 		if (myPlayerController.playerAug.lovedAug){
-			dmg*=0.75f;
+			if (DifficultyS.GetPunishInt() == 3){
+				dmg = Mathf.Ceil(maxHealth/2f);
+			}else{
+				dmg*=0.75f;
+			}
 		}
 		if (myPlayerController.playerAug.hatedAug){
 				dmg*=PlayerAugmentsS.HATED_MULT;

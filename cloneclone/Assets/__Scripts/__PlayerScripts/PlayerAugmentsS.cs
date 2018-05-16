@@ -132,7 +132,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _untetheredAug = false;
 	public bool untetheredAug { get { return _untetheredAug; } }
 
-	// index 17 (teleport)
+	// index 18 (teleport)
 	private bool _disconnectedAug = false;
 	public bool disconnectedAug { get { return _disconnectedAug; } }
 
