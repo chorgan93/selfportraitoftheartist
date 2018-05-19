@@ -7,6 +7,9 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	public string nextSceneString = "";
 	public bool requireExamine = false;
 	public string awaitResponseString = "";
+	public string[] additionalResponseStrings;
+	private int numResponses = 0;
+	private int currentResponse = 0;
 	private bool requiresResponse = false;
 	public float delayTransition = -1f;
 	private bool waitingForChange = false;
@@ -36,6 +39,10 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 		if (awaitResponseString != "" && requireExamine){
 			requiresResponse = true;
+			numResponses = 1;
+		}
+		if (additionalResponseStrings != null){
+			numResponses+=additionalResponseStrings.Length;
 		}
 		if (openedSprite != null){
 			_myRender=GetComponentInChildren<SpriteRenderer>();
@@ -81,7 +88,38 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 				talkButtonDown = false;
 			}
 		}else if (awaitingResponse){
-			if (!DialogueManagerS.D.doneScrolling){
+			if (DialogueManagerS.D.doneScrolling){
+				if (pRef.myControl.GetCustomInput(3)){
+					talkButtonDown = true;
+				}else{
+					talkButtonDown = false;
+				}
+				if (!DialogueManagerS.D.dialogueResponse.getChoiceActive){
+					if (DialogueManagerS.D.dialogueResponse.GetChoiceMade() == 0){
+
+						currentResponse++;
+						if (currentResponse >= numResponses){
+							StartNextScene();
+							DialogueManagerS.D.EndText();
+							if (loading){
+								pRef.SetTalking(true);
+							}
+						}else{
+
+							DialogueManagerS.D.SetDisplayText(additionalResponseStrings[currentResponse-1],false,false,false,true);
+						}
+					}else{
+						pRef.SetTalking(false);
+						awaitingResponse = false;
+						currentResponse = 0;
+						DialogueManagerS.D.EndText();
+						if (loading){
+							pRef.SetTalking(true);
+						}
+					}
+			}
+			}
+			else {
 				if (pRef.myControl.GetCustomInput(3)){
 					if (!talkButtonDown){
 						DialogueManagerS.D.CompleteText();
@@ -90,23 +128,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 				}else{
 					talkButtonDown = false;
 				}
-			}
-			else {
-				if (!DialogueManagerS.D.dialogueResponse.getChoiceActive){
-					if (DialogueManagerS.D.dialogueResponse.GetChoiceMade() == 0){
 
-						StartNextScene();
-					}else{
-						pRef.SetTalking(false);
-						awaitingResponse = false;
-					}
-					DialogueManagerS.D.EndText();
-					if (loading){
-						pRef.SetTalking(true);
-					}
+
 				}
 			}
-		}
+
 	
 	}
 

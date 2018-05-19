@@ -33,6 +33,7 @@ public class SpawnPosManager : MonoBehaviour {
 	void Start(){
 
 		if (sceneCheckpoint){
+			if (sceneCheckpoint.gameObject.activeSelf){
 			if (spawningFromDeath || spawningFromTeleport){
 				sceneCheckpoint.ActivateMusic();
 			}
@@ -41,6 +42,7 @@ public class SpawnPosManager : MonoBehaviour {
 			GameOverS.reviveScene = Application.loadedLevelName;
 			GameOverS.revivePosition = sceneCheckpoint.spawnNum;
 			SaveLoadS.OverriteCurrentSave();
+			}
 		}
 
 	}

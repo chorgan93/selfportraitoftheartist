@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ElevatorS : MonoBehaviour {
 
-	public static int currentStop = 0;
+	public int currentStop = 0;
 
 	[Header("Travel Properties")]
 	public string elevatorDestination;

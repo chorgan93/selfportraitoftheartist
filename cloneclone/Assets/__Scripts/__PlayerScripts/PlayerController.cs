@@ -409,6 +409,8 @@ public class PlayerController : MonoBehaviour {
 	private float resetCountdown;
 	private bool demoResetTriggered = false;
 	private GameOverS resetManager;
+
+	public bool disableTransformInScene = false;
 	
 	//_________________________________________UNITY METHODS
 
@@ -1285,7 +1287,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
-			if (equippedUpgrades.Contains(8)){ // TODO change back to 8
+			if (equippedUpgrades.Contains(8) && !disableTransformInScene){ // TODO change back to 8
 			_transformHoldTime += Time.deltaTime;
 			transformStartEffect.StartCharge();
 			}
