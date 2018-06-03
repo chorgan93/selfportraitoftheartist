@@ -299,7 +299,7 @@ public class EnemyDetectS : MonoBehaviour {
 	}
 	
 	public bool NoEnemies(){
-		return (enemiesInRange.Count <= 0 && friendliesInRange.Count <= 0);
+		return (enemiesInRange.Count <= 0);
 	}
 	
 	bool parryEnemyInRange(){

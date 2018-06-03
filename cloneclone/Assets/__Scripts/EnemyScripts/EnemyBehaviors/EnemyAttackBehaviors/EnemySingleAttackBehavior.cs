@@ -94,7 +94,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				signal.transform.parent = myEnemyReference.transform;
 			}
 			myEnemyReference.AttackFlashEffect();
-			
+
+			if (faceDirectionOnAttackStart){
+				SetAttackDirection(false);
+			}
 	
 			if (attackDragAmt > 0){
 				myEnemyReference.myRigidbody.drag = attackDragAmt*EnemyS.FIX_DRAG_MULT;

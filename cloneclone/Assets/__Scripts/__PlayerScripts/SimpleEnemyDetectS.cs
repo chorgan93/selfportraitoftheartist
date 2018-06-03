@@ -19,6 +19,8 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 	private float largestX;
 	private float largestY;
 
+	public bool debugTrigger = false;
+
 	private bool initialized = false;
 
 	void Start(){
@@ -43,9 +45,15 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		for (int i = 0; i < enemiesInRange.Count; i++){
 
 			if (enemiesInRange[i] == null){
+				if (debugTrigger){
+					Debug.Log("Removing enemy at slot " + i + " because enemy is now null.", gameObject);
+				}
 				enemiesInRange.RemoveAt(i);
 			}else{
 				if (enemiesInRange[i].isDead || !enemiesInRange[i].gameObject.activeSelf){
+					if (debugTrigger){
+						Debug.Log("Removing " + enemiesInRange[i].gameObject.name + " because enemy is dead or inactive.", gameObject);
+					}
 					enemiesInRange.RemoveAt(i);
 				}
 			}
@@ -54,7 +62,10 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		// check for duplicates
 		for (int i = enemiesInRange.Count-1; i >= 0; i--){
 			for (int j = 0; j < enemiesInRange.Count; j++){
-				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner){
+				if (enemiesInRange[i].mySpawner == enemiesInRange[j].mySpawner && i != j){
+					if (debugTrigger){
+						Debug.Log("Removing " + enemiesInRange[i].gameObject.name + " because enemy is duplicate.", gameObject);
+					}
 					enemiesInRange.RemoveAt(i);
 					j--;
 				}
@@ -112,12 +123,19 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 
 		if (other.gameObject.tag == "Enemy" && initialized){
 
+			if (debugTrigger){
+				Debug.Log("Attempting to add enemy " + other.gameObject.name, gameObject);
+			}
+
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			if (!otherEnemy){
 				otherEnemy = other.transform.GetComponentInParent<EnemyS>();
 			}
 
 			if (!otherEnemy.isDead && !otherEnemy.isFriendly && !hasEnemy(otherEnemy.mySpawner)){
+				if (debugTrigger){
+					Debug.Log("Enemy added! " + other.gameObject.name, gameObject); 
+				}
 				enemiesInRange.Add(otherEnemy);
 			}
 
@@ -129,12 +147,19 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		
 		if (other.gameObject.tag == "Enemy" && initialized){
 			
+			if (debugTrigger){
+				Debug.Log("Attempting to remove enemy " + other.gameObject.name, gameObject);
+			}
+			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			if (!otherEnemy){
 				otherEnemy = other.transform.GetComponentInParent<EnemyS>();
 			}
 			
 			if (!otherEnemy.isDead && enemiesInRange.Count > 0 && hasEnemy(otherEnemy.mySpawner)){
+				if (debugTrigger){
+					Debug.Log("Enemy removed! " + other.gameObject.name, gameObject); 
+				}
 				enemiesInRange.Remove(otherEnemy);
 			}
 			
@@ -165,5 +190,15 @@ public class SimpleEnemyDetectS : MonoBehaviour {
 		}
 		}
 		return hasEnemy;
+	}
+
+	public bool enemiesToCorrupt(EnemyS ignoreEnemy){
+		bool enemyToEnrage = false;
+		for (int i = 0; i < enemiesInRange.Count; i++){
+			if (enemiesInRange[i] != ignoreEnemy && !enemiesInRange[i].isCorrupted){
+				enemyToEnrage = true;
+			}
+		}
+		return enemyToEnrage;
 	}
 }

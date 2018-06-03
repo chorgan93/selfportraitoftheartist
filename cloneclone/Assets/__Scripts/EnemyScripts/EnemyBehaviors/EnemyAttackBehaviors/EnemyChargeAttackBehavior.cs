@@ -93,7 +93,7 @@ public class EnemyChargeAttackBehavior : EnemyBehaviorS {
 			}
 		}
 		if (enrageCheck != null){
-			if (enrageCheck.EnemiesInRange.Count < 2){
+			if (!enrageCheck.enemiesToCorrupt(myEnemyReference)){
 				canContinue = false;
 			}
 		}

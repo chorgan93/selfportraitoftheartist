@@ -137,6 +137,7 @@ public class EnemyShooterS : MonoBehaviour {
 					GameObject newProjectile = Instantiate(projectileToSpawn, transform.position, Quaternion.identity)
 						as GameObject;
 					if (myEnemy){
+						newProjectile.GetComponent<EnemyProjectileS>().selfKnockbackMult = 0f;
 					newProjectile.GetComponent<EnemyProjectileS>().Fire(aimDirection,myEnemy);
 					}else{
 						newProjectile.GetComponent<EnemyProjectileS>().Fire(aimDirection,null);

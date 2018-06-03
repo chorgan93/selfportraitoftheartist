@@ -32,6 +32,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float turnOffColliderTime = 0.1f;
 	public float shotSpeed;
 	public float selfKnockbackMult;
+	public float enemyKnockbackMult = 0f;
 	public float attackSpawnDistance;
 	public float accuracyMult = 0f;
 	public bool stopEnemy = false;
@@ -80,6 +81,9 @@ public class EnemyProjectileS : MonoBehaviour {
 
 	void Start(){
 		_maxRange = range;
+		if (enemyKnockbackMult == 0){
+			enemyKnockbackMult = selfKnockbackMult;
+		}
 
 		if (!_fired){
 		_rigidbody = GetComponent<Rigidbody>();
@@ -420,13 +424,15 @@ public class EnemyProjectileS : MonoBehaviour {
 				if (!hitEnemy){
 					hitEnemy = other.GetComponentInParent<EnemyS>();
 				}
-				
+
 				if (hitEnemy.isFriendly && !hitEnemy.isDead && !hitEnemy.invulnerable){
-					
-					
+
+					if (!_rigidbody){
+						_rigidbody = GetComponent<Rigidbody>();
+					}
 					hitEnemy.TakeDamage
-					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						 0, 1f, 1.5f);
+					(other.transform, shotSpeed*selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+						0, 1f, 1.5f, false, 0f);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);
@@ -441,6 +447,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					
 					HitEffectEnemy(hitEnemy, other.transform.position,hitEnemy.bloodColor,(hitEnemy.currentHealth <= 0 || hitEnemy.isCritical));
 				}
+
 				
 			}
 			
@@ -461,7 +468,7 @@ public class EnemyProjectileS : MonoBehaviour {
 						hitEnemy.AutoCrit(Vector3.zero, hitEnemy.maxCritTime);
 					}
 					hitEnemy.TakeDamage
-					(other.transform, selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, shotSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage, 1f, 1.5f, false, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){
@@ -534,7 +541,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		//SpriteRenderer hitRender = newHitObj.GetComponent<SpriteRenderer>();
 		//hitRender.color = bloodCol;
 		
-		
+		if (!_myRenderer){
+			_myRenderer = GetComponent<Renderer>();
+		}
+
 		if (bigBlood){
 			newHitObj.transform.localScale = _myRenderer.transform.localScale*transform.localScale.x;
 		}else{
