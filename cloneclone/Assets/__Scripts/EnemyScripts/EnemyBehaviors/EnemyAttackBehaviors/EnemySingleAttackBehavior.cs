@@ -19,7 +19,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	public bool spawnOnTarget = false;
 	public float attackDragAmt = -1;
 	public bool setVelocityToZeroOnStart = false;
-	public bool lockDirectionOnTargeting = false;
+	public bool faceDirectionOnAttackStart = true;
 	private bool lockFacing = false;
 	public int numToSpawn = 1;
 
@@ -43,7 +43,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			if (!foundTarget && attackTimeCountdown <= (attackDuration - trackingTime)/currentDifficultyMult){
 				SetAttackDirection(true);
 				foundTarget = true;
-				if (lockDirectionOnTargeting){
+				if (faceDirectionOnAttackStart){
 					lockFacing = true;
 					myEnemyReference.SetFaceForAttack(attackDirection);
 				}
@@ -149,7 +149,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 		}else{
 			attackDirection = myEnemyReference.currentTarget;
 			foundTarget = true;
-			if (lockDirectionOnTargeting){
+			if (faceDirectionOnAttackStart){
 				lockFacing = true;
 				myEnemyReference.SetFaceForAttack(attackDirection);
 			}

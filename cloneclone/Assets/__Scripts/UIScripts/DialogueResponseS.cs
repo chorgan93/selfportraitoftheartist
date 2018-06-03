@@ -18,7 +18,7 @@ public class DialogueResponseS : MonoBehaviour {
 	public bool getChoiceActive { get { return choiceActive; } }
 
 	private float delayChoice = 0f;
-	
+
 	// Update is called once per frame
 	void Update () {
 	

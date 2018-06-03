@@ -147,6 +147,12 @@ public class InGameCinemaTextS : MonoBehaviour {
 		_myHandler.TurnOnTime();
 		dialogueComplete = true;
 
+		if (selectedOption.selectEffect){
+			GameObject newSelect = Instantiate(selectedOption.selectEffect, selectedOption.buttonSprite.transform.position,
+				Quaternion.identity) as GameObject;
+			newSelect.GetComponent<SpriteRenderer>().color = selectedOption.buttonSprite.color;
+		}
+
 		for (int i = 0; i < dialogueOptions.Length; i++){
 			if (dialogueOptions[i] != selectedOption){
 				dialogueOptions[i].gameObject.SetActive(false);

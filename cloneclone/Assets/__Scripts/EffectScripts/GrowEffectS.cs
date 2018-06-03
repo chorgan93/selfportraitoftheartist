@@ -4,6 +4,7 @@ using System.Collections;
 public class GrowEffectS : MonoBehaviour {
 
 	public float growRate = 10f;
+	public float accelRate = 0f;
 	public Vector3 growMult = Vector3.one;
 	public bool zGrow = false;
 
@@ -25,6 +26,7 @@ public class GrowEffectS : MonoBehaviour {
 					growScale.z += growRate*Time.deltaTime*growMult.z;
 				}
 				transform.localScale = growScale;
+				growRate+=accelRate;
 			}
 		}else{
 		growScale = transform.localScale;
@@ -33,7 +35,8 @@ public class GrowEffectS : MonoBehaviour {
 		if (zGrow){
 			growScale.z += growRate*Time.deltaTime*growMult.z;
 		}
-		transform.localScale = growScale;
+			transform.localScale = growScale;
+			growRate+=accelRate*Time.deltaTime;
 		}
 	
 	}

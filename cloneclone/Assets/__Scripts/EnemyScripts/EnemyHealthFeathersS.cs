@@ -65,8 +65,10 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 		if (!allFeathersStarted){
 			currentInterval -= Time.deltaTime;
 			if (currentInterval <= 0){
-				myFeathers[currentStartFeather].SetTrigger("Start");
-				falseFeathers[currentStartFeather].SetTrigger("Start");
+				if (myFeathers[currentStartFeather].gameObject.activeSelf){
+					myFeathers[currentStartFeather].SetTrigger("Start");
+					falseFeathers[currentStartFeather].SetTrigger("Start");
+				}
 				currentInterval = Random.Range(0, maxStartInterval);
 				currentStartFeather++;
 				if (currentStartFeather >= myFeathers.Length){
@@ -150,15 +152,19 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 			if (dmgToProcess > currentHealthInterval){
 				dmgToProcess-=currentHealthInterval;
 				currentHealthInterval = currentMaxHealthInterval;
-				myFeathers[currentHealthFeather].SetTrigger("Destroy");
-				featherSprites[currentHealthFeather].FlashWhite(true);
+				if (myFeathers[currentHealthFeather].gameObject.activeSelf){
+					myFeathers[currentHealthFeather].SetTrigger("Destroy");
+					featherSprites[currentHealthFeather].FlashWhite(true);
+				}
 				currentHealthFeather--;
 
 				yield return new WaitForSeconds(destroyFeatherTime);
 			}else{
 				currentHealthInterval -= dmgToProcess;
-				myFeathers[currentHealthFeather].SetTrigger("Hit");
-				featherSprites[currentHealthFeather].FlashWhite();
+				if (myFeathers[currentHealthFeather].gameObject.activeSelf){
+					myFeathers[currentHealthFeather].SetTrigger("Hit");
+					featherSprites[currentHealthFeather].FlashWhite();
+				}
 
 				// make sure we don't infinite loop for some reason
 				dmgToProcess = 0;
@@ -175,7 +181,9 @@ public class EnemyHealthFeathersS : MonoBehaviour {
 	IEnumerator DestroyFalseFeathers(){
 
 		for (int i = falseFeathers.Count-1; i >= 0; i--){
-			falseFeathers[i].SetTrigger("Destroy");
+			if (falseFeathers[i].gameObject.activeSelf){
+				falseFeathers[i].SetTrigger("Destroy");
+			}
 			yield return new WaitForSeconds(deathFeatherTime);
 		}
 	}

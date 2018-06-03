@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class DarknessPercentUIS : MonoBehaviour {
 
+	public static bool demoMode = true;
+
 	[Header("Text Display")]
 	public Image wholeDisplay;
 	public Image displayBG;

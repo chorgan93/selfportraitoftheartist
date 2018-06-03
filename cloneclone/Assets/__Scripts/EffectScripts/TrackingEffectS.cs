@@ -63,8 +63,9 @@ public class TrackingEffectS : MonoBehaviour {
 	}
 
 	public void TurnOffEffect(){
-
-		myRenderer.enabled = false;
+		if (myRenderer){
+			myRenderer.enabled = false;
+		}
 	}
 
 	private void FaceDirection(Vector3 direction){

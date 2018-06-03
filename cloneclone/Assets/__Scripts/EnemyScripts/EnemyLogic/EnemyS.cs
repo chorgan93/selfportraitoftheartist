@@ -1321,7 +1321,7 @@ public class EnemyS : MonoBehaviour {
 		}
 
 		if (healthFeatherReference && gameObject.activeSelf){
-			healthFeatherReference.EnemyHit(damageTaken);
+				healthFeatherReference.EnemyHit(damageTaken);
 		}
 
 

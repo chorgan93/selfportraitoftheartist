@@ -229,7 +229,7 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void FadeIn(string nextScene, float newRate = 0){
 
-		if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f){
+		if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f && !DarknessPercentUIS.demoMode){
 			BGMHolderS.BG.FadeOutAll();
 			GameOverS.tempReviveScene = destinationScene;
 			GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;

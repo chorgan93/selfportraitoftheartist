@@ -43,6 +43,9 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour {
 	private float wanderChangeMax = 1f;
 
 	private bool myButtonUp = false;
+	public bool canChoose = true;
+
+	public GameObject selectEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -57,25 +60,36 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour {
 		}
 
 		currentSpriteCol = buttonSprite.color;
+		if (!canChoose){
+			currentSpriteCol = Color.grey;
+		}
 		currentSpriteCol.a = 0f;
 		buttonSprite.color = currentSpriteCol;
 
 		currentSpritePS4Col = buttonSpritePS4.color;
+		if (!canChoose){
+			currentSpritePS4Col = Color.grey;
+		}
 		currentSpritePS4Col.a = 0f;
 		buttonSpritePS4.color = currentSpritePS4Col;
 
 		currentKeyCol = keySprite.color;
+		if (!canChoose){
+			currentKeyCol = Color.grey;
+		}
 		currentKeyCol.a = 0f;
 		mouseSprite.color = keySprite.color = currentKeyCol;
 
 		currentTextCol = examineString.color;
+		if (!canChoose){
+			currentTextCol = Color.grey;
+		}
 		currentTextCol.a = 0f;
 		if (useButtonStringPS4){
 			examineString.color = buttonStringPS4.color = currentTextCol;
 		}else{
 			examineString.color = buttonString.color = currentTextCol;
 		}
-
 
 
 
@@ -141,6 +155,7 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour {
 
 				// handle input
 				// input "A BUTTON"
+				if (canChoose){
 				if (inputNum == 0){
 					if (_myText.myControl.GetCustomInput(3)){
 						if (myButtonUp){
@@ -194,6 +209,7 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour {
 					}else{
 						myButtonUp = true;
 					}
+				}
 				}
 
 			}
