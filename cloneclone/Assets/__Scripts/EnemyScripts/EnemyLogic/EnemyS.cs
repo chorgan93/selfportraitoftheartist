@@ -875,11 +875,11 @@ public class EnemyS : MonoBehaviour {
 		}
 	}
 
-	void ResetAnimatorTriggers(){
+	public void ResetAnimatorTriggers(){
 		AnimatorControllerParameter[] parameters = _myAnimator.parameters;
 		for (int i = 0; i < parameters.Length; i++){
 			if (parameters[i].type == AnimatorControllerParameterType.Trigger){
-				myAnimator.ResetTrigger(i);
+				myAnimator.ResetTrigger(parameters[i].name);
 			}
 		}
 	}

@@ -185,7 +185,7 @@ public class PlayerDestructionS : MonoBehaviour {
 		}
 		if (currentlySpawnedBlood.Count > 0){
 			for (int i = 0; i < currentlySpawnedBlood.Count; i++){
-				currentlySpawnedBlood[0].SetActive(false);
+				currentlySpawnedBlood[i].SetActive(false);
 			}
 			currentlySpawnedBlood.Clear();
 		}

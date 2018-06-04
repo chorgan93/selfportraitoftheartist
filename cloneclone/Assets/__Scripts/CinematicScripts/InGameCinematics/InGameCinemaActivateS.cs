@@ -11,6 +11,8 @@ public class InGameCinemaActivateS : MonoBehaviour {
 	public EnemySpawnerS[] offEnemies;
 	public PlayerController turnOffBuddy;
 
+	public bool cleanUpBlood = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -37,6 +39,10 @@ public class InGameCinemaActivateS : MonoBehaviour {
 			if (turnOffBuddy.myBuddy != null){
 				turnOffBuddy.myBuddy.gameObject.SetActive(false);
 			}
+		}
+
+		if (cleanUpBlood){
+			PlayerInventoryS.I.dManager.ClearBattleBlood();
 		}
 	
 	}

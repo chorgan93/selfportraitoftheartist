@@ -12,6 +12,8 @@ public class SpawnPosManager : MonoBehaviour {
 	public CheckpointS sceneCheckpoint;
 	public Transform[] spawnPts;
 
+	public AllyFollowS placeAlly;
+
 	// Use this for initialization
 	void Awake () {
 		
@@ -19,11 +21,20 @@ public class SpawnPosManager : MonoBehaviour {
 			pRef = GameObject.Find("Player");
 			if (tempWhereToSpawn > -1 && tempWhereToSpawn <= spawnPts.Length-1){
 				pRef.transform.position = spawnPts[tempWhereToSpawn].position;
+				if (placeAlly){
+					placeAlly.PlaceAlly(tempWhereToSpawn);
+				}
 			}
 			else if (whereToSpawn > spawnPts.Length-1){
 				pRef.transform.position = spawnPts[0].position;
+				if (placeAlly){
+					placeAlly.PlaceAlly(0);
+				}
 			}else{
 				pRef.transform.position = spawnPts[whereToSpawn].position;
+				if (placeAlly){
+					placeAlly.PlaceAlly(whereToSpawn);
+				}
 			}
 			tempWhereToSpawn = -1;
 		}

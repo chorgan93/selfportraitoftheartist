@@ -28,6 +28,8 @@ public class AllyFollowS : MonoBehaviour {
 	public float hasBeenInRangeMax = 0.8f;
 	private float hasBeenInRangeTime = 0f;
 
+	public Transform[] spawnPts;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -94,6 +96,16 @@ public class AllyFollowS : MonoBehaviour {
 				myAnimator.SetTrigger(walkKey);
 			}else{
 				myAnimator.SetTrigger(runKey);
+			}
+		}
+	}
+
+	public void PlaceAlly(int spawnPt){
+		if (spawnPts != null){
+			if (spawnPt < spawnPts.Length){
+				transform.position = spawnPts[spawnPt].position;
+			}else{
+				transform.position = spawnPts[0].position;
 			}
 		}
 	}

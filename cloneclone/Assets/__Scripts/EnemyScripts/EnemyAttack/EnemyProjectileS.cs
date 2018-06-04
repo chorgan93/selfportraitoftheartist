@@ -542,7 +542,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		//hitRender.color = bloodCol;
 		
 		if (!_myRenderer){
-			_myRenderer = GetComponent<Renderer>();
+			_myRenderer = GetComponentInChildren<SpriteRenderer>();
 		}
 
 		if (bigBlood){

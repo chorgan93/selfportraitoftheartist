@@ -54,6 +54,7 @@ public class EnemyBehaviorS : MonoBehaviour {
 		myEnemy.SetInvulnerable(setInvincible);
 		myEnemy.RefreshTarget();
 		myEnemy.ResetFaceLock();
+		myEnemy.ResetAnimatorTriggers();
 
 		if (spawnCommand){
 			spawnCommand.GiveCommand();

@@ -103,13 +103,21 @@ public class PlayerDetectS : MonoBehaviour {
 					_currentTarget = null;
 				}
 			}else if (friendlyEnemyList.Count > 0){
-				_currentTarget = friendlyEnemyList[0].transform;
+				if (friendlyEnemyList.Count > 1){
+					_currentTarget = friendlyEnemyList[Mathf.RoundToInt(Random.Range(0, friendlyEnemyList.Count-1))].transform;
+				}else{
+					_currentTarget = friendlyEnemyList[0].transform;
+				}
 			}else{
 				_currentTarget = null;
 			}
 		}else{
 			if (enemyList.Count > 0){
-			_currentTarget = enemyList[0].transform;
+				if (enemyList.Count > 1){
+					_currentTarget = enemyList[Mathf.RoundToInt(Random.Range(0, enemyList.Count-1))].transform;
+				}else{
+					_currentTarget = enemyList[0].transform;
+				}
 			}else{
 				_currentTarget=null;
 			}
