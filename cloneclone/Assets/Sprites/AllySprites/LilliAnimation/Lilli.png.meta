@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 62831b55d4d304016902ea125631b53f
-timeCreated: 1524287516
+timeCreated: 1528349567
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -70,6 +70,10 @@ TextureImporter:
     21300126: Lilli_36
     21300128: Lilli_37
     21300130: Lilli_38
+    21300132: Lilli_39
+    21300134: Lilli_40
+    21300136: Lilli_41
+    21300138: Lilli_42
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -192,8 +196,8 @@ TextureImporter:
       name: Lilli_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
+        x: 384
+        y: 384
         width: 64
         height: 64
       alignment: 0
@@ -204,7 +208,7 @@ TextureImporter:
       name: Lilli_7
       rect:
         serializedVersion: 2
-        x: 64
+        x: 0
         y: 320
         width: 64
         height: 64
@@ -216,7 +220,7 @@ TextureImporter:
       name: Lilli_8
       rect:
         serializedVersion: 2
-        x: 128
+        x: 64
         y: 320
         width: 64
         height: 64
@@ -228,7 +232,7 @@ TextureImporter:
       name: Lilli_9
       rect:
         serializedVersion: 2
-        x: 192
+        x: 128
         y: 320
         width: 64
         height: 64
@@ -240,7 +244,7 @@ TextureImporter:
       name: Lilli_10
       rect:
         serializedVersion: 2
-        x: 256
+        x: 192
         y: 320
         width: 64
         height: 64
@@ -252,7 +256,7 @@ TextureImporter:
       name: Lilli_11
       rect:
         serializedVersion: 2
-        x: 320
+        x: 256
         y: 320
         width: 64
         height: 64
@@ -264,8 +268,8 @@ TextureImporter:
       name: Lilli_12
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 320
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -276,8 +280,8 @@ TextureImporter:
       name: Lilli_13
       rect:
         serializedVersion: 2
-        x: 64
-        y: 256
+        x: 384
+        y: 320
         width: 64
         height: 64
       alignment: 0
@@ -288,7 +292,7 @@ TextureImporter:
       name: Lilli_14
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 256
         width: 64
         height: 64
@@ -300,7 +304,7 @@ TextureImporter:
       name: Lilli_15
       rect:
         serializedVersion: 2
-        x: 192
+        x: 64
         y: 256
         width: 64
         height: 64
@@ -312,7 +316,7 @@ TextureImporter:
       name: Lilli_16
       rect:
         serializedVersion: 2
-        x: 256
+        x: 128
         y: 256
         width: 64
         height: 64
@@ -324,7 +328,7 @@ TextureImporter:
       name: Lilli_17
       rect:
         serializedVersion: 2
-        x: 320
+        x: 192
         y: 256
         width: 64
         height: 64
@@ -336,8 +340,8 @@ TextureImporter:
       name: Lilli_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 192
+        x: 256
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -348,8 +352,8 @@ TextureImporter:
       name: Lilli_19
       rect:
         serializedVersion: 2
-        x: 64
-        y: 192
+        x: 320
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -360,8 +364,8 @@ TextureImporter:
       name: Lilli_20
       rect:
         serializedVersion: 2
-        x: 128
-        y: 192
+        x: 384
+        y: 256
         width: 64
         height: 64
       alignment: 0
@@ -372,7 +376,7 @@ TextureImporter:
       name: Lilli_21
       rect:
         serializedVersion: 2
-        x: 192
+        x: 0
         y: 192
         width: 64
         height: 64
@@ -384,7 +388,7 @@ TextureImporter:
       name: Lilli_22
       rect:
         serializedVersion: 2
-        x: 256
+        x: 64
         y: 192
         width: 64
         height: 64
@@ -396,7 +400,7 @@ TextureImporter:
       name: Lilli_23
       rect:
         serializedVersion: 2
-        x: 320
+        x: 128
         y: 192
         width: 64
         height: 64
@@ -408,8 +412,8 @@ TextureImporter:
       name: Lilli_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
+        x: 192
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -420,8 +424,8 @@ TextureImporter:
       name: Lilli_25
       rect:
         serializedVersion: 2
-        x: 64
-        y: 128
+        x: 256
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -432,8 +436,8 @@ TextureImporter:
       name: Lilli_26
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 320
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -444,8 +448,8 @@ TextureImporter:
       name: Lilli_27
       rect:
         serializedVersion: 2
-        x: 192
-        y: 128
+        x: 384
+        y: 192
         width: 64
         height: 64
       alignment: 0
@@ -456,7 +460,7 @@ TextureImporter:
       name: Lilli_28
       rect:
         serializedVersion: 2
-        x: 256
+        x: 0
         y: 128
         width: 64
         height: 64
@@ -468,7 +472,7 @@ TextureImporter:
       name: Lilli_29
       rect:
         serializedVersion: 2
-        x: 320
+        x: 64
         y: 128
         width: 64
         height: 64
@@ -480,8 +484,8 @@ TextureImporter:
       name: Lilli_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 128
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -492,8 +496,8 @@ TextureImporter:
       name: Lilli_31
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 192
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -504,8 +508,8 @@ TextureImporter:
       name: Lilli_32
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 256
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -516,8 +520,8 @@ TextureImporter:
       name: Lilli_33
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 320
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -528,8 +532,8 @@ TextureImporter:
       name: Lilli_34
       rect:
         serializedVersion: 2
-        x: 256
-        y: 64
+        x: 384
+        y: 128
         width: 64
         height: 64
       alignment: 0
@@ -540,7 +544,7 @@ TextureImporter:
       name: Lilli_35
       rect:
         serializedVersion: 2
-        x: 320
+        x: 0
         y: 64
         width: 64
         height: 64
@@ -552,8 +556,8 @@ TextureImporter:
       name: Lilli_36
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 64
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -564,8 +568,8 @@ TextureImporter:
       name: Lilli_37
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 128
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -576,7 +580,55 @@ TextureImporter:
       name: Lilli_38
       rect:
         serializedVersion: 2
-        x: 128
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Lilli_39
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Lilli_40
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Lilli_41
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Lilli_42
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 64
         height: 64
