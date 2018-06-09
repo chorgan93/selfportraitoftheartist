@@ -432,7 +432,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					}
 					hitEnemy.TakeDamage
 					(other.transform, shotSpeed*selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						0, 1f, 1.5f, false, 0f);
+						0, 1f, 1.5f, 0, 0f);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);
@@ -469,7 +469,7 @@ public class EnemyProjectileS : MonoBehaviour {
 					}
 					hitEnemy.TakeDamage
 					(other.transform, shotSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						damage, 1f, 1.5f, false, hitStopAmount, 0f, true);
+						damage, 1f, 1.5f, 0, hitStopAmount, 0f, true);
 					
 					if (hitSoundObj){
 						Instantiate(hitSoundObj);

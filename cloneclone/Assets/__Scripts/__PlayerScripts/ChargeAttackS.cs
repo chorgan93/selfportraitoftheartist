@@ -413,8 +413,8 @@ public class ChargeAttackS : MonoBehaviour {
 				saveCritical = hitEnemy.isCritical;
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, knockBackDir*knockbackForce*Time.deltaTime, 
-						actingDmg, stunMult, 2f, myPlayer.playerAug.solAug, hitStopTime, 0f, false, 
-						myPlayer.playerAug.aquaAug, killAtLessThan*DeterminedMult());
+						actingDmg, stunMult, 2f, myPlayer.playerAug.SolAugAmt(), hitStopTime, 0f, false, 
+						myPlayer.playerAug.AquaAugAmt(), killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
 				RankManagerS.R.ScoreHit(2, dmgDealt, saveEnraged, saveCritical);

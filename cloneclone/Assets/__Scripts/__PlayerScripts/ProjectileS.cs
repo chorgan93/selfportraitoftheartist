@@ -49,6 +49,7 @@ public class ProjectileS : MonoBehaviour {
 	public float delayShotTime = 0.8f;
 
 	public float shotSpeed = 1000f;
+	private float savedShotSpeed;
 	public float maxShotSpeed;
 	public float spawnRange = 1f;
 	public float range = 1f;
@@ -69,8 +70,8 @@ public class ProjectileS : MonoBehaviour {
 	public bool addOnDetermined = false;
 	private float startDmg;
 	public float stunMult = 1f;
-	public bool ignoreEnemyDefense = false;
-	private bool startIgnoreDefense = false;
+	public int ignoreEnemyDefense = 0;
+	private int startIgnoreDefense = 0;
 	public float critDmg = 2f;
 	public float staminaCost = 1;
 	public float absorbPercent = 0.1f;
@@ -78,7 +79,7 @@ public class ProjectileS : MonoBehaviour {
 	public float numAttacks = 1;
 	public float timeBetweenAttacks = 0.1f;
 
-	private bool doubleStunTime = false;
+	private int doubleStunTime = 0;
 
 	[Header("Combo Properties")]
 	public bool allowChainHeavy = true;
@@ -269,6 +270,7 @@ public class ProjectileS : MonoBehaviour {
 		if (!firedOnce){
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
+			savedShotSpeed = shotSpeed;
 			renderColor = myRenderer.color;
 			_myPlayer = playerReference;
 			myPool = _myPlayer.projectilePool;
@@ -286,6 +288,7 @@ public class ProjectileS : MonoBehaviour {
 				extraRangeAnim = extraRangeSprite.GetComponent<AnimObjS>();
 			}
 		}else{
+			shotSpeed = savedShotSpeed;
 			_rigidbody.velocity = Vector3.zero;
 			dmg = startDmg;
 			transform.localScale = startScale;
@@ -304,11 +307,11 @@ public class ProjectileS : MonoBehaviour {
 		touchingWall = false;
 		enemiesHit.Clear();
 		// powerLvl = dmg;
-		doubleStunTime = playerReference.playerAug.aquaAug;
+		doubleStunTime = playerReference.playerAug.AquaAugAmt();
 		playerReference.SetFace(lockFaceDirection);
 
 		if (playerReference.playerAug.solAug){
-			ignoreEnemyDefense = true;
+			ignoreEnemyDefense = playerReference.playerAug.SolAugAmt();
 		}else{
 			ignoreEnemyDefense = startIgnoreDefense;
 		}
@@ -351,6 +354,9 @@ public class ProjectileS : MonoBehaviour {
 				myCollider.enabled = false;
 				if (extraRangeCollider){
 					extraRangeCollider.enabled = true;
+				}
+				if (_myPlayer.playerAug.doubleMantra){
+					shotSpeed *= 1.5f;
 				}
 			}else{
 				myCollider.enabled = true;
@@ -501,7 +507,7 @@ public class ProjectileS : MonoBehaviour {
 					hitEnemy = hitInfo.collider.gameObject.GetComponent<EnemyS>();
 					if (hitEnemy != null){
 						hitEnemy.TakeDamage(hitEnemy.transform, knockbackSpeed*enemyKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-							dmg, stunMult, critDmg, ignoreEnemyDefense, hitStopAmt, 0f, doubleStunTime, false, killAtLessThan*DeterminedMult());
+							dmg, stunMult, critDmg, ignoreEnemyDefense, hitStopAmt, 0f, false, doubleStunTime, killAtLessThan*DeterminedMult());
 					}
 				}
 			}
@@ -668,7 +674,13 @@ public class ProjectileS : MonoBehaviour {
 				}
 	
 				if (_myPlayer.playerAug.lunaAug){
-					_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
+					if (_myPlayer.playerAug.doubleMantra){
+
+						_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt*1.3f);
+					}else{
+
+						_myPlayer.myStats.RecoverCharge(absorbPercent*PlayerAugmentsS.lunaAugAmt);
+					}
 				}else{
 					_myPlayer.myStats.RecoverCharge(absorbPercent);
 				}
@@ -783,15 +795,6 @@ public class ProjectileS : MonoBehaviour {
 		newHitObj.transform.position = hitObjSpawn;
 	}
 
-	private float SolAugMult(){
-
-		if (_myPlayer.playerAug.solAug){
-			return PlayerAugmentsS.solAugAmt;
-		}else{
-			return 1f;
-		}
-
-	}
 
 	private void InitializeSprites(bool aeroOn = false, int biosActive = 0){
 		int numBiosToUse = biosActive;
@@ -849,7 +852,11 @@ public class ProjectileS : MonoBehaviour {
 
 	float BiosAugMult(){
 		if (_myPlayer.playerAug.biosAug && isFinisher){
-			return PlayerAugmentsS.BIOS_MULT;
+			if (_myPlayer.playerAug.doubleMantra){
+				return PlayerAugmentsS.BIOS_MULT*1.3f;
+			}else{
+				return PlayerAugmentsS.BIOS_MULT;
+			}
 		}else{
 			return 1f;
 		}

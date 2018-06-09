@@ -256,7 +256,7 @@ public class EnemyS : MonoBehaviour {
 	private Vector3 witchTargetVel;
 	private Vector3 witchCapturedVel;
 
-	private bool doubleCriticalTime = false;
+	private int doubleCriticalTime = 0;
 
 	//_____________________________________UNITY METHODS
 	// Use this for initialization
@@ -492,7 +492,7 @@ public class EnemyS : MonoBehaviour {
 		touchingWall = false;
 
 		_invulnerable = false;
-		doubleCriticalTime = false;
+		doubleCriticalTime = 0;
 
 
 		if (!_isDead){
@@ -592,7 +592,7 @@ public class EnemyS : MonoBehaviour {
 		_invulnerable = false;
 
 		touchingWall = false;
-		doubleCriticalTime = false;
+		doubleCriticalTime = 0;
 
 		currentCritDamage = 0;
 		currentCritTime = 0f;
@@ -674,8 +674,12 @@ public class EnemyS : MonoBehaviour {
 			if (_isCritical){
 				if (!inWitchTime){
 					vulnerableCountdown -= Time.deltaTime;
-					if (doubleCriticalTime){
-						currentCritTime += Time.deltaTime/PlayerAugmentsS.aquaAugMult;
+					if (doubleCriticalTime > 0){
+						if (doubleCriticalTime > 1){
+							currentCritTime += Time.deltaTime/(PlayerAugmentsS.aquaAugMult+0.5f);
+						}else{
+							currentCritTime += Time.deltaTime/PlayerAugmentsS.aquaAugMult;
+						}
 					}else{
 						currentCritTime += Time.deltaTime;
 					}
@@ -687,7 +691,7 @@ public class EnemyS : MonoBehaviour {
 						_isVulnerable = false;
 						_behaviorBroken = false;
 						vulnerableCountdown = 0;
-						doubleCriticalTime = false;
+						doubleCriticalTime = 0;
 					CameraFollowS.F.RemoveStunnedEnemy(this);
 					_isVulnerable = false;
 						currentCritTime = 0f;
@@ -1218,17 +1222,17 @@ public class EnemyS : MonoBehaviour {
 		flashFrames = FLASH_FRAME_COUNT;
 	}
 
-	public void AutoCrit(Vector3 knockback, float critTime, bool doubleTime = false){
+	public void AutoCrit(Vector3 knockback, float critTime, int doubleTime = 0){
 		_isVulnerable = true;
 		_breakAmt = _breakThreshold+1f;
 		_myRigidbody.velocity = Vector3.zero;
 		wasParried = true;
-		TakeDamage(transform, knockback, 0f, 0f, 0f, false, 0.12f, critTime, false,doubleTime, 0f, true);
+		TakeDamage(transform, knockback, 0f, 0f, 0f, 0, 0.12f, critTime, false,doubleTime, 0f, true);
 		canBeParried = false;
 	}
 
-	public float TakeDamage(Transform hitTransform, Vector3 knockbackForce, float dmg, float stunMult, float critDmg, bool ignoreDefense = false, 
-		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, bool doubleStun = false, 
+	public float TakeDamage(Transform hitTransform, Vector3 knockbackForce, float dmg, float stunMult, float critDmg, int ignoreDefense = 0, 
+		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, int doubleStun = 0, 
 		float killAtLess = 0f, bool fromParry = false){
 
 		if (GetPlayerReference()){
@@ -1239,15 +1243,23 @@ public class EnemyS : MonoBehaviour {
 
 		float damageTaken = 0;
 		float actingDamageMultiplier = damageMultiplier*CorruptedDefenseMult();
-		if (ignoreDefense){
-			actingDamageMultiplier = 1f;
+		if (ignoreDefense > 0){
+			if (ignoreDefense > 1){
+				actingDamageMultiplier = 1.3f;
+			}else{
+				actingDamageMultiplier = 1f;
+			}
 			_breakAmt += dmg*stunMult*currentStunResistMult;
 		}else{
 			_breakAmt += dmg*stunMult*currentStunResistMult*currentDefenseMult;
 		}
 		if (!_isCritical && preventStunLock <= 0f){
-			if (ignoreDefense){
-				currentStunLock += dmg*stunMult*currentStunResistMult;
+			if (ignoreDefense > 0){
+				if (ignoreDefense > 1){
+					currentStunLock += dmg*stunMult*currentStunResistMult*1.3f;
+				}else{
+					currentStunLock += dmg*stunMult*currentStunResistMult;
+				}
 			}else{
 				currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
 			}
@@ -1271,11 +1283,11 @@ public class EnemyS : MonoBehaviour {
 			_currentHealth -= (dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*actingDamageMultiplier;
 			damageTaken+=(dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*actingDamageMultiplier;
 			currentCritDamage += (dmg*CRIT_PENALTY*critDmg+0.5f*killAtLess)*actingDamageMultiplier;
-			if ((currentCritDamage > maxCritDamage && !doubleCriticalTime) 
-				|| (currentCritDamage > maxCritDamage*PlayerAugmentsS.aquaAugMult && doubleCriticalTime)){
+			if ((currentCritDamage > maxCritDamage && doubleCriticalTime <= 0f) 
+				|| (currentCritDamage > maxCritDamage*PlayerAugmentsS.aquaAugMult && doubleCriticalTime > 0)){
 				vulnerableCountdown = 0;
 				_isCritical = false;
-				doubleCriticalTime = false;
+				doubleCriticalTime = 0;
 				preventStunLock = preventStunLockMax;
 				_breakAmt = 0f;
 				_isVulnerable = false;
@@ -1299,9 +1311,14 @@ public class EnemyS : MonoBehaviour {
 
 			}
 		}else{
-			if (ignoreDefense){
+			if (ignoreDefense > 0){
+				if (ignoreDefense == 1){
 				_currentHealth -= dmg*actingDamageMultiplier;
 				damageTaken += dmg*actingDamageMultiplier;
+				}else{
+					_currentHealth -= dmg*actingDamageMultiplier*1.3f;
+					damageTaken += dmg*actingDamageMultiplier*1.3f;
+				}
 			}else{
 			_currentHealth -= dmg*actingDamageMultiplier*currentDefenseMult;
 			damageTaken += dmg*actingDamageMultiplier*currentDefenseMult;

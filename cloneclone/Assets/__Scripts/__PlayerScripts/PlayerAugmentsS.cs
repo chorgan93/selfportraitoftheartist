@@ -17,24 +17,23 @@ public class PlayerAugmentsS : MonoBehaviour {
 	//________________________________________________________weapon augmentations
 	private bool _lunaAug = false;
 	public bool lunaAug { get { return _lunaAug; } }
-	public const float lunaAugAmt = 1.5f;
+	public const float lunaAugAmt = 1.4f;
 
 	private bool _animaAug = false;
 	public bool animaAug { get { return _animaAug; } }
-	public const float animaAugAmt = 0.94f;
 	public const float addSpeedPerBios = 0.01f;
 
 	private bool _solAug = false;
 	public bool solAug { get { return _solAug; } }
-	public const float solAugAmt = 1.5f;
 
 	private bool _thanaAug = false;
 	public bool thanaAug { get { return _thanaAug; } }
 	public const float thanaAugAmt = 1.3f;
 
-	private bool _gaeaAug = false;
-	public bool gaeaAug { get { return _gaeaAug; } }
-	public const float gaeaAugAmt = 0.75f;
+	private bool _pyraAug = false;
+	public bool pyraAug { get { return _pyraAug; } }
+	public const float pyraAugAmt = 0.75f;
+	public const float pyraDoubleAugAmt = 0.55f;
 
 	private bool _realGaeaAug = false;
 	public bool realGaeaAug { get { return _realGaeaAug; } }
@@ -60,6 +59,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private bool _aetherAug = false;
 	public bool aetherAug { get { return _aetherAug; } }
+
+	private bool _doubleMantra = false;
+	public bool doubleMantra { get { return _doubleMantra; } }
 
 	//____________________________________________________________virtue augmentations
 	// index 0
@@ -208,7 +210,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_lunaAug = false;
 		_animaAug = false;
 		_solAug = false;
-		_gaeaAug = false;
+		_pyraAug = false;
 		_aeroAug = false;
 		_thanaAug = false;
 		_realGaeaAug = false;
@@ -217,6 +219,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_aquaAug = false;
 		_fosAug = false;
 		_aetherAug = false;
+
+		_doubleMantra = false;
 
 		// turn off all virtue augs
 		_opportunisticAug = false;
@@ -276,7 +280,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		
 		if (_playerReference.EquippedWeaponAug().weaponNum == 3 ||
 			_playerReference.EquippedWeapon().weaponNum == 3){
-			_gaeaAug = true;
+			_pyraAug = true;
 		}
 		
 		if (_playerReference.EquippedWeaponAug().weaponNum == 4 ||
@@ -313,6 +317,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 		if (_playerReference.EquippedWeaponAug().weaponNum == 11 ||
 			_playerReference.EquippedWeapon().weaponNum == 11){
 			_aetherAug = true;
+		}
+
+		if (_playerReference.EquippedWeapon().weaponNum == _playerReference.EquippedWeaponAug().weaponNum){
+			_doubleMantra = true;
 		}
 	}
 
@@ -396,14 +404,22 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	public float GetGaeaAug(){
 		if (_realGaeaAug){
-			return realGaeaAugAmt;
+			if (_doubleMantra){
+				return realGaeaAugAmt*1.3f;
+			}else{
+				return realGaeaAugAmt;
+			}
 		}else{
 			return 1f;
 		}
 	}
 	public float GetErebosAug(){
 		if (_erebosAug){
-			return erebosAugAmt;
+			if (_doubleMantra){
+				return erebosAugAmt * 1.25f;
+			}else{
+				return erebosAugAmt;
+			}
 		}else{
 			return 1f;
 		}
@@ -439,6 +455,43 @@ public class PlayerAugmentsS : MonoBehaviour {
 			return _currentParanoidMult;
 		}else{
 			return 1f;
+		}
+	}
+
+	public float AnimaAugAmt(){
+		if (_animaAug){
+			if (_doubleMantra){
+				return 0.92f;
+			}else{
+				return 0.95f;
+			}
+		}else{
+			return 1f;
+		}
+	}
+
+	public int SolAugAmt(){
+		if (_solAug){
+			if (_doubleMantra){
+				return 2;
+			}else{
+				return 1;
+			}
+		}else{
+			return 0;
+		}
+	}
+
+	public int AquaAugAmt()
+	{
+		if (_aquaAug){
+			if (_doubleMantra){
+				return 2;
+			}else{
+				return 1;
+			}
+		}else{
+			return 0;
 		}
 	}
 }

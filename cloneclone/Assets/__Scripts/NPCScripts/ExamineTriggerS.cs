@@ -85,6 +85,9 @@ public class ExamineTriggerS : MonoBehaviour {
 		if (examineString.Contains("NEWLINE")){
 			examineString = examineString.Replace("NEWLINE","\n");
 		}
+		if (examineString.Contains("PLAYERNAME")){
+			examineString = examineString.Replace("PLAYERNAME", TextInputUIS.playerName);
+		}
 
 
 

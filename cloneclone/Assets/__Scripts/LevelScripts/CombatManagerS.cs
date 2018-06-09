@@ -40,6 +40,7 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOnOnSkip;
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
+	public bool turnOffEnemiesOnComplete = false;
 
 	[Header("Special Player Properties")]
 	public float changeParryRange = -1;
@@ -91,7 +92,7 @@ public class CombatManagerS : MonoBehaviour {
 		for (int i = 0; i < enemies.Length; i++){
 			if (enemies[i].enemySpawned){
 				if (enemies[i].currentSpawnedEnemy.GetPlayerReference() != null){
-					enemies[i].currentSpawnedEnemy.TakeDamage(enemies[i].currentSpawnedEnemy.transform, Vector3.zero, 9999f, 1f, 1f, false, 0f, 0f);
+					enemies[i].currentSpawnedEnemy.TakeDamage(enemies[i].currentSpawnedEnemy.transform, Vector3.zero, 9999f, 1f, 1f, 0, 0f, 0f);
 				}
 			}
 		}
@@ -162,6 +163,13 @@ public class CombatManagerS : MonoBehaviour {
 		}
 		if (clearBloodOnComplete){
 			PlayerInventoryS.I.dManager.ClearBattleBlood();
+		}
+		if (turnOffEnemiesOnComplete){
+			for (int i = 0; i < enemies.Length; i++){
+				if (enemies[i].currentSpawnedEnemy){
+					enemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
+				}
+			}
 		}
 
 		RetryFightUI.allowRetry = false;
@@ -261,6 +269,9 @@ public class CombatManagerS : MonoBehaviour {
 		if (turnOnOnEnd != null){
 			for (int i = 0; i < turnOnOnEnd.Length; i++){
 				turnOnOnEnd[i].SetActive(true);
+				if (turnOnOnEnd[i].GetComponent<MatchOnCombatActivate>()){
+					turnOnOnEnd[i].GetComponent<MatchOnCombatActivate>().MatchTargetPos();
+				}
 			}
 		}
 	}

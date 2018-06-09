@@ -35,7 +35,7 @@ public class BuddyProjectileS : MonoBehaviour {
 	public float accuracyMult = 0f;
 	public bool stopBuddy = false;
 	public bool stopTime = false;
-	public bool ignoreEnemyDefense = false;
+	public int ignoreEnemyDefense = 0;
 	
 	[Header("Enemy Interaction")]
 	public bool isPiercing = false;

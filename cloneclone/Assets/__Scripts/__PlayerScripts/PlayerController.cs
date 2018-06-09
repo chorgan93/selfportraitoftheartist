@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _transformReady = false;
 	public bool transformReady { get { return _transformReady; } }
 	public Color transformedColor = Color.magenta;
-	private float transformMoveSpeedMult = 1.2f;
+	private float transformMoveSpeedMult = 1.12f;
 	private float transformedAttackSpeedMult = 0.8f;
 	private float _transformedStaminaMult = 0.3f;
 	public float transformedStaminaMult { get { return _transformedStaminaMult; } }
@@ -342,6 +342,7 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 examineStringPos { get { return _examineStringPos; } }
 	private bool _isTalking = false;
 	private bool _allowWalk = false;
+	private bool _tempTransformAllow = false;
 	private float delayTurnOffTalk;
 	private bool delayTalkTriggered = false;
 
@@ -704,7 +705,9 @@ public class PlayerController : MonoBehaviour {
 				BlockControl();
 				DashControl();
 				AttackControl();
-			TransformControl();
+			}
+			if (!_isTalking || _tempTransformAllow){
+				TransformControl();
 			}
 			//}
 			if (!_isTalking || _allowWalk){
@@ -841,7 +844,7 @@ public class PlayerController : MonoBehaviour {
 	public void AttackDuration(float aTime){
 		attackDuration = aTime*TransformedAttackSpeedMult();
 		if (_playerAug.animaAug){
-			attackDuration*=PlayerAugmentsS.animaAugAmt;
+			attackDuration*=_playerAug.AnimaAugAmt();
 		}
 		if (activeBios > 0){
 			attackDuration*=1f-(PlayerAugmentsS.addSpeedPerBios*activeBios);
@@ -1138,7 +1141,7 @@ public class PlayerController : MonoBehaviour {
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
 			for (int i = 0; i < enemiesToParry.Count; i++){
 				enemiesToParry[i].AutoCrit(parryForce*ShootDirection().normalized*Time.deltaTime*parryKnockbackMult, 3f,
-					_playerAug.aquaAug);
+					_playerAug.AquaAugAmt());
 			}
 			if (_playerAug.incensedAug){
 				_myStats.ManaCheck(_dodgeCost*_playerAug.incensedStaminaMult);
@@ -1287,7 +1290,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
-			if (equippedUpgrades.Contains(8) && !disableTransformInScene){ // TODO change back to 8
+			if ((equippedUpgrades.Contains(8) || _tempTransformAllow) && !disableTransformInScene){ 
 			_transformHoldTime += Time.deltaTime;
 			transformStartEffect.StartCharge();
 			}
@@ -1529,7 +1532,7 @@ public class PlayerController : MonoBehaviour {
 				*TransformedAttackSpeedMult();
 
 			if (_playerAug.animaAug){
-				attackDelay*=PlayerAugmentsS.animaAugAmt;
+				attackDelay*=_playerAug.AnimaAugAmt();
 			}
 
 			// add slow effect (melee attack)
@@ -1752,6 +1755,9 @@ public class PlayerController : MonoBehaviour {
 
 			if (_playerAug.thanaAug){
 				currentAttackS.dmg *= PlayerAugmentsS.thanaAugAmt;
+				if (_playerAug.doubleMantra){
+					currentAttackS.dmg *= 1.2f;
+				}
 			}
 
 			if (newAttack && currentAttackS.numAttacks > 1){
@@ -1763,7 +1769,7 @@ public class PlayerController : MonoBehaviour {
 							queuedAttacks.Add(_attackingWeapon.counterAttack);
 						}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*_playerAug.AnimaAugAmt()
 								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
@@ -1777,7 +1783,7 @@ public class PlayerController : MonoBehaviour {
 						queuedAttacks.Add(_attackingWeapon.dashAttack);
 					}
 						if (_playerAug.animaAug){
-							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*PlayerAugmentsS.animaAugAmt
+							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks*_playerAug.AnimaAugAmt()
 								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
@@ -1791,7 +1797,7 @@ public class PlayerController : MonoBehaviour {
 						}
 						if (_playerAug.animaAug){
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
-								*TransformedAttackSpeedMult()*PlayerAugmentsS.animaAugAmt*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
+								*TransformedAttackSpeedMult()*_playerAug.AnimaAugAmt()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
 						}else{
 							queuedAttackDelays.Add(currentAttackS.timeBetweenAttacks
 								*TransformedAttackSpeedMult()*(1f-PlayerAugmentsS.addSpeedPerBios*activeBios));
@@ -2020,7 +2026,7 @@ public class PlayerController : MonoBehaviour {
 							*TransformedAttackSpeedMult();
 
 					if (_playerAug.animaAug){
-							attackDelay*=PlayerAugmentsS.animaAugAmt;
+							attackDelay*=_playerAug.AnimaAugAmt();
 					}
 
 						// add slow effect (melee attack)
@@ -2388,9 +2394,9 @@ public class PlayerController : MonoBehaviour {
 		_chargeAttackUseAll = useAll;
 
 		if (_playerAug.animaAug){
-			_chargeAttackTrigger *= PlayerAugmentsS.animaAugAmt;
-			_chargeAttackDuration *= PlayerAugmentsS.animaAugAmt;
-			_chargeAnimationSpeed *= PlayerAugmentsS.animaAugAmt;
+			_chargeAttackTrigger *= _playerAug.AnimaAugAmt();
+			_chargeAttackDuration *= _playerAug.AnimaAugAmt();
+			_chargeAnimationSpeed *= _playerAug.AnimaAugAmt();
 		}
 	}
 
@@ -2764,7 +2770,7 @@ public class PlayerController : MonoBehaviour {
 		_myAnimator.SetTrigger("AttackTrigger");
 
 		if (_playerAug.animaAug){
-			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/_playerAug.AnimaAugAmt()/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 				/TransformedAttackSpeedMult());
 		}else{
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
@@ -2792,11 +2798,11 @@ public class PlayerController : MonoBehaviour {
 		if (_playerAug.animaAug){
 		if (inDash){
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult/dashChargeAllowMult
-					/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/_playerAug.AnimaAugAmt()/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 					/TransformedAttackSpeedMult());
 		}else{
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentProj.animationSpeedMult
-					/PlayerAugmentsS.animaAugAmt/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
+					/_playerAug.AnimaAugAmt()/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 					/TransformedAttackSpeedMult());
 		}
 		}else{
@@ -3427,12 +3433,13 @@ public class PlayerController : MonoBehaviour {
 		_examining = nEx;
 	}
 
-	public void SetTalking(bool nEx, bool allowWalk = false){
+	public void SetTalking(bool nEx, bool allowWalk = false, bool allowTransform = false){
 
 		if (_isTalking && !nEx){
 			delayAttackAllow = 0.2f;
 		}
 		_isTalking = nEx;
+		_tempTransformAllow = allowTransform;
 		_allowWalk = allowWalk;
 		if (_isTalking){
 			DeactivateTransform();
@@ -3614,8 +3621,12 @@ public class PlayerController : MonoBehaviour {
 
 	public float VirtueStaminaMult(){
 		float returnMult = 1f;
-		if (_playerAug.gaeaAug){
-			returnMult *= PlayerAugmentsS.gaeaAugAmt;
+		if (_playerAug.pyraAug){
+			if (_playerAug.doubleMantra){
+				returnMult *= PlayerAugmentsS.pyraDoubleAugAmt;
+			}else{
+				returnMult *= PlayerAugmentsS.pyraAugAmt;
+			}
 		}
 		if (_playerAug.empowered && _myStats.currentHealth >= _myStats.maxHealth){
 			returnMult *= 0.5f;
