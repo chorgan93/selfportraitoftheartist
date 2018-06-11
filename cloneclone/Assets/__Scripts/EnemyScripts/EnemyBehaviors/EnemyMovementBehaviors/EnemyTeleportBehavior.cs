@@ -18,6 +18,8 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
 	private int numTeleports;
 	private int currentTeleport = 0;
 	public string unTeleportKey = "";
+	public string finalUnTeleportKey = "";
+	public GameObject spawnOnTeleport;
 
 	[Header ("Behavior Physics")]
 	public float teleportDragAmt = -1;
@@ -105,8 +107,15 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
 
 		myEnemyReference.transform.position = GetTeleportPos();
 
+		if (spawnOnTeleport){
+			Instantiate(spawnOnTeleport, transform.position, Quaternion.identity);
+		}
+
 		teleported = true;
-		if (unTeleportKey != ""){
+		if (finalUnTeleportKey != "" && currentTeleport >= numTeleports-1){
+			myEnemyReference.myAnimator.SetTrigger(finalUnTeleportKey);
+		}
+		else if (unTeleportKey != ""){
 			myEnemyReference.myAnimator.SetTrigger(unTeleportKey);
 		}
 		if (currentTeleport < numTeleports-1){

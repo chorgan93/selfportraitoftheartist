@@ -373,7 +373,7 @@ public class PlayerInventoryS : MonoBehaviour {
 				}
 			}
 			
-			_earnedTech = new List<int>(){0,1,2,3,7,8,9};
+			_earnedTech = new List<int>(){0,1,2,3,7};
 			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
 
 			if (unlockForDemo){

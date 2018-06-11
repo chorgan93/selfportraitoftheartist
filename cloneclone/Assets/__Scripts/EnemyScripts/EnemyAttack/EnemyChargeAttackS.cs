@@ -333,7 +333,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	}
 
 	public void SetEnemy(EnemyS myRef){
-		myEnemy = myRef;
-		isFriendly = myEnemy.isFriendly;
+		if (myRef){
+			myEnemy = myRef;
+			isFriendly = myEnemy.isFriendly;
+		}
 	}
 }

@@ -65,6 +65,7 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 		else if (turnOnOffAtTechEarned > -1 && PlayerInventoryS.I != null){
 			if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned)){
 				TurnObjectsOnOff();
+				Debug.Log("Tech earned!");
 			}	
 		}
 		else if (turnOnOffAtVirtueEarned > -1){
