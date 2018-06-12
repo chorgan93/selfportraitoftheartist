@@ -24,6 +24,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	public float hitStopAmount = 0.2f;
 	public bool autoCritOnReflect = false;
 	public float reflectSizeMult = 1f;
+	public bool selfShoot = false;
 
 	[Header("Attack Properties")]
 	public float range;
@@ -99,6 +100,10 @@ public class EnemyProjectileS : MonoBehaviour {
 
 		if (trackPlayer && endTrackingTime < 0){
 			endTrackingTime = _maxRange;
+		}
+
+		if (selfShoot){
+			Fire(transform.right, null, 1f);
 		}
 	}
 

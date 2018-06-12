@@ -355,8 +355,9 @@ public class ProjectileS : MonoBehaviour {
 				if (extraRangeCollider){
 					extraRangeCollider.enabled = true;
 				}
+				shotSpeed *= 1.2f;
 				if (_myPlayer.playerAug.doubleMantra){
-					shotSpeed *= 1.5f;
+					shotSpeed *= 1.3f;
 				}
 			}else{
 				myCollider.enabled = true;
