@@ -37,6 +37,8 @@ public class BGMLayerS : MonoBehaviour {
 	private bool adjustingUp = false;
 	private bool adjustingDown = false;
 
+	public bool debugLayer = false;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -80,9 +82,15 @@ public class BGMLayerS : MonoBehaviour {
 
 		if (fadingIn){
 			mySource.volume += fadeInRate*Time.unscaledDeltaTime;
+			if (debugLayer){
+				Debug.Log("Fading in! " + mySource.volume);
+			}
 			if (mySource.volume >= maxVolume*BGMHolderS.volumeMult){
 				mySource.volume = maxVolume*BGMHolderS.volumeMult;
 				fadingIn = false;
+				if (debugLayer){
+					Debug.Log("reached max volume! " + maxVolume*BGMHolderS.volumeMult);
+				}
 			}
 		}
 
@@ -126,9 +134,13 @@ public class BGMLayerS : MonoBehaviour {
 		if (!PlayerStatDisplayS.RECORD_MODE && !NO_MUSIC){
 		if (!mySource.isPlaying){
 			mySource.Play();
+			}
 		
 
 		if (!instant){
+					if (debugLayer){
+						Debug.Log(gameObject.name + " is being told to fade in!");
+					}
 			fadingIn = true;
 			fadingOut = false;
 		}else{
@@ -138,10 +150,11 @@ public class BGMLayerS : MonoBehaviour {
 			fadingOut = false;
 			mySource.volume = maxVolume*BGMHolderS.volumeMult;
 		}
-			}else if (maxV > 0){
+			}
+		if (maxV > 0){
 				ChangeMaxVolume(maxV);
 			}
-		}
+
 
 		destroyOnFade = false;
 	}
@@ -207,11 +220,11 @@ public class BGMLayerS : MonoBehaviour {
 		adjustingUp = false;
 		adjustingDown = false;
 		maxVolume = newVolume;
-		if (mySource.volume > maxVolume*BGMHolderS.volumeMult){
-			adjustingUp = true;
-		}
-		if (mySource.volume < maxVolume*BGMHolderS.volumeMult){
+		if (mySource.volume > maxVolume*BGMHolderS.volumeMult && !fadingOut){
 			adjustingDown = true;
+		}
+		if (mySource.volume < maxVolume*BGMHolderS.volumeMult && !fadingIn){
+			adjustingUp = true;
 		}
 	}
 

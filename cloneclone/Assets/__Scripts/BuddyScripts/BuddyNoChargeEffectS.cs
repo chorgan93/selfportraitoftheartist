@@ -107,6 +107,8 @@ public class BuddyNoChargeEffectS : MonoBehaviour {
 
 	void OnDisable(){
 		pointShowing = false;
+		if (exclamationPoint != null && subPoint != null){
 		exclamationPoint.text = subPoint.text = "";
+		}
 	}
 }
