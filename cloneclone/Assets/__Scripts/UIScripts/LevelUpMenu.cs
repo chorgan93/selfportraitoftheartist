@@ -444,7 +444,10 @@ public class LevelUpMenu : MonoBehaviour {
 			}
 			index++;
 		}
-		if (pRef.myStats.currentLevel < 10){
+		if (pRef.myStats.currentLevel > LevelUpItemS.MAX_LEVEL_UP){
+			playerLvl.text = "LV. MAX";
+		}
+		else if (pRef.myStats.currentLevel < 10){
 			playerLvl.text = "LV. 0" + pRef.myStats.currentLevel;
 		}else{
 			playerLvl.text = "LV. " + pRef.myStats.currentLevel;

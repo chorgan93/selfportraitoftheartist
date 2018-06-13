@@ -62,6 +62,9 @@ public class EnemyChargeAttackS : MonoBehaviour {
 	public bool corruptEnemies = false;
 	public ChargeRiseEffectS riseEffect;
 
+	private bool _dontDealDamage = false;
+	public bool dontDealDamage { get { return _dontDealDamage; } }
+
 
 	// Use this for initialization
 	void Start () {
@@ -171,7 +174,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 		fadeColor = _myRenderer.material.color;
 		fadeColor.a = startAlpha;
-
+		_dontDealDamage  = false;
 		_myRenderer.material.color = Color.black;
 
 		_myRenderer.material.SetTexture("_MainTex", startFlash);
@@ -227,7 +230,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		
-		if (other.gameObject.tag == "Player" && !isFriendly &&!corruptEnemies){
+		if (other.gameObject.tag == "Player" && !isFriendly &&!corruptEnemies && !_dontDealDamage ){
 		
 			knockBackDir = (other.transform.position-transform.position).normalized;
 			knockBackDir.z = 1f;
@@ -238,10 +241,12 @@ public class EnemyChargeAttackS : MonoBehaviour {
 				actingDamage*=myEnemy.CorruptedPowerMult();
 			other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
 				(myEnemy, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+				_dontDealDamage  = true;
 			}
 			else{
 				other.gameObject.GetComponent<PlayerController>().myStats.TakeDamage
 				(null, actingDamage, knockBackDir*knockbackForce*Time.deltaTime, knockbackTime);
+				_dontDealDamage  = true;
 			}
 
 			//HitEffect(other.transform.position, other.gameObject.GetComponent<EnemyS>().bloodColor);
@@ -305,6 +310,7 @@ public class EnemyChargeAttackS : MonoBehaviour {
 			_myRenderer.transform.localPosition = renderStartPos+chargeOffsetPos;
 		}
 		doKill = killOnCast;
+		_dontDealDamage  = false;
 		capturedChargeTime = chargeUpTime = attackWarmup;
 		_myRenderer.material.SetTexture("_MainTex", startFlash);
 		fadeColor.a = 0;

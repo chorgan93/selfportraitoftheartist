@@ -80,6 +80,9 @@ public class EnemyProjectileS : MonoBehaviour {
 	private Vector3 trackingAcceleration = Vector3.zero;
 	private Transform trackingRef;
 
+	private bool _dontDealDamage = false;
+	public bool dontDealDamage { get { return _dontDealDamage; } }
+
 	void Start(){
 		_maxRange = range;
 		if (enemyKnockbackMult == 0){
@@ -382,15 +385,17 @@ public class EnemyProjectileS : MonoBehaviour {
 					_rigidbody = GetComponent<Rigidbody>();
 				}
 
-			if (!playerRef.myStats.PlayerIsDead()){
+				if (!playerRef.myStats.PlayerIsDead() && !_dontDealDamage){
 			if (_myEnemy != null){
 					if (followEnemy){
 						playerRef.myStats.
 							TakeDamage(_myEnemy, damage, _myEnemy.myRigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
+							dontTriggerWitchTime = _dontDealDamage = true;
 						
 					}
 					else{
 							playerRef.myStats.TakeDamage(_myEnemy, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
+							dontTriggerWitchTime = _dontDealDamage = true;
 
 					}
 				}
@@ -399,7 +404,7 @@ public class EnemyProjectileS : MonoBehaviour {
 
 				playerRef.myStats.
 						TakeDamage(null, damage, _rigidbody.velocity.normalized*playerKnockbackMult*Time.fixedDeltaTime, knockbackTime, dontTriggerWitchTime);
-				
+						dontTriggerWitchTime = _dontDealDamage = true;
 
 				}
 
@@ -628,7 +633,7 @@ public class EnemyProjectileS : MonoBehaviour {
 		isFriendly = true;
 			isPiercing = false;
 		range = _maxRange+0.2f;
-			damage = startDamage*3f;
+			damage = startDamage*1.5f;
 		_rigidbody.velocity = Vector3.zero;
 		StartCoroutine(ReflectCoroutine(aimDir));
 		CameraShakeS.C.MicroShake();

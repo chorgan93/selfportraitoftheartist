@@ -157,10 +157,10 @@ public class EquipMenuS : MonoBehaviour {
 			}
 		}
 
-		if (PlayerInventoryS.I.earnedUpgrades.Count >= LevelUpItemS.MAX_LEVEL_UP){
+		if (pRef.myStats.currentLevel > LevelUpItemS.MAX_LEVEL_UP){
 			playerLevel.text = "LV. MAX";
 		} 
-		if (pRef.myStats.currentLevel < 10){
+		else if (pRef.myStats.currentLevel < 10){
 			playerLevel.text = "LV. 0" + pRef.myStats.currentLevel;
 		}else{
 			playerLevel.text = "LV. " + pRef.myStats.currentLevel;
@@ -269,8 +269,12 @@ public class EquipMenuS : MonoBehaviour {
 				if (currentPos == 2 && inventoryRef.earnedVirtues.Count > 0){
 					GoToVirtueSetUp();
 				}
-				if (currentPos == 3 && !disableTech){
-					GoToInventorySetUp();
+				if (currentPos == 3){
+					if (!disableTech){
+						GoToInventorySetUp();
+					}else{
+						selectButtonDown = true;
+					}
 				}
 			}
 		

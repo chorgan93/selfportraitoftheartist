@@ -8,7 +8,7 @@ public class LevelUpItemS : MonoBehaviour {
 	private int _upgradeID = -1;
 	public int upgradeID { get { return _upgradeID; } }
 
-	public const int MAX_LEVEL_UP = 49;
+	public const int MAX_LEVEL_UP = 19; // COLIN CHANGE BACK AFTER DEMO BUILD!
 
 	[Header("UI Properties")]
 	public Image upgradeImage;
@@ -116,7 +116,7 @@ public class LevelUpItemS : MonoBehaviour {
 			upgradeName = revertName;
 		}
 
-		if ((upgradeCost > PlayerCollectionS.currencyCollected && PlayerInventoryS.I.earnedUpgrades.Count < MAX_LEVEL_UP) 
+		if ((upgradeCost > PlayerCollectionS.currencyCollected && PlayerInventoryS.I.earnedUpgrades.Count <= MAX_LEVEL_UP) 
 			|| (isRevert && statRef.currentLevel <= minRevert())){
 			if (isRevert){
 				upgradeImage.sprite = revertLockedSprite;
@@ -131,7 +131,11 @@ public class LevelUpItemS : MonoBehaviour {
 			}else if (isShuffle){
 				upgradeImage.sprite = shuffleUnlockedSprite;
 			}else{
-			upgradeImage.sprite = upgradeRef.upgradeImg;
+				if (PlayerInventoryS.I.earnedUpgrades.Count < MAX_LEVEL_UP){
+					upgradeImage.sprite = upgradeRef.upgradeImg;
+				}else{
+					upgradeImage.sprite = upgradeRef.upgradeImgLocked;
+				}
 			}
 		}
 

@@ -242,9 +242,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 
 	public void UpdateFills(bool chargeRefill = false, bool levelUp = false){
 
-		if (!healthBarDesperate.enabled){
+		if (!healthBarDesperate.gameObject.activeSelf){
 			if (playerStats.canRecoverHealth > 0){
-				healthBarDesperate.enabled = true;
+				healthBarDesperate.gameObject.SetActive(true);
 			}
 		}
 
@@ -297,14 +297,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		healthBorder.rectTransform.sizeDelta = healthBorderBG.rectTransform.sizeDelta = borderSize;
 
 		// desperate fill
-		if (healthBarDesperate.enabled){
+		if (healthBarDesperate.gameObject.activeSelf){
 			fillSize = healthBarMaxSize;
 			fillSize.x += playerStats.addedHealth*barAddSize;
 			fillSize.x *= (playerStats.currentHealth+playerStats.canRecoverHealth)/playerStats.maxHealth;
 			fillSize.y = healthFill.rectTransform.sizeDelta.y;
 			healthBarDesperate.rectTransform.sizeDelta = fillSize;
 			if (fillSize.x <= healthFill.rectTransform.sizeDelta.x || playerStats.canRecoverHealth <= 0){
-				healthBarDesperate.enabled = false;
+				healthBarDesperate.gameObject.SetActive(false);
 			}
 		}
 

@@ -636,6 +636,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentMana = maxMana;
 		// TODO find a way to remove doWakeUp from this without screwing everything up
 		if ((PlayerController.doWakeUp && !PlayerController.dontHealWakeUp) || healOnStart){
+			Debug.Log("Heal on start?");
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
 			PlayerInventoryS.I.RefreshRechargeables();
