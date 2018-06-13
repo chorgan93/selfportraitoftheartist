@@ -636,7 +636,6 @@ public class PlayerStatsS : MonoBehaviour {
 		_currentMana = maxMana;
 		// TODO find a way to remove doWakeUp from this without screwing everything up
 		if ((PlayerController.doWakeUp && !PlayerController.dontHealWakeUp) || healOnStart){
-			Debug.Log("Heal on start?");
 			_currentHealth = maxHealth;
 			_currentCharge = maxCharge;
 			PlayerInventoryS.I.RefreshRechargeables();
@@ -699,6 +698,8 @@ public class PlayerStatsS : MonoBehaviour {
 		if (i == 2){
 			_currentCharge+=1f;
 			_addedCharge+=1f;
+
+				SetMinChargeUse(myPlayerController.myBuddy.costPerUse, myPlayerController.myBuddy.useAllCharge);
 		}
 		if (i == 3){
 			//_addedStrength++;
@@ -763,6 +764,8 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void Heal(float healAmt, bool doEffect = true){
+
+		//Debug.Log("Heal on start?");
 		_currentHealth += healAmt;
 		if (_currentHealth >= maxHealth){
 			myPlayerController.playerAug.canUseUnstoppable = true;
@@ -1104,6 +1107,7 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public void FullRecover(){
+		//Debug.Log("Full recover?");
 		_currentHealth = maxHealth;
 		_currentCharge = maxCharge;
 		_overchargeMana = 0f;

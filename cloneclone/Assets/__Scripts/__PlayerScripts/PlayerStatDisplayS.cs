@@ -585,6 +585,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBorderMaxSize.x += playerStats.addedCharge*chargeAddSize;
 		}
 		newMinPos.x = chargeBarMaxSize.x * newMin + chargeMinStartX;
+		Debug.Log("New min X Pos! " + newMinPos.x);
 		minChargeUseBar.rectTransform.anchoredPosition = newMinPos;
 		if (!refillingCharge){
 			SetChargeImmediate();
