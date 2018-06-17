@@ -5,6 +5,8 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
+	private bool ALLOW_RECORD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
+
 	private const string currentVer = "— v. 0.8.0 —";
 	private static bool hasSeenMainMenu = false;
 
@@ -80,9 +82,9 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private string attractScene = "AttractMode_00";
 	private float attractCountdownMax = 30f;
 	private float attractCountdown;
-	
+
 	private string cheatString = "";
-	private bool allowCheats = false; // TURN OFF FOR DEMO
+	private bool allowCheats = true; // COLIN TODO TURN OFF FOR FINAL BUILDS!
 
 	public static bool inMain = false;
 	
@@ -527,13 +529,23 @@ public class MainMenuNavigationS : MonoBehaviour {
 				cheatString += "G";
 				if (cheatString == "GGGG"){
 					PlayerStatsS.godMode = true;
+					cheatString = "";
 					Debug.Log("god mode on");
+					Instantiate(newGameSound);
+				}
+			}
+			if (Input.GetKeyDown(KeyCode.R)){
+				PlayerStatDisplayS.RECORD_MODE = !PlayerStatDisplayS.RECORD_MODE;
+				if (PlayerStatDisplayS.RECORD_MODE){
+					Debug.Log("record mode on");
+					Instantiate(newGameSound);
 				}
 			}
 			
 			if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
 				cheatString = "";
 				PlayerStatsS.godMode = false;
+				PlayerStatDisplayS.RECORD_MODE = false;
 				Debug.Log("god mode off");
 			}
 		}

@@ -52,11 +52,13 @@ public class SpriteDistortionEnemyS : MonoBehaviour {
 	void Update () {
 
 		if (enemyReference.isDead){
+			if (enemyReference.doingDeathFade){
+				mySprite.color = enemyReference.myRenderer.color;
+				mySprite.material.SetColor("_FlashColor", mySprite.color);
+			}
 			changeRate = deadChangeRate;
 			if (matchingFlash){
 				matchingFlash = false;
-				mySprite.color = startColor;
-				mySprite.material.SetColor("_FlashColor", startColor);
 			}
 		}
 

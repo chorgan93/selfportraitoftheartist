@@ -332,7 +332,7 @@ public class EnemyProjectileS : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other){
 
-		if (other.gameObject.tag == "WitchTime"){
+		if (other.gameObject.tag == "WitchTime" && !isFriendly){
 			damage = 0;
 			if (!_rigidbody){
 				_rigidbody = GetComponent<Rigidbody>();
@@ -359,23 +359,24 @@ public class EnemyProjectileS : MonoBehaviour {
 			}
 		}
 
-		if (other.gameObject.tag == "Destructible"){
-			DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
-			destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
-			HitEffectDestructible(destructible.myRenderer, other.transform.position);
-			if (!isPiercing){
-				
-				_rigidbody.velocity = Vector3.zero;
-				range = fadeThreshold;
-				myCollider.enabled = false;
-				
-			}
-			if (hitSoundObj){
-				Instantiate(hitSoundObj);
-			}
-		}
+		// friendly projectiles don't hit destructibles as a temp reflect projectile fix
 
 		if (!isFriendly){
+			if (other.gameObject.tag == "Destructible"){
+				DestructibleItemS destructible = other.gameObject.GetComponent<DestructibleItemS>();
+				destructible.TakeDamage(damage,transform.rotation.z,(transform.position+other.transform.position)/2f, -1);
+				HitEffectDestructible(destructible.myRenderer, other.transform.position);
+				if (!isPiercing){
+
+					_rigidbody.velocity = Vector3.zero;
+					range = fadeThreshold;
+					myCollider.enabled = false;
+
+				}
+				if (hitSoundObj){
+					Instantiate(hitSoundObj);
+				}
+			}
 		if (other.gameObject.tag == "Player" && (!hitPlayer || (hitPlayer && allowMultiHit))){
 
 
@@ -441,7 +442,7 @@ public class EnemyProjectileS : MonoBehaviour {
 						_rigidbody = GetComponent<Rigidbody>();
 					}
 					hitEnemy.TakeDamage
-					(other.transform, shotSpeed*selfKnockbackMult*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
+					(other.transform, shotSpeed*Mathf.Abs(selfKnockbackMult)*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						0, 1f, 1.5f, 0, 0f);
 					
 					if (hitSoundObj){

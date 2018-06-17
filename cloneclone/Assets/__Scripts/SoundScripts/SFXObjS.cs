@@ -8,11 +8,15 @@ public class SFXObjS : MonoBehaviour {
 
 	public static float volumeSetting = 1f;
 	private const float volumeSettingChangeAmt = 0.25f;
+	public AudioClip arcadeOverride;
 
 	// Use this for initialization
 	void Start () {
 
 		mySource = GetComponent<AudioSource>();
+		if (arcadeOverride && CameraEffectsS.E.arcadeMode){
+			mySource.clip = arcadeOverride;
+		}
 		mySource.volume *= volumeSetting;
 		mySource.pitch += Random.insideUnitCircle.x*pitchMult;
 		mySource.Play();

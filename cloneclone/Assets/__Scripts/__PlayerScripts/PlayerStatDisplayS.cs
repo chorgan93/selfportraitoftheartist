@@ -8,7 +8,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private const float staminaBarAddSize = 7f;
 	private const float chargeAddSize = 4f;
 
-	public const bool RECORD_MODE = false; // TODO turn off after build!
+	public static bool RECORD_MODE = false; // TODO Colin turn off after build!
+	private bool allowRecordMode = true; // TODO turn off after build!
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;
@@ -201,13 +202,18 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}
 		else{
 			TurnOnAll();
-			updateChargeFills();
 		//UpdateMaxSizes();
 		//UpdateFills();
 			//PositionStamina();
 			//UpdateText();
 		}
-	
+		updateChargeFills();
+
+		if (allowRecordMode){
+			if (Input.GetKeyDown(KeyCode.Slash)){
+				RECORD_MODE = !RECORD_MODE;
+			}
+		}
 	}
 
 	private void UpdateText(){
@@ -585,7 +591,6 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBorderMaxSize.x += playerStats.addedCharge*chargeAddSize;
 		}
 		newMinPos.x = chargeBarMaxSize.x * newMin + chargeMinStartX;
-		Debug.Log("New min X Pos! " + newMinPos.x);
 		minChargeUseBar.rectTransform.anchoredPosition = newMinPos;
 		if (!refillingCharge){
 			SetChargeImmediate();

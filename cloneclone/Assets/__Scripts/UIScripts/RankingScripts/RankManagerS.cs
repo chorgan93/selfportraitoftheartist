@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class RankManagerS : MonoBehaviour {
 
-	public const float ENRAGE_SCORE_MULT = 2.5f;
-	public const float CRIT_SCORE_MULT = 3f;
+	public const float ENRAGE_SCORE_MULT = 4f;
+	public const float CRIT_SCORE_MULT = 5.5f;
 
 	[HideInInspector]
 	public int totalRank = 0;

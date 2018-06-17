@@ -20,8 +20,11 @@ public class PlayerSoundS : MonoBehaviour {
 	private float xMult = 1f;
 
 	[Header("Action Sounds")]
+	public GameObject lightAttackSound;
+	public GameObject heavyAttackSound;
 	public GameObject shieldSound;
 	public GameObject rollSound;
+	public GameObject perfectDodgeSound;
 	public GameObject chargeSound;
 
 	[Header("Damange Sounds")]
@@ -113,9 +116,18 @@ public class PlayerSoundS : MonoBehaviour {
 			xMult *= -1f;
 		}
 	}
+	public void PlayLightAttackSound(){
+		Instantiate(lightAttackSound);
+	}
+	public void PlayHeavyAttackSound(){
+		Instantiate(heavyAttackSound);
+	}
 
 	public void PlayRollSound(){
 		Instantiate(rollSound);
+	}
+	public void PlayFlourishSound(){
+		Instantiate(perfectDodgeSound);
 	}
 
 	public void PlayShieldSound(){

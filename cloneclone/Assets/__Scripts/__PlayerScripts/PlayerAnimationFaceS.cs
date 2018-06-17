@@ -5,6 +5,8 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 
 	public enum PlayerFaceState { noFace, faceLeft, faceRight, faceUp, faceDown } ;
 
+	private static PlayerFaceState currentFace = PlayerFaceState.noFace;
+
 	private Rigidbody rigidReference;
 	private Vector3 mySize;
 	private Vector3 currentSize;
@@ -21,6 +23,11 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		mySize = transform.localScale;
 		myController = GetComponentInParent<PlayerController>();
 		rigidReference = myController.myRigidbody;
+
+		if (!PlayerController.doWakeUp){
+			myController.SetFaceDirection(currentFace);
+			EvaluateStartFace();
+		}
 	
 	}
 	
@@ -42,10 +49,12 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 
 		if (myController.facingUp){
 			currentSize = mySize;
-			currentSize.x *= -1f;
+				currentSize.x *= -1f;
+				currentFace = PlayerFaceState.faceUp;
 
 		}else if (myController.facingDown){
-			currentSize = mySize;}
+				currentSize = mySize;
+				currentFace = PlayerFaceState.faceDown;}
 		else{
 			if (enemyDetect.closestEnemy == null || myController.isDashing || myController.chargingAttack 
 			                                         || myController.myStats.PlayerIsDead() || myController.IsRunning()){
@@ -53,27 +62,33 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 				if (myController.isDoingMovement){
 					if (myController.myControl.Horizontal() < 0){
 						currentSize = mySize;
-						currentSize.x *= -1f;
+							currentSize.x *= -1f;
+							currentFace = PlayerFaceState.faceLeft;
 					}
 					if (myController.myControl.Horizontal() > 0){
-						currentSize = mySize;
+							currentSize = mySize;
+							currentFace = PlayerFaceState.faceRight;
 					}
 					}else if (myController.inAttackDelay){
 						if (myController.attackStartDirection.x < 0){
 							currentSize = mySize;
 							currentSize.x *= -1f;
+							currentFace = PlayerFaceState.faceLeft;
 						}
 						if (myController.attackStartDirection.x > 0){
 							currentSize = mySize;
+							currentFace = PlayerFaceState.faceRight;
 						}
 					}
 					else if (!lockAttackFace){
 					if (rigidReference.velocity.x < 0){
 						currentSize = mySize;
-						currentSize.x *= -1f;
+							currentSize.x *= -1f;
+							currentFace = PlayerFaceState.faceLeft;
 					}
 					if (rigidReference.velocity.x > 0){
 						currentSize = mySize;
+							currentFace = PlayerFaceState.faceRight;
 					}
 				}
 			}
@@ -83,16 +98,29 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 					
 					currentSize = mySize;
 					currentSize.x *= -1f;
+						currentFace = PlayerFaceState.faceLeft;
 				}
 				if (closestEnemyX > transform.position.x){
 					
-					currentSize = mySize;
+						currentSize = mySize;
+						currentFace = PlayerFaceState.faceRight;
 				}
 			}
 		}
 		transform.localScale = currentSize;
 		}
 	
+	}
+
+	void EvaluateStartFace(){
+		if (currentFace == PlayerFaceState.faceLeft || currentFace == PlayerFaceState.faceUp){
+			currentSize = mySize;
+			currentSize.x *= -1f;
+		}else if (currentFace == PlayerFaceState.faceRight || currentFace == PlayerFaceState.faceDown){
+			currentSize = mySize;
+		}
+
+		transform.localScale = currentSize;
 	}
 
 	public void AllowFace(){

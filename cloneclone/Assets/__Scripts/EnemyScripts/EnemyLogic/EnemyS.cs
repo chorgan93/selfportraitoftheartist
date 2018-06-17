@@ -86,6 +86,9 @@ public class EnemyS : MonoBehaviour {
 	public Material flashMaterial;
 	private Material startMaterial;
 
+	private bool _doingDeathFade = false;
+	public bool doingDeathFade { get { return _doingDeathFade; } }
+
 	private bool _preventKnockback = false;
 	private bool _preventFace = false;
 	public bool preventFace { get { return _preventFace; } }
@@ -181,6 +184,7 @@ public class EnemyS : MonoBehaviour {
 	public GameObject hitSound;
 	public GameObject breakSound;
 	public GameObject deathSound;
+	public GameObject detectSound;
 
 	[HideInInspector]
 	public EnemySpawnerS mySpawner;
@@ -202,6 +206,7 @@ public class EnemyS : MonoBehaviour {
 	private bool _initialized;
 
 	private bool _isActive;
+	private bool hasBeenActive = false;
 	private bool allowActivation = true;
 	private bool behaviorSet;
 	private PlayerDetectS activationDetect;
@@ -762,7 +767,10 @@ public class EnemyS : MonoBehaviour {
 		if (!_isActive && allowActivation){
 			if (!isFriendly){
 				if (activationDetect.PlayerInRange()){
-					_isActive = true;
+					if (!hasBeenActive && detectSound){
+						Instantiate(detectSound);
+					}
+					_isActive = hasBeenActive = true;
 					CheckBehaviorStateSwitch(false);
 					if (healthFeatherReference && GetPlayerReference() != null){
 						if (GetPlayerReference().playerAug.perceptiveAug){
@@ -983,7 +991,7 @@ public class EnemyS : MonoBehaviour {
 
 	IEnumerator DeathFade(){
 		float deathColorTime = 1f, deathColorCount = 1f, deathT = 1f;
-
+		_doingDeathFade = true;
 		while (deathColorCount > 0f && _isDead){
 			deathColorCount -= Time.deltaTime;
 			if (deathColorCount < 0f){
@@ -994,6 +1002,7 @@ public class EnemyS : MonoBehaviour {
 
 			yield return null;
 		}
+		_doingDeathFade = false;
 	}
 
 	private void ResetMaterial(){

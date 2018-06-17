@@ -531,16 +531,30 @@ public class PlayerController : MonoBehaviour {
 	public void SetFaceDirection(PlayerAnimationFaceS.PlayerFaceState newFace){
 		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceDown){
 			FaceDown();
+			if (!_myRigidbody){
+				_myRigidbody = GetComponent<Rigidbody>();
+			}
+			_myRigidbody.velocity = new Vector3(0f,-1f,0f); 
 		}
 		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceUp){
 			FaceUp();
+			if (!_myRigidbody){
+				_myRigidbody = GetComponent<Rigidbody>();
+			}
+			_myRigidbody.velocity = new Vector3(0f,1f,0f); 
 		}
 		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceLeft){
 			FaceLeftRight();
+			if (!_myRigidbody){
+				_myRigidbody = GetComponent<Rigidbody>();
+			}
 			_myRigidbody.velocity = new Vector3(-1f,0f,0f); 
 		}
 		if (newFace == PlayerAnimationFaceS.PlayerFaceState.faceRight){
 			FaceLeftRight();
+			if (!_myRigidbody){
+				_myRigidbody = GetComponent<Rigidbody>();
+			}
 			_myRigidbody.velocity = new Vector3(1f,0f,0f); 
 		}
 	}
@@ -897,6 +911,7 @@ public class PlayerController : MonoBehaviour {
 				CameraShakeS.C.DodgeSloMo(0.22f, 0.12f, 0.8f, counterAttackTimeMax*0.3f);
 				dashDurationTime = dashDurationTimeMax-flourishLockTime;
 				_myAnimator.SetTrigger("Evade");
+				_playerSound.PlayFlourishSound();
 				_dodgeEffectRef.FireEffect();
 				FlashMana();
 				TriggerWitchTime();
@@ -1493,6 +1508,7 @@ public class PlayerController : MonoBehaviour {
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(false,
 				                                           ShootDirection(), ShootDirection(), this);
+				
 				SpawnAttackPuff();
 				canDoAdaptive = true;
 
@@ -1831,6 +1847,11 @@ public class PlayerController : MonoBehaviour {
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}
 			}
+			if (_doingHeavyAttack){
+				_playerSound.PlayHeavyAttackSound();
+			}else{
+			_playerSound.PlayLightAttackSound();
+			}
 			SpawnAttackPuff();
 			_isSprinting = false;
 			_myRigidbody.drag = startDrag;
@@ -2085,6 +2106,8 @@ public class PlayerController : MonoBehaviour {
 						}
 							}
 						//weaponTriggered = equippedWeapon;
+
+
 					_isShooting = true;
 					if (currentAttackS.chargeAttackTime <=  0){
 						allowChargeAttack = true;
@@ -2920,6 +2943,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FaceDown(){
+		if (!_myAnimator){
+			_myAnimator = GetComponentInChildren<Animator>();
+		}
 		if (!_isBlocking){
 		_myAnimator.SetLayerWeight(1, 1f);
 		_myAnimator.SetLayerWeight(2, 0f);
@@ -2929,6 +2955,9 @@ public class PlayerController : MonoBehaviour {
 
 	}
 	private void FaceUp(){
+		if (!_myAnimator){
+			_myAnimator = GetComponentInChildren<Animator>();
+		}
 		if (!_isBlocking){
 		_myAnimator.SetLayerWeight(2, 1f);
 		_facingUp = true;
@@ -2937,6 +2966,9 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 	private void FaceLeftRight(){
+		if (!_myAnimator){
+			_myAnimator = GetComponentInChildren<Animator>();
+		}
 		_myAnimator.SetLayerWeight(1, 0f);
 		_myAnimator.SetLayerWeight(2, 0f);
 		_facingDown = false;
@@ -3604,7 +3636,6 @@ public class PlayerController : MonoBehaviour {
 			attackEffect.transform.localScale = flipsize;
 			rotateFix = 180f;
 		}
-
 		attackEffect.GetComponent<SpriteRenderer>().color = myRenderer.color;
 		attackEffect.transform.GetChild(1).GetComponent<SpriteRenderer>().color = myRenderer.color;
 	}

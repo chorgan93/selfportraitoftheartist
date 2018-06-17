@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerStatsS : MonoBehaviour {
 
+	private const bool ALLOW_GOD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
+
 	private const float NO_MANA_STOP_TIME = 0.1f;
 	private const float NEAR_DEATH_STOP_TIME = 0.1f;
 	private const float DEATH_KNOCKBACK_MULT = 2f;
@@ -242,8 +244,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	void Update(){
 		HealthRecovery();
+		if (Input.GetKeyDown(KeyCode.G) && ALLOW_GOD_MODE){
+			godMode = !godMode;
+		}
 		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
-		if (Input.GetKeyDown(KeyCode.G)){
+		if (Input.GetKeyDown(KeyCode.G) && !ALLOW_GOD_MODE){
 			godMode = !godMode;
 		}
 		if (Input.GetKey(KeyCode.Alpha5)){
