@@ -47,12 +47,12 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 		if (Time.timeScale != 0 && !dontFace && !myController.isStunned){
 		currentSize = transform.localScale;
 
-		if (myController.facingUp){
+			if (myController.facingUp && !myController.isShooting){
 			currentSize = mySize;
 				currentSize.x *= -1f;
 				currentFace = PlayerFaceState.faceUp;
 
-		}else if (myController.facingDown){
+			}else if (myController.facingDown && !myController.isShooting){
 				currentSize = mySize;
 				currentFace = PlayerFaceState.faceDown;}
 		else{

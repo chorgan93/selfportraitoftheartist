@@ -100,7 +100,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 	public static bool hasReached100 = false;
 	private string firstTime100Scene = "DarknessReviveScene";
-	private string terribleFateScene = "EndingB_ColinFarewell";
+	private string terribleFateScene = "EndingB_00_ColinFarewell";
 
 	public static DarknessPercentUIS DPERCENT = null;
 

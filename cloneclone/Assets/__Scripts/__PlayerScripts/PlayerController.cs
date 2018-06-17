@@ -405,6 +405,9 @@ public class PlayerController : MonoBehaviour {
 	public string overrideExamineString { get { return _overrideExamineString; } }
 	public bool talking { get { return _isTalking; } }
 
+	[HideInInspector]
+	public bool isNatalie = false;
+
 	//_________________________________________DEMO SHOW ONLY
 	private float resetTimeMax = 60f;
 	private float resetCountdown;
@@ -617,7 +620,7 @@ public class PlayerController : MonoBehaviour {
 
 		enemiesHitByLastAttack = new List<EnemyS>();
 
-		if (PlayerInventoryS.I.EquippedWeapons() != null){
+		if (PlayerInventoryS.I.EquippedWeapons() != null && !isNatalie){
 			if (PlayerInventoryS.I.EquippedWeapons().Count > 0){
 		equippedWeapons = PlayerInventoryS.I.EquippedWeapons();
 			subWeapons = PlayerInventoryS.I.SubWeapons();
@@ -2220,7 +2223,7 @@ public class PlayerController : MonoBehaviour {
 			switchButtonUp = true;
 		}
 
-		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap){
+		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap && !isNatalie){
 		
 			if (switchButtonUp && _myBuddy.canSwitch){
 				if (myControl.GetCustomInput(5)){

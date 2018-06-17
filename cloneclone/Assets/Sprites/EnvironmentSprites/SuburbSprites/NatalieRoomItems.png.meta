@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: ea09aa684a9654dba9ecd5dbf52910bb
+timeCreated: 1529216228
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Environment Texture_0
+    21300002: Environment Texture_1
+    21300004: Environment Texture_2
+    21300006: Environment Texture_3
+    21300008: Environment Texture_4
+    21300010: Environment Texture_5
+    21300012: Environment Texture_6
+    21300014: Tutorial Area Environment Items_0
+    21300016: Tutorial Area Environment Items_1
+    21300018: Tutorial Area Environment Items_2
+    21300020: Tutorial Area Environment Items_3
+    21300022: Tutorial Area Environment Items_4
+    21300024: Tutorial Area Environment Items_5
+    21300026: Tutorial Area Environment Items_6
+    21300028: Tutorial Area Environment Items_7
+    21300030: Tutorial Area Environment Items_8
+    21300032: Tutorial Area Environment Items_9
+    21300034: Tutorial Area Environment Items_10
+    21300036: Tutorial Area Environment Items_11
+    21300038: Tutorial Area Environment Items_12
+    21300040: Tutorial Area Environment Items_13
+    21300042: Tutorial Area Environment Items_14
+    21300044: Tutorial Area Environment Items_15
+    21300046: Tutorial Area Environment Items_16
+    21300048: Tutorial Area Environment Items_17
+    21300050: Tutorial Area Environment Items_18
+    21300052: MetroEnvirons_0
+    21300054: MetroEnvirons_1
+    21300056: MetroEnvirons_2
+    21300058: MetroEnvirons_3
+    21300060: MetroEnvirons_4
+    21300062: MetroEnvirons_5
+    21300064: MetroEnvirons_6
+    21300066: MetroEnvirons_7
+    21300068: MetroEnvirons_8
+    21300070: MetroEnvirons_9
+    21300072: MetroEnvirons_10
+    21300074: MetroEnvirons_11
+    21300076: MetroEnvirons_12
+    21300078: MetroEnvirons_13
+    21300080: MetroEnvirons_14
+    21300082: MetroEnvirons_15
+    21300084: MetroEnvirons_16
+    21300086: MetroEnvirons_17
+    21300088: MetroEnvirons_18
+    21300090: MetroEnvirons_19
+    21300092: MetroEnvirons_20
+    21300094: MetroEnvirons_21
+    21300096: MetroEnvirons_22
+    21300098: MetroEnvirons_23
+    21300100: MetroEnvirons_24
+    21300102: MetroEnvirons_25
+    21300104: MetroEnvirons_26
+    21300106: MetroEnvirons_27
+    21300108: MetroEnvirons_28
+    21300110: MetroEnvirons_29
+    21300112: MetroEnvirons_30
+    21300114: MetroEnvirons_31
+    21300116: MetroEnvirons_32
+    21300118: MetroEnvirons_33
+    21300120: MetroEnvirons_34
+    21300122: MetroEnvirons_35
+    21300124: MetroEnvirons_36
+    21300126: MetroEnvirons_37
+    21300128: MetroEnvirons_38
+    21300130: MetroEnvirons_39
+    21300132: MetroEnvirons_40
+    21300134: MetroEnvirons_41
+    21300136: MetroEnvirons_42
+    21300138: MetroEnvirons_43
+    21300140: MetroEnvirons_44
+    21300142: MetroEnvirons_45
+    21300144: MetroEnvirons_46
+    21300146: MetroEnvirons_47
+    21300148: MetroEnvirons_48
+    21300150: MetroEnvirons_49
+    21300152: MetroEnvirons_50
+    21300154: MetroEnvirons_51
+    21300156: MetroEnvirons_52
+    21300158: MetroEnvirons_53
+    21300160: MetroEnvirons_54
+    21300162: MetroEnvirons_55
+    21300164: MetroEnvirons_56
+    21300166: MetroEnvirons_57
+    21300168: MetroEnvirons_58
+    21300170: MetroEnvirons_59
+    21300172: MetroEnvirons_60
+    21300174: MetroEnvirons_61
+    21300176: MetroEnvirons_62
+    21300178: MetroEnvirons_63
+    21300180: MetroEnvirons_64
+    21300182: MetroEnvirons_65
+    21300184: MetroEnvirons_66
+    21300186: MetroEnvirons_67
+    21300188: MetroEnvirons_68
+    21300190: MetroEnvirons_69
+    21300192: MetroEnvirons_70
+    21300194: MetroEnvirons_71
+    21300196: MetroEnvirons_72
+    21300198: Suburb Items_0
+    21300200: Suburb Items_1
+    21300202: Suburb Items_2
+    21300204: Suburb Items_3
+    21300206: Suburb Items_4
+    21300208: Suburb Items_5
+    21300210: Suburb Items_6
+    21300212: Suburb Items_7
+    21300214: Suburb Items_8
+    21300216: Suburb Items_9
+    21300218: Suburb Items_10
+    21300220: Suburb Items_11
+    21300222: Suburb Items_12
+    21300224: Suburb Items_13
+    21300226: Suburb Items_14
+    21300228: Suburb Items_15
+    21300230: Suburb Items_16
+    21300232: Suburb Items_17
+    21300234: Suburb Items_18
+    21300236: Suburb Items_19
+    21300238: Suburb Items_20
+    21300240: Suburb Items_21
+    21300242: Suburb Items_22
+    21300244: Suburb Items_23
+    21300246: Suburb Items_24
+    21300248: Suburb Items_25
+    21300250: Suburb Items_26
+    21300252: Suburb Items_27
+    21300254: Suburb Items_28
+    21300256: Suburb Items_29
+    21300258: Suburb Items_30
+    21300260: Suburb Items_31
+    21300262: Suburb Items_32
+    21300264: Suburb Items_33
+    21300266: Suburb Items_34
+    21300268: Suburb Items_35
+    21300270: Suburb Items_36
+    21300272: Suburb Items_37
+    21300274: Suburb Items_38
+    21300276: Suburb Items_39
+    21300278: Suburb Items_40
+    21300280: Suburb Items_41
+    21300282: Suburb Items_42
+    21300284: Suburb Items_43
+    21300286: Suburb Items_44
+    21300288: Suburb Items_45
+    21300290: Suburb Items_46
+    21300292: Suburb Items_47
+    21300294: Suburb Items_48
+    21300296: Suburb Items_49
+    21300298: Suburb Items_50
+    21300300: Suburb Items_51
+    21300302: Suburb Items_52
+    21300304: Suburb Items_53
+    21300306: Suburb Items_54
+    21300308: Suburb Items_55
+    21300310: Suburb Items_56
+    21300312: Suburb Items_57
+    21300314: Suburb Items_58
+    21300316: Suburb Items_59
+    21300318: Suburb Items_60
+    21300320: Suburb Items_61
+    21300322: Suburb Items_62
+    21300324: Suburb Items_63
+    21300326: Suburb Items_64
+    21300328: Suburb Items_65
+    21300330: Suburb Items_66
+    21300332: Suburb Items_67
+    21300334: Suburb Items_68
+    21300336: Suburb Items_69
+    21300338: Suburb Items_70
+    21300340: Suburb Items_71
+    21300342: Suburb Items_72
+    21300344: Suburb Items_73
+    21300346: Suburb Items_74
+    21300348: Suburb Items_75
+    21300350: Suburb Items_76
+    21300352: Suburb Items_77
+    21300354: Suburb Items_78
+    21300356: Suburb Items_79
+    21300358: Suburb Items_80
+    21300360: Suburb Items_81
+    21300362: Suburb Items_82
+    21300364: Suburb Items_83
+    21300366: Suburb Items_84
+    21300368: Suburb Items_85
+    21300370: NatalieRoomItems_0
+    21300372: NatalieRoomItems_1
+    21300374: NatalieRoomItems_2
+    21300376: NatalieRoomItems_3
+    21300378: NatalieRoomItems_4
+    21300380: NatalieRoomItems_5
+    21300382: NatalieRoomItems_6
+    21300384: NatalieRoomItems_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NatalieRoomItems_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: NatalieRoomItems_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
