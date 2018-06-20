@@ -1,0 +1,1323 @@
+fileFormatVersion: 2
+guid: 065cd6530b3264ff4a500fa408e492e2
+timeCreated: 1529298860
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Anima Attacks_0
+    21300118: PC Anima Attacks_1
+    21300120: PC Anima Attacks_2
+    21300122: PC Anima Attacks_3
+    21300124: PC Anima Attacks_4
+    21300126: PC Anima Attacks_5
+    21300128: PC Anima Attacks_6
+    21300130: PC Anima Attacks_7
+    21300132: PC Anima Attacks_8
+    21300134: PC Anima Attacks_9
+    21300136: PC Anima Attacks_10
+    21300138: PC Anima Attacks_11
+    21300140: PC Anima Attacks_12
+    21300142: PC Anima Attacks_13
+    21300144: PC Anima Attacks_14
+    21300146: PC Anima Attacks_15
+    21300148: PC Anima Attacks_16
+    21300150: PC Anima Attacks_17
+    21300152: PC Anima Attacks_18
+    21300154: PC Anima Attacks_19
+    21300156: PC Anima Attacks_20
+    21300158: PC Anima Attacks_21
+    21300160: PC Anima Attacks_22
+    21300162: PC Anima Attacks_23
+    21300164: PC Anima Attacks_24
+    21300166: PC Anima Attacks_25
+    21300168: PC Anima Attacks_26
+    21300170: PC Anima Attacks_27
+    21300172: PC Anima Attacks_28
+    21300174: PC Anima Attacks_29
+    21300176: PC Anima Attacks_30
+    21300178: PC Anima Attacks_31
+    21300180: PC Anima Attacks_32
+    21300182: PC Anima Attacks_33
+    21300184: PC Anima Attacks_34
+    21300186: PC Anima Attacks_35
+    21300188: PC Anima Attacks_36
+    21300190: PC Anima Attacks_37
+    21300192: PC Anima Attacks_38
+    21300194: PC Anima Attacks_39
+    21300196: PC Anima Attacks_40
+    21300198: PC Anima Attacks_41
+    21300200: PC Anima Attacks_42
+    21300202: PC Anima Attacks_43
+    21300204: PC Anima Attacks_44
+    21300206: PC Anima Attacks_45
+    21300208: PC Anima Attacks_46
+    21300210: PC Anima Attacks_47
+    21300212: PC Anima Attacks_48
+    21300214: PC Anima Attacks_49
+    21300216: PC Anima Attacks_50
+    21300218: PC Anima Attacks_51
+    21300220: PC Anima Attacks_52
+    21300222: PC Anima Attacks_53
+    21300224: PC Anima Attacks_54
+    21300226: PC Anima Attacks_55
+    21300228: PC Anima Attacks_56
+    21300230: PC Anima Attacks_57
+    21300232: PC Anima Attacks_58
+    21300234: PC Anima Attacks_59
+    21300236: PC Anima Attacks_60
+    21300238: PC Anima Attacks_61
+    21300240: PC Anima Attacks_62
+    21300242: PC Anima Attacks_63
+    21300244: PC Anima Attacks_64
+    21300246: PC Anima Attacks_65
+    21300248: PC Anima Attacks_66
+    21300250: PC Anima Attacks_67
+    21300252: PC Anima Attacks_68
+    21300254: PC Anima Attacks_69
+    21300256: PC Anima Attacks_70
+    21300258: PC Anima Attacks_71
+    21300260: PC Anima Attacks_72
+    21300262: PC Anima Attacks_73
+    21300264: PC Aether Attacks_0
+    21300266: PC Aether Attacks_1
+    21300268: PC Aether Attacks_2
+    21300270: PC Aether Attacks_3
+    21300272: PC Aether Attacks_4
+    21300274: PC Aether Attacks_5
+    21300276: PC Aether Attacks_6
+    21300278: PC Aether Attacks_7
+    21300280: PC Aether Attacks_8
+    21300282: PC Aether Attacks_9
+    21300284: PC Aether Attacks_10
+    21300286: PC Aether Attacks_11
+    21300288: PC Aether Attacks_12
+    21300290: PC Aether Attacks_13
+    21300292: PC Aether Attacks_14
+    21300294: PC Aether Attacks_15
+    21300296: PC Aether Attacks_16
+    21300298: PC Aether Attacks_17
+    21300300: PC Aether Attacks_18
+    21300302: PC Aether Attacks_19
+    21300304: PC Aether Attacks_20
+    21300306: PC Aether Attacks_21
+    21300308: PC Aether Attacks_22
+    21300310: PC Aether Attacks_23
+    21300312: PC Aether Attacks_24
+    21300314: PC Aether Attacks_25
+    21300316: PC Aether Attacks_26
+    21300318: PC Aether Attacks_27
+    21300320: PC Aether Attacks_28
+    21300322: PC Aether Attacks_29
+    21300324: PC Aether Attacks_30
+    21300326: PC Aether Attacks_31
+    21300328: PC Aether Attacks_32
+    21300330: PC Aether Attacks_33
+    21300332: PC Aether Attacks_34
+    21300334: PC Aether Attacks_35
+    21300336: PC Aether Attacks_36
+    21300338: PC Aether Attacks_37
+    21300340: PC Aether Attacks_38
+    21300342: PC Aether Attacks_39
+    21300344: PC Aether Attacks_40
+    21300346: PC Aether Attacks_41
+    21300348: PC Aether Attacks_42
+    21300350: PC Aether Attacks_43
+    21300352: PC Aether Attacks_44
+    21300354: PC Aether Attacks_45
+    21300356: PC Aether Attacks_46
+    21300358: PC Aether Attacks_47
+    21300360: PC Aether Attacks_48
+    21300362: PC Aether Attacks_49
+    21300364: PC Aether Attacks_50
+    21300366: PC Aether Attacks_51
+    21300368: PC Aether Attacks_52
+    21300370: PC Aether Attacks_53
+    21300372: PC Aether Attacks_54
+    21300374: PC Aether Attacks_55
+    21300376: PC Aether Attacks_56
+    21300378: PC Aether Attacks_57
+    21300380: PC Aether Attacks_58
+    21300382: PC Aether Attacks_59
+    21300384: PC Aether Attacks_60
+    21300386: PC Aether Attacks_61
+    21300388: PC Aether Attacks_62
+    21300390: PC Aether Attacks_63
+    21300392: PC Aether Attacks_64
+    21300394: PC Aether Attacks_65
+    21300396: PC Aether Attacks_66
+    21300398: PC Aether Attacks_67
+    21300400: PC Aether Attacks_68
+    21300402: PC Aether Attacks_69
+    21300404: PC Aether Attacks_70
+    21300406: PC Aether Attacks_71
+    21300408: PC Aether Attacks_72
+    21300410: PC Aether Attacks_73
+    21300412: PC Aether Attacks_74
+    21300414: PC Aether Attacks_75
+    21300416: PC Aether Attacks_76
+    21300418: PC Aether Attacks_77
+    21300420: PC Aether Attacks_78
+    21300422: PC Aether Attacks_79
+    21300424: PC Aether Attacks_80
+    21300426: Maria Aether Attacks_0
+    21300428: Maria Aether Attacks_1
+    21300430: Maria Aether Attacks_2
+    21300432: Maria Aether Attacks_3
+    21300434: Maria Aether Attacks_4
+    21300436: Maria Aether Attacks_5
+    21300438: Maria Aether Attacks_6
+    21300440: Maria Aether Attacks_7
+    21300442: Maria Aether Attacks_8
+    21300444: Maria Aether Attacks_9
+    21300446: Maria Aether Attacks_10
+    21300448: Maria Aether Attacks_11
+    21300450: Maria Aether Attacks_12
+    21300452: Maria Aether Attacks_13
+    21300454: Maria Aether Attacks_14
+    21300456: Maria Aether Attacks_15
+    21300458: Maria Aether Attacks_16
+    21300460: Maria Aether Attacks_17
+    21300462: Maria Aether Attacks_18
+    21300464: Maria Aether Attacks_19
+    21300466: Maria Aether Attacks_20
+    21300468: Maria Aether Attacks_21
+    21300470: Maria Aether Attacks_22
+    21300472: Maria Aether Attacks_23
+    21300474: Maria Aether Attacks_24
+    21300476: Maria Aether Attacks_25
+    21300478: Maria Aether Attacks_26
+    21300480: Maria Aether Attacks_27
+    21300482: Maria Aether Attacks_28
+    21300484: Maria Aether Attacks_29
+    21300486: Maria Aether Attacks_30
+    21300488: Maria Aether Attacks_31
+    21300490: Maria Aether Attacks_32
+    21300492: Maria Aether Attacks_33
+    21300494: Maria Aether Attacks_34
+    21300496: Maria Aether Attacks_35
+    21300498: Maria Aether Attacks_36
+    21300500: Maria Aether Attacks_37
+    21300502: Maria Aether Attacks_38
+    21300504: Maria Aether Attacks_39
+    21300506: Maria Aether Attacks_40
+    21300508: Maria Aether Attacks_41
+    21300510: Maria Aether Attacks_42
+    21300512: Maria Aether Attacks_43
+    21300514: Maria Aether Attacks_44
+    21300516: Maria Aether Attacks_45
+    21300518: Maria Aether Attacks_46
+    21300520: Maria Aether Attacks_47
+    21300522: Maria Aether Attacks_48
+    21300524: Maria Aether Attacks_49
+    21300526: Maria Aether Attacks_50
+    21300528: Maria Aether Attacks_51
+    21300530: Maria Aether Attacks_52
+    21300532: Maria Aether Attacks_53
+    21300534: Maria Aether Attacks_54
+    21300536: Maria Aether Attacks_55
+    21300538: Maria Aether Attacks_56
+    21300540: Maria Aether Attacks_57
+    21300542: Maria Aether Attacks_58
+    21300544: Maria Aether Attacks_59
+    21300546: Maria Aether Attacks_60
+    21300548: Maria Aether Attacks_61
+    21300550: Maria Aether Attacks_62
+    21300552: Maria Aether Attacks_63
+    21300554: Maria Aether Attacks_64
+    21300556: Maria Aether Attacks_65
+    21300558: Maria Aether Attacks_66
+    21300560: Maria Aether Attacks_67
+    21300562: Maria Aether Attacks_68
+    21300564: Maria Aether Attacks_69
+    21300566: Maria Aether Attacks_70
+    21300568: Maria Aether Attacks_71
+    21300570: Maria Aether Attacks_72
+    21300572: Maria Aether Attacks_73
+    21300574: Maria Aether Attacks_74
+    21300576: Maria Aether Attacks_75
+    21300578: Maria Aether Attacks_76
+    21300580: Maria Aether Attacks_77
+    21300582: Maria Aether Attacks_78
+    21300584: Maria Aether Attacks_79
+    21300586: Maria Aether Attacks_80
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maria Aether Attacks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_25
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_32
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_34
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_35
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_38
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_40
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_41
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_42
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_43
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_46
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_49
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_50
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_51
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_52
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_53
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_55
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_57
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_59
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_60
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_61
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_62
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_65
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_67
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_68
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_69
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_70
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_71
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_73
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_75
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_76
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_77
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_78
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_79
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Maria Aether Attacks_80
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

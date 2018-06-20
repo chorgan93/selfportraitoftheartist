@@ -662,7 +662,7 @@ public class PlayerController : MonoBehaviour {
 		startBuddy.transform.parent = transform;
 		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
 		_myBuddy.SetPositions(buddyPos, buddyPosLower);
-		if (!InGameCinematicS.turnOffBuddies && familiarUnlocked){
+		if (!InGameCinematicS.turnOffBuddies && familiarUnlocked && !isNatalie){
 			_myBuddy.gameObject.SetActive(true);
 		}
 		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
@@ -2255,7 +2255,7 @@ public class PlayerController : MonoBehaviour {
 					_altBuddy.SetPositions(buddyPos, buddyPosLower);
 					_myBuddy = _altBuddy;
 					_myBuddy.transform.position = tempSwap.transform.position;
-					if (!InGameCinematicS.turnOffBuddies){
+					if (!InGameCinematicS.turnOffBuddies && !isNatalie){
 						_myBuddy.gameObject.SetActive(true);
 						Instantiate(_myBuddy.buddySound);
 					}
@@ -3513,7 +3513,7 @@ public class PlayerController : MonoBehaviour {
 				_myBuddy.gameObject.SetActive(false);
 			}
 		}else{
-			if (_myBuddy != null && !InGameCinematicS.turnOffBuddies){
+			if (_myBuddy != null && !InGameCinematicS.turnOffBuddies && !isNatalie){
 				_myBuddy.gameObject.SetActive(true);
 				_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
 			}

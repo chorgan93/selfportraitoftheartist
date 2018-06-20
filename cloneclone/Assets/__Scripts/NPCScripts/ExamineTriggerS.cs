@@ -8,6 +8,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public string examineLabelNoController = "";
 	public Vector3 examinePos = new Vector3(0, 1f, 0);
 	public string examineString;
+	public string examineStringKeyUsed = "";
 	public string unlockString;
 	public int costToExamine = -1;
 	public GameObject examineSound;
@@ -89,6 +90,11 @@ public class ExamineTriggerS : MonoBehaviour {
 			examineString = examineString.Replace("PLAYERNAME", TextInputUIS.playerName);
 		}
 
+		if (examineStringKeyUsed != ""){
+			examineStringKeyUsed = examineStringKeyUsed.Replace("NEWLINE","\n");
+			examineStringKeyUsed = examineStringKeyUsed.Replace("PLAYERNAME",TextInputUIS.playerName);
+		}
+
 
 
 	}
@@ -144,8 +150,13 @@ public class ExamineTriggerS : MonoBehaviour {
 						if (!unlocking){
 									if (keyItemSprite){
 										DialogueManagerS.D.SetItemFind(keyItemSprite, keyItemSpriteColor, keyItemOutlineColor);
+									} 
+										
+										if (examineStringKeyUsed != "" && PlayerInventoryS.I.clearedWalls.Contains(inventoryNum)){
+							DialogueManagerS.D.SetDisplayText(examineStringKeyUsed);
+									}else{
+										DialogueManagerS.D.SetDisplayText(examineString);
 									}
-							DialogueManagerS.D.SetDisplayText(examineString);
 
 									//Debug.Log("Set text! " + DialogueManagerS.D.doneScrolling);
 						}else{

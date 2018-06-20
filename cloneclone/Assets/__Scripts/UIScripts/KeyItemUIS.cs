@@ -15,7 +15,10 @@ public class KeyItemUIS : MonoBehaviour {
 	[Header("Item Sprite Settings")]
 	public Sprite[] keyItemSprites;
 	public int[] keyItemInts;
+	public int[] keyItemAreas;
 	private List<int> setKeyItems;
+
+	private int mapScene = -1;
 
 	int currentSlot = 0;
 
@@ -41,6 +44,8 @@ public class KeyItemUIS : MonoBehaviour {
 		if (!_initialized){
 			TurnOffItemSlots();
 		}
+		mapScene = 
+			EquipMenuS.mapToUse;
 		EvaluateItems();
 		
 	}
@@ -59,14 +64,15 @@ public class KeyItemUIS : MonoBehaviour {
 	}
 
 	public void EvaluateItems(bool reset = false){
-		if (!doNotShowInScene){
+		if (!doNotShowInScene && !PlayerStatDisplayS.RECORD_MODE){
 		if (reset){
 			TurnOffItemSlots();
 		}
 		for (int i = 0; i < keyItemInts.Length; i++){
 			if (currentSlot < keyItemSlots.Length){
 			if (PlayerInventoryS.I.collectedItems.Contains(keyItemInts[i])
-				&& !setKeyItems.Contains(keyItemInts[i]) && !PlayerInventoryS.I.clearedWalls.Contains(keyItemInts[i])){
+				&& !setKeyItems.Contains(keyItemInts[i]) && !PlayerInventoryS.I.clearedWalls.Contains(keyItemInts[i])
+						&& (keyItemAreas[i] <= -1 || (keyItemAreas[i] > -1 && mapScene == keyItemAreas[i]))){
 					keyItemSlots[currentSlot].sprite = keyItemSprites[i];
 					keyItemSlots[currentSlot].enabled = keyItemBGs[currentSlot].enabled = true;
 					currentSlot++;

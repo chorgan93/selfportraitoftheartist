@@ -1,0 +1,877 @@
+fileFormatVersion: 2
+guid: 9831ffd1d85834b2f90adbedee36f88a
+timeCreated: 1529526736
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tape Contents_0
+    21300002: Tape Contents_1
+    21300004: Tape Contents_2
+    21300006: Tape Contents_3
+    21300008: Tape Contents_4
+    21300010: Tape Contents_5
+    21300012: Tape Contents_6
+    21300014: Tape Contents_7
+    21300016: Tape Contents_8
+    21300018: Tape Contents_9
+    21300020: Tape Contents_10
+    21300022: Tape Contents_11
+    21300024: Tape Contents_12
+    21300026: Tape Contents_13
+    21300028: Tape Contents_14
+    21300030: Tape Contents_15
+    21300032: Tape Contents_16
+    21300034: Tape Contents_17
+    21300036: Tape Contents_18
+    21300038: Tape Contents_19
+    21300040: Tape Contents_20
+    21300042: Tape Contents_21
+    21300044: Tape Contents_22
+    21300046: Tape Contents_23
+    21300048: Tape Contents_24
+    21300050: Tape Contents_25
+    21300052: Tape Contents_26
+    21300054: Tape Contents_27
+    21300056: Tape Contents_28
+    21300058: Tape Contents_29
+    21300060: Tape Contents_30
+    21300062: Tape Contents_31
+    21300064: Tape Contents_32
+    21300066: Tape Contents_33
+    21300068: Tape Contents_34
+    21300070: Tape Contents_35
+    21300072: Tape Contents_36
+    21300074: Serah Awakening_0
+    21300076: Serah Awakening_1
+    21300078: Serah Awakening_2
+    21300080: Serah Awakening_3
+    21300082: Serah Awakening_4
+    21300084: Serah Awakening_5
+    21300086: Serah Awakening_6
+    21300088: Serah Awakening_7
+    21300090: Serah Awakening_8
+    21300092: Serah Awakening_9
+    21300094: Serah Awakening_10
+    21300096: Serah Awakening_11
+    21300098: Serah Awakening_12
+    21300100: Serah Awakening_13
+    21300102: Serah Awakening_14
+    21300104: Serah Awakening_15
+    21300106: Serah Awakening_16
+    21300108: Serah Awakening_17
+    21300110: Serah Awakening_18
+    21300112: Serah Awakening_19
+    21300114: Serah Awakening_20
+    21300116: Serah Awakening_21
+    21300118: Serah Awakening_22
+    21300120: Serah Awakening_23
+    21300122: Serah Awakening_24
+    21300124: Serah Awakening_25
+    21300126: Serah Awakening_26
+    21300128: Serah Awakening_27
+    21300130: Serah Awakening_28
+    21300132: Serah Awakening_29
+    21300134: Serah Awakening_30
+    21300136: Serah Awakening_31
+    21300138: Serah Awakening_32
+    21300140: Serah Awakening_33
+    21300142: Serah Awakening_34
+    21300144: Serah Awakening_35
+    21300146: kaijuthing_0
+    21300148: kaijuthing_1
+    21300150: kaijuthing_2
+    21300152: kaijuthing_3
+    21300154: kaijuthing_4
+    21300156: kaijuthing_5
+    21300158: kaijuthing_6
+    21300160: kaijuthing_7
+    21300162: kaijuthing_8
+    21300164: kaijuthing_9
+    21300166: kaijuthing_10
+    21300168: kaijuthing_11
+    21300170: kaijuthing_12
+    21300172: kaijuthing_13
+    21300174: kaijuthing_14
+    21300176: kaijuthing_15
+    21300178: kaijuthing_16
+    21300180: kaijuthing_17
+    21300182: kaijuthing_18
+    21300184: kaijuthing_19
+    21300186: kaijuthing_20
+    21300188: kaijuthing_21
+    21300190: kaijuthing_22
+    21300192: kaijuthing_23
+    21300194: kaijuthing_24
+    21300196: kaijuthing_25
+    21300198: kaijuthing_26
+    21300200: kaijuthing_27
+    21300202: kaijuthing_28
+    21300204: kaijuthing_29
+    21300206: kaijuthing_30
+    21300208: kaijuthing_31
+    21300210: kaijuthing_32
+    21300212: kaijuthing_33
+    21300214: kaijuthing_34
+    21300216: kaijuthing_35
+    21300218: kaijuthing_36
+    21300220: kaijuthing_37
+    21300222: kaijuthing_38
+    21300224: kaijuthing_39
+    21300226: kaijuthing_40
+    21300228: kaijuthing_41
+    21300230: kaijuthing_42
+    21300232: kaijuthing_43
+    21300234: kaijuthing_44
+    21300236: kaijuthing_45
+    21300238: kaijuthing_46
+    21300240: kaijuthing_47
+    21300242: kaijuthing_48
+    21300244: kaijuthing_49
+    21300246: kaijuthing_50
+    21300248: kaijuthing_51
+    21300250: kaijuthing_52
+    21300252: kaijuthing_53
+    21300254: kaijuthing_54
+    21300256: kaijuthing_55
+    21300258: kaijuthing_56
+    21300260: kaijuthing_57
+    21300262: kaijuthing_58
+    21300264: kaijuthing_59
+    21300266: kaijuthing_60
+    21300268: kaijuthing_61
+    21300270: kaijuthing_62
+    21300272: kaijuthing_63
+    21300274: kaijuthing_64
+    21300276: kaijuthing_65
+    21300278: kaijuthing_66
+    21300280: kaijuthing_67
+    21300282: kaijuthing_68
+    21300284: kaijuthing_69
+    21300286: kaijuthing_70
+    21300288: kaijuthing_71
+    21300290: kaijuthing_72
+    21300292: kaijuthing_73
+    21300294: kaijuthing_74
+    21300296: kaijuthing_75
+    21300298: kaijuthing_76
+    21300300: kaijuthing_77
+    21300302: kaijuthing_78
+    21300304: kaijuthing_79
+    21300306: kaijuthing_80
+    21300308: kaijuthing_81
+    21300310: kaijuthing_82
+    21300312: kaijuthing_83
+    21300314: kaijuthing_84
+    21300316: kaijuthing_85
+    21300318: kaijuthing_86
+    21300320: kaijuthing_87
+    21300322: kaijuthing_88
+    21300324: kaijuthing_89
+    21300326: kaijuthing_90
+    21300328: kaijuthing_91
+    21300330: kaijuthing_92
+    21300332: kaijuthing_93
+    21300334: kaijuthing_94
+    21300336: kaijuthing_95
+    21300338: kaijuthing_96
+    21300340: kaijuthing_97
+    21300342: kaijuthing_98
+    21300344: kaijuthing_99
+    21300346: DepthsLine_0
+    21300348: DepthsLine_1
+    21300350: DepthsLine_2
+    21300352: DepthsLine_3
+    21300354: DepthsFinal_0
+    21300356: DepthsFinal_1
+    21300358: DepthsFinal_2
+    21300360: DepthsFinal_3
+    21300362: DepthsFinal_4
+    21300364: DepthsFinal_5
+    21300366: DepthsFinal_6
+    21300368: DepthsFinal_7
+    21300370: DepthsFinal_8
+    21300372: DepthsFinal_9
+    21300374: DepthsFinal_10
+    21300376: DepthsFinal_11
+    21300378: DepthsFinal_12
+    21300380: DepthsFinal_13
+    21300382: DepthsFinal_14
+    21300384: DepthsFinal_15
+    21300386: DepthsFinal_16
+    21300388: DepthsFinal_17
+    21300390: DepthsFinal_18
+    21300392: Corrupted Lucah_0
+    21300394: Corrupted Lucah_1
+    21300396: Corrupted Lucah_2
+    21300398: Corrupted Lucah_3
+    21300400: Corrupted Lucah_4
+    21300402: Corrupted Lucah_5
+    21300404: Corrupted Lucah_6
+    21300406: Corrupted Lucah_7
+    21300408: Corrupted Lucah_8
+    21300410: Corrupted Lucah_9
+    21300412: Corrupted Lucah_10
+    21300414: Corrupted Lucah_11
+    21300416: Corrupted Lucah_12
+    21300418: Corrupted Lucah_13
+    21300420: Corrupted Lucah_14
+    21300422: Corrupted Lucah_15
+    21300424: Corrupted Lucah_16
+    21300426: Corrupted Lucah_17
+    21300428: Corrupted Lucah_18
+    21300430: Corrupted Lucah_19
+    21300432: Corrupted Lucah_20
+    21300434: Corrupted Lucah_21
+    21300436: Corrupted Lucah_22
+    21300438: Corrupted Lucah_23
+    21300440: Corrupted Lucah_24
+    21300442: Corrupted Lucah_25
+    21300444: Corrupted Lucah_26
+    21300446: Corrupted Lucah_27
+    21300448: Corrupted Lucah_28
+    21300450: Corrupted Lucah_29
+    21300452: Corrupted Lucah_30
+    21300454: Corrupted Lucah_31
+    21300456: Corrupted Lucah_32
+    21300458: Corrupted Lucah_33
+    21300460: Corrupted Lucah_34
+    21300462: Corrupted Lucah_35
+    21300464: Corrupted Lucah_36
+    21300466: Corrupted Lucah_37
+    21300468: Corrupted Lucah_38
+    21300470: Corrupted Lucah_39
+    21300472: Corrupted Lucah_40
+    21300474: Corrupted Lucah_41
+    21300476: Corrupted Lucah_42
+    21300478: Corrupted Lucah_43
+    21300480: Corrupted Lucah_44
+    21300482: Corrupted Lucah_45
+    21300484: Corrupted Lucah_46
+    21300486: Corrupted Lucah_47
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Corrupted Lucah_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_11
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_12
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_13
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_15
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_17
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_19
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_20
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_23
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_25
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_26
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_27
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_30
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_31
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_32
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_33
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_34
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_36
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_37
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_38
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_39
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_40
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_41
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_43
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_44
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_45
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_46
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: Corrupted Lucah_47
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

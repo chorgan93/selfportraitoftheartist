@@ -8,7 +8,7 @@ public class LevelUpItemS : MonoBehaviour {
 	private int _upgradeID = -1;
 	public int upgradeID { get { return _upgradeID; } }
 
-	public const int MAX_LEVEL_UP = 19; // COLIN CHANGE BACK AFTER DEMO BUILD!
+	public const int MAX_LEVEL_UP = 49; 
 
 	[Header("UI Properties")]
 	public Image upgradeImage;

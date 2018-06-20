@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0b4f246d6e02e4a9b8ca05cec99a86ee
-timeCreated: 1477508795
+timeCreated: 1529303235
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -44,6 +44,10 @@ TextureImporter:
     21300074: padre_11
     21300076: padre_12
     21300078: padre_13
+    21300080: padre_14
+    21300082: padre_15
+    21300084: padre_16
+    21300086: padre_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,7 +61,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -77,12 +81,11 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -94,8 +97,58 @@ TextureImporter:
     compressionQuality: 50
     allowsAlphaSplitting: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: padre_0
+    - serializedVersion: 2
+      name: padre_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: padre_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: padre_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: padre_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - serializedVersion: 2
+      name: padre_4
       rect:
         serializedVersion: 2
         x: 0
@@ -105,7 +158,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_1
+      outline: []
+    - serializedVersion: 2
+      name: padre_5
       rect:
         serializedVersion: 2
         x: 128
@@ -115,7 +170,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_2
+      outline: []
+    - serializedVersion: 2
+      name: padre_6
       rect:
         serializedVersion: 2
         x: 256
@@ -125,7 +182,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_3
+      outline: []
+    - serializedVersion: 2
+      name: padre_7
       rect:
         serializedVersion: 2
         x: 384
@@ -135,7 +194,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_4
+      outline: []
+    - serializedVersion: 2
+      name: padre_8
       rect:
         serializedVersion: 2
         x: 0
@@ -145,7 +206,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_5
+      outline: []
+    - serializedVersion: 2
+      name: padre_9
       rect:
         serializedVersion: 2
         x: 128
@@ -155,7 +218,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_6
+      outline: []
+    - serializedVersion: 2
+      name: padre_10
       rect:
         serializedVersion: 2
         x: 256
@@ -165,7 +230,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_7
+      outline: []
+    - serializedVersion: 2
+      name: padre_11
       rect:
         serializedVersion: 2
         x: 384
@@ -175,7 +242,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_8
+      outline: []
+    - serializedVersion: 2
+      name: padre_12
       rect:
         serializedVersion: 2
         x: 0
@@ -185,7 +254,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_9
+      outline: []
+    - serializedVersion: 2
+      name: padre_13
       rect:
         serializedVersion: 2
         x: 128
@@ -195,7 +266,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_10
+      outline: []
+    - serializedVersion: 2
+      name: padre_14
       rect:
         serializedVersion: 2
         x: 256
@@ -205,7 +278,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_11
+      outline: []
+    - serializedVersion: 2
+      name: padre_15
       rect:
         serializedVersion: 2
         x: 384
@@ -215,7 +290,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_12
+      outline: []
+    - serializedVersion: 2
+      name: padre_16
       rect:
         serializedVersion: 2
         x: 0
@@ -225,7 +302,9 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: padre_13
+      outline: []
+    - serializedVersion: 2
+      name: padre_17
       rect:
         serializedVersion: 2
         x: 128
@@ -235,6 +314,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -482,6 +482,8 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
+		enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
+
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
 		actingMaxHealth = maxHealth*currentDifficultyMult;
 		stunLockTarget = actingMaxHealth*stunLockHealthMult;

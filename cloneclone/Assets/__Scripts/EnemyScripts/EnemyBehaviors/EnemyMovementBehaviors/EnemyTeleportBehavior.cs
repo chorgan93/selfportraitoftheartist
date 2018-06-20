@@ -20,6 +20,7 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
 	public string unTeleportKey = "";
 	public string finalUnTeleportKey = "";
 	public GameObject spawnOnTeleport;
+	public bool dontSpawnOnFinal = false;
 
 	[Header ("Behavior Physics")]
 	public float teleportDragAmt = -1;
@@ -107,7 +108,7 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
 
 		myEnemyReference.transform.position = GetTeleportPos();
 
-		if (spawnOnTeleport){
+		if (spawnOnTeleport && (!dontSpawnOnFinal || (dontSpawnOnFinal && currentTeleport<numTeleports-1))){
 			Instantiate(spawnOnTeleport, transform.position, Quaternion.identity);
 		}
 

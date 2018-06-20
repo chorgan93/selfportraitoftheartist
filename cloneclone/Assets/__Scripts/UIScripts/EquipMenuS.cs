@@ -98,7 +98,7 @@ public class EquipMenuS : MonoBehaviour {
 
 	// MAP ELEMENTS
 	public MapScreenS mapScreen;
-	private static int mapToUse = -1;
+	public static int mapToUse = -1;
 	private bool onMapScreen = false;
 	public bool inMap { get { return onMapScreen; } }
 	private bool mapButtonDown = false;

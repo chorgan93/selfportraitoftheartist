@@ -10,6 +10,7 @@ public class CombatTriggerS : MonoBehaviour {
 	public InfinityManagerS myInfiniteManager;
 
 	void Start(){
+		verseTitle = verseTitle.Replace("PLAYERNAME", TextInputUIS.playerName);
 		if (combatReference.combatID > -1){
 			if (PlayerInventoryS.I.dManager.clearedCombatTriggers.Contains(combatReference.combatID)){
 				activated = true;

@@ -35,12 +35,6 @@ public class LookOnTouchEnemiesS : MonoBehaviour {
 		return canAct;
 	}
 
-	void Start(){
-		lookPositions = new List<GameObject>();
-		for (int i = 0; i < lookEnemies.Count; i++){
-			lookPositions.Add(lookEnemies[i].currentSpawnedEnemy.gameObject);
-		}
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +44,10 @@ public class LookOnTouchEnemiesS : MonoBehaviour {
 			if (delayCountdown <= 0){
 				doDelay = false;
 				isLooking = true;
+				lookPositions = new List<GameObject>();
+				for (int i = 0; i < lookEnemies.Count; i++){
+					lookPositions.Add(lookEnemies[i].currentSpawnedEnemy.gameObject);
+				}
 				CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 				lookCountdown = lookDurations[currentTarget];
 			}
@@ -74,11 +72,16 @@ public class LookOnTouchEnemiesS : MonoBehaviour {
 	
 		if (other.gameObject.tag == "Player" && !activated){
 			activated = true;
-					if (delayCountdown <= 0){
+
+					if (delayCountdown >= 0){
 						doDelay = canActivate();
 					}
 			else if (canActivate()){
-			isLooking = true;
+				isLooking = true;
+				lookPositions = new List<GameObject>();
+				for (int i = 0; i < lookEnemies.Count; i++){
+					lookPositions.Add(lookEnemies[i].currentSpawnedEnemy.gameObject);
+				}
 			CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 			lookCountdown = lookDurations[currentTarget];
 			}

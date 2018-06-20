@@ -196,6 +196,7 @@ public class InGameCinematicS : MonoBehaviour {
 		foreach (InGameCinemaWaitS w in cinemaWait){
 			if (w.myCinemaStep == currentStep){
 				cinematicDone = false;
+					w.gameObject.SetActive(true);
 				if (w.waitTime > 0){
 					timedStep = true;
 					if (w.waitTime > currentCountdown){
