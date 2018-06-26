@@ -19,6 +19,8 @@ public class CloudS : MonoBehaviour {
 	private float maxA;
 
 	private SpriteRenderer myRenderer;
+	public SpriteRenderer matchAlphaRender;
+	private float matchRenderMaxA;
 
 	// Use this for initialization
 	void Start () {
@@ -26,10 +28,18 @@ public class CloudS : MonoBehaviour {
 		transform.parent =null;
 		myRenderer = GetComponent<SpriteRenderer>();
 		maxA = myRenderer.color.a;
+		if (matchAlphaRender){
+
+			matchRenderMaxA = matchAlphaRender.color.a;
+		}
 		if (fadingIn){
 			currentCol = myRenderer.color;
 			currentCol.a = 0f;
 			myRenderer.color = currentCol;
+			if (matchAlphaRender){
+				currentCol.a = matchRenderMaxA * currentCol.a/maxA;
+				matchAlphaRender.color = currentCol;
+			}
 		}
 		currentDriftSpeed = driftSpeed+speedVariation*Random.Range(-1f, -0.1f);
 		startPos = currentPos = transform.position;
@@ -47,6 +57,10 @@ public class CloudS : MonoBehaviour {
 				fadingIn = false;
 			}
 			myRenderer.color = currentCol; 
+			if (matchAlphaRender){
+				currentCol.a = matchRenderMaxA * currentCol.a/maxA;
+				matchAlphaRender.color = currentCol;
+			}
 		}else if (fadingOut){
 
 			currentCol = myRenderer.color;
@@ -57,7 +71,11 @@ public class CloudS : MonoBehaviour {
 				fadingOut = false;
 				ResetCloud();
 			}
-			myRenderer.color = currentCol; 
+			myRenderer.color = currentCol;
+			if (matchAlphaRender){
+				currentCol.a = matchRenderMaxA * currentCol.a/maxA;
+				matchAlphaRender.color = currentCol;
+			}
 		}
 		Drift();
 	
