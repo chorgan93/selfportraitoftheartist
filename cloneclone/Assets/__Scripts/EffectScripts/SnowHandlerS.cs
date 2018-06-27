@@ -99,7 +99,11 @@ public class SnowHandlerS : MonoBehaviour {
 				snowflakes[i].transform.parent = transform;
 			}else{
 				currentDrift = driftDirection;
-				currentDrift.x *= driftXDirections[i];
+				if (changeDirCountdown[i] == 1){
+					currentDrift.x = 0;
+				}else{
+					currentDrift.x *= driftXDirections[i];
+				}
 				snowflakes[i].transform.localPosition += currentDrift*snowDriftSpeeds[i]*Time.deltaTime;
 				changeDirCountdown[i]--;
 				if (changeDirCountdown[i] <= 0){

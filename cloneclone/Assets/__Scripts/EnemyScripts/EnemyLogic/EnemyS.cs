@@ -554,7 +554,7 @@ public class EnemyS : MonoBehaviour {
 				bState.SetEnemy(this);
 			}
 
-			activationDetect = transform.FindChild("PlayerDetect").GetComponent<PlayerDetectS>();
+			activationDetect = transform.Find("PlayerDetect").GetComponent<PlayerDetectS>();
 		}
 		
 		CheckStates(false);

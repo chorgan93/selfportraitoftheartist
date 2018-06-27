@@ -1,4 +1,6 @@
-﻿Shader "Sprites/DefaultColorFlash"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Sprites/DefaultColorFlash"
  {
  
  // from http://answers.unity3d.com/questions/709687/shader-to-flash-a-2d-sprite-to-white.html
@@ -58,7 +60,7 @@
              v2f vert(appdata_t IN)
              {
                  v2f OUT;
-                 OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
+                 OUT.vertex = UnityObjectToClipPos(IN.vertex);
                  OUT.texcoord = IN.texcoord;
                  OUT.color = IN.color * _Color;
                  #ifdef PIXELSNAP_ON
