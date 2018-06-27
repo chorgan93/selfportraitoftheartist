@@ -581,7 +581,7 @@ public class ProjectileS : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other){
+    void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.tag == "Destructible"){
 			if (stopOnEnemyContact && _myPlayer != null){

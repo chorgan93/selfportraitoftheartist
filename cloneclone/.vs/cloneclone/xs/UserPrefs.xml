@@ -1,10 +1,13 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/__PlayerScripts/PlayerAnimationFaceS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LevelScripts/CombatTriggerS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="199" Column="29" />
       <File FileName="Assets/__Scripts/_CameraScripts/CameraEffectsS.cs" Line="1" Column="1" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerAnimationFaceS.cs" Line="28" Column="29" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerAnimationFaceS.cs" Line="21" Column="17" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="1385" Column="31" />
+      <File FileName="Assets/__Scripts/LevelScripts/ActivateOnCombatS.cs" Line="20" Column="1" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/ProjectileS.cs" Line="8" Column="29" />
+      <File FileName="Assets/__Scripts/LevelScripts/CombatTriggerS.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

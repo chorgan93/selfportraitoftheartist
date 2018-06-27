@@ -18,13 +18,13 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 	private bool dontFace = false;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		mySize = transform.localScale;
 		myController = GetComponentInParent<PlayerController>();
 		rigidReference = myController.myRigidbody;
 
-		if (!PlayerController.doWakeUp){
+        if (!PlayerController.doWakeUp){
 			myController.SetFaceDirection(currentFace);
 			EvaluateStartFace();
 		}

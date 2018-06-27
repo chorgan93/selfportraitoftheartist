@@ -40,6 +40,8 @@ public class CombatTriggerS : MonoBehaviour {
 				if (preventDeath){
 					PlayerStatsS.PlayerCantDie = true;
 				}
+
+                GetComponent<Collider>().enabled = false;
 			}
 		}
 	}

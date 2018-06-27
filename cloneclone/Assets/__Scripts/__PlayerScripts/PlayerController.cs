@@ -1380,7 +1380,7 @@ public class PlayerController : MonoBehaviour {
 				}
 				else if (dashButtonUp && ((dashDurationTime >= dashDurationTimeMax-CHAIN_DASH_THRESHOLD) 
 				                     && CanInputDash())){
-					if ((controller.Horizontal() != 0 || controller.Vertical() != 0)){
+                    if ((Mathf.Abs(controller.Horizontal()) > 0.1f || Mathf.Abs(controller.Vertical()) > 0.1f)){
 						TriggerDash();
 						_dashStickReset = false;
 					}
