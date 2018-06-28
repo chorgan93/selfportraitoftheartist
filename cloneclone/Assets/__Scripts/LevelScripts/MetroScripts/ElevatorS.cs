@@ -47,6 +47,12 @@ public class ElevatorS : MonoBehaviour {
 	public float largeShakeTimeMax = 2f;
 	private float largeShakeCountdown;
 
+    public ScrollingEnvironmentS[] scrollingObjs;
+
+    [Header("Combat Properties")]
+    public CombatManagerS elevatorCombat;
+    private bool checkCombat = false;
+
 	[Header("Sound Properties")]
 	public GameObject doorOpenSound;
 	public GameObject doorCloseSound;
@@ -85,6 +91,8 @@ public class ElevatorS : MonoBehaviour {
 	
 		elevatorIsStopped = true;
 		currentTimeAtStop = timePerStop/2f;
+
+        checkCombat = (elevatorCombat != null);
 
 		AssignColliders();
 		//SetColliders(true);
@@ -146,8 +154,12 @@ public class ElevatorS : MonoBehaviour {
 		if (elevatorIsMoving){
 			HandleRumble();
 			ManageShake();
-			timeToNextStop -= Time.deltaTime;
-			nextStopMessageCountdown -= Time.deltaTime;
+
+            if (!checkCombat || (checkCombat && !elevatorCombat.combatIsActive))
+            {
+                timeToNextStop -= Time.deltaTime;
+                nextStopMessageCountdown -= Time.deltaTime;
+            }
 			if (nextStopMessageCountdown <= 0 && !nextStopMessageGiven){
 
 				nextStopMessageGiven = true;
@@ -208,11 +220,15 @@ public class ElevatorS : MonoBehaviour {
 	void StartRumble(){
 		rumbleStart = true;
 		rumbleAdjustCount = rumbleInTime;
+
+        SetScrolling(true);
 	}
 
 	void EndRumble(){
 		rumbleAdjustCount = rumbleOutTime;
 		rumbleEnd = true;
+
+        SetScrolling(false);
 	}
 
 	void HandleRumble(){
@@ -293,5 +309,10 @@ public class ElevatorS : MonoBehaviour {
 
 	}
 
+    public void SetScrolling(bool newScroll = true){
+        for (int i = 0; i < scrollingObjs.Length; i++){
+            scrollingObjs[i].enabled = newScroll; 
+        }
+    }
 
 }

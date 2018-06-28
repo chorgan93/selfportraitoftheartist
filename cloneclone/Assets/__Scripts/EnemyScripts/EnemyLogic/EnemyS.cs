@@ -30,6 +30,7 @@ public class EnemyS : MonoBehaviour {
 	private const float enragedPowerMult = 2.5f;
 	private const float enragedDefenseMult = 2f;
 
+    private ZControlTargetS zController;
 	
 	//____________________________________ENEMY PROPERTIES
 
@@ -501,6 +502,8 @@ public class EnemyS : MonoBehaviour {
 		_invulnerable = false;
 		doubleCriticalTime = 0;
 
+        zController = GetComponent<ZControlTargetS>();
+
 
 		if (!_isDead){
 			_currentHealth = actingMaxHealth;
@@ -590,6 +593,8 @@ public class EnemyS : MonoBehaviour {
 		CameraFollowS.F.RemoveStunnedEnemy(this);
 
 		didFirstCritHit = false;
+
+        if (zController) { zController.enabled = true; }
 
 		ResetFaceLock();
 		if (healthSpawn){
@@ -1475,6 +1480,7 @@ public class EnemyS : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
 			StartCoroutine(KnockbackRoutine(knockbackForce*1.5f, ForceMode.VelocityChange));
+            if (zController) { zController.enabled = false; }
 			transform.position = new Vector3(transform.position.x, transform.position.y, 
 			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
 
@@ -1571,6 +1577,9 @@ public class EnemyS : MonoBehaviour {
 		currentKnockbackCooldown = knockbackTime;
 		gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 		_myRigidbody.velocity = Vector3.zero;
+        if (zController){
+            zController.enabled = false;
+        }
 		transform.position = new Vector3(transform.position.x, transform.position.y, ENEMY_DEATH_Z);
 		myRenderer.material = startMaterial;
 

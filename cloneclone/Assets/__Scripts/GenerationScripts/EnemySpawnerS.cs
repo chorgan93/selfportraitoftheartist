@@ -18,6 +18,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	public GameObject[] enemyPool;
 	public int enemySpawnID = -1;
 	public Transform matchPosition;
+    public EnemySpawnerS matchEnemyPosition;
 
 	//private RoomClearCheck parentClear;
 	private InfinitySpawnS parentClear;
@@ -94,7 +95,13 @@ public class EnemySpawnerS : MonoBehaviour {
 			int enemyToSpawn = Mathf.RoundToInt(Random.Range(0, enemyPool.Length));
 
 			GameObject newEnemy;
-			if (matchPosition){
+            if (matchEnemyPosition){
+                newEnemy = Instantiate(enemyPool[enemyToSpawn], matchEnemyPosition.currentSpawnedEnemy.transform.position, Quaternion.identity)
+                as GameObject;
+
+                savedSpawnPt = matchEnemyPosition.currentSpawnedEnemy.transform.position;
+            }
+			else if (matchPosition){
 	
 				newEnemy = Instantiate(enemyPool[enemyToSpawn], matchPosition.position, Quaternion.identity)
 				as GameObject;

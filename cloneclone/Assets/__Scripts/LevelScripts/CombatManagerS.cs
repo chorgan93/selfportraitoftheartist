@@ -26,6 +26,7 @@ public class CombatManagerS : MonoBehaviour {
 
 	private bool completed = false;
 	private bool activated = false;
+    public bool combatIsActive { get { return (activated && !completed); } }
 
 	public ActivateOnCombatS turnOnAtStart;
 	public GameObject[] turnOffOnEnd;
