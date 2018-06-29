@@ -1,13 +1,15 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LevelScripts/MetroScripts/ElevatorS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/SoundScripts/MixTriggerS.cs">
     <Files>
       <File FileName="Assets/__Scripts/GenerationScripts/EnemySpawnerS.cs" Line="109" Column="43" />
       <File FileName="Assets/__Scripts/__PlayerScripts/SimpleEnemyDetectS.cs" Line="65" Column="6" />
       <File FileName="Assets/__Scripts/EnemyScripts/EnemyLogic/EnemyS.cs" Line="593" Column="44" />
-      <File FileName="Assets/__Scripts/LevelScripts/MetroScripts/ScrollingEnvironmentS.cs" Line="35" Column="43" />
       <File FileName="Assets/__Scripts/LevelScripts/MetroScripts/ElevatorS.cs" Line="162" Column="14" />
       <File FileName="Assets/__Scripts/LevelScripts/CombatManagerS.cs" Line="29" Column="77" />
+      <File FileName="Assets/__Scripts/EffectScripts/FadeEnvironmentTriggerS.cs" Line="1" Column="1" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="595" Column="43" />
+      <File FileName="Assets/__Scripts/SoundScripts/MixTriggerS.cs" Line="69" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

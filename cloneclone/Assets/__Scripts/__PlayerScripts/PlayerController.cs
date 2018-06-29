@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerAnimationFaceS _myFace;
 
-	private float startDrag;
+	private float startDrag = 6.5f;
 	private float sprintDragMult = 0.9f;
 
 	private Vector3 inputDirection;
@@ -590,7 +590,10 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody = GetComponent<Rigidbody>();
 		enemyDetectCollider = enemyDetect.GetComponent<BoxCollider>();
 		startDetectSize = enemyDetectCollider.size;
-		startDrag = _myRigidbody.drag;
+        if (_myRigidbody.drag > 0)
+        {
+            startDrag = _myRigidbody.drag;
+        }
 		_myAnimator = myRenderer.GetComponent<Animator>();
 		_myFace = myRenderer.GetComponent<PlayerAnimationFaceS>();
 		_dodgeEffectRef = myRenderer.GetComponent<PlayerDodgeEffect>();

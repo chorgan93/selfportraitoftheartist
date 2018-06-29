@@ -23,7 +23,7 @@ public class ScrollingEnvironmentS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        currentTravelProgress += travelRate * Time.deltaTime;
+        currentTravelProgress += travelRate * Time.deltaTime * WitchMult();
         if (currentTravelProgress >= travelDistance){
             currentTravelProgress -= travelDistance;
         }
@@ -34,5 +34,13 @@ public class ScrollingEnvironmentS : MonoBehaviour {
 
         transform.position = startPosition + travelDirection * currentTravelProgress;
 
+    }
+
+    float WitchMult(){
+        if (PlayerSlowTimeS.witchTimeActive){
+            return .02f;
+        }else{
+            return 1f;
+        }
     }
 }

@@ -1,0 +1,1036 @@
+fileFormatVersion: 2
+guid: 0e5b8cd34a6b142d7a6a406808759255
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tape Contents_0
+    21300002: Tape Contents_1
+    21300004: Tape Contents_2
+    21300006: Tape Contents_3
+    21300008: Tape Contents_4
+    21300010: Tape Contents_5
+    21300012: Tape Contents_6
+    21300014: Tape Contents_7
+    21300016: Tape Contents_8
+    21300018: Tape Contents_9
+    21300020: Tape Contents_10
+    21300022: Tape Contents_11
+    21300024: Tape Contents_12
+    21300026: Tape Contents_13
+    21300028: Tape Contents_14
+    21300030: Tape Contents_15
+    21300032: Tape Contents_16
+    21300034: Tape Contents_17
+    21300036: Tape Contents_18
+    21300038: Tape Contents_19
+    21300040: Tape Contents_20
+    21300042: Tape Contents_21
+    21300044: Tape Contents_22
+    21300046: Tape Contents_23
+    21300048: Tape Contents_24
+    21300050: Tape Contents_25
+    21300052: Tape Contents_26
+    21300054: Tape Contents_27
+    21300056: Tape Contents_28
+    21300058: Tape Contents_29
+    21300060: Tape Contents_30
+    21300062: Tape Contents_31
+    21300064: Tape Contents_32
+    21300066: Tape Contents_33
+    21300068: Tape Contents_34
+    21300070: Tape Contents_35
+    21300072: Tape Contents_36
+    21300074: Serah Awakening_0
+    21300076: Serah Awakening_1
+    21300078: Serah Awakening_2
+    21300080: Serah Awakening_3
+    21300082: Serah Awakening_4
+    21300084: Serah Awakening_5
+    21300086: Serah Awakening_6
+    21300088: Serah Awakening_7
+    21300090: Serah Awakening_8
+    21300092: Serah Awakening_9
+    21300094: Serah Awakening_10
+    21300096: Serah Awakening_11
+    21300098: Serah Awakening_12
+    21300100: Serah Awakening_13
+    21300102: Serah Awakening_14
+    21300104: Serah Awakening_15
+    21300106: Serah Awakening_16
+    21300108: Serah Awakening_17
+    21300110: Serah Awakening_18
+    21300112: Serah Awakening_19
+    21300114: Serah Awakening_20
+    21300116: Serah Awakening_21
+    21300118: Serah Awakening_22
+    21300120: Serah Awakening_23
+    21300122: Serah Awakening_24
+    21300124: Serah Awakening_25
+    21300126: Serah Awakening_26
+    21300128: Serah Awakening_27
+    21300130: Serah Awakening_28
+    21300132: Serah Awakening_29
+    21300134: Serah Awakening_30
+    21300136: Serah Awakening_31
+    21300138: Serah Awakening_32
+    21300140: Serah Awakening_33
+    21300142: Serah Awakening_34
+    21300144: Serah Awakening_35
+    21300146: kaijuthing_0
+    21300148: kaijuthing_1
+    21300150: kaijuthing_2
+    21300152: kaijuthing_3
+    21300154: kaijuthing_4
+    21300156: kaijuthing_5
+    21300158: kaijuthing_6
+    21300160: kaijuthing_7
+    21300162: kaijuthing_8
+    21300164: kaijuthing_9
+    21300166: kaijuthing_10
+    21300168: kaijuthing_11
+    21300170: kaijuthing_12
+    21300172: kaijuthing_13
+    21300174: kaijuthing_14
+    21300176: kaijuthing_15
+    21300178: kaijuthing_16
+    21300180: kaijuthing_17
+    21300182: kaijuthing_18
+    21300184: kaijuthing_19
+    21300186: kaijuthing_20
+    21300188: kaijuthing_21
+    21300190: kaijuthing_22
+    21300192: kaijuthing_23
+    21300194: kaijuthing_24
+    21300196: kaijuthing_25
+    21300198: kaijuthing_26
+    21300200: kaijuthing_27
+    21300202: kaijuthing_28
+    21300204: kaijuthing_29
+    21300206: kaijuthing_30
+    21300208: kaijuthing_31
+    21300210: kaijuthing_32
+    21300212: kaijuthing_33
+    21300214: kaijuthing_34
+    21300216: kaijuthing_35
+    21300218: kaijuthing_36
+    21300220: kaijuthing_37
+    21300222: kaijuthing_38
+    21300224: kaijuthing_39
+    21300226: kaijuthing_40
+    21300228: kaijuthing_41
+    21300230: kaijuthing_42
+    21300232: kaijuthing_43
+    21300234: kaijuthing_44
+    21300236: kaijuthing_45
+    21300238: kaijuthing_46
+    21300240: kaijuthing_47
+    21300242: kaijuthing_48
+    21300244: kaijuthing_49
+    21300246: kaijuthing_50
+    21300248: kaijuthing_51
+    21300250: kaijuthing_52
+    21300252: kaijuthing_53
+    21300254: kaijuthing_54
+    21300256: kaijuthing_55
+    21300258: kaijuthing_56
+    21300260: kaijuthing_57
+    21300262: kaijuthing_58
+    21300264: kaijuthing_59
+    21300266: kaijuthing_60
+    21300268: kaijuthing_61
+    21300270: kaijuthing_62
+    21300272: kaijuthing_63
+    21300274: kaijuthing_64
+    21300276: kaijuthing_65
+    21300278: kaijuthing_66
+    21300280: kaijuthing_67
+    21300282: kaijuthing_68
+    21300284: kaijuthing_69
+    21300286: kaijuthing_70
+    21300288: kaijuthing_71
+    21300290: kaijuthing_72
+    21300292: kaijuthing_73
+    21300294: kaijuthing_74
+    21300296: kaijuthing_75
+    21300298: kaijuthing_76
+    21300300: kaijuthing_77
+    21300302: kaijuthing_78
+    21300304: kaijuthing_79
+    21300306: kaijuthing_80
+    21300308: kaijuthing_81
+    21300310: kaijuthing_82
+    21300312: kaijuthing_83
+    21300314: kaijuthing_84
+    21300316: kaijuthing_85
+    21300318: kaijuthing_86
+    21300320: kaijuthing_87
+    21300322: kaijuthing_88
+    21300324: kaijuthing_89
+    21300326: kaijuthing_90
+    21300328: kaijuthing_91
+    21300330: kaijuthing_92
+    21300332: kaijuthing_93
+    21300334: kaijuthing_94
+    21300336: kaijuthing_95
+    21300338: kaijuthing_96
+    21300340: kaijuthing_97
+    21300342: kaijuthing_98
+    21300344: kaijuthing_99
+    21300346: DepthsLine_0
+    21300348: DepthsLine_1
+    21300350: DepthsLine_2
+    21300352: DepthsLine_3
+    21300354: DepthsFinal_0
+    21300356: DepthsFinal_1
+    21300358: DepthsFinal_2
+    21300360: DepthsFinal_3
+    21300362: DepthsFinal_4
+    21300364: DepthsFinal_5
+    21300366: DepthsFinal_6
+    21300368: DepthsFinal_7
+    21300370: DepthsFinal_8
+    21300372: DepthsFinal_9
+    21300374: DepthsFinal_10
+    21300376: DepthsFinal_11
+    21300378: DepthsFinal_12
+    21300380: DepthsFinal_13
+    21300382: DepthsFinal_14
+    21300384: DepthsFinal_15
+    21300386: DepthsFinal_16
+    21300388: DepthsFinal_17
+    21300390: DepthsFinal_18
+    21300392: Christian Final_0
+    21300394: Christian Final_1
+    21300396: Christian Final_2
+    21300398: Christian Final_3
+    21300400: Christian Final_4
+    21300402: Christian Final_5
+    21300404: Christian Final_6
+    21300406: Christian Final_7
+    21300408: Christian Final_8
+    21300410: Christian Final_9
+    21300412: Christian Final_10
+    21300414: Christian Final_11
+    21300416: Christian Final_12
+    21300418: Christian Final_13
+    21300420: Christian Final_14
+    21300422: Christian Final_15
+    21300424: Christian Final_16
+    21300426: Christian Final_17
+    21300428: Christian Final_18
+    21300430: Christian Final_19
+    21300432: Christian Final_20
+    21300434: Christian Final_21
+    21300436: Christian Final_22
+    21300438: Christian Final_23
+    21300440: Christian Final_24
+    21300442: Christian Final_25
+    21300444: Christian Final_26
+    21300446: Christian Final_27
+    21300448: Christian Final_28
+    21300450: Christian Final_29
+    21300452: Christian Final_30
+    21300454: Christian Final_31
+    21300456: Christian Final_32
+    21300458: Christian Final_33
+    21300460: Christian Final_34
+    21300462: Christian Final_35
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Christian Final_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c0d6d4cb5324a47a07cb0b7ac3eb63
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c99a289e19ea54538bda7f0b68089e11
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ff882562fa8402a89bad9e7d08163b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beadfe134994e4b6888c700fb16c59d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae035d0d9225466a9993defa006e6ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d77b5d2422f49579f0c378420f61b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18fcafe9297d74c2a97556238524d465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_7
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae1042a3b70634f969c577804e1b35c2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_8
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ee26e71946d4fa6ac862cd0051a060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_9
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d359988c3f6144c77bfa93eec7c6e08c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b4c6679dc97427790fb760f52c85f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_11
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66df99826de9415482729da0cc58e35
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748a39134190b461e9dcb963555e3a47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812ee56bb3151413f845742c4b983018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3bdbe86623b409eb1dfc3feaaffafc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc39d576f8b98418bb5371bad0048355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_16
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4404546f58d4ca9bb6a8eb2aecfac6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f2c00f2109d4ab9a40f70c980d0574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e410041918aa544349ad624fe48597c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f5c0feae909f481183c900d321f5d3c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb59d0ca4a95403a8282d569dd48857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81769a74dbc7e49c495212476f756d01
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a076018226f3435092bf7c39a4d4ebf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f839e41972bc479084344f36e425ef4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708af36f6792e46e795da6ac423b6cb6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b463a48621954b2ab12dc592dcd3679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa2a97e7ce284b0eaba344b0c898407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 844c15e2bdc7647dd909586d27c7cdad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_28
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6d357ac2bcc849e09cd87a1ab0a6b9f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_29
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b764e894f58a94d7baf89d86fc13890e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f38de15faf19648d78f490b981bf6579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b33e491fdd44435f9494d56d4ac822c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c044b08ad825d4d71b9fac36ff2ca5d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51516be6aeefb4da3856f1a827db6ab9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_34
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080bdc63e9356473bb47eaa10b56a8cc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Christian Final_35
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e16a24e6022ce484da2278b754b826d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 878838daa0cf04ed58da78013e2b4609
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
