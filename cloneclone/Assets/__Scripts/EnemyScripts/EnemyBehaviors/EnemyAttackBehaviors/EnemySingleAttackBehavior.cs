@@ -23,6 +23,9 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 	private bool lockFacing = false;
 	public int numToSpawn = 1;
 
+    [Header("Special Case Properties")]
+    public bool enrageEnemy = false;
+
 
 	private Vector3 attackDirection;
 
@@ -63,6 +66,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				projectileRef.Fire(attackDirection, myEnemyReference, currentDifficultyMult);
 				}
 				launchedAttack = true;
+
+                if (enrageEnemy){
+                    myEnemyReference.SetEnraged(true);
+                }
 
 				myEnemyReference.SetBreakState(9999f,0f);
 			}
@@ -106,6 +113,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 			if (setVelocityToZeroOnStart){
 				myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			}
+
+
+
+                myEnemyReference.TriggerFosAttack();
 		}
 		/*else if (doDodge){
 			EndAction(false);
@@ -130,6 +141,10 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				doDodge = true;
 			}
 		}**/
+
+        if (enrageEnemy && myEnemyReference.isEnraged){
+            canContinue = false;
+        }
 
 		if (rangeCheck != null){
 			rangeCheck.FindTarget();

@@ -1663,4 +1663,61 @@ public class EnemyS : MonoBehaviour {
 		return defenseMult;
 	}
 
+    //_____________________________________________________FOS CHARGE STUFF
+    private List<EnemyChargeAttackS> fosCharges = new List<EnemyChargeAttackS>();
+
+    public void TriggerFosAttack()
+    {
+        if (fosCharges.Count > 0)
+        {
+            Vector3 targetDir = Vector3.zero;
+            for (int i = 0; i < fosCharges.Count; i++)
+            {
+
+
+                targetDir = GetTargetReference().transform.position - fosCharges[i].transform.position;
+                
+
+                targetDir.z = 0f;
+                fosCharges[i].FosPause(targetDir);
+            }
+            StartCoroutine(FireFosCharges());
+        }
+    }
+
+    IEnumerator FireFosCharges()
+    {
+
+        yield return new WaitForSeconds(0.2f);
+        bool firstFired = true;
+        while (fosCharges.Count > 0)
+        {
+            fosCharges[0].FosDirectedFire(firstFired);
+            fosCharges.RemoveAt(0);
+            firstFired = false;
+            yield return new WaitForSeconds(0.12f);
+        }
+    }
+
+    public void AddFosCharge(EnemyChargeAttackS newCharge)
+    {
+        fosCharges.Add(newCharge);
+    }
+
+    public void RemoveFosCharge(EnemyChargeAttackS usedCharge)
+    {
+        if (fosCharges.Contains(usedCharge))
+        {
+            fosCharges.Remove(usedCharge);
+        }
+    }
+    public void TriggerAllFos(EnemyChargeAttackS removeCharge)
+    {
+        fosCharges.Remove(removeCharge);
+        for (int i = 0; i < fosCharges.Count; i++)
+        {
+            fosCharges[i].FosEndFire(true);
+        }
+    }
+
 }

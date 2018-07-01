@@ -40,7 +40,12 @@ public class InstructionFloatS : MonoBehaviour {
 	public string changeSubKeyString = "";
 	public string changeSubMouseString = "";
 
-	// Use this for initialization
+    // Use this for initialization
+    private void Awake()
+    {
+
+        TurnOnPlatformIcons();
+    }
 	void Start () {
 
 		if (ControlManagerS.controlProfile == 3 && buttonStringPS4 != null){
@@ -51,6 +56,7 @@ public class InstructionFloatS : MonoBehaviour {
 				buttonStringPS4.gameObject.SetActive(false);
 			}
 		}
+
 
 		currentSpriteCol = buttonSprite.color;
 		currentSpriteCol.a = 0f;
@@ -196,4 +202,20 @@ public class InstructionFloatS : MonoBehaviour {
 		fadingOut = true;
 	
 	}
+
+    void TurnOnPlatformIcons(){
+        mouseSprite.gameObject.SetActive(false);
+        keySprite.gameObject.SetActive(false);
+        buttonSprite.gameObject.SetActive(false);
+        buttonSpritePS4.gameObject.SetActive(false);
+        if (ControlManagerS.controlProfile == 0){
+            buttonSprite.gameObject.SetActive(true);
+        }else if (ControlManagerS.controlProfile == 1){
+            mouseSprite.gameObject.SetActive(true);
+        }else if (ControlManagerS.controlProfile == 2){
+            keySprite.gameObject.SetActive(true);
+        }else{
+            buttonSpritePS4.gameObject.SetActive(true);
+        }
+    }
 }

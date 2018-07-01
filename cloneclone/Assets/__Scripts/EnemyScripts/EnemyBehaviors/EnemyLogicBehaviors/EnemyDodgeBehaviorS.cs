@@ -70,7 +70,7 @@ public class EnemyDodgeBehaviorS : EnemyBehaviorS {
 
 	public override void StartAction(bool setAnimTrigger=true){
 
-		base.StartAction();
+        base.StartAction(setAnimTrigger);
 		InitializeAction();
 
 	}

@@ -143,6 +143,8 @@ public class EnemyMultiAttackBehavior : EnemyBehaviorS {
 			if (setVelocityToZeroOnStart){
 				myEnemyReference.myRigidbody.velocity = Vector3.zero;
 			}
+
+                myEnemyReference.TriggerFosAttack();
 		}
 		else{
 			EndAction();

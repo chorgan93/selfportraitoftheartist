@@ -306,6 +306,7 @@ public class PlayerController : MonoBehaviour {
 	private float attackDelay;
 	public bool inAttackDelay { get { return (attackDelay > 0 && attackTriggered);} }
 	private float attackDuration;
+    public bool inAttackDuration { get { return (attackDuration > 0); } }
 	public GameObject attackEffectObj;
 	private float allowParryInput = 0.1f;
 	private float allowParryCountdown = 0f;
@@ -343,6 +344,7 @@ public class PlayerController : MonoBehaviour {
 	private bool _isTalking = false;
 	private bool _allowWalk = false;
 	private bool _tempTransformAllow = false;
+    private bool _tempTauntAllow = false;
 	private float delayTurnOffTalk;
 	private bool delayTalkTriggered = false;
 
@@ -435,7 +437,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		InitializePlayer();
 
-		PlayerInventoryS.I.AddSceneIveBeenTo(Application.loadedLevel);
+        PlayerInventoryS.I.AddSceneIveBeenTo(Application.loadedLevel);
 
 	}
 
@@ -724,8 +726,11 @@ public class PlayerController : MonoBehaviour {
 				SwapControl();
 				BlockControl();
 				DashControl();
-				AttackControl();
-			}
+            }
+            if (!_isTalking || _tempTauntAllow)
+            {
+                AttackControl();
+            }
 			if (!_isTalking || _tempTransformAllow){
 				TransformControl();
 			}
@@ -1485,7 +1490,7 @@ public class PlayerController : MonoBehaviour {
 	private void AttackControl(){
 
 
-		if (!_isTalking&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
+        if ((!_isTalking || (_isTalking && _tempTauntAllow))&&!_isBlocking && !_isDashing && !_chargingAttack && !InAttack()){
 			comboDuration -= Time.deltaTime*0.6f;
 			if (comboDuration <= 0 && currentChain != -1){
 				currentChain = -1;
@@ -1617,7 +1622,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (!hitStopped){
+        if (!hitStopped || _tempTauntAllow){
 		attackDelay -= Time.deltaTime;
 		}
 		if (preAttackSlowdown && attackDelay <= preAttackSlowTime){
@@ -1900,7 +1905,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (CanInputShoot()){
 				if (
-					((ShootInputPressed() && shootButtonUp) || (tauntButtonUp && controller.GetCustomInput(8) &&
+                    ((ShootInputPressed() && shootButtonUp && !_tempTauntAllow) || (tauntButtonUp && controller.GetCustomInput(8) &&
 						equippedUpgrades.Contains(9))) 
 					&& !counterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
@@ -2011,7 +2016,7 @@ public class PlayerController : MonoBehaviour {
 
 					}else{
 							if (myControl.GetCustomInput(8)){
-								// trigger taunt!
+                                // trigger taunt!
 								currentAttackS = tauntPrefab.GetComponent<ProjectileS>();
 								tauntButtonUp = false;
 							}else{
@@ -2645,7 +2650,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-		if (attackTriggered && _isTalking){
+        if (attackTriggered && _isTalking && !_tempTauntAllow){
 			CancelAttack();
 		}
 
@@ -3041,7 +3046,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public bool CanUseItem(){
-		if (CanInputShoot() && !_isDashing && !_isTalking && Time.timeScale != 0 && allowItemUse){
+		if (CanInputShoot() && !_isDashing && !_isTalking && Time.timeScale > 0 && allowItemUse){
 			return true;
 		}else{
 			return false;
@@ -3058,14 +3063,14 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 ShootDirectionUnlocked(){
 
-		Vector3 inputDirection = Vector3.zero;
+		Vector3 InputDirection = Vector3.zero;
 
 			
-		inputDirection.x = controller.Horizontal();
-		inputDirection.y = controller.Vertical();
+        InputDirection.x = controller.Horizontal();
+        InputDirection.y = controller.Vertical();
 
 		
-		return inputDirection.normalized;
+        return InputDirection.normalized;
 
 	}
 
@@ -3080,15 +3085,15 @@ public class PlayerController : MonoBehaviour {
 
 	private Vector3 ShootDirection(bool moveOverride = false){
 
-		Vector3 inputDirection = Vector3.zero;
+		Vector3 InputDirection = Vector3.zero;
 
 		// read left analogue input
 		//if (Input.GetJoystickNames().Length > 0 || moveOverride){
 		if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 2 || ControlManagerS.controlProfile == 3){
-			inputDirection.x = controller.Horizontal();
-			inputDirection.y = controller.Vertical();
+            InputDirection.x = controller.Horizontal();
+            InputDirection.y = controller.Vertical();
 		}else {
-			inputDirection = GetMouseDirection();
+            InputDirection = GetMouseDirection();
 		}
 
 		// first, do lock on
@@ -3097,27 +3102,27 @@ public class PlayerController : MonoBehaviour {
 		}**/
 		if (lockOnEnemyDetect.allEnemiesInRange.Count == 1){
 			currentTargetEnemy = lockOnEnemyDetect.allEnemiesInRange[0];
-			inputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
+            InputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
 		}else if (lockOnEnemyDetect.allEnemiesInRange.Count > 1){
 			currentTargetEnemy = lockOnEnemyDetect.ReturnClosestAngleEnemy(inputDirection);
-			inputDirection = (currentTargetEnemy
+            InputDirection = (currentTargetEnemy
 				.transform.position-transform.position).normalized;
 		}// if no enemies in lock on detect, attack closest enemy in general detect
 		else if (enemyDetect.closestEnemy != null){
 			currentTargetEnemy = enemyDetect.closestEnemy;
-			inputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
+            InputDirection = (currentTargetEnemy.transform.position-transform.position).normalized;
 		}
 		// now check 4/8 directional, if applicable
 		else if (Mathf.Abs(inputDirection.x) <= 0.04f && Mathf.Abs(inputDirection.y) <= 0.04f){
 			if (currentTargetEnemy != null){
 				if (!currentTargetEnemy.isDead){
-					inputDirection = (currentTargetEnemy
+                    InputDirection = (currentTargetEnemy
 					                  .transform.position-transform.position).normalized;
 				}else{
-					inputDirection = savedDir;
+                    InputDirection = savedDir;
 				}
 			}else{
-				inputDirection = savedDir;
+                InputDirection = savedDir;
 			}
 		}
 		else if (_shoot8Dir){
@@ -3127,111 +3132,111 @@ public class PlayerController : MonoBehaviour {
 			float directionZ = FindDirectionOfVector(inputDirection.normalized);
 
 			if (directionZ > 348.75f || directionZ <= 11.25f){
-				inputDirection.x = 1;
-				inputDirection.y = 0;
+                InputDirection.x = 1;
+                InputDirection.y = 0;
 				FaceLeftRight();
 				//Debug.Log("Look 1!");
 			}
 			else if (directionZ > 11.25f && directionZ <= 33.75f){
-				inputDirection.x = 1f;
-				inputDirection.y = 0.5f;
+                InputDirection.x = 1f;
+                InputDirection.y = 0.5f;
 				FaceLeftRight();
 				//Debug.Log("Look 2!");
 			}
 			else if (directionZ > 33.75f && directionZ <= 56.25f){
-				inputDirection.x = 1;
-				inputDirection.y = 1;
+                InputDirection.x = 1;
+                InputDirection.y = 1;
 				FaceLeftRight();
 				//Debug.Log("Look 3!");
 			}
 			else if (directionZ > 56.25f && directionZ <= 78.75f){
-				inputDirection.x = 0.5f;
-				inputDirection.y = 1;
+                InputDirection.x = 0.5f;
+                InputDirection.y = 1;
 				FaceLeftRight();
 				//FaceUp();
 				//Debug.Log("Look 4!");
 			}
 			else if (directionZ > 78.75f && directionZ <= 101.25f) {
-				inputDirection.x = 0;
-				inputDirection.y = 1;
+                InputDirection.x = 0;
+                InputDirection.y = 1;
 				FaceLeftRight();
 				//FaceUp();
 				//Debug.Log("Look 5!");
 			}
 			else if (directionZ > 101.25f && directionZ <= 123.75f) {
-				inputDirection.x = -0.5f;
-				inputDirection.y = 1;
+                InputDirection.x = -0.5f;
+                InputDirection.y = 1;
 				FaceLeftRight();
 				//Debug.Log("Look 6!");
 			}
 			else if (directionZ > 123.75f && directionZ <= 146.25f) {
-				inputDirection.x = -1;
-				inputDirection.y = 1;
+                InputDirection.x = -1;
+                InputDirection.y = 1;
 				FaceLeftRight();
 				//Debug.Log("Look 7!");
 			}
 			else if (directionZ > 146.25f && directionZ <= 168.75f) {
-				inputDirection.x = -1;
-				inputDirection.y = 0.5f;
+                InputDirection.x = -1;
+                InputDirection.y = 0.5f;
 				FaceLeftRight();
 				//Debug.Log("Look 8!");
 			}
 			else if (directionZ > 168.75f && directionZ <= 191.25f) {
-				inputDirection.x = -1;
-				inputDirection.y = 0;
+                InputDirection.x = -1;
+                InputDirection.y = 0;
 				FaceLeftRight();
 				//Debug.Log("Look 9!");
 			}
 			else if (directionZ > 191.25f && directionZ <= 213.75f) {
-				inputDirection.x = -1;
-				inputDirection.y = -0.5f;
+                InputDirection.x = -1;
+                InputDirection.y = -0.5f;
 				FaceLeftRight();
 				//Debug.Log("Look 10!");
 			}
 			else if (directionZ > 213.75f && directionZ <= 236.25f) {
-				inputDirection.x = -1;
-				inputDirection.y = -1;
+                InputDirection.x = -1;
+                InputDirection.y = -1;
 				FaceLeftRight();
 				//Debug.Log("Look 11!");
 			}
 			else if (directionZ > 236.25f && directionZ <= 258.75f){
-				inputDirection.x = -0.5f;
-				inputDirection.y = -1;
+                InputDirection.x = -0.5f;
+                InputDirection.y = -1;
 				FaceLeftRight();
 				//FaceDown();
 				//Debug.Log("Look 12!");
 			}
 			else if (directionZ > 258.75f && directionZ <= 281.25f)  {
-				inputDirection.x = 0;
-				inputDirection.y = -1;
+                InputDirection.x = 0;
+                InputDirection.y = -1;
 				FaceLeftRight();
 				//FaceDown();
 				//Debug.Log("Look 13!");
 			}
 			else if (directionZ > 281.25f && directionZ <= 303.75f) {
-				inputDirection.x = 0.5f;
-				inputDirection.y = -1;
+                InputDirection.x = 0.5f;
+                InputDirection.y = -1;
 				FaceLeftRight();
 				//Debug.Log("Look 14!");
 			}
 			else if (directionZ > 303.75f && directionZ <= 326.25f) {
-				inputDirection.x = 1;
-				inputDirection.y = -1;
+                InputDirection.x = 1;
+                InputDirection.y = -1;
 				FaceLeftRight();
 				//Debug.Log("Look 15!");
 			}
 			else{
-				inputDirection.x = 1;
-				inputDirection.y = -0.5f;
+                InputDirection.x = 1;
+                InputDirection.y = -0.5f;
 				FaceLeftRight();
 				//Debug.Log("Look 16!");
 			}
 
 		}
 
-		savedDir = inputDirection.normalized;
+        savedDir = InputDirection.normalized;
 		FaceAttackDirection(savedDir);
-		return inputDirection.normalized;
+        return InputDirection.normalized;
 		
 
 	}
@@ -3471,13 +3476,17 @@ public class PlayerController : MonoBehaviour {
 		_examining = nEx;
 	}
 
-	public void SetTalking(bool nEx, bool allowWalk = false, bool allowTransform = false){
+	public void SetTalking(bool nEx, bool allowWalk = false, bool allowTransform = false, bool tauntTutorial = false){
 
 		if (_isTalking && !nEx){
 			delayAttackAllow = 0.2f;
 		}
 		_isTalking = nEx;
 		_tempTransformAllow = allowTransform;
+        _tempTauntAllow = tauntTutorial;
+        if (_tempTauntAllow){
+            PlayerInventoryS.I.AddEarnedTech(9);
+        }
 		_allowWalk = allowWalk;
 		if (_isTalking){
 			DeactivateTransform();
@@ -3506,7 +3515,10 @@ public class PlayerController : MonoBehaviour {
 			}
 			dashDurationTime = 0f;
 			_playerSound.SetWalking(false);
-			CancelAttack();
+            if (!tauntTutorial)
+            {
+                CancelAttack();
+            }
 		}
 	}
 

@@ -13,6 +13,14 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 	public bool setVelocityToZeroOnStart = false;
 
 	private float waitTimeCountdown;
+
+
+    [Header("Special Case Properties")]
+    public bool resetFight = false;
+    public float resetFightTimeMult = 0.8f;
+    private float resetFightTime = 0f;
+    public int maxResets = 2;
+    public float minHealthForRewind = 0.5f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -26,6 +34,10 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 				//Debug.Log(behaviorName +" ended bc of time out!" + waitTimeCountdown);
 				EndAction();
 			}
+            if (waitTimeCountdown <= resetFightTime && resetFight){
+                myEnemyReference.GetPlayerReference().ResetCombat();
+                maxResets--;
+            }
 		}
 	
 	}
@@ -38,6 +50,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 		else{
 			waitTimeCountdown = Random.Range(waitTimeMin, waitTimeMax);
 		}
+        resetFightTime = waitTimeCountdown * resetFightTimeMult;
 		//Debug.Log(behaviorName +" action started! " + waitTimeCountdown);
 
 		if (waitDragAmt > 0){
@@ -50,10 +63,14 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 
 	}
 
-	public override void StartAction (bool useAnimTrigger = true)
-	{
-		base.StartAction ();
-		InitializeAction();
+    public override void StartAction(bool setAnimTrigger = true)
+    {
+        if (!resetFight || (resetFight && maxResets > 0 && myEnemyReference.currentHealth <= myEnemyReference.actingMaxHealth*minHealthForRewind)) { 
+            base.StartAction(setAnimTrigger);
+            InitializeAction();
+        }else{
+            EndAction();
+        }
 
 	}
 

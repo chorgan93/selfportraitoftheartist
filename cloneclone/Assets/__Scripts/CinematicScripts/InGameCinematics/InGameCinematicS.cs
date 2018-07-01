@@ -26,6 +26,8 @@ public class InGameCinematicS : MonoBehaviour {
 	public bool resetPOIOnEnd = false;
 	public bool allowWalk = false;
 
+    private bool waitForTaunt = false;
+
 	[HideInInspector]
 	public bool dialogueDone = true;
 
@@ -59,7 +61,13 @@ public class InGameCinematicS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (timedStep){
+        if (waitForTaunt){
+            if (pRef.inAttackDuration){
+                AdvanceCinematic();
+                waitForTaunt = false;
+            }
+        }
+		else if (timedStep){
 			currentCountdown-=Time.deltaTime;
 			if (currentCountdown <= 0 && dialogueDone){
 				AdvanceCinematic();
@@ -197,6 +205,10 @@ public class InGameCinematicS : MonoBehaviour {
 			if (w.myCinemaStep == currentStep){
 				cinematicDone = false;
 					w.gameObject.SetActive(true);
+                    waitForTaunt = w.waitForTaunt;
+                    if (waitForTaunt){
+                        pRef.SetTalking(true, false, false, true);
+                    }
 				if (w.waitTime > 0){
 					timedStep = true;
 					if (w.waitTime > currentCountdown){
