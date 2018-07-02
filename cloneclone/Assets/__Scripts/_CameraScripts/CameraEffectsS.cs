@@ -27,12 +27,12 @@ public class CameraEffectsS : MonoBehaviour {
 	private float vignetteFadeRate = 1.6f;
 	private bool vignetteFading = true;
 
-	private BlurOptimized blurEffect;
+    private Blur blurEffect;
 	private float blurEffectTimeMax = 0.4f;
 	private float blurEffectTime;
 	private float blurT;
 	private bool blurEnabled = true;
-	private float blurSizeMax = 9.99f;
+	private float blurSizeMax = 1f;
 
 	private float staticMaxAlpha = 1f;
 
@@ -49,7 +49,7 @@ public class CameraEffectsS : MonoBehaviour {
 	private ContrastStretch contrastEffect;
 	private Tonemapping toneEffect;
 	private SunShafts sunEffect;
-	private BloomOptimized bloomEffect;
+    private Bloom bloomEffect;
 	private ColorCorrectionCurves colorCorrection;
 
 	private Antialiasing antiAliasEffect;
@@ -88,7 +88,7 @@ public class CameraEffectsS : MonoBehaviour {
 			Debug.Log("Setting camera effects: " + debugEffects);
 			if (!sunEffect){
 				toneEffect = GetComponent<Tonemapping>();
-				bloomEffect = GetComponent<BloomOptimized>();
+				bloomEffect = GetComponent<Bloom>();
 				sunEffect = GetComponent<SunShafts>();
 				colorCorrection = GetComponent<ColorCorrectionCurves>();
 			}
@@ -126,7 +126,7 @@ public class CameraEffectsS : MonoBehaviour {
 			transformFilterColor = transformFilter.color;
 			transformFilter.gameObject.SetActive(false);
 
-			blurEffect = GetComponent<BlurOptimized>();
+			blurEffect = GetComponent<Blur>();
 			blurEffect.enabled = false;
 
 			resetStatic.gameObject.SetActive(false);
@@ -139,7 +139,7 @@ public class CameraEffectsS : MonoBehaviour {
 			#if UNITY_EDITOR_OSX
 			if (!debugEffects){
 			toneEffect = GetComponent<Tonemapping>();
-			bloomEffect = GetComponent<BloomOptimized>();
+			bloomEffect = GetComponent<Bloom>();
 				sunEffect = GetComponent<SunShafts>();
 				colorCorrection = GetComponent<ColorCorrectionCurves>();
 			sunEffect.enabled = false;
@@ -152,7 +152,7 @@ public class CameraEffectsS : MonoBehaviour {
 			#elif UNITY_STANDALONE_OSX || UNITY_STANDALONE
 			if (QualitySettings.GetQualityLevel() < 1 && !arcadeMode){
 			toneEffect = GetComponent<Tonemapping>();
-			bloomEffect = GetComponent<BloomOptimized>();
+			bloomEffect = GetComponent<Bloom>();
 			sunEffect = GetComponent<SunShafts>();
 			colorCorrection = GetComponent<ColorCorrectionCurves>();
 			sunEffect.enabled = false;
@@ -182,9 +182,8 @@ public class CameraEffectsS : MonoBehaviour {
 				blurT = blurEffectTime / blurEffectTimeMax;
 				//blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
 				blurT = 1f - Mathf.Cos(blurT * Mathf.PI * 0.5f);
-				blurEffect.blurSize = Mathf.Lerp(blurSizeMax, 0, blurT);
-				blurEffect.blurIterations = Mathf.FloorToInt(Mathf.Lerp(4, 0, blurT));
-				blurEffect.downsample = Mathf.FloorToInt(Mathf.Lerp(2, 0, blurT));
+                blurEffect.blurSpread = Mathf.Lerp(blurSizeMax, 0, blurT);
+                blurEffect.iterations = Mathf.FloorToInt(Mathf.Lerp(3, 0, blurT));
 
 				// static fade
 				if (resetStatic.gameObject.activeSelf){

@@ -248,7 +248,7 @@ a30beadf4d109f44144b9a9f42e61cbf Assembly-CSharp-firstpass.dll:UnityStandardAsse
 b08d39250267dda6bd3357776b4cdd14 Assembly-CSharp.dll:.NPCDialogueSet
 5137a0f9c7fc00c0a00d157c20505761 Assembly-CSharp.dll:.TextInputUIS
 951e8c93bd073fea374aed3ac96e1bdb Assembly-CSharp.dll:.MapScreenS
-9a9ee246aa763e939bf40b9e880446c2 Assembly-CSharp.dll:.EnemySingleAttackBehavior
+a0593a59808d48975f97dadaf74de8d4 Assembly-CSharp.dll:.EnemySingleAttackBehavior
 b93ccd89e2f2cd8d0f0f8778bc0fc955 Assembly-CSharp.dll:.MerchantItemS
 a7c2cc7a2e2b338348877de2553f6050 Assembly-CSharp.dll:.TileGeneratorS
 cb8796afe40f1c0898f179f2ee6d8494 Assembly-CSharp.dll:.CameraPOIS
@@ -432,7 +432,7 @@ d24a6b76a36b498b17e77174bb8be156 Assembly-CSharp.dll:.EnemyStatusReferencesS
 7ebcf3ae0787fb645e18e99cdea97818 Assembly-CSharp.dll:.LevelUpMenu
 4a2d98c194a9772c684935e6d97c57df Assembly-CSharp.dll:.CameraLimitS
 c7f5a572b3e9e3dfc4e422c0cbf33468 Assembly-CSharp.dll:.CinematicTextS
-1e5ac47a82e6d98aaa08543721bd99af Assembly-CSharp.dll:.InstructionTrigger
+2aa587597ee763bb1d2712c8a87b002d Assembly-CSharp.dll:.InstructionTrigger
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 42f7cad7a9eeb640d2b6685beabf6493 Assembly-CSharp.dll:.DodgeLinesS
@@ -487,7 +487,7 @@ abea9743b05737bfe274de160a12eaad Assembly-CSharp.dll:.ChangeTrainDirectionS
 7cc91ca5a63b30cb9bcfc446f4e642ee Assembly-CSharp.dll:.EquipTechItemS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.EndDeathCountdown
 b2d3f937635a2952c2428fcdd83f64fa Assembly-CSharp.dll:.RoomDataS
-f38e5826b8a46a9a9f22bf377ccff837 Assembly-CSharp.dll:.EnemyWaitBehavior
+35d0cd64e2c1cfd284ba89f65885e30e Assembly-CSharp.dll:.EnemyWaitBehavior
 a7d3c6c6948d99dd4116e659ddcf5ac4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
 af57bfa24ea701f6fdd96184747c3ea9 Assembly-CSharp.dll:.AmbientShakingS
 5256523afb6ab387fbd18ac012ea17c8 Assembly-CSharp.dll:.EnemyWanderBehavior
@@ -552,7 +552,7 @@ b26b3a55de2a8cbeee573d45c8848f09 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 abb23eea192f574b0051a884601029b3 Assembly-CSharp.dll:.LookOnTouchEnemiesS
 0a760faca1a281bedceac8be76ca4ba4 Assembly-CSharp.dll:.RetryFightUI
 1a3a4a9a31866dc32c3f18ca763099dd Assembly-CSharp.dll:.RoomS
-5f4b06792f5914619eaa4dd6adc3ab09 Assembly-CSharp.dll:.ActivateOnCombatS
+47eb772dda2998d0ba8a0802e87abe26 Assembly-CSharp.dll:.ActivateOnCombatS
 5f5d126d9b04af25a5a08f383d18f194 Assembly-CSharp.dll:.NPCS
 b0109659652bb7706f10c5610f56d4a4 Assembly-CSharp.dll:.EnemyTeleportBehavior
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -611,7 +611,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 211766c519e3bed7643310032fd5f85d Assembly-CSharp.dll:.InGameCinemaDialogueOptionS
-c4549529acd6cfc1fcb90ad810eef4de Assembly-CSharp.dll:.InGameCinemaWaitS
+8c761b303817bb7287c6d4e1af408d6a Assembly-CSharp.dll:.InGameCinemaWaitS
 609fcabde46c378799813cd17fff8491 Assembly-CSharp.dll:.ConditionUIS
 a732f4a936bcb4485f431e30ae2812ea Assembly-CSharp.dll:.FinalPortalS
 dc69111f94ee76b16c041daf911073b9 Assembly-CSharp.dll:.InstaCheckpointS
@@ -627,7 +627,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 d66ae68904c94e06362efac8276fd7f4 Assembly-CSharp.dll:.MixTriggerS
 c2685ce484305f4add813f7dbc516833 Assembly-CSharp.dll:.SimpleEnemyDetectS
 00566559aaf2ba51543e32371603951b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndGrain
-76a6b5fa2b49e1c0b5daa1f52c53344d Assembly-CSharp.dll:.TauntDialogueS
+cb0dcfbbe03071deace8175653fd856e Assembly-CSharp.dll:.TauntDialogueS
 b232d4718563eebdd3f8fa4351bbee12 Assembly-CSharp.dll:.DamageNumberS
 b48d681848156bc4e5f993a8e2b0fca7 Assembly-CSharp.dll:.EnemyBreakS
 79ad7a4de8f1f219d7a84889a7faa9be Assembly-CSharp.dll:.EnemyCrowdBehavior
@@ -697,7 +697,7 @@ fa488be3dab501c15a5201cec592d1be Assembly-CSharp.dll:.BlockDisplay3DS
 34649f00651a4523857787538c849e20 Assembly-CSharp.dll:.SacramentCombatS
 87a7811243295622deb28d84fe2b76a5 Assembly-CSharp.dll:.ForceTrigger
 de8b7203a0d563a31e48a8fd322a0f53 Assembly-CSharp.dll:.EnemySpawnerS
-10e182a38870fb68463b4e28ed0be551 Assembly-CSharp.dll:.CombatManagerS
+6bc6a38e55f779bffabfbe95e9ad5308 Assembly-CSharp.dll:.CombatManagerS
 b84988f31dade3ebc05ac16dd34ed1d0 Assembly-CSharp.dll:.PlayerController
 05378b558f10683e575813101e0e87b7 Assembly-CSharp.dll:.TimedShakesS
 182c4e5f10313700315ee397e3e46987 Assembly-CSharp.dll:.SacramentStepS
@@ -724,7 +724,7 @@ a8003b8f6fe31ed3ed9d22f823658d7b Assembly-CSharp.dll:.ActivateOnCombatClearedS
 e6521075af684cadf0c08a7869dc1624 Assembly-CSharp.dll:.ProgressionTriggerS
 d011673efba820237ba1ac1ad89b301f Assembly-CSharp.dll:.ChangeCameraSizeOnTouch
 48f6d0dc5357b330145233b380741391 Assembly-CSharp.dll:.FakeFloorS
-bcf6d9242854ed2c083df885570d0507 Assembly-CSharp.dll:.EnemyChargeAttackS
+067cb586d8d5e3f12ddcc28b9af1f780 Assembly-CSharp.dll:.EnemyChargeAttackS
 945c2c9f2d327937ff3d8fe35d7778e6 Assembly-CSharp.dll:.RemoveCombatClearDataS
 0d7167dfd88a494a617c65a7b53514d4 Assembly-CSharp.dll:.TitleTextEffectS
 47c88dda5b83434476df7b636ef4df10 Assembly-CSharp.dll:.AnimatorTriggerS

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class DarknessPercentUIS : MonoBehaviour {
 
-	public static bool demoMode = true;
+	public static bool demoMode = false;
 
 	[Header("Text Display")]
 	public Image wholeDisplay;
@@ -225,6 +225,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 			if (fadeCount >= fadeOutTime){
 				fadeT = 1f;
 				if (RetryFightUI.allowRetry && pStats.currentDarkness < 100f){
+                    //Debug.LogError("Darkness Trying to turn on Retry!!");
 					allowRetryUI.TurnOn();
 				}else{
 					_allowAdvance = true;
@@ -401,7 +402,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 		delayFadeOut = delayFadeInTime;
 		saveDeathAmt = displayAmt = pStats.currentDarkness;
 		_allowAdvance = false;
-		fadeInDeathNumbers = true;
+        fadeInDeathNumbers = true;
+        //Debug.LogError("Trying to fade in Death Numbers!");
 
 		deathTextDisplay.text = deathRedTextDisplay.text = displayString;
 

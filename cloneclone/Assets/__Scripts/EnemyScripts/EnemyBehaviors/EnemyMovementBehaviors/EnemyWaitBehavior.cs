@@ -21,6 +21,7 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
     private float resetFightTime = 0f;
     public int maxResets = 2;
     public float minHealthForRewind = 0.5f;
+    private bool didReset = false;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -34,15 +35,18 @@ public class EnemyWaitBehavior : EnemyBehaviorS {
 				//Debug.Log(behaviorName +" ended bc of time out!" + waitTimeCountdown);
 				EndAction();
 			}
-            if (waitTimeCountdown <= resetFightTime && resetFight){
+            if (waitTimeCountdown <= resetFightTime && resetFight && !didReset){
                 myEnemyReference.GetPlayerReference().ResetCombat();
                 maxResets--;
+                didReset = true;
             }
 		}
 	
 	}
 
 	private void InitializeAction(){
+
+        didReset = false;
 
 		if (waitTimeFixed > 0){
 			waitTimeCountdown = waitTimeFixed;

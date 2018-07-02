@@ -10,7 +10,8 @@ public class InstructionTrigger : MonoBehaviour {
 
 	[Header("Instruction Objects (Optional)")]
 	public InstructionFloatS[] instructionObjs;
-	private bool useInstructionObjs = false;
+    public bool useInstructionObjs = false;
+    public bool overrideRecordMode = false;
 
 	[Header("Turn Off Conditions")]
 	public int turnedOffIfClearedCombat = -1;
@@ -106,7 +107,7 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player" && !PlayerStatDisplayS.RECORD_MODE){
+        if (other.gameObject.tag == "Player" && (!PlayerStatDisplayS.RECORD_MODE || overrideRecordMode)){
 			if (useInstructionObjs){
 				for (int i = 0; i < instructionObjs.Length; i++){
 					instructionObjs[i].ShowInstruction(other.transform, other.GetComponent<PlayerController>().myControl.ControllerAttached());
@@ -129,7 +130,7 @@ public class InstructionTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider other){
-		if (other.gameObject.tag == "Player" && !PlayerStatDisplayS.RECORD_MODE){
+        if (other.gameObject.tag == "Player" && (!PlayerStatDisplayS.RECORD_MODE || overrideRecordMode)){
 			if (useInstructionObjs){
 				for (int i = 0; i < instructionObjs.Length; i++){
 					instructionObjs[i].HideInstruction();

@@ -16,7 +16,8 @@ public class CombatManagerS : MonoBehaviour {
 	public BarrierS[] barriers;
 	public GameObject darknessHolder;
 	int defeatedEnemies = 0;
-	public bool effectOnStart = false;
+    public bool effectOnStart = false;
+    public bool resetEffectOnStart = false;
 	public float delayEndEffect = 0f;
 
 	PlayerController playerRef;
@@ -241,7 +242,7 @@ public class CombatManagerS : MonoBehaviour {
 				RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, this, isContinuation);
 			}
 			if (effectOnStart){
-				CameraEffectsS.E.ResetEffect(false, true);
+                CameraEffectsS.E.ResetEffect(false, !resetEffectOnStart);
 			}
 			if (inInfiniteMode){
 				myInfiniteManager.SetGeometrySize(geometryMultiplier);	

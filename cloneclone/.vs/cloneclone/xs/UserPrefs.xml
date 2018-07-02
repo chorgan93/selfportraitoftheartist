@@ -1,16 +1,12 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyParryBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyAttackBehaviors/EnemySingleAttackBehavior.cs" Line="81" Column="40" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyBehaviorS.cs" Line="130" Column="22" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerCurrencyDisplayS.cs" Line="84" Column="30" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyAttack/EnemyProjectileS.cs" Line="165" Column="1" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyAttack/ChargeRiseEffectS.cs" Line="142" Column="36" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/TauntDialogueS.cs" Line="12" Column="11" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/ControlManagerS.cs" Line="777" Column="14" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyBehaviorStateS.cs" Line="90" Column="1" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyParryBehavior.cs" Line="106" Column="14" />
+      <File FileName="Assets/__Scripts/UIScripts/RetryFightUI.cs" Line="93" Column="11" />
+      <File FileName="Assets/__Scripts/UIScripts/DarknessPercentUIS.cs" Line="406" Column="11" />
+      <File FileName="Assets/__Scripts/UIScripts/FadeScreenUI.cs" Line="161" Column="15" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs" Line="1022" Column="22" />
+      <File FileName="Assets/__Scripts/UIScripts/GameMenuS.cs" Line="261" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

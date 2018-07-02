@@ -90,7 +90,9 @@ public class RetryFightUI : MonoBehaviour {
 
 	public void TurnOn(){
 
+        //Debug.LogError("Calling Retry UI!");
 		if (!retryActive){
+            //Debug.LogError("Retry UI should be on!!");
 		currentPos = 0;
 		selector.anchoredPosition = selectorPos[currentPos].anchoredPosition;
 		wholeUI.gameObject.SetActive(true);
