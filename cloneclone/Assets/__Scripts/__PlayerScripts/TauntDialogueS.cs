@@ -9,7 +9,7 @@ public class TauntDialogueS : MonoBehaviour {
 
 	private bool colsSet = false;
 
-	private string tauntString = "COME ON !!";
+    public string tauntString = "COME ON !!";
 	public float flashOnTime = 0.2f;
 	private bool flashingOn = false, flashingOff = false;
 	private float flashTime = 0f;

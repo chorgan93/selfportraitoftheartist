@@ -25,6 +25,8 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
     [Header("Special Case Properties")]
     public bool enrageEnemy = false;
+    public ChargeRiseEffectS enrageChargeEffect;
+    public TauntDialogueS tauntDialogue;
 
 
 	private Vector3 attackDirection;
@@ -69,6 +71,14 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 
                 if (enrageEnemy){
                     myEnemyReference.SetEnraged(true);
+                }
+                if (enrageChargeEffect)
+                {
+                    enrageChargeEffect.TriggerEffect(Vector3.zero);
+                }
+
+                if (tauntDialogue){
+                    tauntDialogue.SetEffect(myEnemyReference.bloodColor, myEnemyReference.transform.localScale.x);
                 }
 
 				myEnemyReference.SetBreakState(9999f,0f);

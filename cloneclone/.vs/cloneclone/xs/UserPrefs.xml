@@ -1,11 +1,16 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyLogicBehaviors/EnemyDodgeBehaviorS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyParryBehavior.cs">
     <Files>
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyAttackBehaviors/EnemySingleAttackBehavior.cs" Line="93" Column="4" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyAttackBehaviors/EnemyMultiAttackBehavior.cs" Line="147" Column="53" />
-      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyLogicBehaviors/EnemyDodgeBehaviorS.cs" Line="87" Column="19" />
+      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyAttackBehaviors/EnemySingleAttackBehavior.cs" Line="81" Column="40" />
       <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyBehaviorS.cs" Line="130" Column="22" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerCurrencyDisplayS.cs" Line="84" Column="30" />
+      <File FileName="Assets/__Scripts/EnemyScripts/EnemyAttack/EnemyProjectileS.cs" Line="165" Column="1" />
+      <File FileName="Assets/__Scripts/EnemyScripts/EnemyAttack/ChargeRiseEffectS.cs" Line="142" Column="36" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/TauntDialogueS.cs" Line="12" Column="11" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/ControlManagerS.cs" Line="777" Column="14" />
+      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyBehaviorStateS.cs" Line="90" Column="1" />
+      <File FileName="Assets/__Scripts/EnemyScripts/EnemyBehaviors/EnemyMovementBehaviors/EnemyParryBehavior.cs" Line="106" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

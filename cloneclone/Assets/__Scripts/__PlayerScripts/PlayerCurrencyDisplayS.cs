@@ -135,8 +135,20 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 
 	public void AddCurrency (int currencyToAdd){
 		if (CanGetXP && !arcadeMode){
+            
 		PlayerCollectionS.currencyCollected += currencyToAdd;
+
+            if (PlayerCollectionS.currencyCollected > 999999){
+                PlayerCollectionS.currencyCollected = 999999;
+            }
+
 		currencyTotalAmt = PlayerCollectionS.currencyCollected;
+
+            if (currencyTotalAmt > 999999){
+                currencyTotalAmt = 999999;
+            }
+
+
 
 		if (subtractTimer > 0){
 			beingAddedAmt += currencyToAdd;
