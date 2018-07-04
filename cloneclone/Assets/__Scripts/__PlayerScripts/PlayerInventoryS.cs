@@ -683,6 +683,8 @@ public class PlayerInventoryS : MonoBehaviour {
 			inventoryData.tvNumber = _tvNum;
 		}
 
+        DarknessPercentUIS.hasReached100 = inventoryData.hasReached100;
+
 		GameOverS.revivePosition = inventoryData.currentSpawnPoint;
 		RefreshRechargeables();
 

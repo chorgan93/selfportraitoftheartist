@@ -260,7 +260,7 @@ cb8796afe40f1c0898f179f2ee6d8494 Assembly-CSharp.dll:.CameraPOIS
 a71115c4c90f78f4d609cfcb0a7e6277 Assembly-CSharp.dll:.FadeEnvironmentS
 23b50ef73e2c1a8a76860d35bcbbf8fc Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.GlobalFog
 daabd8d8800a87cff11f866c4d06a232 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ContrastStretch
-b45fc98f47a42b70e4fbb9cd666542de Assembly-CSharp.dll:.SceneManagerS
+927e01f8fc9826544f2cb18c429c9a1e Assembly-CSharp.dll:.SceneManagerS
 31ac2865258ddbc8f82525645ca875c2 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration
 bb97839bd272d767f1a06dc9e0bbefba Assembly-CSharp.dll:.ChargeAttackS
 696548e15c0dca9e121f53d5cb58814f Assembly-CSharp.dll:.ItemS
@@ -761,3 +761,4 @@ f0d268f1c78972ae1e6b552d891984ff Assembly-CSharp.dll:.DialogueResponseS
 07b26d5d11691d406a9c65669b2d790a Assembly-CSharp.dll:.DarknessPercentUIS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NormalizeTimeScaleS
 6ef34d65377473e3088c8fbce4076210 Assembly-CSharp.dll:.SwayEffectS
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Post100SceneSetter

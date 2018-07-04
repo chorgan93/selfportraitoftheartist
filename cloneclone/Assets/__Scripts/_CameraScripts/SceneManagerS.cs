@@ -11,6 +11,7 @@ public class SceneManagerS : MonoBehaviour {
 	public bool allowFastTravel = true;
 	public bool resetDoCountup = false;
 	public bool disableCountUp = false;
+    public bool post100Scene = false;
 
 	[Header("Mode and NG+ Properties")]
 	public bool scoringEnabled = false;
@@ -33,6 +34,8 @@ public class SceneManagerS : MonoBehaviour {
 		InGameMenuManagerS.allowFastTravel = allowFastTravel;
 		inInfiniteScene = isInfiniteScene;
 		PlayerCurrencyDisplayS.CanGetXP = !preventEXPGain;
+
+        FadeScreenUI.PostDarkScene = post100Scene;
 
 		if (resetDoCountup){
 			PlayerStatsS.dontDoCountUp = false;

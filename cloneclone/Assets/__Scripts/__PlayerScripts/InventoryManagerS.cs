@@ -49,9 +49,9 @@ public class InventoryManagerS : MonoBehaviour {
 				if (!_pRef.talking && !_pRef.myStats.PlayerIsDead()){
 					//SwitchControl();
 					UseItemControl();
-				}
+                }
 			}
-		}
+        }
 
 		/*if (Input.GetKeyDown(KeyCode.R)){
 			Debug.Log(
@@ -105,7 +105,6 @@ public class InventoryManagerS : MonoBehaviour {
 					_pRef.tutorialReference.AddSwap();
 				}
 				_pRef.playerSound.PlayItemSound(_currentSelection);
-				//Debug.Log("TOGGLED ITEMS");
 		}
 		}
 
@@ -113,7 +112,7 @@ public class InventoryManagerS : MonoBehaviour {
 			toggleItemButtonDown = false;
 		}
 		if (!useItemButtonDown && _pRef.myControl.GetCustomInput(6) && !_pRef.usingitem && _pRef.CanUseItem()){
-			UseItem(_equippedInventory[_currentSelection]);
+            UseItem(_equippedInventory[_currentSelection]);
 			useItemButtonDown = true;
 		}
 		if (useItemButtonDown && !_pRef.myControl.GetCustomInput(6)){

@@ -34,6 +34,7 @@ public class FadeScreenUI : MonoBehaviour {
 
 	private DarknessPercentUIS darknessTracker;
 	public static bool NoFade = false;
+    public static bool PostDarkScene = false;
 
 	private float _delayFadeIn = 0f;
 	private bool _delayWakeUp = false;
@@ -158,7 +159,7 @@ public class FadeScreenUI : MonoBehaviour {
 				async.allowSceneActivation = true;
 			}
 			}else{
-					Debug.Log(async.progress);
+					//Debug.Log(async.progress);
 				if (_myRenderer.color.a >= 1f && async.progress >= 0.9f && !RankManagerS.R.delayLoad){	
 						if (destinationScene == GameOverS.reviveScene || destinationScene == GameOverS.tempReviveScene){
 						if (PlayerInventoryS.I != null){
@@ -229,7 +230,7 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void FadeIn(string nextScene, float newRate = 0){
 
-		if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f && !DarknessPercentUIS.demoMode){
+        if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f && !DarknessPercentUIS.demoMode && !PostDarkScene){
 			BGMHolderS.BG.FadeOutAll();
 			GameOverS.tempReviveScene = destinationScene;
 			GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;

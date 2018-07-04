@@ -21,7 +21,7 @@ public class RetryFightUI : MonoBehaviour {
 
 	void Start(){
 		if (!retryActive){
-		TurnOff();
+		    TurnOff();
 		}
 	}
 

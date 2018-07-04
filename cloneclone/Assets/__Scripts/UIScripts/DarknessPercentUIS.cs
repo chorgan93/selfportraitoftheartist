@@ -102,6 +102,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private string firstTime100Scene = "DarknessReviveScene";
 	private string terribleFateScene = "EndingB_00_ColinFarewell";
 
+    bool sentLoadingMessage = false;
+
 	public static DarknessPercentUIS DPERCENT = null;
 
 	void Awake(){
@@ -224,11 +226,17 @@ public class DarknessPercentUIS : MonoBehaviour {
 			
 			if (fadeCount >= fadeOutTime){
 				fadeT = 1f;
-				if (RetryFightUI.allowRetry && pStats.currentDarkness < 100f){
+                if (RetryFightUI.allowRetry && (pStats.currentDarkness < 100f || FadeScreenUI.PostDarkScene)){
                     //Debug.LogError("Darkness Trying to turn on Retry!!");
 					allowRetryUI.TurnOn();
 				}else{
 					_allowAdvance = true;
+                    if (RetryFightUI.allowRetry && pStats.currentDarkness >= 100f && !sentLoadingMessage)
+                    {
+                        CameraEffectsS.E.fadeRef.StartLoading();
+                        RetryFightUI.allowRetry = false;
+                        sentLoadingMessage = true;
+                    }
 				}
 			}
 			fadeColorRed = deathRedTextDisplay.color;
@@ -429,6 +437,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 		deathRedTextDisplay.enabled = true;
 		deathSequence = true;
 		fadeOutRegNumbers = true;
+
+        hasReached100 = true;
 
 		fadeCount = 0f;
 	}

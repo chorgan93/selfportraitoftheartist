@@ -177,7 +177,10 @@ public class EnemyChargeAttackS : MonoBehaviour
                             _myRigid.velocity = Vector3.zero;
                             visibleTime = 0f;
                         }
-                        myEnemy.RemoveFosCharge(this);
+                        if (isFosCharge)
+                        {
+                            myEnemy.RemoveFosCharge(this);
+                        }
                     }
 
                     if (_myRenderer.material.GetTexture("_MainTex") == startFlash)

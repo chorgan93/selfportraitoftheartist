@@ -225,6 +225,8 @@ public class PlayerStatsS : MonoBehaviour {
 	[Header("Special Scene Properties")]
 	public bool arcadeMode = false;
 
+    private bool _playerIsDead = false;
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -909,6 +911,7 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myRigidbody.AddForce(knockbackForce*DEATH_KNOCKBACK_MULT, ForceMode.Impulse);
 						myPlayerController.myAnimator.SetTrigger("Dead");
 						myPlayerController.myAnimator.SetBool("IsDead", true);
+                        _playerIsDead = true;
 
 					List<int> saveBuddyList = new List<int>();
 					saveBuddyList.Add(myPlayerController.ParadigmIBuddy().buddyNum);
@@ -1060,7 +1063,8 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public bool PlayerIsDead(){
-		return (_currentHealth <= 0 && delayDeathCountdown <= 0f);
+        //return (_currentHealth <= 0 && delayDeathCountdown <= 0f);
+        return _playerIsDead;
 	}
 
 	public void AddBlocker(BlockDisplay3DS newBlock){
