@@ -605,6 +605,7 @@ e957c4e1c6ee6c80c2339de6a37717d9 Assembly-CSharp.dll:.ImageGlowS
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Post100SceneSetter
 7af94f88e6a6b514f9d9bf69fc431401 Assembly-CSharp.dll:.ActivateOnPlayerHealthS
 9e0ef5bf862444b5dc48b5a99554ce7c UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
@@ -761,4 +762,3 @@ f0d268f1c78972ae1e6b552d891984ff Assembly-CSharp.dll:.DialogueResponseS
 07b26d5d11691d406a9c65669b2d790a Assembly-CSharp.dll:.DarknessPercentUIS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.NormalizeTimeScaleS
 6ef34d65377473e3088c8fbce4076210 Assembly-CSharp.dll:.SwayEffectS
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Post100SceneSetter

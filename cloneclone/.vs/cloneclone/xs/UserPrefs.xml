@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/__PlayerScripts/InventoryManagerS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LevelScripts/ActivateOnExamineS.cs">
     <Files>
       <File FileName="Assets/__Scripts/BuddyScripts/BuddyS.cs" Line="61" Column="40" />
       <File FileName="Assets/__Scripts/BuddyScripts/ShootBuddyS.cs" Line="194" Column="46" />
       <File FileName="Assets/__Scripts/BuddyScripts/BuddyProjectileS.cs" Line="14" Column="21" />
       <File FileName="Assets/__Scripts/__PlayerScripts/InventoryManagerS.cs" Line="121" Column="1" />
+      <File FileName="Assets/__Scripts/LevelScripts/ActivateOnExamineS.cs" Line="39" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
