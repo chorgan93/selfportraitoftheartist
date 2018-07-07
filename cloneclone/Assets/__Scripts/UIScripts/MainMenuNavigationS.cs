@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 0.8.0 —";
+	private const string currentVer = "— v. 0.8.5 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -34,12 +34,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	public GameObject secondScreenObject;
 
-	private BlurOptimized blurEffect;
+	private Blur blurEffect;
 	private float blurEffectTimeMax = 5f;
 	private float blurEffectTime;
 	private float blurT;
 	private bool blurEnabled = true;
-	private float blurSizeMax = 9.99f;
 	
 	private Camera myCam;
 	private float startOrtho;
@@ -115,7 +114,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 		PlayerStatsS.godMode = false;
 		OverrideDemoLoadS.beenToMainMenu = true;
 
-		blurEffect = GetComponent<BlurOptimized>();
+		blurEffect = GetComponent<Blur>();
 		
 		fadeOnZoom.gameObject.SetActive(false);
 		firstScreenTurnOff.SetActive(true);
@@ -573,9 +572,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 				blurT = blurEffectTime / blurEffectTimeMax;
 				//blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
 				blurT = 1f - Mathf.Cos(blurT * Mathf.PI * 0.5f);
-				blurEffect.blurSize = Mathf.Lerp(blurSizeMax, 0, blurT);
-				blurEffect.blurIterations = Mathf.FloorToInt(Mathf.Lerp(4, 0, blurT));
-				blurEffect.downsample = Mathf.FloorToInt(Mathf.Lerp(2, 0, blurT));
+                blurEffect.blurSpread = Mathf.Lerp(1, 0, blurT);
+                blurEffect.iterations = Mathf.FloorToInt(Mathf.Lerp(10, 0, blurT));
 
 
 

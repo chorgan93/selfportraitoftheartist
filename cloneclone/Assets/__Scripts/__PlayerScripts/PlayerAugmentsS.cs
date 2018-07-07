@@ -326,71 +326,98 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private void TurnOnVirtueAugs(){
 
-		// as always, remove // before if statements when done testing
-		if (PlayerController.equippedVirtues.Contains(0)){
-			_unstoppableAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(1)){
-			_determinedAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(2)){
-			_empoweredAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(20)){
-			_enragedAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(4)){
-			_adaptiveAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(5)){
-			_perceptiveAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(9)){
-			_agileAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(7)){
-			_repellantAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(8)){
-			_trustingAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(6)){
-			_drivenAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(10)){
-			_anxiousAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(11)){
-			_condemnedAug = true;
-		}
+        // as always, remove // before if statements when done testing
+        if (_playerReference.isNatalie)
+        {
+            _unstoppableAug = true;
+        }
+        else
+        {
+            if (PlayerController.equippedVirtues.Contains(0))
+            {
+                _unstoppableAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(1))
+            {
+                _determinedAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(2))
+            {
+                _empoweredAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(20))
+            {
+                _enragedAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(4))
+            {
+                _adaptiveAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(5))
+            {
+                _perceptiveAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(9))
+            {
+                _agileAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(7))
+            {
+                _repellantAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(8))
+            {
+                _trustingAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(6))
+            {
+                _drivenAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(10))
+            {
+                _anxiousAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(11))
+            {
+                _condemnedAug = true;
+            }
 
-		if (PlayerController.equippedVirtues.Contains(13)){
-			_hatedAug = true;
-		}
+            if (PlayerController.equippedVirtues.Contains(13))
+            {
+                _hatedAug = true;
+            }
 
-		if (PlayerController.equippedVirtues.Contains(17)){
-		_untetheredAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(18)){
-			_disconnectedAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(14)){
-			_lovedAug = true;
-		}
+            if (PlayerController.equippedVirtues.Contains(17))
+            {
+                _untetheredAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(18))
+            {
+                _disconnectedAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(14))
+            {
+                _lovedAug = true;
+            }
 
-		if (PlayerController.equippedVirtues.Contains(12)){
-			_desperateAug = true;
-		}
+            if (PlayerController.equippedVirtues.Contains(12))
+            {
+                _desperateAug = true;
+            }
 
-		if (PlayerController.equippedVirtues.Contains(3)){
-			_paranoidAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(19)){
-			_incensedAug = true;
-		}
-		if (PlayerController.equippedVirtues.Contains(16)){
-			_cautiousAug = true;
-		}
+            if (PlayerController.equippedVirtues.Contains(3))
+            {
+                _paranoidAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(19))
+            {
+                _incensedAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(16))
+            {
+                _cautiousAug = true;
+            }
+        }
 
 	}
 

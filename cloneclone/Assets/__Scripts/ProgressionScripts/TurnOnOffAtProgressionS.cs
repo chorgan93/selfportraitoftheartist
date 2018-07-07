@@ -16,7 +16,8 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	public PlayerWeaponS turnOnOffAtMantraInInventory;
 	public BuddyS turnOnOffAtBuddyInInventory;
 	public int turnOnOffAtTechEarned = -1;
-	public int turnOnOffAtVirtueEarned = -1;
+    public int turnOnOffAtVirtueEarned = -1;
+    public int turnOnOffAtRewindEarned = -1;
 
 	// Use this for initialization
 	void Awake(){
@@ -65,7 +66,6 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 		else if (turnOnOffAtTechEarned > -1 && PlayerInventoryS.I != null){
 			if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned)){
 				TurnObjectsOnOff();
-				Debug.Log("Tech earned!");
 			}	
 		}
 		else if (turnOnOffAtVirtueEarned > -1){
@@ -73,6 +73,14 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 				TurnObjectsOnOff();
 			}	
 		}
+
+        else if (turnOnOffAtRewindEarned > -1)
+        {
+            if (PlayerInventoryS.I.CheckHeal(turnOnOffAtRewindEarned))
+            {
+                TurnObjectsOnOff();
+            }
+        }
 	}
 
 	void TurnObjectsOnOff(){

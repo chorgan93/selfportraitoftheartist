@@ -1,6 +1,6 @@
-OSXStandalone
+WindowsStandalone
 PlayerPath?
-/Users/colinhorgan/Desktop/Lucah Born of a Dream Recording Build/Lucah Born of a Dream.app
+/Users/colinhorgan/Desktop/Lucah Born of a Dream Recording Build/Lucah Born of a Dream/Lucah Born of a Dream.exe
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/DemoIntro.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -210,6 +210,10 @@ Assets/_Scenes/_IntroductionScenes/TransformMessage.unity
 Assets/_Scenes/__MenuScenes/AttractMode_00.unity
 Assets/_Scenes/EndingScenes/EndingB_01_NataliesRoom.unity
 Assets/_Scenes/EndingScenes/EndingB_02_Balcony.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_10_HiddenCombat.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_11_Hated.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_12_HiddenCombat.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_22_BottomOfTheLake.unity
 SceneListEnd?
 cf22abe57e158a48c7a844928d01ea06 Assembly-CSharp.dll:.MantraSwitchS
 ad0721a9e870d457beb24fa5df9de08c Assembly-CSharp.dll:.AllyFollowS
@@ -506,7 +510,7 @@ f212986f5e8887cd985b57d1f109068e Assembly-CSharp.dll:.SacramentTextS
 cac5093fb1baf037bd671ecbc6727828 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenOverlay
 01f71e31a39f0510730549d618a19a6e Assembly-CSharp.dll:.ItemEffectS
 142c5507e3e8783dcef2da19684ace0d Assembly-CSharp.dll:.ResetUIS
-2dc2a289f1e79f7040646b8095f3bc7a Assembly-CSharp.dll:.TurnOnOffAtProgressionS
+42bc29c3772cfa9b8bd6038e6f2356aa Assembly-CSharp.dll:.TurnOnOffAtProgressionS
 0e3a3ce49a398c68c6543b49408793d0 Assembly-CSharp.dll:.RandomAnimS
 6650905cfafe0c2f12121e2f80b40a01 Assembly-CSharp.dll:.RotateEffectS
 8e819f62cd4a37276bca27bae88fc0e2 Assembly-CSharp.dll:.EnemyRandomBehaviorS
@@ -698,7 +702,7 @@ fa488be3dab501c15a5201cec592d1be Assembly-CSharp.dll:.BlockDisplay3DS
 34649f00651a4523857787538c849e20 Assembly-CSharp.dll:.SacramentCombatS
 87a7811243295622deb28d84fe2b76a5 Assembly-CSharp.dll:.ForceTrigger
 de8b7203a0d563a31e48a8fd322a0f53 Assembly-CSharp.dll:.EnemySpawnerS
-6bc6a38e55f779bffabfbe95e9ad5308 Assembly-CSharp.dll:.CombatManagerS
+e0256defe236165cabd3d1dc2a8d39d3 Assembly-CSharp.dll:.CombatManagerS
 b84988f31dade3ebc05ac16dd34ed1d0 Assembly-CSharp.dll:.PlayerController
 05378b558f10683e575813101e0e87b7 Assembly-CSharp.dll:.TimedShakesS
 182c4e5f10313700315ee397e3e46987 Assembly-CSharp.dll:.SacramentStepS

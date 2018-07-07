@@ -14,9 +14,13 @@ public class SFXObjS : MonoBehaviour {
 	void Start () {
 
 		mySource = GetComponent<AudioSource>();
-		if (arcadeOverride && CameraEffectsS.E.arcadeMode){
-			mySource.clip = arcadeOverride;
-		}
+        if (CameraEffectsS.E != null)
+        {
+            if (arcadeOverride && CameraEffectsS.E.arcadeMode)
+            {
+                mySource.clip = arcadeOverride;
+            }
+        }
 		mySource.volume *= volumeSetting;
 		mySource.pitch += Random.insideUnitCircle.x*pitchMult;
 		mySource.Play();

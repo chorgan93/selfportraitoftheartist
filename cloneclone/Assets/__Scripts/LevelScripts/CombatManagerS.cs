@@ -43,6 +43,7 @@ public class CombatManagerS : MonoBehaviour {
 	public GameObject[] turnOffOnSkip;
 	public bool clearBloodOnComplete = false;
 	public bool turnOffEnemiesOnComplete = false;
+    public CombatManagerS turnOffOtherEnemies;
 
 	[Header("Special Player Properties")]
 	public float changeParryRange = -1;
@@ -199,6 +200,15 @@ public class CombatManagerS : MonoBehaviour {
 		if (turnOnAtStart != null){
 			turnOnAtStart.Activate();
 		}
+        if (turnOffOtherEnemies != null){
+            for (int i = 0; i < turnOffOtherEnemies.enemies.Length; i++)
+            {
+                if (turnOffOtherEnemies.enemies[i].currentSpawnedEnemy)
+                {
+                    turnOffOtherEnemies.enemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
+                }
+            }
+        }
 
 		RetryFightUI.allowRetry = allowRetry;
 

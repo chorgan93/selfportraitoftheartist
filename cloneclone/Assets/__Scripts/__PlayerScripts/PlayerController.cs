@@ -831,7 +831,10 @@ public class PlayerController : MonoBehaviour {
 		_attackBuffered = false;
 		attackTriggered = false;
 		_attackingWeapon = equippedWeapon;
-		attackingWeaponAug = EquippedWeaponAug();
+        if (EquippedWeaponAug() != null)
+        {
+            attackingWeaponAug = EquippedWeaponAug();
+        }
 		attackDuration = 0f;
 		if (myTracker){
 		myTracker.TurnOffEffect();

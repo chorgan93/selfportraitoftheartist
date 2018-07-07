@@ -132,6 +132,8 @@ public class BarrierS : MonoBehaviour {
 				PlayerInventoryS.I.AddClearedWall(barrierNum);
 			}
 
+            Debug.Log("Barrier breaking");
+
 		}
 
 
