@@ -1,6 +1,6 @@
-WindowsStandalone
+OSXStandalone
 PlayerPath?
-/Users/colinhorgan/Desktop/Lucah Born of a Dream Recording Build/Lucah Born of a Dream/Lucah Born of a Dream.exe
+/Users/colinhorgan/Desktop/Lucah Born of a Dream Recording Build/Lucah Born of a Dream.app
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/DemoIntro.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -214,6 +214,9 @@ Assets/_Scenes/Area04(Desert)Scenes/Area04_10_HiddenCombat.unity
 Assets/_Scenes/Area04(Desert)Scenes/Area04_11_Hated.unity
 Assets/_Scenes/Area06(Trail)Scenes/Area06_12_HiddenCombat.unity
 Assets/_Scenes/Area05(Highway)Scenes/Area05_22_BottomOfTheLake.unity
+Assets/_Scenes/_DreamScenes/Dream10_EndingA.unity
+Assets/_Scenes/_DreamScenes/Dream11_EndingB.unity
+Assets/_Scenes/_DreamScenes/Dream12_EndingC.unity
 SceneListEnd?
 cf22abe57e158a48c7a844928d01ea06 Assembly-CSharp.dll:.MantraSwitchS
 ad0721a9e870d457beb24fa5df9de08c Assembly-CSharp.dll:.AllyFollowS
@@ -725,7 +728,7 @@ a5cd40138579b1ed9bce75caf68b1089 Assembly-CSharp.dll:.TranslateObjectS
 dd760991dcf5457814e8e7c9613e034b Assembly-CSharp.dll:.DeathCountdownHandlerS
 124a8ebae48fcef5f813e8927ed4d40e Assembly-CSharp.dll:.SpriteDistortionEnemyS
 a8003b8f6fe31ed3ed9d22f823658d7b Assembly-CSharp.dll:.ActivateOnCombatClearedS
-4904ac66737b0a102a720b7df42b22ba Assembly-CSharp.dll:.MatchCinemaPositionS
+e53f9e45274fc7dd168abc77e5f6c8bf Assembly-CSharp.dll:.MatchCinemaPositionS
 e6521075af684cadf0c08a7869dc1624 Assembly-CSharp.dll:.ProgressionTriggerS
 d011673efba820237ba1ac1ad89b301f Assembly-CSharp.dll:.ChangeCameraSizeOnTouch
 48f6d0dc5357b330145233b380741391 Assembly-CSharp.dll:.FakeFloorS

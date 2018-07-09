@@ -437,7 +437,7 @@ public class EnemyS : MonoBehaviour {
 
 	private void DeadUpdate(){
 
-		if (_isDead){
+        if (_isDead){
 			SpawnDeathObj();
 		}
 		
@@ -977,7 +977,7 @@ public class EnemyS : MonoBehaviour {
 
 	private void SpawnDeathObj(bool enragedEffect = false){
 
-		if (!spawnedDeathObj){
+        if (!spawnedDeathObj){
 			deathFrameDelay--;
 			if (deathFrameDelay <= 0){
 		GameObject deathObj = Instantiate(deathObjRef, transform.position, Quaternion.identity)
@@ -999,17 +999,25 @@ public class EnemyS : MonoBehaviour {
 	IEnumerator DeathFade(){
 		float deathColorTime = 1f, deathColorCount = 1f, deathT = 1f;
 		_doingDeathFade = true;
+        int endDeathAnim = 2;
 		while (deathColorCount > 0f && _isDead){
 			deathColorCount -= Time.deltaTime;
 			if (deathColorCount < 0f){
 				deathColorCount = 0f;
 			}
 			deathT = deathColorCount/deathColorTime;
-			myRenderer.color = Color.Lerp(deadColor, startColor, deathT);
+            myRenderer.color = Color.Lerp(deadColor, startColor, deathT);
+
+            if (endDeathAnim <= 0)
+            {
+                _myAnimator.SetBool("Death", false);
+            }else{
+                endDeathAnim--;
+            }
 
 			yield return null;
 		}
-		_doingDeathFade = false;
+        _doingDeathFade = false;
 	}
 
 	private void ResetMaterial(){
@@ -1471,6 +1479,7 @@ public class EnemyS : MonoBehaviour {
 			CancelBehaviors();
 			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
+        _myAnimator.SetBool("Crit", false);
 			_myAnimator.SetBool("Death", true);
 			_myAnimator.SetFloat("DeathSpeed", 1f);
 			if (hitWorkaround){
@@ -1571,7 +1580,8 @@ public class EnemyS : MonoBehaviour {
 		ResetFaceLock();
 		Stun (0);
 		CancelBehaviors();
-		_myAnimator.SetLayerWeight(1, 0f);
+        _myAnimator.SetLayerWeight(1, 0f);
+        _myAnimator.SetBool("Crit", false);
 		_myAnimator.SetBool("Death", true);
 		_myAnimator.SetFloat("DeathSpeed", 10f);
 		currentKnockbackCooldown = knockbackTime;
