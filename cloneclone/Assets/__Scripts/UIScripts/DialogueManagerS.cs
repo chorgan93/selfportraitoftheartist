@@ -61,6 +61,8 @@ public class DialogueManagerS : MonoBehaviour {
 	public static DialogueManagerS D;
 	public GameObject dialogueAdvanceSound;
 
+    public bool showingText { get { return _textActive; }}
+
 	void Awake(){
 
 		D = this;
@@ -322,7 +324,7 @@ public class DialogueManagerS : MonoBehaviour {
 		}
 	}
 
-	public void EndText(bool newStatOn = true){
+	public void EndText(bool newStatOn = true, bool playSound = true){
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
 		}

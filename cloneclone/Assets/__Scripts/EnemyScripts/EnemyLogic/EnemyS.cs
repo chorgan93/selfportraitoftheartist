@@ -999,7 +999,7 @@ public class EnemyS : MonoBehaviour {
 	IEnumerator DeathFade(){
 		float deathColorTime = 1f, deathColorCount = 1f, deathT = 1f;
 		_doingDeathFade = true;
-        int endDeathAnim = 2;
+        //int endDeathAnim = 5;
 		while (deathColorCount > 0f && _isDead){
 			deathColorCount -= Time.deltaTime;
 			if (deathColorCount < 0f){
@@ -1008,12 +1008,13 @@ public class EnemyS : MonoBehaviour {
 			deathT = deathColorCount/deathColorTime;
             myRenderer.color = Color.Lerp(deadColor, startColor, deathT);
 
-            if (endDeathAnim <= 0)
+            /*if (endDeathAnim == 0)
             {
                 _myAnimator.SetBool("Death", false);
+                endDeathAnim--;
             }else{
                 endDeathAnim--;
-            }
+            }**/
 
 			yield return null;
 		}

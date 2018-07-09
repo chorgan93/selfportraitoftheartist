@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area04(Desert)Scenes/Area04_06_Stockroom.unity
+- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_05_HarborCheckpoint.unity
   isLoaded: 1
   isActive: 1

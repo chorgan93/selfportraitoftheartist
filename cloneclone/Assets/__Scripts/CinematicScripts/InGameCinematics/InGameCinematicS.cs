@@ -37,6 +37,14 @@ public class InGameCinematicS : MonoBehaviour {
 
 	[Header("Ending Properties")]
 	public bool healDarknessScene = false;
+    public bool skippable = false;
+    private bool _skipMode = false;
+    public bool skipMode { get { return _skipMode;  } }
+    public int skippableSceneIndex = -1;
+
+    private bool skipButtonDown = false;
+    public GameObject[] forceONonSkip;
+    public GameObject[] forceOFFonSkip;
 	
 
 	// Use this for initialization
@@ -61,6 +69,37 @@ public class InGameCinematicS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (skippable)
+        {
+            if (!_skipMode)
+            {
+                if (pRef.myControl.GetCustomInput(10))
+                {
+                    if (!skipButtonDown)
+                    {
+                        if (PlayerInventoryS.I.SkippableScenes.Contains(skippableSceneIndex))
+                        {
+                            _skipMode = true;
+                            if (SkipSceneS.instance)
+                            {
+                                SkipSceneS.instance.ShowMessage(true);
+                            }
+                        }
+                        else if (SkipSceneS.instance)
+                        {
+                            SkipSceneS.instance.ShowMessage(false);
+                            skipButtonDown = true;
+                        }
+
+                    }
+                }
+                else
+                {
+                    skipButtonDown = false;
+                }
+            }
+        }
+
         if (waitForTaunt){
             if (pRef.inAttackDuration){
                 AdvanceCinematic();
@@ -68,11 +107,20 @@ public class InGameCinematicS : MonoBehaviour {
             }
         }
 		else if (timedStep){
-			currentCountdown-=Time.deltaTime;
+            if (_skipMode){
+                currentCountdown = 0;
+                dialogueDone = true;
+            }else{
+			    currentCountdown-=Time.deltaTime;
+            }
 			if (currentCountdown <= 0 && dialogueDone){
 				AdvanceCinematic();
 			}
-		}
+        }else if (_skipMode){
+            dialogueDone = true;
+            DialogueManagerS.D.EndText(true, false);
+            AdvanceCinematic();
+        }
 	
 	}
 
@@ -226,6 +274,9 @@ public class InGameCinematicS : MonoBehaviour {
 	private void EndCinematic(){
 		inGameCinematic = false;
 		turnOffBuddies = false;
+        if (DialogueManagerS.D.showingText){
+            DialogueManagerS.D.EndText();
+        }
 		pRef.SetTalking(false);
 		if (noBuddy){
 			pRef.SetBuddy(true);
@@ -233,7 +284,31 @@ public class InGameCinematicS : MonoBehaviour {
 		if (resetPOIOnEnd){
 			CameraFollowS.F.ResetPOI();
 		}
+        if (skippableSceneIndex > -1){
+            PlayerInventoryS.I.AddSkippableScene(skippableSceneIndex);
+        }
+        if (_skipMode){
+            ActivateOnSkip();
+        }
+        if (SkipSceneS.instance){
+            SkipSceneS.instance.HideMessage();
+        }
 		Destroy(gameObject);
 
 	}
+
+    void ActivateOnSkip(){
+        if (forceONonSkip != null){
+            for (int i = 0; i < forceONonSkip.Length; i++)
+            {
+                forceONonSkip[i].SetActive(true);
+            }
+
+        }
+        if (forceOFFonSkip != null){
+            for (int i = 0; i < forceOFFonSkip.Length; i++){
+                forceOFFonSkip[i].SetActive(false);
+            }
+        }
+    }
 }

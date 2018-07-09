@@ -30,6 +30,10 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	private Vector3 savedSpawnPt;
 
+
+    [Header("Special Case Properties")]
+    public EnemySpawnerS killIfThisEnemyDies;
+
 	// Use this for initialization
 	void Start () {
 
@@ -50,7 +54,13 @@ public class EnemySpawnerS : MonoBehaviour {
 			if (enemySpawnDelay <= 0 && allowSpawn){
 				SpawnEnemy();
 			}
-		}
+        }else{
+            if (killIfThisEnemyDies){
+                if (killIfThisEnemyDies.currentSpawnedEnemy.isDead && !currentSpawnedEnemy.isDead){
+                    currentSpawnedEnemy.KillWithoutXP();
+                }
+            }
+        }
 
 		if (EnemiesDefeated() && !sentClearMessage){
 			sentClearMessage = true;

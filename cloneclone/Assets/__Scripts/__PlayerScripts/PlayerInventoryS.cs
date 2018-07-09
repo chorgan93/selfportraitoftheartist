@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class PlayerInventoryS : MonoBehaviour {
 
@@ -59,11 +60,14 @@ public class PlayerInventoryS : MonoBehaviour {
 	private bool unlockForDemo = false;
 	private bool eraseOnNewGame = false;
 	public List<PlayerWeaponS> weaponsToAddForDemo;
-	public List<GameObject> buddiesToAddForDemo;
+    public List<GameObject> buddiesToAddForDemo;
+
+    private List<int> skippableScenes = new List<int>();
+    public List<int> SkippableScenes { get { return skippableScenes; }}
 
 	#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 	public static bool DO_NOT_SAVE = false;
-	#endif
+#endif
 
 	void Awake () {
 
@@ -247,6 +251,13 @@ public class PlayerInventoryS : MonoBehaviour {
 				_collectedItems.Remove(i);
 			}
 		}
+	}
+
+	public void AddSkippableScene(int skippableSceneIndex)
+	{
+        if (skippableSceneIndex > -1 && !PlayerInventoryS.I.skippableScenes.Contains(skippableSceneIndex)){
+            skippableScenes.Add(skippableSceneIndex);
+        }
 	}
 
 	public bool CheckForItem(int i){
@@ -541,6 +552,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		checkpointsReachedScenes.Clear();
 		checkpointsReachedSpawns.Clear();
 
+        skippableScenes.Clear();
+
 		if (_iManager && !newGamePlus){
 			_iManager.equippedInventory.Clear();
 			_iManager.equippedInventory.Add(0);
@@ -577,7 +590,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		lHandler.ResetUpgrades();
 		}
-		_tvNum = Mathf.RoundToInt(Random.Range(100, 999));
+		_tvNum = Mathf.RoundToInt(UnityEngine.Random.Range(100, 999));
 		if (unlockForDemo){
 			DemoUnlocks(null);
 		}
@@ -614,6 +627,10 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls = inventoryData.clearedWalls;
 		_earnedVirtues = inventoryData.earnedVirtues;
 		_earnedTech = inventoryData.earnedTech;
+
+        if (inventoryData.skippableScenes != null){
+            skippableScenes = inventoryData.skippableScenes;
+        }
 
 		scenesIveBeenTo = inventoryData.scenesIveBeenTo;
 
@@ -673,13 +690,13 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		if (inventoryData.tvNumber != null){
 			if (inventoryData.tvNumber < 100 || inventoryData.tvNumber == 999){
-				_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
+				_tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 				inventoryData.tvNumber = _tvNum;
 			}else{
 				_tvNum = inventoryData.tvNumber;
 			}
 		}else{
-			_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
+			_tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 			inventoryData.tvNumber = _tvNum;
 		}
 
@@ -720,6 +737,8 @@ public class PlayerInventoryS : MonoBehaviour {
 			inventoryData.checkpointsReachedScenes = checkpointsReachedScenes;
 			inventoryData.checkpointsReachedSpawns = checkpointsReachedSpawns;
 			inventoryData.currentSpawnPoint = GameOverS.revivePosition;
+
+                inventoryData.skippableScenes = skippableScenes;
 
 			if (_dManager.combatClearedAtLeastOnce != null){
 				inventoryData.combatClearedAtLeastOnce = _dManager.combatClearedAtLeastOnce;
@@ -780,7 +799,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
 			if (_tvNum < 100 || _tvNum == 999){
-				_tvNum = Mathf.FloorToInt(Random.Range(100, 999));
+				_tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 			}
 			inventoryData.tvNumber = _tvNum;
 			}
@@ -842,7 +861,7 @@ public class InventorySave {
 	public string playerName;
 
 	public bool hasReached100 = false;
-
+    public List<int> skippableScenes;
 
 	public InventorySave(){
 		playerName = "LUCAH";
@@ -882,12 +901,14 @@ public class InventorySave {
 		currentParadigm = 0;
 		currentSpawnPoint = 0;
 
+        skippableScenes = new List<int>();
+
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
 		lockedUpgrades = new List<int>(){0,1, 2};
 		familiarUnlocked = false;
 
-		tvNumber = Mathf.FloorToInt(Random.Range(100, 999));
+		tvNumber = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 
 		turboSetting = 0;
 

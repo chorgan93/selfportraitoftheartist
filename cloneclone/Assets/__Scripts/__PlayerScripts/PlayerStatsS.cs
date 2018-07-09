@@ -926,6 +926,7 @@ public class PlayerStatsS : MonoBehaviour {
 						RankManagerS.R.DieInCombat();
 					if (dontDoCountUp){
 						dontDoCountUp = false;
+                            CameraEffectsS.E.fadeRef.skipPercentScene = true;
 						}else if (!SceneManagerS.inInfiniteScene){
 						_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
 						_currentDarkness += DARKNESS_ADD_DEATH;

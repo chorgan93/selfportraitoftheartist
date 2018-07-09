@@ -45,6 +45,9 @@ public class FadeScreenUI : MonoBehaviour {
 	private Color fadeAssistColor;
 	private bool doNotUseAssist = false;
 
+    [HideInInspector]
+    public bool skipPercentScene = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -118,7 +121,9 @@ public class FadeScreenUI : MonoBehaviour {
 				_fadingIn = false;
 				if (!RetryFightUI.allowRetry){
 					StartLoading();
-				}
+                }else if (skipPercentScene){
+                    darknessTracker.allowRetryUI.TurnOn();
+                }
 			}
 			_myRenderer.color = _myColor;
 
