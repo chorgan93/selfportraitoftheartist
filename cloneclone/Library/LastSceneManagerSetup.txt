@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area05(Highway)Scenes/Area05_05_HarborCheckpoint.unity
+- path: Assets/_Scenes/EndingScenes/EndingB_02_Balcony.unity
   isLoaded: 1
   isActive: 1

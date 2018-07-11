@@ -990,7 +990,7 @@ public class EquipMenuS : MonoBehaviour {
 		int nextAvail = startPt-3;
 
 		if (dir > 0){
-			if (startPt < allBuddyItems.Length){
+			if (startPt-3 < allBuddyItems.Length){
 				for (int i = startPt-3; i < allBuddyItems.Length; i++){
 					if (allBuddyItems[i].unlocked && nextAvail == startPt-3){
 						nextAvail = i;

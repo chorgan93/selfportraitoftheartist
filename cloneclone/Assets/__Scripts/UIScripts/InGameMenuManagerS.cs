@@ -141,7 +141,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 				if (!_pRef.inCombat){
 					// TODO: turn back on once functional
-					if (allowMenuUse && _pRef.myControl.GetCustomInput(10) && !equipMenuButtonDown){
+                    if (allowMenuUse && _pRef.myControl.GetCustomInput(10) && !equipMenuButtonDown && !_pRef.isNatalie){
 						equipMenuActive = true;
 						equipMenu.TurnOn();
 						_pRef.SetTalking(true);

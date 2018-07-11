@@ -1,0 +1,2191 @@
+fileFormatVersion: 2
+guid: b65c42dfa0212496899d7b3f108c70fb
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Gaea Attacks Redesign_0
+    21300118: PC Gaea Attacks Redesign_1
+    21300120: PC Gaea Attacks Redesign_2
+    21300122: PC Gaea Attacks Redesign_3
+    21300124: PC Gaea Attacks Redesign_4
+    21300126: PC Gaea Attacks Redesign_5
+    21300128: PC Gaea Attacks Redesign_6
+    21300130: PC Gaea Attacks Redesign_7
+    21300132: PC Gaea Attacks Redesign_8
+    21300134: PC Gaea Attacks Redesign_9
+    21300136: PC Gaea Attacks Redesign_10
+    21300138: PC Gaea Attacks Redesign_11
+    21300140: PC Gaea Attacks Redesign_12
+    21300142: PC Gaea Attacks Redesign_13
+    21300144: PC Gaea Attacks Redesign_14
+    21300146: PC Gaea Attacks Redesign_15
+    21300148: PC Gaea Attacks Redesign_16
+    21300150: PC Gaea Attacks Redesign_17
+    21300152: PC Gaea Attacks Redesign_18
+    21300154: PC Gaea Attacks Redesign_19
+    21300156: PC Gaea Attacks Redesign_20
+    21300158: PC Gaea Attacks Redesign_21
+    21300160: PC Gaea Attacks Redesign_22
+    21300162: PC Gaea Attacks Redesign_23
+    21300164: PC Gaea Attacks Redesign_24
+    21300166: PC Gaea Attacks Redesign_25
+    21300168: PC Gaea Attacks Redesign_26
+    21300170: PC Gaea Attacks Redesign_27
+    21300172: PC Gaea Attacks Redesign_28
+    21300174: PC Gaea Attacks Redesign_29
+    21300176: PC Gaea Attacks Redesign_30
+    21300178: PC Gaea Attacks Redesign_31
+    21300180: PC Gaea Attacks Redesign_32
+    21300182: PC Gaea Attacks Redesign_33
+    21300184: PC Gaea Attacks Redesign_34
+    21300186: PC Gaea Attacks Redesign_35
+    21300188: PC Gaea Attacks Redesign_36
+    21300190: PC Gaea Attacks Redesign_37
+    21300192: PC Gaea Attacks Redesign_38
+    21300194: PC Gaea Attacks Redesign_39
+    21300196: PC Gaea Attacks Redesign_40
+    21300198: PC Gaea Attacks Redesign_41
+    21300200: PC Gaea Attacks Redesign_42
+    21300202: PC Gaea Attacks Redesign_43
+    21300204: PC Gaea Attacks Redesign_44
+    21300206: PC Gaea Attacks Redesign_45
+    21300208: PC Gaea Attacks Redesign_46
+    21300210: PC Gaea Attacks Redesign_47
+    21300212: PC Gaea Attacks Redesign_48
+    21300214: PC Gaea Attacks Redesign_49
+    21300216: PC Gaea Attacks Redesign_50
+    21300218: PC Gaea Attacks Redesign_51
+    21300220: PC Gaea Attacks Redesign_52
+    21300222: PC Gaea Attacks Redesign_53
+    21300224: PC Gaea Attacks Redesign_54
+    21300226: PC Gaea Attacks Redesign_55
+    21300228: PC Gaea Attacks Redesign_56
+    21300230: PC Gaea Attacks Redesign_57
+    21300232: PC Gaea Attacks Redesign_58
+    21300234: PC Gaea Attacks Redesign_59
+    21300236: PC Gaea Attacks Redesign_60
+    21300238: PC Gaea Attacks Redesign_61
+    21300240: PC Gaea Attacks Redesign_62
+    21300242: PC Gaea Attacks Redesign_63
+    21300244: PC Gaea Attacks Redesign_64
+    21300246: PC Gaea Attacks Redesign_65
+    21300248: PC Gaea Attacks Redesign_66
+    21300250: PC Gaea Attacks Redesign_67
+    21300252: PC Gaea Attacks Redesign_68
+    21300254: PC Gaea Attacks Redesign_69
+    21300256: PC Gaea Attacks Redesign_70
+    21300258: PC Gaea Attacks Redesign_71
+    21300260: PC Gaea Attacks Redesign_72
+    21300262: PC Gaea Attacks Redesign_73
+    21300264: PC Gaea Attacks Redesign_74
+    21300266: PC Erebos Attacks_0
+    21300268: PC Erebos Attacks_1
+    21300270: PC Erebos Attacks_2
+    21300272: PC Erebos Attacks_3
+    21300274: PC Erebos Attacks_4
+    21300276: PC Erebos Attacks_5
+    21300278: PC Erebos Attacks_6
+    21300280: PC Erebos Attacks_7
+    21300282: PC Erebos Attacks_8
+    21300284: PC Erebos Attacks_9
+    21300286: PC Erebos Attacks_10
+    21300288: PC Erebos Attacks_11
+    21300290: PC Erebos Attacks_12
+    21300292: PC Erebos Attacks_13
+    21300294: PC Erebos Attacks_14
+    21300296: PC Erebos Attacks_15
+    21300298: PC Erebos Attacks_16
+    21300300: PC Erebos Attacks_17
+    21300302: PC Erebos Attacks_18
+    21300304: PC Erebos Attacks_19
+    21300306: PC Erebos Attacks_20
+    21300308: PC Erebos Attacks_21
+    21300310: PC Erebos Attacks_22
+    21300312: PC Erebos Attacks_23
+    21300314: PC Erebos Attacks_24
+    21300316: PC Erebos Attacks_25
+    21300318: PC Erebos Attacks_26
+    21300320: PC Erebos Attacks_27
+    21300322: PC Erebos Attacks_28
+    21300324: PC Erebos Attacks_29
+    21300326: PC Erebos Attacks_30
+    21300328: PC Erebos Attacks_31
+    21300330: PC Erebos Attacks_32
+    21300332: PC Erebos Attacks_33
+    21300334: PC Erebos Attacks_34
+    21300336: PC Erebos Attacks_35
+    21300338: PC Erebos Attacks_36
+    21300340: PC Erebos Attacks_37
+    21300342: PC Erebos Attacks_38
+    21300344: PC Erebos Attacks_39
+    21300346: PC Erebos Attacks_40
+    21300348: PC Erebos Attacks_41
+    21300350: PC Erebos Attacks_42
+    21300352: PC Erebos Attacks_43
+    21300354: PC Erebos Attacks_44
+    21300356: PC Erebos Attacks_45
+    21300358: PC Erebos Attacks_46
+    21300360: PC Erebos Attacks_47
+    21300362: PC Erebos Attacks_48
+    21300364: PC Erebos Attacks_49
+    21300366: PC Erebos Attacks_50
+    21300368: PC Erebos Attacks_51
+    21300370: PC Erebos Attacks_52
+    21300372: PC Erebos Attacks_53
+    21300374: PC Erebos Attacks_54
+    21300376: PC Erebos Attacks_55
+    21300378: PC Erebos Attacks_56
+    21300380: PC Erebos Attacks_57
+    21300382: PC Erebos Attacks_58
+    21300384: PC Erebos Attacks_59
+    21300386: PC Erebos Attacks_60
+    21300388: PC Erebos Attacks_61
+    21300390: PC Erebos Attacks_62
+    21300392: PC Erebos Attacks_63
+    21300394: PC Erebos Attacks_64
+    21300396: PC Erebos Attacks_65
+    21300398: PC Erebos Attacks_66
+    21300400: PC Erebos Attacks_67
+    21300402: PC Erebos Attacks_68
+    21300404: PC Erebos Attacks_69
+    21300406: PC Erebos Attacks_70
+    21300408: PC Erebos Attacks_71
+    21300410: PC Erebos Attacks_72
+    21300412: PC Erebos Attacks_73
+    21300414: PC Erebos Attacks_74
+    21300416: PC Erebos Attacks_75
+    21300418: PC Erebos Attacks_76
+    21300420: PC Erebos Attacks_77
+    21300422: PC Erebos Attacks_78
+    21300424: PC Erebos Attacks_79
+    21300426: PC Erebos Attacks_80
+    21300428: PC Erebos Attacks_81
+    21300430: PC Bios Attacks_0
+    21300432: PC Bios Attacks_1
+    21300434: PC Bios Attacks_2
+    21300436: PC Bios Attacks_3
+    21300438: PC Bios Attacks_4
+    21300440: PC Bios Attacks_5
+    21300442: PC Bios Attacks_6
+    21300444: PC Bios Attacks_7
+    21300446: PC Bios Attacks_8
+    21300448: PC Bios Attacks_9
+    21300450: PC Bios Attacks_10
+    21300452: PC Bios Attacks_11
+    21300454: PC Bios Attacks_12
+    21300456: PC Bios Attacks_13
+    21300458: PC Bios Attacks_14
+    21300460: PC Bios Attacks_15
+    21300462: PC Bios Attacks_16
+    21300464: PC Bios Attacks_17
+    21300466: PC Bios Attacks_18
+    21300468: PC Bios Attacks_19
+    21300470: PC Bios Attacks_20
+    21300472: PC Bios Attacks_21
+    21300474: PC Bios Attacks_22
+    21300476: PC Bios Attacks_23
+    21300478: PC Bios Attacks_24
+    21300480: PC Bios Attacks_25
+    21300482: PC Bios Attacks_26
+    21300484: PC Bios Attacks_27
+    21300486: PC Bios Attacks_28
+    21300488: PC Bios Attacks_29
+    21300490: PC Bios Attacks_30
+    21300492: PC Bios Attacks_31
+    21300494: PC Bios Attacks_32
+    21300496: PC Bios Attacks_33
+    21300498: PC Bios Attacks_34
+    21300500: PC Bios Attacks_35
+    21300502: PC Bios Attacks_36
+    21300504: PC Bios Attacks_37
+    21300506: PC Bios Attacks_38
+    21300508: PC Bios Attacks_39
+    21300510: PC Bios Attacks_40
+    21300512: PC Bios Attacks_41
+    21300514: PC Bios Attacks_42
+    21300516: PC Bios Attacks_43
+    21300518: PC Bios Attacks_44
+    21300520: PC Bios Attacks_45
+    21300522: PC Bios Attacks_46
+    21300524: PC Bios Attacks_47
+    21300526: PC Bios Attacks_48
+    21300528: PC Bios Attacks_49
+    21300530: PC Bios Attacks_50
+    21300532: PC Bios Attacks_51
+    21300534: PC Bios Attacks_52
+    21300536: PC Bios Attacks_53
+    21300538: PC Bios Attacks_54
+    21300540: PC Bios Attacks_55
+    21300542: PC Bios Attacks_56
+    21300544: PC Bios Attacks_57
+    21300546: PC Bios Attacks_58
+    21300548: PC Bios Attacks_59
+    21300550: PC Bios Attacks_60
+    21300552: PC Bios Attacks_61
+    21300554: PC Bios Attacks_62
+    21300556: PC Bios Attacks_63
+    21300558: PC Bios Attacks_64
+    21300560: PC Bios Attacks_65
+    21300562: PC Bios Attacks_66
+    21300564: PC Bios Attacks_67
+    21300566: PC Bios Attacks_68
+    21300568: PC Bios Attacks_69
+    21300570: PC Bios Attacks_70
+    21300572: PC Bios Attacks_71
+    21300574: PC Bios Attacks_72
+    21300576: PC Bios Attacks_73
+    21300578: PC Bios Attacks_74
+    21300580: PC Bios Attacks_75
+    21300582: PC Bios Attacks_76
+    21300584: PC Bios Attacks_77
+    21300586: PC Bios Attacks_78
+    21300588: PC Bios Attacks_79
+    21300590: PC Bios Attacks_80
+    21300592: PC Bios Attacks_81
+    21300594: PC Bios Attacks_82
+    21300596: PC Bios Attacks_83
+    21300598: PC Bios Attacks_84
+    21300600: PC Bios Attacks_85
+    21300602: Maria Bios Attacks_0
+    21300604: Maria Bios Attacks_1
+    21300606: Maria Bios Attacks_2
+    21300608: Maria Bios Attacks_3
+    21300610: Maria Bios Attacks_4
+    21300612: Maria Bios Attacks_5
+    21300614: Maria Bios Attacks_6
+    21300616: Maria Bios Attacks_7
+    21300618: Maria Bios Attacks_8
+    21300620: Maria Bios Attacks_9
+    21300622: Maria Bios Attacks_10
+    21300624: Maria Bios Attacks_11
+    21300626: Maria Bios Attacks_12
+    21300628: Maria Bios Attacks_13
+    21300630: Maria Bios Attacks_14
+    21300632: Maria Bios Attacks_15
+    21300634: Maria Bios Attacks_16
+    21300636: Maria Bios Attacks_17
+    21300638: Maria Bios Attacks_18
+    21300640: Maria Bios Attacks_19
+    21300642: Maria Bios Attacks_20
+    21300644: Maria Bios Attacks_21
+    21300646: Maria Bios Attacks_22
+    21300648: Maria Bios Attacks_23
+    21300650: Maria Bios Attacks_24
+    21300652: Maria Bios Attacks_25
+    21300654: Maria Bios Attacks_26
+    21300656: Maria Bios Attacks_27
+    21300658: Maria Bios Attacks_28
+    21300660: Maria Bios Attacks_29
+    21300662: Maria Bios Attacks_30
+    21300664: Maria Bios Attacks_31
+    21300666: Maria Bios Attacks_32
+    21300668: Maria Bios Attacks_33
+    21300670: Maria Bios Attacks_34
+    21300672: Maria Bios Attacks_35
+    21300674: Maria Bios Attacks_36
+    21300676: Maria Bios Attacks_37
+    21300678: Maria Bios Attacks_38
+    21300680: Maria Bios Attacks_39
+    21300682: Maria Bios Attacks_40
+    21300684: Maria Bios Attacks_41
+    21300686: Maria Bios Attacks_42
+    21300688: Maria Bios Attacks_43
+    21300690: Maria Bios Attacks_44
+    21300692: Maria Bios Attacks_45
+    21300694: Maria Bios Attacks_46
+    21300696: Maria Bios Attacks_47
+    21300698: Maria Bios Attacks_48
+    21300700: Maria Bios Attacks_49
+    21300702: Maria Bios Attacks_50
+    21300704: Maria Bios Attacks_51
+    21300706: Maria Bios Attacks_52
+    21300708: Maria Bios Attacks_53
+    21300710: Maria Bios Attacks_54
+    21300712: Maria Bios Attacks_55
+    21300714: Maria Bios Attacks_56
+    21300716: Maria Bios Attacks_57
+    21300718: Maria Bios Attacks_58
+    21300720: Maria Bios Attacks_59
+    21300722: Maria Bios Attacks_60
+    21300724: Maria Bios Attacks_61
+    21300726: Maria Bios Attacks_62
+    21300728: Maria Bios Attacks_63
+    21300730: Maria Bios Attacks_64
+    21300732: Maria Bios Attacks_65
+    21300734: Maria Bios Attacks_66
+    21300736: Maria Bios Attacks_67
+    21300738: Maria Bios Attacks_68
+    21300740: Maria Bios Attacks_69
+    21300742: Maria Bios Attacks_70
+    21300744: Maria Bios Attacks_71
+    21300746: Maria Bios Attacks_72
+    21300748: Maria Bios Attacks_73
+    21300750: Maria Bios Attacks_74
+    21300752: Maria Bios Attacks_75
+    21300754: Maria Bios Attacks_76
+    21300756: Maria Bios Attacks_77
+    21300758: Maria Bios Attacks_78
+    21300760: Maria Bios Attacks_79
+    21300762: Maria Bios Attacks_80
+    21300764: Maria Bios Attacks_81
+    21300766: Maria Bios Attacks_82
+    21300768: Maria Bios Attacks_83
+    21300770: Maria Bios Attacks_84
+    21300772: Maria Bios Attacks_85
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maria Bios Attacks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f99b680b6b5a4568b2ab881585dc4bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c1ab5bcf9884a23a7ac9e20702d867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208e27d63fadf474c8af635979216cab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc6e9449b137419ea87cd6c4747ff1f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a0df8756c40b46b5a6b7faa5b55556f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37781555254c24e75b2bcf40e2520c43
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b2feea85f7144aab70d7e53b54f316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5326fc62f47904e00ac59a665d00be55
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 648
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540c2da675ed74edb881fa1cd695fa4c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3ee5674ccc7497a9f5a2a8d5df5443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_10
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f8a1a997ede4f5fa7ff163fa064412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8de2ef61cadf340c9b21a466099ccbe8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_12
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32072cde56bbc4c0da25aecea18d4e0d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_13
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d58ec861d13a4281b0d2fdcf5bec82f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_14
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4f8e7123e4604ae9b028a381491da01
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_15
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dddf7722ac46e4389a90c675e72fe2f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_16
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9921d9c1e3f64499c844da860dc08141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_17
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 576
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05abc65e29e854c7f865c1e374f0e1ca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e3bf7027f0c42b6a1abc53c5ead9e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_19
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e928219e98124a9b996ba76844f84e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_20
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62157b36e70a74e9fa511740f2693b43
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_21
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f8ebb94b2924f949bf80a04846767a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_22
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955b79285cab342e0ae94d85ad137d9a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_23
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efad870f1767643f1947c53d1dc43528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_24
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280b2d46b73294ed4a12c333f17099e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_25
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1ec7571db534a1985b1614d56762ec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_26
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 504
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ddb543bec9640a4b7aeff764866706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3226014628f00432582e114c68ee72d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_28
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 437db1cb4ada24c2d9652e44cbadef6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_29
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f0f9ec57eb54f9d933f1d28c13c691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_30
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d2bf2fbffe90480e8595081991e8d0d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_31
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65a4d85ea6df46faad1608d31d0468f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_32
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab3fd308fd59472f9e78580aba4a195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_33
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 802c3654b4e8d47ae8b3050bd49967fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_34
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061417162a8404fe5a10c8468110b841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_35
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 432
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ffd6d3d4735b4cafbddd355538ff595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac26b8ef14334f0eaa862c7f81ae23d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_37
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e0a08ee5fb754313b8ba97e6ae5c7b4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_38
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c879da5d8c8485a8138e6ff7ebde62
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_39
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d071381d5c0d94b95a5674e1cfd28d06
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_40
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9aef2b376e54cc1b8b2c4483ad3fa2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_41
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f324dd85a4bf649fdb88b428606c3c13
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_42
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c2602a0939c4f26ab97f498d1f9706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_43
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19430be12c67e4e499945ed1fc041aa8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_44
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 360
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87abd9d7a98f04088bdf859120e4cccb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9d5735bca3a42b9b5452543af9b880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_46
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fe7053df887d44d58c547da00be2ce6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_47
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e46853376f57465a96269031a95d3e1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_48
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfc09d23817da4ca69b733bd979fbe30
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_49
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22e5a2c44d4424f158b1f17adccc768e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_50
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0afaa5ca76d4fdba3d58789a56225c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_51
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7173c6c2883e48abaebaf855090e0d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_52
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40276d572eb24fb38ef0016e2245440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_53
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05af51e91eafa44a0ae851afdefe965f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255f90109a0ac44d79b5368a76b39f4d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_55
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4575a106eeccc41b29ff6eff801c2007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_56
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cbcf7c44e6e34b348c7fa8926c5ba40
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_57
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8ef7d495396406fb62a3ff55294231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_58
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aea1fda5ec434764aa3a358fa71e1a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_59
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 785a134c0db9845f881380f994275022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_60
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42a9de7d50ec4a78b4a585afab4be26
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_61
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f480bfd39578b463eb5f8ddef5f1e890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_62
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 216
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33014607f5b93402680b99bf53247123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2440184ffa8e7411282bf3372d4a2b88
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_64
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b448bfe3fb504bdf8ebd175ccd8af22
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_65
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66046cb5a73584e0a85307d42c331d84
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_66
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa4db1965594496ab0249dfe233e8e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_67
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d26cd615d84a480f9f29eb5ccf7a089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_68
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0259431617cf49afa3b66ebfc4d98fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_69
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a93193f0777d4b13b8b212620adbd53
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_70
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14190bca0ede84c7287ddeaba30ba786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_71
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be92f36da19840deab6dc3475eb6a84
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc677958e9f94f01a95922afac8c30a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_73
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efe2617dcf2554b47a7774664902a08a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_74
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089b6d7789dc14d719b1a5a2f408c638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_75
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc90a78e8f37c430ca8fab40ae83c7d3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_76
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cfa19f8eb6294510a97ce2cb433ee3b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_77
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8321a02d055944d20a2ad5190546890d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_78
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab1e82b0d70741bfb4fd468ae1e8534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_79
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e3fd0f72f1340318f8e3c3d4157908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_80
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 72
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3f2d31fa6f484aa4abcf4a84472fd12
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30594af17066c4a3392ac9ec1096248c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_82
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0cb4019e59fa479d8013235f890854d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_83
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73b5f71090d5141298573eea426d629e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_84
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b17cfd75f149e46e287cc685a40e6cfe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Bios Attacks_85
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc62e99e17c9414fb8069b9d26e6a8e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3be3f871a0ea3479da67f1960994bd9c
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

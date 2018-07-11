@@ -1109,10 +1109,7 @@ public class PlayerController : MonoBehaviour {
 			if (testDistance > disconnectedMinDistance){
 			float sizeHit = 0f;
 			if (teleportHit.collider.tag != "Wall"){
-				sizeHit = teleportHit.collider.transform.localScale.x;
-				if (teleportHit.collider.transform.parent){
-					sizeHit/=teleportHit.collider.transform.parent.localScale.x;
-				}
+                    sizeHit = Mathf.Abs(transform.localScale.x);
 
 				disconnectedTeleportTarget = teleportHit.point
 					-(teleportHit.point-transform.position).normalized*(disconnectedTeleportDistance+Mathf.Abs(sizeHit));

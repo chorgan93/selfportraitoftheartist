@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: 8d6e905c0d7114e878181396e186d85d
-timeCreated: 1506535121
-licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Lukah Movement_0
@@ -31,14 +29,44 @@ TextureImporter:
     21300048: Lukah Movement_24
     21300050: Lukah Movement_25
     21300052: Lukah Movement_26
-  serializedVersion: 2
+    21300054: Maria Movement_0
+    21300056: Maria Movement_1
+    21300058: Maria Movement_2
+    21300060: Maria Movement_3
+    21300062: Maria Movement_4
+    21300064: Maria Movement_5
+    21300066: Maria Movement_6
+    21300068: Maria Movement_7
+    21300070: Maria Movement_8
+    21300072: Maria Movement_9
+    21300074: Maria Movement_10
+    21300076: Maria Movement_11
+    21300078: Maria Movement_12
+    21300080: Maria Movement_13
+    21300082: Maria Movement_14
+    21300084: Maria Movement_15
+    21300086: Maria Movement_16
+    21300088: Maria Movement_17
+    21300090: Maria Movement_18
+    21300092: Maria Movement_19
+    21300094: Maria Movement_20
+    21300096: Maria Movement_21
+    21300098: Maria Movement_22
+    21300100: Maria Movement_23
+    21300102: Maria Movement_24
+    21300104: Maria Movement_25
+    21300106: Maria Movement_26
+  externalObjects: {}
+  serializedVersion: 5
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -48,37 +76,56 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: 0
     aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lukah Movement_0
+      name: Maria Movement_0
       rect:
         serializedVersion: 2
         x: 0
@@ -89,8 +136,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a237c9128b1754b2c9ca71568beec502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_1
+      name: Maria Movement_1
       rect:
         serializedVersion: 2
         x: 64
@@ -101,8 +156,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825221aa756d641c48d907874a4a3e2e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_2
+      name: Maria Movement_2
       rect:
         serializedVersion: 2
         x: 128
@@ -113,8 +176,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ff29108ca7234956b51b8b4739a5846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_3
+      name: Maria Movement_3
       rect:
         serializedVersion: 2
         x: 192
@@ -125,8 +196,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 197bcc90859724a40b8b4b1996386b7f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_4
+      name: Maria Movement_4
       rect:
         serializedVersion: 2
         x: 256
@@ -137,8 +216,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267fdba7e0553474391a4c54571b4086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_5
+      name: Maria Movement_5
       rect:
         serializedVersion: 2
         x: 0
@@ -149,8 +236,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da20b8bb77f2246779173539014c185e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_6
+      name: Maria Movement_6
       rect:
         serializedVersion: 2
         x: 64
@@ -161,8 +256,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22c2258b6d54140b183f9e5e48d826f3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_7
+      name: Maria Movement_7
       rect:
         serializedVersion: 2
         x: 128
@@ -173,8 +276,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f9ddd9fddafc41ed82f361caab638db
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_8
+      name: Maria Movement_8
       rect:
         serializedVersion: 2
         x: 192
@@ -185,8 +296,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2fd63529b077483cad27c1021bb9962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_9
+      name: Maria Movement_9
       rect:
         serializedVersion: 2
         x: 256
@@ -197,8 +316,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8e90cd5c3c1472984f53c3a0820d69
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_10
+      name: Maria Movement_10
       rect:
         serializedVersion: 2
         x: 0
@@ -209,8 +336,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6191fd191e284c7fbf6a81afc1ac819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_11
+      name: Maria Movement_11
       rect:
         serializedVersion: 2
         x: 64
@@ -221,8 +356,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2222c282a0cb4c189d874c306bebbf6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_12
+      name: Maria Movement_12
       rect:
         serializedVersion: 2
         x: 128
@@ -233,8 +376,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77ae85022401343f7a06b17055e472c2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_13
+      name: Maria Movement_13
       rect:
         serializedVersion: 2
         x: 192
@@ -245,8 +396,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6c20eb5d8f34cd0b6be59568405b8a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_14
+      name: Maria Movement_14
       rect:
         serializedVersion: 2
         x: 256
@@ -257,8 +416,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c20670b9e70b54b6dac78344fb7cdea2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_15
+      name: Maria Movement_15
       rect:
         serializedVersion: 2
         x: 0
@@ -269,8 +436,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 672269f2bd8d04b32a243a00c07aacbc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_16
+      name: Maria Movement_16
       rect:
         serializedVersion: 2
         x: 64
@@ -281,8 +456,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c1f9f61b8b6c4246926ceae5470a7f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_17
+      name: Maria Movement_17
       rect:
         serializedVersion: 2
         x: 128
@@ -293,8 +476,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f24c9f8c202e43cf879f8c856220be9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_18
+      name: Maria Movement_18
       rect:
         serializedVersion: 2
         x: 192
@@ -305,8 +496,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e82a1c9c9efb6480aa2785c909803f72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_19
+      name: Maria Movement_19
       rect:
         serializedVersion: 2
         x: 256
@@ -317,8 +516,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c454501ab2d47378d3113bd88a9a9b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_20
+      name: Maria Movement_20
       rect:
         serializedVersion: 2
         x: 0
@@ -329,8 +536,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6610b03403f14c86ad0434373dfc612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_21
+      name: Maria Movement_21
       rect:
         serializedVersion: 2
         x: 64
@@ -341,8 +556,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c81382c112ed42f194951702c264817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_22
+      name: Maria Movement_22
       rect:
         serializedVersion: 2
         x: 128
@@ -353,8 +576,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ec3078dce3644aeaa5d3652e9f79f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_23
+      name: Maria Movement_23
       rect:
         serializedVersion: 2
         x: 192
@@ -365,8 +596,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf236d5c3d50c490ba85b914011c0597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_24
+      name: Maria Movement_24
       rect:
         serializedVersion: 2
         x: 256
@@ -377,8 +616,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b1916fee57b4c8f8b5738d044734f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_25
+      name: Maria Movement_25
       rect:
         serializedVersion: 2
         x: 0
@@ -389,8 +636,16 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9faee4dd425745379e679e68d48e2bd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     - serializedVersion: 2
-      name: Lukah Movement_26
+      name: Maria Movement_26
       rect:
         serializedVersion: 2
         x: 64
@@ -401,7 +656,22 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c7229cd0d61546a8a69694691967a90
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: eaa12ffc89ca244c3ba3d25744c6feba
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
