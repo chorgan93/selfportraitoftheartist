@@ -3708,4 +3708,16 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 
+    public void DoLookAway(){
+        SetTalking(true, false, false, false);
+        StartCoroutine(LookAwayCoroutine());
+    }
+    IEnumerator LookAwayCoroutine(){
+        SetExamining(false, Vector3.zero);
+        myAnimator.SetTrigger("LookAway");
+        yield return new WaitForSeconds(2.8f);
+        SetTalking(false);
+        DialogueManagerS.D.EndText(true,false);
+    }
+
 }

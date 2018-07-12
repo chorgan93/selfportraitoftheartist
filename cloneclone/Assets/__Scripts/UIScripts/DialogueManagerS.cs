@@ -360,8 +360,10 @@ public class DialogueManagerS : MonoBehaviour {
 		
 		dialogueText.text = currentDisplayString = targetDisplayString = "";
 		}
-			
-		Instantiate(dialogueAdvanceSound);
+        if (playSound)
+        {
+            Instantiate(dialogueAdvanceSound);
+        }
 		
 		scrollCountdown = 0f;
 		currentChar = 0;

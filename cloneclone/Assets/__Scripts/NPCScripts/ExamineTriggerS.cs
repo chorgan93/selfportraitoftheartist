@@ -63,6 +63,7 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool teleportItem = false;
 	public string teleportScene = "InfiniteScene";
 	public bool fullRevive = false;
+    public bool lookAnimation = false;
 
 
 	public float lookTime = -1f;
@@ -167,10 +168,13 @@ public class ExamineTriggerS : MonoBehaviour {
 
 				}else{
 						if (costToExamine < PlayerCollectionS.currencyCollected && !CameraEffectsS.E.isFading 
-							&& ((talking && examineString != "") || (examineString == "" && playerInRange))){
+                            && ((talking && examineString != "") || (examineString == "" && playerInRange && !pRef.talking))){
 						if (examineString == "" && examineSound != null){
 							Instantiate(examineSound);
 						}
+                            if (lookAnimation){
+                                pRef.DoLookAway();
+                            }
 
 							if (costToExamine > 0){
 								pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
@@ -178,7 +182,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 							//Debug.Log("Second press! " + DialogueManagerS.D.doneScrolling);
 	
-						if (DialogueManagerS.D.doneScrolling){
+                            if (DialogueManagerS.D.doneScrolling && !lookAnimation){
 								if (!teleportItem){
 									CameraFollowS.F.ResetPOI();
 									//Debug.Log("End text!");

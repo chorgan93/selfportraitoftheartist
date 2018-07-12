@@ -1,0 +1,2080 @@
+fileFormatVersion: 2
+guid: 8d777aa2770db4d13ae402a4078139c6
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Gaea Attacks Redesign_0
+    21300118: PC Gaea Attacks Redesign_1
+    21300120: PC Gaea Attacks Redesign_2
+    21300122: PC Gaea Attacks Redesign_3
+    21300124: PC Gaea Attacks Redesign_4
+    21300126: PC Gaea Attacks Redesign_5
+    21300128: PC Gaea Attacks Redesign_6
+    21300130: PC Gaea Attacks Redesign_7
+    21300132: PC Gaea Attacks Redesign_8
+    21300134: PC Gaea Attacks Redesign_9
+    21300136: PC Gaea Attacks Redesign_10
+    21300138: PC Gaea Attacks Redesign_11
+    21300140: PC Gaea Attacks Redesign_12
+    21300142: PC Gaea Attacks Redesign_13
+    21300144: PC Gaea Attacks Redesign_14
+    21300146: PC Gaea Attacks Redesign_15
+    21300148: PC Gaea Attacks Redesign_16
+    21300150: PC Gaea Attacks Redesign_17
+    21300152: PC Gaea Attacks Redesign_18
+    21300154: PC Gaea Attacks Redesign_19
+    21300156: PC Gaea Attacks Redesign_20
+    21300158: PC Gaea Attacks Redesign_21
+    21300160: PC Gaea Attacks Redesign_22
+    21300162: PC Gaea Attacks Redesign_23
+    21300164: PC Gaea Attacks Redesign_24
+    21300166: PC Gaea Attacks Redesign_25
+    21300168: PC Gaea Attacks Redesign_26
+    21300170: PC Gaea Attacks Redesign_27
+    21300172: PC Gaea Attacks Redesign_28
+    21300174: PC Gaea Attacks Redesign_29
+    21300176: PC Gaea Attacks Redesign_30
+    21300178: PC Gaea Attacks Redesign_31
+    21300180: PC Gaea Attacks Redesign_32
+    21300182: PC Gaea Attacks Redesign_33
+    21300184: PC Gaea Attacks Redesign_34
+    21300186: PC Gaea Attacks Redesign_35
+    21300188: PC Gaea Attacks Redesign_36
+    21300190: PC Gaea Attacks Redesign_37
+    21300192: PC Gaea Attacks Redesign_38
+    21300194: PC Gaea Attacks Redesign_39
+    21300196: PC Gaea Attacks Redesign_40
+    21300198: PC Gaea Attacks Redesign_41
+    21300200: PC Gaea Attacks Redesign_42
+    21300202: PC Gaea Attacks Redesign_43
+    21300204: PC Gaea Attacks Redesign_44
+    21300206: PC Gaea Attacks Redesign_45
+    21300208: PC Gaea Attacks Redesign_46
+    21300210: PC Gaea Attacks Redesign_47
+    21300212: PC Gaea Attacks Redesign_48
+    21300214: PC Gaea Attacks Redesign_49
+    21300216: PC Gaea Attacks Redesign_50
+    21300218: PC Gaea Attacks Redesign_51
+    21300220: PC Gaea Attacks Redesign_52
+    21300222: PC Gaea Attacks Redesign_53
+    21300224: PC Gaea Attacks Redesign_54
+    21300226: PC Gaea Attacks Redesign_55
+    21300228: PC Gaea Attacks Redesign_56
+    21300230: PC Gaea Attacks Redesign_57
+    21300232: PC Gaea Attacks Redesign_58
+    21300234: PC Gaea Attacks Redesign_59
+    21300236: PC Gaea Attacks Redesign_60
+    21300238: PC Gaea Attacks Redesign_61
+    21300240: PC Gaea Attacks Redesign_62
+    21300242: PC Gaea Attacks Redesign_63
+    21300244: PC Gaea Attacks Redesign_64
+    21300246: PC Gaea Attacks Redesign_65
+    21300248: PC Gaea Attacks Redesign_66
+    21300250: PC Gaea Attacks Redesign_67
+    21300252: PC Gaea Attacks Redesign_68
+    21300254: PC Gaea Attacks Redesign_69
+    21300256: PC Gaea Attacks Redesign_70
+    21300258: PC Gaea Attacks Redesign_71
+    21300260: PC Gaea Attacks Redesign_72
+    21300262: PC Gaea Attacks Redesign_73
+    21300264: PC Gaea Attacks Redesign_74
+    21300266: PC Erebos Attacks_0
+    21300268: PC Erebos Attacks_1
+    21300270: PC Erebos Attacks_2
+    21300272: PC Erebos Attacks_3
+    21300274: PC Erebos Attacks_4
+    21300276: PC Erebos Attacks_5
+    21300278: PC Erebos Attacks_6
+    21300280: PC Erebos Attacks_7
+    21300282: PC Erebos Attacks_8
+    21300284: PC Erebos Attacks_9
+    21300286: PC Erebos Attacks_10
+    21300288: PC Erebos Attacks_11
+    21300290: PC Erebos Attacks_12
+    21300292: PC Erebos Attacks_13
+    21300294: PC Erebos Attacks_14
+    21300296: PC Erebos Attacks_15
+    21300298: PC Erebos Attacks_16
+    21300300: PC Erebos Attacks_17
+    21300302: PC Erebos Attacks_18
+    21300304: PC Erebos Attacks_19
+    21300306: PC Erebos Attacks_20
+    21300308: PC Erebos Attacks_21
+    21300310: PC Erebos Attacks_22
+    21300312: PC Erebos Attacks_23
+    21300314: PC Erebos Attacks_24
+    21300316: PC Erebos Attacks_25
+    21300318: PC Erebos Attacks_26
+    21300320: PC Erebos Attacks_27
+    21300322: PC Erebos Attacks_28
+    21300324: PC Erebos Attacks_29
+    21300326: PC Erebos Attacks_30
+    21300328: PC Erebos Attacks_31
+    21300330: PC Erebos Attacks_32
+    21300332: PC Erebos Attacks_33
+    21300334: PC Erebos Attacks_34
+    21300336: PC Erebos Attacks_35
+    21300338: PC Erebos Attacks_36
+    21300340: PC Erebos Attacks_37
+    21300342: PC Erebos Attacks_38
+    21300344: PC Erebos Attacks_39
+    21300346: PC Erebos Attacks_40
+    21300348: PC Erebos Attacks_41
+    21300350: PC Erebos Attacks_42
+    21300352: PC Erebos Attacks_43
+    21300354: PC Erebos Attacks_44
+    21300356: PC Erebos Attacks_45
+    21300358: PC Erebos Attacks_46
+    21300360: PC Erebos Attacks_47
+    21300362: PC Erebos Attacks_48
+    21300364: PC Erebos Attacks_49
+    21300366: PC Erebos Attacks_50
+    21300368: PC Erebos Attacks_51
+    21300370: PC Erebos Attacks_52
+    21300372: PC Erebos Attacks_53
+    21300374: PC Erebos Attacks_54
+    21300376: PC Erebos Attacks_55
+    21300378: PC Erebos Attacks_56
+    21300380: PC Erebos Attacks_57
+    21300382: PC Erebos Attacks_58
+    21300384: PC Erebos Attacks Small_0
+    21300386: PC Erebos Attacks Small_1
+    21300388: PC Erebos Attacks Small_2
+    21300390: PC Erebos Attacks Small_3
+    21300392: PC Erebos Attacks Small_4
+    21300394: PC Erebos Attacks Small_5
+    21300396: PC Erebos Attacks Small_6
+    21300398: PC Erebos Attacks Small_7
+    21300400: PC Erebos Attacks Small_8
+    21300402: PC Erebos Attacks Small_9
+    21300404: PC Erebos Attacks Small_10
+    21300406: PC Erebos Attacks Small_11
+    21300408: PC Erebos Attacks Small_12
+    21300410: PC Erebos Attacks Small_13
+    21300412: PC Erebos Attacks Small_14
+    21300414: PC Erebos Attacks Small_15
+    21300416: PC Erebos Attacks Small_16
+    21300418: PC Erebos Attacks Small_17
+    21300420: PC Erebos Attacks Small_18
+    21300422: PC Erebos Attacks Small_19
+    21300424: PC Erebos Attacks Small_20
+    21300426: PC Erebos Attacks Small_21
+    21300428: PC Erebos Attacks Small_22
+    21300430: PC Erebos Attacks Small_23
+    21300432: PC Erebos Attacks Small_24
+    21300434: PC Erebos Attacks Small_25
+    21300436: PC Erebos Attacks Small_26
+    21300438: PC Erebos Attacks Small_27
+    21300440: PC Erebos Attacks Small_28
+    21300442: PC Erebos Attacks Small_29
+    21300444: PC Erebos Attacks Small_30
+    21300446: PC Erebos Attacks Small_31
+    21300448: PC Erebos Attacks Small_32
+    21300450: PC Erebos Attacks Small_33
+    21300452: PC Erebos Attacks Small_34
+    21300454: PC Erebos Attacks Small_35
+    21300456: PC Erebos Attacks Small_36
+    21300458: PC Erebos Attacks Small_37
+    21300460: PC Erebos Attacks Small_38
+    21300462: PC Erebos Attacks Small_39
+    21300464: PC Erebos Attacks Small_40
+    21300466: PC Erebos Attacks Small_41
+    21300468: PC Erebos Attacks Small_42
+    21300470: PC Erebos Attacks Small_43
+    21300472: PC Erebos Attacks Small_44
+    21300474: PC Erebos Attacks Small_45
+    21300476: PC Erebos Attacks Small_46
+    21300478: PC Erebos Attacks Small_47
+    21300480: PC Erebos Attacks Small_48
+    21300482: PC Erebos Attacks Small_49
+    21300484: PC Erebos Attacks Small_50
+    21300486: PC Erebos Attacks Small_51
+    21300488: PC Erebos Attacks Small_52
+    21300490: PC Erebos Attacks Small_53
+    21300492: PC Erebos Attacks Small_54
+    21300494: PC Erebos Attacks Small_55
+    21300496: PC Erebos Attacks Small_56
+    21300498: PC Erebos Attacks Small_57
+    21300500: PC Erebos Attacks Small_58
+    21300502: PC Erebos Attacks Small_59
+    21300504: PC Erebos Attacks Small_60
+    21300506: PC Erebos Attacks Small_61
+    21300508: PC Erebos Attacks Small_62
+    21300510: PC Erebos Attacks Small_63
+    21300512: PC Erebos Attacks Small_64
+    21300514: PC Erebos Attacks Small_65
+    21300516: PC Erebos Attacks Small_66
+    21300518: PC Erebos Attacks Small_67
+    21300520: PC Erebos Attacks Small_68
+    21300522: PC Erebos Attacks Small_69
+    21300524: PC Erebos Attacks Small_70
+    21300526: PC Erebos Attacks Small_71
+    21300528: PC Erebos Attacks Small_72
+    21300530: PC Erebos Attacks Small_73
+    21300532: PC Erebos Attacks Small_74
+    21300534: PC Erebos Attacks Small_75
+    21300536: PC Erebos Attacks Small_76
+    21300538: PC Erebos Attacks Small_77
+    21300540: PC Erebos Attacks Small_78
+    21300542: PC Erebos Attacks Small_79
+    21300544: PC Erebos Attacks Small_80
+    21300546: PC Erebos Attacks Small_81
+    21300548: Maria Erebos Attacks Small_0
+    21300550: Maria Erebos Attacks Small_1
+    21300552: Maria Erebos Attacks Small_2
+    21300554: Maria Erebos Attacks Small_3
+    21300556: Maria Erebos Attacks Small_4
+    21300558: Maria Erebos Attacks Small_5
+    21300560: Maria Erebos Attacks Small_6
+    21300562: Maria Erebos Attacks Small_7
+    21300564: Maria Erebos Attacks Small_8
+    21300566: Maria Erebos Attacks Small_9
+    21300568: Maria Erebos Attacks Small_10
+    21300570: Maria Erebos Attacks Small_11
+    21300572: Maria Erebos Attacks Small_12
+    21300574: Maria Erebos Attacks Small_13
+    21300576: Maria Erebos Attacks Small_14
+    21300578: Maria Erebos Attacks Small_15
+    21300580: Maria Erebos Attacks Small_16
+    21300582: Maria Erebos Attacks Small_17
+    21300584: Maria Erebos Attacks Small_18
+    21300586: Maria Erebos Attacks Small_19
+    21300588: Maria Erebos Attacks Small_20
+    21300590: Maria Erebos Attacks Small_21
+    21300592: Maria Erebos Attacks Small_22
+    21300594: Maria Erebos Attacks Small_23
+    21300596: Maria Erebos Attacks Small_24
+    21300598: Maria Erebos Attacks Small_25
+    21300600: Maria Erebos Attacks Small_26
+    21300602: Maria Erebos Attacks Small_27
+    21300604: Maria Erebos Attacks Small_28
+    21300606: Maria Erebos Attacks Small_29
+    21300608: Maria Erebos Attacks Small_30
+    21300610: Maria Erebos Attacks Small_31
+    21300612: Maria Erebos Attacks Small_32
+    21300614: Maria Erebos Attacks Small_33
+    21300616: Maria Erebos Attacks Small_34
+    21300618: Maria Erebos Attacks Small_35
+    21300620: Maria Erebos Attacks Small_36
+    21300622: Maria Erebos Attacks Small_37
+    21300624: Maria Erebos Attacks Small_38
+    21300626: Maria Erebos Attacks Small_39
+    21300628: Maria Erebos Attacks Small_40
+    21300630: Maria Erebos Attacks Small_41
+    21300632: Maria Erebos Attacks Small_42
+    21300634: Maria Erebos Attacks Small_43
+    21300636: Maria Erebos Attacks Small_44
+    21300638: Maria Erebos Attacks Small_45
+    21300640: Maria Erebos Attacks Small_46
+    21300642: Maria Erebos Attacks Small_47
+    21300644: Maria Erebos Attacks Small_48
+    21300646: Maria Erebos Attacks Small_49
+    21300648: Maria Erebos Attacks Small_50
+    21300650: Maria Erebos Attacks Small_51
+    21300652: Maria Erebos Attacks Small_52
+    21300654: Maria Erebos Attacks Small_53
+    21300656: Maria Erebos Attacks Small_54
+    21300658: Maria Erebos Attacks Small_55
+    21300660: Maria Erebos Attacks Small_56
+    21300662: Maria Erebos Attacks Small_57
+    21300664: Maria Erebos Attacks Small_58
+    21300666: Maria Erebos Attacks Small_59
+    21300668: Maria Erebos Attacks Small_60
+    21300670: Maria Erebos Attacks Small_61
+    21300672: Maria Erebos Attacks Small_62
+    21300674: Maria Erebos Attacks Small_63
+    21300676: Maria Erebos Attacks Small_64
+    21300678: Maria Erebos Attacks Small_65
+    21300680: Maria Erebos Attacks Small_66
+    21300682: Maria Erebos Attacks Small_67
+    21300684: Maria Erebos Attacks Small_68
+    21300686: Maria Erebos Attacks Small_69
+    21300688: Maria Erebos Attacks Small_70
+    21300690: Maria Erebos Attacks Small_71
+    21300692: Maria Erebos Attacks Small_72
+    21300694: Maria Erebos Attacks Small_73
+    21300696: Maria Erebos Attacks Small_74
+    21300698: Maria Erebos Attacks Small_75
+    21300700: Maria Erebos Attacks Small_76
+    21300702: Maria Erebos Attacks Small_77
+    21300704: Maria Erebos Attacks Small_78
+    21300706: Maria Erebos Attacks Small_79
+    21300708: Maria Erebos Attacks Small_80
+    21300710: Maria Erebos Attacks Small_81
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6956072e05db405c9232ea82317e0d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef1421cd8bcf432ab1462617599a462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 400c54933b5bd4e1a9d5701845837bae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3195f7bf4323c4f0594d323def1452d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18df5a551cf1d4004bc50da83536ba29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9cc43b8ce2104ea7bd7fd8f92deec39
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba03c57bdf14b418eada97ae78e563c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2984a3f8ad40543da883ae43e10ea279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2154307bd2c94443883c119ff11f5957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53264811fed84de782460fe7a7108c3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a72591f5ad984e7898bd09c9ab503c0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e88c3ec652f154c0684e09b03c1de008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5684e55bd1444d994a4eb900386308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6090843eb8e44fcb866ff30f27642bc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c628e9b96383461bb7bdaded4669c9b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7adb8edba85f04f46923f7d0b3ae7488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_16
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac93ab2e52234a8d934bba2fc90276e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_17
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1307c94e10bd04e299d59ca51ef92853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6ce8dc32d23144f7b2fd7da5150bba0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2f7357d40a0438a8d0c4ed2e28e61b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bb763c88c24a4f339eefab7ae0f7ae3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_21
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 787406e894ca34ccfa91dfd69444a7bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_22
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14a45b21836747a193523504e5885d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_23
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5247a30693e412b8f2ca1a2a85fb46
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_24
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005a06251914645e8ada16c2799bc8e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_25
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76bb5d86ca4d047e586095d2fbeff4e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_26
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964e01c414a804064a38155ce2d89461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96c69ae24bb4d416497b50aa2f82de88
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_28
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec22fb8f45466446590f14c8d8715b31
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_29
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41cc694357e2b40eb96c8f67c0662379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61c2ab8fc49e34992b05cf896d8555cc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_31
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a8b6b142f8354a8db3e086f1dce7b7a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_32
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68e9a84e797140e08015590400f0e47
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f32777f19bcb64c5da4bee8f94e95fe5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_34
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4463bdca2fd54491c8e5e76c8b640405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_35
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f531d4495e9d0486fb257304d1001932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da1f0253710244ee4b05aa81df1fb82a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_37
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529786ebdb1524d3ab81506d7db92447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_38
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca59ac23100e46d7a7deeee1e2b3dae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_39
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2918d263acb11472fa244961db2d2c29
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_40
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79d127f0ba0154ca58e69a3cef849da6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_41
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c771e540d02d4d3b98390e23ac73494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_42
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa589718fffc41668ffa6a607cdfdf2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_43
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b35ae224f1fe41e8b2df6c70faaa764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f525769c1f874b9e8c74d67c0704089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4665100fcca4b4102b09fab67d8ce158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_46
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75dbfc7d982e840cca57ba70b7269e1a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a5ed9b00033b40c0a4325d4824d9ae9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_48
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b7b9e42e51f4028999c30ca3846f65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_49
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57cca0196cde44f59b57b7b1364fbeff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_50
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d46d500d0d64e23874343dff8e7b2c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_51
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a49720789126441a979861cd07fc1b3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_52
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fbad898a538b4e4b81fd2a231c8e765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_53
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c173202b4f434584af3050c4526a191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 266999c8c50ad44ec8e2e113b0cc6aa2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_55
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc05f32f3ee3246d8870ae4e15c41af4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 483195d0e81594db3ab273ce45e5f42d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_57
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09df9764725f648e8adefec86def46dc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 107c276c28edf4bf08ac7b653953a6fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_59
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e746308653cc1487aaa3caf464c4ba5f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_60
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eee4aae23ead041b38afb9c1d1a748e2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_61
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f484946ec889d450d8e9ab86649e9ea3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_62
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a9b6e80e37344c99c54813b71a95aa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e1daf92bf75e42518de81f0ac4f468c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_64
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d0a1e8eabc0f4bcc83044b90513851e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_65
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1913197a47a824422bb131d05f6946cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fcaeb0ab12ed4f3ebe3cc66f4d387e6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_67
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e00c866217cf44e3b97612aa9e8826f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_68
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08cc2481d422f4e65bd0e3f4f1c82040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_69
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46ee350c0bc8a4af989e890e87a62c50
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_70
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 172407aa6122d4e7287a5ba720679209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_71
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbf40533a04ca44349204cafc3cdb1f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9f8fbb81fc274c3ea21ff7f93caaa61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_73
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70124d4534fcb4b6792c4dbc00a97f2c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aade014d2d29c4daa880f2cbcd33aae0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_75
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2567d728a2364a3db4f74e40ae28ebc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_76
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6edb1a924a9044f7aadfe04489dd9cc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_77
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8ea95f638674c1a99d2c41c4c65418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_78
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50b73a93292824f1aa1306b48d827932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_79
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7206c67f47554ba5b4c94adaa2ba870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_80
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e7f4b108eb7e4c31ad9379baea72982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Erebos Attacks Small_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a7c8ad73b0242b4aaa8cc0fa0d5365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0e58c76d20e98493ebf90829ecaf36d9
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
