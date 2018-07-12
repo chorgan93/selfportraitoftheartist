@@ -263,6 +263,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public bool ManaCheck(float useAmount, bool reduce = true){
 
+        if (pRef.isNatalie){
+            useAmount *= 0.2f;
+        }
 		if (godMode || arcadeMode){
 			return true;
 		}else if (!ManaUnlocked()){
@@ -330,7 +333,10 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 
 	public bool ChargeCheck(float reqCharge, bool useCharge = true, bool buddyCheck = false){
-
+        if (pRef.isNatalie)
+        {
+            reqCharge *= 0.2f;
+        }
 		bool canUse =  (_currentCharge > 0);
 		if (buddyCheck){
 			canUse = _currentCharge >= minBuddyChargeUse;
@@ -817,7 +823,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void TakeDamage(EnemyS damageSource, float dmg, Vector3 knockbackForce, float knockbackTime, bool dontTriggerWitch = false, bool overrideAll = false,
 		bool noUnstoppable = false){
-
+        
+        if (pRef.isNatalie)
+        {
+            dmg *= 0.2f;
+        }
 		unstoppableActivatedOnHit = false;
 		dmg*=DifficultyS.GetPunishMult();
 		if (myPlayerController.isTransformed){
@@ -1081,7 +1091,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public float strengthAmt(){
 
-		if (arcadeMode){
+        if (arcadeMode || pRef.isNatalie){
 			return 2f;
 		}else{
 			return (_baseStrength+_addedStrength*0.075f);

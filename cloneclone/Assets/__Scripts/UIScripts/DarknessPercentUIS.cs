@@ -136,7 +136,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 		}
 
 		inRecordMode = PlayerStatDisplayS.RECORD_MODE;
-		if (inRecordMode || doNotShowInScene){
+        if (inRecordMode || doNotShowInScene || pStats.pRef.isNatalie){
 			TurnOffCornerDisplay();
 		}
 	
