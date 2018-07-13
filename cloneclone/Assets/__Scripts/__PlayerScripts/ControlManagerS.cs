@@ -325,6 +325,12 @@ public class ControlManagerS : MonoBehaviour {
 		return (GetInputPressed(savedGamepadControls[inputIndex]));
 	}
 
+    public void SetCustomInput(int actionBeingSet, int newButton){
+        int buttonBeingReplaced = savedGamepadControls[actionBeingSet];
+        savedGamepadControls[actionBeingSet] = savedGamepadControls[newButton];
+        savedGamepadControls[newButton] = buttonBeingReplaced; 
+    }
+
 	private bool GetInputPressed(int inputValue){
 		bool inputPressed = false;
 		switch (inputValue){
@@ -699,7 +705,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectButton(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (GetCustomInput(3));
+			return (TalkButton());
 			}else{
 				return (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.E));
 			}
@@ -711,7 +717,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectUp(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (!GetCustomInput(12));
+                return (!TalkButton());
 			}else{
 				return (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.E));
 			}
@@ -723,7 +729,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ExitButton(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-			return (WeaponButtonB() || WeaponButtonC());
+                return (HeavyButton());
 			}else{
 				return (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace) || Input.GetKey(KeyCode.Delete)
 					|| Input.GetKey(KeyCode.Q));	
@@ -739,7 +745,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ExitButtonUp(){
 		if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
-				return (!GetCustomInput(13));
+                return (!HeavyButton());
 			}else{
 				return (!Input.GetKey(KeyCode.Escape) && !Input.GetKey(KeyCode.Backspace) && !Input.GetKey(KeyCode.Delete) && !Input.GetKey(KeyCode.Q));
 			}

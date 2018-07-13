@@ -28,6 +28,7 @@ public class GameMenuS : MonoBehaviour {
 	public RectTransform[] confirmPositions;
 
 	private ControlManagerS myControl;
+    public ControlManagerS MyControl { get { return myControl; }}
 
 	private bool stickReset = false;
 	private bool selectButtonUp = false;
@@ -47,6 +48,9 @@ public class GameMenuS : MonoBehaviour {
 	public Text zoomText;
 	public Text aliasText;
 	public RectTransform optionsSelector;
+
+    public CustomizableControlsUIS customControlRef;
+    private bool inCustomControlMenu = false;
 
 
 	private int fontSizeOptionStart = -1;
@@ -103,7 +107,7 @@ public class GameMenuS : MonoBehaviour {
 				SetSelection(currentSelection);
 			}
 
-			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 0)){
+            if ((cancelButtonUp && myControl.GetCustomInput(13) && !customControlRef.InReplaceMode) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 0)){
 				TurnOff();
 				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
@@ -130,7 +134,7 @@ public class GameMenuS : MonoBehaviour {
 				RespawnAtLastCheckpoint(true);
 				myManager.pRef.ResetTimeMax();
 			}
-		}else{
+        }else if (!inCustomControlMenu){
 			if (myControl.VerticalMenu() > 0.2f && stickReset){
 				stickReset = false;
 				currentSelection--;
@@ -292,6 +296,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 		SetSelection(0);
 		gameObject.SetActive(true);
+        inCustomControlMenu = false;
 		//Debug.Log("game menu turn ON");
 		
 	}
@@ -300,7 +305,9 @@ public class GameMenuS : MonoBehaviour {
 		inConfirmation = false;
 		InGameMenuManagerS.menuInUse = false;
 		optionsMenuProper.gameObject.SetActive(false);
-		gameObject.SetActive(false);
+        customControlRef.TurnOff(this);
+        gameObject.SetActive(false);
+        inCustomControlMenu = false;
 		//Debug.LogError("game menu turn OFF");
 		
 	}
@@ -314,46 +321,12 @@ public class GameMenuS : MonoBehaviour {
 	//________________________________OPTIONS HANDLERS
 	void HandleControlOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
-			stickReset = false;
-			ControlManagerS.controlProfile++;
-			if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4)){
-				if (myControl.ControllerAttached() && !myControl.CanSelectPS4){
-					ControlManagerS.controlProfile = 0;
-				}else{
-					ControlManagerS.controlProfile = 1;
-				}
-			}
-			UpdateControlSettingText();
-		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
-			stickReset = false;
-			ControlManagerS.controlProfile--;
-			if ((ControlManagerS.controlProfile < 0 && myControl.ControllerAttached() && !myControl.CanSelectPS4) 
-				|| (ControlManagerS.controlProfile < 1 && (!myControl.ControllerAttached() || myControl.CanSelectPS4))){
-				if (myControl.CanSelectPS4){
-					ControlManagerS.controlProfile = 3;
-				}else{
-					ControlManagerS.controlProfile = 2;
-				}
-			}
-			UpdateControlSettingText();
-		}
-
-		if (selectButtonUp && myControl.GetCustomInput(12)){
-			
-			ControlManagerS.controlProfile++;
-			if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4)){
-				if (myControl.ControllerAttached() && !myControl.CanSelectPS4){
-					ControlManagerS.controlProfile = 0;
-				}else{
-					ControlManagerS.controlProfile = 1;
-				}
-			}
-			selectButtonUp = false;
-
-			UpdateControlSettingText();
-		}
+		// moving to its own screen. select to turn on
+        if (selectButtonUp && myControl.GetCustomInput(12)){
+            customControlRef.TurnOn(this);
+            inCustomControlMenu = true;
+            selectButtonUp = false;
+        }
 
 	}
 
@@ -653,7 +626,7 @@ public class GameMenuS : MonoBehaviour {
 		UpdateControlSettingText();
 		UpdateSinSettingText();
 		UpdatePunishSettingText();
-		if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER == 1f){
+		if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f){
 			shakeText.text = "ON";
 		}else{
 			shakeText.text = "OFF";
@@ -671,4 +644,9 @@ public class GameMenuS : MonoBehaviour {
 		CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
 		CameraFollowS.ResetZoomLevel();
 	}
+
+    public void BackFromControlMenu(){
+        cancelButtonUp = selectButtonUp = false;
+        inCustomControlMenu = false;
+    }
 }
