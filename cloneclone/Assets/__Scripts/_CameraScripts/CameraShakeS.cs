@@ -27,9 +27,11 @@ public class CameraShakeS : MonoBehaviour {
 	public static float 		OPTIONS_SHAKE_MULTIPLIER = 1f;
 
 	public static float 		turboMultiplier = 0.925f;
+    private const float slowMode = 0.9f;
 	private const float turboOff = 0.925f;
 	private const float turboOn = 1f;
 	private const float superTurbo = 1.085f;
+    private static int turboState = 0;
 
 	private const float debugScale = 1f;
 	
@@ -417,68 +419,58 @@ public class CameraShakeS : MonoBehaviour {
 		}
 	}
 
-	public static void SetTurboNormal(){
-		turboMultiplier = turboOff;
-	}
-
-	public static void SetTurboFast(){
-		turboMultiplier = turboOn;
-	}
-
-	public static void SetTurboFastest(){
-		turboMultiplier = superTurbo;
-	}
-
 	public static int GetTurboInt(){
-		int tInt = 0;
-		if (turboMultiplier == turboOn){
-			tInt = 1;
-		}
-		if (turboMultiplier == superTurbo){
-			tInt = 2;
-		}
-		return tInt;
+		
+		return turboState;
 	}
 	public static string GetTurboString(){
 		string turboString = "1x";
-		if (turboMultiplier == turboOn){
+        if (turboState == 1){
 			turboString = "1.1x";
 		}
-		if (turboMultiplier == superTurbo){
+        if (turboState == 2){
 			turboString = "1.2x";
 		}
+        if (turboState == 3){
+            turboString = "0.9x";
+        }
 		return turboString;
 	}
 
 	public static void SetTurbo(int turbo = 0){
+        turboState = turbo;
 		if (turbo == 1){
 			turboMultiplier = turboOn;
 		}else if (turbo == 2){
 			turboMultiplier = superTurbo;
-		}else{
+        }else if (turbo == 3){
+            turboMultiplier = slowMode;
+        }else{
 			turboMultiplier = turboOff;
 		}
 	}
 
 	public static void ChangeTurbo(int dir){
 		if (dir > 0){
-			if (turboMultiplier == turboOff){
-				turboMultiplier = turboOn;
-			}
-			else if (turboMultiplier == turboOn){
-				turboMultiplier = superTurbo;
-			}else{
-				turboMultiplier = turboOff;
-			}
+            turboState++;
+            if (turboState == 2 && !GameMenuS.unlockedTurbo){
+                turboState++;
+            }
+            if (turboState > 3){
+                turboState = 0;
+            }
+            SetTurbo(turboState);
 		}else{
-			if (turboMultiplier == turboOff){
-				turboMultiplier = superTurbo;
-			}
-			else if (turboMultiplier == turboOn){
-				turboMultiplier = turboOff;
-			}else{
-				turboMultiplier = turboOn;
-			}
+            turboState--;
+            if (turboState == 2 && !GameMenuS.unlockedTurbo)
+            {
+                turboState--;
+            }
+            if (turboState < 0)
+            {
+                turboState = 3;
+            }
+            SetTurbo(turboState);
 		}
 	}
 

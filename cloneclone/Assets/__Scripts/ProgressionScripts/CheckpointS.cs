@@ -3,8 +3,16 @@ using System.Collections;
 
 public class CheckpointS : MonoBehaviour {
 
+    public static string lastSavePointName = "Abandoned Faith";
+    public static int totalPlayTimeSeconds;
+    public static int totalPlayTimeMinutes;
+    public static int totalPlayTimeHours;
+
+    public static float lastSavedTimeDotTime = 0f;
+
 	public bool fullCheckpoint = true;
-	public bool dontAddToSceneList = false;
+    public bool dontAddToSceneList = false;
+    public string savePointName = "Abandoned Faith";
 	private PlayerDetectS _playerDetect;
 	private bool _examining = false;
 	public Vector3 examinePos = new Vector3(0, 1f, 0);
@@ -61,6 +69,9 @@ public class CheckpointS : MonoBehaviour {
 			}
 		}
 
+        lastSavePointName = savePointName;
+        AddToSaveTime();
+
 		CombatGiverS.chosenSpecialCombat = -1;
 
 		if (!SceneManagerS.inInfiniteScene){
@@ -87,6 +98,8 @@ public class CheckpointS : MonoBehaviour {
 			if (_playerDetect.player.myControl.GetCustomInput(3) && _talkButtonUp
 			    && !_playerDetect.player.talking && !CameraEffectsS.E.isFading){
 				
+                AddToSaveTime();
+
 				if (fullCheckpoint){
 					_examining = true;
 						_menuManager.TurnOnLevelUpMenu();
@@ -136,6 +149,7 @@ public class CheckpointS : MonoBehaviour {
 				}
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
+
 				PlayerInventoryS.I.dManager.ClearAll();
 				if (addToCompletedFights.Length > 0){
 					for (int i = 0; i<addToCompletedFights.Length;i++){
@@ -202,4 +216,49 @@ public class CheckpointS : MonoBehaviour {
 		}
 
 	}
+
+    void AddToSaveTime(){
+        
+            float currentTime = Time.time;
+            int additionalTime = Mathf.RoundToInt(currentTime - lastSavedTimeDotTime);
+            lastSavedTimeDotTime = currentTime;
+        if (totalPlayTimeHours < 9999)
+        {
+
+            while (additionalTime >= 3600)
+            {
+                additionalTime -= 3600;
+                totalPlayTimeHours++;
+            }
+            while (additionalTime >= 60)
+            {
+                additionalTime -= 60;
+                totalPlayTimeMinutes++;
+                if (totalPlayTimeMinutes > 59)
+                {
+                    totalPlayTimeMinutes = 0;
+                    totalPlayTimeHours++;
+                }
+            }
+            totalPlayTimeSeconds += additionalTime;
+            if (totalPlayTimeSeconds >= 60)
+            {
+                totalPlayTimeSeconds -= 60;
+                totalPlayTimeMinutes++;
+                if (totalPlayTimeMinutes >= 60)
+                {
+                    totalPlayTimeMinutes -= 60;
+                    totalPlayTimeHours++;
+                }
+            }
+
+            // max time check
+            if (totalPlayTimeHours > 9999)
+            {
+                totalPlayTimeHours = 9999;
+                totalPlayTimeMinutes = 59;
+                totalPlayTimeSeconds = 59;
+            }
+        }
+    }
 }

@@ -560,6 +560,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 
 		if (!newGamePlus){
+            CheckpointS.lastSavedTimeDotTime = 0f;
 			healNums.Clear();
 			chargeNums.Clear();
 			vpNums.Clear();
@@ -581,7 +582,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerController.familiarUnlocked = false;
 		SpawnPosManager.whereToSpawn = 0;
 		GameOverS.revivePosition = 0;
-		CameraShakeS.SetTurbo();
+		//CameraShakeS.SetTurbo();
 		List<int> buddyList = new List<int>();
 		if (!newGamePlus){
 		buddyList.Add(unlockedBuddies[0].buddyNum);
@@ -601,6 +602,23 @@ public class PlayerInventoryS : MonoBehaviour {
 			DarknessPercentUIS.hasReached100 = true;
 		}
 		OverwriteInventoryData(eraseOnNewGame);
+
+        // i want these to be unlocked forever
+        //GameMenuS.unlockedChallenge = false;
+        //GameMenuS.unlockedTurbo = false;
+
+        PlayerController.killedFamiliar = false;
+
+        if (newGamePlus)
+        {
+            CheckpointS.lastSavePointName = "sacrament i.";
+        }else{
+            CheckpointS.lastSavePointName = "Abandoned Faith";
+        }
+        CheckpointS.totalPlayTimeSeconds = 0;
+        CheckpointS.totalPlayTimeMinutes = 0;
+        CheckpointS.totalPlayTimeHours = 0;
+
 	}
 
 	void SetUpStartTech(){
@@ -709,6 +727,26 @@ public class PlayerInventoryS : MonoBehaviour {
 
 		_iManager.LoadInventory(inventoryData.equippedInventory, inventoryData.currentSelection);
 		_iManager.RefreshUI();
+
+        GameMenuS.unlockedChallenge = inventoryData.unlockedChallenge;
+        GameMenuS.unlockedTurbo = inventoryData.unlockedTurbo;
+        PlayerController.killedFamiliar = inventoryData.killedFamiliar;
+
+        ControlManagerS.savedKeyboardControls = inventoryData.savedKeyboardControls;
+        ControlManagerS.savedGamepadControls = inventoryData.savedGamepadControls;
+        ControlManagerS.savedKeyboardandMouseControls = inventoryData.savedMouseControls;
+
+        CheckpointS.lastSavePointName = inventoryData.lastSavePointName;
+        CheckpointS.totalPlayTimeSeconds = inventoryData.totalPlayTimeSeconds;
+        CheckpointS.totalPlayTimeMinutes = inventoryData.totalPlayTimeMinutes;
+        CheckpointS.totalPlayTimeHours = inventoryData.totalPlayTimeHours;
+
+        CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = inventoryData.savedCameraShake;
+        if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 1f){
+            CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+        }else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER < 0){
+            CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0;
+        }
 	}
 	 
 	public void OverwriteInventoryData(bool erase = false, bool newGamePlus = false){
@@ -802,6 +840,21 @@ public class PlayerInventoryS : MonoBehaviour {
 				_tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 			}
 			inventoryData.tvNumber = _tvNum;
+
+                inventoryData.unlockedChallenge = GameMenuS.unlockedChallenge;
+                inventoryData.unlockedTurbo = GameMenuS.unlockedTurbo;
+                inventoryData. killedFamiliar = PlayerController.killedFamiliar;
+
+                inventoryData.savedKeyboardControls = ControlManagerS.savedKeyboardControls;
+                inventoryData.savedGamepadControls = ControlManagerS.savedGamepadControls;
+                inventoryData.savedMouseControls = ControlManagerS.savedKeyboardandMouseControls;
+
+                inventoryData.lastSavePointName = CheckpointS.lastSavePointName;
+                inventoryData.totalPlayTimeSeconds = CheckpointS.totalPlayTimeSeconds;
+                inventoryData.totalPlayTimeMinutes = CheckpointS.totalPlayTimeMinutes;
+                inventoryData.totalPlayTimeHours = CheckpointS.totalPlayTimeHours;
+
+                inventoryData.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
 			}
 		}
 	}
@@ -863,6 +916,22 @@ public class InventorySave {
 	public bool hasReached100 = false;
     public List<int> skippableScenes;
 
+    public bool killedFamiliar = false;
+    public bool unlockedChallenge = false;
+    public bool unlockedTurbo = false;
+    public string lastSavePointName = "Abandoned Faith";
+
+    // saved Options
+    public List<int> savedGamepadControls = new List<int>();
+    public List<int> savedKeyboardControls = new List<int>();
+    public List<int> savedMouseControls = new List<int>();
+
+    public int totalPlayTimeSeconds = 0;
+    public int totalPlayTimeMinutes = 0;
+    public int totalPlayTimeHours = 0;
+
+    public float savedCameraShake = 1f;
+
 	public InventorySave(){
 		playerName = "LUCAH";
 		earnedUpgrades = new List<int>();
@@ -916,6 +985,21 @@ public class InventorySave {
 		sinLevel = 1;
 
 		hasReached100 = false;
+
+        unlockedChallenge = false;
+        unlockedTurbo = false;
+        killedFamiliar = false;
+
+            savedKeyboardControls = new List<int>(14) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        savedGamepadControls = new List<int>(14) { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        savedMouseControls = new List<int>(14) { 14, 15, 16, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+
+       lastSavePointName = "Abandoned Faith";
+        totalPlayTimeSeconds = 0;
+    totalPlayTimeMinutes = 0;
+    totalPlayTimeHours = 0;
+
+        savedCameraShake = 1f;
 
 	}
 }

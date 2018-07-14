@@ -121,8 +121,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 
 			if ((_pRef.myControl.GetCustomInput(10) && !equipMenuButtonDown) || 
-					((equipMenu.canBeQuit || equipMenu.inMap) && !exitButtonDown && _pRef.myControl.GetCustomInput(13)) ||
-					((ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && equipMenu.inMap)){
+					((equipMenu.canBeQuit || equipMenu.inMap) && !exitButtonDown && _pRef.myControl.GetCustomInput(13))){
 				equipMenuActive = false;
 				//equipMenu.gameObject.SetActive(false);
 				equipMenu.TurnOff();
@@ -148,18 +147,18 @@ public class InGameMenuManagerS : MonoBehaviour {
 						equipMenuButtonDown = true;
 						hasUsedMenu = true;
 					}
-					if (allowMenuUse && (ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && !preventMUse){
+					/*if (allowMenuUse && (ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && Input.GetKeyDown(KeyCode.M) && !preventMUse){
 						equipMenuActive = true;
 						equipMenu.TurnOn(true);
 						_pRef.SetTalking(true);
 						equipMenuButtonDown = true;
 						hasUsedMenu = true;
-					}
+					}**/
 					preventMUse = false;
 					if (allowMenuUse && _pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown){
 						gameMenuActive = true;
 						gameMenuButtonDown = true;
-						gameMenu.TurnOn();
+						gameMenu.TurnOn(null);
 						_pRef.SetTalking(true);
 					}
 					/*if (Input.GetKeyDown(KeyCode.Escape) && !holdingEscape && !exitButtonDown){

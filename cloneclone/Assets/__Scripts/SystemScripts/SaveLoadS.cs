@@ -7,12 +7,13 @@ using System.IO;
 public class SaveLoadS : MonoBehaviour {
 
 	public static List<GameDataS> savedGames = new List<GameDataS>();
+    public static int currentSaveSlot = 0;
 	
 	//it's static so we can call it from anywhere
 	public static void Save() {
 		// for now, only use one file
-		if (SaveLoadS.savedGames.Count > 0){
-			SaveLoadS.savedGames[0] = GameDataS.current;
+        if (currentSaveSlot < SaveLoadS.savedGames.Count){
+            SaveLoadS.savedGames[currentSaveSlot] = GameDataS.current;
 		}else{
 			SaveLoadS.savedGames.Add(GameDataS.current);
 		}
@@ -41,20 +42,43 @@ public class SaveLoadS : MonoBehaviour {
 		}
 		#endif
 	}
-	
-	public static void Load() {
-		if(File.Exists(Application.persistentDataPath + "/savedGames.gd")) {
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
-			SaveLoadS.savedGames = (List<GameDataS>)bf.Deserialize(file);
-			file.Close();
-		}
 
-		// load first file, for now
-		if (savedGames.Count > 0){
-			GameDataS.current = SaveLoadS.savedGames[0];
-			GameDataS.current.LoadCurrent();
-		}
+    public static void Load(int saveToLoad = 0)
+    {
+        if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            if (savedGames == null || savedGames.Count <= 0)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+                savedGames = (List<GameDataS>)bf.Deserialize(file);
+                file.Close();
+            }
+
+
+            if (savedGames.Count < saveToLoad && savedGames.Count > 0)
+            {
+                Debug.Log("There was an error, default to 0");
+                saveToLoad = savedGames.Count-1;
+            }
+
+            // load selected file, and set rest to not last loaded
+            for (int i = 0; i < savedGames.Count; i++)
+                if (i != saveToLoad)
+                {
+                    savedGames[i].lastLoaded = 0;
+                }
+                else
+                {
+                    savedGames[i].lastLoaded = 1;
+                }
+
+            // finally, load game
+            GameDataS.current = savedGames[saveToLoad];
+            GameDataS.current.LoadCurrent();
+            currentSaveSlot = saveToLoad;
+        }
+    
 	}
 
 	public static bool SaveFileExists(){
@@ -68,4 +92,56 @@ public class SaveLoadS : MonoBehaviour {
 			return false;
 		}
 	}
+
+    public static int NumSavesOnDisk(){
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            return 0;
+        }
+        else if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            if (savedGames == null || savedGames.Count <= 0)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+                savedGames = (List<GameDataS>)bf.Deserialize(file);
+                file.Close();
+            }
+            return savedGames.Count;
+        }
+        else
+        {
+            Debug.Log("Save does not exist");
+            return 0;
+        }
+    }
+
+    public static int LastUsedSave(){
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            return 0;
+        }
+        else if (File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            if (savedGames == null || savedGames.Count <= 0)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+                savedGames = (List<GameDataS>)bf.Deserialize(file);
+                file.Close();
+            }
+            int whichFile = 0;
+            for (int i = 0; i < savedGames.Count; i++){
+                if (savedGames[i].lastLoaded > 0){
+                    whichFile = i;
+                }
+            }
+            return whichFile;
+        }
+        else
+        {
+            Debug.Log("Save does not exist");
+            return 0;
+        }
+    }
 }

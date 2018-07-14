@@ -14,6 +14,8 @@ public class GameDataS {
 
 	public float currentDarkness;
 	public int currentLa;
+
+    public int lastLoaded = -1;
 	
 	public GameDataS () {
 
@@ -51,6 +53,8 @@ public class GameDataS {
 		InGameMenuManagerS.allowMenuUse = canUseMenu;
 		PlayerStatsS._currentDarkness = currentDarkness;
 		PlayerCollectionS.currencyCollected = currentLa;
+
+        lastLoaded = 1;
 
 	}
 	

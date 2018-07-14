@@ -6,6 +6,9 @@ public class GameMenuS : MonoBehaviour {
 
 	private InGameMenuManagerS myManager;
 
+    public static bool unlockedChallenge;
+    public static bool unlockedTurbo;
+
 	private Color textDefaultColor;
 	private Color textSelectColor = Color.white;
 
@@ -49,6 +52,8 @@ public class GameMenuS : MonoBehaviour {
 	public Text aliasText;
 	public RectTransform optionsSelector;
 
+    private bool quitRightFromOptions = false;
+
     public CustomizableControlsUIS customControlRef;
     private bool inCustomControlMenu = false;
 
@@ -65,8 +70,17 @@ public class GameMenuS : MonoBehaviour {
 	private bool showDebug = false;
 	public bool overrideToMenu = true;
 
+    private MainMenuNavigationS mainMenuRef;
+    public bool mainMenuUpdate = false;
 
-	// Update is called once per frame
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (mainMenuUpdate){
+            GameMenuUpdate();
+        }
+    }
 	public void GameMenuUpdate () {
 
 		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f){
@@ -137,8 +151,10 @@ public class GameMenuS : MonoBehaviour {
         }else if (!inCustomControlMenu){
 			if (myControl.VerticalMenu() > 0.2f && stickReset){
 				stickReset = false;
-				currentSelection--;
-				myManager.pRef.ResetTimeMax();
+                currentSelection--;if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 				if (currentSelection < 0){
 					currentSelection = optionsTexts.Length-1;
 				}
@@ -146,8 +162,10 @@ public class GameMenuS : MonoBehaviour {
 			}
 			if (myControl.VerticalMenu() < -0.2f && stickReset){
 				stickReset = false;
-				currentSelection++;
-				myManager.pRef.ResetTimeMax();
+                currentSelection++;if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 				if (currentSelection > optionsTexts.Length-1){
 					currentSelection = 0;
 				}
@@ -160,59 +178,83 @@ public class GameMenuS : MonoBehaviour {
 
 				selectButtonUp = false;
 				cancelButtonUp = false;
-				inOptionsMenu = false;
-				myManager.pRef.ResetTimeMax();
+                inOptionsMenu = false;if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 				SetSelection(2);
 				optionsMenuProper.gameObject.SetActive(false);
+                if (quitRightFromOptions){
+                    TurnOff();
+                }
 
 			}
 
 			// control type set
 			if (currentSelection == 0){
 				HandleControlOption();
-				myManager.pRef.ResetTimeMax();
+                if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// speed type set
 			if (currentSelection == 1){
-				HandleSpeedOption();
-				myManager.pRef.ResetTimeMax();
+                HandleSpeedOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// sin difficulty set
 			if (currentSelection == 2){
-				HandleSinOption();
-				myManager.pRef.ResetTimeMax();
+                HandleSinOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// punishment difficulty set
 			if (currentSelection == 3){
-				HandlePunishOption();
-				myManager.pRef.ResetTimeMax();
+                HandlePunishOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// music volume set
 			if (currentSelection == 4){
-				HandleMusicOption();
-				myManager.pRef.ResetTimeMax();
+                HandleMusicOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// sfx volume set
 			if (currentSelection == 5){
-				HandleSfxOption();
-				myManager.pRef.ResetTimeMax();
+                HandleSfxOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 			// screenshake set
 			if (currentSelection == 6){
-				HandleShakeOption();
-				myManager.pRef.ResetTimeMax();
+                HandleShakeOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 
 			// zoom set
 			if (currentSelection == 7){
-				HandleZoomOption();
-				myManager.pRef.ResetTimeMax();
+                HandleZoomOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 
 			// alias set
 			if (currentSelection == 8){
-				HandleAliasOption();
-				myManager.pRef.ResetTimeMax();
+                HandleAliasOption();if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
 			}
 		}
 
@@ -266,7 +308,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 	}
 
-	public void TurnOn(){
+    public void TurnOn(MainMenuNavigationS goToOptions){
 		if (!initialized){
 
 			textDefaultColor = selectTexts[0].color;
@@ -297,6 +339,17 @@ public class GameMenuS : MonoBehaviour {
 		SetSelection(0);
 		gameObject.SetActive(true);
         inCustomControlMenu = false;
+        quitRightFromOptions = false;
+        if (goToOptions != null){
+            myControl = goToOptions.controlRef;
+            quitRightFromOptions = true;
+                selectButtonUp = false;
+            inOptionsMenu = true;
+            MatchOptionsText();
+            SetSelection(0);
+            optionsMenuProper.gameObject.SetActive(true);
+            mainMenuRef = goToOptions;
+        }
 		//Debug.Log("game menu turn ON");
 		
 	}
@@ -308,6 +361,9 @@ public class GameMenuS : MonoBehaviour {
         customControlRef.TurnOff(this);
         gameObject.SetActive(false);
         inCustomControlMenu = false;
+        if (mainMenuRef){
+            mainMenuRef.inOptionsMenu = false;
+        }
 		//Debug.LogError("game menu turn OFF");
 		
 	}
@@ -331,7 +387,7 @@ public class GameMenuS : MonoBehaviour {
 	}
 
 	void UpdateControlSettingText(){
-		if (ControlManagerS.controlProfile == 0){
+        /*if (ControlManagerS.controlProfile == 0){
 			controlText.text = "Gamepad";
 			Cursor.visible = false;
 		}
@@ -346,7 +402,8 @@ public class GameMenuS : MonoBehaviour {
 		else if (ControlManagerS.controlProfile == 2){
 			controlText.text = "Keyboard (No Mouse)";
 			Cursor.visible = false;
-		}
+		}*/
+        controlText.enabled = false;
 	}
 
 	void HandleSinOption(){
@@ -355,6 +412,9 @@ public class GameMenuS : MonoBehaviour {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
+            if (difficultySelect > 2 && !unlockedChallenge){
+                difficultySelect=2;
+            }
 			if (difficultySelect > 3){
 				difficultySelect = 3;
 			}
@@ -377,6 +437,10 @@ public class GameMenuS : MonoBehaviour {
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
+            if (difficultySelect > 2 && !unlockedChallenge)
+            {
+                difficultySelect = 2;
+            }
 			if (difficultySelect > 3){
 				difficultySelect = 3;
 			}
@@ -408,6 +472,10 @@ public class GameMenuS : MonoBehaviour {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
+            if (difficultySelect > 2 && !unlockedChallenge)
+            {
+                difficultySelect = 2;
+            }
 			if (difficultySelect > 3){
 				difficultySelect = 3;
 			}
@@ -430,6 +498,10 @@ public class GameMenuS : MonoBehaviour {
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
+            if (difficultySelect > 2 && !unlockedChallenge)
+            {
+                difficultySelect = 2;
+            }
 			if (difficultySelect > 3){
 				difficultySelect = 3;
 			}
@@ -482,25 +554,58 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleShakeOption(){
 
-		if ((myControl.HorizontalMenu() > 0.2f || myControl.HorizontalMenu() < -0.2f) && stickReset){
-			stickReset = false;
-			if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER == 1f){
-				CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
-				shakeText.text = "OFF";
-			}else{
-				CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-				shakeText.text = "ON";
-			}
+        if ((myControl.HorizontalMenu() > 0.2f || myControl.HorizontalMenu() < -0.2f) && stickReset)
+        {
+            stickReset = false;
+            if (myControl.HorizontalMenu() > 0) { 
+            if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
+            {
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
+                shakeText.text = "OFF";
+                }else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+                    shakeText.text = "ON";  
+                }
+            else
+            {
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
+                shakeText.text = "LOW";
+            }
+        }else{
+                if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
+                {
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
+                    shakeText.text = "LOW";
+                }
+                else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0)
+                {
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
+                    shakeText.text = "OFF";
+                }
+                else
+                {
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+                    shakeText.text = "ON";
+                }
+        }
 		}
 
 		if (selectButtonUp && myControl.GetCustomInput(12)){
-			if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER == 1f){
-				CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
-				shakeText.text = "OFF";
-			}else{
-				CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-				shakeText.text = "ON";
-			}
+            if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
+            {
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
+                shakeText.text = "OFF";
+            }
+            else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0)
+            {
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+                shakeText.text = "ON";
+            }
+            else
+            {
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
+                shakeText.text = "LOW";
+            }
 			selectButtonUp = false;
 
 		}
@@ -628,7 +733,9 @@ public class GameMenuS : MonoBehaviour {
 		UpdatePunishSettingText();
 		if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f){
 			shakeText.text = "ON";
-		}else{
+        }else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
+            shakeText.text = "LOW";
+        }else{
 			shakeText.text = "OFF";
 		}
 		UpdateCameraZoomSettingText();
@@ -639,10 +746,10 @@ public class GameMenuS : MonoBehaviour {
 
 	public static void ResetOptions(){
 		DifficultyS.SetDifficultiesFromInt(0,0);
-		BGMHolderS.volumeMult = 1f;
-		SFXObjS.volumeSetting = 1f;
-		CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-		CameraFollowS.ResetZoomLevel();
+		//BGMHolderS.volumeMult = 1f;
+		//SFXObjS.volumeSetting = 1f;
+		//CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+		//CameraFollowS.ResetZoomLevel();
 	}
 
     public void BackFromControlMenu(){

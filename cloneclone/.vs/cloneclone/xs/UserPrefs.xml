@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/GameMenuS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/UIScripts/GameMenuS.cs" Line="637" Column="51" />
-      <File FileName="Assets/__Scripts/UIScripts/CustomizableControlsUIS.cs" Line="378" Column="33" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/ControlManagerS.cs" Line="732" Column="38" />
-      <File FileName="Assets/__Scripts/UIScripts/LevelUpMenu.cs" Line="99" Column="1" />
+      <File FileName="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs" Line="632" Column="48" />
+      <File FileName="Assets/__Scripts/UIScripts/GameMenuS.cs" Line="263" Column="38" />
+      <File FileName="Assets/__Scripts/UIScripts/InGameMenuManagerS.cs" Line="102" Column="23" />
+      <File FileName="Assets/__Scripts/SystemScripts/SaveLoadS.cs" Line="126" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

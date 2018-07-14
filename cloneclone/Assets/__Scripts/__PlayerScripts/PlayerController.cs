@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
 
 	private PlayerStatsS _myStats;
 
+
+    public static bool killedFamiliar = false;
 	public static bool doWakeUp = true;
 	public static bool dontHealWakeUp = false;
 	public static bool familiarUnlocked = true;
@@ -667,7 +669,7 @@ public class PlayerController : MonoBehaviour {
 		startBuddy.transform.parent = transform;
 		_myBuddy = startBuddy.gameObject.GetComponent<BuddyS>();
 		_myBuddy.SetPositions(buddyPos, buddyPosLower);
-		if (!InGameCinematicS.turnOffBuddies && familiarUnlocked && !isNatalie){
+        if (!InGameCinematicS.turnOffBuddies && familiarUnlocked && !isNatalie && !killedFamiliar){
 			_myBuddy.gameObject.SetActive(true);
 		}
 		_myStats.SetMinChargeUse(_myBuddy.costPerUse, _myBuddy.useAllCharge);
@@ -2233,7 +2235,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap && !isNatalie){
 		
-			if (switchButtonUp && _myBuddy.canSwitch){
+            if (switchButtonUp && (_myBuddy.canSwitch || killedFamiliar)){
 				if (myControl.GetCustomInput(5)){
 
 					resetCountdown = resetTimeMax;
@@ -2247,34 +2249,43 @@ public class PlayerController : MonoBehaviour {
 					SwitchParadigm(_currentParadigm);
 
 					AdaptiveCheck();
-					
-					BuddyS tempSwap = _myBuddy;
-					if (!altBuddyCreated){
-						altBuddyCreated = true;
-						if (equippedBuddies.Count < 2){
-							equippedBuddies.Add(equippedBuddies[0]);
-						}
-						GameObject newBuddy = Instantiate(equippedBuddies[_currentParadigm], 
-						                                  transform.position,Quaternion.identity)
-							as GameObject;
-						newBuddy.transform.parent = transform;
-						_altBuddy = newBuddy.GetComponent<BuddyS>();
-					}	
-					_altBuddy.SetPositions(buddyPos, buddyPosLower);
-					_myBuddy = _altBuddy;
-					_myBuddy.transform.position = tempSwap.transform.position;
-					if (!InGameCinematicS.turnOffBuddies && !isNatalie){
-						_myBuddy.gameObject.SetActive(true);
-						Instantiate(_myBuddy.buddySound);
-					}
-					_altBuddy = tempSwap;
-					_altBuddy.gameObject.SetActive(false);
-					if (_isTransformed){
-						_myBuddy.gameObject.SetActive(false);
-					}else{
-					
-					_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
-					}
+
+                    if (!killedFamiliar)
+                    {
+                        BuddyS tempSwap = _myBuddy;
+                        if (!altBuddyCreated)
+                        {
+                            altBuddyCreated = true;
+                            if (equippedBuddies.Count < 2)
+                            {
+                                equippedBuddies.Add(equippedBuddies[0]);
+                            }
+                            GameObject newBuddy = Instantiate(equippedBuddies[_currentParadigm],
+                                                              transform.position, Quaternion.identity)
+                                as GameObject;
+                            newBuddy.transform.parent = transform;
+                            _altBuddy = newBuddy.GetComponent<BuddyS>();
+                        }
+                        _altBuddy.SetPositions(buddyPos, buddyPosLower);
+                        _myBuddy = _altBuddy;
+                        _myBuddy.transform.position = tempSwap.transform.position;
+                        if (!InGameCinematicS.turnOffBuddies && !isNatalie)
+                        {
+                            _myBuddy.gameObject.SetActive(true);
+                            Instantiate(_myBuddy.buddySound);
+                        }
+                        _altBuddy = tempSwap;
+                        _altBuddy.gameObject.SetActive(false);
+                        if (_isTransformed)
+                        {
+                            _myBuddy.gameObject.SetActive(false);
+                        }
+                        else
+                        {
+
+                            _buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+                        }
+                    }
 
 					_playerAug.RefreshAll();
 
