@@ -54,6 +54,7 @@ public class EnemyS : MonoBehaviour {
 	private float currentCritTime = 0f;
 	private float currentCritDamage;
 	public float cinematicKillAt = 0f;
+    public bool ignoreDeathZ = false;
 	[Header("Stunlock Properties")]
 	public float stunLockHealthMult = 0.4f;
 	public float stunlockTimeMult = 0.6f;
@@ -1490,9 +1491,12 @@ public class EnemyS : MonoBehaviour {
 			gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 			_myRigidbody.velocity = Vector3.zero;
 			StartCoroutine(KnockbackRoutine(knockbackForce*1.5f, ForceMode.VelocityChange));
-            if (zController) { zController.enabled = false; }
-			transform.position = new Vector3(transform.position.x, transform.position.y, 
-			                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
+            if (!ignoreDeathZ)
+            {
+                if (zController) { zController.enabled = false; }
+                transform.position = new Vector3(transform.position.x, transform.position.y,
+                                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
+            }
 
 			ResetMaterial();
 
@@ -1588,10 +1592,14 @@ public class EnemyS : MonoBehaviour {
 		currentKnockbackCooldown = knockbackTime;
 		gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 		_myRigidbody.velocity = Vector3.zero;
-        if (zController){
-            zController.enabled = false;
+        if (!ignoreDeathZ)
+        {
+            if (zController)
+            {
+                zController.enabled = false;
+            }
+            transform.position = new Vector3(transform.position.x, transform.position.y, ENEMY_DEATH_Z);
         }
-		transform.position = new Vector3(transform.position.x, transform.position.y, ENEMY_DEATH_Z);
 		myRenderer.material = startMaterial;
 
 	}

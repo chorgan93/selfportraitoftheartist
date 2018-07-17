@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 0.8.5 —";
+	private const string currentVer = "— v. 0.9.0 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -25,7 +25,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private bool quitting = false;
 
     private bool waitingForInput = true;
-    private bool triggerSecondScreen = false;
+    [HideInInspector]
+    public bool triggerSecondScreen = false;
 	
 	public SpriteRenderer fadeOnZoom;
 	public float fadeTime = 1f;
@@ -110,12 +111,15 @@ public class MainMenuNavigationS : MonoBehaviour {
 
     private int lastUsedFile = 0;
     private int numSaveFiles = 0;
+    public int NumSaveFiles { get { return numSaveFiles; }}
     private int saveToLoad;
 
     [Header("Options Properties")]
     public GameMenuS optionsMenu;
+    public LoadFileMenu loadFileMenu;
     [HideInInspector]
-    public bool inOptionsMenu = false;
+    public bool inLoadMenu = false;
+    private bool inOptionsMenu = false;
 
 	void Awake(){
 		versionText.text = currentVer;
@@ -215,7 +219,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 		if (!startedLoading){
 
-            if (attractEnabled && !inOptionsMenu){
+            if (attractEnabled && !inOptionsMenu && !inLoadMenu){
 				attractCountdown -= Time.deltaTime;
 				//Debug.Log(attractCountdown);
 				if (attractCountdown <= 0){
@@ -230,7 +234,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					showOnOverride.gameObject.SetActive(false);
 					StartNextLoad();
 				}
-			}
+            }
 		}
 
 		if (!started && !loading){
@@ -239,12 +243,67 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 			HandleBlur();
 
-			if (allowStartTime <= 0){
+            if (allowStartTime <= 0)
+            {
                 if (waitingForInput)
                 {
                     // show "press any" message
 
-                    if (myController.CheckForKeyPress(true) > -1)
+
+                    if (myController.ControllerAttached())
+                    {
+                        if (myController.CheckForButtonPress(true) > -1)
+                        {
+                            waitingForInput = false;
+                            menuZeroObject.SetActive(true);
+                            stickReset = false;
+                            selectReset = false;
+                            if (myController.DetermineControllerType() == 1)
+                            {
+                                ControlManagerS.controlProfile = 3;
+                            }
+                            else
+                            {
+                                ControlManagerS.controlProfile = 0;
+                            }
+                            if (SaveLoadS.SaveFileExists())
+                            {
+                                currentMenuZeroPosition = 0;
+                            }
+                            else
+                            {
+                                currentMenuZeroPosition = 1;
+                            }
+                            for (int i = 0; i < pressAnyText.Length; i++)
+                            {
+                                pressAnyText[i].gameObject.SetActive(false);
+                            }
+                            cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+
+                        }else if (myController.CheckForKeyPress(true) > -1)
+                            {
+                                waitingForInput = false;
+                                menuZeroObject.SetActive(true);
+                                ControlManagerS.controlProfile = 1;
+                                stickReset = false;
+                                selectReset = false;
+                                for (int i = 0; i < pressAnyText.Length; i++)
+                                {
+                                    pressAnyText[i].gameObject.SetActive(false);
+                                }
+                                if (SaveLoadS.SaveFileExists())
+                                {
+                                    currentMenuZeroPosition = 0;
+                                }
+                                else
+                                {
+                                    currentMenuZeroPosition = 1;
+                                }
+                                cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                            }
+
+                    }
+                    else if (myController.CheckForKeyPress(true) > -1)
                     {
                         waitingForInput = false;
                         menuZeroObject.SetActive(true);
@@ -265,36 +324,6 @@ public class MainMenuNavigationS : MonoBehaviour {
                         }
                         cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
                     }
-
-                    if (myController.ControllerAttached())
-                    {
-                        if (myController.CheckForButtonPress(true) > -1) {
-                            waitingForInput = false;
-                            menuZeroObject.SetActive(true);
-                            stickReset = false;
-                            selectReset = false;
-                            if (SaveLoadS.SaveFileExists())
-                            {
-                                currentMenuZeroPosition = 0;
-                            }else{
-                                currentMenuZeroPosition = 1;
-                            }
-                            for (int i = 0; i < pressAnyText.Length; i++)
-                            {
-                                pressAnyText[i].gameObject.SetActive(false);
-                            }
-                            cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
-                            if (myController.DetermineControllerType() == 1)
-                            {
-                                ControlManagerS.controlProfile = 3;
-                            }
-                            else
-                            {
-                                ControlManagerS.controlProfile = 0;
-                            }
-                        }
-
-                    }
                 }
                 else if (triggerSecondScreen)
                 {
@@ -308,30 +337,45 @@ public class MainMenuNavigationS : MonoBehaviour {
                         t.SetActive(false);
                     }
                     fadeOnZoom.gameObject.SetActive(true);
-                }else{
-                    // show rpgmaker-type menu
-                    if (!stickReset){
-                        if (Mathf.Abs(myController.HorizontalMenu()) < 0.1f && Mathf.Abs(myController.VerticalMenu()) < 0.1f){
-                            stickReset = true;
-                        }
-                    }else{
-                        if (myController.VerticalMenu() < -0.1f){
-                            currentMenuZeroPosition++;
-                            if (currentMenuZeroPosition > 2){
-                                currentMenuZeroPosition = 2;
-                            }
-                            cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
-                            stickReset = false;
-                        }else if (myController.VerticalMenu() > 0.1f){
-                            currentMenuZeroPosition--;
-                            if (currentMenuZeroPosition < 0)
+                }
+                else
+                {
+                    if (!inLoadMenu)
+                    {
+                        // show rpgmaker-type menu
+                        if (!stickReset)
+                        {
+                            if (Mathf.Abs(myController.HorizontalMenu()) < 0.1f && Mathf.Abs(myController.VerticalMenu()) < 0.1f)
                             {
-                                currentMenuZeroPosition = 0;
+                                stickReset = true;
                             }
-                            cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
-                            stickReset = false;
                         }
-                        if (selectReset){
+                        else
+                        {
+                            if (myController.VerticalMenu() < -0.1f)
+                            {
+                                currentMenuZeroPosition++;
+                                if (currentMenuZeroPosition > 2)
+                                {
+                                    currentMenuZeroPosition = 2;
+                                }
+                                cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                                stickReset = false;
+                            }
+                            else if (myController.VerticalMenu() > 0.1f)
+                            {
+                                currentMenuZeroPosition--;
+                                if (currentMenuZeroPosition < 0)
+                                {
+                                    currentMenuZeroPosition = 0;
+                                }
+                                cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                                stickReset = false;
+                            }
+
+                        }
+                        if (selectReset)
+                        {
                             if (myController.GetCustomInput(12))
                             {
                                 if (currentMenuZeroPosition == 0)
@@ -345,34 +389,39 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     else
                                     {
 
-                                Debug.Log("Loading data: " + saveToLoad);
                                         SaveLoadS.Load(saveToLoad);
                                         triggerSecondScreen = true;
                                     }
-                                }else if (currentMenuZeroPosition == 1){
+                                }
+                                else if (currentMenuZeroPosition == 1)
+                                {
                                     // new game
                                     // if less than 3 saves, go ahead. otherwise open load screen
                                     if (numSaveFiles < 3)
                                     {
-                                            
-                                        GameDataS.current = null;
 
+                                        GameDataS.current = null;
+                                        SaveLoadS.currentSaveSlot = numSaveFiles;
                                         triggerSecondScreen = true;
-                                    }else{
+                                    }
+                                    else
+                                    {
                                         OpenLoadUI(true);
                                     }
-                                }else{
+                                }
+                                else
+                                {
                                     Application.Quit();
                                 }
                                 selectReset = false;
                             }
-                        }else{
-                            if (!myController.GetCustomInput(12))
-                            {
-                                selectReset = true;
-                            }
+                        }
+                        else
+                        {
+                            selectReset |= !myController.GetCustomInput(12);
                         }
                     }
+                
                 }
 			}
 		}else if (!onNewScreen && !loading){
@@ -547,7 +596,6 @@ public class MainMenuNavigationS : MonoBehaviour {
 							hideOnOverride.gameObject.SetActive(false);
 							showOnOverride.gameObject.SetActive(false);
                             if (GameDataS.current == null){
-                                Debug.Log("No current data!!");
 							StoryProgressionS.NewGame(); // reset for new game progress
 								/*if (currentSelection == 0){
 									newGameScene = demoOneScene;
@@ -580,13 +628,20 @@ public class MainMenuNavigationS : MonoBehaviour {
 		
 	}
 
-    void OpenLoadUI(bool forOverwrite = false){
-        
+    void OpenLoadUI(bool forOver = false){
+        loadFileMenu.TurnOn(this, lastUsedFile, forOver);
+        inLoadMenu = true;
+
+                attractCountdown = attractCountdownMax;
     }
 
     void OpenOptionsScreen(){
         inOptionsMenu = true;
         optionsMenu.TurnOn(this);
+    }
+    public void TurnOffOptions(){
+        inOptionsMenu = false;
+        selectReset = false;
     }
 	
 	void SetSelection(){
@@ -666,11 +721,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	private void CheckCheats(){
 		
-		if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
+		/*if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
 			//Application.Quit();
 			currentSelection = 3;
 			SetSelection();
-		}
+		}**/
 		
 		if (allowCheats){
 			if (Input.GetKeyDown(KeyCode.G)){

@@ -287,7 +287,7 @@ public class DifficultySelectS : MonoBehaviour {
 					cancelButtonUp = true;
 				}
 
-				if (Mathf.Abs(controller.Horizontal()) < 0.1f && Mathf.Abs(controller.Vertical()) < 0.1f){
+				if (Mathf.Abs(controller.HorizontalMenu()) < 0.1f && Mathf.Abs(controller.VerticalMenu()) < 0.1f){
 					stickReset = true;
 				}
 
@@ -307,14 +307,17 @@ public class DifficultySelectS : MonoBehaviour {
 						setText();
 					}
 					if (stickReset){
-						if (controller.Horizontal() >= 0.1f){
+						if (controller.HorizontalMenu() >= 0.1f){
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect++;
+                            if (sinSelect > 2 && !GameMenuS.unlockedChallenge){
+                                sinSelect = 2;
+                            }
 							if (sinSelect > 3){
 								sinSelect = 3;
 							}
-							if (sinSelect == 3){
+                            if (sinSelect == 3 || (sinSelect == 2 && !GameMenuS.unlockedChallenge)){
 								sinSelectorRight.enabled = false;
 								sinSelectorLeft.enabled = true;
 							}else{
@@ -323,17 +326,18 @@ public class DifficultySelectS : MonoBehaviour {
 								sinSelectorRight.color = Color.white;
 							}
 							setText();
-						}else if (controller.Horizontal() <= -0.1f){
+						}else if (controller.HorizontalMenu() <= -0.1f){
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect--;
 							if (sinSelect < 0){
 								sinSelect = 0;
 							}
-							if (sinSelect == 0){
-								sinSelectorLeft.enabled = false;
-								sinSelectorRight.enabled = true;
-							}else{
+                            if (sinSelect == 0)
+                            {
+                                sinSelectorLeft.enabled = false;
+                                sinSelectorRight.enabled = true;
+                            }else{
 								sinSelectorLeft.enabled = true;
 								sinSelectorRight.enabled = true;
 								sinSelectorLeft.color = Color.white;
@@ -357,23 +361,31 @@ public class DifficultySelectS : MonoBehaviour {
 					}
 
 					if (stickReset){
-						if (controller.Horizontal() >= 0.1f){
+						if (controller.HorizontalMenu() >= 0.1f){
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect++;
+
+                            if (punishSelect > 2 && !GameMenuS.unlockedChallenge)
+                            {
+                                punishSelect = 2;
+                            }
 							if (punishSelect > 3){
 								punishSelect = 3;
 							}
-							if (punishSelect == 3){
+                            if (punishSelect == 3 || (punishSelect ==2 && !GameMenuS.unlockedChallenge)){
 								punishSelectorRight.enabled = false;
 								punishSelectorLeft.enabled = true;
-							}else{
+                            }else if (punishSelect == 0){
+                                punishSelectorRight.enabled = true;
+                                punishSelectorLeft.enabled = false;
+                            }else{
 								punishSelectorRight.enabled = true;
 								punishSelectorLeft.enabled = true;
 								punishSelectorRight.color = Color.white;
 							}
 							setText();
-						}else if (controller.Horizontal() <= -0.1f){
+						}else if (controller.HorizontalMenu() <= -0.1f){
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect--;

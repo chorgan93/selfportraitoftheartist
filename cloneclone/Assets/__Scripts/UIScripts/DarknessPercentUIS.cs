@@ -102,6 +102,8 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private string firstTime100Scene = "DarknessReviveScene";
 	private string terribleFateScene = "EndingB_00_ColinFarewell";
 
+    private bool checkedForNatalie = false;
+
     bool sentLoadingMessage = false;
 
 	public static DarknessPercentUIS DPERCENT = null;
@@ -136,7 +138,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 		}
 
 		inRecordMode = PlayerStatDisplayS.RECORD_MODE;
-        if (inRecordMode || doNotShowInScene || pStats.pRef.isNatalie){
+        if (inRecordMode || doNotShowInScene){
 			TurnOffCornerDisplay();
 		}
 	
@@ -144,6 +146,13 @@ public class DarknessPercentUIS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (!checkedForNatalie){
+            if (pStats.pRef.isNatalie){
+                TurnOffCornerDisplay();
+            }
+            checkedForNatalie = true;
+        }
 	
 		if (!inRecordMode){
 		if (!fadeOutRegNumbers){

@@ -298,7 +298,6 @@ public class CustomizableControlsUIS : MonoBehaviour {
             checkKeyPress = myControl.CheckForKeyPress();
             if (!allKeysUp && checkKeyPress < 0){
                 allKeysUp = true;
-                Debug.Log("All keys up!! Can start replacing now...");
             }
             if (allKeysUp && checkKeyPress > -1 && (ControlManagerS.controlProfile == 1 
                                                     || (ControlManagerS.controlProfile == 2 && (checkKeyPress < 14 || checkKeyPress > 16)))){

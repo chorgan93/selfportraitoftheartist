@@ -14,6 +14,8 @@ public class ChapterTrigger : MonoBehaviour {
 
 	public int addToProgression = -1;
 
+    public static string lastChapterTriggered = "Track -1 ~ Cradle";
+
 	void Start(){
 
 		chapterRef = GameObject.Find("ChapterText").GetComponent<InstructionTextS>();
@@ -53,6 +55,9 @@ public class ChapterTrigger : MonoBehaviour {
 
 			isShowing = true;
 			activated = true;
+            if (chapterString.Contains("~")){
+                lastChapterTriggered = chapterString;
+            }
 			if (addToProgression > -1){
 				StoryProgressionS.SetStory(addToProgression);
 			}

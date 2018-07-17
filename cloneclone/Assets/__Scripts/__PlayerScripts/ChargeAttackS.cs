@@ -76,6 +76,10 @@ public class ChargeAttackS : MonoBehaviour {
 	private bool saveEnraged = false;
 	private bool saveCritical = false;
 
+    [Header("Fos Sound Properties")]
+    public AudioSource fosLoop;
+    public GameObject fosShootSound;
+
 	// Use this for initialization
 	void Start () {
 
@@ -93,12 +97,18 @@ public class ChargeAttackS : MonoBehaviour {
 		startTexture = _myRenderer.material.GetTexture("_MainTex");
 		_myRenderer.enabled = false;
 
-		if (isFosCharge){
-			visibleTime = fosVisibleTime;
-			startRotate = transform.rotation.eulerAngles.z;
-			fadeRate = fosFadeRate;
-			_myRigid = GetComponent<Rigidbody>();
-			myPlayer.AddFosCharge(this);
+        if (isFosCharge)
+        {
+            visibleTime = fosVisibleTime;
+            startRotate = transform.rotation.eulerAngles.z;
+            fadeRate = fosFadeRate;
+            _myRigid = GetComponent<Rigidbody>();
+            myPlayer.AddFosCharge(this);
+            if (fosLoop) {
+                fosLoop.volume *= SFXObjS.volumeSetting;
+                fosLoop.Play();
+            
+            }
 		}else{
 			fadeRate = startAlpha/visibleTime;
 		}
@@ -240,6 +250,14 @@ public class ChargeAttackS : MonoBehaviour {
 		fosFired = true;
 		_myCollider.enabled = true;
 
+        if(fosLoop){
+            fosLoop.Stop();
+        }
+        if (fosShootSound)
+        {
+            Instantiate(fosShootSound);
+        }
+
 		CameraShakeS.C.SmallShake();
 		if (first){
 			CameraShakeS.C.SmallSleep();
@@ -260,6 +278,14 @@ public class ChargeAttackS : MonoBehaviour {
 		visibleTime = shootLifetime;
 		fosFired = true;
 		_myCollider.enabled = true;
+        if (fosLoop)
+        {
+            fosLoop.Stop();
+        }
+        if (fosShootSound)
+        {
+            Instantiate(fosShootSound);
+        }
 		if (currentHit < maxHits){
 			currentHit = maxHits - 1;
 		}

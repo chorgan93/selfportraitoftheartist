@@ -171,6 +171,7 @@ public class DialogueManagerS : MonoBehaviour {
 		StartCoroutine(ItemFindEffect());
 		itemPopup.sprite = newItem;
 		itemPopup.color = spriteCol;
+        itemPopup.gameObject.SetActive(true);
 		outlineColor.r = outlineCol.r;
 		outlineColor.g = outlineCol.g;
 		outlineColor.b = outlineCol.b;
@@ -211,7 +212,8 @@ public class DialogueManagerS : MonoBehaviour {
 			yield return null;
 		}
 
-		itemPopup.enabled = itemPopupBG.enabled = false;
+        itemPopup.enabled = itemPopupBG.enabled = false;
+        itemPopup.gameObject.SetActive(false);
 		itemPopupBG.gameObject.SetActive(false);
 	}
 

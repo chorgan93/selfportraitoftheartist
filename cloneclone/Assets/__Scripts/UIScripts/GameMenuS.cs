@@ -9,6 +9,8 @@ public class GameMenuS : MonoBehaviour {
     public static bool unlockedChallenge;
     public static bool unlockedTurbo;
 
+    private int currentResolutionInt = 0;
+
 	private Color textDefaultColor;
 	private Color textSelectColor = Color.white;
 
@@ -48,8 +50,8 @@ public class GameMenuS : MonoBehaviour {
 	public Text musicText;
 	public Text sfxText;
 	public Text shakeText;
-	public Text zoomText;
-	public Text aliasText;
+    public Text resolutionText;
+	public Text fullscreenText;
 	public RectTransform optionsSelector;
 
     private bool quitRightFromOptions = false;
@@ -73,9 +75,17 @@ public class GameMenuS : MonoBehaviour {
     private MainMenuNavigationS mainMenuRef;
     public bool mainMenuUpdate = false;
 
+    private void Start()
+    {
+        string checkResolution = "";
+        for (int i = 0; i < Screen.resolutions.Length; i++){
+            checkResolution += Screen.resolutions[i].ToString() + "\n";
+        }
+       // Debug.LogError(checkResolution);
+    }
 
-    // Update is called once per frame
-    private void Update()
+	// Update is called once per frame
+	private void Update()
     {
         if (mainMenuUpdate){
             GameMenuUpdate();
@@ -83,7 +93,7 @@ public class GameMenuS : MonoBehaviour {
     }
 	public void GameMenuUpdate () {
 
-		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f){
+		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f){
 			stickReset = true;
 		}
 		if (showDebug){
@@ -102,7 +112,7 @@ public class GameMenuS : MonoBehaviour {
 
 		if (!inOptionsMenu){
 
-			if (myControl.VerticalMenu() > 0.2f && stickReset){
+			if (myControl.VerticalMenu() > 0.1f && stickReset){
 				stickReset = false;
 				currentSelection--;
 				myManager.pRef.ResetTimeMax();
@@ -111,7 +121,7 @@ public class GameMenuS : MonoBehaviour {
 				}
 				SetSelection(currentSelection);
 			}
-			if (myControl.VerticalMenu() < -0.2f && stickReset){
+			if (myControl.VerticalMenu() < -0.1f && stickReset){
 				stickReset = false;
 				currentSelection++;
 				myManager.pRef.ResetTimeMax();
@@ -149,7 +159,7 @@ public class GameMenuS : MonoBehaviour {
 				myManager.pRef.ResetTimeMax();
 			}
         }else if (!inCustomControlMenu){
-			if (myControl.VerticalMenu() > 0.2f && stickReset){
+			if (myControl.VerticalMenu() > 0.1f && stickReset){
 				stickReset = false;
                 currentSelection--;if (!mainMenuUpdate)
                 {
@@ -160,7 +170,7 @@ public class GameMenuS : MonoBehaviour {
 				}
 				SetSelection(currentSelection);
 			}
-			if (myControl.VerticalMenu() < -0.2f && stickReset){
+			if (myControl.VerticalMenu() < -0.1f && stickReset){
 				stickReset = false;
                 currentSelection++;if (!mainMenuUpdate)
                 {
@@ -233,25 +243,29 @@ public class GameMenuS : MonoBehaviour {
                     myManager.pRef.ResetTimeMax();
                 }
 			}
-			// screenshake set
-			if (currentSelection == 6){
+			// screenshake set 
+			if (currentSelection == 8){
                 HandleShakeOption();if (!mainMenuUpdate)
                 {
                     myManager.pRef.ResetTimeMax();
                 }
 			}
 
-			// zoom set
+			// resolution set
 			if (currentSelection == 7){
-                HandleZoomOption();if (!mainMenuUpdate)
+                //HandleZoomOption();
+                HandleResolutionOption();
+                if (!mainMenuUpdate)
                 {
                     myManager.pRef.ResetTimeMax();
                 }
 			}
 
-			// alias set
-			if (currentSelection == 8){
-                HandleAliasOption();if (!mainMenuUpdate)
+			// fullscreen set
+			if (currentSelection == 6){
+                //HandleAliasOption();
+                HandleFullscreenOption();
+                if (!mainMenuUpdate)
                 {
                     myManager.pRef.ResetTimeMax();
                 }
@@ -362,7 +376,7 @@ public class GameMenuS : MonoBehaviour {
         gameObject.SetActive(false);
         inCustomControlMenu = false;
         if (mainMenuRef){
-            mainMenuRef.inOptionsMenu = false;
+            mainMenuRef.TurnOffOptions();
         }
 		//Debug.LogError("game menu turn OFF");
 		
@@ -408,7 +422,7 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleSinOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
@@ -421,7 +435,7 @@ public class GameMenuS : MonoBehaviour {
 			DifficultyS.SetDifficultiesFromInt(difficultySelect, DifficultyS.GetPunishInt());
 			UpdateSinSettingText();
 		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect--;
@@ -468,7 +482,7 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandlePunishOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
@@ -482,7 +496,7 @@ public class GameMenuS : MonoBehaviour {
 			DifficultyS.SetDifficultiesFromInt( DifficultyS.GetSinInt(), difficultySelect);
 			UpdatePunishSettingText();
 		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect--;
@@ -528,7 +542,7 @@ public class GameMenuS : MonoBehaviour {
 	}
 
 	void HandleAliasOption(){
-		if ((myControl.HorizontalMenu() > 0.2f || myControl.HorizontalMenu() < -0.2f) && stickReset){
+		if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset){
 			stickReset = false;
 			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
 			if (CameraEffectsS.E){
@@ -546,15 +560,33 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		if (CameraEffectsS.aliasOn){
-			aliasText.text = "ON";
+			fullscreenText.text = "ON";
 		}else{
-			aliasText.text = "OFF";
+            fullscreenText.text = "OFF";
 		}
 	}
 
+    void HandleFullscreenOption(){
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+        {
+            stickReset = false;
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+
+        if (selectButtonUp && myControl.GetCustomInput(12))
+        {
+
+            Screen.fullScreen = !Screen.fullScreen;
+            selectButtonUp = false;
+
+        }
+
+        StartCoroutine(UpdateFullscreenSettingCoroutine());
+    }
+
 	void HandleShakeOption(){
 
-        if ((myControl.HorizontalMenu() > 0.2f || myControl.HorizontalMenu() < -0.2f) && stickReset)
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
         {
             stickReset = false;
             if (myControl.HorizontalMenu() > 0) { 
@@ -614,7 +646,7 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleMusicOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(1);
@@ -623,7 +655,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 			musicText.text = BGMHolderS.volumeMult*100f + "%";
 		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(-1);
@@ -649,12 +681,12 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleSfxOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			SFXObjS.SetVolumeSetting(1);
 			sfxText.text = SFXObjS.volumeSetting*100f + "%";
 		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			SFXObjS.SetVolumeSetting(-1);
 			sfxText.text = SFXObjS.volumeSetting*100f + "%";
@@ -673,12 +705,12 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleZoomOption(){
 
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			CameraFollowS.ChangeZoomLevel(1);
 			UpdateCameraZoomSettingText();
 		}
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			CameraFollowS.ChangeZoomLevel(-1);
 			UpdateCameraZoomSettingText();
@@ -694,8 +726,71 @@ public class GameMenuS : MonoBehaviour {
 
 	}
 
+    void HandleResolutionOption()
+    {
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
+        {
+            stickReset = false;
+            GetCurrentResolutionIndex();
+            currentResolutionInt++;
+            if (currentResolutionInt > Screen.resolutions.Length-1){
+                currentResolutionInt = Screen.resolutions.Length-1;
+            }
+            Screen.SetResolution(Screen.resolutions[currentResolutionInt].width, Screen.resolutions[currentResolutionInt].height,
+                                 Screen.fullScreen);
+            //Debug.LogError("Trying to set resolution " + Screen.resolutions[currentResolutionInt].ToString());
+            UpdateResolutionSettingText();
+        }
+        else if (myControl.HorizontalMenu() < -0.1f && stickReset)
+        {
+            stickReset = false;
+            GetCurrentResolutionIndex();
+            currentResolutionInt--;
+            if (currentResolutionInt < 0)
+            {
+                currentResolutionInt = 0;
+            }
+            Screen.SetResolution(Screen.resolutions[currentResolutionInt].width, Screen.resolutions[currentResolutionInt].height,
+                                 Screen.fullScreen);
+            //Debug.LogError("Trying to set resolution " + Screen.resolutions[currentResolutionInt].ToString());
+            UpdateResolutionSettingText();
+        }
+
+        else if (selectButtonUp && myControl.GetCustomInput(12))
+        {
+            selectButtonUp = false;
+            GetCurrentResolutionIndex();
+            currentResolutionInt++;
+            if (currentResolutionInt > Screen.resolutions.Length-1)
+            {
+                currentResolutionInt = Screen.resolutions.Length-1;
+            }
+            Screen.SetResolution(Screen.resolutions[currentResolutionInt].width, Screen.resolutions[currentResolutionInt].height,
+                                 Screen.fullScreen);
+            //Debug.LogError("Trying to set resolution " + Screen.resolutions[currentResolutionInt].ToString());
+            UpdateResolutionSettingText();
+            
+
+        }
+
+    }
+
+    void  GetCurrentResolutionIndex(){
+        float currentResolutionX = Screen.width;
+        float currentResolutionY = Screen.height;
+        for (int i = 0; i < Screen.resolutions.Length; i++){
+            if (Mathf.Approximately(currentResolutionX , Screen.resolutions[i].width) 
+                && Mathf.Approximately(currentResolutionY , Screen.resolutions[i].height))
+            {
+                currentResolutionInt = i;
+                //Debug.LogError("Resolutions match at index " + currentResolutionInt);
+
+            }
+        }
+    }
+
 	void HandleSpeedOption(){
-		if (myControl.HorizontalMenu() > 0.2f && stickReset){
+		if (myControl.HorizontalMenu() > 0.1f && stickReset){
 			stickReset = false;
 			CameraShakeS.ChangeTurbo(1);
 		}
@@ -708,7 +803,7 @@ public class GameMenuS : MonoBehaviour {
 
 		}
 
-		if (myControl.HorizontalMenu() < -0.2f && stickReset){
+		if (myControl.HorizontalMenu() < -0.1f && stickReset){
 			stickReset = false;
 			CameraShakeS.ChangeTurbo(-1);
 		}
@@ -718,13 +813,32 @@ public class GameMenuS : MonoBehaviour {
 
 	void UpdateCameraZoomSettingText(){
 		if (CameraFollowS.zoomInt == 0){
-			zoomText.text = "+/- " + CameraFollowS.zoomInt.ToString();
+			resolutionText.text = "+/- " + CameraFollowS.zoomInt.ToString();
 		}else if (CameraFollowS.zoomInt > 0){
-			zoomText.text = "+ " + CameraFollowS.zoomInt.ToString();
+			resolutionText.text = "+ " + CameraFollowS.zoomInt.ToString();
 		}else{
-			zoomText.text = CameraFollowS.zoomInt.ToString();
+			resolutionText.text = CameraFollowS.zoomInt.ToString();
 		}
 	}
+
+    void UpdateResolutionSettingText(){
+        StartCoroutine(UpdateResoultionSettingTextCoroutine());
+    }
+    IEnumerator UpdateResoultionSettingTextCoroutine(){
+        yield return null;
+
+        resolutionText.text = Screen.width.ToString() + " x " + Screen.height.ToString();
+    }
+    IEnumerator UpdateFullscreenSettingCoroutine(){
+        yield return null;
+        if (Screen.fullScreen)
+        {
+            fullscreenText.text = "ON";
+        }else{
+            fullscreenText.text = "OFF";
+        }
+    }
+
 
 	void MatchOptionsText(){
 
@@ -738,7 +852,14 @@ public class GameMenuS : MonoBehaviour {
         }else{
 			shakeText.text = "OFF";
 		}
-		UpdateCameraZoomSettingText();
+        //UpdateCameraZoomSettingText();
+        UpdateResolutionSettingText();
+        if (Screen.fullScreen)
+        {
+            fullscreenText.text = "ON";
+        }else{
+            fullscreenText.text = "OFF";
+        }
 		speedText.text = CameraShakeS.GetTurboString();
 		musicText.text = BGMHolderS.volumeMult*100f + "%";
 		sfxText.text = SFXObjS.volumeSetting*100f + "%";

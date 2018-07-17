@@ -185,12 +185,12 @@ public class InstructionFloatS : MonoBehaviour {
 			if (ControlManagerS.controlProfile == 1){
 				mouseSprite.gameObject.SetActive(true);
 				if (changeSubMouseString != ""){
-					subString.text = changeSubMouseString;
+					//subString.text = changeSubMouseString;
 				}
 			}else{
 				keySprite.gameObject.SetActive(true);
 				if (changeSubKeyString != ""){
-					subString.text = changeSubKeyString;
+					//subString.text = changeSubKeyString;
 				}
 			}
 		}

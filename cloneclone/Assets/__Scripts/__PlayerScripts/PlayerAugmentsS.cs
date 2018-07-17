@@ -174,10 +174,22 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	private bool _initialized;
 
+    private bool checkedForNatalie = false;
+    private bool blockVirtues = false;
+
 	// Update is called once per frame
 	void Update () {
 
 		if (_initialized){
+            if (!checkedForNatalie)
+            {
+                if (_playerReference.isNatalie || _playerReference.myStats.arcadeMode)
+                {
+                    blockVirtues = true;
+                    RefreshAll();
+                }
+                checkedForNatalie = true;
+            }
 			if (_enragedActive){
 				enragedCountdown -= Time.deltaTime;
 				if (enragedCountdown <= 0){
@@ -248,7 +260,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	}
 
-	public void RefreshAll(){
+    public void RefreshAll(){
 		TurnOffAll();
 
 		// turn on weapon augs
@@ -257,7 +269,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		}
 
 		// turn on virtues
-		if (PlayerController.equippedVirtues.Count > 0 && !_playerReference.myStats.arcadeMode){
+        if (PlayerController.equippedVirtues.Count > 0 && !blockVirtues){
 			TurnOnVirtueAugs();
 		}
 	}

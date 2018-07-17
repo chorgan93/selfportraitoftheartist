@@ -23,6 +23,17 @@ public class MerchantS : MonoBehaviour {
 	private PlayerDetectS playerDetect;
 	private PlayerCurrencyDisplayS cDisplay;
 
+    public int stopTalkingAtProgress = 52;
+    private bool stopTalking = false;
+
+    private SpriteDistortionS childDistortion;
+    private float distortRandomMin = 0.1f;
+    private float distortRandomMax = 0.6f;
+    private float distortCountdown;
+    private float distortOffTime = 0.08f;
+
+    private string[] stopTalkingStrings = new string[4] {". . .", ". . . . . .", "...", " . . . . . . . ."};
+
 	[HideInInspector]
 	public int merchantState = 0; // 0 = intro, 1 = menu, 2 = talk, 3 = buy, 4 = leave
 
@@ -34,10 +45,24 @@ public class MerchantS : MonoBehaviour {
 		playerDetect = GetComponentInChildren<PlayerDetectS>();
 		cDisplay = GameObject.Find("SinBorder").GetComponent<PlayerCurrencyDisplayS>();
 
+        if (StoryProgressionS.storyProgress.Contains(stopTalkingAtProgress)){
+            stopTalking = true;
+            Color fadeCol = GetComponent<SpriteRenderer>().color;
+            fadeCol.a *= 0.4f;
+            GetComponent<SpriteRenderer>().color = fadeCol;
+
+            childDistortion = GetComponentInChildren<SpriteDistortionS>();
+            distortCountdown = Random.Range(distortRandomMin, distortRandomMax);
+        }
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (stopTalking){
+            DistortHandler();
+        }
 
 		if (playerDetect.PlayerInRange() || talking){
 			if (!controlRef){
@@ -48,13 +73,21 @@ public class MerchantS : MonoBehaviour {
 				if (controlRef.GetCustomInput(3)){
 					if (!selectButtonDown){
 						selectButtonDown = true;
-						if (!talking){
+                        if (!talking && !InGameMenuManagerS.menuInUse){
 						talking = true;
 						playerRef.SetTalking(true);
 						CameraFollowS.F.SetNewPOI(gameObject);
 						currentDialogue = 0;
 						merchantState = 0;
-						DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
+                            if (stopTalking)
+                            {
+                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0,stopTalkingStrings.Length))], 
+                                                                  false, false, true);
+                            }
+                            else
+                            {
+                                DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
+                            }
 					}
 					else{
 						if (!DialogueManagerS.D.doneScrolling){
@@ -62,41 +95,95 @@ public class MerchantS : MonoBehaviour {
 						}else{
 							if (merchantState != 1){
 								currentDialogue++;
-								if (merchantState == 0){
-									if (currentDialogue >= introSet.dialogueStrings.Length){
-										merchantUIRef.TurnOn(this);
-										currentDialogue = 0;
-										merchantState = 1;
-									}else{
-										DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
-									}
-								}else if (merchantState == 2){
-									if (currentDialogue >= talkSet.dialogueStrings.Length){
+                                    if (merchantState == 0)
+                                    {
+                                        if (currentDialogue >= introSet.dialogueStrings.Length || stopTalking)
+                                        {
+                                            merchantUIRef.TurnOn(this);
+                                            currentDialogue = 0;
+                                            merchantState = 1;
+                                        }
+                                        else
+                                        {
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, false, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
+                                            }
+                                        }
+                                    }
+                                    else if (merchantState == 2)
+                                    {
+                                        if (currentDialogue >= talkSet.dialogueStrings.Length || stopTalking){
 										merchantUIRef.ShowMenus();
 										currentDialogue = 0;
 										merchantState = 1;
-											DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, false, true);
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, false, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length - 1], false, false, true);
+                                            }
 									}else{
-										DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, true, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
+                                            }
 									}
 								}else if (merchantState == 3){
-									if (currentDialogue >= saleSet.dialogueStrings.Length){
-											DialogueManagerS.D.SetDisplayText(merchantUIRef.GetCurrentDescription(), false, false, true);
+                                        if (currentDialogue >= saleSet.dialogueStrings.Length || stopTalking){
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, false, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(merchantUIRef.GetCurrentDescription(), false, false, true);
+                                            }
 										DialogueManagerS.D.CompleteText();
 										currentDialogue = 0;
 										merchantState = 1;
 									}else{
-										DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, false, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+                                            }
 									}
 								}else{
-										if (currentDialogue >= goodbyeSet.dialogueStrings.Length){
+                                        if (currentDialogue >= goodbyeSet.dialogueStrings.Length || stopTalking){
 										talking = false;
 										DialogueManagerS.D.EndText();
 										playerRef.SetTalking(false);
 										CameraFollowS.F.ResetPOI();
 										merchantUIRef.TurnOff();
 									}else{
-										DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+                                            if (stopTalking)
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                                                                  false, false, true);
+                                            }
+                                            else
+                                            {
+                                                DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, false, true);
+                                            }
 									}
 								}
 							}else{
@@ -138,6 +225,22 @@ public class MerchantS : MonoBehaviour {
 	
 	}
 
+    void DistortHandler(){
+        distortCountdown -= Time.deltaTime;
+        if (distortCountdown <= 0)
+        {
+            if (childDistortion.gameObject.activeSelf)
+            {
+                childDistortion.gameObject.SetActive(false);
+                distortCountdown = distortOffTime;
+            }
+            else {
+                childDistortion.gameObject.SetActive(true);
+                distortCountdown = Random.Range(distortRandomMin, distortRandomMax);
+            }
+        }
+    }
+
 	public void AttemptBuy(int itemToBuy){
 		if (itemsForSale[itemToBuy].canBeBought()){
 			cDisplay.AddCurrency(-itemsForSale[itemToBuy].itemCost);
@@ -148,26 +251,58 @@ public class MerchantS : MonoBehaviour {
 	}
 
 	public void ResetMessage(){
-		DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length-1], false, false, true);
+        if (stopTalking)
+        {
+            DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                              false, false, true);
+        }
+        else
+        {
+            DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[introSet.dialogueStrings.Length - 1], false, false, true);
+        }
 		
 	}
 
 	void BuyMessage(){
 		merchantState = 3;
 		currentDialogue = 0;
-		DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+        if (stopTalking)
+        {
+            DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                              false, false, true);
+        }
+        else
+        {
+            DialogueManagerS.D.SetDisplayText(saleSet.dialogueStrings[currentDialogue], false, false, true);
+        }
 
 	}
 
 	public void StartTalk(){
 		merchantState = 2;
 		currentDialogue = 0;
-		DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
+        if (stopTalking)
+        {
+            DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                              false, true, true);
+        }
+        else
+        {
+            DialogueManagerS.D.SetDisplayText(talkSet.dialogueStrings[currentDialogue], false, true, true);
+        }
 	}
 
 	public void StartExit(){
 		merchantState = 4;
 		currentDialogue = 0;
-		DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+        if (stopTalking)
+        {
+            DialogueManagerS.D.SetDisplayText(stopTalkingStrings[Mathf.FloorToInt(Random.Range(0, stopTalkingStrings.Length))],
+                                              false, true, true);
+        }
+        else
+        {
+            DialogueManagerS.D.SetDisplayText(goodbyeSet.dialogueStrings[currentDialogue], false, true, true);
+        }
 	}
 }

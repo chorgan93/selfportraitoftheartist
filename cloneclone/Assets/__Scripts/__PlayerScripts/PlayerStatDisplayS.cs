@@ -175,7 +175,9 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			//Debug.Log("HIDE!");
 			DisableUI ();
 		}
-		if (playerStats.arcadeMode){
+        if (playerStats.arcadeMode){
+            DisableUI();
+            hideInScene = true;
 			if (!usingArcadeIcons){
 				playerStats.ResetArcadeHP();
 				usingArcadeIcons = true;

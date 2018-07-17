@@ -70,7 +70,7 @@ public class CombatGiverS : MonoBehaviour {
 				if (controlRef.GetCustomInput(3)){
 					if (!selectButtonDown){
 						selectButtonDown = true;
-						if (!talking){
+                        if (!talking && !InGameMenuManagerS.menuInUse){
 						talking = true;
 						playerRef.SetTalking(true);
 						CameraFollowS.F.SetNewPOI(gameObject);

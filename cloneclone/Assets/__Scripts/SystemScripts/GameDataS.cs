@@ -48,7 +48,12 @@ public class GameDataS {
 		GameOverS.reviveScene = currentReviveScene;
 		SpawnPosManager.whereToSpawn = GameOverS.revivePosition = currentSpawnPos;
 		StoryProgressionS.storyProgress = storyProgression;
-		PlayerInventoryS.inventoryData = playerInventory;
+        if (PlayerInventoryS.I)
+        {
+            PlayerInventoryS.I.LoadNewInventoryData(playerInventory);
+        }else{
+            PlayerInventoryS.inventoryData = playerInventory;
+        }
 		InGameMenuManagerS.hasUsedMenu = hasUsedMenu;
 		InGameMenuManagerS.allowMenuUse = canUseMenu;
 		PlayerStatsS._currentDarkness = currentDarkness;

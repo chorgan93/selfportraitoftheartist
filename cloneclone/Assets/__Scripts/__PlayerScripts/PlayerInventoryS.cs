@@ -621,6 +621,14 @@ public class PlayerInventoryS : MonoBehaviour {
 
 	}
 
+
+    public void LoadNewInventoryData(InventorySave newData)
+    {
+
+        inventoryData = newData;
+        LoadInventoryData();
+    }
+
 	void SetUpStartTech(){
 
 		PlayerInventoryS.I._earnedUpgrades.Clear();
@@ -741,6 +749,8 @@ public class PlayerInventoryS : MonoBehaviour {
         CheckpointS.totalPlayTimeMinutes = inventoryData.totalPlayTimeMinutes;
         CheckpointS.totalPlayTimeHours = inventoryData.totalPlayTimeHours;
 
+        ChapterTrigger.lastChapterTriggered = inventoryData.lastChapterName;
+
         CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = inventoryData.savedCameraShake;
         if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 1f){
             CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
@@ -836,6 +846,8 @@ public class PlayerInventoryS : MonoBehaviour {
 
 			inventoryData.turboSetting = CameraShakeS.GetTurboInt();
 
+                inventoryData.lastChapterName = ChapterTrigger.lastChapterTriggered;
+
 			if (_tvNum < 100 || _tvNum == 999){
 				_tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
 			}
@@ -919,6 +931,7 @@ public class InventorySave {
     public bool killedFamiliar = false;
     public bool unlockedChallenge = false;
     public bool unlockedTurbo = false;
+    public string lastChapterName = "Track -1 ~ Cradle";
     public string lastSavePointName = "Abandoned Faith";
 
     // saved Options
@@ -997,7 +1010,8 @@ public class InventorySave {
        lastSavePointName = "Abandoned Faith";
         totalPlayTimeSeconds = 0;
     totalPlayTimeMinutes = 0;
-    totalPlayTimeHours = 0;
+        totalPlayTimeHours = 0;
+    lastChapterName = "Track -1 ~ Cradle";
 
         savedCameraShake = 1f;
 

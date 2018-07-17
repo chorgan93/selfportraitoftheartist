@@ -235,7 +235,7 @@ public class BuddyNPCS : MonoBehaviour {
 
 	void CheckAvailable(){
 		bool isAvail = false;
-		if (PlayerInventoryS.I != null){
+        if (PlayerInventoryS.I != null && !PlayerController.killedFamiliar){
 			for (int i = 0; i < PlayerInventoryS.I.unlockedBuddies.Count; i++){
 				if (PlayerInventoryS.I.unlockedBuddies[i].buddyNum == buddyNum){
 					isAvail = true;
