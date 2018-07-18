@@ -1,9 +1,11 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/GameMenuS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/CinematicScripts/InGameCinematics/InGameCinematicS.cs">
     <Files>
       <File FileName="Assets/__Scripts/NPCScripts/AreaNPCs/CombatGiverS.cs" Line="73" Column="70" />
-      <File FileName="Assets/__Scripts/UIScripts/GameMenuS.cs" Line="80" Column="12" />
+      <File FileName="Assets/__Scripts/UIScripts/GameMenuS.cs" Line="779" Column="49" />
+      <File FileName="Assets/__Scripts/CinematicScripts/InGameCinematics/InGameCinematicS.cs" Line="83" Column="18" />
+      <File FileName="Assets/__Scripts/CinematicScripts/InGameCinematics/CreditsManagerS.cs" Line="47" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

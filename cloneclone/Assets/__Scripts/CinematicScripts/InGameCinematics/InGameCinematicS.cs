@@ -13,6 +13,9 @@ public class InGameCinematicS : MonoBehaviour {
 	public InGameCinemaLerpObjS[] cinemaLerpObj;
 	public InGameCinemaWaitS[] cinemaWait;
 
+    public CreditsManagerS cinemaCredits;
+    private bool creditsScene = false;
+
 	private int currentStep = 0;
 	private float currentCountdown = 0f;
 	private bool timedStep = false;
@@ -27,6 +30,8 @@ public class InGameCinematicS : MonoBehaviour {
 	public bool allowWalk = false;
 
     private bool waitForTaunt = false;
+
+    private bool endCredits = false;
 
 	[HideInInspector]
 	public bool dialogueDone = true;
@@ -64,62 +69,85 @@ public class InGameCinematicS : MonoBehaviour {
 
 		_pRef.SetTalking(true, allowWalk);
 
+        if (cinemaCredits){
+            creditsScene = true;
+        }
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (skippable)
+        if (creditsScene)
         {
-            if (!_skipMode)
+            if (!endCredits && cinemaCredits.creditsFinished){
+                AdvanceCinematic();
+                Debug.Log("Going to next scene!");
+            }
+        }
+        else
+        {
+            if (skippable)
             {
-                if (pRef.myControl.GetCustomInput(10))
+                if (!_skipMode)
                 {
-                    if (!skipButtonDown)
+                    if (pRef.myControl.GetCustomInput(10))
                     {
-                        if (PlayerInventoryS.I.SkippableScenes.Contains(skippableSceneIndex))
+                        if (!skipButtonDown)
                         {
-                            _skipMode = true;
-                            if (SkipSceneS.instance)
+                            if (PlayerInventoryS.I.SkippableScenes.Contains(skippableSceneIndex))
                             {
-                                SkipSceneS.instance.ShowMessage(true);
+                                _skipMode = true;
+                                if (SkipSceneS.instance)
+                                {
+                                    SkipSceneS.instance.ShowMessage(true);
+                                }
                             }
-                        }
-                        else if (SkipSceneS.instance)
-                        {
-                            SkipSceneS.instance.ShowMessage(false);
-                            skipButtonDown = true;
-                        }
+                            else if (SkipSceneS.instance)
+                            {
+                                SkipSceneS.instance.ShowMessage(false);
+                                skipButtonDown = true;
+                            }
 
+                        }
                     }
+                    else
+                    {
+                        skipButtonDown = false;
+                    }
+                }
+            }
+
+            if (waitForTaunt)
+            {
+                if (pRef.inAttackDuration)
+                {
+                    AdvanceCinematic();
+                    waitForTaunt = false;
+                }
+            }
+            else if (timedStep)
+            {
+                if (_skipMode)
+                {
+                    currentCountdown = 0;
+                    dialogueDone = true;
                 }
                 else
                 {
-                    skipButtonDown = false;
+                    currentCountdown -= Time.deltaTime;
+                }
+                if (currentCountdown <= 0 && dialogueDone)
+                {
+                    AdvanceCinematic();
                 }
             }
-        }
-
-        if (waitForTaunt){
-            if (pRef.inAttackDuration){
-                AdvanceCinematic();
-                waitForTaunt = false;
-            }
-        }
-		else if (timedStep){
-            if (_skipMode){
-                currentCountdown = 0;
+            else if (_skipMode)
+            {
                 dialogueDone = true;
-            }else{
-			    currentCountdown-=Time.deltaTime;
+                DialogueManagerS.D.EndText(true, false);
+                AdvanceCinematic();
             }
-			if (currentCountdown <= 0 && dialogueDone){
-				AdvanceCinematic();
-			}
-        }else if (_skipMode){
-            dialogueDone = true;
-            DialogueManagerS.D.EndText(true, false);
-            AdvanceCinematic();
         }
 	
 	}
@@ -157,6 +185,10 @@ public class InGameCinematicS : MonoBehaviour {
 				CameraEffectsS.E.FadeIn(fadeRate);
 				PlayerController.doWakeUp = wakeNextScene;
 				turnOffBuddies = false;
+                    if (creditsScene)
+                    {
+                        endCredits = true;
+                    }
 			}else{
 				EndCinematic();
 			}
@@ -166,6 +198,9 @@ public class InGameCinematicS : MonoBehaviour {
 	}
 
 	private bool CheckCurrentStep(){
+        if (creditsScene){
+            return true;
+        }
 
 		currentCountdown = 0f;
 
