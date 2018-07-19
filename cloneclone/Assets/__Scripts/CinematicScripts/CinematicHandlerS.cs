@@ -33,6 +33,7 @@ public class CinematicHandlerS : MonoBehaviour {
 	public bool healPlayer = false;
 	public int setProgress = -1;
 	public bool noFade = false;
+    public int setEnding = -1;
 
 	[Header("Web Properties")]
 	public bool disableSkip = false;
@@ -42,6 +43,10 @@ public class CinematicHandlerS : MonoBehaviour {
 	void Awake(){
 		
 		Application.targetFrameRate = 60;
+
+        if (setEnding >= 0){
+            CreditsManagerS.currentEnding = setEnding;
+        }
 		
 		inCutscene = true;
 		if (loadPlayerDown){

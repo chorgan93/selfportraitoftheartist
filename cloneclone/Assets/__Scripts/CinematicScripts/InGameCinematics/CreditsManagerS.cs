@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreditsManagerS : MonoBehaviour {
+public class CreditsManagerS : MonoBehaviour
+{
+
+    public static int currentEnding = 1;
+    public GameObject[] creditArtToUse;
+    public float[] timeAfterEnd;
+
+    private float delayEndCountdown;
 
     private bool _creditsFinished = false;
     public bool creditsFinished { get { return _creditsFinished; } }
@@ -14,12 +21,22 @@ public class CreditsManagerS : MonoBehaviour {
 
     public float scrollRate = 2f;
     private float startScrollRate;
+    private float fastForwardRate = 10f;
+    public float fastForwardMult { get { return fastForwardRate / startScrollRate; } }
     public Vector3 scrollDir = new Vector3(0, 1f, 0);
+
+    [HideInInspector]
+    public bool fastForwarding = false;
+
+    private bool checkForEnd = false;
 
 	private void Start()
 	{
         endCreditMoveY = creditDoneTransform.position.y;
         startScrollRate = scrollRate;
+
+        creditArtToUse[currentEnding].SetActive(true);
+        delayEndCountdown = timeAfterEnd[currentEnding];
 	}
 
 
@@ -30,26 +47,39 @@ public class CreditsManagerS : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.E))
             {
-                scrollRate = 10f;
+                scrollRate = fastForwardRate;
+                fastForwarding = true;
             }
             else{
                 scrollRate = startScrollRate;
+                fastForwarding = false;
             }
-            for (int i = numOfFinishedTransforms; i < checkTransforms.Length; i++)
+            if (!checkForEnd)
             {
-                if (checkTransforms[i].position.y >= endCreditMoveY)
+                for (int i = numOfFinishedTransforms; i < checkTransforms.Length; i++)
                 {
-                    numOfFinishedTransforms++;
-                    checkTransforms[i].parent.gameObject.SetActive(false);
-                    if (numOfFinishedTransforms >= checkTransforms.Length)
+                    if (checkTransforms[i].position.y >= endCreditMoveY)
                     {
-                        _creditsFinished = true;
-                        Debug.Log(_creditsFinished);
+                        numOfFinishedTransforms++;
+                        checkTransforms[i].parent.gameObject.SetActive(false);
+                        if (numOfFinishedTransforms >= checkTransforms.Length)
+                        {
+                            checkForEnd = true;
+                        }
+                    }
+                    else
+                    {
+                        checkTransforms[i].parent.position += scrollDir * scrollRate * Time.deltaTime;
                     }
                 }
-                else
-                {
-                    checkTransforms[i].parent.position += scrollDir * scrollRate * Time.deltaTime;
+            }else{
+                if (fastForwarding){
+                    delayEndCountdown -= Time.deltaTime * fastForwardMult;
+                }else{
+                    delayEndCountdown -= Time.deltaTime;
+                }
+                if (delayEndCountdown <= 0f){
+                    _creditsFinished = true;
                 }
             }
         }

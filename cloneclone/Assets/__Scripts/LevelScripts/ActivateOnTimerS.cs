@@ -12,9 +12,31 @@ public class ActivateOnTimerS : MonoBehaviour {
 
 	private bool turnedOn = false;
 
+    public CreditsManagerS credits;
+    private bool checkForCredits = false;
+
+    private void Start()
+    {
+        checkForCredits = (credits != null);
+    }
+
 	void Update(){
 		if (!turnedOn){
-		timeToActivate -= Time.deltaTime;
+            if (checkForCredits)
+            {
+                if (credits.fastForwarding)
+                {
+                    timeToActivate -= Time.deltaTime * credits.fastForwardMult;
+                }
+                else
+                {
+                    timeToActivate -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                timeToActivate -= Time.deltaTime;
+            }
 			if (timeToActivate <= 0){
 				TurnOn();
 			}
