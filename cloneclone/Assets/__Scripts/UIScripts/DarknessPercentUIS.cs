@@ -108,6 +108,12 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 	public static DarknessPercentUIS DPERCENT = null;
 
+    public bool standaloneInScene = false;
+    public static float savedDarknessNum = 0;
+    public static bool resetToZero = false;
+    public static bool setTo100 = false;
+    float cutsceneTargetNum = 0;
+
 	void Awake(){
 		DPERCENT = this;
 	}
@@ -116,7 +122,10 @@ public class DarknessPercentUIS : MonoBehaviour {
 	void Start () {
 
 		maxBarSize = currentBarSize = mainBarDisplay.rectTransform.sizeDelta;
-		pStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
+        if (!standaloneInScene)
+        {
+            pStats = GameObject.Find("Player").GetComponent<PlayerStatsS>();
+        }
 		_allowAdvance = true;
 
 		fadeColorRed = deathRedTextDisplay.color;
@@ -141,6 +150,17 @@ public class DarknessPercentUIS : MonoBehaviour {
         if (inRecordMode || doNotShowInScene){
 			TurnOffCornerDisplay();
 		}
+
+        if (standaloneInScene){
+            if (resetToZero){
+                cutsceneTargetNum = 0;
+            }
+            if (setTo100){
+                hasReached100 = true;
+                cutsceneTargetNum = 100;
+            }
+            checkedForNatalie = true;
+        }
 	
 	}
 	
@@ -235,18 +255,26 @@ public class DarknessPercentUIS : MonoBehaviour {
 			
 			if (fadeCount >= fadeOutTime){
 				fadeT = 1f;
-                if (RetryFightUI.allowRetry && (pStats.currentDarkness < 100f || FadeScreenUI.PostDarkScene)){
-                    //Debug.LogError("Darkness Trying to turn on Retry!!");
-					allowRetryUI.TurnOn();
-				}else{
-					_allowAdvance = true;
-                    if (RetryFightUI.allowRetry && pStats.currentDarkness >= 100f && !sentLoadingMessage)
+                if (!standaloneInScene)
+                {
+                    if (RetryFightUI.allowRetry && (pStats.currentDarkness < 100f || FadeScreenUI.PostDarkScene))
                     {
-                        CameraEffectsS.E.fadeRef.StartLoading();
-                        RetryFightUI.allowRetry = false;
-                        sentLoadingMessage = true;
+                        //Debug.LogError("Darkness Trying to turn on Retry!!");
+                        allowRetryUI.TurnOn();
                     }
-				}
+                    else
+                    {
+                        _allowAdvance = true;
+                        if (RetryFightUI.allowRetry && pStats.currentDarkness >= 100f && !sentLoadingMessage)
+                        {
+                            CameraEffectsS.E.fadeRef.StartLoading();
+                            RetryFightUI.allowRetry = false;
+                            sentLoadingMessage = true;
+                        }
+                    }
+                }else{
+                    _allowAdvance = true;
+                }
 			}
 			fadeColorRed = deathRedTextDisplay.color;
 			fadeColorRed.a = Mathf.SmoothStep(fadeRedMaxAlpha, 0, fadeT);
@@ -268,7 +296,19 @@ public class DarknessPercentUIS : MonoBehaviour {
 					delayFadeOut = delayFadeOutTime;
 				}
 
-				displayAmt = Mathf.Lerp(saveDeathAmt, pStats.currentDarkness, adjustT)/PlayerStatsS.DARKNESS_MAX*100f;
+                if (standaloneInScene)
+                {
+                    if (resetToZero)
+                    {
+                        displayAmt = Mathf.Lerp(savedDarknessNum, 0f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                    }else{
+                        displayAmt = Mathf.Lerp(savedDarknessNum, 100f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                    }
+                }
+                else
+                {
+                    displayAmt = Mathf.Lerp(saveDeathAmt, pStats.currentDarkness, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                }
 				if (displayAmt < 10){
 					displayString = "0" + displayAmt.ToString("F2") + "%";
 				}else{
@@ -309,7 +349,12 @@ public class DarknessPercentUIS : MonoBehaviour {
 	void SetMainSize(){
 
 		currentBarSize = maxBarSize;
-		currentBarSize.x *= pStats.currentDarkness/PlayerStatsS.DARKNESS_MAX;
+        if (standaloneInScene) {
+            currentBarSize.x *= savedDarknessNum / PlayerStatsS.DARKNESS_MAX; }
+        else
+        {
+            currentBarSize.x *= pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX;
+        }
 		mainBarDisplay.rectTransform.sizeDelta = purpleBarDisplay.rectTransform.sizeDelta 
 			= redBarDisplay.rectTransform.sizeDelta = currentBarSize;
 
@@ -332,7 +377,12 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 	void SetText(){
 
-		displayAmt = pStats.currentDarkness/PlayerStatsS.DARKNESS_MAX*100f;
+        if (standaloneInScene)
+        {
+            displayAmt = savedDarknessNum / PlayerStatsS.DARKNESS_MAX * 100f;
+        }else{
+            displayAmt = pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX * 100f;
+        }
 		if (displayAmt < 10){
 			displayString = "0" + displayAmt.ToString("F2") + "%";
 		}else{
@@ -417,7 +467,14 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 	public void ActivateDeathCountUp(){
 		delayFadeOut = delayFadeInTime;
-		saveDeathAmt = displayAmt = pStats.currentDarkness;
+        if (standaloneInScene)
+        {
+            saveDeathAmt = displayAmt = savedDarknessNum;
+        }
+        else
+        {
+            saveDeathAmt = displayAmt = pStats.currentDarkness;
+        }
 		_allowAdvance = false;
         fadeInDeathNumbers = true;
         //Debug.LogError("Trying to fade in Death Numbers!");

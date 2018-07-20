@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/__MiscScenes/CreditsScene.unity
+- path: Assets/_Scenes/_DreamScenes/Dream13_Corruption.unity
   isLoaded: 1
   isActive: 1

@@ -65,6 +65,10 @@ public class ExamineTriggerS : MonoBehaviour {
 	public bool fullRevive = false;
     public bool lookAnimation = false;
 
+    [Header("Ritual Properties")]
+    public bool killFamiliarRitual = false;
+    public bool fullCorruptionRitual = false;
+
 
 	public float lookTime = -1f;
 
@@ -215,6 +219,15 @@ public class ExamineTriggerS : MonoBehaviour {
 									if (isTapeTV){
 										VideotapePlayerS.backFromTape = true;
 									}
+                                    if (killFamiliarRitual){
+                                        PlayerController.killedFamiliar = true;
+                                        DarknessPercentUIS.resetToZero = true;
+                                        DarknessPercentUIS.savedDarknessNum = PlayerStatsS._currentDarkness;
+                                    }else if (fullCorruptionRitual){
+                                        DarknessPercentUIS.setTo100 = true;
+                                        DarknessPercentUIS.hasReached100 = true;
+                                        DarknessPercentUIS.savedDarknessNum = PlayerStatsS._currentDarkness;
+                                    }
 							}
 	
 							if (myTrigger){

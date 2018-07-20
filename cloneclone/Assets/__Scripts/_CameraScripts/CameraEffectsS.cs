@@ -294,6 +294,13 @@ public class CameraEffectsS : MonoBehaviour {
 		}
 	}
 
+    public void BlurEffect(){
+        blurEnabled = true;
+        blurEffect.enabled = true;
+        blurEffectTime = blurEffectTimeMax*0.5f;
+        blurT = 0;
+    }
+
 	public void ResetSound(){
 		if (endCombatSound){
 			Instantiate(endCombatSound);

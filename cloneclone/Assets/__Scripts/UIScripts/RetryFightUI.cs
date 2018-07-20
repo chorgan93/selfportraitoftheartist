@@ -26,7 +26,7 @@ public class RetryFightUI : MonoBehaviour {
 	}
 
 	public void Initialize(DarknessPercentUIS newD){
-		if (!_initialized){
+        if (!_initialized && !newD.standaloneInScene){
 		myDarknessCounter = newD;
 			myController = newD.pStatRef.GetComponent<ControlManagerS>();
 			_initialized = true;

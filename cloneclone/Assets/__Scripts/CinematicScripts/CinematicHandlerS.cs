@@ -37,6 +37,11 @@ public class CinematicHandlerS : MonoBehaviour {
 
 	[Header("Web Properties")]
 	public bool disableSkip = false;
+
+    [Header("Darkness Properties")]
+    public DarknessPercentUIS darkness;
+    private bool checkForDarkness = false;
+    private bool darknessActivated = false;
 	
 	AsyncOperation async;
 	
@@ -57,6 +62,10 @@ public class CinematicHandlerS : MonoBehaviour {
 		if (healPlayer){
 			PlayerStatsS.healOnStart = true;
 		}
+
+        if (darkness != null){
+            checkForDarkness = true;
+        }
 	}
 	
 	// Use this for initialization
@@ -83,7 +92,7 @@ public class CinematicHandlerS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		if (!startedLoading){
+        if (!startedLoading && !darknessActivated){
 
 			if (!disableSkip){
 				if (_controller.GetCustomInput(10) && !skipActivated){
@@ -125,7 +134,19 @@ public class CinematicHandlerS : MonoBehaviour {
 					ActivateStep();
 				}
 			}
-		}else{
+
+
+        }else if (darknessActivated){
+            
+                if (darkness.allowAdvance)
+                {
+                    loadText.enabled = true;
+                    StartCoroutine(LoadNextScene());
+                    startedLoading = true;
+                darknessActivated = false;
+                }
+
+        }else{
 			if (loadText.color.a < 1f){
 				skipCol = loadText.color;
 				skipCol.a += Time.deltaTime*skipFadeRate;
@@ -158,9 +179,15 @@ public class CinematicHandlerS : MonoBehaviour {
 				cinemaObjects[currentStep-1].SetActive(false);
 			}
 		}
-		loadText.enabled = true;
-		StartCoroutine(LoadNextScene());
-		startedLoading = true;
+        if (!checkForDarkness)
+        {
+            loadText.enabled = true;
+            StartCoroutine(LoadNextScene());
+            startedLoading = true;
+        }else{
+            darkness.ActivateDeathCountUp();
+            darknessActivated = true;
+        }
 	}
 	
 	private IEnumerator LoadNextScene(){

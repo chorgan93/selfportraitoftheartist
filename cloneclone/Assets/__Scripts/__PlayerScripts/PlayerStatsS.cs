@@ -634,6 +634,15 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private void Initialize(){
 
+        if (DarknessPercentUIS.setTo100){
+            _currentDarkness = 100f;
+            DarknessPercentUIS.setTo100 = false;
+        }
+        if (DarknessPercentUIS.resetToZero){
+            _currentDarkness = 0f;
+            DarknessPercentUIS.resetToZero = false;
+        }
+
 		myPlayerController = GetComponent<PlayerController>();
 		myPlayerController.SetStatReference(this);
 

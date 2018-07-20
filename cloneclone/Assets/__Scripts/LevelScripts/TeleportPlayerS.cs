@@ -7,6 +7,8 @@ public class TeleportPlayerS : MonoBehaviour {
 	private bool activated = false;
 	public GameObject targetPos;
 
+    public bool blurEffect = false;
+
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player"){
 			if ((activateOnce && !activated) || !activateOnce){
@@ -14,6 +16,10 @@ public class TeleportPlayerS : MonoBehaviour {
 				other.gameObject.transform.position = targetPos.transform.position;
 				other.gameObject.GetComponent<PlayerController>().myBuddy.transform.position = targetPos.transform.position;
 				CameraFollowS.F.CutTo(targetPos.transform.position);
+
+                if (blurEffect){
+                    CameraEffectsS.E.BlurEffect();
+                }
 			}
 		}
 	}
