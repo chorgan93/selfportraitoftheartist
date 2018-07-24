@@ -25,6 +25,9 @@ public class EnemyDashBehavior : EnemyBehaviorS {
 	private float applyDashCountdown;
 	private Vector3 dashNormal = Vector3.zero;
 	private float dashDirection = 1f;
+
+    [Header("Effect Properties")]
+    public bool distortOnDash = false;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -88,7 +91,13 @@ public class EnemyDashBehavior : EnemyBehaviorS {
 		if (animationKey != ""){
 			myEnemyReference.myAnimator.SetTrigger(animationKey);
 		}
+        if (distortOnDash){
+            CameraEffectsS.E.BlurEffect();
+        }
 
+        if (soundObj){
+            Instantiate(soundObj);
+        }
 		currentPOIPos = poi.transform.position+ Random.insideUnitSphere*moveTargetRange;
 		currentPOIPos.z = transform.position.z;
 

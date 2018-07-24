@@ -34,6 +34,27 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 	private bool outOfRange = false;
 
 	private float defendTimeCountdown;
+
+    [Header("Walk Properties")]
+    public bool walkWhileDefending = false;
+    public GameObject poi;
+    public string searchPOIName = "";
+    public float wanderDragAmt = -1f;
+    public float wanderSpeedFixed = -1f;
+    public float wanderSpeedMin;
+    public float wanderSpeedMax;
+
+    private float currentWanderSpeed;
+    public float moveTargetRange = 5f;
+    public float moveTargetChangeMin;
+    public float moveTargetChangeMax;
+
+    private float wanderTimeCountdown;
+    private float changeWanderTargetCountdown;
+    private Vector3 currentMoveTarget;
+
+
+    private bool didWallRedirect = false;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -41,6 +62,13 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 		if (BehaviorActing()){
 			
 			BehaviorUpdate();
+            if (walkWhileDefending)
+            {
+
+                DetermineTarget();
+
+                DoMovement();
+            }
 			if (myEnemyReference.GetPlayerReference() != null){
 				if (!limitReached && defendTimeCountdown >= currentStartCounterTime && myEnemyReference.GetPlayerReference().CanBeCountered(currentEndCounterTime)){
 				limitReached = true;
@@ -102,6 +130,39 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 		if (setVelocityToZeroOnStart){
 			myEnemyReference.myRigidbody.velocity = Vector3.zero;
 		}
+            didWallRedirect = false;
+            if (searchPOIName != "" && poi == null)
+            {
+                GameObject searchPoi = GameObject.Find(searchPOIName);
+                if (searchPoi)
+                {
+                    poi = searchPoi;
+                }
+            }
+            if (poi == null || poi == myEnemyReference.gameObject)
+            {
+                if (myEnemyReference.GetTargetReference() != null)
+                {
+                    poi = myEnemyReference.GetTargetReference().gameObject;
+                }
+                else
+                {
+                    poi = myEnemyReference.gameObject;
+                }
+            }
+            if (wanderSpeedFixed > 0)
+            {
+                currentWanderSpeed = wanderSpeedFixed;
+            }
+            else
+            {
+                currentWanderSpeed = Random.Range(wanderSpeedMin, wanderSpeedMax);
+            }
+            currentWanderSpeed *= currentDifficultyMult;
+            changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
+
+            currentMoveTarget = transform.position + Random.insideUnitSphere * moveTargetRange;
+            currentMoveTarget.z = transform.position.z;
 		}else{
 			outOfRange = true;
 			EndAction();
@@ -156,4 +217,44 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 	public void SetBlockRef(BlockDisplay3DS myBlock){
 		parryEffect = myBlock;
 	}
+
+    private void DoMovement()
+    {
+
+        if (!myEnemyReference.hitStunned)
+        {
+            myEnemyReference.myRigidbody.AddForce((currentMoveTarget - transform.position).normalized
+                                              * currentWanderSpeed * Time.deltaTime);
+        }
+
+    }
+
+    private void DetermineTarget()
+    {
+
+        /*if (myEnemyReference.hitWall && !didWallRedirect){
+            WallRedirect();
+        }*/
+        changeWanderTargetCountdown -= Time.deltaTime;
+
+        if (changeWanderTargetCountdown <= 0)
+        {
+            changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
+
+            currentMoveTarget = poi.transform.position + Random.insideUnitSphere * moveTargetRange;
+            currentMoveTarget.z = transform.position.z;
+            didWallRedirect = false;
+        }
+
+    }
+    void WallRedirect()
+    {
+        Vector3 wallRedirect = Vector3.zero;
+        float targetDistance = (currentMoveTarget - transform.position).magnitude;
+        wallRedirect = Quaternion.Euler(0, 0, 180f) * (currentMoveTarget - transform.position).normalized;
+        wallRedirect *= targetDistance;
+        wallRedirect.z = transform.position.z;
+        currentMoveTarget = wallRedirect;
+        didWallRedirect = true;
+    }
 }
