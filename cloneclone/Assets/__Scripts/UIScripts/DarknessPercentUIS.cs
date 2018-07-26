@@ -14,6 +14,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 	public Text mainTextDisplay;
 	public Text redTextDisplay;
 	public Text purpleTextDisplay;
+    public Text reduceTextDisplay;
 	Vector2 redTextStartPos;
 	Vector2 redTextOffset;
 	Vector2 purpleTextStartPos;
@@ -78,6 +79,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 	private float delayFadeInTime = 1.2f;
 	private float delayFadeOutTime = 1.4f;
 	private bool deathSequence;
+    private bool postCombatSequence = false;
 	private bool fadeInDeathNumbers;
 	private bool fadeOutRegNumbers;
 	private bool fadeOutDeathNumber;
@@ -380,6 +382,8 @@ public class DarknessPercentUIS : MonoBehaviour {
         if (standaloneInScene)
         {
             displayAmt = savedDarknessNum / PlayerStatsS.DARKNESS_MAX * 100f;
+        }else if (postCombatSequence){
+            displayAmt = saveDeathAmt / PlayerStatsS.DARKNESS_MAX * 100f;
         }else{
             displayAmt = pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX * 100f;
         }
@@ -526,4 +530,65 @@ public class DarknessPercentUIS : MonoBehaviour {
 		redTextDisplay.enabled =
 		purpleTextDisplay.enabled = false;
 	}
+
+    public void StartDarknessReduce(float reduceAmt){
+        postCombatSequence = true;
+        saveDeathAmt = pStatRef.currentDarkness;
+        PlayerStatsS._currentDarkness += reduceAmt;
+        if (PlayerStatsS._currentDarkness < 0f){
+            PlayerStatsS._currentDarkness = 0f;
+        }
+        reduceTextDisplay.text = "- " + (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%"; 
+        StartCoroutine(CombatDarknessReduce());
+    }
+
+    IEnumerator CombatDarknessReduce(){
+        Color fadeInCol = reduceTextDisplay.color;
+        fadeInCol.a = 0;
+        while (fadeInCol.a < 1f){
+            reduceTextDisplay.color = fadeInCol;
+            fadeInCol.a += Time.deltaTime;
+            if (fadeInCol.a >= 1f){
+                fadeInCol.a = 1f;
+                reduceTextDisplay.color = fadeInCol;
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        float reduceT = 0f;
+        float reduceTimeMax = 1f;
+        float reduceTimeCount = 0f;
+
+        float startNum = saveDeathAmt;
+
+        while (reduceTimeCount < reduceTimeMax){
+            saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+            reduceTimeCount += Time.deltaTime;
+            reduceT = reduceTimeCount / reduceTimeMax;
+
+            reduceTextDisplay.text = "- " + (saveDeathAmt-pStats.currentDarkness * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%"; 
+            if (reduceT >= 1f){
+                reduceT = 1f;
+                saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        while (fadeInCol.a > 0f)
+        {
+            reduceTextDisplay.color = fadeInCol;
+            fadeInCol.a -= Time.deltaTime*2f;
+            if (fadeInCol.a <= 0f)
+            {
+                fadeInCol.a = 0f;
+                reduceTextDisplay.color = fadeInCol;
+            }
+            yield return null;
+        }
+        postCombatSequence = false;
+    }
 }

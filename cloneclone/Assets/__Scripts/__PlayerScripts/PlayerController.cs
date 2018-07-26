@@ -594,6 +594,7 @@ public class PlayerController : MonoBehaviour {
 		_myRigidbody = GetComponent<Rigidbody>();
 		enemyDetectCollider = enemyDetect.GetComponent<BoxCollider>();
 		startDetectSize = enemyDetectCollider.size;
+
         if (_myRigidbody.drag > 0)
         {
             startDrag = _myRigidbody.drag;

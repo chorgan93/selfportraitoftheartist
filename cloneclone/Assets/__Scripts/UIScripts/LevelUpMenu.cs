@@ -258,7 +258,10 @@ public class LevelUpMenu : MonoBehaviour {
 					if (pRef.ParadigmIIBuddy() != null){
 						saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
 					}
-					PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+                    if (!pRef.isNatalie)
+                    {
+                        PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+                    }
 					
 					CameraEffectsS.E.SetNextScene(nextSceneIndex);
 					CameraEffectsS.E.FadeIn();

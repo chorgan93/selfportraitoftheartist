@@ -55,6 +55,7 @@ public class CombatManagerS : MonoBehaviour {
 	public bool turnOnScoring = false;
 	public bool turnOffScoring = false;
 	public bool allowRetry = false;
+    public bool ignoreMarked = false;
 
 	[Header("Infinite Properties")]
 	public bool inInfiniteMode = false;
@@ -225,10 +226,10 @@ public class CombatManagerS : MonoBehaviour {
 			b.gameObject.SetActive(true);
 		}
 
-		if (turnOnScoring){
+        if (turnOnScoring || (PlayerAugmentsS.MARKED_AUG && !ignoreMarked)){
 			RankManagerS.rankEnabled = true;
 		}
-		if (turnOffScoring){
+        if (turnOffScoring && (ignoreMarked || !PlayerAugmentsS.MARKED_AUG)){
 			RankManagerS.rankEnabled = false;
 		}
 

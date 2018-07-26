@@ -144,7 +144,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 
 	// index 14 (extra defense)
 	private bool _lovedAug = false;
-	public bool lovedAug { get { return _lovedAug; } }
+    public bool lovedAug { get { return _lovedAug; } }
+
+    // index 15 (MARKED)
+    public static bool MARKED_AUG = false;
 
 	// index 16 (slower enemies)
 	private bool _cautiousAug = false;
@@ -231,6 +234,8 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_aquaAug = false;
 		_fosAug = false;
 		_aetherAug = false;
+
+        MARKED_AUG = false;
 
 		_doubleMantra = false;
 
@@ -428,6 +433,10 @@ public class PlayerAugmentsS : MonoBehaviour {
             if (PlayerController.equippedVirtues.Contains(16))
             {
                 _cautiousAug = true;
+            }
+
+            if (PlayerController.equippedVirtues.Contains(15)){
+                MARKED_AUG = true;
             }
         }
 

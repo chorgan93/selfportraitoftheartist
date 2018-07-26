@@ -227,6 +227,9 @@ public class PlayerStatsS : MonoBehaviour {
 
     private bool _playerIsDead = false;
 
+    private bool _isMarked = false;
+    public bool isMarked { get { return _isMarked; }}
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -459,10 +462,20 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private void DarknessAdd(){
 		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && _currentDarkness < 100f){
-			_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE;
-			if (myPlayerController.isTransformed){
-				_currentDarkness += Time.deltaTime*DARKNESS_ADD_RATE*TRANSFORMED_RATE;
-			}
+            if (!_isMarked)
+            {
+                _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE;
+                if (myPlayerController.isTransformed)
+                {
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE;
+                }
+            }else{
+                _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f;
+                if (myPlayerController.isTransformed)
+                {
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f;
+                } 
+            }
 			if (_currentDarkness > 100f){
 				_currentDarkness = 100f;
 			}
@@ -470,7 +483,12 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 	public void TranformedDarknessAttackAdd(){
 		if (_currentDarkness < 100f){
-		_currentDarkness += 0.5f;
+            if (_isMarked) { 
+                _currentDarkness += 1.5f;}
+            else
+            {
+                _currentDarkness += 0.5f;
+            }
 		if (_currentDarkness > 100f){
 			_currentDarkness = 100f;
 		}
@@ -643,6 +661,7 @@ public class PlayerStatsS : MonoBehaviour {
             DarknessPercentUIS.resetToZero = false;
         }
 
+
 		myPlayerController = GetComponent<PlayerController>();
 		myPlayerController.SetStatReference(this);
 
@@ -672,6 +691,8 @@ public class PlayerStatsS : MonoBehaviour {
 		if (arcadeMode){
 			myPlayerController.SetAllowItem(false);
 		}
+
+        _isMarked = PlayerController.equippedVirtues.Contains(15);
 
 	}
 
@@ -937,8 +958,11 @@ public class PlayerStatsS : MonoBehaviour {
 					if (myPlayerController.ParadigmIIBuddy() != null){
 						saveBuddyList.Add(myPlayerController.ParadigmIIBuddy().buddyNum);
 					}
-					PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
-					                               saveBuddyList);
+                        if (!pRef.isNatalie)
+                        {
+                            PlayerInventoryS.I.SaveLoadout(myPlayerController.equippedWeapons, myPlayerController.subWeapons,
+                                                           saveBuddyList);
+                        }
 						
 					//_uiReference.cDisplay.DeathPenalty();
 
@@ -946,9 +970,17 @@ public class PlayerStatsS : MonoBehaviour {
 					if (dontDoCountUp){
 						dontDoCountUp = false;
                             CameraEffectsS.E.fadeRef.skipPercentScene = true;
-						}else if (!SceneManagerS.inInfiniteScene){
-						_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
-						_currentDarkness += DARKNESS_ADD_DEATH;
+                        }else if (!SceneManagerS.inInfiniteScene){
+                            if (_isMarked)
+                            {
+                                _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                            }
+                            else
+                            {
+                                _currentDarkness += DARKNESS_ADD_DEATH;
+                            }
+                            DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
+                           
 					}
 
 					_killFlash.Flash();
@@ -1042,14 +1074,31 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
-	public void DeathCountUp(bool isReduced = false){
+    public void DeathCountUp(bool isReduced = false)
+    {
 
-		_uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
-		if (isReduced){
-			_currentDarkness += DARKNESS_ADD_DEATH*0.5f;
-		}else{
-		_currentDarkness += DARKNESS_ADD_DEATH;
-		}
+        _uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
+        if (!_isMarked)
+        {
+            if (isReduced)
+            {
+                _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+            }
+            else
+            {
+                _currentDarkness += DARKNESS_ADD_DEATH;
+            }
+        }
+        else{
+            if (isReduced)
+            {
+                _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+            }
+            else
+            {
+                _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+            }
+        }
 		if (_currentDarkness > 100f){
 			_currentDarkness = 100f;
 		}

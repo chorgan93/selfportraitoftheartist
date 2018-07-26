@@ -337,6 +337,11 @@ public class RankUIS : MonoBehaviour {
 		fadeCount = 0f;
 		fadingOut = true;
 		endCombatOnFade = true;
+
+        if (PlayerAugmentsS.MARKED_AUG)
+        {
+            DarknessPercentUIS.DPERCENT.StartDarknessReduce(GetScoreReduce(myRankManager.GetRankInt()));
+        }
 	}
 
 	public void StartCountUp(int countAmt, bool showAddScore = true){
@@ -389,4 +394,23 @@ public class RankUIS : MonoBehaviour {
 		UpdateCurrentScore();
 		UpdateMultBar();
 	}
+
+    float GetScoreReduce(int rankNum){
+        switch(rankNum){
+            case(0):
+                return -0.5f;
+
+            case (1):
+                return -0.75f;
+
+            case (2):
+                return -1f;
+
+            case (3):
+                return -1.5f;
+
+            default:
+                return 0f;
+        }
+    }
 }

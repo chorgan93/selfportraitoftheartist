@@ -1,0 +1,1792 @@
+fileFormatVersion: 2
+guid: 1869fa369e28048028bbdee125d906dd
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PC Pyra Attacks Redesign_0
+    21300002: PC Pyra Attacks Redesign_1
+    21300004: PC Pyra Attacks Redesign_2
+    21300006: PC Pyra Attacks Redesign_3
+    21300008: PC Pyra Attacks Redesign_4
+    21300010: PC Pyra Attacks Redesign_5
+    21300012: PC Pyra Attacks Redesign_6
+    21300014: PC Pyra Attacks Redesign_7
+    21300016: PC Pyra Attacks Redesign_8
+    21300018: PC Pyra Attacks Redesign_9
+    21300020: PC Pyra Attacks Redesign_10
+    21300022: PC Pyra Attacks Redesign_11
+    21300024: PC Pyra Attacks Redesign_12
+    21300026: PC Pyra Attacks Redesign_13
+    21300028: PC Pyra Attacks Redesign_14
+    21300030: PC Pyra Attacks Redesign_15
+    21300032: PC Pyra Attacks Redesign_16
+    21300034: PC Pyra Attacks Redesign_17
+    21300036: PC Pyra Attacks Redesign_18
+    21300038: PC Pyra Attacks Redesign_19
+    21300040: PC Pyra Attacks Redesign_20
+    21300042: PC Pyra Attacks Redesign_21
+    21300044: PC Pyra Attacks Redesign_22
+    21300046: PC Pyra Attacks Redesign_23
+    21300048: PC Pyra Attacks Redesign_24
+    21300050: PC Pyra Attacks Redesign_25
+    21300052: PC Pyra Attacks Redesign_26
+    21300054: PC Pyra Attacks Redesign_27
+    21300056: PC Pyra Attacks Redesign_28
+    21300058: PC Pyra Attacks Redesign_29
+    21300060: PC Pyra Attacks Redesign_30
+    21300062: PC Pyra Attacks Redesign_31
+    21300064: PC Pyra Attacks Redesign_32
+    21300066: PC Pyra Attacks Redesign_33
+    21300068: PC Pyra Attacks Redesign_34
+    21300070: PC Pyra Attacks Redesign_35
+    21300072: PC Pyra Attacks Redesign_36
+    21300074: PC Pyra Attacks Redesign_37
+    21300076: PC Pyra Attacks Redesign_38
+    21300078: PC Pyra Attacks Redesign_39
+    21300080: PC Pyra Attacks Redesign_40
+    21300082: PC Pyra Attacks Redesign_41
+    21300084: PC Pyra Attacks Redesign_42
+    21300086: PC Pyra Attacks Redesign_43
+    21300088: PC Pyra Attacks Redesign_44
+    21300090: PC Pyra Attacks Redesign_45
+    21300092: PC Pyra Attacks Redesign_46
+    21300094: PC Pyra Attacks Redesign_47
+    21300096: PC Pyra Attacks Redesign_48
+    21300098: PC Pyra Attacks Redesign_49
+    21300100: PC Pyra Attacks Redesign_50
+    21300102: PC Pyra Attacks Redesign_51
+    21300104: PC Pyra Attacks Redesign_52
+    21300106: PC Pyra Attacks Redesign_53
+    21300108: PC Pyra Attacks Redesign_54
+    21300110: PC Pyra Attacks Redesign_55
+    21300112: PC Pyra Attacks Redesign_56
+    21300114: PC Pyra Attacks Redesign_57
+    21300116: PC Gaea Attacks Redesign_0
+    21300118: PC Gaea Attacks Redesign_1
+    21300120: PC Gaea Attacks Redesign_2
+    21300122: PC Gaea Attacks Redesign_3
+    21300124: PC Gaea Attacks Redesign_4
+    21300126: PC Gaea Attacks Redesign_5
+    21300128: PC Gaea Attacks Redesign_6
+    21300130: PC Gaea Attacks Redesign_7
+    21300132: PC Gaea Attacks Redesign_8
+    21300134: PC Gaea Attacks Redesign_9
+    21300136: PC Gaea Attacks Redesign_10
+    21300138: PC Gaea Attacks Redesign_11
+    21300140: PC Gaea Attacks Redesign_12
+    21300142: PC Gaea Attacks Redesign_13
+    21300144: PC Gaea Attacks Redesign_14
+    21300146: PC Gaea Attacks Redesign_15
+    21300148: PC Gaea Attacks Redesign_16
+    21300150: PC Gaea Attacks Redesign_17
+    21300152: PC Gaea Attacks Redesign_18
+    21300154: PC Gaea Attacks Redesign_19
+    21300156: PC Gaea Attacks Redesign_20
+    21300158: PC Gaea Attacks Redesign_21
+    21300160: PC Gaea Attacks Redesign_22
+    21300162: PC Gaea Attacks Redesign_23
+    21300164: PC Gaea Attacks Redesign_24
+    21300166: PC Gaea Attacks Redesign_25
+    21300168: PC Gaea Attacks Redesign_26
+    21300170: PC Gaea Attacks Redesign_27
+    21300172: PC Gaea Attacks Redesign_28
+    21300174: PC Gaea Attacks Redesign_29
+    21300176: PC Gaea Attacks Redesign_30
+    21300178: PC Gaea Attacks Redesign_31
+    21300180: PC Gaea Attacks Redesign_32
+    21300182: PC Gaea Attacks Redesign_33
+    21300184: PC Gaea Attacks Redesign_34
+    21300186: PC Gaea Attacks Redesign_35
+    21300188: PC Gaea Attacks Redesign_36
+    21300190: PC Gaea Attacks Redesign_37
+    21300192: PC Gaea Attacks Redesign_38
+    21300194: PC Gaea Attacks Redesign_39
+    21300196: PC Gaea Attacks Redesign_40
+    21300198: PC Gaea Attacks Redesign_41
+    21300200: PC Gaea Attacks Redesign_42
+    21300202: PC Gaea Attacks Redesign_43
+    21300204: PC Gaea Attacks Redesign_44
+    21300206: PC Gaea Attacks Redesign_45
+    21300208: PC Gaea Attacks Redesign_46
+    21300210: PC Gaea Attacks Redesign_47
+    21300212: PC Gaea Attacks Redesign_48
+    21300214: PC Gaea Attacks Redesign_49
+    21300216: PC Gaea Attacks Redesign_50
+    21300218: PC Gaea Attacks Redesign_51
+    21300220: PC Gaea Attacks Redesign_52
+    21300222: PC Gaea Attacks Redesign_53
+    21300224: PC Gaea Attacks Redesign_54
+    21300226: PC Gaea Attacks Redesign_55
+    21300228: PC Gaea Attacks Redesign_56
+    21300230: PC Gaea Attacks Redesign_57
+    21300232: PC Gaea Attacks Redesign_58
+    21300234: PC Gaea Attacks Redesign_59
+    21300236: PC Gaea Attacks Redesign_60
+    21300238: PC Gaea Attacks Redesign_61
+    21300240: PC Gaea Attacks Redesign_62
+    21300242: PC Gaea Attacks Redesign_63
+    21300244: PC Gaea Attacks Redesign_64
+    21300246: PC Gaea Attacks Redesign_65
+    21300248: PC Gaea Attacks Redesign_66
+    21300250: PC Gaea Attacks Redesign_67
+    21300252: PC Gaea Attacks Redesign_68
+    21300254: PC Gaea Attacks Redesign_69
+    21300256: PC Gaea Attacks Redesign_70
+    21300258: PC Gaea Attacks Redesign_71
+    21300260: PC Gaea Attacks Redesign_72
+    21300262: PC Gaea Attacks Redesign_73
+    21300264: PC Gaea Attacks Redesign_74
+    21300266: Maria Gaea Attacks Redesign_0
+    21300268: Maria Gaea Attacks Redesign_1
+    21300270: Maria Gaea Attacks Redesign_2
+    21300272: Maria Gaea Attacks Redesign_3
+    21300274: Maria Gaea Attacks Redesign_4
+    21300276: Maria Gaea Attacks Redesign_5
+    21300278: Maria Gaea Attacks Redesign_6
+    21300280: Maria Gaea Attacks Redesign_7
+    21300282: Maria Gaea Attacks Redesign_8
+    21300284: Maria Gaea Attacks Redesign_9
+    21300286: Maria Gaea Attacks Redesign_10
+    21300288: Maria Gaea Attacks Redesign_11
+    21300290: Maria Gaea Attacks Redesign_12
+    21300292: Maria Gaea Attacks Redesign_13
+    21300294: Maria Gaea Attacks Redesign_14
+    21300296: Maria Gaea Attacks Redesign_15
+    21300298: Maria Gaea Attacks Redesign_16
+    21300300: Maria Gaea Attacks Redesign_17
+    21300302: Maria Gaea Attacks Redesign_18
+    21300304: Maria Gaea Attacks Redesign_19
+    21300306: Maria Gaea Attacks Redesign_20
+    21300308: Maria Gaea Attacks Redesign_21
+    21300310: Maria Gaea Attacks Redesign_22
+    21300312: Maria Gaea Attacks Redesign_23
+    21300314: Maria Gaea Attacks Redesign_24
+    21300316: Maria Gaea Attacks Redesign_25
+    21300318: Maria Gaea Attacks Redesign_26
+    21300320: Maria Gaea Attacks Redesign_27
+    21300322: Maria Gaea Attacks Redesign_28
+    21300324: Maria Gaea Attacks Redesign_29
+    21300326: Maria Gaea Attacks Redesign_30
+    21300328: Maria Gaea Attacks Redesign_31
+    21300330: Maria Gaea Attacks Redesign_32
+    21300332: Maria Gaea Attacks Redesign_33
+    21300334: Maria Gaea Attacks Redesign_34
+    21300336: Maria Gaea Attacks Redesign_35
+    21300338: Maria Gaea Attacks Redesign_36
+    21300340: Maria Gaea Attacks Redesign_37
+    21300342: Maria Gaea Attacks Redesign_38
+    21300344: Maria Gaea Attacks Redesign_39
+    21300346: Maria Gaea Attacks Redesign_40
+    21300348: Maria Gaea Attacks Redesign_41
+    21300350: Maria Gaea Attacks Redesign_42
+    21300352: Maria Gaea Attacks Redesign_43
+    21300354: Maria Gaea Attacks Redesign_44
+    21300356: Maria Gaea Attacks Redesign_45
+    21300358: Maria Gaea Attacks Redesign_46
+    21300360: Maria Gaea Attacks Redesign_47
+    21300362: Maria Gaea Attacks Redesign_48
+    21300364: Maria Gaea Attacks Redesign_49
+    21300366: Maria Gaea Attacks Redesign_50
+    21300368: Maria Gaea Attacks Redesign_51
+    21300370: Maria Gaea Attacks Redesign_52
+    21300372: Maria Gaea Attacks Redesign_53
+    21300374: Maria Gaea Attacks Redesign_54
+    21300376: Maria Gaea Attacks Redesign_55
+    21300378: Maria Gaea Attacks Redesign_56
+    21300380: Maria Gaea Attacks Redesign_57
+    21300382: Maria Gaea Attacks Redesign_58
+    21300384: Maria Gaea Attacks Redesign_59
+    21300386: Maria Gaea Attacks Redesign_60
+    21300388: Maria Gaea Attacks Redesign_61
+    21300390: Maria Gaea Attacks Redesign_62
+    21300392: Maria Gaea Attacks Redesign_63
+    21300394: Maria Gaea Attacks Redesign_64
+    21300396: Maria Gaea Attacks Redesign_65
+    21300398: Maria Gaea Attacks Redesign_66
+    21300400: Maria Gaea Attacks Redesign_67
+    21300402: Maria Gaea Attacks Redesign_68
+    21300404: Maria Gaea Attacks Redesign_69
+    21300406: Maria Gaea Attacks Redesign_70
+    21300408: Maria Gaea Attacks Redesign_71
+    21300410: Maria Gaea Attacks Redesign_72
+    21300412: Maria Gaea Attacks Redesign_73
+    21300414: Maria Gaea Attacks Redesign_74
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4800587523c466cbdede4259d806f5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 520b6c8f61dc74cd8a801bf09f155d1c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_2
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5560790a385a42a5864f0290e136fdb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_3
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55926ebd97a36478cb8d278786552d07
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_4
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3709cc5070d8348c1a2cc3109173ad06
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_5
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a483e43282094097bd1d8930a1717f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_6
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4411ac840dd8e41caa2bbe16b521febb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_7
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f45f77b6195b4812ba3c7ad5b1d1b9e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_8
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 624
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e75728faebaa434aa0ea07f1a562789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03154bce5bed345c08c6a1a1eb3fa581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_10
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd53b9fbc6a34ffdb65b8fb5e134623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_11
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8493967ca11c04008b5fbacc6eb0c65b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_12
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0dd3d2eb8984e00b2c54787aa53d79
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8b3605731dd4ca8ac62f81fa837918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_14
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8e0393726ab945a6956458dc45b9ea4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_15
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b33648ee008c142568a2fe3ea9eb16f8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_16
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afcb120a8627c464b812b43e0515a316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_17
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 546
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a39b788cb34c1413981a52c180de1cc0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d590729b35b545248cd6c80e5b9d239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_19
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4629673e625174755a42953ce3fdeae0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_20
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dff0d43adba444a2b23387978c6141d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_21
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b55b13a40af4dd1a1b6f275929b816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_22
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88c4d7c98b2954e8db27dd9b5e073d37
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_23
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31d7cdc5de8b048e4bdb1eb8908811fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_24
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4086dd19cec5c439f96b90e51d0778e5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_25
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66155d3c25c648e4906133209499e0a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_26
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 468
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc14f642e31724f42bf3baa1ce4a0980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b09fb44c6e961465eb19dd3bb273e9c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_28
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3a720b9ea49b49fda1bc2f611b63a00
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_29
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6f6343e444f4c2493205426bc4cc8b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_30
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b1c604d236b44129e05cca74e8e1c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_31
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dbac9ac90cb440d6b0d5e3016ee1319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_32
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf9878f788a4b4f4f84d33a7161090d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_33
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc48d3d1f50346ebbf5c29eb6a757f3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_34
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03242240ca81435d9d42f337502a59d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_35
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 390
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2fa2c78b4204aa69411e55820506ac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13a268cec01e84c4680d81909f2c142e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_37
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bda1ba8ef3dff413695b7bb185c3c1ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_38
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8562641efb4043d2bd7a8b6cadcc56d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_39
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6050199a1fadf4e7199cb893d39c5774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_40
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e290328bd4647c0a22187a6804dc4a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_41
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8ee84ae5bf864464aa62f90122a4dad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_42
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c622609d412f34090a823216a5bd18de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_43
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e286b52733af143b1bfce73af07f2fae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_44
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 312
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81f1bc61cc4d8426f9c1dcba0da475d7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9312b661895de4636964c3395cc14d64
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_46
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37dac80851b984712b7608dd2d94d002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_47
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e854bedc3e05247a6b10fa5e21c5a823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_48
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf126f6fa47f6414cbca1744d177028a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_49
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 348e04a74a6b1445585aa3243acc15ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_50
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b3014a37338417ba09c8128b5c471e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_51
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 216d6e81a47f64d17944cfbc15886ff0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_52
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19655449cb18b40659bbb50f1b5b2545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_53
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 234
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5d0d186bb6c4b9ba99e519fd011a1b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d0cd138d054f417fa68c1151444864e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_55
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c7a9bf4f87545b19f2accd033a16ae
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_56
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82afdbe1d848a40528e4ebfb25dc049f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_57
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fd36ec2d20c34a85a43687791a361fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_58
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73fc8f8bebcf4460834b6c1fccefdd4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_59
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e693ff278c637490f934779c36f803e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_60
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce06e0402c0949f2b542cd137d58afd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_61
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1bfd5da18c4248b6a59c5b96c8693ee
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_62
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 156
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7391afac11cb468682feb02dda4a872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b8ef7283d334f90a004ac4f18764b6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_64
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb006ff45e8e0465696cc5cebc21e9e8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_65
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081a8436cf67f4ba4a21aeed8d639313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_66
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4339abf489f94437daaac9560377501b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_67
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e93cf33849364d459de2921ec2e6b4b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_68
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bd941f2a30e43bab207ac9f7ecc5a9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_69
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c55b8541cdf4412912ca018c3e4a72
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_70
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8299471293f2049dcbd6aeedd4787c6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_71
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 78
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38e6d30a6ba9a42639376dd2d05dec6b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41723244b1e9f4409ae6f249047858c4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_73
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d500059a8b9fc4c8dba33ed94a341062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Maria Gaea Attacks Redesign_74
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 78
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f2b3ff5f06e42d2b29769b0b42d561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: febbe94e7d5ce4b75a42916f263c65d9
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

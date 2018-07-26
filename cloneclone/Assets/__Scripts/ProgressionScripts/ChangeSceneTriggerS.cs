@@ -198,7 +198,10 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 		if (pRef.ParadigmIIBuddy() != null){
 			saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
 		}
-		PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+        if (!pRef.isNatalie)
+        {
+            PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+        }
 
 		if (setProgressOnActivate > -1){
 			StoryProgressionS.SetStory(setProgressOnActivate);
