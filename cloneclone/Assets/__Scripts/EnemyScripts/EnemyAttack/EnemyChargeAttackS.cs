@@ -98,6 +98,10 @@ public class EnemyChargeAttackS : MonoBehaviour
         _myCollider = GetComponent<Collider>();
         animateCountdown = _animateRate;
 
+        if (PlayerController.equippedTech.Contains(14)){
+            dmg *= 0.5f;
+        }
+
         if (!standalone)
         {
             myEnemy = GetComponentInParent<EnemyS>();

@@ -269,7 +269,8 @@ public class PlayerStatsS : MonoBehaviour {
         if (pRef.isNatalie){
             useAmount *= 0.2f;
         }
-		if (godMode || arcadeMode){
+
+        if (godMode || arcadeMode || PlayerController.equippedTech.Contains(11)){
 			return true;
 		}else if (!ManaUnlocked()){
 			return false;
@@ -344,7 +345,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (buddyCheck){
 			canUse = _currentCharge >= minBuddyChargeUse;
 		}
-		if (arcadeMode){
+        if (arcadeMode || PlayerController.equippedTech.Contains(12)){
 			return true;
 		}else{
 
@@ -857,6 +858,9 @@ public class PlayerStatsS : MonoBehaviour {
         if (pRef.isNatalie)
         {
             dmg *= 0.2f;
+        }
+        if (PlayerController.equippedTech.Contains(10) && !noUnstoppable){
+            dmg *= 0.3f;
         }
 		unstoppableActivatedOnHit = false;
 		dmg*=DifficultyS.GetPunishMult();

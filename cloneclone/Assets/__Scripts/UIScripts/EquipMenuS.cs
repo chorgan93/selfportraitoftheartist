@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EquipMenuS : MonoBehaviour {
 
 	[Header("Demo Properties")]
-	public bool disableTech = true;
+	private bool disableTech = false;
 	[Header("Instance Properties")]
 	public Image playerImage;
 	public Text playerLevel;

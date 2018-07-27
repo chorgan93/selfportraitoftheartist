@@ -104,7 +104,7 @@ public class EffectSpawnManagerS : MonoBehaviour {
 
 		GameObject spawnObj = null;
 
-		if (PlayerController.equippedUpgrades.Contains(1) && !arcadeMode && dmgAmt > 0){
+		if (PlayerController.equippedTech.Contains(1) && !arcadeMode && dmgAmt > 0){
 		spawnPos.y += 0.8f;
 		spawnPos.z = -8f;
 		if (damageNumbers.Count > 0){

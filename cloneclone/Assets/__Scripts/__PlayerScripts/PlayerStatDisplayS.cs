@@ -171,7 +171,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		//UpdateMaxSizes();
 		UpdateFills(true);
 
-		if (!PlayerController.equippedUpgrades.Contains(0) || hideInScene || RECORD_MODE){
+		if (!PlayerController.equippedTech.Contains(0) || hideInScene || RECORD_MODE){
 			//Debug.Log("HIDE!");
 			DisableUI ();
 		}

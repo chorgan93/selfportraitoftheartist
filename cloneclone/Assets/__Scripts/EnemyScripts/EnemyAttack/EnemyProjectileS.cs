@@ -95,6 +95,10 @@ public class EnemyProjectileS : MonoBehaviour {
 		_myRenderer = GetComponentInChildren<SpriteRenderer>();
 		myCollider = GetComponent<Collider>();
 			startDamage = damage;
+            if (PlayerController.equippedTech.Contains(14) && !isFriendly){
+                startDamage *= 0.5f;
+                damage = startDamage;
+            }
 			fadeColor = _myRenderer.color;
 			fadeColor.a = fixAlpha;
 			_myRenderer.color = fadeColor;

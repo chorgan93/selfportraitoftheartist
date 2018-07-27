@@ -204,7 +204,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 			(startBarLength + lengthPerHealth/numEnemiesDivider*totalMaxHealth)*(currentCombinedHealth/totalMaxHealth);
 		barDamageImage.rectTransform.sizeDelta = barFullImage.rectTransform.sizeDelta = resizeRect;
 
-		if (PlayerController.equippedUpgrades.Contains(1) && !PlayerStatDisplayS.RECORD_MODE){
+		if (PlayerController.equippedTech.Contains(1) && !PlayerStatDisplayS.RECORD_MODE){
 		// turn on ui elements
 		borderImage.gameObject.SetActive(true);
 		barBGImage.gameObject.SetActive(true);

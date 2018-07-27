@@ -311,10 +311,13 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 	}
 
-	public void AddEarnedTech(int i){
+    public void AddEarnedTech(int i, bool autoEquip = true){
 		if (!_earnedTech.Contains(i)){
 			_earnedTech.Add(i);
-			PlayerController.equippedUpgrades.Add(i);
+            if (autoEquip)
+            {
+                PlayerController.equippedTech.Add(i);
+            }
 		}
 	}
 
@@ -384,8 +387,8 @@ public class PlayerInventoryS : MonoBehaviour {
 				}
 			}
 			
-			_earnedTech = new List<int>(){0,1,2,3,7};
-			PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
+			_earnedTech = new List<int>(){0,1,2,3,10,11,12,13,14};
+			PlayerController.equippedTech = new List<int>{0,1,2,3,4};
 
 			if (unlockForDemo){
 				DemoUnlocks(pRef);
@@ -444,8 +447,8 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 		}
 
-		_earnedTech = new List<int>(){0,1,2,3,7,8,9};
-		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
+		_earnedTech = new List<int>(){0,1,2,3,10,11,12,13,14};
+		PlayerController.equippedTech = new List<int>{0,1,2,3,4};
 
 		DemoUnlocks(pRef);
 
@@ -457,8 +460,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		lHandler.ResetUpgrades();
 		_earnedTech.Add(5);
 		_earnedTech.Add(6);
-		PlayerController.equippedUpgrades.Add(5);
-		PlayerController.equippedUpgrades.Add(6);
+		PlayerController.equippedTech.Add(5);
+		PlayerController.equippedTech.Add(6);
 		for (int i = 0; i < buddiesToAddForDemo.Count; i++){
 			unlockedBuddies.Add(buddiesToAddForDemo[i].GetComponent<BuddyS>());
 			if (i == 0 && pRef != null){
@@ -636,8 +639,8 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerInventoryS.I._earnedVirtues.Add(0);
 		PlayerController.equippedVirtues = new List<int>();
 		PlayerController.equippedVirtues.Add(0);
-		PlayerController.equippedUpgrades = new List<int>{0,1,2,3,4,7};
-		_earnedTech =  new List<int>{0,1,2,3,4,7};
+		PlayerController.equippedTech = new List<int>{0,1,2,3,4};
+		_earnedTech =  new List<int>{0,1,2,3,4,10,11,12,13,14};
 	}
 
 	void LoadInventoryData(){
@@ -653,6 +656,12 @@ public class PlayerInventoryS : MonoBehaviour {
 		_clearedWalls = inventoryData.clearedWalls;
 		_earnedVirtues = inventoryData.earnedVirtues;
 		_earnedTech = inventoryData.earnedTech;
+
+        AddEarnedTech(10, false);
+        AddEarnedTech(11, false);
+        AddEarnedTech(12, false);
+        AddEarnedTech(13, false);
+        AddEarnedTech(14, false);
 
         if (inventoryData.skippableScenes != null){
             skippableScenes = inventoryData.skippableScenes;
@@ -697,7 +706,7 @@ public class PlayerInventoryS : MonoBehaviour {
 		}
 		
 		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
-		PlayerController.equippedUpgrades = inventoryData.equippedTech;
+		PlayerController.equippedTech = inventoryData.equippedTech;
 
 		LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
 		List<LevelUpS> nLU = new List<LevelUpS>();
@@ -813,7 +822,7 @@ public class PlayerInventoryS : MonoBehaviour {
 			}
 			
 			inventoryData.equippedVirtues = PlayerController.equippedVirtues;
-			inventoryData.equippedTech = PlayerController.equippedUpgrades;
+			inventoryData.equippedTech = PlayerController.equippedTech;
 
 			for (int i = 0; i < equippedBuddies.Count; i++){
 				inventoryData.equippedBuddies.Add(equippedBuddies[i].GetComponent<BuddyS>().buddyNum);

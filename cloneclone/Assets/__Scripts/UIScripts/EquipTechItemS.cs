@@ -27,6 +27,7 @@ public class EquipTechItemS : MonoBehaviour {
 	public PlayerCurrencyDisplayS currencyUIRef;
 	public ResetUIS resetUIRef;
 	public VerseDisplayS verseUIRef;
+    public KeyItemUIS keyItemUIRef;
 
 	public void Initialize(PlayerInventoryS i){
 
@@ -48,7 +49,7 @@ public class EquipTechItemS : MonoBehaviour {
 			techText.text = "— LOCKED —";
 		}else{
 			techBG.enabled = true;
-			if (PlayerController.equippedUpgrades.Contains(techNum)){
+			if (PlayerController.equippedTech.Contains(techNum)){
 				techText.color = textOnColor;
 				_techEquipped = true;
 			}else{
@@ -65,8 +66,8 @@ public class EquipTechItemS : MonoBehaviour {
 	public void ToggleOnOff(){
 		_techEquipped = !_techEquipped;
 		if (_techEquipped){
-			if (!PlayerController.equippedUpgrades.Contains(techNum)){
-				PlayerController.equippedUpgrades.Add(techNum);
+			if (!PlayerController.equippedTech.Contains(techNum)){
+				PlayerController.equippedTech.Add(techNum);
 				techText.color = textOnColor;
 
 				if (techNum == 0){
@@ -77,15 +78,16 @@ public class EquipTechItemS : MonoBehaviour {
 					bossUIRef.Show();
 				}
 				if (techNum == 2){
-					resetUIRef.Show();
+                    resetUIRef.Show();
+                    keyItemUIRef.Show();
 				}
 				if (techNum == 3){
 					verseUIRef.Show();
 				}
 			}
 		}else{
-			if (PlayerController.equippedUpgrades.Contains(techNum)){
-				PlayerController.equippedUpgrades.Remove(techNum);
+			if (PlayerController.equippedTech.Contains(techNum)){
+				PlayerController.equippedTech.Remove(techNum);
 				techText.color = textOffColor;
 				if (techNum == 0){
 					statUIRef.DisableUI();
@@ -95,7 +97,8 @@ public class EquipTechItemS : MonoBehaviour {
 					bossUIRef.Hide();
 				}
 				if (techNum == 2){
-					resetUIRef.Hide();
+                    resetUIRef.Hide();
+                    keyItemUIRef.Hide();
 				}
 				if (techNum == 3){
 					verseUIRef.Hide();

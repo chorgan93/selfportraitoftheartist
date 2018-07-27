@@ -47,7 +47,7 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
 		totalDisplay.text = currencyDisplayAmt.ToString();
 		beingAddedDisplay.text = "";
 
-		if (PlayerController.equippedUpgrades.Contains(0) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
+		if (PlayerController.equippedTech.Contains(0) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
 			Show();
 		}else{
 			Hide ();

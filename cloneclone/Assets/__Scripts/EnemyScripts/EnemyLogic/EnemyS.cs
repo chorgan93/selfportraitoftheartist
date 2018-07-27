@@ -95,6 +95,11 @@ public class EnemyS : MonoBehaviour {
 	private bool _preventFace = false;
 	public bool preventFace { get { return _preventFace; } }
 
+
+    [Header("NG+ Properties")]
+    public float newGamePlusHealthMult = 1.5f;
+    public float newGamePlusSpeedMult = 1.025f;
+
 	private float currentDifficultyMult;
 
 	[HideInInspector]
@@ -487,7 +492,15 @@ public class EnemyS : MonoBehaviour {
 		enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
-		actingMaxHealth = maxHealth*currentDifficultyMult;
+        if (PlayerAugmentsS.MARKED_AUG){
+            actingMaxHealth = maxHealth * newGamePlusHealthMult * currentDifficultyMult;
+            currentDifficultyMult *= newGamePlusSpeedMult;
+        }else{
+            actingMaxHealth = maxHealth * currentDifficultyMult;
+        }
+        if (PlayerController.equippedTech.Contains(14) && !isFriendly){
+            actingMaxHealth *= 0.5f;
+        }
 		stunLockTarget = actingMaxHealth*stunLockHealthMult;
 		maxCritDamage *= DifficultyS.GetSinMult(isGold);
 		maxCritTime *= DifficultyS.GetSinMult(isGold);

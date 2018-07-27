@@ -530,7 +530,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 						#else
 						
                         // for now, only allow two options (start game), options
-							if (currentSelection > 1){
+							if (currentSelection > 2){
 								currentSelection = 0;
 							}
 						
@@ -557,14 +557,14 @@ public class MainMenuNavigationS : MonoBehaviour {
                         // for now, only allow two options (start game), options
                         if (currentSelection < 0)
                         {
-                            currentSelection = 1;
+                            currentSelection = 2;
                         }
 						#endif
 					SetSelection();
 				}
 
 				// control settings
-					if (currentSelection == 2){
+					/*if (currentSelection == 2){
 						if ((myController.HorizontalMenu() > 0.1f && stickReset) || 
 							(selectReset && (myController.GetCustomInput(3) || Input.GetKeyDown(KeyCode.KeypadEnter) 
 								|| Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)))){
@@ -580,40 +580,63 @@ public class MainMenuNavigationS : MonoBehaviour {
 						SetControlSelection();
 						stickReset = false;
 					}
-				}
+				}**/
 				
                     if (selectReset && myController.GetCustomInput(12) 
 						&& !loading && !quitting){
 						attractCountdown = attractCountdownMax;
-						if (currentSelection == 0){
+                        if (currentSelection == 0)
+                        {
                             // start
-						startMusic.FadeOut();
-						loadBlackScreen.gameObject.SetActive(true);
-						loading = true;
-							selectReset = false;
-						selectOrb.SetActive(false);
-						Cursor.visible = false;
-							hideOnOverride.gameObject.SetActive(false);
-							showOnOverride.gameObject.SetActive(false);
-                            if (GameDataS.current == null){
-							StoryProgressionS.NewGame(); // reset for new game progress
-								/*if (currentSelection == 0){
-									newGameScene = demoOneScene;
-								}else{
-									newGameScene = demoTwoScene;
-								}**/
-                            }else{
-							newGameScene = GameOverS.reviveScene;
-							PlayerController.doWakeUp = true;
-						}
-						PlayerStatsS.healOnStart = true;
-						StartNextLoad();
-					}
-						
-						else if (currentSelection == 1){
-							attractCountdown = attractCountdownMax;
+                            startMusic.FadeOut();
+                            loadBlackScreen.gameObject.SetActive(true);
+                            loading = true;
+                            selectReset = false;
+                            selectOrb.SetActive(false);
+                            Cursor.visible = false;
+                            hideOnOverride.gameObject.SetActive(false);
+                            showOnOverride.gameObject.SetActive(false);
+                            if (GameDataS.current == null)
+                            {
+                                StoryProgressionS.NewGame(); // reset for new game progress
+                                                             /*if (currentSelection == 0){
+                                                                 newGameScene = demoOneScene;
+                                                             }else{
+                                                                 newGameScene = demoTwoScene;
+                                                             }**/
+                            }
+                            else
+                            {
+                                newGameScene = GameOverS.reviveScene;
+                                PlayerController.doWakeUp = true;
+                            }
+                            PlayerStatsS.healOnStart = true;
+                            StartNextLoad();
+                        }
+
+                        else if (currentSelection == 1)
+                        {
+                            attractCountdown = attractCountdownMax;
                             OpenOptionsScreen();
-						}
+                        }
+                        else if (currentSelection == 2)
+                        {
+                            // reset menu scene
+                            attractCountdown = attractCountdownMax;
+                           
+                                // start reset
+                                loadBlackScreen.gameObject.SetActive(true);
+                            startMusic.FadeOut();
+                                loading = true;
+                                selectReset = false;
+                                selectOrb.SetActive(false);
+                                Cursor.visible = false;
+                                hideOnOverride.gameObject.SetActive(false);
+                                showOnOverride.gameObject.SetActive(false);
+                                newGameScene = Application.loadedLevelName;
+                                StartNextLoad(false);
+
+                        }
 					}
 				}
 			}
@@ -754,11 +777,11 @@ public class MainMenuNavigationS : MonoBehaviour {
 		}
 		
 	}
-	
-	private void StartNextLoad(){
+
+    private void StartNextLoad(bool playSound = true){
 		StartCoroutine(LoadNextScene());
 		startedLoading = true;	
-		if (newGameSound){
+        if (newGameSound && playSound){
 			Instantiate(newGameSound);
 		}
 	}

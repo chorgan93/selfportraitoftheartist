@@ -26,7 +26,6 @@ public class InventoryManagerS : MonoBehaviour {
 	private bool _updateUICall = false;
 	public bool updateUICall { get {return _updateUICall; } }
 
-	public static bool infiniteResets = false;
 
 	private float useItemTime = 0.3f;
 
@@ -178,15 +177,18 @@ public class InventoryManagerS : MonoBehaviour {
 				//StartCoroutine(HealFunction());
 				if (_pRef.inCombat){
 					StartCoroutine(ResetFunction());
-					if (!infiniteResets){
+                        if (!PlayerController.equippedTech.Contains(13)){
 						consumeItem = true;
 					}
 					rechargeable = true;
 				}
 				break;
 			case 1:
-					StartCoroutine(HealFunction());
-						consumeItem = true;
+                    StartCoroutine(HealFunction());
+                    if (!PlayerController.equippedTech.Contains(13))
+                    {
+                        consumeItem = true;
+                    }
 					rechargeable = true;
 
 				break;

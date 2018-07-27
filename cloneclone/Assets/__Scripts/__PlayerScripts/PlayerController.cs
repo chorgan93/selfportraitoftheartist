@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Virtue Properties
 	public static List<int> equippedVirtues;
-	public static List<int> equippedUpgrades; // tech
+	public static List<int> equippedTech; // tech
 
 	// Animation Properties
 	private bool _facingDown = true;
@@ -1164,7 +1164,7 @@ public class PlayerController : MonoBehaviour {
 		// first, check for parry, otherwise dodge
 		//Debug.Log(superCloseEnemyDetect.allEnemiesInRange.Count + " : " + superCloseEnemyDetect.EnemyToParry() + " : " +(equippedUpgrades.Contains(5)));
 		if (superCloseEnemyDetect.EnemyToParry() != null && !_chargingAttack  && !InAttack() 
-			&& !_isDashing && !_allowCounterAttack && equippedUpgrades.Contains(5)){
+			&& !_isDashing && !_allowCounterAttack && equippedTech.Contains(5)){
 
 			_myRigidbody.AddForce(ShootDirection().normalized*parryForce*Time.deltaTime, ForceMode.Impulse);
 			List<EnemyS> enemiesToParry = superCloseEnemyDetect.EnemyToParry();
@@ -1319,7 +1319,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void TransformControl(){
 		if (myControl.GetCustomInput(9)){
-			if ((equippedUpgrades.Contains(8) || _tempTransformAllow) && !disableTransformInScene){ 
+			if ((equippedTech.Contains(8) || _tempTransformAllow) && !disableTransformInScene){ 
 			_transformHoldTime += Time.deltaTime;
 			transformStartEffect.StartCharge();
 			}
@@ -1909,7 +1909,7 @@ public class PlayerController : MonoBehaviour {
 		if (CanInputShoot()){
 				if (
                     ((ShootInputPressed() && shootButtonUp && !_tempTauntAllow) || (tauntButtonUp && controller.GetCustomInput(8) &&
-						equippedUpgrades.Contains(9))) 
+						equippedTech.Contains(9))) 
 					&& !counterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
@@ -2143,7 +2143,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedUpgrades.Contains(6)){
+					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedTech.Contains(6)){
 					// charge attack
 
 						if (prevChain < 0){

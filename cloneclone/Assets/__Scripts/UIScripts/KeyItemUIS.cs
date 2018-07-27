@@ -27,6 +27,7 @@ public class KeyItemUIS : MonoBehaviour {
 
 	public static KeyItemUIS K;
 
+    private bool _isShowing = false;
 
 	void Awake(){
 		K = this;
@@ -64,7 +65,7 @@ public class KeyItemUIS : MonoBehaviour {
 	}
 
 	public void EvaluateItems(bool reset = false){
-		if (!doNotShowInScene && !PlayerStatDisplayS.RECORD_MODE){
+        if (!doNotShowInScene && !PlayerStatDisplayS.RECORD_MODE && !PlayerController.equippedTech.Contains(2)){
 		if (reset){
 			TurnOffItemSlots();
 		}
@@ -82,4 +83,16 @@ public class KeyItemUIS : MonoBehaviour {
 		}
 		}
 	}
+
+    public void Show(){
+        _isShowing = true;
+        EvaluateItems(true);
+    }
+
+    public void Hide()
+    {
+        _isShowing = false;
+
+        TurnOffItemSlots();
+    }
 }

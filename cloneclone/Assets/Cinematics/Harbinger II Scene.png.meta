@@ -1,0 +1,374 @@
+fileFormatVersion: 2
+guid: 91eebb1652df844f0ab2d347ec5dd9e4
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Cinematics Intro_0
+    21300002: Cinematics Intro_1
+    21300004: Cinematics Intro_2
+    21300006: Cinematics Intro_3
+    21300008: Cinematics Intro_4
+    21300010: Cinematics Intro_5
+    21300012: Cinematics Intro_6
+    21300014: Cinematics Intro_7
+    21300016: Cinematics Intro_8
+    21300018: Cinematics Intro_9
+    21300020: Cinematics Intro_10
+    21300022: Cinematics Intro_11
+    21300024: Cinematics Intro_12
+    21300026: Cinematics Intro_13
+    21300028: Cinematics Intro_14
+    21300030: Cinematics Intro_15
+    21300032: Cinematics Intro_16
+    21300034: Cinematics Intro_17
+    21300036: Cinematics Intro_18
+    21300038: Cinematics Intro_19
+    21300040: Cinematics Intro_20
+    21300042: Cinematics Intro_21
+    21300044: Cinematics Intro_22
+    21300046: Cinematics Intro_23
+    21300048: Chapter 8 Cutscenes_0
+    21300050: Chapter 8 Cutscenes_1
+    21300052: Chapter 8 Cutscenes_2
+    21300054: Chapter 8 Cutscenes_3
+    21300056: Chapter 8 Cutscenes_4
+    21300058: Chapter 8 Cutscenes_5
+    21300060: Chapter 8 Cutscenes_6
+    21300062: Chapter 8 Cutscenes_7
+    21300064: Chapter 8 Cutscenes_8
+    21300066: Chapter 8 Cutscenes_9
+    21300068: Chapter 8 Cutscenes_10
+    21300070: Chapter 8 Cutscenes_11
+    21300072: Chapter 8 Cutscenes_12
+    21300074: Chapter 8 Cutscenes_13
+    21300076: Chapter 8 Cutscenes_14
+    21300078: Chapter 8 Cutscenes_15
+    21300080: Chapter 8 Cutscenes_16
+    21300082: Chapter 8 Cutscenes_17
+    21300084: Chapter 8 Cutscenes_18
+    21300086: Chapter 8 Cutscenes_19
+    21300088: Chapter 8 Cutscenes_20
+    21300090: Chapter 8 Cutscenes_21
+    21300092: Chapter 8 Cutscenes_22
+    21300094: Chapter 8 Cutscenes_23
+    21300096: Chapter 8 Cutscenes_24
+    21300098: Chapter 8 Cutscenes_25
+    21300100: Chapter 8 Cutscenes_26
+    21300102: Chapter 8 Cutscenes_27
+    21300104: Chapter 8 Cutscenes_28
+    21300106: Chapter 8 Cutscenes_29
+    21300108: Chapter 8 Cutscenes_30
+    21300110: Chapter 8 Cutscenes_31
+    21300112: Chapter 8 Cutscenes_32
+    21300114: Chapter 8 Cutscenes_33
+    21300116: Chapter 8 Cutscenes_34
+    21300118: Harbinger II Scene_0
+    21300120: Harbinger II Scene_1
+    21300122: Harbinger II Scene_2
+    21300124: Harbinger II Scene_3
+    21300126: Harbinger II Scene_4
+    21300128: Harbinger II Scene_5
+    21300130: Harbinger II Scene_6
+    21300132: Harbinger II Scene_7
+    21300134: Harbinger II Scene_8
+    21300136: Harbinger II Scene_9
+    21300138: Harbinger II Scene_10
+  externalObjects: {}
+  serializedVersion: 5
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Harbinger II Scene_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80ea099ada5244edad7cd5e0b42fee1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0ceb76778bc43ad870a976bf128707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e4d5a16a385422cb5c95603d7f4f5b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd05fe3a8105c45c5b261dbe8be42a8f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea29aa348881543b08549802c61bc5f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5ed65a3c00704f94804fa8b4bdde458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1dfb78e8fc0c4cd9914f7137d82a985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092ecb06d9cfa4c4ab822e377aa5dd44
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8003332a4019c42e0971851090ad65b5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67dff4989443e49a1bd491f149b94b7a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harbinger II Scene_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b7bcf77269b347c3814dd1bce24403e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ddc87e5ef81664976a76df8684747658
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

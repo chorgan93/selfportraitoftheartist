@@ -34,7 +34,7 @@ public class ResetUIS : MonoBehaviour {
 		}else{
 			instruction.text = "R";
 		}
-		if (PlayerController.equippedUpgrades.Contains(2) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
+		if (PlayerController.equippedTech.Contains(2) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
 			Show ();
 		}else{
 			Hide ();
@@ -63,13 +63,9 @@ public class ResetUIS : MonoBehaviour {
 			instruction.enabled = true;
 			if (PlayerInventoryS.I.iManager.equippedInventory[PlayerInventoryS.I.iManager.currentSelection] == 0){
 				itemIcon.sprite = rewindItemSprite;
-				if (InventoryManagerS.infiniteResets){
-					resetCount.enabled = false;
-					countHolderLeft.enabled = false;
-					countHolderRight.enabled = false;
-				}else{
-					resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
-				}
+				
+				resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
+				
 			}else{
 				itemIcon.sprite = healItemSprite;
 

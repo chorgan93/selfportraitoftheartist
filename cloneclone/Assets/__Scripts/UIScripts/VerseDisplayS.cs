@@ -60,7 +60,7 @@ public class VerseDisplayS : MonoBehaviour {
 		verseBorder.enabled = borderBG.enabled = false;
 		verseTitle.text = verseTitleBg.text = "";
 
-		if (!PlayerController.equippedUpgrades.Contains(3) || PlayerStatDisplayS.RECORD_MODE || arcadeMode){
+		if (!PlayerController.equippedTech.Contains(3) || PlayerStatDisplayS.RECORD_MODE || arcadeMode){
 			_isShowing  = false;
 		}
 	
