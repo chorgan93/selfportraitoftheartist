@@ -33,7 +33,14 @@ public class EquipBuddyItemS : MonoBehaviour {
 			_unlocked = false;
 		}else{
 			buddyImage.sprite = buddyRef.buddyMenuSprite;
-			buddyImage.color = buddyRef.shadowColor;
+            if (PlayerController.killedFamiliar)
+            {
+                buddyImage.color = Color.black;
+            }
+            else
+            {
+                buddyImage.color = buddyRef.shadowColor;
+            }
 			buddyImage.enabled = true;
 
 			//weaponName.color = weaponRef.swapColor;

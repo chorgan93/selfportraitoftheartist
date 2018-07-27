@@ -328,21 +328,35 @@ public class EquipMenuS : MonoBehaviour {
 			// changing mantra function
 			if (!changingWeapon){
 				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
-					if (openSound){
-						Instantiate(openSound);
-					}
-					pRef.ResetTimeMax();
-					changingWeapon = true;
-					selectButtonDown = true;
-					currentWeaponSelected = currentPos;
-					if (currentPos == 0){
-						SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeapon().weaponNum), 0); // replace with mantra's pos
-					}else if (currentPos == 1){
-						// sub wep of main paradigm
-						SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeaponAug().weaponNum), 0); // replace with mantra's pos
-					}else{
-						SetSelectorParadigmI(FindBuddyPosition(pRef.EquippedBuddy().buddyNum), 0);
-					}
+
+                    selectButtonDown = true;
+                    if (currentPos != 2 || (currentPos == 2 && !PlayerController.killedFamiliar))
+                    {
+                        if (openSound)
+                        {
+                            Instantiate(openSound);
+                        }
+                        pRef.ResetTimeMax();
+                        changingWeapon = true;
+                        currentWeaponSelected = currentPos;
+                        if (currentPos == 0)
+                        {
+                            SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeapon().weaponNum), 0); // replace with mantra's pos
+                        }
+                        else if (currentPos == 1)
+                        {
+                            // sub wep of main paradigm
+                            SetSelectorParadigmI(FindMantraPosition(pRef.EquippedWeaponAug().weaponNum), 0); // replace with mantra's pos
+                        }
+                        else
+                        {
+                            SetSelectorParadigmI(FindBuddyPosition(pRef.EquippedBuddy().buddyNum), 0);
+                        }
+                    }else{
+                        if (cancelSound){
+                            Instantiate(cancelSound);
+                        }
+                    }
 				}
 			}
 			else{
@@ -447,22 +461,38 @@ public class EquipMenuS : MonoBehaviour {
 
 			// changing mantra function
 			if (!changingWeapon){
-				if (!selectButtonDown && pRef.myControl.GetCustomInput(12)){
-					if (selectSound){
-						Instantiate(selectSound);
-					}
-					pRef.ResetTimeMax();
-					changingWeapon = true;
-					selectButtonDown = true;
-					currentWeaponSelected = currentPos;
-					if (currentPos == 0){
-						SetSelectorParadigmII(FindMantraPosition(pRef.SubWeapon().weaponNum)); // replace with mantra's pos
-					}else if (currentPos == 1){
-						// sub wep of main paradigm
-						SetSelectorParadigmII(FindMantraPosition(pRef.SubWeaponAug().weaponNum)); // replace with mantra's pos
-					}else{
-						SetSelectorParadigmII(FindBuddyPosition(pRef.SubBuddy().buddyNum));
-					}
+                if (!selectButtonDown && pRef.myControl.GetCustomInput(12))
+                {
+                    selectButtonDown = true;
+                    if (currentPos != 2 || (currentPos == 2 && !PlayerController.killedFamiliar))
+                    {
+                        if (selectSound)
+                        {
+                            Instantiate(selectSound);
+                        }
+                        pRef.ResetTimeMax();
+                        changingWeapon = true;
+                        currentWeaponSelected = currentPos;
+                        if (currentPos == 0)
+                        {
+                            SetSelectorParadigmII(FindMantraPosition(pRef.SubWeapon().weaponNum)); // replace with mantra's pos
+                        }
+                        else if (currentPos == 1)
+                        {
+                            // sub wep of main paradigm
+                            SetSelectorParadigmII(FindMantraPosition(pRef.SubWeaponAug().weaponNum)); // replace with mantra's pos
+                        }
+                        else
+                        {
+                            SetSelectorParadigmII(FindBuddyPosition(pRef.SubBuddy().buddyNum));
+                        }
+                    }
+                    else
+                    {
+                        if (cancelSound) {
+                            Instantiate(cancelSound);
+                    }
+                }
 				}
 			}
 			else{
@@ -550,7 +580,8 @@ public class EquipMenuS : MonoBehaviour {
 					//changingVirtue = false;
 					selectButtonDown = true;
 					// swap actual virtue equip & update display
-					if (PlayerController.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum)){
+					if (PlayerController.equippedVirtues.Contains(allVirtueItems[currentPos].virtueNum) &&
+                        allVirtueItems[currentPos].virtueNum != 15){
 							PlayerController.equippedVirtues.Remove(allVirtueItems[currentPos].virtueNum);
 						pRef.myStats.ChangeVirtue(-allVirtueItems[currentPos].virtueCost);
 					allVirtueItems[currentPos].Unequip();
@@ -829,7 +860,12 @@ public class EquipMenuS : MonoBehaviour {
 			if (newPos == 2){
 				paradigmBuddySubscreen.gameObject.SetActive(true);
 				paradigmMantraSubscreen.gameObject.SetActive(false);
-				if (paradigmNum == 0){
+                if (PlayerController.killedFamiliar)
+                {
+                    descriptionText.text = "";
+                }
+                else if (paradigmNum == 0){
+                    
 					descriptionText.text = allBuddyItems[pRef.EquippedBuddy().buddyNum].buddyDescription;
 				}else{
 					descriptionText.text = allBuddyItems[pRef.SubBuddy().buddyNum].buddyDescription;
@@ -898,7 +934,14 @@ public class EquipMenuS : MonoBehaviour {
 		}else{
 			selectorElementsBuddy[nextAvailable-3].color = changeCols;
 			selector.anchoredPosition = selectorPositionsBuddy[currentPos-3].anchoredPosition;
-			descriptionText.text = allBuddyItems[nextAvailable-3].buddyDescription;
+            if (PlayerController.killedFamiliar)
+            {
+                descriptionText.text = "";
+            }
+            else
+            {
+                descriptionText.text = allBuddyItems[nextAvailable - 3].buddyDescription;
+            }
 		}
 
 	}
@@ -1214,17 +1257,43 @@ public class EquipMenuS : MonoBehaviour {
 	}
 
 	private void UpdateBuddyDisplay(){
-		buddyParadigmI.color = buddyParadigmIOutline.color = pRef.EquippedBuddy().shadowColor;
-		buddyParadigmI.sprite = pRef.EquippedBuddy().buddyMenuSprite;
-		buddyParadigmI.enabled = true;
 
-		if (pRef.SubBuddy() != null){
-			buddyParadigmII.color = buddyParadigmIIOutline.color = pRef.SubBuddy().shadowColor;
-			buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
-			buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = true;
-		}else{
-			buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = false;
-		}
+        if (PlayerController.killedFamiliar)
+        {
+            buddyParadigmI.color = buddyParadigmIOutline.color = Color.grey;
+            buddyParadigmI.sprite = pRef.EquippedBuddy().buddyMenuSprite;
+            buddyParadigmI.color = Color.black;
+            buddyParadigmI.enabled = true;
+
+            if (pRef.SubBuddy() != null)
+            {
+                buddyParadigmII.color = buddyParadigmIIOutline.color =  Color.grey;
+                buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
+                buddyParadigmII.color = Color.black;
+                buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = true;
+            }
+            else
+            {
+                buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = false;
+            }
+        }
+        else
+        {
+            buddyParadigmI.color = buddyParadigmIOutline.color = pRef.EquippedBuddy().shadowColor;
+            buddyParadigmI.sprite = pRef.EquippedBuddy().buddyMenuSprite;
+            buddyParadigmI.enabled = true;
+
+            if (pRef.SubBuddy() != null)
+            {
+                buddyParadigmII.color = buddyParadigmIIOutline.color = pRef.SubBuddy().shadowColor;
+                buddyParadigmII.sprite = pRef.SubBuddy().buddyMenuSprite;
+                buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = true;
+            }
+            else
+            {
+                buddyParadigmII.enabled = buddyParadigmIIOutline.enabled = false;
+            }
+        }
 	}
 
 	private void UpdateVirtueDisplay(){

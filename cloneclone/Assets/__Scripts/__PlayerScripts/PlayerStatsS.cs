@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerStatsS : MonoBehaviour {
 
-	private const bool ALLOW_GOD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
+	private const bool ALLOW_GOD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
 	private const float NO_MANA_STOP_TIME = 0.1f;
 	private const float NEAR_DEATH_STOP_TIME = 0.1f;
@@ -22,9 +22,9 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float anxiousChargeRate = 0.025f;
 
-	private const float DARKNESS_ADD_RATE = 0.003f;
+	private const float DARKNESS_ADD_RATE = 0.006f;
 	private const float TRANSFORMED_RATE = 50f;
-	private const float DARKNESS_ADD_DEATH = 1.75f;
+	private const float DARKNESS_ADD_DEATH = 3.5f;
 	private const float DARKNESS_COLIN_HEAL = 75f;
 	public const float DARKNESS_MAX = 100f;
 	
@@ -465,17 +465,38 @@ public class PlayerStatsS : MonoBehaviour {
 		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && _currentDarkness < 100f){
             if (!_isMarked)
             {
-                _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE;
-                if (myPlayerController.isTransformed)
+                if (PlayerController.killedFamiliar) { 
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE /5f;
+                    if (myPlayerController.isTransformed)
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE /5f;
+                    }
+                }
+                else
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE;
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE;
+                    if (myPlayerController.isTransformed)
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE;
+                    }
                 }
             }else{
-                _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f;
-                if (myPlayerController.isTransformed)
+                if (PlayerController.killedFamiliar)
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f;
-                } 
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f/5f;
+                    if (myPlayerController.isTransformed)
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f/5f;
+                    }
+                }
+                else
+                {
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f;
+                    if (myPlayerController.isTransformed)
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f;
+                    }
+                }
             }
 			if (_currentDarkness > 100f){
 				_currentDarkness = 100f;
@@ -484,11 +505,27 @@ public class PlayerStatsS : MonoBehaviour {
 	}
 	public void TranformedDarknessAttackAdd(){
 		if (_currentDarkness < 100f){
-            if (_isMarked) { 
-                _currentDarkness += 1.5f;}
+            if (_isMarked)
+            {
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += 0.3f;
+                }
+                else
+                {
+                    _currentDarkness += 1.5f;
+                }
+            }
             else
             {
-                _currentDarkness += 0.5f;
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += 0.1f;
+                }
+                else
+                {
+                    _currentDarkness += 0.5f;
+                }
             }
 		if (_currentDarkness > 100f){
 			_currentDarkness = 100f;
@@ -977,11 +1014,25 @@ public class PlayerStatsS : MonoBehaviour {
                         }else if (!SceneManagerS.inInfiniteScene){
                             if (_isMarked)
                             {
-                                _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                                if (PlayerController.killedFamiliar)
+                                {
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
+                                }
+                                else
+                                {
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                                }
                             }
                             else
                             {
-                                _currentDarkness += DARKNESS_ADD_DEATH;
+                                if (PlayerController.killedFamiliar)
+                                {
+                                    _currentDarkness += DARKNESS_ADD_DEATH/5f;
+                                }
+                                else
+                                {
+                                    _currentDarkness += DARKNESS_ADD_DEATH;
+                                }
                             }
                             DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
                            
@@ -1086,21 +1137,47 @@ public class PlayerStatsS : MonoBehaviour {
         {
             if (isReduced)
             {
-                _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH;
+                }
+                else
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+                }
             }
             else
             {
-                _currentDarkness += DARKNESS_ADD_DEATH;
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH / 5f;
+                }
+                else
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH;
+                }
             }
         }
         else{
             if (isReduced)
             {
-                _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
+                }
+                else
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+                }
             }
             else
             {
-                _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                if (PlayerController.killedFamiliar)
+                {
+                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
+                }else{
+                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                }
             }
         }
 		if (_currentDarkness > 100f){

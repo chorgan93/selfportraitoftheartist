@@ -42,6 +42,8 @@ public class CinematicHandlerS : MonoBehaviour {
     public DarknessPercentUIS darkness;
     private bool checkForDarkness = false;
     private bool darknessActivated = false;
+    public bool setTo100 = false;
+    public bool setToZero = false;
 	
 	AsyncOperation async;
 	
@@ -65,6 +67,12 @@ public class CinematicHandlerS : MonoBehaviour {
 
         if (darkness != null){
             checkForDarkness = true;
+            DarknessPercentUIS.setTo100 = setTo100;
+            DarknessPercentUIS.resetToZero = setToZero;
+
+            if (setToZero){
+                PlayerController.killedFamiliar = true;
+            }
         }
 	}
 	
