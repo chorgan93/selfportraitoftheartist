@@ -59,6 +59,10 @@ public class NPCS : MonoBehaviour {
 	public GameObject mixOnEnd;
 
 
+    [Header("Special Properties")]
+    public GameObject activateOnTalkEnd;
+
+
 	
 	void Start () {
 
@@ -157,6 +161,9 @@ public class NPCS : MonoBehaviour {
 								GameObject newMix = Instantiate(mixOnEnd) as GameObject;
 								newMix.SetActive(true);
 							}
+                            if (activateOnTalkEnd){
+                                activateOnTalkEnd.SetActive(true);
+                            }
 							if (isWaiting){
 								_myAnimator.ResetTrigger(talkKey);
 								_myAnimator.SetTrigger(walkKey);

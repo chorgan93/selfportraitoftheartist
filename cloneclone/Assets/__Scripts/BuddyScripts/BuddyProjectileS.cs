@@ -337,7 +337,7 @@ public class BuddyProjectileS : MonoBehaviour {
 					(other.transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
 						damage*actingDamageMult+(damage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), actingStunMult, 2f);
 
-				//_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
+				_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 
 				RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical);
 

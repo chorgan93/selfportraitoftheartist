@@ -44,6 +44,12 @@ public class CinematicHandlerS : MonoBehaviour {
     private bool darknessActivated = false;
     public bool setTo100 = false;
     public bool setToZero = false;
+    public bool markedScene;
+
+    [Header("Ending Reward Properties")]
+    public bool skipToMenuIfMarked = false;
+    public PlayerWeaponS weaponToGive;
+    public int virtueToGive = -1;
 	
 	AsyncOperation async;
 	
@@ -67,11 +73,15 @@ public class CinematicHandlerS : MonoBehaviour {
 
         if (darkness != null){
             checkForDarkness = true;
+            DarknessPercentUIS.savedDarknessNum = PlayerStatsS._currentDarkness;
             DarknessPercentUIS.setTo100 = setTo100;
             DarknessPercentUIS.resetToZero = setToZero;
 
-            if (setToZero){
+            if (setToZero && !markedScene){
                 PlayerController.killedFamiliar = true;
+            }
+            if (markedScene){
+                DarknessPercentUIS.hasReached100 = true;
             }
         }
 	}
@@ -94,6 +104,27 @@ public class CinematicHandlerS : MonoBehaviour {
 		
 		currentStep = 0;
 		ActivateStep();
+
+        if (markedScene){
+            PlayerController.AddMarked();
+        }
+
+        if (skipToMenuIfMarked){
+            if (StoryProgressionS.storyProgress.Contains(666)){
+                loadSceneString = "MenuScene";
+            }
+            if (weaponToGive != null){
+                if (!PlayerInventoryS.I.CheckForWeaponNum(weaponToGive.weaponNum))
+                {
+                    PlayerInventoryS.I.unlockedWeapons.Add(weaponToGive);
+                    PlayerInventoryS.I.OverwriteInventoryData();
+                }
+            }
+            if (virtueToGive > -1){
+                PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
+                PlayerInventoryS.I.OverwriteInventoryData();
+            }
+        }
 		
 	}
 	

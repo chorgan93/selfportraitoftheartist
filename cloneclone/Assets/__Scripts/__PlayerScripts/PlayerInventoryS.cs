@@ -264,6 +264,16 @@ public class PlayerInventoryS : MonoBehaviour {
 		return (_collectedItems.Contains(i));
 	}
 
+    public bool CheckForWeaponNum(int weaponNum){
+        bool hasWeapon = false;
+        for (int i = 0; i < unlockedWeapons.Count; i++){
+            if (weaponNum == unlockedWeapons[i].weaponNum){
+                hasWeapon = true;
+            }
+        }
+        return hasWeapon;
+    }
+
 	public void AddToUpgrades(int i){
 		_earnedUpgrades.Add(i);
 
@@ -305,11 +315,17 @@ public class PlayerInventoryS : MonoBehaviour {
 		return numAdd;
 	}
 
-	public void AddEarnedVirtue(int i){
-		if (!_earnedVirtues.Contains(i)){
-			_earnedVirtues.Add(i);
-		}
-	}
+    public void AddEarnedVirtue(int i)
+    {
+        if (!_earnedVirtues.Contains(i))
+        {
+            _earnedVirtues.Add(i);
+        }
+        if (i == 15 && !PlayerController.equippedVirtues.Contains(i))
+        {
+            PlayerController.equippedVirtues.Add(i);
+        }
+    }
 
     public void AddEarnedTech(int i, bool autoEquip = true){
 		if (!_earnedTech.Contains(i)){
@@ -344,10 +360,21 @@ public class PlayerInventoryS : MonoBehaviour {
 
 
 			_earnedUpgrades = new List<int>();
-			_earnedVirtues = new List<int>();
-			_earnedVirtues.Add(0);
-			PlayerController.equippedVirtues = new List<int>();
-			PlayerController.equippedVirtues.Add(0);
+            _earnedVirtues = new List<int>();
+            if (PlayerController.equippedVirtues == null)
+            {
+                _earnedVirtues.Add(0);
+                PlayerController.equippedVirtues = new List<int>();
+                PlayerController.equippedVirtues.Add(0);
+            }else{
+                if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15)){
+                    _earnedVirtues.Add(15);
+                }// check if marked is only, testing case
+                if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(0)){
+                    PlayerController.equippedVirtues.Add(0);
+                    _earnedVirtues.Add(0);
+                }
+            }
 			_collectedItems = new List<int>();
 			healNums = new List<int>();
 			laPickupNums = new List<int>();
@@ -632,13 +659,33 @@ public class PlayerInventoryS : MonoBehaviour {
         LoadInventoryData();
     }
 
-	void SetUpStartTech(){
+    void SetUpStartTech()
+    {
 
-		PlayerInventoryS.I._earnedUpgrades.Clear();
-		PlayerInventoryS.I._earnedVirtues.Clear();
-		PlayerInventoryS.I._earnedVirtues.Add(0);
-		PlayerController.equippedVirtues = new List<int>();
-		PlayerController.equippedVirtues.Add(0);
+        _earnedUpgrades.Clear();
+        if (PlayerController.equippedVirtues != null)
+        {
+            if (!PlayerController.equippedVirtues.Contains(0)){
+
+            
+                PlayerController.equippedVirtues.Add(0);
+            
+            }
+            if (!_earnedVirtues.Contains(0)){
+                _earnedVirtues.Add(0);
+            }
+            if (!_earnedVirtues.Contains(15) && PlayerController.equippedVirtues.Contains(15)){
+                _earnedVirtues.Add(15);
+            }
+        }
+        else { 
+       _earnedVirtues.Clear();
+
+        _earnedVirtues.Add(0);
+        PlayerController.equippedVirtues = new List<int>();
+        PlayerController.equippedVirtues.Add(0);
+    
+        }
 		PlayerController.equippedTech = new List<int>{0,1,2,3,4};
 		_earnedTech =  new List<int>{0,1,2,3,4,10,11,12,13,14};
 	}
@@ -705,6 +752,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		PlayerController.familiarUnlocked = inventoryData.familiarUnlocked;
 		}
 		
+        // make sure marked saves/loads appropriately
+        if (PlayerController.equippedVirtues != null){
+            if (PlayerController.equippedVirtues.Contains(15) && !inventoryData.equippedVirtues.Contains(15)){
+                inventoryData.equippedVirtues.Add(15);
+            }
+            if (PlayerController.equippedVirtues.Contains(15) && !inventoryData.earnedVirtues.Contains(15)) { inventoryData.earnedVirtues.Add(15); }
+            if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15)) { _earnedVirtues.Add(15); }
+        }
 		PlayerController.equippedVirtues = inventoryData.equippedVirtues;
 		PlayerController.equippedTech = inventoryData.equippedTech;
 
@@ -776,6 +831,14 @@ public class PlayerInventoryS : MonoBehaviour {
 		inventoryData = new InventorySave();
 
 		if (initialized){
+                // make sure marked saves/loads appropriately
+                if (PlayerController.equippedVirtues != null)
+                {
+                    if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15))
+                    {
+                        _earnedVirtues.Add(15);
+                    }
+                }
 			inventoryData.playerName = TextInputUIS.playerName;
 		inventoryData.earnedUpgrades = _earnedUpgrades;
 		inventoryData.collectedItems = _collectedItems;

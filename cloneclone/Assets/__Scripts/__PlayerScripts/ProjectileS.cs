@@ -302,6 +302,9 @@ public class ProjectileS : MonoBehaviour {
 			//myRenderer.color = matchColor;
 			myRenderer.color = renderColor;
 		}
+        if (_myPlayer.playerAug.scornedAug){
+            dmg *= PlayerStatsS.scornedStrengthMult;
+        }
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
 		touchingWall = false;

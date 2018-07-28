@@ -120,12 +120,17 @@ public class SacramentImageS : MonoBehaviour {
 			}
 		}
 
-		if (conditionalImages.Length > 0){
-			if (numTimesSeen < conditionalImages.Length){
-				myImage.sprite = distortion.sprite = conditionalImages[numTimesSeen];
-				numTimesSeen++;
-			}
-		}
+        if (conditionalImages != null)
+        {
+            if (conditionalImages.Length > 0)
+            {
+                if (numTimesSeen < conditionalImages.Length)
+                {
+                    myImage.sprite = distortion.sprite = conditionalImages[numTimesSeen];
+                    numTimesSeen++;
+                }
+            }
+        }
 
 		if (imageFadesIn){
 			myCol = myImage.color;

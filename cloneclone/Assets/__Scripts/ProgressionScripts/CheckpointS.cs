@@ -13,6 +13,7 @@ public class CheckpointS : MonoBehaviour {
 	public bool fullCheckpoint = true;
     public bool dontAddToSceneList = false;
     public string savePointName = "Abandoned Faith";
+    public string overrideSaveScene = "";
 	private PlayerDetectS _playerDetect;
 	private bool _examining = false;
 	public Vector3 examinePos = new Vector3(0, 1f, 0);
@@ -40,6 +41,7 @@ public class CheckpointS : MonoBehaviour {
 
 	
 	public BGMLayerS[] musicAtPoint;
+    public int addToProgress = -1;
 
 	void Awake(){
 		if (fullCheckpoint){
@@ -75,9 +77,21 @@ public class CheckpointS : MonoBehaviour {
 		CombatGiverS.chosenSpecialCombat = -1;
 
 		if (!SceneManagerS.inInfiniteScene){
-			GameOverS.reviveScene = Application.loadedLevelName;
-			GameOverS.revivePosition = spawnNum;
-			PlayerStatsS.PlayerCantDie = false;
+            if (overrideSaveScene != "")
+            {
+                GameOverS.reviveScene = overrideSaveScene;
+                GameOverS.revivePosition = 0;
+            }
+            else
+            {
+                GameOverS.reviveScene = Application.loadedLevelName;
+                GameOverS.revivePosition = spawnNum;
+            }
+            PlayerStatsS.PlayerCantDie = false;
+            if (addToProgress > -1)
+            {
+                StoryProgressionS.SetStory(addToProgress);
+            }
 			StoryProgressionS.SaveProgress();
 		}
 	
@@ -143,8 +157,16 @@ public class CheckpointS : MonoBehaviour {
 			}
 				// set revive pos
 				if (!SceneManagerS.inInfiniteScene){
-					GameOverS.reviveScene = Application.loadedLevelName;
-					GameOverS.revivePosition = spawnNum;
+                    if (overrideSaveScene != "")
+                    {
+                        GameOverS.reviveScene = overrideSaveScene;
+                        GameOverS.revivePosition = 0;
+                    }
+                    else
+                    {
+                        GameOverS.reviveScene = Application.loadedLevelName;
+                        GameOverS.revivePosition = spawnNum;
+                    }
 					StoryProgressionS.SaveProgress();
 				}
 			// heal player

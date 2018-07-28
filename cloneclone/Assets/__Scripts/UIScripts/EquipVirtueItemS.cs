@@ -9,7 +9,7 @@ public class EquipVirtueItemS : MonoBehaviour {
 	public Image virtueImage;
 	public Image virtueEquip;
 	public int virtueNum;
-	public float virtueCost = 2f;
+	public int virtueCost = 2;
 
 	public string virtueDescription;
 	public Sprite virtueEquippedSprite;
@@ -17,7 +17,10 @@ public class EquipVirtueItemS : MonoBehaviour {
 	private bool _unlocked = false;
 	public bool unlocked { get { return _unlocked; } }
 
-	public void Initialize(PlayerInventoryS i, PlayerController pRef){
+    private const int scornedIndex = 21;
+    public const int scornedAddVp = 20;
+
+	public void Initialize(PlayerInventoryS i, PlayerController pRef, bool fromScorned = false){
 
 		inventoryRef = i;
 
@@ -39,7 +42,7 @@ public class EquipVirtueItemS : MonoBehaviour {
 			if (PlayerController.equippedVirtues.Contains(virtueNum)){
 				Equip();
 			}else{
-				Unequip();
+                Unequip(fromScorned);
 			}
 
 			//weaponName.color = weaponRef.swapColor;
@@ -60,11 +63,19 @@ public class EquipVirtueItemS : MonoBehaviour {
 	public void Equip(){
 		virtueEquip.enabled = true;
 		virtueImage.sprite = virtueEquippedSprite;
+
+        if (virtueNum == scornedIndex && GameObject.Find("Player") != null){
+            GameObject.Find("Player").GetComponent<PlayerController>().SetScorned(true);
+        }
 	}
 
-	public void Unequip(){
+	public void Unequip(bool fromScorned = false){
 		virtueEquip.enabled = false;
 		virtueImage.sprite = virtueUnequippedSprite;
+        if (virtueNum == scornedIndex && GameObject.Find("Player") != null && !fromScorned)
+        {
+            GameObject.Find("Player").GetComponent<PlayerController>().SetScorned(false);
+        }
 	}
 
 

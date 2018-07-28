@@ -37,72 +37,76 @@ public class TurnOnOffAtProgressionS : MonoBehaviour {
 	}
 
 	void TriggerLogic(){
-        if (myMarkedState == RequireMarkedState.None
-            || (myMarkedState == RequireMarkedState.NewGamePlusOnly && PlayerController.equippedVirtues.Contains(15)) ||
-            (myMarkedState == RequireMarkedState.FirstPlaythroughOnly && !PlayerController.equippedVirtues.Contains(15)))
+        if (PlayerController.equippedVirtues != null)
         {
-            if (progressNum > -1)
+            if (myMarkedState == RequireMarkedState.None
+                || (myMarkedState == RequireMarkedState.NewGamePlusOnly && PlayerController.equippedVirtues.Contains(15)) ||
+                (myMarkedState == RequireMarkedState.FirstPlaythroughOnly && !PlayerController.equippedVirtues.Contains(15)))
             {
-                if (StoryProgressionS.storyProgress.Contains(progressNum)
-                    || (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum))
+                if (progressNum > -1)
                 {
-                    TurnObjectsOnOff();
-                    //Debug.Log("Progression triggered! " + progressNum);
+                    if (StoryProgressionS.storyProgress.Contains(progressNum)
+                        || (triggerIfContainsGreater && StoryProgressionS.ReturnHighestProgress() > progressNum))
+                    {
+                        TurnObjectsOnOff();
+                        //Debug.Log("Progression triggered! " + progressNum);
+                    }
                 }
-            }
-            else if (turnOnOffAtItemInInventory > -1 && PlayerInventoryS.I != null)
-            {
-                if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory))
+                else if (turnOnOffAtItemInInventory > -1 && PlayerInventoryS.I != null)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.collectedItems.Contains(turnOnOffAtItemInInventory))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
-            else if (turnOnOffAtKeyInInventory > -1 && PlayerInventoryS.I != null)
-            {
-                if (PlayerInventoryS.I.collectedKeyItems.Contains(turnOnOffAtKeyInInventory))
+                else if (turnOnOffAtKeyInInventory > -1 && PlayerInventoryS.I != null)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.collectedKeyItems.Contains(turnOnOffAtKeyInInventory))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
 
-            else if (turnOnOffAtMantraInInventory != null)
-            {
-                if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory))
+                else if (turnOnOffAtMantraInInventory != null)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.unlockedWeapons.Contains(turnOnOffAtMantraInInventory))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
 
-            else if (turnOnOffAtBuddyInInventory != null)
-            {
-                if (PlayerInventoryS.I.unlockedBuddies.Contains(turnOnOffAtBuddyInInventory))
+                else if (turnOnOffAtBuddyInInventory != null)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.unlockedBuddies.Contains(turnOnOffAtBuddyInInventory))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
-            else if (turnOnOffAtTechEarned > -1 && PlayerInventoryS.I != null)
-            {
-                if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned))
+                else if (turnOnOffAtTechEarned > -1 && PlayerInventoryS.I != null)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.earnedTech.Contains(turnOnOffAtTechEarned))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
-            else if (turnOnOffAtVirtueEarned > -1)
-            {
-                if (PlayerInventoryS.I._earnedVirtues.Contains(turnOnOffAtVirtueEarned))
+                else if (turnOnOffAtVirtueEarned > -1)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I._earnedVirtues.Contains(turnOnOffAtVirtueEarned))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
-            }
 
-            else if (turnOnOffAtRewindEarned > -1)
-            {
-                if (PlayerInventoryS.I.CheckHeal(turnOnOffAtRewindEarned))
+                else if (turnOnOffAtRewindEarned > -1)
                 {
-                    TurnObjectsOnOff();
+                    if (PlayerInventoryS.I.CheckHeal(turnOnOffAtRewindEarned))
+                    {
+                        TurnObjectsOnOff();
+                    }
                 }
             }
         }
+        else if (triggerOnAwake) { triggerOnAwake = false; }
 	}
 
 	void TurnObjectsOnOff(){

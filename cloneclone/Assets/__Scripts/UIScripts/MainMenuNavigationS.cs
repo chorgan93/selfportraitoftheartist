@@ -434,6 +434,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 				onNewScreen = true;
 				myCam.orthographicSize = startOrtho;
 				firstScreenTurnOff.SetActive(false);
+                if (GameDataS.current != null){
+                    if (GameDataS.current.storyProgression != null){
+                        if (GameDataS.current.storyProgression.Contains(666)){
+                            menuSelectionsText[0].text = menuSelectionsText[0].text.Insert(0, "† ");
+                            menuSelectionsText[0].text += " †";
+                        }
+                    }
+                }
 				secondScreenObject.SetActive(true);
 				fadeOnZoom.gameObject.SetActive(false);
 			}

@@ -1016,9 +1016,9 @@ public class EquipMenuS : MonoBehaviour {
 			b.Initialize(inventoryRef);
 		}
 	}
-	private void UpdateVirtues(){
+	public void UpdateVirtues(bool fromScorned = false){
 		foreach (EquipVirtueItemS v in allVirtueItems){
-			v.Initialize(inventoryRef, pRef);
+            v.Initialize(inventoryRef, pRef, fromScorned);
 		}
 	}
 	private void UpdateInventory(){
@@ -1296,7 +1296,7 @@ public class EquipMenuS : MonoBehaviour {
         }
 	}
 
-	private void UpdateVirtueDisplay(){
+	public void UpdateVirtueDisplay(){
 
 		
 		virtueBarAmtText.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;

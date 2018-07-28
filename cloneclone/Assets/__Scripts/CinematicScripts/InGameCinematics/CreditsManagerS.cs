@@ -32,6 +32,14 @@ public class CreditsManagerS : MonoBehaviour
 
     public GameObject turnOnOnEnd; // for turning off music
 
+    [Header("Next Scene Logic")]
+    public string endingANextScene = "";
+    public int skipEndingASceneAtWeaponNum;
+    public string endingBNextScene = "";
+    public int skipEndingBSceneAtWeaponNum;
+    public string endingCNextScene = "";
+    public int skipEndingCSceneAtVirtueNum;
+
 	private void Start()
 	{
         endCreditMoveY = creditDoneTransform.position.y;
@@ -87,4 +95,24 @@ public class CreditsManagerS : MonoBehaviour
             }
         }
 	}
+
+    public string GetNextScene(){
+        string returnString = "";
+        if (currentEnding == 0){
+            if (!PlayerInventoryS.I.CheckForWeaponNum(skipEndingASceneAtWeaponNum))
+            {
+                returnString = endingANextScene;
+            }
+        }else if (currentEnding == 1){
+            if (!PlayerInventoryS.I.CheckForWeaponNum(skipEndingBSceneAtWeaponNum))
+            {
+                returnString = endingBNextScene;
+            }
+        }else if (currentEnding == 2){
+            if (!PlayerInventoryS.I._earnedVirtues.Contains(skipEndingCSceneAtVirtueNum)){
+                returnString = endingCNextScene;
+            }
+        }
+        return returnString;
+    }
 }

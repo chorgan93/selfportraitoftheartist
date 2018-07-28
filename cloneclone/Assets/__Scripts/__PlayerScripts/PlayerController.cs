@@ -194,6 +194,8 @@ public class PlayerController : MonoBehaviour {
 	private int flashChargeFrames;
 	private int flashDamageFrames;
 
+    private bool trackingScorn = false;
+
 	private MantraSwitchS mantraText;
 
 	private TrackingEffectS myTracker;
@@ -419,13 +421,23 @@ public class PlayerController : MonoBehaviour {
 	private GameOverS resetManager;
 
 	public bool disableTransformInScene = false;
-	
-	//_________________________________________UNITY METHODS
 
-	void Awake(){
+    //_________________________________________UNITY METHODS
 
-		MainMenuNavigationS.inMain = false;
-		CinematicHandlerS.inCutscene = false;
+    void Awake()
+    {
+
+        MainMenuNavigationS.inMain = false;
+        CinematicHandlerS.inCutscene = false;
+
+        if (_currentParadigm < 0)
+        {
+            _currentParadigm = 0;
+
+        }
+        if (_currentParadigm > 1){
+            _currentParadigm = 1;
+        }
 
 	}
 
@@ -478,6 +490,9 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.B)){
 			_myAnimator.SetTrigger("Chill");
 		}
+        if (Input.GetKeyDown(KeyCode.M)){
+            Debug.Log(equippedVirtues.Contains(15));
+        }
 	}
 
 	//_________________________________________PUBLIC METHODS
@@ -655,7 +670,12 @@ public class PlayerController : MonoBehaviour {
 		if (equippedVirtues == null){
 			equippedVirtues = new List<int>();
 			equippedVirtues.Add(0);
-		}
+		}// marked only check
+        else{
+            if (equippedVirtues.Count == 1 && equippedVirtues.Contains(15)){
+                equippedVirtues.Add(0);
+            }
+        }
 
 		
 		_playerAug = GetComponent<PlayerAugmentsS>();
@@ -3730,6 +3750,42 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(2.8f);
         SetTalking(false);
         DialogueManagerS.D.EndText(true,false);
+    }
+
+    public void SetScorned(bool scornOn){
+        if (trackingScorn != scornOn)
+        {
+            EquipMenuS menuRef = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>().EquipMenu;
+            if (!scornOn)
+            {
+                int currentVirtue = _myStats.usedVirtue;
+                for (int i = equippedVirtues.Count-1; i >= 0; i--)
+                {
+                    if (currentVirtue > (_myStats.virtueAmtNoScorn) && menuRef.allVirtueItems[equippedVirtues[i]].virtueCost > 0){
+                        currentVirtue -= menuRef.allVirtueItems[equippedVirtues[i]].virtueCost;
+                        equippedVirtues.RemoveAt(i);
+                    }
+            }
+                _playerAug.RefreshAll();
+                _myStats.ChangeVirtue(currentVirtue - _myStats.usedVirtue);
+                menuRef.UpdateVirtues(true);
+                menuRef.UpdateVirtueDisplay();
+            }
+            trackingScorn = scornOn;
+        }
+    }
+
+    public static void AddMarked(){
+        /*if (equippedVirtues == null)
+        {
+            equippedVirtues = new List<int>();
+            equippedVirtues.Add(0);
+        }
+        if (!equippedVirtues.Contains(15)){
+            equippedVirtues.Add(15);
+            Debug.Log("Added marked!!");
+        }**/
+        PlayerInventoryS.I.AddEarnedVirtue(15);
     }
 
 }

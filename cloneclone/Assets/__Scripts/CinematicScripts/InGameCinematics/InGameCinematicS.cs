@@ -71,6 +71,9 @@ public class InGameCinematicS : MonoBehaviour {
 
         if (cinemaCredits){
             creditsScene = true;
+            if (cinemaCredits.GetNextScene() != ""){
+                endCinemaScene = cinemaCredits.GetNextScene();
+            }
         }
 
 	}

@@ -10,6 +10,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 
 	public LevelUpMenu levelMenu { get { return levelUpMenu; } }
+    public EquipMenuS EquipMenu { get { return equipMenu; } }
 
 	private bool gameMenuActive = false;
 	public bool gMenuActive { get { return gameMenuActive; } }

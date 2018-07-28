@@ -24,7 +24,22 @@ public class LoadFileS : MonoBehaviour {
         }else{
             GameDataS myData = SaveLoadS.savedGames[saveDataNum];
             // set up file
-            nameText.text = "FILE " + (saveDataNum + 1).ToString() + ": " + myData.playerInventory.playerName;  
+            if (myData.storyProgression != null)
+            {
+                if (myData.storyProgression.Contains(666))
+                {
+                    nameText.text = "FILE " + (saveDataNum + 1).ToString() + ": " + myData.playerInventory.playerName + " †";
+                }
+                else
+                {
+                    nameText.text = "FILE " + (saveDataNum + 1).ToString() + ": " + myData.playerInventory.playerName;
+                }
+            }
+            else
+            {
+                nameText.text = "FILE " + (saveDataNum + 1).ToString() + ": " + myData.playerInventory.playerName;
+            }
+
             currentChapterName.text = myData.playerInventory.lastChapterName;
             lastSceneName.text = "Last Checkpoint: " + myData.playerInventory.lastSavePointName;
             string timeString = "Total Playtime: ";

@@ -424,6 +424,10 @@ public class ChargeAttackS : MonoBehaviour {
 			knockBackDir.z = 1f;
 
 				float actingDmg = dmg*myPlayer.myStats.strengthAmt();
+                if (myPlayer.playerAug.scornedAug)
+                {
+                    actingDmg *= PlayerStatsS.scornedStrengthMult;
+                }
 
 				actingDmg *= Random.Range(1f-damageVariance, 1f+damageVariance);
 

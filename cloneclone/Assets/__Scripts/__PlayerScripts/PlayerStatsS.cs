@@ -27,8 +27,16 @@ public class PlayerStatsS : MonoBehaviour {
 	private const float DARKNESS_ADD_DEATH = 3.5f;
 	private const float DARKNESS_COLIN_HEAL = 75f;
 	public const float DARKNESS_MAX = 100f;
+
+    //__________________________SCORNED MULTS
+    public const float scornedEnemyDmgMult = 1.5f;
+    public const float scornedStaminaUseMult = 1.5f;
+    public const float scornedChargeUseMult = 1.5f;
+    public const float scornedAbsorbMult = 0.66f;
+    public const float scornedRecoveryMult = 0.66f;
+    public const float scornedStrengthMult = 0.66f;
 	
-	private const float VIRTUE_ADD_AMT = 5f;
+	private const int VIRTUE_ADD_AMT = 5;
 
 	public static bool healOnStart = false;
 
@@ -130,13 +138,14 @@ public class PlayerStatsS : MonoBehaviour {
 	public float critAmt { get { return (_baseCrit+_addedCrit);}}
 	
 	//________________________________VIRTUE
-	private float _baseVirtue = 5f;
-	private float _addedVirtue = 0; // (upgradeable)
-	public float addedVirtue { get { return _addedVirtue; } }
-	private float _usedVirtue = 0;
-	public float usedVirtue {get {return _usedVirtue; } }
-	public float usedVirtuePercent {get { return _usedVirtue/(_baseVirtue+_addedVirtue); } }
-	public float virtueAmt { get { return (_baseVirtue+_addedVirtue);}}
+	private int _baseVirtue = 5;
+	private int _addedVirtue = 0; // (upgradeable)
+	public int addedVirtue { get { return _addedVirtue; } }
+	private int _usedVirtue = 0;
+	public int usedVirtue {get {return _usedVirtue; } }
+    public float usedVirtuePercent {get { return ((_usedVirtue*1f)/((_baseVirtue+_addedVirtue+scornAmt())*1f)); } }
+    public int virtueAmt { get { return (_baseVirtue+_addedVirtue+scornAmt());}}
+    public int virtueAmtNoScorn { get { return (_baseVirtue + _addedVirtue); } }
 
 	//________________________________DEFENSE
 	private float _baseDefense = 9f;
@@ -270,6 +279,11 @@ public class PlayerStatsS : MonoBehaviour {
             useAmount *= 0.2f;
         }
 
+        if (pRef.playerAug.scornedAug)
+        {
+            useAmount *= scornedStaminaUseMult;
+        }
+
         if (godMode || arcadeMode || PlayerController.equippedTech.Contains(11)){
 			return true;
 		}else if (!ManaUnlocked()){
@@ -341,6 +355,11 @@ public class PlayerStatsS : MonoBehaviour {
         {
             reqCharge *= 0.2f;
         }
+
+        if (pRef.playerAug.scornedAug)
+        {
+            reqCharge *= scornedChargeUseMult;
+        }
 		bool canUse =  (_currentCharge > 0);
 		if (buddyCheck){
 			canUse = _currentCharge >= minBuddyChargeUse;
@@ -386,6 +405,11 @@ public class PlayerStatsS : MonoBehaviour {
 		if (myPlayerController.isTransformed){
 			amtAdded*=myPlayerController.transformedAbsorbMult;
 		}
+
+        if (pRef.playerAug.scornedAug)
+        {
+            amtAdded *= scornedAbsorbMult;
+        }
 		if (_currentCharge + amtAdded > maxCharge){
 			amtAdded = maxCharge-_currentCharge;
 		}
@@ -576,6 +600,12 @@ public class PlayerStatsS : MonoBehaviour {
 			else{
 
 				float actingRecoverRate = recoverRate + recoverRateIncrease;
+
+
+        if (pRef.playerAug.scornedAug)
+                {
+                    actingRecoverRate *= scornedRecoveryMult;
+                }
 
 				// new way (simple)
 				if (myPlayerController.isBlocking){
@@ -895,6 +925,9 @@ public class PlayerStatsS : MonoBehaviour {
         if (pRef.isNatalie)
         {
             dmg *= 0.2f;
+        }
+        if (pRef.playerAug.scornedAug){
+            dmg *= scornedEnemyDmgMult;
         }
         if (PlayerController.equippedTech.Contains(10) && !noUnstoppable){
             dmg *= 0.3f;
@@ -1258,7 +1291,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_uiReference.UpdateFills(true, true);
 	}
 
-	public void ChangeVirtue(float numChange){
+	public void ChangeVirtue(int numChange){
 		_usedVirtue += numChange;
 		if (_usedVirtue < 0){
 			_usedVirtue = 0;
@@ -1335,4 +1368,18 @@ public class PlayerStatsS : MonoBehaviour {
 		currentArcadeHealth = arcadeHealthMax;
 		return currentArcadeHealth;
 	}
+
+    private int scornAmt(){
+        if (!pRef){
+            return 0;
+        }
+        if (!pRef.playerAug){
+            return 0;
+        }
+        if (pRef.playerAug.scornedAug){
+            return EquipVirtueItemS.scornedAddVp;
+        }else{
+            return 0;
+        }
+    }
 }

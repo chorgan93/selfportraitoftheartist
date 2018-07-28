@@ -211,6 +211,9 @@ public class PlayerAugmentsS : MonoBehaviour {
 			enragedShadow.SetActive(false);
 		}
 		RefreshAll();
+        if (_scornedAug){
+            _playerReference.SetScorned(true);
+        }
 
 	}
 
@@ -261,6 +264,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_incensedAug = false;
 		_cautiousAug = false;
 		_disconnectedAug = false;
+        _scornedAug = false;
 
 
 	}
@@ -437,6 +441,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 
             if (PlayerController.equippedVirtues.Contains(15)){
                 MARKED_AUG = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(21))
+            {
+                _scornedAug = true;
             }
         }
 
