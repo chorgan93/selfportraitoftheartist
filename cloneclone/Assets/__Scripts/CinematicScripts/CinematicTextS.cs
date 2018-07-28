@@ -26,6 +26,8 @@ public class CinematicTextS : MonoBehaviour {
 
 
 		targetString = targetString.Replace("/n", "\n");
+
+        targetString = targetString.Replace("PLAYERNAME", TextInputUIS.playerName);
 		if (scrollRate > 0){
 		myText.text = "";
 		scrollCountdown = scrollRate;

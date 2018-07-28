@@ -30,6 +30,8 @@ public class CreditsManagerS : MonoBehaviour
 
     private bool checkForEnd = false;
 
+    public GameObject turnOnOnEnd; // for turning off music
+
 	private void Start()
 	{
         endCreditMoveY = creditDoneTransform.position.y;
@@ -80,6 +82,7 @@ public class CreditsManagerS : MonoBehaviour
                 }
                 if (delayEndCountdown <= 0f){
                     _creditsFinished = true;
+                    turnOnOnEnd.SetActive(true);
                 }
             }
         }
