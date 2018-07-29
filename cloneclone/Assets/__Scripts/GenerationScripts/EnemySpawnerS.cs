@@ -16,6 +16,7 @@ public class EnemySpawnerS : MonoBehaviour {
 	private bool didNotSpawnEnemy = false;
 
 	public GameObject[] enemyPool;
+    public GameObject[] ngPlusEnemies;
 	public int enemySpawnID = -1;
 	public Transform matchPosition;
     public EnemySpawnerS matchEnemyPosition;
@@ -39,6 +40,12 @@ public class EnemySpawnerS : MonoBehaviour {
 
 		//parentClear = GetComponentInParent<RoomClearCheck>();
 		parentClear = GetComponentInParent<InfinitySpawnS>();
+
+        if (PlayerAugmentsS.MARKED_AUG && ngPlusEnemies != null){
+            if (ngPlusEnemies.Length > 0){
+                enemyPool = ngPlusEnemies;
+            }
+        }
 
 		if (enemySpawnDelay <= 0 && allowSpawn){
 			SpawnEnemy();

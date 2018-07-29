@@ -1,13 +1,10 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/LevelUpMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/ProgressionScripts/ChangeSceneTriggerS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/UIScripts/LevelUpMenu.cs" Line="463" Column="64" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="492" Column="4" />
-      <File FileName="Assets/__Scripts/LevelScripts/SuburbScripts/VideotapePlayerS.cs" Line="1" Column="1" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/NatalieOverrideS.cs" Line="1" Column="1" />
-      <File FileName="Assets/__Scripts/CinematicScripts/CinematicHandlerS.cs" Line="90" Column="23" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerInventoryS.cs" Line="21" Column="59" />
+      <File FileName="Assets/__Scripts/UIScripts/LevelUpMenu.cs" Line="895" Column="6" />
+      <File FileName="Assets/__Scripts/GenerationScripts/EnemySpawnerS.cs" Line="46" Column="43" />
+      <File FileName="Assets/__Scripts/ProgressionScripts/ChangeSceneTriggerS.cs" Line="10" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -52,6 +52,11 @@ public class LevelUpMenu : MonoBehaviour
     public TrackRevertProgressScriptableObject[] revertMenuDataObjs;
     private int allowRevertProgressNum = 667;
     private bool allowRevertProgress = false;
+    private int currentRevertConfirmPos;
+    private bool inRevertConfirm = false;
+    public GameObject revertMenuConfirm;
+    public RectTransform revertMenuConfirmCursor;
+    public RectTransform[] revertConfirmPositions;
 
     private float timeBetweenImageOn = 0.1f;
     private bool doingEffect = false;
@@ -359,6 +364,7 @@ public class LevelUpMenu : MonoBehaviour
             }
             if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted && !doingEffect)
             {
+                _exitButtonDown = true;
                 TurnOffTravelMenu();
                 pRef.ResetTimeMax();
             }
@@ -366,110 +372,186 @@ public class LevelUpMenu : MonoBehaviour
 
         if (onRevertProgressMenu)
         {
-
-            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
-                                        Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+            if (inRevertConfirm)
             {
-                _controlStickMoved = true;
-
-                pRef.ResetTimeMax();
-                if (currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
+                if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
                 {
-                    revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textStartColor;
-                }else{
+                    _controlStickMoved = true;
 
-                    revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textRevertLockedColor;
-                }
-
-                if (myControl.Horizontal() > 0f ||
-                    myControl.Vertical() < 0f)
-                {
                     pRef.ResetTimeMax();
-                    currentPos++;
-                    if (currentPos > 9){
-                        currentPos = 9;
+
+
+                    if (myControl.Horizontal() > 0f ||
+                        myControl.Vertical() < 0f)
+                    {
+                        pRef.ResetTimeMax();
+                        currentRevertConfirmPos++;
+                        if (currentRevertConfirmPos > 1)
+                        {
+                            currentRevertConfirmPos = 1;
+                        }
                     }
-                    if (currentPos == 9 && PlayerInventoryS.I.revertDarknessNums.Count < 9){
-                        currentPos = 8;
-                    }
-                }
-                else
-                {
-                    pRef.ResetTimeMax();
-                    currentPos--;
-                    if (currentPos < 0){
-                        currentPos = 0;
+                    else
+                    {
+                        pRef.ResetTimeMax();
+                        currentRevertConfirmPos--;
+                        if (currentRevertConfirmPos < 0)
+                        {
+                            currentRevertConfirmPos = 0;
+                        }
                     }
                 }
 
-                if (currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
+                revertMenuConfirmCursor.anchoredPosition = revertConfirmPositions[currentRevertConfirmPos].anchoredPosition;
+
+                if (!_selectButtonDown && myControl.GetCustomInput(12))
                 {
-                    revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = Color.white;
+                    _selectButtonDown = true;
+                    pRef.ResetTimeMax();
+
+                    // if yes, revert to selected chapter
+                    if (!travelStarted && currentRevertConfirmPos == 1)
+                    {
+
+                        revertMenuProper.gameObject.SetActive(false);
+                        travelStarted = true;
+                        _canBeExited = false;
+
+                        RevertToPreviousTrack(currentPos);
+
+                        string nextSceneIndex = revertMenuDataObjs[currentPos].revertSceneName;
+                        int nextSceneSpawn = revertMenuDataObjs[currentPos].revertSceneNameLoadNum;
+
+                        // the below is to prevent "return to last checkpoint" progression breaks
+                        GameOverS.reviveScene = nextSceneIndex;
+                        GameOverS.revivePosition = 0;
+
+                        List<int> saveBuddyList = new List<int>();
+                        saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
+                        if (pRef.ParadigmIIBuddy() != null)
+                        {
+                            saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
+                        }
+                        if (!pRef.isNatalie)
+                        {
+                            PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+                        }
+
+                        CameraEffectsS.E.SetNextScene(nextSceneIndex);
+                        CameraEffectsS.E.FadeIn();
+
+                        VerseDisplayS.V.EndVerse();
+
+                        SpawnPosManager.whereToSpawn = nextSceneSpawn;
+
+                        pRef.TriggerResting();
+                        PlayerController.doWakeUp = true;
+                        SpawnPosManager.spawningFromTeleport = true;
+
+                        if (currentPos > 0 && currentPos < 9)
+                        {
+                            pRef.myStats.DeathCountUp(false, true);
+                            PlayerStatsS._currentDarkness = PlayerInventoryS.I.revertDarknessNums[currentPos];
+                        }
+
+                    }else if (!travelStarted && currentRevertConfirmPos == 0){
+                        // go back to previous menu
+                        currentRevertConfirmPos = 0;
+                        inRevertConfirm = false;
+                        revertMenuConfirm.SetActive(false);
+                    }
                 }
-                else
+                if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted)
                 {
-                    revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textRevertLockedColor;
+                    if (currentRevertConfirmPos == 1)
+                    {
+                        currentRevertConfirmPos = 0;
+                    }else
+                    {
+                        inRevertConfirm = false;
+                        revertMenuConfirm.SetActive(false);
+                    }
+                    _exitButtonDown = true;
+                    pRef.ResetTimeMax();
                 }
             }
-
-            cursorObjRevert.anchoredPosition = revertMenuPositions[currentPos].anchoredPosition;
-
-            if (!_selectButtonDown && myControl.GetCustomInput(12))
+            else
             {
-                _selectButtonDown = true;
-                pRef.ResetTimeMax();
-
-                // revert to selected chapter
-                if (!travelStarted && currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
+                if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
                 {
+                    _controlStickMoved = true;
 
-                    revertMenuProper.gameObject.SetActive(false);
-                    travelStarted = true;
-                    _canBeExited = false;
-
-                    RevertToPreviousTrack(currentPos);
-
-                    string nextSceneIndex = revertMenuDataObjs[currentPos].revertSceneName;
-                    int nextSceneSpawn = revertMenuDataObjs[currentPos].revertSceneNameLoadNum;
-
-                    // the below is to prevent "return to last checkpoint" progression breaks
-                    GameOverS.reviveScene = nextSceneIndex;
-                    GameOverS.revivePosition = 0;
-
-                    List<int> saveBuddyList = new List<int>();
-                    saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
-                    if (pRef.ParadigmIIBuddy() != null)
+                    pRef.ResetTimeMax();
+                    if (currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
                     {
-                        saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
+                        revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textStartColor;
                     }
-                    if (!pRef.isNatalie)
+                    else
                     {
-                        PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+
+                        revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textRevertLockedColor;
                     }
 
-                    CameraEffectsS.E.SetNextScene(nextSceneIndex);
-                    CameraEffectsS.E.FadeIn();
-
-                    VerseDisplayS.V.EndVerse();
-
-                    SpawnPosManager.whereToSpawn = nextSceneSpawn;
-
-                    pRef.TriggerResting();
-                    PlayerController.doWakeUp = true;
-                    SpawnPosManager.spawningFromTeleport = true;
-
-                    if (currentPos > 0 && currentPos < 9)
+                    if (myControl.Horizontal() > 0f ||
+                        myControl.Vertical() < 0f)
                     {
-                        pRef.myStats.DeathCountUp(false, true);
-                        PlayerStatsS._currentDarkness = PlayerInventoryS.I.revertDarknessNums[currentPos];
+                        pRef.ResetTimeMax();
+                        currentPos++;
+                        if (currentPos > 9)
+                        {
+                            currentPos = 9;
+                        }
+                        if (currentPos == 9 && PlayerInventoryS.I.revertDarknessNums.Count < 9)
+                        {
+                            currentPos = 8;
+                        }
+                    }
+                    else
+                    {
+                        pRef.ResetTimeMax();
+                        currentPos--;
+                        if (currentPos < 0)
+                        {
+                            currentPos = 0;
+                        }
                     }
 
+                    if (currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
+                    {
+                        revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = Color.white;
+                    }
+                    else
+                    {
+                        revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textRevertLockedColor;
+                    }
                 }
-            }
-            if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted)
-            {
-                TurnOffRevertMenu();
-                pRef.ResetTimeMax();
+
+                cursorObjRevert.anchoredPosition = revertMenuPositions[currentPos].anchoredPosition;
+
+                if (!_selectButtonDown && myControl.GetCustomInput(12))
+                {
+                    _selectButtonDown = true;
+                    pRef.ResetTimeMax();
+
+                    // turn on confirm menu
+                    if (!travelStarted && currentPos < PlayerInventoryS.I.revertDarknessNums.Count)
+                    {
+
+                        currentRevertConfirmPos = 0;
+                        inRevertConfirm = true;
+                        revertMenuConfirmCursor.anchoredPosition = revertConfirmPositions[currentRevertConfirmPos].anchoredPosition;
+                        revertMenuConfirm.gameObject.SetActive(true);
+
+
+                    }
+                }
+                if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted)
+                {
+                    TurnOffRevertMenu();
+                    pRef.ResetTimeMax();
+                }
             }
         }
 
@@ -798,6 +880,7 @@ public class LevelUpMenu : MonoBehaviour
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = textStartColor;
                 }else{
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = Color.white;
+                    Debug.Log("Coloring sacrament i!");
                 }
             }else{
 
@@ -810,6 +893,7 @@ public class LevelUpMenu : MonoBehaviour
 
     void TurnOnRevertMenu()
     {
+        inRevertConfirm = false;
         cursorObj.gameObject.SetActive(false);
         revertMenuProper.gameObject.SetActive(true);
         mainMenuObj.SetActive(false);
@@ -830,6 +914,7 @@ public class LevelUpMenu : MonoBehaviour
         currentPos = 2;
             onRevertProgressMenu = false;
     }
+        inRevertConfirm = false;
         revertMenuProper.gameObject.SetActive(false);
     }
 
