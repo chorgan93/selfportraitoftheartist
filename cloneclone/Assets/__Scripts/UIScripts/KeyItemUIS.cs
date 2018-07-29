@@ -65,7 +65,7 @@ public class KeyItemUIS : MonoBehaviour {
 	}
 
 	public void EvaluateItems(bool reset = false){
-        if (!doNotShowInScene && !PlayerStatDisplayS.RECORD_MODE && !PlayerController.equippedTech.Contains(2)){
+        if (!doNotShowInScene && !PlayerStatDisplayS.RECORD_MODE && PlayerController.equippedTech.Contains(2)){
 		if (reset){
 			TurnOffItemSlots();
 		}

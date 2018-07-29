@@ -1162,54 +1162,60 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 	}
 
-    public void DeathCountUp(bool isReduced = false)
+    public void DeathCountUp(bool isReduced = false, bool revert = false)
     {
 
         _uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
-        if (!_isMarked)
+        if (!revert)
         {
-            if (isReduced)
+            if (!_isMarked)
             {
-                if (PlayerController.killedFamiliar)
+                if (isReduced)
                 {
-                    _currentDarkness += DARKNESS_ADD_DEATH;
+                    if (PlayerController.killedFamiliar)
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH;
+                    }
+                    else
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+                    }
                 }
                 else
                 {
-                    _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+                    if (PlayerController.killedFamiliar)
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH / 5f;
+                    }
+                    else
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH;
+                    }
                 }
             }
             else
             {
-                if (PlayerController.killedFamiliar)
+                if (isReduced)
                 {
-                    _currentDarkness += DARKNESS_ADD_DEATH / 5f;
+                    if (PlayerController.killedFamiliar)
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
+                    }
+                    else
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+                    }
                 }
                 else
                 {
-                    _currentDarkness += DARKNESS_ADD_DEATH;
-                }
-            }
-        }
-        else{
-            if (isReduced)
-            {
-                if (PlayerController.killedFamiliar)
-                {
-                    _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
-                }
-                else
-                {
-                    _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
-                }
-            }
-            else
-            {
-                if (PlayerController.killedFamiliar)
-                {
-                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
-                }else{
-                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                    if (PlayerController.killedFamiliar)
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH * 3f / 5f;
+                    }
+                    else
+                    {
+                        _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                    }
                 }
             }
         }

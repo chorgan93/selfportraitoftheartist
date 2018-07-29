@@ -15,6 +15,7 @@ public class ChapterTrigger : MonoBehaviour {
 	public int addToProgression = -1;
 
     public static string lastChapterTriggered = "Track -1 ~ Cradle";
+    public int chapterNum = 1;
 
 	void Start(){
 
@@ -61,6 +62,17 @@ public class ChapterTrigger : MonoBehaviour {
 			if (addToProgression > -1){
 				StoryProgressionS.SetStory(addToProgression);
 			}
+
+            // if new game plus, save darkness %
+            if (PlayerAugmentsS.MARKED_AUG){
+                if (PlayerInventoryS.I.revertDarknessNums.Count <= chapterNum){
+                    PlayerInventoryS.I.revertDarknessNums.Add(PlayerStatsS._currentDarkness);
+                }else{
+                    if (!PlayerController.killedFamiliar && PlayerInventoryS.I.revertDarknessNums[chapterNum] > PlayerStatsS._currentDarkness){
+                        PlayerInventoryS.I.revertDarknessNums[chapterNum] = PlayerStatsS._currentDarkness;
+                    }
+                }
+            }
 		}
 	}
 

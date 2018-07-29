@@ -121,6 +121,8 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private Transform playerTransform;
 	private RectTransform parentRect;
 
+    private bool oneTimeMantraHighlight = false;
+
 	private Camera followRef;
 	private float orthoRef;
 
@@ -160,7 +162,6 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		playerTransform = playerStats.transform;
 		pController = playerStats.GetComponent<PlayerController>();
 		playerRender = pController.myRenderer;
-        mantraHighlight.color = pController.EquippedWeapon().swapColor;
        // pController.myStats.SetMinChargeUse(pController.myBuddy.GetComponent<BuddyS>().costPerUse, pController.myBuddy.GetComponent<BuddyS>().useAllCharge);
 
 		followRef = Camera.main;
@@ -190,6 +191,12 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (!oneTimeMantraHighlight){
+
+        mantraHighlight.color = pController.EquippedWeapon().swapColor;
+            oneTimeMantraHighlight = true;
+        }
 
 		if (PlayerStatsS.godMode){
 			//TurnOffAll();

@@ -490,9 +490,6 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.B)){
 			_myAnimator.SetTrigger("Chill");
 		}
-        if (Input.GetKeyDown(KeyCode.M)){
-            Debug.Log(equippedVirtues.Contains(15));
-        }
 	}
 
 	//_________________________________________PUBLIC METHODS

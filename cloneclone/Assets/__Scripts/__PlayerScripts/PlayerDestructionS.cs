@@ -27,6 +27,17 @@ public class PlayerDestructionS : MonoBehaviour {
 
 	private List<int> _specialConditionCombatCleared;
 	public List<int> specialConditionCombatCleared { get { return _specialConditionCombatCleared; } }
+
+    // reverted properties lists
+    private List<int> _revertedCombatClearedAtLeastOnce;
+    public List<int> revertedCombatClearedAtLeastOnce { get { return _combatClearedAtLeastOnce; } }
+    private List<int> _revertedCombatClearedRanks; // be careful to not overwrite these if higher!!
+    public List<int> revertedCombatClearedRanks { get { return _combatClearedRanks; } }
+    private List<string> _revertedCombatClearedRankGrades; // be careful to not overwrite these if higher!!
+    public List<string> revertedCombatClearedRankGrades { get { return _combatClearedRankGrades; } }
+
+    private List<int> _revertedSpecialConditionCombatCleared; 
+    public List<int> revertedSpecialConditionCombatCleared { get { return _specialConditionCombatCleared; } }
 	
 	
 	private List<int> _clearedCombatTriggers;
@@ -190,4 +201,75 @@ public class PlayerDestructionS : MonoBehaviour {
 			currentlySpawnedBlood.Clear();
 		}
 	}
+
+    public void OverwriteRevertedCombatClearedAtLeastOnce(List<int> overwrite){
+        _revertedCombatClearedAtLeastOnce = overwrite;
+    }
+    public void OverwriteRevertedCombatClearedRanks(List<int> overwrite)
+    {
+        _revertedCombatClearedRanks = overwrite;
+    }
+    public void OverwriteRevertedCombatClearedGrades(List<string> overwrite)
+    {
+        _revertedCombatClearedRankGrades = overwrite;
+    }
+    public void OverwriteSpecialConditionCombatCleared(List<int> overwrite)
+    {
+        _revertedSpecialConditionCombatCleared = overwrite;
+    }
+
+    public void MergeRevertedData(){
+
+        if (revertedCombatClearedAtLeastOnce != null)
+        {
+            for (int i = _revertedCombatClearedAtLeastOnce.Count - 1; i > -1; i--)
+            {
+                if (!_combatClearedAtLeastOnce.Contains(_revertedCombatClearedAtLeastOnce[i]))
+                {
+                    _combatClearedAtLeastOnce.Add(_revertedCombatClearedAtLeastOnce[i]);
+                    _combatClearedRanks.Add(_revertedCombatClearedRanks[i]);
+                    _combatClearedRankGrades.Add(_revertedCombatClearedRankGrades[i]);
+                    _specialConditionCombatCleared.Add(_revertedSpecialConditionCombatCleared[i]);
+
+                    _revertedCombatClearedAtLeastOnce.RemoveAt(i);
+                    _revertedCombatClearedRanks.RemoveAt(i);
+                    _revertedCombatClearedRankGrades.RemoveAt(i);
+                    _revertedSpecialConditionCombatCleared.RemoveAt(i);
+                }
+            }
+            _revertedCombatClearedRanks.Clear();
+            _revertedCombatClearedRankGrades.Clear();
+            _revertedCombatClearedAtLeastOnce.Clear();
+            _revertedSpecialConditionCombatCleared.Clear();
+        }
+    }
+
+    public void RevertCombatData(List<int> revertCombatNums){
+        OverwriteReversionData();
+        int indexOfRevertCombat = -1;
+        for (int i = 0; i < revertCombatNums.Count; i++){
+            if (_combatClearedAtLeastOnce.Contains(revertCombatNums[i])){
+                
+                indexOfRevertCombat = _combatClearedAtLeastOnce.IndexOf(revertCombatNums[i]);
+
+                _revertedCombatClearedAtLeastOnce.Add(_combatClearedAtLeastOnce[indexOfRevertCombat]);
+                _revertedCombatClearedRanks.Add(_combatClearedRanks[indexOfRevertCombat]);
+                _revertedCombatClearedRankGrades.Add(_combatClearedRankGrades[indexOfRevertCombat]);
+                _revertedSpecialConditionCombatCleared.Add(_specialConditionCombatCleared[indexOfRevertCombat]);
+
+                _combatClearedAtLeastOnce.RemoveAt(indexOfRevertCombat);
+                _combatClearedRanks.RemoveAt(indexOfRevertCombat);
+                _combatClearedRankGrades.RemoveAt(indexOfRevertCombat);
+                _specialConditionCombatCleared.RemoveAt(indexOfRevertCombat);
+            }
+        }
+    }
+
+    public void OverwriteReversionData(){
+
+        _revertedCombatClearedAtLeastOnce = new List<int>();
+        _revertedCombatClearedRanks = new List<int>();
+        _revertedCombatClearedRankGrades = new List<string>();
+        _revertedSpecialConditionCombatCleared = new List<int>();
+    }
 }

@@ -45,6 +45,7 @@ public class CinematicHandlerS : MonoBehaviour {
     public bool setTo100 = false;
     public bool setToZero = false;
     public bool markedScene;
+    public LevelUpMenu revertRef;
 
     [Header("Ending Reward Properties")]
     public bool skipToMenuIfMarked = false;
@@ -83,6 +84,10 @@ public class CinematicHandlerS : MonoBehaviour {
             if (markedScene){
                 DarknessPercentUIS.hasReached100 = true;
             }
+        }
+
+        if (markedScene && revertRef != null){
+            revertRef.RevertToPreviousTrack(0);
         }
 	}
 	
