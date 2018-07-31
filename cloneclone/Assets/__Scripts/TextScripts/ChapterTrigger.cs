@@ -34,7 +34,8 @@ public class ChapterTrigger : MonoBehaviour {
 			showingTime -= Time.deltaTime;
 			if (showingTime <= 0){
 				chapterRef.SetShowing(false);
-				isShowing = false;
+                        isShowing = false;
+                        GetComponent<Collider>().enabled = false;
 			}
 				}else{
 					chapterRef.SetShowing(true, chapterString);

@@ -91,7 +91,9 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour {
 			examineString.color = buttonString.color = currentTextCol;
 		}
 
-
+        if (!canChoose && PlayerAugmentsS.MARKED_AUG){
+            canChoose = true;
+        }
 
 	}
 

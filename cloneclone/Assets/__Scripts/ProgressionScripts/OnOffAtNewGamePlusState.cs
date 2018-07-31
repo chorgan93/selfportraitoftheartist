@@ -15,6 +15,10 @@ public class OnOffAtNewGamePlusState : MonoBehaviour
     // Use this for initialization
     private void Awake()
     {
+        if (requireMarkedState == TurnOnOffAtProgressionS.RequireMarkedState.None){
+            requireMarkedState = TurnOnOffAtProgressionS.RequireMarkedState.NewGamePlusOnly; // fixing potential mistakes
+
+        }
         if (activateOnAwake)
         {
             CheckMark();

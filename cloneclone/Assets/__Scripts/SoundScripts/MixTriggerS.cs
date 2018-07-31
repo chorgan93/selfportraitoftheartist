@@ -34,7 +34,11 @@ public class MixTriggerS : MonoBehaviour {
 					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, !dontDestroyOnFadeOut);
 				}
 			}
-			activated = true;
+            activated = true;
+            if (!activateOnStart && GetComponent<Collider>() != null)
+            {
+                GetComponent<Collider>().enabled = false;
+            }
 		}
 	}
 
@@ -61,6 +65,10 @@ public class MixTriggerS : MonoBehaviour {
 					}
 				}
 				activated = true;
+                if (!activateOnStart && GetComponent<Collider>() != null)
+                {
+                    GetComponent<Collider>().enabled = false;
+                }
 			}
 		}
 

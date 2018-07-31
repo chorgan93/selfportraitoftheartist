@@ -89,8 +89,8 @@ public class LevelUpMenu : MonoBehaviour
 
         playerName.text = TextInputUIS.playerName;
 
-        allowRevertProgress = StoryProgressionS.storyProgress.Contains(allowRevertProgressNum);
-
+        //allowRevertProgress = StoryProgressionS.storyProgress.Contains(allowRevertProgressNum);
+        allowRevertProgress = true; // TODO colin turn off after build!
         if (!allowRevertProgress)
         {
             TurnOffRevertProgressOption();
@@ -937,7 +937,7 @@ public class LevelUpMenu : MonoBehaviour
             PlayerInventoryS.I.RevertDataForChapter(revertMenuDataObjs[trackToReturnTo]);
         }
 
-
+        Debug.Log("Overwriting data to track " + trackToReturnTo);
 
 
     }

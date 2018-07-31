@@ -159,6 +159,7 @@ public class GameMenuS : MonoBehaviour {
 				myManager.pRef.ResetTimeMax();
 			}
         }else if (!inCustomControlMenu){
+            Debug.Log("Options menu open!");
 			if (myControl.VerticalMenu() > 0.1f && stickReset){
 				stickReset = false;
                 currentSelection--;if (!mainMenuUpdate)
@@ -356,9 +357,11 @@ public class GameMenuS : MonoBehaviour {
         quitRightFromOptions = false;
         if (goToOptions != null){
             myControl = goToOptions.controlRef;
+            Debug.Log(myControl);
             quitRightFromOptions = true;
                 selectButtonUp = false;
             inOptionsMenu = true;
+            Debug.Log(inOptionsMenu);
             MatchOptionsText();
             SetSelection(0);
             optionsMenuProper.gameObject.SetActive(true);

@@ -495,6 +495,8 @@ public class EnemyS : MonoBehaviour {
         if (PlayerAugmentsS.MARKED_AUG){
             actingMaxHealth = maxHealth * newGamePlusHealthMult * currentDifficultyMult;
             currentDifficultyMult *= newGamePlusSpeedMult;
+            maxCritDamage *= newGamePlusHealthMult;
+            sinAmt *= 3;
         }else{
             actingMaxHealth = maxHealth * currentDifficultyMult;
         }
@@ -695,20 +697,35 @@ public class EnemyS : MonoBehaviour {
 
 	private void CheckStatus(){
 
+        // always count up crit time
+        if (currentCritTime < maxCritTime)
+        {
+            if (doubleCriticalTime > 0)
+            {
+                if (doubleCriticalTime > 1)
+                {
+                    currentCritTime += Time.deltaTime / (PlayerAugmentsS.aquaAugMult + 0.5f);
+                }
+                else
+                {
+                    currentCritTime += Time.deltaTime / PlayerAugmentsS.aquaAugMult;
+                }
+            }
+            else
+            {
+                currentCritTime += Time.deltaTime;
+            }
+            if (_isCritical){
+                _isVulnerable = true; // try to hard force no weirdness
+            }
+        }
+
 		// check vulnerable/critical
 		if (_isVulnerable){
 			if (_isCritical){
 				if (!inWitchTime){
 					vulnerableCountdown -= Time.deltaTime;
-					if (doubleCriticalTime > 0){
-						if (doubleCriticalTime > 1){
-							currentCritTime += Time.deltaTime/(PlayerAugmentsS.aquaAugMult+0.5f);
-						}else{
-							currentCritTime += Time.deltaTime/PlayerAugmentsS.aquaAugMult;
-						}
-					}else{
-						currentCritTime += Time.deltaTime;
-					}
+					
 					if (vulnerableCountdown <= 0 || currentCritTime >= maxCritTime){
 					_isCritical = false;
 						didFirstCritHit = false;

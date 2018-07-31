@@ -81,7 +81,7 @@ public class CinematicHandlerS : MonoBehaviour {
             if (setToZero && !markedScene){
                 PlayerController.killedFamiliar = true;
             }
-            if (markedScene){
+            if (markedScene || setTo100){
                 DarknessPercentUIS.hasReached100 = true;
             }
         }

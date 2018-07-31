@@ -52,7 +52,7 @@ public class SpawnPosManager : MonoBehaviour {
 			spawningFromDeath = false;
 			GameOverS.reviveScene = Application.loadedLevelName;
 			GameOverS.revivePosition = sceneCheckpoint.spawnNum;
-			SaveLoadS.OverriteCurrentSave();
+			SaveLoadS.OverwriteCurrentSave();
 			}
 		}
 

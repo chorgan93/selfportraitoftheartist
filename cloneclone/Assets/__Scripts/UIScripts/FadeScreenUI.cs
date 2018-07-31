@@ -48,6 +48,8 @@ public class FadeScreenUI : MonoBehaviour {
     [HideInInspector]
     public bool skipPercentScene = false;
 
+    public bool neverGoToDarkness = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -235,7 +237,8 @@ public class FadeScreenUI : MonoBehaviour {
 
 	public void FadeIn(string nextScene, float newRate = 0){
 
-        if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f && !DarknessPercentUIS.demoMode && !PostDarkScene){
+        if (DarknessPercentUIS.DPERCENT.pStatRef.currentDarkness >= 100f && !DarknessPercentUIS.demoMode && !PostDarkScene
+            && !DarknessPercentUIS.DPERCENT.pStatRef.pRef.isNatalie && !neverGoToDarkness){
 			BGMHolderS.BG.FadeOutAll();
 			GameOverS.tempReviveScene = destinationScene;
 			GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;

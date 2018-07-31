@@ -23,7 +23,7 @@ public class StoryProgressionS : MonoBehaviour {
 
 	public static void SaveProgress(){
 		savedProgress = storyProgress;
-		SaveLoadS.OverriteCurrentSave();
+		SaveLoadS.OverwriteCurrentSave();
 	}
 
 	public static void ResetToSavedProgress(){

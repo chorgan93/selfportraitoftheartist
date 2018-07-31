@@ -68,8 +68,10 @@ public class CombatManagerS : MonoBehaviour {
 	[Header("Scoring Properties")]
 	public int[] targetTimesInSeconds = new int[]{25, 20, 15, 15};
 	public List<int> rankThresholds = new List<int>(3){2000, 2500, 3000};
+    public List<int> newGamePlusThresholds = new List<int>(3) { 12000, 27000, 45000 };
 	public bool hasContinuation = false;
 	public bool isContinuation = false;
+    public float rankEndSpeedMult = 1f;
 	
 	// Update is called once per frame
 	void Update () {
@@ -225,6 +227,10 @@ public class CombatManagerS : MonoBehaviour {
 		foreach (BarrierS b in barriers){
 			b.gameObject.SetActive(true);
 		}
+
+        if (PlayerAugmentsS.MARKED_AUG && newGamePlusThresholds.Count >= 3){
+            rankThresholds = newGamePlusThresholds;
+        }
 
         if (turnOnScoring || (PlayerAugmentsS.MARKED_AUG && !ignoreMarked)){
 			RankManagerS.rankEnabled = true;

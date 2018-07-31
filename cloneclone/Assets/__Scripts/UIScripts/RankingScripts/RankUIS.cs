@@ -63,15 +63,13 @@ public class RankUIS : MonoBehaviour {
 	[HideInInspector]
 	public bool doNoDamage = false;
 
-
+    private float endSpeedMult = 1f;
 
 	private bool _initialized = false;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
+    public void ChangeSpeedMult(float newMult){
+        endSpeedMult = newMult;
+    }
 	// Update is called once per frame
 	void Update () {
 
@@ -286,11 +284,11 @@ public class RankUIS : MonoBehaviour {
 	IEnumerator EndCombatDisplay(){
 		bool doBonus = false;
 		if (doNoDamage){
-			yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.25f/endSpeedMult);
 			doBonus = true;
 			Vector2 startPos = scoreAddStartPos;
 			startPos.y -= xItemMoveDist;
-			noDamageItem.TurnOn(-1, 0, this);
+            noDamageItem.TurnOn(-1, myRankManager.NoDamageBonus, this);
 			noDamageItem.SetPosition(startPos);
 			noDamageItem.SetNewPos(true, false, scoreAddStartPos);
 			doNoDamage = false;
@@ -298,12 +296,12 @@ public class RankUIS : MonoBehaviour {
 
 		}
 		if (doTimeBonus){
-			yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.25f/ endSpeedMult);
 			if (!doBonus){
 				doBonus = true;
 				Vector2 startPos = scoreAddStartPos;
 				startPos.y -= xItemMoveDist;
-				timeBonusItem.TurnOn(-1, 0, this);
+                timeBonusItem.TurnOn(-1, myRankManager.TimeBonus, this);
 				timeBonusItem.SetPosition(startPos);
 				timeBonusItem.SetNewPos(true, false, scoreAddStartPos);
 				activeScoreObjs.Add(timeBonusItem);
@@ -311,7 +309,7 @@ public class RankUIS : MonoBehaviour {
 
 				Vector2 startPos = scoreAddStartPos;
 				startPos.y -= xItemMoveDist+yItemSeparation;
-				timeBonusItem.TurnOn(-1, 0, this);
+                timeBonusItem.TurnOn(-1, myRankManager.TimeBonus, this);
 				timeBonusItem.SetPosition(startPos);
 				Vector2 endPos = scoreAddStartPos;
 				endPos.y -= yItemSeparation;
@@ -321,18 +319,18 @@ public class RankUIS : MonoBehaviour {
 			doTimeBonus = false;
 		}
 		if (doBonus){
-			yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f/ endSpeedMult);
 			myRankManager.AddBonuses();
 			doBonus = false;
 		}
-		yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f/ endSpeedMult);
 		finalRankLetter.color = finalRankColors[myRankManager.GetRankInt()];
 		finalRankLetter.text = "(" + myRankManager.ReturnRank() + ")";
 		totalRankText.color = finalRankLetter.color;
 		myRankManager.finalCombatManager.CheckCondition();
 		Instantiate(finalRankSounds[myRankManager.GetRankInt()]);
-		yield return new WaitForSeconds(showAfterRankTime);
-		VerseDisplayS.V.EndVerse(0.1f);
+        yield return new WaitForSeconds(showAfterRankTime / endSpeedMult);
+        VerseDisplayS.V.EndVerse(0.1f/ endSpeedMult);
 		myRankManager.AddFinalScore();
 		fadeCount = 0f;
 		fadingOut = true;

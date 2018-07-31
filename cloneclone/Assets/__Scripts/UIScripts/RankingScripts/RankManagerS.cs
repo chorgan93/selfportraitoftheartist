@@ -2,66 +2,78 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class RankManagerS : MonoBehaviour {
+public class RankManagerS : MonoBehaviour
+{
 
-	public const float ENRAGE_SCORE_MULT = 4f;
-	public const float CRIT_SCORE_MULT = 5.5f;
+    public const float ENRAGE_SCORE_MULT = 4f;
+    public const float CRIT_SCORE_MULT = 5.5f;
 
-	[HideInInspector]
-	public int totalRank = 0;
-	private int rankCountUp = 0;
-	public int currentCombo {get { return currentRankAdd; } }
-	private int rankAtCountStart = 0;
-	private int currentRankAdd;
-	private int currentMultiplier;
+    [HideInInspector]
+    public int totalRank = 0;
+    private int rankCountUp = 0;
+    public int currentCombo { get { return currentRankAdd; } }
+    private int rankAtCountStart = 0;
+    private int multiplierAtContinuationStart = 0;
+    private int rankAddAtContinuationStart = 0;
+    private float dmgAdvanceAtContinuationStart = 0;
+    private int currentRankAdd;
+    private int currentMultiplier;
 
-	[HideInInspector]
-	public RankUIS myUI;
+    [HideInInspector]
+    public RankUIS myUI;
 
-	[Header("Scoring Properties")]
-	public int[] scoreTypeAmts;
-	private float delayCountUpTime = 0.8f;
-	private float delayCountUp;
+    [Header("Scoring Properties")]
+    public int[] scoreTypeAmts;
+    private float delayCountUpTime = 0.8f;
+    private float delayCountUp;
 
-	[Header("Multiplier Properties")]
-	public int[] multiplierStages;
-	public float[] dmgToAdvanceMultipliers;
-	public float[] dmgAdvanceReductionPenalties; // how much currentDmgAdvance to take away on hit at current stage
-	private int currentMultiplierStage = 0;
-	public int currentMultStage { get { return currentMultiplierStage; } }
-	private float currentDmgAdvance = 0;
-	private float timeSinceDealingDmg = 0;
-	private float currentMultiplierDecreaseRate =0;
+    [Header("Multiplier Properties")]
+    public int[] multiplierStages;
+    public float[] dmgToAdvanceMultipliers;
+    public float[] dmgAdvanceReductionPenalties; // how much currentDmgAdvance to take away on hit at current stage
+    private int currentMultiplierStage = 0;
+    public int currentMultStage { get { return currentMultiplierStage; } }
+    private float currentDmgAdvance = 0;
+    private float timeSinceDealingDmg = 0;
+    private float timeSinceDealingDmgAtContinuationStart = 0;
+    private float currentMultiplierDecreaseRate = 0;
 
-	private float[] diffComboMultipliers = new float[4]{0.9f, 1f, 1.05f, 1f};
+    private float[] diffComboMultipliers = new float[4] { 0.9f, 1f, 1.05f, 1f };
 
-	[Header("Multiplier Reduction Properties")]
-	public float[] timeForReductionPenalties;
-	public float[] reductionPenalties;
-	private int currentReductionState = 0;
+    [Header("Multiplier Reduction Properties")]
+    public float[] timeForReductionPenalties;
+    public float[] reductionPenalties;
+    private int currentReductionState = 0;
 
-	private bool _scoringActive = false;
-	public bool scoringActive {get {return _scoringActive; } }
-	private bool _addingScore = false;
-	public bool addingScore { get { return _addingScore;} }
-	private bool _countingUp = false;
-	private float countUpTime = 0.8f;
-	private float countUpCount = 0f;
-	private float countUpT;
+    private bool _scoringActive = false;
+    public bool scoringActive { get { return _scoringActive; } }
+    private bool _addingScore = false;
+    public bool addingScore { get { return _addingScore; } }
+    private bool _countingUp = false;
+    private float countUpTime = 0.8f;
+    private float countUpCount = 0f;
+    private float countUpT;
 
-	//_____________________________BONUS PROPERTIES
-	public bool disableInScene = false;
-	private bool _noDamage=true;
-	public bool noDamage { get { return _noDamage; } }
-	private int noDamageBonus = 1000;
-	private bool _underTime = true;
-	public bool underTime {get { return _underTime; } }
-	private float combatDuration;
+    //_____________________________BONUS PROPERTIES
+    public bool disableInScene = false;
+    private bool _noDamage = true;
+    public bool noDamage { get { return _noDamage; } }
+    private int noDamageBonus = 1000;
+    public int NoDamageBonus { get { return noDamageBonus; }}
+    private int baseDamageBonus = 1000;
+    private int baseDamageBonusNG = 10000;
+    private bool _underTime = true;
+    public bool underTime { get { return _underTime; } }
+    private float combatDuration;
+    private float durationAtRoundStart = 0;
 
-	private int scoreOnReset = 0;
+    private int scoreOnReset = 0;
 
-	private int goalTimeInSeconds;
-	private int timeBonus = 1000;
+    private int goalTimeInSeconds;
+    private int timeBonus = 1000;
+    public int TimeBonus { get { return timeBonus; }}
+    private int baseTimeBonus = 5000;
+    private int baseTimeBonusNG = 5000;
 	private List<int> rankScoreTargets;
 
 	private int _currentRound = 1;
@@ -163,12 +175,23 @@ public class RankManagerS : MonoBehaviour {
 		}
 	} 
 
-	public void StartCombat(int targetTime, List<int> scores, int combatID, CombatManagerS finalCombat, bool continuation = false){
+	public void StartCombat(int targetTime, List<int> scores, int combatID, CombatManagerS finalCombat, bool continuation = false, float speedMult = 1f){
 
 			currentCombatID = combatID;
 		_finalCombatManager = finalCombat;
 		if (!continuation){
-			goalTimeInSeconds = targetTime;
+            if (PlayerAugmentsS.MARKED_AUG)
+            {
+                noDamageBonus = baseDamageBonusNG;
+                timeBonus = baseTimeBonusNG;
+                goalTimeInSeconds = targetTime*2;
+            }
+            else
+            {
+                noDamageBonus = baseDamageBonus;
+                timeBonus = baseTimeBonus;
+                goalTimeInSeconds = targetTime;
+            }
 			rankScoreTargets = scores;
 		currentDmgAdvance = timeSinceDealingDmg = 0f;
 		currentMultiplierStage = 0;
@@ -186,23 +209,37 @@ public class RankManagerS : MonoBehaviour {
 			_currentRound = 1;
 		}else{
 			_currentRound++;
-			goalTimeInSeconds += targetTime;
+            noDamageBonus += noDamageBonus;
+            timeBonus += timeBonus;
+            rankAddAtContinuationStart = currentRankAdd;
+            dmgAdvanceAtContinuationStart = currentDmgAdvance;
+            multiplierAtContinuationStart = currentMultiplierStage;
+            timeSinceDealingDmgAtContinuationStart = timeSinceDealingDmg;
+
+            if (PlayerAugmentsS.MARKED_AUG)
+            {
+                goalTimeInSeconds += targetTime*2;
+            }else{
+                goalTimeInSeconds += targetTime;
+            }
 			for (int i = 0; i < rankScoreTargets.Count; i++){
 				rankScoreTargets[i] += scores[i];
 			}
 			savedCombatIDs.Add(currentCombatID);
 		}
+        myUI.ChangeSpeedMult(speedMult);
 	}
 
 	public void RestartCombat(){
 		if (rankEnabled){
-		currentMultiplierStage = 0;
+            currentMultiplierStage = multiplierAtContinuationStart;
 		currentMultiplier = multiplierStages[currentMultiplierStage];
+            currentDmgAdvance = dmgAdvanceAtContinuationStart;
 			rankAtCountStart = rankCountUp = 0;
 			_countingUp = false;
-			currentRankAdd = 0;
+            currentRankAdd = rankAddAtContinuationStart;
 			totalRank = scoreOnReset;
-			combatDuration = 0;
+            combatDuration = durationAtRoundStart;
 			if (!doNotResetNoDamage){
 			_noDamage = true;
 			}
@@ -224,12 +261,13 @@ public class RankManagerS : MonoBehaviour {
 			myUI.doNoDamage = _noDamage;
 			endScoringAfterCount = true;
 			}else{
-				if (rankCountUp > totalRank){
+                /*if (rankCountUp > totalRank){
 				scoreOnReset = rankCountUp;
 				}else{
 					scoreOnReset = totalRank;
 				}
-				scoreOnReset+=currentRankAdd*currentMultiplier;
+				scoreOnReset+=currentRankAdd*currentMultiplier;**/
+                scoreOnReset = totalRank;
 				if (!_noDamage){
 					doNotResetNoDamage = true;
 				}

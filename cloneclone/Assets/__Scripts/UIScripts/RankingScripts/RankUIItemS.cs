@@ -121,7 +121,9 @@ public class RankUIItemS : MonoBehaviour {
 		}else{
 		scoreAmt.text = scoreAmount.ToString();
 		}
-		}
+        }else{
+            scoreAmt.text = scoreAmt.text.Replace("{S}", scoreAmount.ToString());
+        }
 		fadeColor = scoreAmt.color;
 		fadeColor.a = 0f;
 		scoreAmt.color = fadeColor;

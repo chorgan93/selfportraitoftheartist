@@ -247,20 +247,25 @@ public class PlayerDestructionS : MonoBehaviour {
     public void RevertCombatData(List<int> revertCombatNums){
         OverwriteReversionData();
         int indexOfRevertCombat = -1;
+        if (_combatClearedAtLeastOnce != null)
+        {
         for (int i = 0; i < revertCombatNums.Count; i++){
-            if (_combatClearedAtLeastOnce.Contains(revertCombatNums[i])){
-                
-                indexOfRevertCombat = _combatClearedAtLeastOnce.IndexOf(revertCombatNums[i]);
+            
+                if (_combatClearedAtLeastOnce.Contains(revertCombatNums[i]))
+                {
 
-                _revertedCombatClearedAtLeastOnce.Add(_combatClearedAtLeastOnce[indexOfRevertCombat]);
-                _revertedCombatClearedRanks.Add(_combatClearedRanks[indexOfRevertCombat]);
-                _revertedCombatClearedRankGrades.Add(_combatClearedRankGrades[indexOfRevertCombat]);
-                _revertedSpecialConditionCombatCleared.Add(_specialConditionCombatCleared[indexOfRevertCombat]);
+                    indexOfRevertCombat = _combatClearedAtLeastOnce.IndexOf(revertCombatNums[i]);
 
-                _combatClearedAtLeastOnce.RemoveAt(indexOfRevertCombat);
-                _combatClearedRanks.RemoveAt(indexOfRevertCombat);
-                _combatClearedRankGrades.RemoveAt(indexOfRevertCombat);
-                _specialConditionCombatCleared.RemoveAt(indexOfRevertCombat);
+                    _revertedCombatClearedAtLeastOnce.Add(_combatClearedAtLeastOnce[indexOfRevertCombat]);
+                    _revertedCombatClearedRanks.Add(_combatClearedRanks[indexOfRevertCombat]);
+                    _revertedCombatClearedRankGrades.Add(_combatClearedRankGrades[indexOfRevertCombat]);
+                    _revertedSpecialConditionCombatCleared.Add(_specialConditionCombatCleared[indexOfRevertCombat]);
+
+                    _combatClearedAtLeastOnce.RemoveAt(indexOfRevertCombat);
+                    _combatClearedRanks.RemoveAt(indexOfRevertCombat);
+                    _combatClearedRankGrades.RemoveAt(indexOfRevertCombat);
+                    _specialConditionCombatCleared.RemoveAt(indexOfRevertCombat);
+                }
             }
         }
     }

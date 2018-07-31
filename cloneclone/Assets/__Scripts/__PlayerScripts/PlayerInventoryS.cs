@@ -1446,6 +1446,7 @@ public class PlayerInventoryS : MonoBehaviour
             }
         }
         _dManager.RevertCombatData(trackRevert.revertSceneNums);
+        SaveLoadS.OverwriteCurrentSave();
     }
 
 }
