@@ -399,12 +399,39 @@ public class PlayerInventoryS : MonoBehaviour
         int numAdd = 0;
         for (int i = 0; i < _earnedUpgrades.Count; i++)
         {
-            if (i > 6)
+            if (_earnedUpgrades[i] > 6)
             {
                 numAdd++;
             }
         }
         return numAdd;
+    }
+
+    public void LevelDown(){
+        int revertIndex = -1;
+        if (_earnedUpgrades != null)
+            for (int i = _earnedUpgrades.Count - 1; i >= 0; i--)
+            {
+            if (_earnedUpgrades[i] <= 6 && revertIndex < 0)
+                {
+                revertIndex = i;
+                }
+            }
+        if (revertIndex >= 0)
+        {
+            _earnedUpgrades.RemoveAt(revertIndex);
+        }
+    }
+
+    public int GetNextRevertLevelType(){
+        int revertType = -1;
+        if (_earnedUpgrades != null)
+            for (int i = _earnedUpgrades.Count - 1; i >= 0; i--){
+                if (_earnedUpgrades[i] <= 6 && revertType < 0){
+                    revertType = _earnedUpgrades[i];
+                }
+            }
+        return revertType;
     }
 
     public void AddEarnedVirtue(int i)
@@ -1445,7 +1472,16 @@ public class PlayerInventoryS : MonoBehaviour
                 checkpointsReachedSpawns.RemoveAt(numToRevert);
             }
         }
+
+
+        // manage combat data
         _dManager.RevertCombatData(trackRevert.revertSceneNums);
+
+        // reroll tv num if ch5
+        if (trackRevert.trackNum == 4){
+
+            _tvNum = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
+        }
         SaveLoadS.OverwriteCurrentSave();
     }
 

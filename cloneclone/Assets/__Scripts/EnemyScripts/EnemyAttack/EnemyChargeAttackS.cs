@@ -78,7 +78,7 @@ public class EnemyChargeAttackS : MonoBehaviour
     private float floatAxisA = 3f;
     private float floatAxisB = 1.75f;
     private float currentAngle = 0f;
-    private float angleRate = 8f;
+    private float angleRate = 11f;
     private int maxHits = 1;
     private int currentHit = 0;
     private float startRotate = -1;

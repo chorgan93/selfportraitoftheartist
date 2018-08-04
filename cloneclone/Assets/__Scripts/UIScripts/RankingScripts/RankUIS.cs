@@ -64,6 +64,7 @@ public class RankUIS : MonoBehaviour {
 	public bool doNoDamage = false;
 
     private float endSpeedMult = 1f;
+    public float EndSpeedMult { get { return endSpeedMult; }}
 
 	private bool _initialized = false;
 
@@ -76,7 +77,7 @@ public class RankUIS : MonoBehaviour {
 		if (_initialized){
 			if (myRankManager.scoringActive){
 				if (fadingIn || fadingOut){
-					fadeCount += Time.deltaTime;
+                    fadeCount += Time.deltaTime*SpeedUpMultiplier();
 					if (fadingIn){
 					if (fadeCount >= fadeInTime){
 							fadeCount = fadeInTime;
@@ -271,8 +272,8 @@ public class RankUIS : MonoBehaviour {
 		MoveAllItemsToCombo();
 	}
 
-	public void EndCombat(){
-		myRankManager.delayLoad = true;
+    public void EndCombat(){
+        myRankManager.delayLoad = true;
 		StartCoroutine(EndCombatDisplay());
 	}
 
@@ -338,7 +339,9 @@ public class RankUIS : MonoBehaviour {
 
         if (PlayerAugmentsS.MARKED_AUG)
         {
-            DarknessPercentUIS.DPERCENT.StartDarknessReduce(GetScoreReduce(myRankManager.GetRankInt()));
+            DarknessPercentUIS.DPERCENT.StartDarknessReduce(GetScoreReduce(myRankManager.GetRankInt()), myRankManager);
+        }else{
+            myRankManager.delayLoad = false;
         }
 	}
 
@@ -396,19 +399,27 @@ public class RankUIS : MonoBehaviour {
     float GetScoreReduce(int rankNum){
         switch(rankNum){
             case(0):
-                return -0.5f;
+                return -0.25f;
 
             case (1):
-                return -0.75f;
+                return -0.5f;
 
             case (2):
-                return -1f;
+                return -1.25f;
 
             case (3):
-                return -1.5f;
+                return -3f;
 
             default:
                 return 0f;
+        }
+    }
+
+    public float SpeedUpMultiplier(){
+        if (endSpeedMult > 1){
+            return endSpeedMult;
+        }else{
+            return 1f;
         }
     }
 }

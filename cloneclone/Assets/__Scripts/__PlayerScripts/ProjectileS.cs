@@ -9,7 +9,7 @@ public class ProjectileS : MonoBehaviour {
 	private Vector3 hitWallPos = Vector3.zero;
 	private bool touchingWall = false;
 
-	private float bioMult = 0.5f;
+	private float bioMult = 0.3f;
 
 	public static float EXTRA_FORCE_MULT = 2.2f;
 	public int projectileID = -1;
@@ -73,6 +73,7 @@ public class ProjectileS : MonoBehaviour {
 	public int ignoreEnemyDefense = 0;
 	private int startIgnoreDefense = 0;
 	public float critDmg = 2f;
+    float startCritDmg = 2f;
 	public float staminaCost = 1;
 	public float absorbPercent = 0.1f;
 	public float reloadTime = 1f;
@@ -175,6 +176,10 @@ public class ProjectileS : MonoBehaviour {
 	private bool saveEnraged = false;
 	private bool saveCritical = false;
 
+    [Header("Rank Properties")]
+    public float weaponScoreMult = 1f;
+    private float actingWeaponScoreMult = 1f;
+    private float witchTimeMult = 2.5f;
 
 	void FixedUpdate () {
 
@@ -270,6 +275,7 @@ public class ProjectileS : MonoBehaviour {
 		if (!firedOnce){
 		_rigidbody = GetComponent<Rigidbody>();
 		myCollider = GetComponent<Collider>();
+            startCritDmg = critDmg;
 			savedShotSpeed = shotSpeed;
 			renderColor = myRenderer.color;
 			_myPlayer = playerReference;
@@ -293,7 +299,7 @@ public class ProjectileS : MonoBehaviour {
 			dmg = startDmg;
 			transform.localScale = startScale;
 			knockbackSpeed = firedKnockbackSpeed;
-		}
+        }
 		if (_myPlayer.isTransformed){
 			myRenderer.color = _myPlayer.transformedColor;
 		}else{
@@ -305,6 +311,18 @@ public class ProjectileS : MonoBehaviour {
         if (_myPlayer.playerAug.scornedAug){
             dmg *= PlayerStatsS.scornedStrengthMult;
         }
+        actingWeaponScoreMult = weaponScoreMult;
+        if (_myPlayer.playerAug.hatedAug){
+            actingWeaponScoreMult *= 2f;
+        }
+        actingWeaponScoreMult *= (1f + (0.3f * _myPlayer.ActiveBios))*_myPlayer.playerAug.GetEnragedMult()*_myPlayer.GetWitchScoreMult();
+
+        if (ignoreEnemyDefense > 0){
+            critDmg = 1f;
+        }else{
+            critDmg = startCritDmg;
+        }
+
 		_canReflect = _myPlayer.playerAug.repellantAug;
 		stopAtWallTime = false;
 		touchingWall = false;
@@ -652,9 +670,9 @@ public class ProjectileS : MonoBehaviour {
 				_myPlayer.myStats.DesperateRecover(dmgDealt);
 
 				if (isFinisher || counterAttack || saveCritical){
-					RankManagerS.R.ScoreHit(1, dmgDealt, saveEnraged, saveCritical);
+					RankManagerS.R.ScoreHit(1, dmgDealt, saveEnraged, saveCritical, actingWeaponScoreMult);
 				}else{
-					RankManagerS.R.ScoreHit(0, dmgDealt, saveEnraged, saveCritical);
+                    RankManagerS.R.ScoreHit(0, dmgDealt, saveEnraged, saveCritical, actingWeaponScoreMult);
 				}
 
 				StartMoveStop(hitStopAmt);

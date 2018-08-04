@@ -93,12 +93,30 @@ public class PlayerDestructionS : MonoBehaviour {
 		_bloodSpriteNums.Add(spriteNum);
 	}
 	public void ClearAll(){
-		_enemiesDefeated.Clear();
-		_enemiesDefeatedPos.Clear();
-		_bloodIds.Clear();
-		_bloodPos.Clear();
-		_bloodSpriteNums.Clear();
-		_clearedCombatTriggers.Clear();
+        if (_enemiesDefeated != null)
+        {
+            _enemiesDefeated.Clear();
+        }
+        if (_enemiesDefeatedPos != null)
+        {
+            _enemiesDefeatedPos.Clear();
+        }
+        if (_bloodIds != null)
+        {
+            _bloodIds.Clear();
+        }
+        if (_bloodPos != null)
+        {
+            _bloodPos.Clear();
+        }
+        if (_bloodSpriteNums != null)
+        {
+            _bloodSpriteNums.Clear();
+        }
+        if (_clearedCombatTriggers != null)
+        {
+            _clearedCombatTriggers.Clear();
+        }
 	}
 	
 	public void ClearAllSaved(){

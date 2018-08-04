@@ -87,7 +87,7 @@ public class CinematicHandlerS : MonoBehaviour {
         }
 
         if (markedScene && revertRef != null){
-            revertRef.RevertToPreviousTrack(0);
+            revertRef.RevertToPreviousTrack(0, false);
         }
 	}
 	

@@ -49,10 +49,10 @@ public class RankUIItemS : MonoBehaviour {
 	void Update () {
 
 		if (delayMoveCount > 0){
-			delayMoveCount -= Time.deltaTime;
+            delayMoveCount -= Time.deltaTime*myUIManager.SpeedUpMultiplier();
 		}else{
 		if (fadingIn || fadingOut){
-			fadeCount += Time.deltaTime;
+                fadeCount += Time.deltaTime* myUIManager.SpeedUpMultiplier();
 			if (fadeCount >= fadeTime){
 				fadeCount = fadeTime;
 			}
@@ -88,7 +88,7 @@ public class RankUIItemS : MonoBehaviour {
 
 		if (moving){
 			
-			moveTimeCount += Time.deltaTime;
+                moveTimeCount += Time.deltaTime* myUIManager.SpeedUpMultiplier();
 			if (moveTimeCount >= moveTimeMax){
 				moveTimeCount = moveTimeMax;
 				moving = false;

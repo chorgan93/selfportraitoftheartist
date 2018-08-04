@@ -9,7 +9,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 	private const float chargeAddSize = 4f;
 
 	public static bool RECORD_MODE = false; // TODO Colin turn off after build!
-	private bool allowRecordMode = true; // TODO turn off for real builds!
+	private bool allowRecordMode = false; // TODO turn off for real builds!
 	
 	public Color healthFullColor;
 	public Color healthEmptyColor;

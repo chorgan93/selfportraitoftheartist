@@ -13,6 +13,8 @@ public class EnragedEffectS : MonoBehaviour {
 	public float frustrationLifeTime = 1f;
 	public float timeBetweenFrustrations = 0.24f;
 	private float[] frustrationSpawnDelays;
+    private float enrageAlpha = 0.15f;
+    private float animRate = 0.083f;
 
 	// Use this for initialization
 	void Start () {
@@ -22,8 +24,10 @@ public class EnragedEffectS : MonoBehaviour {
 
 		myRender = GetComponent<SpriteRenderer>();
 		Color renderCol = myEnemy.bloodColor;
-		renderCol.a = myRender.color.a;
+        renderCol.a = enrageAlpha;
 		myRender.color = renderCol;
+
+        GetComponent<AnimObjS>().animRate = animRate;
 
 		gameObject.SetActive(false);
 

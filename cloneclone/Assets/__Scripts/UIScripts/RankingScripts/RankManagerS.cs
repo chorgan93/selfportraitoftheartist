@@ -30,6 +30,7 @@ public class RankManagerS : MonoBehaviour
     [Header("Multiplier Properties")]
     public int[] multiplierStages;
     public float[] dmgToAdvanceMultipliers;
+    private float[] dmgToAdvanceMultipliersMarked;
     public float[] dmgAdvanceReductionPenalties; // how much currentDmgAdvance to take away on hit at current stage
     private int currentMultiplierStage = 0;
     public int currentMultStage { get { return currentMultiplierStage; } }
@@ -60,7 +61,7 @@ public class RankManagerS : MonoBehaviour
     public bool noDamage { get { return _noDamage; } }
     private int noDamageBonus = 1000;
     public int NoDamageBonus { get { return noDamageBonus; }}
-    private int baseDamageBonus = 1000;
+    private int baseDamageBonus = 3000;
     private int baseDamageBonusNG = 10000;
     private bool _underTime = true;
     public bool underTime { get { return _underTime; } }
@@ -72,7 +73,7 @@ public class RankManagerS : MonoBehaviour
     private int goalTimeInSeconds;
     private int timeBonus = 1000;
     public int TimeBonus { get { return timeBonus; }}
-    private int baseTimeBonus = 5000;
+    private int baseTimeBonus = 1000;
     private int baseTimeBonusNG = 5000;
 	private List<int> rankScoreTargets;
 
@@ -121,12 +122,12 @@ public class RankManagerS : MonoBehaviour
 		#endif
 
 		if (_scoringActive && !pauseRef.isPaused){
-			combatDuration+=Time.deltaTime;
+            combatDuration+=Time.deltaTime;
 			if (delayCountUp > 0){
-				delayCountUp -= Time.deltaTime;
+                delayCountUp -= Time.deltaTime * myUI.EndSpeedMult;
 			}
 			else if (_countingUp){
-				countUpCount += Time.deltaTime;
+                countUpCount += Time.deltaTime * myUI.EndSpeedMult;
 				if (countUpCount >= countUpTime){
 					countUpCount = countUpTime;
 					_countingUp = false;
@@ -167,9 +168,15 @@ public class RankManagerS : MonoBehaviour
 	}
 
 	void Initialize() {
+        dmgToAdvanceMultipliersMarked = new float[dmgToAdvanceMultipliers.Length];
+
 		if (!_initialized && !disableInScene){
 			myUI = GameObject.Find("CombatRankUI").GetComponent<RankUIS>();
-			pauseRef = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+            pauseRef = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
+            for (int i = 0; i < dmgToAdvanceMultipliersMarked.Length; i++)
+            {
+                dmgToAdvanceMultipliersMarked[i] = dmgToAdvanceMultipliers[i] * 1.5f;
+            }
 			myUI.Initialize(this);
 			_initialized = true;
 		}
@@ -185,6 +192,7 @@ public class RankManagerS : MonoBehaviour
                 noDamageBonus = baseDamageBonusNG;
                 timeBonus = baseTimeBonusNG;
                 goalTimeInSeconds = targetTime*2;
+                dmgToAdvanceMultipliers = dmgToAdvanceMultipliersMarked;
             }
             else
             {
@@ -335,13 +343,14 @@ public class RankManagerS : MonoBehaviour
 
 			}
 		}
-		delayLoad = false;
+		//delayLoad = false;
 	}
 
-	public void ScoreHit(int dmgType, float dmgAmount, bool isEnraged = false, bool isCritical = false){
+	public void ScoreHit(int dmgType, float dmgAmount, bool isEnraged = false, bool isCritical = false, float weaponScoreMult = 1f){
 		if (rankEnabled && !stopScoring){
 
 			float scoreToAdd = scoreTypeAmts[dmgType];
+            scoreToAdd *= weaponScoreMult;
 			if (isEnraged){
 				scoreToAdd *= ENRAGE_SCORE_MULT;
 			}
@@ -367,7 +376,7 @@ public class RankManagerS : MonoBehaviour
 			myUI.UpdateMultBar();
 		timeSinceDealingDmg = 0f;
 		currentReductionState = 0;
-			myUI.AddScoreItem(dmgType, scoreToAdd, isEnraged, isCritical);
+            myUI.AddScoreItem(dmgType, Mathf.RoundToInt(scoreToAdd), isEnraged, isCritical);
 		myUI.UpdateCurrentCombo();
 		}
 

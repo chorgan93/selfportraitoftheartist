@@ -5,9 +5,9 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private bool ALLOW_RECORD_MODE = true; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
+	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 0.9.0 —";
+	private const string currentVer = "— v. 1.0.2 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -80,7 +80,8 @@ public class MainMenuNavigationS : MonoBehaviour {
 	
 	public SpriteRenderer loadBlackScreen;
 	private bool loading = false;
-	
+
+    private string startNewGameScene = "TutorialIntro";
 	private string newGameScene = "TutorialIntro"; // (put back in when making full version)
 	//private string newGameScene = "Dream00a_IntroCutsceneSHORT";
 	private string webStartScene = "Dream00a_IntroCutsceneSHORT";
@@ -95,7 +96,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private float attractCountdown;
 
 	private string cheatString = "";
-	private bool allowCheats = true; // COLIN TODO TURN OFF FOR FINAL BUILDS!
+	private bool allowCheats = false; // COLIN TODO TURN OFF FOR FINAL BUILDS!
 
 	public static bool inMain = false;
 	
@@ -120,6 +121,7 @@ public class MainMenuNavigationS : MonoBehaviour {
     [HideInInspector]
     public bool inLoadMenu = false;
     private bool inOptionsMenu = false;
+    public GameObject[] additionalInstructions;
 
 	void Awake(){
 		versionText.text = currentVer;
@@ -279,6 +281,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 pressAnyText[i].gameObject.SetActive(false);
                             }
                             cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                            SetAdditionalInstruction(true);
 
                         }else if (myController.CheckForKeyPress(true) > -1)
                             {
@@ -299,7 +302,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 {
                                     currentMenuZeroPosition = 1;
                                 }
-                                cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                            cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                            SetAdditionalInstruction(true);
                             }
 
                     }
@@ -308,6 +312,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                         waitingForInput = false;
                         menuZeroObject.SetActive(true);
                         ControlManagerS.controlProfile = 1;
+
                         stickReset = false;
                         selectReset = false;
                         for (int i = 0; i < pressAnyText.Length; i++)
@@ -323,6 +328,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                             currentMenuZeroPosition = 1;
                         }
                         cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
+                        SetAdditionalInstruction(true);
                     }
                 }
                 else if (triggerSecondScreen)
@@ -399,8 +405,10 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     // if less than 3 saves, go ahead. otherwise open load screen
                                     if (numSaveFiles < 3)
                                     {
-
-                                        GameDataS.current = null;
+                                        if (GameDataS.current != null)
+                                        {
+                                            GameDataS.current.RemoveCurrent();
+                                        }
                                         SaveLoadS.currentSaveSlot = numSaveFiles;
                                         triggerSecondScreen = true;
                                     }
@@ -604,6 +612,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                             Cursor.visible = false;
                             hideOnOverride.gameObject.SetActive(false);
                             showOnOverride.gameObject.SetActive(false);
+                            newGameScene = startNewGameScene;
+                            SetAdditionalInstruction(false);
                             if (GameDataS.current == null)
                             {
                                 StoryProgressionS.NewGame(); // reset for new game progress
@@ -625,6 +635,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                         else if (currentSelection == 1)
                         {
                             attractCountdown = attractCountdownMax;
+                            SetAdditionalInstruction(false);
                             OpenOptionsScreen();
                         }
                         else if (currentSelection == 2)
@@ -642,7 +653,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 hideOnOverride.gameObject.SetActive(false);
                                 showOnOverride.gameObject.SetActive(false);
                                 newGameScene = Application.loadedLevelName;
-                                StartNextLoad(false);
+                            StartNextLoad(false);
+                            SetAdditionalInstruction(false);
 
                         }
 					}
@@ -673,6 +685,7 @@ public class MainMenuNavigationS : MonoBehaviour {
     public void TurnOffOptions(){
         inOptionsMenu = false;
         selectReset = false;
+        SetAdditionalInstruction(true);
     }
 	
 	void SetSelection(){
@@ -821,4 +834,10 @@ public class MainMenuNavigationS : MonoBehaviour {
 	void CancelBlur(){
 		blurEffect.enabled = false;
 	}
+
+    public void SetAdditionalInstruction(bool newOn){
+        for (int i = 0; i < additionalInstructions.Length; i++){
+            additionalInstructions[i].SetActive(newOn);
+        }
+    }
 }

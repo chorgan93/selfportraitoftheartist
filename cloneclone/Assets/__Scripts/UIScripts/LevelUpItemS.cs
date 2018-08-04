@@ -35,12 +35,14 @@ public class LevelUpItemS : MonoBehaviour {
 
 	private bool shuffleUpgrade = false;
 	private bool revertUpgrade = false;
+    public bool IsRevertUpgrade { get { return revertUpgrade; }}
 
 	private PlayerStatsS statRef;
 
 	public Color lockedTextColor;
 
 	private int flatAddPerLevel = 100;
+
 
 	void Start(){
 		//lockedTextColor = upgradeNameText.color;
@@ -144,7 +146,9 @@ public class LevelUpItemS : MonoBehaviour {
 	public void ShowText(){
 		upgradeNameText.text = upgradeName + " (" + upgradeCost +  " la)";
 		upgradeDescriptionText.text = upgradeDescription;
-		
+        if (revertUpgrade){
+            //Debug.Log("Current level: " + statRef.currentLevel + " Current lower revert limit: " + minRevert());
+        }
 		if ((upgradeCost > PlayerCollectionS.currencyCollected && !revertUpgrade) || (revertUpgrade && statRef.currentLevel<=minRevert())){
 			SetTextColors(lockedTextColor);
 			upgradeNameText.text = upgradeName + " <color=#ff0000ff>(" + upgradeCost +  " la)</color>";
@@ -155,11 +159,13 @@ public class LevelUpItemS : MonoBehaviour {
 
 		if (!shuffleUpgrade && !revertUpgrade){
 			statDisplayRef.HighlightStat(upgradeNum);
-		}
+        }else if (revertUpgrade){
+            statDisplayRef.HighlightStat(PlayerInventoryS.I.GetNextRevertLevelType(), true);
+        }
 	}
 
 	private int minRevert(){
-		return (1+PlayerInventoryS.I.GetMinRevertLevelAdd());
+		return (PlayerInventoryS.I.GetMinRevertLevelAdd()+1);
 	}
 
 	private void SetTextColors(Color newCol){
@@ -174,6 +180,7 @@ public class LevelUpItemS : MonoBehaviour {
 		if (PlayerInventoryS.I.earnedUpgrades.Count >= MAX_LEVEL_UP){
 			canBuy = false;
 		}
+        if (revertUpgrade && statRef.currentLevel <= minRevert()) { canBuy = false; }
 		return canBuy;
 	}
 
@@ -188,6 +195,13 @@ public class LevelUpItemS : MonoBehaviour {
 			}
 			}
 		}
+        if (revertUpgrade)
+        {
+            cDisplay.AddCurrency(statRef.currentLevel * 100);
+            PlayerInventoryS.I.LevelDown();
+            // TODO make sure this doesn't break levelling up again!!
+        }
+
 		lvH.NewNextLevelUps(statRef.currentLevel);
 	}
 

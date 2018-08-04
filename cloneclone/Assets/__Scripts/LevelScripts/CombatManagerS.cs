@@ -141,7 +141,8 @@ public class CombatManagerS : MonoBehaviour {
 	IEnumerator CompleteCombat(){
 		AddDefeatedEnemies();
 		CameraFollowS.F.ClearStunnedEnemies();
-		CameraShakeS.C.TimeSleepEndCombat(0.3f);
+        CameraShakeS.C.TimeSleepEndCombat(0.3f);
+        RankManagerS.R.EndCombat(hasContinuation, doNotEndVerse);
 		completed = true;
 		yield return new WaitForSeconds(0.2f);
 		CameraEffectsS.E.ResetSound();
@@ -159,7 +160,6 @@ public class CombatManagerS : MonoBehaviour {
 		if (combatID > -1 && !RankManagerS.rankEnabled){
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}
-		RankManagerS.R.EndCombat(hasContinuation, doNotEndVerse);
 		TurnOffEnemies();
 		TurnOnObjects();
 		TurnOffObjects();
@@ -256,7 +256,12 @@ public class CombatManagerS : MonoBehaviour {
 
 		}else{
 			if (RankManagerS.rankEnabled){
-				RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, this, isContinuation);
+                if (rankEndSpeedMult > 1.25)
+                {
+                    RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, this, isContinuation, rankEndSpeedMult);
+                }else{
+                    RankManagerS.R.StartCombat(targetTimesInSeconds[DifficultyS.GetSinInt()], rankThresholds, combatID, this, isContinuation, 1.25f);
+                }
 			}
 			if (effectOnStart){
                 CameraEffectsS.E.ResetEffect(false, !resetEffectOnStart);

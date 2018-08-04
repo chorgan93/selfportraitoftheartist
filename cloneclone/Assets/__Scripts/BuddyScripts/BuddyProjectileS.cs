@@ -71,6 +71,12 @@ public class BuddyProjectileS : MonoBehaviour {
 	private bool saveCritical = false;
 	private bool saveEnraged = false;
 
+    float critMult = 2f;
+
+    [Header("Rank Properties")]
+    public float buddyScoreMult = 1f;
+    private float actingScoreMult = 1f;
+
 	void Start(){
 		_maxRange = range;
 		if (auraTrigger){
@@ -78,6 +84,9 @@ public class BuddyProjectileS : MonoBehaviour {
 			auraPos = auraTrigger.transform.localPosition;
 			//auraTrigger.transform.parent = null;
 		}
+        if (ignoreEnemyDefense > 0){
+            critMult = 1f;
+        }
 	}
 	
 	// Update is called once per frame
@@ -123,7 +132,7 @@ public class BuddyProjectileS : MonoBehaviour {
 							auraDamage*actingDamageMult
 							+(auraDamage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), 
 							actingStunMult, 2f, ignoreEnemyDefense, 0f, 0f);
-						RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical);
+                        RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical, actingScoreMult);
 
 
 					}
@@ -175,6 +184,7 @@ public class BuddyProjectileS : MonoBehaviour {
 			Instantiate(soundObj);
 		}
 
+
 		touchingWall = false;
 		stopAtWallTime = false;
 		
@@ -199,7 +209,11 @@ public class BuddyProjectileS : MonoBehaviour {
 		
 		if (buddyReference != null){
 			_myBuddy = buddyReference;
-		}
+        }
+        actingScoreMult = buddyScoreMult*_myBuddy.playerRef.GetWitchScoreMult();
+        if (_myBuddy.playerRef.playerAug.trustingAug){
+            actingScoreMult *= 2f;
+        }
 		
 		FaceDirection((aimDirection).normalized);
 
@@ -335,11 +349,12 @@ public class BuddyProjectileS : MonoBehaviour {
 				saveCritical = hitEnemy.isCritical;
 				float dmgDealt = hitEnemy.TakeDamage
 					(other.transform, actingKnockbackSpeed*_rigidbody.velocity.normalized*Time.fixedDeltaTime, 
-						damage*actingDamageMult+(damage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), actingStunMult, 2f);
+						damage*actingDamageMult+(damage*actingDamageMult*damageMultAddPerLevel*_myBuddy.playerRef.myStats.currentLevel), actingStunMult, critMult,
+                     ignoreEnemyDefense);
 
 				_myBuddy.playerRef.myStats.DesperateRecover(dmgDealt);
 
-				RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical);
+                RankManagerS.R.ScoreHit(3, dmgDealt, saveEnraged, saveCritical, actingScoreMult);
 
 				if (_myBuddy){
 					_myBuddy.playerRef.ExtendWitchTime();

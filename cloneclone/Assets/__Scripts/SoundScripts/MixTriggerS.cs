@@ -14,6 +14,7 @@ public class MixTriggerS : MonoBehaviour {
 
 	public bool activateOnStart = false;
 	public bool dontDestroyOnFadeOut = false;
+    public bool dontTurnOffCollider = false;
 
 	void Start(){
 		if (activateOnStart){
@@ -35,7 +36,7 @@ public class MixTriggerS : MonoBehaviour {
 				}
 			}
             activated = true;
-            if (!activateOnStart && GetComponent<Collider>() != null)
+            if (!activateOnStart && GetComponent<Collider>() != null && !dontTurnOffCollider)
             {
                 GetComponent<Collider>().enabled = false;
             }
@@ -65,11 +66,12 @@ public class MixTriggerS : MonoBehaviour {
 					}
 				}
 				activated = true;
-                if (!activateOnStart && GetComponent<Collider>() != null)
-                {
-                    GetComponent<Collider>().enabled = false;
-                }
+
 			}
+            if (!activateOnStart && activateOnce && GetComponent<Collider>() != null && !dontTurnOffCollider)
+            {
+                GetComponent<Collider>().enabled = false;
+            }
 		}
 
 	}

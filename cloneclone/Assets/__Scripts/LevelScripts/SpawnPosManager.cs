@@ -14,6 +14,8 @@ public class SpawnPosManager : MonoBehaviour {
 
 	public AllyFollowS placeAlly;
 
+    public bool overrideEnableNeededForMusicChange = false;
+
 	// Use this for initialization
 	void Awake () {
 		
@@ -44,7 +46,7 @@ public class SpawnPosManager : MonoBehaviour {
 	void Start(){
 
 		if (sceneCheckpoint){
-			if (sceneCheckpoint.gameObject.activeSelf){
+            if (sceneCheckpoint.gameObject.activeSelf || (overrideEnableNeededForMusicChange && PlayerInventoryS.I.HasReachedScene(Application.loadedLevel))){
 			if (spawningFromDeath || spawningFromTeleport){
 				sceneCheckpoint.ActivateMusic();
 			}

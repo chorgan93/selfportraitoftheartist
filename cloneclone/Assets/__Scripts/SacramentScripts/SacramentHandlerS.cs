@@ -52,6 +52,10 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	void Start () {
 
+        //for full build
+        quitGameOnEnd = false;
+        enableEscToQuit = false;
+
 		if (ControlManagerS.controlProfile == 1){
 			_usingMouse = true;
 		}else{
@@ -65,15 +69,25 @@ public class SacramentHandlerS : MonoBehaviour {
 	}
 
 	void Update(){
-		if (startedLoading){
-			if (async.progress >= 0.9f){
-				async.allowSceneActivation = true;
-			}
-		}else{
-			if (enableEscToQuit && Input.GetKeyDown(KeyCode.Escape)){
-				Application.Quit();
-			}
-		}
+        if (startedLoading)
+        {
+            if (async.progress >= 0.9f)
+            {
+                async.allowSceneActivation = true;
+            }
+        }
+        else
+        {
+            if (enableEscToQuit && Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+// todo colin turn off for real build!
+           // if (Input.GetKeyDown(KeyCode.Return)){
+           //     StartCoroutine(LoadNextScene());
+            //}
+
+        }
 		if (chooseOptionImage.gameObject.activeSelf){
 			if (useTextMatch){
 			chooseOptionImage.color = matchColorOption.color;

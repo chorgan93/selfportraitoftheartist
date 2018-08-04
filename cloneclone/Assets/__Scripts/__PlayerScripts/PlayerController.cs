@@ -154,12 +154,12 @@ public class PlayerController : MonoBehaviour {
 	public float transformedStaminaMult { get { return _transformedStaminaMult; } }
 	private float _transformedRecoveryMult = 3f;
 	public float transformedRecoverMult { get { return _transformedRecoveryMult; } }
-	private float _transformedDamageMult = 3f;
+	private float _transformedDamageMult = 10f;
 	public float transformedDamageMult { get { return _transformedDamageMult; } }
 	private float _transformedAbsorbMult = 3f;
 	public float transformedAbsorbMult { get { return _transformedAbsorbMult; } }
 	// transform activation properties
-	private float _transformRequireHoldTime = 0.3f;
+	private float _transformRequireHoldTime = 0.1f;
 	public float transformRequireHoldTime { get { return _transformRequireHoldTime; } }
 	private float _revertRequireHoldTime = 0.04f;
 	public float revertRequireHoldTime { get { return _revertRequireHoldTime; } }
@@ -513,6 +513,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 	}
+
+    public float GetWitchScoreMult(){
+        if (PlayerSlowTimeS.witchTimeActive){
+            return 2f;
+        }else{
+            return 1f;
+        }
+    }
 
 	public void ExtendWitchTime(){
 		witchReference.ExtendWitchTime();
@@ -2818,14 +2826,15 @@ public class PlayerController : MonoBehaviour {
 
 	private void AttackAnimationTrigger(bool heavy = false, bool taunt = false){
 
-		if (heavy){
+        if (taunt)
+        {
+            _myAnimator.SetBool("HeavyAttacking", false);
+            _myAnimator.SetInteger("WeaponNumber", 0);
+        }else if (heavy){
 			if (!_doingDashAttack){
 			_myAnimator.SetBool("HeavyAttacking", true);
 			}
 			_myAnimator.SetInteger("WeaponNumber", attackingWeaponAug.weaponNum);
-		}else if (taunt){
-			_myAnimator.SetBool("HeavyAttacking", false);
-			_myAnimator.SetInteger("WeaponNumber", 0);
 		}else{
 			_myAnimator.SetBool("HeavyAttacking", false);
 			_myAnimator.SetInteger("WeaponNumber", _attackingWeapon.weaponNum);

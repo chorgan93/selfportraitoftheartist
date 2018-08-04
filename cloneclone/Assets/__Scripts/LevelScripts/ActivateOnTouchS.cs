@@ -12,6 +12,7 @@ public class ActivateOnTouchS : MonoBehaviour {
 	private bool doNotTrigger = false;
 
 	public bool allowMultipleUse = false;
+    public bool doNotTurnOff = false;
 	private bool turnedOn = false;
 
 
@@ -32,7 +33,10 @@ public class ActivateOnTouchS : MonoBehaviour {
 
 			if (!allowMultipleUse){
 			turnedOn = true;
-                GetComponent<Collider>().enabled = false;
+                if (!doNotTurnOff)
+                {
+                    GetComponent<Collider>().enabled = false;
+                }
 			}
 		}
 	}
@@ -50,7 +54,10 @@ public class ActivateOnTouchS : MonoBehaviour {
 		}
 		didCombatCheck = true;
         if (doNotTrigger){
-            GetComponent<Collider>().enabled = false;
+            if (!doNotTurnOff)
+            {
+                GetComponent<Collider>().enabled = false;
+            }
         }
 	}
 }

@@ -117,10 +117,10 @@ public class DestructibleItemS : EnemyS {
 				_myDestructibleCollider.enabled = false;
 				DestructibleDead();
 					CameraShakeS.C.SmallShake();
-					CameraShakeS.C.TimeSleep(destroySleepTime);
+					CameraShakeS.C.TimeSleep(destroySleepTime/2f);
 					}else{
 					CameraShakeS.C.MicroShake();
-					CameraShakeS.C.SmallSleep();
+					//CameraShakeS.C.SmallSleep();
 				}
 			SpawnBits(destructionRotation, hitPos);
 			HitSprite();

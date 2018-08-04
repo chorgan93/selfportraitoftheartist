@@ -240,7 +240,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 	float getCurrentXPerHealth(){
 		float combinedXPerHealth = 0f;
 		for (int i = 0; i < myEnemies.Count; i++){
-			combinedXPerHealth += myEnemies[i].healthBarXSize/myEnemies[i].maxHealth;
+            combinedXPerHealth += myEnemies[i].healthBarXSize/myEnemies[i].actingMaxHealth;
 		}
 		if (myEnemies.Count > 0){
 			combinedXPerHealth/=(myEnemies.Count*1f);

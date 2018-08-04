@@ -37,7 +37,7 @@ public class LoadFileMenu : MonoBehaviour
         {
             currentLoadFile = currentLoad;
         }
-        loadFileCursor.transform.position = myLoadFiles[currentLoad].nameText.transform.position;
+        loadFileCursor.transform.position = myLoadFiles[currentLoadFile].nameText.transform.position;
 
         willNeedToOverwrite = forOverwrite;
         if (forOverwrite){
@@ -178,6 +178,8 @@ public class LoadFileMenu : MonoBehaviour
 
             if (!overwrite) {
                 SaveLoadS.Load(SaveLoadS.currentSaveSlot);
+            }else if (GameDataS.current != null){
+                GameDataS.current.RemoveCurrent();
             }
         }
     }

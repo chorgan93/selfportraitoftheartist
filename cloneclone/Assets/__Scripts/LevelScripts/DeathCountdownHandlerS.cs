@@ -22,6 +22,16 @@ public class DeathCountdownHandlerS : MonoBehaviour {
 	
 	}
 
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.V)){
+            // test kill Death countdown!!
+            DeathCountdownS.DC.ActivateCountdown(1f);
+        }
+    }
+#endif
+
 
 	public void ActivateDeath(){
 		playerRef.TakeDamage(null, 99999f, Vector3.zero, 0.2f, true, true, true);

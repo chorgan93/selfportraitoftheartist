@@ -40,7 +40,7 @@ public class LoadFileS : MonoBehaviour {
                 nameText.text = "FILE " + (saveDataNum + 1).ToString() + ": " + myData.playerInventory.playerName;
             }
 
-            currentChapterName.text = myData.playerInventory.lastChapterName;
+            currentChapterName.text = myData.playerInventory.lastChapterName + " (" + myData.currentDarkness.ToString("F2") + "%)";
             lastSceneName.text = "Last Checkpoint: " + myData.playerInventory.lastSavePointName;
             string timeString = "Total Playtime: ";
             if (myData.playerInventory.totalPlayTimeHours < 10){
@@ -65,6 +65,7 @@ public class LoadFileS : MonoBehaviour {
                 timeString += myData.playerInventory.totalPlayTimeSeconds + "S ";
             }
             playTimeText.text = timeString;
+
         }
 		
 	}

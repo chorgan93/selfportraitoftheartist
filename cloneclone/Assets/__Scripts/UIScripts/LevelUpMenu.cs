@@ -89,8 +89,8 @@ public class LevelUpMenu : MonoBehaviour
 
         playerName.text = TextInputUIS.playerName;
 
-        //allowRevertProgress = StoryProgressionS.storyProgress.Contains(allowRevertProgressNum);
-        allowRevertProgress = true; // TODO colin turn off after build!
+        allowRevertProgress = StoryProgressionS.storyProgress.Contains(allowRevertProgressNum);
+        //allowRevertProgress = true; // TODO colin turn off after build!
         if (!allowRevertProgress)
         {
             TurnOffRevertProgressOption();
@@ -240,6 +240,14 @@ public class LevelUpMenu : MonoBehaviour
                 else
                 {
                     currentPos--;
+                    if (currentPos == levelMenuItems.Length - 1 && !PlayerInventoryS.I.CheckForItem(422))
+                    {
+                        currentPos--;
+                    }
+                    if (currentPos == levelMenuItems.Length - 2 && !PlayerInventoryS.I.CheckForItem(421))
+                    {
+                        currentPos--;
+                    }
                     pRef.ResetTimeMax();
                     if (currentPos < 0)
                     {
@@ -267,7 +275,14 @@ public class LevelUpMenu : MonoBehaviour
                 pRef.ResetTimeMax();
                 if (levelMenuItems[currentPos].CanBeUpgraded())
                 {
-                    pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
+                    if (levelMenuItems[currentPos].IsRevertUpgrade)
+                    {
+                        pRef.myStats.AddStat(PlayerInventoryS.I.GetNextRevertLevelType(), true);
+                    }
+                    else
+                    {
+                        pRef.myStats.AddStat(levelMenuItems[currentPos].upgradeID);
+                    }
                     levelMenuItems[currentPos].BuyUpgrade(currentPos, levelHandler);
                     if (levelUpSound)
                     {
@@ -277,7 +292,9 @@ public class LevelUpMenu : MonoBehaviour
                     {
                         currentPos = 0;
                     }
+
                     UpdateAvailableLevelUps();
+
                 }
             }
 
@@ -638,13 +655,14 @@ public class LevelUpMenu : MonoBehaviour
         //pRef.TriggerResting();
     }
 
-    private void UpdateAvailableLevelUps()
+    private void UpdateAvailableLevelUps(bool doEffect = true)
     {
         for (int i = 0; i < levelMenuItems.Length; i++)
         {
             if (i < 4)
             {
-                levelMenuItems[i].Initialize(levelHandler.nextLevelUps[i], pRef.myStats.uiReference.cDisplay);
+                    levelMenuItems[i].Initialize(levelHandler.nextLevelUps[i], pRef.myStats.uiReference.cDisplay);
+
             }
             else if (i == 4)
             {
@@ -656,7 +674,10 @@ public class LevelUpMenu : MonoBehaviour
             }
         }
         levelMenuItems[currentPos].ShowText();
-        UpdateUpgradeEffect();
+        if (doEffect)
+        {
+            UpdateUpgradeEffect();
+        }
 
         StoryProgressionS.SaveProgress();
     }
@@ -873,14 +894,14 @@ public class LevelUpMenu : MonoBehaviour
             }
             if (i < 9 && i < PlayerInventoryS.I.revertDarknessNums.Count){
 
-                revertMenuCorruptionTexts[i].text = "Corruption : " + PlayerInventoryS.I.revertDarknessNums[i].ToString("F2") + "%";
 
                 if (i > 0)
                 {
+                    revertMenuCorruptionTexts[i].text = "Corruption : " + PlayerInventoryS.I.revertDarknessNums[i].ToString("F2") + "%";
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = textStartColor;
                 }else{
+                    revertMenuCorruptionTexts[i].text = "Corruption : ---";
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = Color.white;
-                    Debug.Log("Coloring sacrament i!");
                 }
             }else{
 
@@ -918,7 +939,7 @@ public class LevelUpMenu : MonoBehaviour
         revertMenuProper.gameObject.SetActive(false);
     }
 
-    public void RevertToPreviousTrack(int trackToReturnTo){
+    public void RevertToPreviousTrack(int trackToReturnTo, bool fadeMusic = true){
 
         // first, resave any currently reverted progress
         PlayerInventoryS.I.MergeRevertedData();
@@ -930,15 +951,18 @@ public class LevelUpMenu : MonoBehaviour
 
         PlayerController.killedFamiliar = false;
 
+        if (fadeMusic && BGMHolderS.BG != null){
+            BGMHolderS.BG.EndAllLayers(false,true);
+        }
+
         // roll back data to selected chapter
         PlayerInventoryS.I.OverwriteReversionData();
         for (int i = revertMenuDataObjs.Length - 1; i >= trackToReturnTo; i--){
 
-            PlayerInventoryS.I.RevertDataForChapter(revertMenuDataObjs[trackToReturnTo]);
+            PlayerInventoryS.I.RevertDataForChapter(revertMenuDataObjs[i]);
         }
 
-        Debug.Log("Overwriting data to track " + trackToReturnTo);
-
+        PlayerInventoryS.I.dManager.ClearAll();
 
     }
 }

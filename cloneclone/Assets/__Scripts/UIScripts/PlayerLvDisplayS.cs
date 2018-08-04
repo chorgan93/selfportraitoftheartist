@@ -16,6 +16,7 @@ public class PlayerLvDisplayS : MonoBehaviour {
 
 	private Color textStartColor;
 	private Color highlightColor = Color.green;
+    private Color reduceColor = Color.red;
 
 	private bool _initialized = false;
 
@@ -61,38 +62,94 @@ public class PlayerLvDisplayS : MonoBehaviour {
 
 	}
 
-	public void HighlightStat(int statToEdit){
+    public void HighlightStat(int statToEdit, bool colorRed = false){
 		UpdateDisplays();
 		switch (statToEdit){
 		default: 
 			break;
 		case (0):
-			hpStat.text = (Mathf.FloorToInt(playerStatRef.maxHealth*1f+1.5f)).ToString();
-			hpStat.color = highlightColor;
+                if (colorRed)
+                {
+                    hpStat.text = (Mathf.FloorToInt(playerStatRef.maxHealth * 1f - 1.5f)).ToString();
+                    hpStat.color = reduceColor;
+                }
+                else
+                {
+                    hpStat.text = (Mathf.FloorToInt(playerStatRef.maxHealth * 1f + 1.5f)).ToString();
+                    hpStat.color = highlightColor;
+                }
 			break;
 		case (1):
-			stStat.text = (playerStatRef.manaLevel*1f+1f).ToString();
-			stStat.color = highlightColor;
+                if (colorRed)
+                {
+                    stStat.text = (playerStatRef.manaLevel * 1f - 1f).ToString();
+                    stStat.color = reduceColor;
+                }
+                else
+                {
+                    stStat.text = (playerStatRef.manaLevel * 1f + 1f).ToString();
+                    stStat.color = highlightColor;
+                }
 			break;
 		case (2):
-			mnStat.text = (playerStatRef.maxCharge+1f).ToString();
-			mnStat.color = highlightColor;
+                if (colorRed)
+                {
+                    mnStat.text = (playerStatRef.maxCharge - 1f).ToString();
+                    mnStat.color = reduceColor;
+                }
+                else
+                {
+                    mnStat.text = (playerStatRef.maxCharge + 1f).ToString();
+                    mnStat.color = highlightColor;
+                }
 			break;
 		case (3):
-			vtStat.text = (playerStatRef.virtueAmt+4f).ToString();
-			vtStat.color = highlightColor;
+                if (colorRed)
+                {
+                    vtStat.text = (playerStatRef.virtueAmt - 4f).ToString();
+                    vtStat.color = reduceColor;
+                }
+                else
+                {
+                    vtStat.text = (playerStatRef.virtueAmt + 4f).ToString();
+                    vtStat.color = highlightColor;
+                }
 			break;
 		case (4):
-			abStat.text = (playerStatRef.currentChargeRecoverLv+1).ToString();
-			abStat.color = highlightColor;
+                if (colorRed)
+                {
+                    abStat.text = (playerStatRef.currentChargeRecoverLv - 1).ToString();
+                    abStat.color = reduceColor;
+                }
+                else
+                {
+                    abStat.text = (playerStatRef.currentChargeRecoverLv + 1).ToString();
+                    abStat.color = highlightColor;
+                }
 			break;
 		case (5):
-			rcStat.text = (playerStatRef.currentRecoverRateLv+1).ToString();
-			rcStat.color = highlightColor;
+                if (colorRed)
+                {
+                    rcStat.text = (playerStatRef.currentRecoverRateLv - 1).ToString();
+                    rcStat.color = reduceColor;
+                }
+                else
+                {
+                    rcStat.text = (playerStatRef.currentRecoverRateLv + 1).ToString();
+                    rcStat.color = highlightColor;
+                }
 			break;
 		case (6):
-			pwStat.text = (playerStatRef.strengthLvl+1f).ToString();
-			pwStat.color = highlightColor;
+                if (colorRed)
+                {
+                    pwStat.text = (playerStatRef.strengthLvl - 1f).ToString();
+                    pwStat.color = reduceColor;
+                }
+                else
+                {
+                    pwStat.text = (playerStatRef.strengthLvl + 1f).ToString();
+                    pwStat.color = highlightColor;
+                }
 			break;
 		
 		}

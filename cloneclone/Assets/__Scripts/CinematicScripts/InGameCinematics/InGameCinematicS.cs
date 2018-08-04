@@ -50,7 +50,9 @@ public class InGameCinematicS : MonoBehaviour {
     private bool skipButtonDown = false;
     public GameObject[] forceONonSkip;
     public GameObject[] forceOFFonSkip;
-	
+
+    [Header("Messiah Properties")]
+    public PlayerController overwritePRef;
 
 	// Use this for initialization
 	void Awake () {
@@ -59,7 +61,14 @@ public class InGameCinematicS : MonoBehaviour {
 		if(noBuddy){
 			turnOffBuddies = true;
 		}
-		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+        if (!overwritePRef)
+        {
+            _pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
+        else
+        {
+            _pRef = overwritePRef;
+        }
 
 	}
 

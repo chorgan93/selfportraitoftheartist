@@ -24,12 +24,20 @@ public class LookOnTouchEnemiesS : MonoBehaviour {
 		bool canAct = true;
 		if (doNotActivateOnRewindNum >= 0){
 			if (PlayerInventoryS.I.CheckHeal(doNotActivateOnRewindNum)){
-				canAct = false;
+                canAct = false;
+                if (GetComponent<Collider>() != null)
+                {
+                    GetComponent<Collider>().enabled = false;
+                }
 			}
 		}
 		if (doNotActivateOnHealNum >= 0){
 			if (PlayerInventoryS.I.CheckCharge(doNotActivateOnHealNum)){
-				canAct = false;
+                canAct = false;
+                if (GetComponent<Collider>() != null)
+                {
+                    GetComponent<Collider>().enabled = false;
+                }
 			}
 		}
 		return canAct;
@@ -59,6 +67,9 @@ public class LookOnTouchEnemiesS : MonoBehaviour {
 				if (currentTarget > lookPositions.Count-1){
 					isLooking = false;
 					CameraFollowS.F.ResetPOI();
+                    if (GetComponent<Collider>() != null){
+                        GetComponent<Collider>().enabled = false;
+                    }
 				}else{
 					CameraFollowS.F.SetNewPOI(lookPositions[currentTarget]);
 					lookCountdown = lookDurations[currentTarget];

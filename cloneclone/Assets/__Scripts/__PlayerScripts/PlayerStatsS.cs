@@ -22,8 +22,8 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float anxiousChargeRate = 0.025f;
 
-	private const float DARKNESS_ADD_RATE = 0.006f;
-	private const float TRANSFORMED_RATE = 50f;
+	private const float DARKNESS_ADD_RATE = 0.009f;
+	private const float TRANSFORMED_RATE = 5f;
 	private const float DARKNESS_ADD_DEATH = 3.5f;
 	private const float DARKNESS_COLIN_HEAL = 75f;
 	public const float DARKNESS_MAX = 100f;
@@ -515,10 +515,10 @@ public class PlayerStatsS : MonoBehaviour {
                 }
                 else
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f;
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 1.5f;
                     if (myPlayerController.isTransformed)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f;
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f;
                     }
                 }
             }
@@ -537,7 +537,7 @@ public class PlayerStatsS : MonoBehaviour {
                 }
                 else
                 {
-                    _currentDarkness += 1.5f;
+                    _currentDarkness += 0.75f;
                 }
             }
             else
@@ -796,36 +796,85 @@ public class PlayerStatsS : MonoBehaviour {
 		_addedVirtue = VIRTUE_ADD_AMT*PlayerInventoryS.I.GetVPUpgradeCount();
 	}
 
-	public void AddStat(int i){
-		if (i > -1){
-		if (i == 0){
-			_addedHealth+= HEALTH_ADD_AMT;
-			_currentHealth+= HEALTH_ADD_AMT;
-		}
-		if (i == 1){
-			_addedMana++;
-			_currentMana+=STAMINA_ADD_PER_LVL;
-		}
-		if (i == 2){
-			_currentCharge+=1f;
-			_addedCharge+=1f;
+	public void AddStat(int i, bool revertStat = false){
+        if (revertStat){
+            if (i > -1)
+            {
+                if (i == 0)
+                {
+                    _addedHealth -= HEALTH_ADD_AMT;
+                    _currentHealth -= HEALTH_ADD_AMT;
+                }
+                if (i == 1)
+                {
+                    _addedMana--;
+                    _currentMana -= STAMINA_ADD_PER_LVL;
+                }
+                if (i == 2)
+                {
+                    _currentCharge -= 1f;
+                    _addedCharge -= 1f;
 
-				SetMinChargeUse(myPlayerController.myBuddy.costPerUse, myPlayerController.myBuddy.useAllCharge);
-		}
-		if (i == 3){
-			//_addedStrength++;
-			_addedVirtue += VIRTUE_ADD_AMT;
-		}
-		if (i == 4){
-			_currentChargeRecoverLv++;
-		}
-		if (i == 5){
-			_addedRateLv++;
-		}
-		if (i == 6){
-			_addedStrength ++;
-		}
-		_addedLevel++;
+                    SetMinChargeUse(myPlayerController.myBuddy.costPerUse, myPlayerController.myBuddy.useAllCharge);
+                }
+                if (i == 3)
+                {
+                    //_addedStrength++;
+                    _addedVirtue -= VIRTUE_ADD_AMT;
+                }
+                if (i == 4)
+                {
+                    _currentChargeRecoverLv--;
+                }
+                if (i == 5)
+                {
+                    _addedRateLv--;
+                }
+                if (i == 6)
+                {
+                    _addedStrength--;
+                }
+                _addedLevel--;
+            }
+        }else{
+            if (i > -1)
+            {
+                if (i == 0)
+                {
+                    _addedHealth += HEALTH_ADD_AMT;
+                    _currentHealth += HEALTH_ADD_AMT;
+                }
+                if (i == 1)
+                {
+                    _addedMana++;
+                    _currentMana += STAMINA_ADD_PER_LVL;
+                }
+                if (i == 2)
+                {
+                    _currentCharge += 1f;
+                    _addedCharge += 1f;
+
+                    SetMinChargeUse(myPlayerController.myBuddy.costPerUse, myPlayerController.myBuddy.useAllCharge);
+                }
+                if (i == 3)
+                {
+                    //_addedStrength++;
+                    _addedVirtue += VIRTUE_ADD_AMT;
+                }
+                if (i == 4)
+                {
+                    _currentChargeRecoverLv++;
+                }
+                if (i == 5)
+                {
+                    _addedRateLv++;
+                }
+                if (i == 6)
+                {
+                    _addedStrength++;
+                }
+                _addedLevel++;
+            }
 			if (i == 2){
 			_uiReference.UpdateFills(true,true);
 			}else{
@@ -925,6 +974,9 @@ public class PlayerStatsS : MonoBehaviour {
         if (pRef.isNatalie)
         {
             dmg *= 0.2f;
+        }
+        if (PlayerAugmentsS.MARKED_AUG){
+            dmg *= 2.5f;
         }
         if (pRef.playerAug.scornedAug){
             dmg *= scornedEnemyDmgMult;
@@ -1045,15 +1097,16 @@ public class PlayerStatsS : MonoBehaviour {
 						dontDoCountUp = false;
                             CameraEffectsS.E.fadeRef.skipPercentScene = true;
                         }else if (!SceneManagerS.inInfiniteScene){
+                            DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
                             if (_isMarked)
                             {
                                 if (PlayerController.killedFamiliar)
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 5f/5f;
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 5f;
                                 }
                             }
                             else
@@ -1067,7 +1120,6 @@ public class PlayerStatsS : MonoBehaviour {
                                     _currentDarkness += DARKNESS_ADD_DEATH;
                                 }
                             }
-                            DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
                            
 					}
 
@@ -1199,11 +1251,11 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 5f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 5f;
                     }
                 }
                 else
@@ -1214,7 +1266,7 @@ public class PlayerStatsS : MonoBehaviour {
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 5f;
                     }
                 }
             }
@@ -1269,9 +1321,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public float strengthAmt(){
 
-        if (arcadeMode || pRef.isNatalie){
+        if (arcadeMode){
 			return 2f;
-		}else{
+        }else if (pRef.isNatalie){
+            return 3f;
+        }else{
 			return (_baseStrength+_addedStrength*0.075f);
 		}
 	}

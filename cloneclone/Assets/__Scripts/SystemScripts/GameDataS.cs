@@ -43,6 +43,25 @@ public class GameDataS {
 
 	}
 
+    public void RemoveCurrent(){
+        current = null;
+
+        SpawnPosManager.whereToSpawn = GameOverS.revivePosition = 0;
+        StoryProgressionS.storyProgress.Clear();
+        if (PlayerInventoryS.I)
+        {
+            PlayerInventoryS.I.NewGame();
+        }
+        else
+        {
+            PlayerInventoryS.inventoryData = null;
+        }
+        InGameMenuManagerS.hasUsedMenu = false;
+        InGameMenuManagerS.allowMenuUse = false;
+        PlayerStatsS._currentDarkness = 0;
+        PlayerCollectionS.currencyCollected = 0;
+    }
+
 	public void LoadCurrent(){
 
 		GameOverS.reviveScene = currentReviveScene;

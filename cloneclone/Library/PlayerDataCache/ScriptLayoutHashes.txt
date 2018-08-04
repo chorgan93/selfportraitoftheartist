@@ -1,6 +1,6 @@
-OSXStandalone
+WindowsStandalone
 PlayerPath?
-/Users/colinhorgan/Desktop/Lucah Born of a Dream Recording Build/Lucah Born of a Dream.app
+/Users/colinhorgan/Downloads/sdk/tools/ContentBuilder/content/Lucah Born of a Dream/Lucah Born of a Dream.exe
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -283,7 +283,7 @@ a71115c4c90f78f4d609cfcb0a7e6277 Assembly-CSharp.dll:.FadeEnvironmentS
 daabd8d8800a87cff11f866c4d06a232 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ContrastStretch
 927e01f8fc9826544f2cb18c429c9a1e Assembly-CSharp.dll:.SceneManagerS
 31ac2865258ddbc8f82525645ca875c2 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration
-5dda7ccd9afc551e2a7486a53cbd2235 Assembly-CSharp.dll:.ChargeAttackS
+b36ea3f5341db569c398cfe4fff2de5b Assembly-CSharp.dll:.ChargeAttackS
 696548e15c0dca9e121f53d5cb58814f Assembly-CSharp.dll:.ItemS
 1bd97b69962481d6f12030f1a76d994c Assembly-CSharp.dll:.PlayerDashEffectS
 7d5553d8d0204f0dca4b452c1edf3447 Assembly-CSharp.dll:.PlayerInventoryS
@@ -431,7 +431,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 40d41f498420a9b3985f6fc7e5763447 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Bloom
 dced538a0ea6d230baf7efd322b39b73 Assembly-CSharp.dll:.RoomSpawner
-0802a967e8b77c4e9ddd634e261c37c7 Assembly-CSharp.dll:.BuddyProjectileS
+38e6c3c800cf2d033be5bb7b418cff5d Assembly-CSharp.dll:.BuddyProjectileS
 6780aaeab61664316830b3458f717530 Assembly-CSharp.dll:.EnemyBehaviorStateS
 df7e4c2f205992635d2ffd9c41a42816 Assembly-CSharp.dll:.SetTrainStopS
 751927cec789ca835536d9149c314d36 Assembly-CSharp.dll:.EnemyChaseBehavior
@@ -462,7 +462,7 @@ dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics
 42f7cad7a9eeb640d2b6685beabf6493 Assembly-CSharp.dll:.DodgeLinesS
 e5a13e10e5ab169832e1fc45cfd3bc81 Assembly-CSharp.dll:.SacramentCombatTextS
 0e2c76deff3fcf11af5392bed8465518 Assembly-CSharp.dll:.MerchantUIS
-3889f5ec44d93fc545e372c4476ff5d8 Assembly-CSharp.dll:.MainMenuNavigationS
+eaf5de4867cdd29caa49dbd062244766 Assembly-CSharp.dll:.MainMenuNavigationS
 9865a0db77364f8930077972a1d5efab Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.BloomOptimized
 cbb0f91db00a13cbe87789d0ed8be3bd Assembly-CSharp.dll:.FlashMatS
 a23047b7056d1fac7bd2d51fe9dc5723 Assembly-CSharp.dll:.MeleeBuddyS
@@ -554,7 +554,7 @@ c5755b7daf8f86003477fba8acbdedfe Assembly-CSharp.dll:.RankManagerS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadingTextS
 84bd484771212f5e0666ec97ec9a7162 Assembly-CSharp.dll:.SpriteDistortionPlayerS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DemoResetS
-d0c71611879b1cecdde6ad8dde51cf79 Assembly-CSharp.dll:.ActivateOnTouchS
+91eae59c40f1eede04d6647ca72d1319 Assembly-CSharp.dll:.ActivateOnTouchS
 7b6eb2b1e098c3cbc312b831fe853e69 Assembly-CSharp.dll:.FadeInTextObjS
 fc27b2e5f8a3343428520494c91aded3 Assembly-CSharp.dll:.BuddySwitchEffectS
 05cd7e4fd0ecb245d269c26e4bd15bea Assembly-CSharp.dll:.BuddyS
@@ -596,7 +596,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-d4278cd4171c976692c05bd4a6306b01 Assembly-CSharp.dll:.ProjectileS
+be89320f1a2cfe6b992c3d801153a53b Assembly-CSharp.dll:.ProjectileS
 0fcf28e8ab6e6d5e964da1938e4b3fef Assembly-CSharp.dll:.LevelUpItemS
 d96d209755b31b5983402d638eac6354 Assembly-CSharp.dll:.SFXObjS
 3f8bfb8da25ef7bc9cbbffa864d767e0 Assembly-CSharp.dll:.MovePlayerS
@@ -617,7 +617,7 @@ f69c66944f1973cb5bfc2c9b73a8a4b1 Assembly-CSharp.dll:.SacramentHurtEffectS
 d86309adc5a056dd999b890afe4cdc2e Assembly-CSharp.dll:.CustomizableControlsUIS
 4aadab9e3e4d34f6e069833451e815bb Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CreaseShading
 9c7acd3192594d4ea5a5fb4407eef3fb Assembly-CSharp.dll:.RoomTeleporterS
-dd9740319a1d344ccf7e0fd5a4c7604d Assembly-CSharp.dll:.SpawnPosManager
+d03e3b1b1afdf8394c98ea14f5923c23 Assembly-CSharp.dll:.SpawnPosManager
 27eae3455899757aa279e65f1d80198a Assembly-CSharp.dll:.EnemyHealthBarS
 90066762c4829bfb6ce78a5263582356 Assembly-CSharp.dll:.RotateOnAxis
 a5b8b1b7a1ea186a034c7f2cb86a8fc4 Assembly-CSharp.dll:.SacramentTextBGS
@@ -654,7 +654,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.FadeEnvironmentTriggerS
 37aae3001bc805daba215a96b5b383be Assembly-CSharp.dll:.ChargeRiseEffectS
 558627f8193e894e92307e993cef6c04 Assembly-CSharp.dll:.EnemyDetectS
-d66ae68904c94e06362efac8276fd7f4 Assembly-CSharp.dll:.MixTriggerS
+cb72da7fedd39f73d6ebaddeb77ff5f2 Assembly-CSharp.dll:.MixTriggerS
 c2685ce484305f4add813f7dbc516833 Assembly-CSharp.dll:.SimpleEnemyDetectS
 00566559aaf2ba51543e32371603951b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndGrain
 cb0dcfbbe03071deace8175653fd856e Assembly-CSharp.dll:.TauntDialogueS
@@ -686,7 +686,7 @@ a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAsse
 a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
 fb50e4bf24f18da650d52cb4215eac17 Assembly-CSharp.dll:.NatalieOverrideS
 9407fb2718dbc978f76b0a6f480bd9b2 Assembly-CSharp.dll:.CameraFollowS
-c6a15b5306277764d3a71a0c1e64a7f2 Assembly-CSharp.dll:.InGameCinematicS
+c4bd5d3f6e1beb5adab64eaf42651898 Assembly-CSharp.dll:.InGameCinematicS
 32487e01f2722ae58136a31cfd829b4a Assembly-CSharp.dll:.ReflectColorChange
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DifficultyS
 a6b91972ad1601db3b38f764ea6ef5e0 Assembly-CSharp.dll:.BarrierS

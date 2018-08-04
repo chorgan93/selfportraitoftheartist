@@ -57,8 +57,8 @@ public class CreditsManagerS : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.E))
             {
-                scrollRate = fastForwardRate;
-                fastForwarding = true;
+                //scrollRate = fastForwardRate;
+                //fastForwarding = true;
             }
             else{
                 scrollRate = startScrollRate;

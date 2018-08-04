@@ -62,7 +62,7 @@ public class ChargeAttackS : MonoBehaviour {
 	private float floatAxisA = 3f;
 	private float floatAxisB = 1.75f;
 	private float currentAngle = 0f;
-	private float angleRate = 8f;
+	private float angleRate = 11f;
 	private int maxHits = 1;
 	private int currentHit = 0;
 	private float startRotate = -1;
@@ -79,6 +79,10 @@ public class ChargeAttackS : MonoBehaviour {
     [Header("Fos Sound Properties")]
     public AudioSource fosLoop;
     public GameObject fosShootSound;
+
+    [Header("Rank Properties")]
+    public float rankScoreMultiplier = 1f;
+    private float actingRankScoreMultiplier = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -368,6 +372,9 @@ public class ChargeAttackS : MonoBehaviour {
 			Instantiate(soundObj);
 		}
 
+        actingRankScoreMultiplier = rankScoreMultiplier;
+        actingRankScoreMultiplier *= myPlayer.GetWitchScoreMult() * (1f + (myPlayer.ActiveBios * 0.5f)) * myPlayer.playerAug.GetEnragedMult();
+
 
 	}
 
@@ -447,7 +454,7 @@ public class ChargeAttackS : MonoBehaviour {
 						myPlayer.playerAug.AquaAugAmt(), killAtLessThan*DeterminedMult());
 				myPlayer.AnimationStop(hitStopTime);
 
-				RankManagerS.R.ScoreHit(2, dmgDealt, saveEnraged, saveCritical);
+                RankManagerS.R.ScoreHit(2, dmgDealt, saveEnraged, saveCritical, actingRankScoreMultiplier);
 
 
 				myPlayer.myStats.DesperateRecover(dmgDealt);

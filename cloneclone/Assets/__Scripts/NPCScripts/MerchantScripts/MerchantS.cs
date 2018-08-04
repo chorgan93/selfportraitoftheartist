@@ -23,7 +23,7 @@ public class MerchantS : MonoBehaviour {
 	private PlayerDetectS playerDetect;
 	private PlayerCurrencyDisplayS cDisplay;
 
-    public int stopTalkingAtProgress = 52;
+    public int stopTalkingAtProgress = 54;
     private bool stopTalking = false;
 
     private SpriteDistortionS childDistortion;

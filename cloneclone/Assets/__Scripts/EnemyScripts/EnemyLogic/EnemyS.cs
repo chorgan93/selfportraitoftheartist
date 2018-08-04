@@ -895,7 +895,10 @@ public class EnemyS : MonoBehaviour {
 	public void ResetEnraged(){
 		_isEnraged = false;
 		tempEnragedTime = 0f;
-		myEnraged.DeactivateEffect();
+        if (myEnraged != null)
+        {
+            myEnraged.DeactivateEffect();
+        }
 	}
 
 	private void VulnerableEffect(){
@@ -1296,6 +1299,9 @@ public class EnemyS : MonoBehaviour {
 				dmg*=PlayerAugmentsS.HATED_MULT;
 			}
 		}
+        if (ignoreDefense > 0){
+            stunMult = 0f;
+        }
 
 		float damageTaken = 0;
 		float actingDamageMultiplier = damageMultiplier*CorruptedDefenseMult();

@@ -51,6 +51,8 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
     private float changeWanderTargetCountdown;
     private Vector3 currentMoveTarget;
 
+    private bool failedTeleCheck = false;
+
 
     private bool didWallRedirect = false;
 
@@ -112,62 +114,81 @@ public class EnemyTeleportBehavior : EnemyBehaviorS {
 
 		lastTeleport = null;
 
-		if (telePointRefs.Count <= 0){
+		if (telePointRefs.Count <= 0 && !failedTeleCheck){
 			telePoints = GameObject.FindGameObjectsWithTag("Teleport");
-			for (int i = 0; i < telePoints.Length; i++){
-				telePointRefs.Add(telePoints[i].GetComponent<PlayerDetectS>());
-			}
-		}
-
-		if (teleportTimeFinalCooldown <= 0){
-			teleportTimeFinalCooldown = teleportTimeCooldown;
-		}
-
-		if (teleportDragAmt > 0){
-			myEnemyReference.myRigidbody.drag = teleportDragAmt*EnemyS.FIX_DRAG_MULT;
-		}
-
-		if (setVelocityToZeroOnStart){
-			myEnemyReference.myRigidbody.velocity = Vector3.zero;
-		}
-
-        didWallRedirect = false;
-        if (searchPOIName != "" && poi == null)
-        {
-            GameObject searchPoi = GameObject.Find(searchPOIName);
-            if (searchPoi)
+            if (telePoints.Length <= 0)
             {
-                poi = searchPoi;
-            }
-        }
-        if (poi == null || poi == myEnemyReference.gameObject)
-        {
-            if (myEnemyReference.GetTargetReference() != null)
-            {
-                poi = myEnemyReference.GetTargetReference().gameObject;
+                failedTeleCheck = true;
+#if UNITY_EDITOR
+                Debug.LogError("NO TELEPORT POINTS IN SCENE!!");
+#endif
             }
             else
             {
-                poi = myEnemyReference.gameObject;
+                for (int i = 0; i < telePoints.Length; i++)
+                {
+                    telePointRefs.Add(telePoints[i].GetComponent<PlayerDetectS>());
+                }
             }
-        }
-        if (wanderSpeedFixed > 0)
-        {
-            currentWanderSpeed = wanderSpeedFixed;
-        }
-        else
-        {
-            currentWanderSpeed = Random.Range(wanderSpeedMin, wanderSpeedMax);
-        }
-        currentWanderSpeed *= currentDifficultyMult;
-        changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
+		}
 
-        currentMoveTarget = transform.position + Random.insideUnitSphere * moveTargetRange;
-        currentMoveTarget.z = transform.position.z;
-
-        if (wanderDragAmt > 0)
+        if (!failedTeleCheck)
         {
-            myEnemyReference.myRigidbody.drag = wanderDragAmt * EnemyS.FIX_DRAG_MULT;
+            if (teleportTimeFinalCooldown <= 0)
+            {
+                teleportTimeFinalCooldown = teleportTimeCooldown;
+            }
+
+            if (teleportDragAmt > 0)
+            {
+                myEnemyReference.myRigidbody.drag = teleportDragAmt * EnemyS.FIX_DRAG_MULT;
+            }
+
+            if (setVelocityToZeroOnStart)
+            {
+                myEnemyReference.myRigidbody.velocity = Vector3.zero;
+            }
+
+            didWallRedirect = false;
+            if (searchPOIName != "" && poi == null)
+            {
+                GameObject searchPoi = GameObject.Find(searchPOIName);
+                if (searchPoi)
+                {
+                    poi = searchPoi;
+                }
+            }
+            if (poi == null || poi == myEnemyReference.gameObject)
+            {
+                if (myEnemyReference.GetTargetReference() != null)
+                {
+                    poi = myEnemyReference.GetTargetReference().gameObject;
+                }
+                else
+                {
+                    poi = myEnemyReference.gameObject;
+                }
+            }
+            if (wanderSpeedFixed > 0)
+            {
+                currentWanderSpeed = wanderSpeedFixed;
+            }
+            else
+            {
+                currentWanderSpeed = Random.Range(wanderSpeedMin, wanderSpeedMax);
+            }
+            currentWanderSpeed *= currentDifficultyMult;
+            changeWanderTargetCountdown = Random.Range(moveTargetChangeMin, moveTargetChangeMax);
+
+            currentMoveTarget = transform.position + Random.insideUnitSphere * moveTargetRange;
+            currentMoveTarget.z = transform.position.z;
+
+            if (wanderDragAmt > 0)
+            {
+                myEnemyReference.myRigidbody.drag = wanderDragAmt * EnemyS.FIX_DRAG_MULT;
+            }
+        }else{
+            EndAction();
         }
 
 	}
