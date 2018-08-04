@@ -1,6 +1,6 @@
-WindowsStandalone
+OSXStandalone
 PlayerPath?
-/Users/colinhorgan/Downloads/sdk/tools/ContentBuilder/content/Lucah Born of a Dream/Lucah Born of a Dream.exe
+/Users/colinhorgan/Documents/selfportraitoftheartist/cloneclone/Lucah Born of a Dream.app
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity

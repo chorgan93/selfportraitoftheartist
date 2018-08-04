@@ -82,10 +82,11 @@ public class SacramentHandlerS : MonoBehaviour {
             {
                 Application.Quit();
             }
-// todo colin turn off for real build!
-           // if (Input.GetKeyDown(KeyCode.Return)){
-           //     StartCoroutine(LoadNextScene());
-            //}
+#if UNITY_EDITOR
+             if (Input.GetKeyDown(KeyCode.Return)){
+                 StartCoroutine(LoadNextScene());
+            }
+#endif
 
         }
 		if (chooseOptionImage.gameObject.activeSelf){

@@ -123,11 +123,13 @@ public class CinematicHandlerS : MonoBehaviour {
                 {
                     PlayerInventoryS.I.unlockedWeapons.Add(weaponToGive);
                     PlayerInventoryS.I.OverwriteInventoryData();
+                    StoryProgressionS.SaveProgress();
                 }
             }
             if (virtueToGive > -1){
                 PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
                 PlayerInventoryS.I.OverwriteInventoryData();
+                StoryProgressionS.SaveProgress();
             }
         }
 		

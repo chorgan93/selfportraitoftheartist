@@ -422,6 +422,8 @@ public class PlayerController : MonoBehaviour {
 
 	public bool disableTransformInScene = false;
 
+    public static bool healOnWakeUp = false;
+
     //_________________________________________UNITY METHODS
 
     void Awake()
@@ -663,6 +665,9 @@ public class PlayerController : MonoBehaviour {
 				_currentParadigm = 0;
 			}
 		}
+        if (isNatalie){
+            _currentParadigm = 0;
+        }
 
 		if (_currentParadigm > 1){
 			_currentParadigm = 1;
@@ -2786,6 +2791,11 @@ public class PlayerController : MonoBehaviour {
 			wakeUpCountdown = wakeUpTime;
 			_myAnimator.SetTrigger("Wake");
 			doWakeUp = false;
+
+        if (healOnWakeUp){
+            healOnWakeUp = false;
+            _myStats.FullRecover();
+        }
 
 	}
 

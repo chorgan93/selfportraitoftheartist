@@ -22,10 +22,10 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private const float anxiousChargeRate = 0.025f;
 
-	private const float DARKNESS_ADD_RATE = 0.009f;
+	private const float DARKNESS_ADD_RATE = 0.0075f;
 	private const float TRANSFORMED_RATE = 5f;
-	private const float DARKNESS_ADD_DEATH = 3.5f;
-	private const float DARKNESS_COLIN_HEAL = 75f;
+	private const float DARKNESS_ADD_DEATH = 2.5f;
+	private const float DARKNESS_COLIN_HEAL = 50f;
 	public const float DARKNESS_MAX = 100f;
 
     //__________________________SCORNED MULTS
@@ -1262,7 +1262,7 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 3f / 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 5f / 5f;
                     }
                     else
                     {

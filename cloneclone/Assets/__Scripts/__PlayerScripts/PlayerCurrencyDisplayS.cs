@@ -138,14 +138,14 @@ public class PlayerCurrencyDisplayS : MonoBehaviour {
             
 		PlayerCollectionS.currencyCollected += currencyToAdd;
 
-            if (PlayerCollectionS.currencyCollected > 999999){
-                PlayerCollectionS.currencyCollected = 999999;
+            if (PlayerCollectionS.currencyCollected > 9999999){
+                PlayerCollectionS.currencyCollected = 9999999;
             }
 
 		currencyTotalAmt = PlayerCollectionS.currencyCollected;
 
-            if (currencyTotalAmt > 999999){
-                currencyTotalAmt = 999999;
+            if (currencyTotalAmt > 9999999){
+                currencyTotalAmt = 9999999;
             }
 
 

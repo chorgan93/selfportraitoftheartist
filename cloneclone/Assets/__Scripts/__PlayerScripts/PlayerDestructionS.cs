@@ -194,9 +194,13 @@ public class PlayerDestructionS : MonoBehaviour {
 			int indexOfCombat = _combatClearedAtLeastOnce.IndexOf(cID);
 			_combatClearedRanks.RemoveAt(indexOfCombat);
 			_combatClearedRankGrades.RemoveAt(indexOfCombat);
-			if (_specialConditionCombatCleared.Contains(cID)){
-				_specialConditionCombatCleared.Remove(cID);
-			}
+            if (_specialConditionCombatCleared != null)
+            {
+                if (_specialConditionCombatCleared.Contains(cID))
+                {
+                    _specialConditionCombatCleared.Remove(cID);
+                }
+            }
 			_combatClearedAtLeastOnce.Remove(cID);
 		}
 	}

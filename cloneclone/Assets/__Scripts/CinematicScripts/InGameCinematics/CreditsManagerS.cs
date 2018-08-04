@@ -40,30 +40,37 @@ public class CreditsManagerS : MonoBehaviour
     public string endingCNextScene = "";
     public int skipEndingCSceneAtVirtueNum;
 
-	private void Start()
-	{
+    private void Start()
+    {
         endCreditMoveY = creditDoneTransform.position.y;
         startScrollRate = scrollRate;
 
         creditArtToUse[currentEnding].SetActive(true);
         delayEndCountdown = timeAfterEnd[currentEnding];
-	}
+    }
 
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
         if (!creditsFinished)
         {
+#if UNITY_EDITOR
             if (Input.GetKey(KeyCode.E))
             {
-                //scrollRate = fastForwardRate;
-                //fastForwarding = true;
+                scrollRate = fastForwardRate;
+                fastForwarding = true;
             }
-            else{
+            else
+            {
                 scrollRate = startScrollRate;
                 fastForwarding = false;
             }
+#else
+            scrollRate = startScrollRate;
+                fastForwarding = false;
+#endif
             if (!checkForEnd)
             {
                 for (int i = numOfFinishedTransforms; i < checkTransforms.Length; i++)

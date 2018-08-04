@@ -1440,7 +1440,7 @@ public class PlayerInventoryS : MonoBehaviour
             if (_clearedWalls.Contains(trackRevert.revertClearedWalls[i]))
             {
                 numToRevert = _clearedWalls.IndexOf(trackRevert.revertClearedWalls[i]);
-                _revertedProgressNums.Add(_clearedWalls[numToRevert]);
+                _revertedClearedWalls.Add(_clearedWalls[numToRevert]);
                 _clearedWalls.RemoveAt(numToRevert);
             }
         }
