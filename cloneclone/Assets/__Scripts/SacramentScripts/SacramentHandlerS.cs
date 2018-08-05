@@ -58,6 +58,7 @@ public class SacramentHandlerS : MonoBehaviour {
 
 		if (ControlManagerS.controlProfile == 1){
 			_usingMouse = true;
+            Cursor.visible = true;
 		}else{
 			_usingMouse = false;
 		}

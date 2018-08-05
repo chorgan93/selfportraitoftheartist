@@ -1,6 +1,6 @@
 OSXStandalone
 PlayerPath?
-/Users/colinhorgan/Documents/selfportraitoftheartist/cloneclone/Lucah Born of a Dream.app
+/Users/colinhorgan/Downloads/sdk/tools/ContentBuilder/content/mac/Lucah Born of a Dream.app
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -381,7 +381,7 @@ cc897e31f90a455da1ad6fffc97043f1 Assembly-CSharp-firstpass.dll:UnityStandardAsse
 e957c4e1c6ee6c80c2339de6a37717d9 Assembly-CSharp.dll:.SpriteGlowS
 04c156d20ddceff90085fc9b1f1655f1 Assembly-CSharp.dll:.ChangeNextSceneBasedOnCheck
 dcca284385fa477e2a39c07d12f71735 Assembly-CSharp.dll:.StaminaArrowS
-467ed881a06ea7f470174730d4b6e258 Assembly-CSharp.dll:.CheckpointS
+ac8845789aaf77d268851d8fa8488afd Assembly-CSharp.dll:.CheckpointS
 bb61323444796f7a22b78b753293c97c Assembly-CSharp.dll:.EnemyHealthUIS
 a1d64e55c2ed34083ae47306b37f779f Assembly-CSharp.dll:.TurnOffDarknessS
 265ee3d266b453fd017e538316c6f6e0 Assembly-CSharp.dll:.LoadoutMasterScriptableObject
@@ -453,7 +453,7 @@ cb0afd5315cc3162ec21d54493802cfe Assembly-CSharp.dll:.InstructionFloatS
 ccedeca73e40ca94687ec23e927c956a Assembly-CSharp.dll:.ElevatorS
 d24a6b76a36b498b17e77174bb8be156 Assembly-CSharp.dll:.EnemyStatusReferencesS
 6cac373c90b5d9b27ce13013674bbac8 Assembly-CSharp.dll:.MerchantUIItemS
-d2c7f134c1606a4f9e3baf5bb24e67a8 Assembly-CSharp.dll:.LevelUpMenu
+339d5f321d78b3559fab2bd2744e58a5 Assembly-CSharp.dll:.LevelUpMenu
 4a2d98c194a9772c684935e6d97c57df Assembly-CSharp.dll:.CameraLimitS
 c7f5a572b3e9e3dfc4e422c0cbf33468 Assembly-CSharp.dll:.CinematicTextS
 2aa587597ee763bb1d2712c8a87b002d Assembly-CSharp.dll:.InstructionTrigger
@@ -570,7 +570,7 @@ fc27b2e5f8a3343428520494c91aded3 Assembly-CSharp.dll:.BuddySwitchEffectS
 1a3ad9a913070285de0bbc00e67e6fab Assembly-CSharp.dll:.SacramentHandlerS
 5e50b41aaf0fae439bccd472b76cb6fe Assembly-CSharp.dll:.ScrollingEnvironmentS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.PostEffectsHelper
-338407658587a4ac20c1500e1f38e076 Assembly-CSharp.dll:.ExamineTriggerS
+c9a5c509db55e0854c1c8470582a079f Assembly-CSharp.dll:.ExamineTriggerS
 538c9efa257fda231998b708402269d8 Assembly-CSharp.dll:.DestructibleItemS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RandomScalingEffectS
 b26b3a55de2a8cbeee573d45c8848f09 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion
@@ -686,7 +686,7 @@ a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAsse
 a51173280b81aed3c792da6e9cebc4cd Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
 fb50e4bf24f18da650d52cb4215eac17 Assembly-CSharp.dll:.NatalieOverrideS
 9407fb2718dbc978f76b0a6f480bd9b2 Assembly-CSharp.dll:.CameraFollowS
-c4bd5d3f6e1beb5adab64eaf42651898 Assembly-CSharp.dll:.InGameCinematicS
+69a309bfe13a6baa80927b1335f54e23 Assembly-CSharp.dll:.InGameCinematicS
 32487e01f2722ae58136a31cfd829b4a Assembly-CSharp.dll:.ReflectColorChange
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DifficultyS
 a6b91972ad1601db3b38f764ea6ef5e0 Assembly-CSharp.dll:.BarrierS

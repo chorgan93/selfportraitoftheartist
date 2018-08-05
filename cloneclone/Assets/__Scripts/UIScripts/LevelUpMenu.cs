@@ -80,6 +80,8 @@ public class LevelUpMenu : MonoBehaviour
 
     int currentTravelScene = -1;
 
+    public bool lockOnlyTravel = false;
+
     // Use this for initialization
     void Start()
     {
@@ -89,7 +91,7 @@ public class LevelUpMenu : MonoBehaviour
 
         playerName.text = TextInputUIS.playerName;
 
-        allowRevertProgress = StoryProgressionS.storyProgress.Contains(allowRevertProgressNum);
+        allowRevertProgress = (StoryProgressionS.storyProgress.Contains(allowRevertProgressNum) || lockOnlyTravel);
         //allowRevertProgress = true; // TODO colin turn off after build!
         if (!allowRevertProgress)
         {
@@ -98,7 +100,7 @@ public class LevelUpMenu : MonoBehaviour
             SetUpRevertProgressScreen();
         }
 
-        if (PlayerInventoryS.I.CheckpointsReached() > 1)
+        if (PlayerInventoryS.I.CheckpointsReached() > 1 && !lockOnlyTravel)
         {
             canTravel = true;
         }
@@ -964,5 +966,12 @@ public class LevelUpMenu : MonoBehaviour
 
         PlayerInventoryS.I.dManager.ClearAll();
 
+    }
+
+    public void LockTravel(){
+        lockOnlyTravel = true;
+        canTravel = false;
+        allowRevertProgress = true;
+        SetUpRevertProgressScreen();
     }
 }

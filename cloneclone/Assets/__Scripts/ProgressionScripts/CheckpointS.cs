@@ -42,6 +42,7 @@ public class CheckpointS : MonoBehaviour {
 	
 	public BGMLayerS[] musicAtPoint;
     public int addToProgress = -1;
+    public bool preMariaCheckpoint;
 
 	void Awake(){
 		if (fullCheckpoint){
@@ -64,7 +65,9 @@ public class CheckpointS : MonoBehaviour {
 			PlayerInventoryS.I.AddCheckpoint(Application.loadedLevel, spawnNum);
 			}
 		}
-
+        if (preMariaCheckpoint){
+            _menuManager.levelMenu.LockTravel();
+        }
 		if (addToCompletedFights.Length > 0){
 			for (int i = 0; i<addToCompletedFights.Length;i++){
 				PlayerInventoryS.I.dManager.AddClearedCombat(addToCompletedFights[i], -1, "C");

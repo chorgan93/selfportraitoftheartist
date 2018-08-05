@@ -58,6 +58,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 	[Header("Special Trigger Properties")]
 	public GameObject highwaySwitchSpawn;
+    public bool ignoreInCombat = false;
 
 	[Header("FOR DEMO REWORK AFTER")]
 	public bool teleportItem = false;
@@ -121,7 +122,7 @@ public class ExamineTriggerS : MonoBehaviour {
 				delayOnTime -= Time.deltaTime;
 				talkButtonDown = true;
 			}
-			if (!pRef._inCombat &&  !CameraEffectsS.E.isFading  && !InGameMenuManagerS.menuInUse){
+            if ((!pRef._inCombat || (pRef.inCombat && ignoreInCombat)) &&  !CameraEffectsS.E.isFading  && !InGameMenuManagerS.menuInUse){
 
 				if (!pRef.myControl.GetCustomInput(3) && delayOnTime <= 0){
 				talkButtonDown = false;
@@ -424,7 +425,7 @@ public class ExamineTriggerS : MonoBehaviour {
 			if (!pRef){
 				pRef = other.gameObject.GetComponent<PlayerController>();
 			}
-			if (pRef.myDetect.allEnemiesInRange.Count <= 0){
+            if (pRef.myDetect.allEnemiesInRange.Count <= 0 || ignoreInCombat){
 				if (examineLabelNoController != ""){
 					if (!pRef.myControl.ControllerAttached()){
 						pRef.SetExamining(true, examinePos, examineLabelNoController);

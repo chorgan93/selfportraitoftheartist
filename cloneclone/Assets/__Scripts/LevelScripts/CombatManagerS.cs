@@ -72,6 +72,8 @@ public class CombatManagerS : MonoBehaviour {
 	public bool hasContinuation = false;
 	public bool isContinuation = false;
     public float rankEndSpeedMult = 1f;
+
+    private bool autoComplete = false; // for the ng+ final christian fight
 	
 	// Update is called once per frame
 	void Update () {
@@ -113,7 +115,7 @@ public class CombatManagerS : MonoBehaviour {
 					defeatedEnemies++;
 				}
 			}
-			if (defeatedEnemies >= enemies.Length && !completed){
+            if ((defeatedEnemies >= enemies.Length || autoComplete) && !completed){
 				StartCoroutine(CompleteCombat());
 			}
 		}
@@ -138,21 +140,37 @@ public class CombatManagerS : MonoBehaviour {
 		}
 	}
 
+    public void EndCombatNoRank(){
+        autoComplete = true;
+    }
+
 	IEnumerator CompleteCombat(){
 		AddDefeatedEnemies();
 		CameraFollowS.F.ClearStunnedEnemies();
         CameraShakeS.C.TimeSleepEndCombat(0.3f);
-        RankManagerS.R.EndCombat(hasContinuation, doNotEndVerse);
+        if (autoComplete)
+        {
+            RankManagerS.R.myUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            RankManagerS.R.EndCombat(hasContinuation, doNotEndVerse);
+        }
 		completed = true;
 		yield return new WaitForSeconds(0.2f);
 		CameraEffectsS.E.ResetSound();
 		yield return new WaitForSeconds(0.1f+delayEndEffect);
-		foreach (BarrierS b in barriers){
-			b.TurnOff();
-		}
-		for (int i = 0; i <  enemies.Length; i++){
-			enemies[i].DropOnDefeat();
-		}
+        if (!autoComplete)
+        {
+            foreach (BarrierS b in barriers)
+            {
+                b.TurnOff();
+            }
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].DropOnDefeat();
+            }
+        }
 		playerRef.SetCombat(false);
 		playerRef.EndWitchTime();
 		CameraEffectsS.E.ResetEffect(true);
@@ -161,8 +179,11 @@ public class CombatManagerS : MonoBehaviour {
 			PlayerInventoryS.I.dManager.AddClearedCombat(combatID, -1, RankManagerS.R.ReturnRank());
 		}
 		TurnOffEnemies();
-		TurnOnObjects();
-		TurnOffObjects();
+        if (!autoComplete)
+        {
+            TurnOnObjects();
+            TurnOffObjects();
+        }
 
 		if (inInfiniteMode){
 			myInfiniteManager.AddCompletedFight();
@@ -170,13 +191,17 @@ public class CombatManagerS : MonoBehaviour {
 		if (clearBloodOnComplete){
 			PlayerInventoryS.I.dManager.ClearBattleBlood();
 		}
-		if (turnOffEnemiesOnComplete){
+        if (turnOffEnemiesOnComplete || autoComplete){
 			for (int i = 0; i < enemies.Length; i++){
 				if (enemies[i].currentSpawnedEnemy){
 					enemies[i].currentSpawnedEnemy.gameObject.SetActive(false);
 				}
 			}
 		}
+
+        if (autoComplete && GameObject.Find("EnemyHealthUI") != null){
+            GameObject.Find("EnemyHealthUI").SetActive(false);
+        }
 
 		RetryFightUI.allowRetry = false;
 		if (revertCameraSize){

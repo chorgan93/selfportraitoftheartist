@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour {
 	public float transformedStaminaMult { get { return _transformedStaminaMult; } }
 	private float _transformedRecoveryMult = 3f;
 	public float transformedRecoverMult { get { return _transformedRecoveryMult; } }
-	private float _transformedDamageMult = 10f;
+	private float _transformedDamageMult = 4f;
 	public float transformedDamageMult { get { return _transformedDamageMult; } }
 	private float _transformedAbsorbMult = 3f;
 	public float transformedAbsorbMult { get { return _transformedAbsorbMult; } }
@@ -1372,6 +1372,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void ActivateTransform(){
 		_isTransformed = true;
+        if (DarknessPercentUIS.DPERCENT != null){
+            DarknessPercentUIS.DPERCENT.SetTransform(true);
+        }
 		transformStartEffect.ActivateEffect();
 		transformActiveEffect.gameObject.SetActive(true);
 		SwitchParadigm(currentParadigm);
@@ -1384,6 +1387,10 @@ public class PlayerController : MonoBehaviour {
 	public void DeactivateTransform(){
 		if (_isTransformed){
 			_isTransformed = false;
+            if (DarknessPercentUIS.DPERCENT != null)
+            {
+                DarknessPercentUIS.DPERCENT.SetTransform(false);
+            }
 			transformStartEffect.DeactivateEffect();
 		transformActiveEffect.gameObject.SetActive(false);
 		_myBuddy.transform.position = buddyPos.position;
@@ -3523,6 +3530,14 @@ public class PlayerController : MonoBehaviour {
 		
 		_examining = nEx;
 	}
+
+    public void TurnOffSprite(){
+        myRenderer.gameObject.SetActive(false);
+        GetComponentInChildren<PlayerShadowS>().gameObject.SetActive(false);
+        if (_myBuddy != null){
+            _myBuddy.gameObject.SetActive(false);
+        }
+    }
 
 	public void SetTalking(bool nEx, bool allowWalk = false, bool allowTransform = false, bool tauntTutorial = false){
 

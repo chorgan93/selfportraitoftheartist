@@ -116,6 +116,9 @@ public class DarknessPercentUIS : MonoBehaviour {
     public static bool setTo100 = false;
     float cutsceneTargetNum = 0;
 
+    [Header("Transform Properties")]
+    public GameObject transformEffect;
+
 	void Awake(){
 		DPERCENT = this;
 	}
@@ -163,6 +166,8 @@ public class DarknessPercentUIS : MonoBehaviour {
             }
             checkedForNatalie = true;
         }
+
+        SetTransform(false);
 	
 	}
 	
@@ -337,6 +342,13 @@ public class DarknessPercentUIS : MonoBehaviour {
 		}
 
 	}
+
+    public void SetTransform(bool onOff){
+        if (transformEffect)
+        {
+            transformEffect.SetActive(onOff);
+        }
+    }
 
 	void BarOffset(){
 		barOffsetCountdown -= Time.deltaTime;

@@ -1,18 +1,12 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/__PlayerScripts/PlayerCurrencyDisplayS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/ProgressionScripts/AddTechS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="671" Column="9" />
-      <File FileName="Assets/__Scripts/CinematicScripts/CinematicHandlerS.cs" Line="132" Column="50" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerInventoryS.cs" Line="1114" Column="17" />
-      <File FileName="Assets/__Scripts/ProgressionScripts/CheckpointS.cs" Line="95" Column="30" />
-      <File FileName="Assets/__Scripts/ProgressionScripts/StoryProgressionS.cs" Line="26" Column="26" />
-      <File FileName="Assets/__Scripts/SystemScripts/SaveLoadS.cs" Line="29" Column="21" />
-      <File FileName="Assets/__Scripts/SystemScripts/GameDataS.cs" Line="27" Column="14" />
-      <File FileName="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs" Line="10" Column="47" />
-      <File FileName="Assets/__Scripts/CinematicScripts/InGameCinematics/CreditsManagerS.cs" Line="72" Column="40" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerCollectionS.cs" Line="11" Column="29" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerCurrencyDisplayS.cs" Line="162" Column="13" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs" Line="271" Column="9" />
+      <File FileName="Assets/__Scripts/UIScripts/DarknessPercentUIS.cs" Line="350" Column="10" />
+      <File FileName="Assets/__Scripts/UIScripts/TransformEffectUI.cs" Line="31" Column="37" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="1376" Column="60" />
+      <File FileName="Assets/__Scripts/ProgressionScripts/AddTechS.cs" Line="12" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

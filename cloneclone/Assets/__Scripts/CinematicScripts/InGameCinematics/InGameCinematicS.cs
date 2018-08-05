@@ -54,6 +54,12 @@ public class InGameCinematicS : MonoBehaviour {
     [Header("Messiah Properties")]
     public PlayerController overwritePRef;
 
+
+    [Header("Christian Properties")]
+    public bool endCombat = false;
+    public bool turnOffAllMusic = false;
+    public bool turnOffPlayerSprite = false;
+
 	// Use this for initialization
 	void Awake () {
 	
@@ -68,6 +74,17 @@ public class InGameCinematicS : MonoBehaviour {
         else
         {
             _pRef = overwritePRef;
+        }
+
+        if (turnOffAllMusic){
+            BGMHolderS.BG.EndAllLayers(false, true);
+        }
+
+        if (endCombat && _pRef._inCombat){
+            pRef.currentCombatManager.EndCombatNoRank();
+        }
+        if (turnOffPlayerSprite){
+            pRef.TurnOffSprite();
         }
 
 	}
