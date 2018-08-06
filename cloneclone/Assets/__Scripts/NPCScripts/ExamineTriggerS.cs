@@ -45,6 +45,8 @@ public class ExamineTriggerS : MonoBehaviour {
 	public int virtueToGive = -1;
 	public int techToGive = -1;
 	public int laToGive = -1;
+    public Sprite changeSpriteOnExamine;
+    private Sprite startSprite;
 
 	public bool advanceProgress = false;
 	public int setProgress = -1;
@@ -139,6 +141,10 @@ public class ExamineTriggerS : MonoBehaviour {
 						if (newPoi){
 							CameraFollowS.F.SetNewPOI(newPoi);
 						}
+                                if (changeSpriteOnExamine)
+                                {
+                                    GetComponent<SpriteRenderer>().sprite = changeSpriteOnExamine;
+                                }
 
 						if (costToExamine > 0){
 							pRef.myStats.uiReference.cDisplay.AddCurrency(-costToExamine);
@@ -187,7 +193,7 @@ public class ExamineTriggerS : MonoBehaviour {
 
 							//Debug.Log("Second press! " + DialogueManagerS.D.doneScrolling);
 	
-                            if (DialogueManagerS.D.doneScrolling && !lookAnimation){
+                            if ((DialogueManagerS.D.doneScrolling || examineString == "") && !lookAnimation){
 								if (!teleportItem){
 									CameraFollowS.F.ResetPOI();
 									//Debug.Log("End text!");
@@ -234,7 +240,7 @@ public class ExamineTriggerS : MonoBehaviour {
                                     }
 							}
 	
-							if (myTrigger){
+                                if (myTrigger){
 								myTrigger.TurnOn();
 							}
 								if (highwaySwitchSpawn){
@@ -440,9 +446,17 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 	}
 
-	/*void OnEnable(){
-		delayOnTime = delayOnTimeStart;
-	}**/
+    void OnEnable()
+    {
+        //delayOnTime = delayOnTimeStart;
+        if (changeSpriteOnExamine){
+            if (!startSprite){
+                startSprite = GetComponent<SpriteRenderer>().sprite;
+            }else{
+                GetComponent<SpriteRenderer>().sprite = startSprite;
+            }
+        }
+	}
 
 	void OnTriggerExit(Collider other){
 		if (other.gameObject.tag == "Player"){

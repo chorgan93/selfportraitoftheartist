@@ -33,6 +33,9 @@ public class InGameCinemaTextS : MonoBehaviour {
 	private bool awaitingInput = false;
 	public InGameCinemaDialogueOptionS[] dialogueOptions;
 
+    [Header("Final Scene Info")]
+    public bool showAsMemo = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -41,7 +44,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 
 		AddNewlines();
 
-		DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
+        DialogueManagerS.D.SetDisplayText(textStrings[currentString], showAsMemo, textZoom);
 
 		CheckForDialogueAfter();
 		advanceButtonDown = true;
@@ -98,7 +101,7 @@ public class InGameCinemaTextS : MonoBehaviour {
 							awaitingInput = true;
 						}
 					}else{
-						DialogueManagerS.D.SetDisplayText(textStrings[currentString], false, textZoom);
+                            DialogueManagerS.D.SetDisplayText(textStrings[currentString], showAsMemo, textZoom);
 					}
 					
 				}else{
