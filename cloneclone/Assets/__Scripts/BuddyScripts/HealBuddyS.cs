@@ -125,7 +125,10 @@ public class HealBuddyS : BuddyS {
 
 		charging = false;
 
-		playerRef.myStats.Heal(healAmount);
+        if (!playerRef.myStats.PlayerIsDead())
+        {
+            playerRef.myStats.Heal(healAmount);
+        }
 
 		CameraShakeS.C.LargeShakeCustomDuration(0.3f);
 		CameraShakeS.C.TimeSleep(0.1f);

@@ -12,6 +12,8 @@ public class OnOffAtNewGamePlusState : MonoBehaviour
 
     public bool activateOnAwake = false;
 
+    public bool requireFamiliar = false;
+
     // Use this for initialization
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class OnOffAtNewGamePlusState : MonoBehaviour
     void CheckMark()
     {
         if ((requireMarkedState == TurnOnOffAtProgressionS.RequireMarkedState.NewGamePlusOnly
-            && PlayerController.equippedVirtues.Contains(15))
+             && PlayerController.equippedVirtues.Contains(15) && (!requireFamiliar || (requireFamiliar && !PlayerController.killedFamiliar)))
             || (requireMarkedState == TurnOnOffAtProgressionS.RequireMarkedState.FirstPlaythroughOnly
                  && !PlayerController.equippedVirtues.Contains(15))){
             if (onAtMarkedState != null){

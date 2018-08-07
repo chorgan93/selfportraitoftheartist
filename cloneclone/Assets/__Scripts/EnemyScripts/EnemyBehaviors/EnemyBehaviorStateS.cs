@@ -24,6 +24,8 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	public bool stateIgnoresHitstun = false; // if TRUE, cannot be interrupted by hitstun
 
+    public EnemyDodgeBehaviorS overrideDodge;
+
 	public EnemyBehaviorS[] behaviorSet;
 	public int critResetStep = 0;
 
@@ -81,6 +83,11 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		}else{
 		currentActingBehavior = 0;
 		}
+        if (overrideDodge){
+            if (behaviorSet[currentActingBehavior] is EnemySingleAttackBehavior){
+                behaviorSet[currentActingBehavior].GetComponent<EnemySingleAttackBehavior>().dodgeCheck = overrideDodge;
+            }
+        }
 		behaviorSet[currentActingBehavior].StartAction();
 
 	}

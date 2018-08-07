@@ -94,6 +94,11 @@ public class EnemyParryBehavior : EnemyBehaviorS {
 		limitReached = false;
 		switchTriggered = false;
 		outOfRange = false;
+        if (parryEffect == null && myEnemyReference != null){
+            if (myEnemyReference.GetComponentInChildren<BlockDisplay3DS>() != null){
+                parryEffect = myEnemyReference.GetComponentInChildren<BlockDisplay3DS>();
+            }
+        }
 		if (rangeDetect.PlayerInRange() || myEnemyReference.OverrideSpacingRequirement){
 			if (animationKey != ""){
 				myEnemyReference.myAnimator.SetTrigger(animationKey);

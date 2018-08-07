@@ -544,14 +544,21 @@ public class DarknessPercentUIS : MonoBehaviour {
 	}
 
     public void StartDarknessReduce(float reduceAmt, RankManagerS rankRef){
-        postCombatSequence = true;
-        saveDeathAmt = pStatRef.currentDarkness;
-        PlayerStatsS._currentDarkness += reduceAmt;
-        if (PlayerStatsS._currentDarkness < 0f){
-            PlayerStatsS._currentDarkness = 0f;
+        if (PlayerStatsS._currentDarkness < 100f)
+        {
+            postCombatSequence = true;
+            saveDeathAmt = pStatRef.currentDarkness;
+            PlayerStatsS._currentDarkness += reduceAmt;
+            if (PlayerStatsS._currentDarkness < 0f)
+            {
+                PlayerStatsS._currentDarkness = 0f;
+            }
+            reduceTextDisplay.text = (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
+            StartCoroutine(CombatDarknessReduce(rankRef));
+        }else{
+            postCombatSequence = false;
+            rankRef.delayLoad = false;
         }
-        reduceTextDisplay.text = (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%"; 
-        StartCoroutine(CombatDarknessReduce(rankRef));
     }
 
     IEnumerator CombatDarknessReduce(RankManagerS R){
