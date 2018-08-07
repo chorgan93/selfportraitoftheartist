@@ -172,6 +172,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _scornedAug = false;
 	public bool scornedAug { get { return _scornedAug; } }
 
+
+    // index 22 (ASCENDED)
+    public static bool ASCENDED_AUG = false;
+
 	[Header("Instance Properties")]
 	public GameObject enragedShadow;
 
@@ -239,6 +243,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_aetherAug = false;
 
         MARKED_AUG = false;
+        ASCENDED_AUG = false;
 
 		_doubleMantra = false;
 
@@ -445,6 +450,10 @@ public class PlayerAugmentsS : MonoBehaviour {
             if (PlayerController.equippedVirtues.Contains(21))
             {
                 _scornedAug = true;
+            }
+            if (PlayerController.equippedVirtues.Contains(22))
+            {
+                ASCENDED_AUG = true;
             }
         }
 

@@ -16,7 +16,7 @@ public class DeathCountdownHandlerS : MonoBehaviour {
 			DeathCountdownS.DC.TurnOffCountdown();
 		}
 		else if (newDeathTime > 0){
-			DeathCountdownS.DC.ActivateCountdown(newDeathTime);
+			DeathCountdownS.DC.ActivateCountdown(newDeathTime, true);
 		}
 		timerAtStart = DeathCountdownS.deathCountdown;
 	

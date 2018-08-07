@@ -97,7 +97,10 @@ public class DeathCountdownS : MonoBehaviour {
 		}
 	}
 
-	public void ActivateCountdown(float newTime){
+	public void ActivateCountdown(float newTime, bool allowMarked = true){
+        if (PlayerAugmentsS.MARKED_AUG && allowMarked){
+            newTime *= 3;
+        }
 		deathCountdown = deathCountdownTimer= newTime;
 		countdownActive = true;
 		FadeInCountdown();

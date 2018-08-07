@@ -231,9 +231,11 @@ public class EnemyChargeAttackS : MonoBehaviour
                             fadeColor.a = 0;
                             _myRenderer.enabled = false;
                             _myCollider.enabled = false;
-                            if (standalone)
+                            if (standalone && transform.parent != null)
                             {
                                 Destroy(transform.parent.gameObject);
+                            }else if (standalone){
+                                Destroy(gameObject);
                             }
                         }
                         else

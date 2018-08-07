@@ -489,7 +489,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && _currentDarkness < 100f){
             if (!_isMarked)
             {
-                if (PlayerController.killedFamiliar) { 
+                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG) { 
                     _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE /5f;
                     if (myPlayerController.isTransformed)
                     {
@@ -505,7 +505,7 @@ public class PlayerStatsS : MonoBehaviour {
                     }
                 }
             }else{
-                if (PlayerController.killedFamiliar)
+                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                 {
                     _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f/5f;
                     if (myPlayerController.isTransformed)
@@ -531,7 +531,7 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentDarkness < 100f){
             if (_isMarked)
             {
-                if (PlayerController.killedFamiliar)
+                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                 {
                     _currentDarkness += 0.3f;
                 }
@@ -542,7 +542,7 @@ public class PlayerStatsS : MonoBehaviour {
             }
             else
             {
-                if (PlayerController.killedFamiliar)
+                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                 {
                     _currentDarkness += 0.1f;
                 }
@@ -976,7 +976,7 @@ public class PlayerStatsS : MonoBehaviour {
             dmg *= 0.2f;
         }
         if (PlayerAugmentsS.MARKED_AUG){
-            dmg *= 2.5f;
+            dmg *= 2f;
         }
         if (pRef.playerAug.scornedAug){
             dmg *= scornedEnemyDmgMult;
@@ -1100,7 +1100,7 @@ public class PlayerStatsS : MonoBehaviour {
                             DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
                             if (_isMarked)
                             {
-                                if (PlayerController.killedFamiliar)
+                                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
                                     _currentDarkness += DARKNESS_ADD_DEATH * 5f/5f;
                                 }
@@ -1111,7 +1111,7 @@ public class PlayerStatsS : MonoBehaviour {
                             }
                             else
                             {
-                                if (PlayerController.killedFamiliar)
+                                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
                                     _currentDarkness += DARKNESS_ADD_DEATH/5f;
                                 }
@@ -1171,6 +1171,18 @@ public class PlayerStatsS : MonoBehaviour {
 
 						warningReference.NewMessage("! ! HEALTH LOW ! !", Color.white, Color.red, false, 2);
 					}
+
+                    // if NG+, add a tiiiiiny bit of darkness
+                    if (PlayerAugmentsS.MARKED_AUG){
+                        if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                        {
+                            _currentDarkness += 0.002f;
+                        }
+                        else
+                        {
+                            _currentDarkness += 0.01f;
+                        }
+                    }
 					}
 				//}
 
@@ -1224,7 +1236,7 @@ public class PlayerStatsS : MonoBehaviour {
             {
                 if (isReduced)
                 {
-                    if (PlayerController.killedFamiliar)
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
                         _currentDarkness += DARKNESS_ADD_DEATH;
                     }
@@ -1235,7 +1247,7 @@ public class PlayerStatsS : MonoBehaviour {
                 }
                 else
                 {
-                    if (PlayerController.killedFamiliar)
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
                         _currentDarkness += DARKNESS_ADD_DEATH / 5f;
                     }
@@ -1249,7 +1261,7 @@ public class PlayerStatsS : MonoBehaviour {
             {
                 if (isReduced)
                 {
-                    if (PlayerController.killedFamiliar)
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
                         _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 5f;
                     }
@@ -1260,7 +1272,7 @@ public class PlayerStatsS : MonoBehaviour {
                 }
                 else
                 {
-                    if (PlayerController.killedFamiliar)
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
                         _currentDarkness += DARKNESS_ADD_DEATH * 5f / 5f;
                     }

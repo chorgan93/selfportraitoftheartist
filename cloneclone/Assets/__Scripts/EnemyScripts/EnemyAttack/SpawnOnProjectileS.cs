@@ -122,6 +122,13 @@ public class SpawnOnProjectileS : MonoBehaviour {
 
 				if (enemyChargeSpawner){
 					newSpawn.GetComponentInChildren<EnemyChargeAttackS>().SetEnemy(myEnemyRef);
+
+                    if (laserSpawn)
+                    {
+                        Vector3 targetPoint = myEnemyRef.transform.position + (transform.position - myEnemyRef.transform.position).normalized * (spawnObjectRadius + 1f);
+                        newSpawn.transform.position = myEnemyRef.transform.position + (transform.position - myEnemyRef.transform.position).normalized * spawnObjectRadius + Random.insideUnitSphere * spawnRadiusAdd;
+                        newSpawn.transform.Rotate(new Vector3(0, 0, LaserFace(targetPoint - newSpawn.transform.position) - 90f));
+                    }
 				}
 
 				if (chargeSpawner){
@@ -137,6 +144,7 @@ public class SpawnOnProjectileS : MonoBehaviour {
 						Vector3 targetPoint = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*(spawnObjectRadius+1f);
 						newSpawn.transform.position = playerRef.transform.position+(transform.position-playerRef.transform.position).normalized*spawnObjectRadius+Random.insideUnitSphere*spawnRadiusAdd;
 						newSpawn.transform.Rotate(new Vector3(0,0, LaserFace(targetPoint-newSpawn.transform.position)-90f));
+                        Debug.Log("Changing rotation!");
 					}
 				}
 				firstSpawned = true;
