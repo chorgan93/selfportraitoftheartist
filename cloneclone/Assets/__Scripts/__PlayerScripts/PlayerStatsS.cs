@@ -976,7 +976,7 @@ public class PlayerStatsS : MonoBehaviour {
             dmg *= 0.2f;
         }
         if (PlayerAugmentsS.MARKED_AUG){
-            dmg *= 2f;
+            dmg *= 1.5f;
         }
         if (pRef.playerAug.scornedAug){
             dmg *= scornedEnemyDmgMult;
@@ -1102,11 +1102,11 @@ public class PlayerStatsS : MonoBehaviour {
                             {
                                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 5f/5f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 5f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
                                 }
                             }
                             else
@@ -1263,22 +1263,22 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
                     }
                 }
                 else
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 5f / 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 3f / 5f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 3f;
                     }
                 }
             }

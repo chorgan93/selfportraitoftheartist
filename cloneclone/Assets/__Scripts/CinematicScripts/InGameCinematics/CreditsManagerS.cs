@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreditsManagerS : MonoBehaviour
 {
 
-    public static int currentEnding = 1;
+    public static int currentEnding = 2;
     public GameObject[] creditArtToUse;
     public float[] timeAfterEnd;
 

@@ -126,11 +126,17 @@ public class CinematicHandlerS : MonoBehaviour {
                     StoryProgressionS.SaveProgress();
                 }
             }
-            if (virtueToGive > -1){
-                PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
-                PlayerInventoryS.I.OverwriteInventoryData();
-                StoryProgressionS.SaveProgress();
+
+        }
+        if (virtueToGive > -1)
+        {
+            PlayerInventoryS.I.AddEarnedVirtue(virtueToGive);
+            if (virtueToGive == 22)
+            {
+                GameMenuS.unlockedChallenge = true;
             }
+            PlayerInventoryS.I.OverwriteInventoryData();
+            StoryProgressionS.SaveProgress();
         }
 		
 	}

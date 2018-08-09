@@ -1148,7 +1148,6 @@ public class EquipMenuS : MonoBehaviour {
 				}
 			}
 		}
-		
 		return nextAvail;
 	}
 

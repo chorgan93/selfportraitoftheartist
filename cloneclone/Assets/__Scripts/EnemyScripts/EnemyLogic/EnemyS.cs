@@ -698,7 +698,7 @@ public class EnemyS : MonoBehaviour {
 	private void CheckStatus(){
 
         // always count up crit time
-        if (currentCritTime < maxCritTime)
+        /*if (currentCritTime < maxCritTime)
         {
             if (doubleCriticalTime > 0)
             {
@@ -718,6 +718,10 @@ public class EnemyS : MonoBehaviour {
             if (_isCritical){
                 _isVulnerable = true; // try to hard force no weirdness
             }
+        }**/
+        if (_isCritical)
+        {
+            _isVulnerable = true; // try to hard force no weirdness
         }
 
 		// check vulnerable/critical

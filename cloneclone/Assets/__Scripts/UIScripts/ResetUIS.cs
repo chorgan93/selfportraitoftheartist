@@ -29,11 +29,11 @@ public class ResetUIS : MonoBehaviour {
 		UpdateUI ();
 
 
-		if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
+		/*if (GameObject.Find("Player").GetComponent<ControlManagerS>().ControllerAttached()){
 			instruction.text = "RB";
 		}else{
 			instruction.text = "R";
-		}
+		}**/
 		if (PlayerController.equippedTech.Contains(2) && !PlayerStatDisplayS.RECORD_MODE && !arcadeMode){
 			Show ();
 		}else{
@@ -65,11 +65,15 @@ public class ResetUIS : MonoBehaviour {
 				itemIcon.sprite = rewindItemSprite;
 				
 				resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
+                instruction.text = "RW";
 				
 			}else{
 				itemIcon.sprite = healItemSprite;
 
 				resetCount.text = PlayerInventoryS.I.GetItemCount(1).ToString();
+
+
+                instruction.text = "HP";
 
 			}
 		}else{

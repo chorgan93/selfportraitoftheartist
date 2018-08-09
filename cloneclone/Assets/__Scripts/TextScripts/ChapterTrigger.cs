@@ -77,9 +77,14 @@ public class ChapterTrigger : MonoBehaviour {
                 }
 
                 // revert any before that are higher
-                for (int i = chapterNum; i > 0; i++){
-                    if (PlayerStatsS._currentDarkness < PlayerInventoryS.I.revertDarknessNums[i]){
-                        PlayerInventoryS.I.revertDarknessNums[i] = PlayerStatsS._currentDarkness;
+                if (!PlayerController.killedFamiliar)
+                {
+                    for (int i = chapterNum; i > 0; i--)
+                    {
+                        if (PlayerStatsS._currentDarkness < PlayerInventoryS.I.revertDarknessNums[i])
+                        {
+                            PlayerInventoryS.I.revertDarknessNums[i] = PlayerStatsS._currentDarkness;
+                        }
                     }
                 }
             }

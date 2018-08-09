@@ -371,6 +371,10 @@ public class MainMenuNavigationS : MonoBehaviour {
                             else if (myController.VerticalMenu() > 0.1f)
                             {
                                 currentMenuZeroPosition--;
+                                if (currentMenuZeroPosition < 1 && numSaveFiles < 1)
+                                {
+                                    currentMenuZeroPosition = 1;
+                                }
                                 if (currentMenuZeroPosition < 0)
                                 {
                                     currentMenuZeroPosition = 0;

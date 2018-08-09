@@ -177,7 +177,7 @@ public class LevelUpItemS : MonoBehaviour {
 		if (PlayerCollectionS.currencyCollected >= upgradeCost){
 			canBuy = true;
 		}
-		if (PlayerInventoryS.I.earnedUpgrades.Count >= MAX_LEVEL_UP){
+        if (PlayerInventoryS.I.earnedUpgrades.Count >= MAX_LEVEL_UP && !revertUpgrade && !shuffleUpgrade){
 			canBuy = false;
 		}
         if (revertUpgrade && statRef.currentLevel <= minRevert()) { canBuy = false; }
