@@ -266,6 +266,7 @@ public class PlayerController : MonoBehaviour {
 	public Transform buddyPos;
 	public Transform buddyPosLower;
 	private BuddySwitchEffectS _buddyEffect;
+    public BuddySwitchEffectS BuddyEffect { get { return _buddyEffect; } }
 
 	// Buddy Garden Properties
 	private float embraceOutTime = 0.5f;
@@ -1393,9 +1394,12 @@ public class PlayerController : MonoBehaviour {
             }
 			transformStartEffect.DeactivateEffect();
 		transformActiveEffect.gameObject.SetActive(false);
-		_myBuddy.transform.position = buddyPos.position;
-		_buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
-		_myBuddy.gameObject.SetActive(true);
+            if (_myBuddy != null && !killedFamiliar)
+            {
+                _myBuddy.transform.position = buddyPos.position;
+                _buddyEffect.ChangeEffect(_myBuddy.shadowColor, _myBuddy.transform);
+                _myBuddy.gameObject.SetActive(true);
+            }
 		SwitchParadigm(currentParadigm);
 		CameraEffectsS.E.SetTransformFilter(false);
 		CameraShakeS.C.SloAndPunch(0.3f, 0.95f, 0.12f, true, false);
@@ -2273,7 +2277,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (!myStats.PlayerIsDead() && SubWeapon() != null && _canSwap && !isNatalie){
 		
-            if (switchButtonUp && (_myBuddy.canSwitch || killedFamiliar)){
+            if (switchButtonUp){
 				if (myControl.GetCustomInput(5)){
 
 					resetCountdown = resetTimeMax;
@@ -2309,11 +2313,16 @@ public class PlayerController : MonoBehaviour {
                         _myBuddy.transform.position = tempSwap.transform.position;
                         if (!InGameCinematicS.turnOffBuddies && !isNatalie)
                         {
+                            _myBuddy.switchAfterAction = false;
                             _myBuddy.gameObject.SetActive(true);
                             Instantiate(_myBuddy.buddySound);
                         }
                         _altBuddy = tempSwap;
-                        _altBuddy.gameObject.SetActive(false);
+                        if (_altBuddy.canSwitch){
+                            _altBuddy.gameObject.SetActive(false);
+                        }else{
+                            _altBuddy.switchAfterAction = true;
+                        }
                         if (_isTransformed)
                         {
                             _myBuddy.gameObject.SetActive(false);

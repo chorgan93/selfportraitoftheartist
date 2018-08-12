@@ -13,15 +13,17 @@ public class ControlManagerS : MonoBehaviour {
 	private string platformType;
 	private string truePlatform;
 	private string controllerType;
-	private bool canSelectPS4 = false;
+    [HideInInspector]
+	public bool canSelectPS4 = false;
 	public bool CanSelectPS4 { get { return canSelectPS4; } }
 
 	public static int controlProfile = -1; // 0 = gamepad, 1 = keyboard & mouse, 2 = keyboard, 3 = PS4 on Mac/PC
 	public static List<int> savedGamepadControls;
     public static List<int> savedKeyboardControls;
     public static List<int> savedKeyboardandMouseControls;
-    private List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,12,13};
-    private List<int> defaultKeyAndMouseControls = new List<int>(14) { 14, 15, 16, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+    public static List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,12,13};
+    public static List<int> defaultKeyAndMouseControls = new List<int>(14) { 14, 15, 16, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+
 
 	// Use this for initialization
 	void Start () {
@@ -159,10 +161,11 @@ public class ControlManagerS : MonoBehaviour {
 	public int DetermineControllerType(){
 		int numToReturn = 0;
 		string[] joyStickNames = Input.GetJoystickNames();
-		//Debug.Log(joyStickNames[0]);
+		Debug.Log(joyStickNames[0]);
 		if (joyStickNames[0].Contains("Sony")){
 			numToReturn = 1;
 			canSelectPS4 = true;
+            Debug.Log(canSelectPS4);
 		}
 		return numToReturn;
 	}

@@ -33,7 +33,15 @@ public class LevelUpHandlerS : MonoBehaviour {
 	
 	}
 
+    public void LevelMenuInitialize(){
+        if (!initialized){
+            SetDefaults();
+            initialized = true;
+        }
+    }
+
 	void SetDefaults(){
+        Debug.Log("setting upgrade resets!");
 		nextLevelUpsReset.Clear();
 		availableLevelUpsReset.Clear();
 		lockedLevelUpsReset.Clear();

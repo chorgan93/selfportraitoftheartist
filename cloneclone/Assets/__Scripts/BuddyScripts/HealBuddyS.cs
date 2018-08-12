@@ -82,10 +82,16 @@ public class HealBuddyS : BuddyS {
 			if (healDelayCountdown <= 0){
 				HealPlayer();
 				healTriggered = false;
+                canSwitch = true;
 			}
 		}
 		else{
 			healCountdown -= Time.deltaTime;
+            if (healCountdown <= 0 && switchAfterAction)
+            {
+                TurnSelfOff();
+                healCountdown = 0f;
+            }
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
@@ -101,7 +107,7 @@ public class HealBuddyS : BuddyS {
 
 							healDelayCountdown = healDelay;
 							healTriggered = true;
-
+                            canSwitch = false;
 							Vector3 effectSpawn = transform.position;
 							effectSpawn.z += 1f;
 							GameObject newSpawn = Instantiate(chargeEffect, effectSpawn, Quaternion.identity)

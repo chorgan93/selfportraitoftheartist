@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonSpriteSwapperS : MonoBehaviour {
 
     public int actionNum = 0;
+    private int startActionNum = -1;
     public Sprite[] xboxSprites;
     public Sprite[] ps4Sprites;
     public Sprite[] keySprites;
@@ -13,8 +14,15 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
     private Image myImage;
     private bool useImage = false;
 
+    [Header("Specialty Case")]
+    public bool useDefaults=false;
+    public int overrideForKeyboard = -1;
+
 	// Use this for initialization
 	void OnEnable () {
+        if (startActionNum < 0){
+            startActionNum = actionNum;
+        }
         if (!myRenderer)
         {
             if (GetComponent<SpriteRenderer>() != null)
@@ -25,6 +33,12 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                 useImage = true;
             }
         }
+
+        if ((ControlManagerS.controlProfile == 1 || ControlManagerS.controlProfile == 2) && overrideForKeyboard >= 0)
+        {
+            actionNum = overrideForKeyboard;
+        }
+        else { actionNum = startActionNum; }
 
         int spriteNumToUse = 0;
         switch (ControlManagerS.controlProfile)
@@ -37,7 +51,14 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                 }
                 else
                 {
-                    spriteNumToUse = ControlManagerS.savedGamepadControls[actionNum];
+                    if (useDefaults)
+                    {
+                        spriteNumToUse = ControlManagerS.defaultGamepadControls[actionNum];
+                    }
+                    else
+                    {
+                        spriteNumToUse = ControlManagerS.savedGamepadControls[actionNum];
+                    }
                 }
                 if (useImage)
                 {
@@ -54,8 +75,14 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                     spriteNumToUse = 14; // we are looking for the left stick/movement option (not saved in controls, but in sprite database)
                 }
                 else
-                {
-                    spriteNumToUse = ControlManagerS.savedGamepadControls[actionNum];
+                {if (useDefaults)
+                    {
+                        spriteNumToUse = ControlManagerS.defaultGamepadControls[actionNum];
+                    }
+                    else
+                    {
+                        spriteNumToUse = ControlManagerS.savedGamepadControls[actionNum];
+                    }
                 }
                 if (useImage)
                 {
@@ -72,8 +99,14 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                     spriteNumToUse = 58; // we are looking for the left stick/movement option (not saved in controls, but in sprite database)
                 }
                 else
-                {
-                    spriteNumToUse = ControlManagerS.savedKeyboardControls[actionNum];
+                {if (useDefaults)
+                    {
+                        spriteNumToUse = ControlManagerS.defaultKeyAndMouseControls[actionNum];
+                    }
+                    else
+                    {
+                        spriteNumToUse = ControlManagerS.savedKeyboardControls[actionNum];
+                    }
                 }
                 if (useImage)
                 {
@@ -90,8 +123,14 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                     spriteNumToUse = 58; // we are looking for the left stick/movement option (not saved in controls, but in sprite database)
                 }
                 else
-                {
-                    spriteNumToUse = ControlManagerS.savedKeyboardandMouseControls[actionNum];
+                {if (useDefaults)
+                    {
+                        spriteNumToUse = ControlManagerS.defaultKeyAndMouseControls[actionNum];
+                    }
+                    else
+                    {
+                        spriteNumToUse = ControlManagerS.savedKeyboardandMouseControls[actionNum];
+                    }
                 }
                 if (useImage)
                 {

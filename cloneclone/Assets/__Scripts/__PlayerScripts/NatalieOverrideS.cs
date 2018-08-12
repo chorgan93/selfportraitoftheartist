@@ -12,6 +12,7 @@ public class NatalieOverrideS : MonoBehaviour {
 
 		playerToOverride = GameObject.Find("Player").GetComponent<PlayerController>();
 		playerToOverride.isNatalie = true;
+        playerToOverride.GetComponent<PlayerAugmentsS>().RefreshAll();
 		playerToOverride.equippedWeapons[0] = natalieMantra;
 		playerToOverride.subWeapons[0] = natalieMantra;
 		playerToOverride.myRenderer.GetComponent<Animator>().runtimeAnimatorController = natalieAnimatorController;

@@ -91,9 +91,9 @@ public class CustomizableControlsUIS : MonoBehaviour {
         {
             stickReset = false;
             ControlManagerS.controlProfile++;
-            if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4))
+            if ((ControlManagerS.controlProfile > 2 && !myControl.canSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.canSelectPS4))
             {
-                if (myControl.ControllerAttached() && !myControl.CanSelectPS4)
+                if (myControl.ControllerAttached() && !myControl.canSelectPS4)
                 {
                     ControlManagerS.controlProfile = 0;
                 }
@@ -108,10 +108,10 @@ public class CustomizableControlsUIS : MonoBehaviour {
         {
             stickReset = false;
             ControlManagerS.controlProfile--;
-            if ((ControlManagerS.controlProfile < 0 && myControl.ControllerAttached() && !myControl.CanSelectPS4)
-                || (ControlManagerS.controlProfile < 1 && (!myControl.ControllerAttached() || myControl.CanSelectPS4)))
+            if ((ControlManagerS.controlProfile < 0 && myControl.ControllerAttached() && !myControl.canSelectPS4)
+                || (ControlManagerS.controlProfile < 1 && (!myControl.ControllerAttached() || myControl.canSelectPS4)))
             {
-                if (myControl.CanSelectPS4)
+                if (myControl.canSelectPS4)
                 {
                     ControlManagerS.controlProfile = 3;
                 }
@@ -127,9 +127,9 @@ public class CustomizableControlsUIS : MonoBehaviour {
         {
 
             ControlManagerS.controlProfile++;
-            if ((ControlManagerS.controlProfile > 2 && !myControl.CanSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.CanSelectPS4))
+            if ((ControlManagerS.controlProfile > 2 && !myControl.canSelectPS4) || (ControlManagerS.controlProfile > 3 && myControl.canSelectPS4))
             {
-                if (myControl.ControllerAttached() && !myControl.CanSelectPS4)
+                if (myControl.ControllerAttached() && !myControl.canSelectPS4)
                 {
                     ControlManagerS.controlProfile = 0;
                 }
@@ -388,7 +388,10 @@ public class CustomizableControlsUIS : MonoBehaviour {
 
         myParentMenu = newM;
         myControl = myParentMenu.MyControl;
-
+        if (myControl.ControllerAttached())
+        {
+            myControl.DetermineControllerType();
+        }
         checkKeyPress = -1;
         gameObject.SetActive(true);
     }

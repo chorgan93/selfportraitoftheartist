@@ -13,6 +13,8 @@ public class TrackingEffectS : MonoBehaviour {
 	private Vector3 offsetPos;
 	private Vector3 startPos;
 
+    private Vector3 startScale;
+
 	//private Transform startParent;
 	//private float resetParentCount = 0.8f;
 	//private float resetParentCountdown;
@@ -26,6 +28,8 @@ public class TrackingEffectS : MonoBehaviour {
 		startRotateZ = transform.rotation.eulerAngles.z;
 		startPos = transform.localPosition;
 		startPos.z+=3f;
+
+        startScale = transform.localScale;
 
 		//startParent = transform.parent;
 	
@@ -57,9 +61,17 @@ public class TrackingEffectS : MonoBehaviour {
 			transform.localPosition = startPos+offsetPos;
 		}
 		myRenderer.enabled = true;
-		/*transform.parent = null;
-		resetParentCountdown = resetParentCount;
-		checkReset = true;**/
+
+        if (transform.parent != null){
+            if (transform.parent.localScale.x < 0)
+            {
+                Vector3 fixScale = startScale;
+                fixScale.y *= -1f;
+                transform.localScale = fixScale;
+            }
+            else
+            { transform.localScale = startScale; }
+        }
 	}
 
 	public void TurnOffEffect(){
@@ -91,7 +103,13 @@ public class TrackingEffectS : MonoBehaviour {
 			rotateZ += 180;
 		}
 
-
+        if (transform.parent != null)
+        {
+            if (transform.parent.localScale.x < 0)
+            {
+                rotateZ += 45;
+            }
+        }
 
 		transform.rotation = Quaternion.Euler(new Vector3(0,0,rotateZ+startRotateZ));
 

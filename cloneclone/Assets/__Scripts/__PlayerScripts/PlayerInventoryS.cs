@@ -487,24 +487,11 @@ public class PlayerInventoryS : MonoBehaviour
 
             _earnedUpgrades = new List<int>();
             _earnedVirtues = new List<int>();
-            if (PlayerController.equippedVirtues == null)
-            {
+           
                 _earnedVirtues.Add(0);
                 PlayerController.equippedVirtues = new List<int>();
                 PlayerController.equippedVirtues.Add(0);
-            }
-            else
-            {
-                if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15))
-                {
-                    _earnedVirtues.Add(15);
-                }// check if marked is only, testing case
-                if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(0))
-                {
-                    PlayerController.equippedVirtues.Add(0);
-                    _earnedVirtues.Add(0);
-                }
-            }
+           
             _collectedItems = new List<int>();
             healNums = new List<int>();
             laPickupNums = new List<int>();
@@ -744,97 +731,57 @@ public class PlayerInventoryS : MonoBehaviour
 
     public void NewGame(bool newGamePlus = false)
     {
-        _dManager.ClearAllSaved();
-        _collectedItems.Clear();
-        _collectedItemCount.Clear();
-        _collectedKeyItems.Clear();
-        _clearedWalls.Clear();
-        _openedDoors.Clear();
+        
+        InventorySave newSave = new InventorySave();
+        LoadNewInventoryData(newSave);
 
-        scenesIveBeenTo.Clear();
-        checkpointsReachedScenes.Clear();
-        checkpointsReachedSpawns.Clear();
+        GameMenuS.unlockedChallenge = false;
+        GameMenuS.unlockedTurbo = false;
 
-        skippableScenes.Clear();
-
-        if (_iManager && !newGamePlus)
+        if (_iManager)
         {
             _iManager.equippedInventory.Clear();
             _iManager.equippedInventory.Add(0);
         }
-
-        if (!newGamePlus)
-        {
-            CheckpointS.lastSavedTimeDotTime = 0f;
-            healNums.Clear();
-            chargeNums.Clear();
-            vpNums.Clear();
-            laPickupNums.Clear();
-            if (unlockedWeapons.Count > 1)
-            {
-                unlockedWeapons.RemoveRange(1, unlockedWeapons.Count - 1);
-            }
-            if (unlockedBuddies.Count > 1)
-            {
-                unlockedBuddies.RemoveRange(1, unlockedBuddies.Count - 1);
-            }
-            SetUpStartTech();
-            OverwriteReversionData(true);
-        }
+        CheckpointS.lastSavedTimeDotTime = 0f;
+        healNums.Clear();
+        chargeNums.Clear();
+        vpNums.Clear();
+        laPickupNums.Clear();
+        SetUpStartTech();
+        OverwriteReversionData(true);
         PlayerStatsS.healOnStart = true;
         PlayerStatsS._currentDarkness = 0f;
-        if (!newGamePlus)
-        {
             PlayerCollectionS.currencyCollected = 0;
-        }
         PlayerController._currentParadigm = 0;
         PlayerController.familiarUnlocked = false;
         SpawnPosManager.whereToSpawn = 0;
         GameOverS.revivePosition = 0;
-        //CameraShakeS.SetTurbo();
         List<int> buddyList = new List<int>();
-        if (!newGamePlus)
-        {
-            buddyList.Add(unlockedBuddies[0].buddyNum);
-            equippedWeapons = new List<PlayerWeaponS> { unlockedWeapons[0] };
-            subWeapons = new List<PlayerWeaponS> { unlockedWeapons[0] };
+        buddyList.Add(0);
+        unlockedBuddies = new List<BuddyS> { masterLoadoutList.masterBuddyList[0] };
+        unlockedWeapons = new List<PlayerWeaponS> { masterLoadoutList.masterWeaponList[0] };
+        equippedWeapons = new List<PlayerWeaponS> { masterLoadoutList.masterWeaponList[0] };
+        subWeapons = new List<PlayerWeaponS> { masterLoadoutList.masterWeaponList[0] };
             LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
             lHandler.ResetUpgrades();
-        }
+
         _tvNum = Mathf.RoundToInt(UnityEngine.Random.Range(100, 999));
-        if (unlockForDemo)
-        {
-            DemoUnlocks(null);
-        }
-        if (!newGamePlus)
-        {
+
             SaveLoadout(equippedWeapons, subWeapons, buddyList);
             GameMenuS.ResetOptions();
-        }
-        else
-        {
-            DarknessPercentUIS.hasReached100 = true;
-        }
-        OverwriteInventoryData(eraseOnNewGame);
 
-        // i want these to be unlocked forever
-        //GameMenuS.unlockedChallenge = false;
-        //GameMenuS.unlockedTurbo = false;
 
         PlayerController.killedFamiliar = false;
 
-        if (newGamePlus)
-        {
-            CheckpointS.lastSavePointName = "sacrament i.";
-        }
-        else
-        {
+       
             CheckpointS.lastSavePointName = "Abandoned Faith";
-        }
+
         CheckpointS.totalPlayTimeSeconds = 0;
         CheckpointS.totalPlayTimeMinutes = 0;
         CheckpointS.totalPlayTimeHours = 0;
 
+        //StoryProgressionS.SaveProgress();
     }
 
     public void OverwriteReversionData(bool includeDarkness = false){
@@ -865,33 +812,14 @@ public class PlayerInventoryS : MonoBehaviour
     {
 
         _earnedUpgrades.Clear();
-        if (PlayerController.equippedVirtues != null)
-        {
-            if (!PlayerController.equippedVirtues.Contains(0))
-            {
 
-
-                PlayerController.equippedVirtues.Add(0);
-
-            }
-            if (!_earnedVirtues.Contains(0))
-            {
-                _earnedVirtues.Add(0);
-            }
-            if (!_earnedVirtues.Contains(15) && PlayerController.equippedVirtues.Contains(15))
-            {
-                _earnedVirtues.Add(15);
-            }
-        }
-        else
-        {
             _earnedVirtues.Clear();
 
             _earnedVirtues.Add(0);
             PlayerController.equippedVirtues = new List<int>();
             PlayerController.equippedVirtues.Add(0);
 
-        }
+
         PlayerController.equippedTech = new List<int> { 0, 1, 2, 3, 4 };
         _earnedTech = new List<int> { 0, 1, 2, 3, 4, 10, 11, 12, 13, 14 };
     }
@@ -930,6 +858,9 @@ public class PlayerInventoryS : MonoBehaviour
         checkpointsReachedSpawns = inventoryData.checkpointsReachedSpawns;
 
         CameraShakeS.SetTurbo(inventoryData.turboSetting);
+        CameraEffectsS.cameraEffectsEnabled = inventoryData.savedCamEffect;
+        BGMHolderS.volumeMult = inventoryData.savedMusicVolume;
+        SFXObjS.volumeSetting = inventoryData.savedSFXVolume;
 
         TextInputUIS.playerName = inventoryData.playerName;
 
@@ -967,7 +898,7 @@ public class PlayerInventoryS : MonoBehaviour
         }
 
         // make sure marked saves/loads appropriately
-        if (PlayerController.equippedVirtues != null)
+        /*if (PlayerController.equippedVirtues != null)
         {
             if (PlayerController.equippedVirtues.Contains(15) && !inventoryData.equippedVirtues.Contains(15))
             {
@@ -975,7 +906,7 @@ public class PlayerInventoryS : MonoBehaviour
             }
             if (PlayerController.equippedVirtues.Contains(15) && !inventoryData.earnedVirtues.Contains(15)) { inventoryData.earnedVirtues.Add(15); }
             if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15)) { _earnedVirtues.Add(15); }
-        }
+        }**/
         PlayerController.equippedVirtues = inventoryData.equippedVirtues;
         PlayerController.equippedTech = inventoryData.equippedTech;
 
@@ -1125,13 +1056,13 @@ public class PlayerInventoryS : MonoBehaviour
             if (initialized)
             {
                 // make sure marked saves/loads appropriately
-                if (PlayerController.equippedVirtues != null)
+                /*if (PlayerController.equippedVirtues != null)
                 {
                     if (PlayerController.equippedVirtues.Contains(15) && !_earnedVirtues.Contains(15))
                     {
                         _earnedVirtues.Add(15);
                     }
-                }
+                }**/
                 inventoryData.playerName = TextInputUIS.playerName;
                 inventoryData.earnedUpgrades = _earnedUpgrades;
                 inventoryData.collectedItems = _collectedItems;
@@ -1243,6 +1174,9 @@ public class PlayerInventoryS : MonoBehaviour
                 inventoryData.totalPlayTimeHours = CheckpointS.totalPlayTimeHours;
 
                 inventoryData.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
+                inventoryData.savedCamEffect = CameraEffectsS.cameraEffectsEnabled;
+                inventoryData.savedMusicVolume = BGMHolderS.volumeMult;
+                inventoryData.savedSFXVolume = SFXObjS.volumeSetting;
 
                 // overwrite reversion properties (saved data = local data) 
                 if (_revertedCollectedItems != null)
@@ -1578,6 +1512,9 @@ public class InventorySave {
     public int totalPlayTimeHours = 0;
 
     public float savedCameraShake = 1f;
+    public bool savedCamEffect = true;
+    public float savedMusicVolume = 1f;
+    public float savedSFXVolume = 1f;
 
 	public InventorySave(){
 		playerName = "LUCAH";
@@ -1588,6 +1525,7 @@ public class InventorySave {
 		healNums = new List<int>();
 		laPickupNums = new List<int>();
 		chargeNums = new List<int>();
+        vpNums = new List<int>();
 		collectedKeyItems = new List<int>();
 		collectedItemCount = new List<int>();
 		openedDoors = new List<int>();
@@ -1641,7 +1579,7 @@ public class InventorySave {
 
 		availableUpgrades = new List<int>(){0,1,2,6};
 		nextLevelUpgrades = new List<int>(){4,5,3};
-		lockedUpgrades = new List<int>(){0,1, 2};
+		lockedUpgrades = new List<int>(){0,1, 2,3,4,5};
 		familiarUnlocked = false;
 
 		tvNumber = Mathf.FloorToInt(UnityEngine.Random.Range(100, 999));
@@ -1668,6 +1606,7 @@ public class InventorySave {
     lastChapterName = "Track -1 ~ Cradle";
 
         savedCameraShake = 1f;
-
+        savedCamEffect = true;
+        savedSFXVolume = savedMusicVolume = 1f;
 	}
 }

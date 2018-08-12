@@ -41,6 +41,9 @@ public class BuddyS : MonoBehaviour {
 	[HideInInspector]
 	public bool canSwitch = true;
 
+    [HideInInspector]
+    public bool switchAfterAction = false;
+
 	public virtual void Initialize(){
 
 		_playerRef = GetComponentInParent<PlayerController>();
@@ -112,4 +115,16 @@ public class BuddyS : MonoBehaviour {
 	public void SetBuddyNoCharge(BuddyNoChargeEffectS newEffect){
 		_outOfCharge = newEffect;
 	}
+
+    private void OnEnable()
+    {
+        switchAfterAction = false;
+    }
+
+    public void TurnSelfOff(){
+        playerRef.BuddyEffect.ChangeEffect(shadowColor, transform);
+        gameObject.SetActive(false);
+        switchAfterAction = false;
+        Debug.Log("Turning self off!");
+    }
 }

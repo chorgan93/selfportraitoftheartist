@@ -140,7 +140,10 @@ public class ShootBuddyS : BuddyS {
 		}
 		else{
 			shootCountdown -= Time.deltaTime;
-
+            if (shootCountdown <= allowChainTime && switchAfterAction){
+                TurnSelfOff();
+                shootCountdown = 0f;
+            }
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	
@@ -151,7 +154,6 @@ public class ShootBuddyS : BuddyS {
 						if (shootCountdown <= allowChainTime && playerRef.myStats.ChargeCheck(costPerUse, false,true)){
 							playerRef.myStats.ChargeCheck(costPerUse);
 							myAnimator.SetTrigger(fireAnimatorTrigger);
-
 							if (shotDelay <= 0){
 								FireProjectile();
 							}else{
@@ -186,7 +188,6 @@ public class ShootBuddyS : BuddyS {
 			Instantiate(buddySound);
 		}
 
-		canSwitch = true;
 		aimDir = Vector3.zero;
 
 
@@ -225,7 +226,8 @@ public class ShootBuddyS : BuddyS {
 		currentShot++;
 		if (currentShot >= numShots){
 			shotTriggered = false;
-			currentShot = 0;
+            currentShot = 0;
+            canSwitch = true;
 		}else{
 			shotDelayCountdown = timeBetweenShots;
 		}

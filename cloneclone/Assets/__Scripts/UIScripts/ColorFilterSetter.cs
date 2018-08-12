@@ -7,6 +7,7 @@ public class ColorFilterSetter : MonoBehaviour {
 	public Color raysColor = new Color(0,1,1);
 	public Color filterColorNoEffects = Color.white;
 
+    private GameObject filterObject;
 
 	// Use this for initialization
 	void Awake () {
@@ -15,11 +16,11 @@ public class ColorFilterSetter : MonoBehaviour {
 			filterColorNoEffects = filterColor;
 		}
 
-		GameObject filterObject = GameObject.Find("ColorFilter");
+		filterObject = GameObject.Find("ColorFilter");
 
 		if (filterObject != null){
 			#if UNITY_EDITOR_OSX
-			if (!CameraEffectsS.debugEffects){
+			if (!CameraEffectsS.cameraEffectsEnabled){
 
 				filterObject.GetComponent<SpriteRenderer>().color = filterColorNoEffects;
 			}else{
@@ -48,12 +49,28 @@ public class ColorFilterSetter : MonoBehaviour {
 		}
 	}
 
+    public void RefreshFilter(){
+        if (filterObject != null)
+        {
+            if (!CameraEffectsS.cameraEffectsEnabled)
+            {
+
+                filterObject.GetComponent<SpriteRenderer>().color = filterColorNoEffects;
+            }
+            else
+            {
+
+                filterObject.GetComponent<SpriteRenderer>().color = filterColor;
+            }
+        }
+    }
+
 	#if UNITY_EDITOR_OSX
 	void Update(){
 
 		if(Input.GetKeyUp(KeyCode.P)){
 			GameObject filterObject = GameObject.Find("ColorFilter");
-			if (!CameraEffectsS.debugEffects && filterObject != null){
+			if (!CameraEffectsS.cameraEffectsEnabled && filterObject != null){
 
 				filterObject.GetComponent<SpriteRenderer>().color = filterColorNoEffects;
 			}else{

@@ -51,7 +51,8 @@ public class GameMenuS : MonoBehaviour {
 	public Text sfxText;
 	public Text shakeText;
     public Text resolutionText;
-	public Text fullscreenText;
+    public Text fullscreenText;
+    public Text postProcessingText;
 	public RectTransform optionsSelector;
 
     private bool quitRightFromOptions = false;
@@ -159,7 +160,6 @@ public class GameMenuS : MonoBehaviour {
 				myManager.pRef.ResetTimeMax();
 			}
         }else if (!inCustomControlMenu){
-            Debug.Log("Options menu open!");
 			if (myControl.VerticalMenu() > 0.1f && stickReset){
 				stickReset = false;
                 currentSelection--;if (!mainMenuUpdate)
@@ -184,7 +184,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 9
+			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 10
 			)){
 
 				selectButtonUp = false;
@@ -271,6 +271,15 @@ public class GameMenuS : MonoBehaviour {
                     myManager.pRef.ResetTimeMax();
                 }
 			}
+            // post-processing set
+            if (currentSelection == 9)
+            {
+                HandlePostOption();
+                if (!mainMenuUpdate)
+                {
+                    myManager.pRef.ResetTimeMax();
+                }
+            }
 		}
 
 	}
@@ -569,6 +578,32 @@ public class GameMenuS : MonoBehaviour {
 		}
 	}
 
+    void HandlePostOption()
+    {
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+        {
+            stickReset = false;
+            CameraEffectsS.ChangeEffectSetting(!CameraEffectsS.cameraEffectsEnabled);
+        }
+
+        if (selectButtonUp && myControl.GetCustomInput(12))
+        {
+
+            CameraEffectsS.ChangeEffectSetting(!CameraEffectsS.cameraEffectsEnabled);
+            selectButtonUp = false;
+
+        }
+
+        if (CameraEffectsS.cameraEffectsEnabled)
+        {
+            postProcessingText.text = "ON";
+        }
+        else
+        {
+            postProcessingText.text = "OFF";
+        }
+    }
+
     void HandleFullscreenOption(){
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
         {
@@ -863,13 +898,18 @@ public class GameMenuS : MonoBehaviour {
         }else{
             fullscreenText.text = "OFF";
         }
+        if (CameraEffectsS.cameraEffectsEnabled){
+            postProcessingText.text = "ON";
+        }else{
+            postProcessingText.text = "OFF";
+        }
 		speedText.text = CameraShakeS.GetTurboString();
 		musicText.text = BGMHolderS.volumeMult*100f + "%";
 		sfxText.text = SFXObjS.volumeSetting*100f + "%";
 	}
 
 	public static void ResetOptions(){
-		DifficultyS.SetDifficultiesFromInt(0,0);
+		DifficultyS.SetDifficultiesFromInt(1,1);
 		//BGMHolderS.volumeMult = 1f;
 		//SFXObjS.volumeSetting = 1f;
 		//CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;

@@ -214,6 +214,12 @@ public class PlayerAugmentsS : MonoBehaviour {
 			_initialized = true;
 			enragedShadow.SetActive(false);
 		}
+        if (_playerReference.isNatalie || _playerReference.myStats.arcadeMode)
+        {
+            blockVirtues = true;
+        }else{
+            blockVirtues = false;
+        }
 		RefreshAll();
         if (_scornedAug){
             _playerReference.SetScorned(true);
@@ -276,14 +282,24 @@ public class PlayerAugmentsS : MonoBehaviour {
 
     public void RefreshAll(){
 		TurnOffAll();
-
+        if (!_playerReference){
+            _playerReference = GetComponent<PlayerController>();
+        }
+        if (_playerReference.isNatalie || _playerReference.GetComponent<PlayerStatsS>().arcadeMode)
+        {
+            blockVirtues = true;
+        }
+        else
+        {
+            blockVirtues = false;
+        }
 		// turn on weapon augs
 		if (_playerReference.EquippedWeaponAug() != null){
 			TurnOnWeaponAugs();
 		}
 
 		// turn on virtues
-        if (PlayerController.equippedVirtues.Count > 0 && !blockVirtues){
+        if (PlayerController.equippedVirtues.Count > 0){
 			TurnOnVirtueAugs();
 		}
 	}
@@ -353,9 +369,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private void TurnOnVirtueAugs(){
 
         // as always, remove // before if statements when done testing
-        if (_playerReference.isNatalie)
+        if (blockVirtues)
         {
-            _unstoppableAug = true;
+            if (_playerReference)
+            {
+                if (!_playerReference.GetComponent<PlayerStatsS>().arcadeMode)
+                { _unstoppableAug = true; }
+            }
         }
         else
         {

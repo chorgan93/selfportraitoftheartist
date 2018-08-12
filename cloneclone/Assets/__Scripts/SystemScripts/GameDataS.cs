@@ -29,7 +29,6 @@ public class GameDataS {
 		currentReviveScene = GameOverS.reviveScene;
 		currentSpawnPos = GameOverS.revivePosition;
 		storyProgression = StoryProgressionS.storyProgress;
-
 		canUseMenu = InGameMenuManagerS.allowMenuUse;
 		hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
 
@@ -45,8 +44,7 @@ public class GameDataS {
 
     public void RemoveCurrent(){
 
-        SpawnPosManager.whereToSpawn = GameOverS.revivePosition = 0;
-        StoryProgressionS.storyProgress.Clear();
+        current = null;
         if (PlayerInventoryS.I)
         {
             PlayerInventoryS.I.NewGame();
@@ -55,11 +53,13 @@ public class GameDataS {
         {
             PlayerInventoryS.inventoryData = null;
         }
+        SpawnPosManager.whereToSpawn = GameOverS.revivePosition = 0;
+        StoryProgressionS.storyProgress = new List<int>();
+
         InGameMenuManagerS.hasUsedMenu = false;
         InGameMenuManagerS.allowMenuUse = false;
         PlayerStatsS._currentDarkness = 0;
         PlayerCollectionS.currencyCollected = 0;
-        current = null;
     }
 
 	public void LoadCurrent(){

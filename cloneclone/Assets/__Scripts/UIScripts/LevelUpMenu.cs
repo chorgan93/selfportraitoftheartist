@@ -722,6 +722,7 @@ public class LevelUpMenu : MonoBehaviour
             textStartSize = mainMenuTextObjs[0].fontSize;
             _initialized = true;
             levelHandler = PlayerInventoryS.I.GetComponent<LevelUpHandlerS>();
+            levelHandler.LevelMenuInitialize();
         }
 
         gameObject.SetActive(true);

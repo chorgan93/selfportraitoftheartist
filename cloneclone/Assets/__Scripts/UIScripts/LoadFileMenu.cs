@@ -173,7 +173,7 @@ public class LoadFileMenu : MonoBehaviour
         overwriteContainer.SetActive(false);
         myMenu.inLoadMenu = false;
         if (loadComplete){
-            SaveLoadS.currentSaveSlot = currentLoadFile;
+            SaveLoadS.currentSaveSlot = myMenu.saveToLoad = currentLoadFile;
             myMenu.triggerSecondScreen = true;
 
             if (!overwrite) {

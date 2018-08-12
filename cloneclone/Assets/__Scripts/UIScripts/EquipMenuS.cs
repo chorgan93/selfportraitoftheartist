@@ -109,7 +109,9 @@ public class EquipMenuS : MonoBehaviour {
 	public Sprite[] toggleButtonSpritesLeft;
 	public Sprite[] toggleButtonSpritesRight;
 	public Image toggleButtonSpriteLeft;
-	public Image toggleButtonSpriteRight;
+    public Image toggleButtonSpriteRight;
+    public Image toggleButtonBGLeft;
+    public Image toggleButtonBGRight;
 
 	// INVENTORY ELEMENTS
 	private bool inInventoryMenu;
@@ -170,7 +172,7 @@ public class EquipMenuS : MonoBehaviour {
 		virtueAmtDisplay.text = "VP: " + pRef.myStats.usedVirtue + " / " + pRef.myStats.virtueAmt;
 
 		toggleTextLeft.text = toggleTextRight.text = toMapString;
-		TurnOnToggleButton();
+		//TurnOnToggleButton();
 
 		hideOnMap.SetActive(true);
 		InGameMenuManagerS.menuInUse = true;
@@ -194,7 +196,19 @@ public class EquipMenuS : MonoBehaviour {
 
 		if (goToMap){
 			TurnOnMapScreen();
-		}
+        }else{
+
+                toggleTextLeft.enabled = toggleTextRight.enabled = true;
+            toggleButtonSpriteRight.gameObject.SetActive(true);
+            toggleButtonSpriteLeft.gameObject.SetActive(true);
+            if (toggleButtonBGLeft){
+                toggleButtonBGLeft.enabled = true;
+            }
+            if (toggleButtonBGRight)
+            {
+                toggleButtonBGRight.enabled = true;
+            }
+        }
 	}
 	
 	
@@ -209,7 +223,7 @@ public class EquipMenuS : MonoBehaviour {
 
 		// MAIN MENU SECTION
 		if (onMapScreen){
-			if (pRef.myControl.ToggleMapButton()){
+			if (ToggleMapButton()){
 				pRef.ResetTimeMax();
 				if (!mapButtonDown){
 					TurnOn();
@@ -221,7 +235,7 @@ public class EquipMenuS : MonoBehaviour {
 		}
 		else if (onMainScreen){
 
-			if (pRef.myControl.ToggleMapButton()){
+			if (ToggleMapButton()){
 				pRef.ResetTimeMax();
 				if (!mapButtonDown){
 					TurnOnMapScreen();
@@ -411,8 +425,17 @@ public class EquipMenuS : MonoBehaviour {
 					Instantiate(cancelSound);
 				}
 
-				toggleTextLeft.enabled = toggleTextRight.enabled = true;
-				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
+                toggleTextLeft.enabled = toggleTextRight.enabled = true;
+                toggleButtonSpriteRight.gameObject.SetActive(true);
+                toggleButtonSpriteLeft.gameObject.SetActive(true);
+                if (toggleButtonBGLeft)
+                {
+                    toggleButtonBGLeft.enabled = true;
+                }
+                if (toggleButtonBGRight)
+                {
+                    toggleButtonBGRight.enabled = true;
+                }
 			}
 			
 			_canBeQuit = false;
@@ -546,8 +569,17 @@ public class EquipMenuS : MonoBehaviour {
 					Instantiate(cancelSound);
 				}
 
-				toggleTextLeft.enabled = toggleTextRight.enabled = true;
-				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
+                toggleTextLeft.enabled = toggleTextRight.enabled = true;
+                toggleButtonSpriteRight.gameObject.SetActive(true);
+                toggleButtonSpriteLeft.gameObject.SetActive(true);
+                if (toggleButtonBGLeft)
+                {
+                    toggleButtonBGLeft.enabled = true;
+                }
+                if (toggleButtonBGRight)
+                {
+                    toggleButtonBGRight.enabled = true;
+                }
 			}
 
 			_canBeQuit = false;
@@ -631,8 +663,17 @@ public class EquipMenuS : MonoBehaviour {
 					Instantiate(cancelSound);
 				}
 
-				toggleTextLeft.enabled = toggleTextRight.enabled = true;
-				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
+                toggleTextLeft.enabled = toggleTextRight.enabled = true;
+                toggleButtonSpriteRight.gameObject.SetActive(true);
+                toggleButtonSpriteLeft.gameObject.SetActive(true);
+                if (toggleButtonBGLeft)
+                {
+                    toggleButtonBGLeft.enabled = true;
+                }
+                if (toggleButtonBGRight)
+                {
+                    toggleButtonBGRight.enabled = true;
+                }
 			}
 			
 			_canBeQuit = false;
@@ -699,8 +740,17 @@ public class EquipMenuS : MonoBehaviour {
 					Instantiate(cancelSound);
 				}
 
-				toggleTextLeft.enabled = toggleTextRight.enabled = true;
-				toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = true;
+                toggleTextLeft.enabled = toggleTextRight.enabled = true;
+                toggleButtonSpriteRight.gameObject.SetActive(true);
+                toggleButtonSpriteLeft.gameObject.SetActive(true);
+                if (toggleButtonBGLeft)
+                {
+                    toggleButtonBGLeft.enabled = true;
+                }
+                if (toggleButtonBGRight)
+                {
+                    toggleButtonBGRight.enabled = true;
+                }
 			}
 			
 			_canBeQuit = false;
@@ -713,7 +763,7 @@ public class EquipMenuS : MonoBehaviour {
 
 		if (pRef.myControl.ExitButtonUp()){
 			exitButtonDown = false;
-			if (onMainScreen){
+            if (onMainScreen || onMapScreen){
 				_canBeQuit = true;
 			}else{
 				_canBeQuit = false;
@@ -1320,8 +1370,17 @@ public class EquipMenuS : MonoBehaviour {
 		virtueWhole.gameObject.SetActive(false);
 		SetSelectorParadigmI(0, 0);
 
-		toggleTextLeft.enabled = toggleTextRight.enabled = false;
-		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
+        toggleTextLeft.enabled = toggleTextRight.enabled = false;
+        toggleButtonSpriteRight.gameObject.SetActive(false);
+        toggleButtonSpriteLeft.gameObject.SetActive(false);
+        if (toggleButtonBGLeft)
+        {
+            toggleButtonBGLeft.enabled = false;
+        }
+        if (toggleButtonBGRight)
+        {
+            toggleButtonBGRight.enabled = false;
+        }
 	}
 
 	private void GoToParadigmIISetUp(){
@@ -1335,8 +1394,17 @@ public class EquipMenuS : MonoBehaviour {
 		virtueWhole.gameObject.SetActive(false);
 		SetSelectorParadigmII(0);
 
-		toggleTextLeft.enabled = toggleTextRight.enabled = false;
-		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
+        toggleTextLeft.enabled = toggleTextRight.enabled = false;
+        toggleButtonSpriteRight.gameObject.SetActive(false);
+        toggleButtonSpriteLeft.gameObject.SetActive(false);
+        if (toggleButtonBGLeft)
+        {
+            toggleButtonBGLeft.enabled = false;
+        }
+        if (toggleButtonBGRight)
+        {
+            toggleButtonBGRight.enabled = false;
+        }
 	}
 
 	private void GoToVirtueSetUp(){
@@ -1356,8 +1424,17 @@ public class EquipMenuS : MonoBehaviour {
 		changingVirtue = false;
 		SetSelectorVirtue(0);
 
-		toggleTextLeft.enabled = toggleTextRight.enabled = false;
-		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
+        toggleTextLeft.enabled = toggleTextRight.enabled = false;
+        toggleButtonSpriteRight.gameObject.SetActive(false);
+        toggleButtonSpriteLeft.gameObject.SetActive(false);
+        if (toggleButtonBGLeft)
+        {
+            toggleButtonBGLeft.enabled = false;
+        }
+        if (toggleButtonBGRight)
+        {
+            toggleButtonBGRight.enabled = false;
+        }
 	}
 	private void GoToInventorySetUp(){
 		currentPos = 0;
@@ -1374,9 +1451,25 @@ public class EquipMenuS : MonoBehaviour {
 		virtueSubscreen.gameObject.SetActive(false);
 		SetSelectorInventory(0);
 
-		toggleTextLeft.enabled = toggleTextRight.enabled = false;
-		toggleButtonSpriteLeft.enabled = toggleButtonSpriteRight.enabled = false;
+        toggleTextLeft.enabled = toggleTextRight.enabled = false;
+        toggleButtonSpriteRight.gameObject.SetActive(false);
+        toggleButtonSpriteLeft.gameObject.SetActive(false);
+        if (toggleButtonBGLeft)
+        {
+            toggleButtonBGLeft.enabled = false;
+        }
+        if (toggleButtonBGRight)
+        {
+            toggleButtonBGRight.enabled = false;
+        }
 	}
 
-
+    bool ToggleMapButton(){
+        bool buttonDown = false;
+        if (
+            pRef.myControl.GetCustomInput(7) || pRef.myControl.GetCustomInput(6)){
+            buttonDown = true;
+        }
+        return buttonDown;
+    }
 }

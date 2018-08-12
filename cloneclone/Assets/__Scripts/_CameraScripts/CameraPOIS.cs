@@ -73,9 +73,6 @@ public class CameraPOIS : MonoBehaviour {
 	#if UNITY_EDITOR_OSX || UNITY_EDITOR || UNITY_EDITOR_64
 	void Update(){
 		CheckLock();
-		if (Input.GetKeyDown(KeyCode.C)){
-			Debug.Log(enemyReference.allEnemiesInRange.Count, enemyReference.gameObject);
-		}
 	}
 	#endif
 	

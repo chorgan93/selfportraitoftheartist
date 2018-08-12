@@ -242,7 +242,7 @@ public class PlayerDestructionS : MonoBehaviour {
 
     public void MergeRevertedData(){
 
-        if (revertedCombatClearedAtLeastOnce != null)
+        if (_revertedCombatClearedAtLeastOnce != null)
         {
             for (int i = _revertedCombatClearedAtLeastOnce.Count - 1; i > -1; i--)
             {

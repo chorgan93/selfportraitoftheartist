@@ -124,6 +124,11 @@ public class MeleeBuddyS : BuddyS {
 		}
 		else{
 			shootCountdown -= Time.deltaTime;
+            if ((canSwitch || shootCountdown <= 0) && switchAfterAction)
+            {
+                TurnSelfOff();
+                shootCountdown = 0;
+            }
 	
 			if (!playerRef.talking && !playerRef.myStats.PlayerIsDead()){
 	

@@ -11,11 +11,11 @@ public class SaveLoadS : MonoBehaviour {
 	
 	//it's static so we can call it from anywhere
 	public static void Save() {
-		// for now, only use one file
+        
         if (currentSaveSlot < SaveLoadS.savedGames.Count){
             SaveLoadS.savedGames[currentSaveSlot] = GameDataS.current;
 		}else{
-			SaveLoadS.savedGames.Add(GameDataS.current);
+            SaveLoadS.savedGames.Add(GameDataS.current);
 		}
 		if (Application.platform != RuntimePlatform.WebGLPlayer){
 		BinaryFormatter bf = new BinaryFormatter();
@@ -37,7 +37,6 @@ public class SaveLoadS : MonoBehaviour {
 		}
 		GameDataS.current.OverwriteCurrent();
 		Save ();
-
 		#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_OSX
 		}
 		#endif
@@ -74,9 +73,9 @@ public class SaveLoadS : MonoBehaviour {
                 }
 
             // finally, load game
-            GameDataS.current = savedGames[saveToLoad];
-            GameDataS.current.LoadCurrent();
             currentSaveSlot = saveToLoad;
+            GameDataS.current = savedGames[currentSaveSlot];
+            GameDataS.current.LoadCurrent();
         }
     
 	}

@@ -58,9 +58,9 @@ public class CameraEffectsS : MonoBehaviour {
 	[Header("Special Scene Properties")]
 	public bool arcadeMode = false;
 
-	#if UNITY_EDITOR_OSX
-	public static bool debugEffects = false;
-	#endif
+	//#if UNITY_EDITOR_OSX
+	public static bool cameraEffectsEnabled = true;
+	//#endif
 
 	// Use this for initialization
 	void Awake () {
@@ -84,15 +84,15 @@ public class CameraEffectsS : MonoBehaviour {
 		HandleBlur();
 		#if UNITY_EDITOR_OSX
 		if(Input.GetKeyDown(KeyCode.P)){
-			debugEffects = !debugEffects;
-			Debug.Log("Setting camera effects: " + debugEffects);
+			cameraEffectsEnabled = !cameraEffectsEnabled;
+			Debug.Log("Setting camera effects: " + cameraEffectsEnabled);
 			if (!sunEffect){
 				toneEffect = GetComponent<Tonemapping>();
 				bloomEffect = GetComponent<Bloom>();
 				sunEffect = GetComponent<SunShafts>();
 				colorCorrection = GetComponent<ColorCorrectionCurves>();
 			}
-			if (debugEffects){
+			if (cameraEffectsEnabled){
 
 				sunEffect.enabled = true;
 				bloomEffect.enabled = true;
@@ -137,7 +137,7 @@ public class CameraEffectsS : MonoBehaviour {
 			antiAliasEffect.enabled = aliasOn;
 
 			#if UNITY_EDITOR_OSX
-			if (!debugEffects){
+			if (!cameraEffectsEnabled){
 			toneEffect = GetComponent<Tonemapping>();
 			bloomEffect = GetComponent<Bloom>();
 				sunEffect = GetComponent<SunShafts>();
@@ -232,7 +232,7 @@ public class CameraEffectsS : MonoBehaviour {
 	public void SetTransformFilter(bool onOff){
 		#if UNITY_EDITOR_OSX
 		if (onOff){
-			if (debugEffects){
+			if (cameraEffectsEnabled){
 				transformFilter.color = transformFilterColor;
 			}else{
 				transformFilter.color = transformFilterNoEffect;
@@ -314,4 +314,45 @@ public class CameraEffectsS : MonoBehaviour {
 	public void MatchAlias(){
 		antiAliasEffect.enabled = aliasOn;
 	}
+
+    public static void ChangeEffectSetting(bool newSet){
+       
+        cameraEffectsEnabled = newSet;
+        if (E != null)
+        {
+            //Debug.Log("Setting camera effects: " + debugEffects);
+            if (!E.sunEffect)
+            {
+                E.toneEffect = E.GetComponent<Tonemapping>();
+                E.bloomEffect = E.GetComponent<Bloom>();
+                E.sunEffect = E.GetComponent<SunShafts>();
+                E.colorCorrection = E.GetComponent<ColorCorrectionCurves>();
+            }
+            if (cameraEffectsEnabled)
+            {
+
+                E.sunEffect.enabled = true;
+                E.bloomEffect.enabled = true;
+                E.toneEffect.enabled = true;
+                E.contrastEffect.enabled = true;
+                E.colorCorrection.enabled = true;
+            }
+            else
+            {
+                E.sunEffect.enabled = false;
+                E.bloomEffect.enabled = false;
+                E.toneEffect.enabled = false;
+                E.contrastEffect.enabled = false;
+                E.colorCorrection.enabled = false;
+            }
+
+            GameObject filterReset = GameObject.Find("CameraFilterSetter");
+            if (filterReset != null){
+                filterReset.GetComponent<ColorFilterSetter>().RefreshFilter();
+            }
+        }
+
+
+    }
+
 }

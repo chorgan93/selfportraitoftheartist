@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Area06(Trail)Scenes/Area06_06_Split.unity
+- path: Assets/_Scenes/Area00(Forest)Scenes/Area00_02_DeadBody.unity
   isLoaded: 1
   isActive: 1

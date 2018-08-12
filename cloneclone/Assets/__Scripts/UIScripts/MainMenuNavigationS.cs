@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 1.0.5 —";
+	private const string currentVer = "— v. 1.0.7 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -113,7 +113,8 @@ public class MainMenuNavigationS : MonoBehaviour {
     private int lastUsedFile = 0;
     private int numSaveFiles = 0;
     public int NumSaveFiles { get { return numSaveFiles; }}
-    private int saveToLoad;
+    [HideInInspector]
+    public int saveToLoad;
 
     [Header("Options Properties")]
     public GameMenuS optionsMenu;
@@ -122,6 +123,8 @@ public class MainMenuNavigationS : MonoBehaviour {
     public bool inLoadMenu = false;
     private bool inOptionsMenu = false;
     public GameObject[] additionalInstructions;
+
+    private bool loadedOptions = false;
 
 	void Awake(){
 		versionText.text = currentVer;
@@ -398,7 +401,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     }
                                     else
                                     {
-
+                                        saveToLoad = 0;
                                         SaveLoadS.Load(saveToLoad);
                                         triggerSecondScreen = true;
                                     }
@@ -409,11 +412,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     // if less than 3 saves, go ahead. otherwise open load screen
                                     if (numSaveFiles < 3)
                                     {
+                                        SaveLoadS.currentSaveSlot = numSaveFiles;
                                         if (GameDataS.current != null)
                                         {
                                             GameDataS.current.RemoveCurrent();
                                         }
-                                        SaveLoadS.currentSaveSlot = numSaveFiles;
                                         triggerSecondScreen = true;
                                     }
                                     else
@@ -683,10 +686,12 @@ public class MainMenuNavigationS : MonoBehaviour {
     }
 
     void OpenOptionsScreen(){
+        MatchSavedOptions();
         inOptionsMenu = true;
         optionsMenu.TurnOn(this);
     }
     public void TurnOffOptions(){
+        SaveChangedOptions();
         inOptionsMenu = false;
         selectReset = false;
         SetAdditionalInstruction(true);
@@ -842,6 +847,86 @@ public class MainMenuNavigationS : MonoBehaviour {
     public void SetAdditionalInstruction(bool newOn){
         for (int i = 0; i < additionalInstructions.Length; i++){
             additionalInstructions[i].SetActive(newOn);
+        }
+    }
+
+    void MatchSavedOptions(){
+        if (!loadedOptions)
+        {
+            if (PlayerInventoryS.inventoryData != null)
+            {
+                CameraEffectsS.cameraEffectsEnabled = PlayerInventoryS.inventoryData.savedCamEffect;
+                CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = PlayerInventoryS.inventoryData.savedCameraShake;
+                if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 1f)
+                {
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+                }
+                else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER < 0)
+                {
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0;
+                }
+                BGMHolderS.volumeMult = PlayerInventoryS.inventoryData.savedMusicVolume;
+                SFXObjS.volumeSetting = PlayerInventoryS.inventoryData.savedSFXVolume;
+                CameraShakeS.SetTurbo(PlayerInventoryS.inventoryData.turboSetting);
+                DifficultyS.SetDifficultiesFromInt(PlayerInventoryS.inventoryData.sinLevel, PlayerInventoryS.inventoryData.punishLevel);
+                Debug.Log("Matching inventory manager data!!");
+            }
+            if (GameDataS.current != null)
+            {
+                if (GameDataS.current.playerInventory != null)
+                {
+                    CameraEffectsS.cameraEffectsEnabled = GameDataS.current.playerInventory.savedCamEffect;
+                    CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = GameDataS.current.playerInventory.savedCameraShake;
+                    if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 1f)
+                    {
+                        CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
+                    }
+                    else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER < 0)
+                    {
+                        CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0;
+                    }
+                    BGMHolderS.volumeMult = GameDataS.current.playerInventory.savedMusicVolume;
+                    SFXObjS.volumeSetting = GameDataS.current.playerInventory.savedSFXVolume;
+                    CameraShakeS.SetTurbo(GameDataS.current.playerInventory.turboSetting);
+                    DifficultyS.SetDifficultiesFromInt(GameDataS.current.playerInventory.sinLevel, GameDataS.current.playerInventory.punishLevel);
+                    Debug.Log("Matching currenly loaded save data!!");
+                }
+            }
+            loadedOptions = true;
+        }
+    }
+    void SaveChangedOptions()
+    {
+       
+            if (PlayerInventoryS.inventoryData != null)
+            {
+            PlayerInventoryS.inventoryData.savedCamEffect = CameraEffectsS.cameraEffectsEnabled;
+            PlayerInventoryS.inventoryData.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
+                
+
+            PlayerInventoryS.inventoryData.savedMusicVolume = BGMHolderS.volumeMult;
+            PlayerInventoryS.inventoryData.savedSFXVolume = SFXObjS.volumeSetting;
+            PlayerInventoryS.inventoryData.turboSetting = CameraShakeS.GetTurboInt();
+            PlayerInventoryS.inventoryData.sinLevel = DifficultyS.GetSinInt();
+            PlayerInventoryS.inventoryData.punishLevel = DifficultyS.GetPunishInt();
+            Debug.Log("Setting inventory manager data!!");
+            }
+
+        if (GameDataS.current != null)
+        {
+            if (GameDataS.current.playerInventory != null)
+            {
+                GameDataS.current.playerInventory.savedCamEffect = CameraEffectsS.cameraEffectsEnabled;
+                GameDataS.current.playerInventory.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
+
+
+                GameDataS.current.playerInventory.savedMusicVolume = BGMHolderS.volumeMult;
+                GameDataS.current.playerInventory.savedSFXVolume = SFXObjS.volumeSetting;
+                GameDataS.current.playerInventory.turboSetting = CameraShakeS.GetTurboInt();
+                GameDataS.current.playerInventory.sinLevel = DifficultyS.GetSinInt();
+                GameDataS.current.playerInventory.punishLevel = DifficultyS.GetPunishInt();
+                Debug.Log("Setting currenly loaded save data!!");
+            }
         }
     }
 }
