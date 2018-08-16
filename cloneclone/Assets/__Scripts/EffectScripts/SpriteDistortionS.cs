@@ -30,6 +30,8 @@ public class SpriteDistortionS : MonoBehaviour {
 		if (matchAlpha){
 			matchAlphaCol = mySprite.color;
 		}
+        mySprite.flipX = parentSprite.flipX;
+        mySprite.flipY = parentSprite.flipY;
 		mySprite.sprite = parentSprite.sprite;
 		ChangeSize();
 

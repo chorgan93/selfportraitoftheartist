@@ -1566,7 +1566,7 @@ public class PlayerController : MonoBehaviour {
 				
 				SpawnAttackPuff();
 				canDoAdaptive = true;
-
+                _attackBuffered = false;
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult(), !_playerAug.fosAug);
 
 				if (_chargeAttackUseAll){
@@ -1902,6 +1902,7 @@ public class PlayerController : MonoBehaviour {
 					currentAttackS.Fire(false, savedDir*momsEyeMult, savedDir*momsEyeMult, this, true, activeBios);
 				}
 			}
+            _attackBuffered = false;
 			if (_doingHeavyAttack){
 				_playerSound.PlayHeavyAttackSound();
 			}else{
@@ -2856,6 +2857,7 @@ public class PlayerController : MonoBehaviour {
         {
             _myAnimator.SetBool("HeavyAttacking", false);
             _myAnimator.SetInteger("WeaponNumber", 0);
+            _myAnimator.SetTrigger("Attack3");
         }else if (heavy){
 			if (!_doingDashAttack){
 			_myAnimator.SetBool("HeavyAttacking", true);
@@ -2865,8 +2867,8 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetBool("HeavyAttacking", false);
 			_myAnimator.SetInteger("WeaponNumber", _attackingWeapon.weaponNum);
 		}
-		_myAnimator.SetTrigger("AttackTrigger");
 
+            _myAnimator.SetTrigger("AttackTrigger");
 		if (_playerAug.animaAug){
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/_playerAug.AnimaAugAmt()/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 				/TransformedAttackSpeedMult());
@@ -2874,10 +2876,11 @@ public class PlayerController : MonoBehaviour {
 			_myAnimator.SetFloat("AttackAnimationSpeed", currentAttackS.animationSpeedMult/(1f-PlayerAugmentsS.addSpeedPerBios*activeBios)
 				/TransformedAttackSpeedMult());
 		}
-		_myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
-		if (heavy){
-			// Debug.Log("Heavy Attack chain " + currentChain + " : " + currentAttackS.attackAnimationTrigger);
-		}
+        if (!taunt)
+        {
+            _myAnimator.SetTrigger(currentAttackS.attackAnimationTrigger);
+        }
+		
 		_myAnimator.SetBool("Attacking", true);
 		
 

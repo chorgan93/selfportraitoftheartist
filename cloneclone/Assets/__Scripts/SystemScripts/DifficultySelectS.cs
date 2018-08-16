@@ -82,6 +82,13 @@ public class DifficultySelectS : MonoBehaviour {
 	AsyncOperation async;
 	private bool startedLoading = false;
 
+
+    [Header("Sound References")]
+    public GameObject menuSoundPrefab;
+    public GameObject selectSoundPrefab;
+    public GameObject cancelSoundPrefab;
+    public GameObject turnOffSound;
+
 	// Use this for initialization
 	void Start () {
 
@@ -305,12 +312,19 @@ public class DifficultySelectS : MonoBehaviour {
 						choosingSin = false;
 						selectButtonUp = false;
 						setText();
+                        if (selectSoundPrefab)
+                        {
+                            Instantiate(selectSoundPrefab);
+                        }
 					}
 					if (stickReset){
 						if (controller.HorizontalMenu() >= 0.1f){
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect++;
+                            if (menuSoundPrefab){
+                                Instantiate(menuSoundPrefab);
+                            }
                             if (sinSelect > 2 && !GameMenuS.unlockedChallenge){
                                 sinSelect = 2;
                             }
@@ -330,6 +344,10 @@ public class DifficultySelectS : MonoBehaviour {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect--;
+                            if (menuSoundPrefab)
+                            {
+                                Instantiate(menuSoundPrefab);
+                            }
 							if (sinSelect < 0){
 								sinSelect = 0;
 							}
@@ -352,12 +370,20 @@ public class DifficultySelectS : MonoBehaviour {
 						choosingSin = true;
 						cancelButtonUp = false;
 						setText();
+                        if (cancelSoundPrefab)
+                        {
+                            Instantiate(cancelSoundPrefab);
+                        }
 					}
 					else if (controller.GetCustomInput(12) && selectButtonUp){
 						choosingPunishment = false;
 						choosingSin = false;
 						selectButtonUp = false;
 						setText();
+                        if (turnOffSound)
+                        {
+                            turnOffSound.SetActive(true);
+                        }
 					}
 
 					if (stickReset){
@@ -365,7 +391,10 @@ public class DifficultySelectS : MonoBehaviour {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect++;
-
+                            if (menuSoundPrefab)
+                            {
+                                Instantiate(menuSoundPrefab);
+                            }
                             if (punishSelect > 2 && !GameMenuS.unlockedChallenge)
                             {
                                 punishSelect = 2;
@@ -389,6 +418,10 @@ public class DifficultySelectS : MonoBehaviour {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect--;
+                            if (menuSoundPrefab)
+                            {
+                                Instantiate(menuSoundPrefab);
+                            }
 							if (punishSelect < 0){
 								punishSelect = 0;
 							}

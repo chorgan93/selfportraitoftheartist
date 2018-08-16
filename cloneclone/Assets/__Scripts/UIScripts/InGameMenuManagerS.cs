@@ -59,6 +59,9 @@ public class InGameMenuManagerS : MonoBehaviour {
 		levelUpMenu.gameObject.SetActive(false);
 		gamePausedScreen.gameObject.SetActive(false);
 
+        equipMenuButtonDown = true;
+        gameMenuButtonDown = true;
+        exitButtonDown = true;
 		escapeText.enabled = false;
 	
 	}

@@ -132,7 +132,10 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 	private IEnumerator HealFunction(){
-
+        if (useRewindSound)
+        {
+            Instantiate(useHealSound);
+        }
 		_pRef.TriggerItemAnimation();
 		_pRef.myStats.itemEffect.Flash(Color.white);
 		yield return new WaitForSeconds(0.1f);

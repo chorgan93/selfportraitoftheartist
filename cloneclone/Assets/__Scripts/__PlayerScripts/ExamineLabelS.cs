@@ -5,6 +5,7 @@ public class ExamineLabelS : MonoBehaviour {
 
 	private PlayerController myRef;
 	private TextMesh myMesh;
+    public TextMesh myOutline;
 	private string startString;
 
 
@@ -34,6 +35,10 @@ public class ExamineLabelS : MonoBehaviour {
 		myMesh = GetComponent<TextMesh>();
 		startString = myMesh.text;
 		myMesh.text = "";
+
+        if (myOutline){
+            myOutline.text = "";
+        }
 
 		examineButtonSprite.gameObject.SetActive(false);
 		examineButtonSpritePS4.gameObject.SetActive(false);
@@ -77,12 +82,23 @@ public class ExamineLabelS : MonoBehaviour {
 				if (myRef.overrideExamineString != ""){
 					if (myRef.overrideExamineString.Contains("A Button")){ 
 						myMesh.text = myRef.overrideExamineString.Replace("A Button", "");
+                            if (myOutline){
+                                myOutline.text = myMesh.text;
+                            }
 					}
 					if (myRef.overrideExamineString.Contains("E Key")){ 
 						myMesh.text = myRef.overrideExamineString.Replace("E Key", "");
+                            if (myOutline)
+                            {
+                                myOutline.text = myMesh.text;
+                            }
 					}
 				}else{
 					myMesh.text = startString;
+                        if (myOutline)
+                        {
+                            myOutline.text = myMesh.text;
+                        }
 				}
 				buttonSet = true;
 				}
@@ -96,6 +112,10 @@ public class ExamineLabelS : MonoBehaviour {
 				examineButtonSpritePS4.gameObject.SetActive(false);
 				examineKeySprite.gameObject.SetActive(false);
 				myMesh.text = "";
+                if (myOutline)
+                {
+                    myOutline.text = myMesh.text;
+                }
 				floatPos = Vector3.zero;
 				currentButtonSet = buttonSetDelay;
 			}

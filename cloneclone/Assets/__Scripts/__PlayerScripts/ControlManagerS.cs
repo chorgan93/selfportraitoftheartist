@@ -162,7 +162,7 @@ public class ControlManagerS : MonoBehaviour {
 		int numToReturn = 0;
 		string[] joyStickNames = Input.GetJoystickNames();
 		Debug.Log(joyStickNames[0]);
-		if (joyStickNames[0].Contains("Sony")){
+        if ((joyStickNames[0].Contains("Sony") || joyStickNames[0].Contains("Unknown"))){
 			numToReturn = 1;
 			canSelectPS4 = true;
             Debug.Log(canSelectPS4);
@@ -406,9 +406,9 @@ public class ControlManagerS : MonoBehaviour {
         }
     }
 
-	private bool GetInputPressed(int inputValue){
+	private bool GetInputPressed(int inputValue, bool overrideToKey = false){
 		bool inputPressed = false;
-        if (controlProfile == 0 || controlProfile == 3)
+        if ((controlProfile == 0 || controlProfile == 3) && !overrideToKey)
         {
             switch (inputValue)
             {
@@ -725,7 +725,7 @@ public class ControlManagerS : MonoBehaviour {
             if (i >= 12 && i <= 13 && !includeMenu){
                 continue;
             }
-            if (GetInputPressed(i)){
+            if (GetInputPressed(i, true)){
                 returnKey = i;
             }
         }

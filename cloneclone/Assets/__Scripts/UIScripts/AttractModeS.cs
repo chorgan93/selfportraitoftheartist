@@ -22,6 +22,7 @@ public class AttractModeS : MonoBehaviour {
 	void Start () {
 	
 		myMovie = (MovieTexture)GetComponent<Renderer>().material.mainTexture;
+        myMovie.Stop();
 		myMovie.Play();
 
 		myControl = GetComponent<ControlManagerS>();

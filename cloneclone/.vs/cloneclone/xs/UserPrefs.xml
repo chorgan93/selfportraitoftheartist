@@ -1,12 +1,13 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/BuddyScripts/MeleeBuddyS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/BuddyScripts/BuddyS.cs" Line="124" Column="21" />
-      <File FileName="Assets/__Scripts/BuddyScripts/ShootBuddyS.cs" Line="145" Column="37" />
-      <File FileName="Assets/__Scripts/BuddyScripts/HealBuddyS.cs" Line="93" Column="36" />
-      <File FileName="Assets/__Scripts/BuddyScripts/MeleeBuddyS.cs" Line="245" Column="38" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerController.cs" Line="2316" Column="64" />
+      <File FileName="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs" Line="10" Column="48" />
+      <File FileName="Assets/__Scripts/NPCScripts/NPCS.cs" Line="179" Column="25" />
+      <File FileName="Assets/__Scripts/CinematicScripts/InGameCinematics/InGameCinematicS.cs" Line="119" Column="27" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs" Line="27" Column="40" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/InventoryManagerS.cs" Line="137" Column="37" />
+      <File FileName="Assets/__Scripts/SystemScripts/DifficultySelectS.cs" Line="321" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

@@ -455,7 +455,7 @@ de9914d485b4e6d78222e4cbda8089c8 Assembly-CSharp.dll:.ButtonSpriteSwapperS
 ccedeca73e40ca94687ec23e927c956a Assembly-CSharp.dll:.ElevatorS
 d24a6b76a36b498b17e77174bb8be156 Assembly-CSharp.dll:.EnemyStatusReferencesS
 6cac373c90b5d9b27ce13013674bbac8 Assembly-CSharp.dll:.MerchantUIItemS
-339d5f321d78b3559fab2bd2744e58a5 Assembly-CSharp.dll:.LevelUpMenu
+b25236506ef42faec4dfd3040c53bf60 Assembly-CSharp.dll:.LevelUpMenu
 4a2d98c194a9772c684935e6d97c57df Assembly-CSharp.dll:.CameraLimitS
 c7f5a572b3e9e3dfc4e422c0cbf33468 Assembly-CSharp.dll:.CinematicTextS
 2aa587597ee763bb1d2712c8a87b002d Assembly-CSharp.dll:.InstructionTrigger
@@ -553,6 +553,7 @@ a72cde959604e4663fda2c173661c8a8 Assembly-CSharp.dll:.DialogueManagerS
 c5755b7daf8f86003477fba8acbdedfe Assembly-CSharp.dll:.RankManagerS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerCollectionS
 01b8561e207357e33e153b743add2e44 Assembly-CSharp.dll:.ColorSwitchingS
+95fa0e712bf450be80925eecff3efb6a Assembly-CSharp.dll:.TextOutline
 4353acc76fcb0d290fc849c5ae6458b9 Assembly-CSharp.dll:.PlayerWeaponS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadingTextS
 84bd484771212f5e0666ec97ec9a7162 Assembly-CSharp.dll:.SpriteDistortionPlayerS
@@ -564,7 +565,7 @@ fc27b2e5f8a3343428520494c91aded3 Assembly-CSharp.dll:.BuddySwitchEffectS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ProjectilePoolS
 5780516aa4470654e708d5cf2f418901 Assembly-CSharp.dll:.EnemyDeathShadowS
 9e14e53681a607b8f3db2644a93b110b Assembly-CSharp.dll:.ChapterTrigger
-43a5062ea593028f02349d636a3c09e5 Assembly-CSharp.dll:.DifficultySelectS
+15f0942297cde545af3a47ffe8e02a98 Assembly-CSharp.dll:.DifficultySelectS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TurnOffInGameUIS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PlayerAnimationFaceS
 19a16e570c73f66cbd34b3bb3d0e1260 Assembly-CSharp.dll:.AutoSetProgressionS
@@ -783,7 +784,7 @@ f57a010895872e6fee6322c009ee6c95 Assembly-CSharp.dll:.EnemySeekBehavior
 b915ee4b46a96176501f795145e26909 Assembly-CSharp.dll:.EnemyChargeAttackBehavior
 98890bc1556b9389050dea54abac09fd Assembly-CSharp.dll:.LeverMatchDirectionS
 cc03d32d84fe7de61c1ff011ce358a0c Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Tonemapping
-a333830a815ec95c0198c7ceef982cc1 Assembly-CSharp.dll:.ExamineLabelS
+93c386cf5ca2334f10b1cdee4f478002 Assembly-CSharp.dll:.ExamineLabelS
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.BGMHolderS
 263d5c5845454538261badc3b4b0134d Assembly-CSharp.dll:.PlayerSlowTimeS
 430378241a54341c43bbd28e4a3cbd61 Assembly-CSharp.dll:.DarknessS

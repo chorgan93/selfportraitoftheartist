@@ -95,7 +95,7 @@ public class NPCS : MonoBehaviour {
 	void Update () {
 
 		
-		if (playerInRange && pRef.myDetect.closestEnemy == null){
+        if ((playerInRange && pRef.myDetect.closestEnemy == null) || talking){
 			
 			if (!pRef.myControl.GetCustomInput(3)){
 				talkButtonDown = false;

@@ -34,7 +34,8 @@ public class LevelUpItemS : MonoBehaviour {
 	private PlayerCurrencyDisplayS cDisplay;
 
 	private bool shuffleUpgrade = false;
-	private bool revertUpgrade = false;
+    private bool revertUpgrade = false;
+    public bool IsShuffleUpgrade { get { return shuffleUpgrade; } }
     public bool IsRevertUpgrade { get { return revertUpgrade; }}
 
 	private PlayerStatsS statRef;

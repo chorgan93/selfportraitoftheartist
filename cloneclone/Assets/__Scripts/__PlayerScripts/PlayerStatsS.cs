@@ -1102,22 +1102,22 @@ public class PlayerStatsS : MonoBehaviour {
                             {
                                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f/5f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 4f/5f;
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                                    _currentDarkness += DARKNESS_ADD_DEATH * 4f;
                                 }
                             }
                             else
                             {
                                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH/5f;
+                                    _currentDarkness += (DARKNESS_ADD_DEATH-1f)/5f;
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH;
+                                    _currentDarkness += DARKNESS_ADD_DEATH-1f;
                                 }
                             }
                            
@@ -1238,22 +1238,22 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH;
+                        _currentDarkness += DARKNESS_ADD_DEATH-1f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f;
+                        _currentDarkness += (DARKNESS_ADD_DEATH-1f) * 0.5f;
                     }
                 }
                 else
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH / 5f;
+                        _currentDarkness += (DARKNESS_ADD_DEATH-1f) / 5f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH;
+                        _currentDarkness += DARKNESS_ADD_DEATH-1f;
                     }
                 }
             }
@@ -1263,22 +1263,22 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 4f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 4f;
                     }
                 }
                 else
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 3f / 5f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 4f / 5f;
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 3f;
+                        _currentDarkness += DARKNESS_ADD_DEATH * 4f;
                     }
                 }
             }

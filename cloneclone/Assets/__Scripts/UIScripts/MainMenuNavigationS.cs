@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 1.0.7 —";
+	private const string currentVer = "— v. 1.0.10 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -237,7 +237,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					Cursor.visible = false;
 					hideOnOverride.gameObject.SetActive(false);
 					showOnOverride.gameObject.SetActive(false);
-					StartNextLoad();
+					StartNextLoad(false);
 				}
             }
 		}
@@ -364,6 +364,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                             if (myController.VerticalMenu() < -0.1f)
                             {
                                 currentMenuZeroPosition++;
+
+                    attractCountdown = attractCountdownMax;
                                 if (currentMenuZeroPosition > 2)
                                 {
                                     currentMenuZeroPosition = 2;
@@ -374,6 +376,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                             else if (myController.VerticalMenu() > 0.1f)
                             {
                                 currentMenuZeroPosition--;
+
+                    attractCountdown = attractCountdownMax;
                                 if (currentMenuZeroPosition < 1 && numSaveFiles < 1)
                                 {
                                     currentMenuZeroPosition = 1;
@@ -397,10 +401,13 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     if (numSaveFiles > 1)
                                     {
                                         // open load screen
+                                        attractCountdown = attractCountdownMax;
                                         OpenLoadUI();
                                     }
                                     else
                                     {
+
+                    attractCountdown = attractCountdownMax;
                                         saveToLoad = 0;
                                         SaveLoadS.Load(saveToLoad);
                                         triggerSecondScreen = true;
@@ -408,6 +415,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 }
                                 else if (currentMenuZeroPosition == 1)
                                 {
+                                    attractCountdown = attractCountdownMax;
                                     // new game
                                     // if less than 3 saves, go ahead. otherwise open load screen
                                     if (numSaveFiles < 3)
