@@ -1,0 +1,819 @@
+OSXStandalone
+PlayerPath?
+/Users/colinhorgan/Downloads/sdk/tools/ContentBuilder/content/mac/Lucah Born of a Dream.app
+SceneListBegin?
+Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
+Assets/_Scenes/__MenuScenes/MenuScene.unity
+Assets/_Scenes/_DreamScenes/Dream00_IntroCutscene.unity
+Assets/_Scenes/_DreamScenes/Dream01_DefeatHarbingerScene.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneFirstFight.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialScene.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneMainHall.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneMainHallClassrooms.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneSideClassroom.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement0.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement1.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement2.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBasement3.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneBossFight.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_01_TheShore.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_00_IntroCutscene.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_02_DeadBody.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_03_Camp.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_04_EnterTheForest.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_05_SpidersWeb.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_06_Ambush.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_09_Checkpoint.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_07_UpTheVine.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_08_CanopyIntro.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_10_Rollout.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_12_AltPath.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_11_Divider.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_13_ATest.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_14_Anima.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_15_TheGauntlet.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_16_Jump.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_17_TheNest.unity
+Assets/_Scenes/Area00(Forest)Scenes/Area00_18_SanctumEntrance.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_00_Atrium.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_01_Worshippers.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_02_InnerSanctum.unity
+Assets/_Scenes/_DreamScenes/Dream02_BaptismCutscene.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_03_Messiah.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_04_Checkpoint.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_05_SubI_Intro.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_06_SubI_Sin.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_07_SubI_Punishment.unity
+Assets/_Scenes/__MiscScenes/ChaoGarden.unity
+Assets/_Scenes/_IntroductionScenes/DemoOutro.unity
+Assets/_Scenes/_IntroductionScenes/FallScene_DifficultySelect.unity
+Assets/_Scenes/_IntroductionScenes/DemoIntro.unity
+Assets/_Scenes/_IntroductionScenes/GardenMessage.unity
+Assets/_Scenes/Area01(Sanctum)Scenes/Area01_08_MetroEntrance.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_18_Trainyard.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_00_Brooksvale.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_01_BrooksvaleTrain.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_02_BrooksvaleSidePath.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_03_BrooksvaleMerchant.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_04_AvonStation.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_05_SouthwickStation.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_06_HighlandStation.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_07_EndOfTheWorld.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_08_Paranoid.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_09_InsideTrain.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_10_AvonUp.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_11_AvonDown.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_12_PreGaea.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_13_Gaea.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_14_Defenders.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_15_Cultist.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_16_Lever.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_17_MidUp.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_19_Triway.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_20_SouthwickUp.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_21_Delimit.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_22_TheTape.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_23_SouthwickDown.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_24_Passage.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_25_TrainCheckpoint.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_26_Creeping.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_27_ArmoredRest.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_28_Defiled.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_29_ExitTheUnderground.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_30_Amass.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_31_DeadCultist.unity
+Assets/_Scenes/Area02(Metro)Scenes/Area02_32_PreRival.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_00_TheStranger.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_01_Suburbs.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_02_ScarePath.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_03_CenterHall.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_04_CenterHallUpstairs.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_05_SuburbsLower.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_06_UpperHouse.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_07_LowerHouse.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_08_SmallChurch.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_09_OfficeFront.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_10_Office_F1.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_11_Office_F2.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_12_Office_Roof.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_13_Office_Basement.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_14_UpperHouseBasement.unity
+Assets/_Scenes/Area03(Suburb)Scenes/Area03_15_Office_Boss.unity
+Assets/_Scenes/_DreamScenes/Dream03_TapeDreamA.unity
+Assets/_Scenes/_DreamScenes/Dream04_TapeDreamB.unity
+Assets/_Scenes/_DreamScenes/Dream05_TapeDreamC.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_00_Goodbyes.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_01_EmptyThreats.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_02_DirtyLies.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_03_ArenaEntrance.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_04_ArenaInterior.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_05_FightersQuarters.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_06_Stockroom.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_07_Training.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_08_MainEvent.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_09_PathOfExile.unity
+Assets/_Scenes/EndingScenes/DarknessReviveScene.unity
+Assets/_Scenes/_DreamScenes/Dream06_SerahAwakens.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_00_Arcade.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_02_TheLake.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_03_OceanStage.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_04_Market.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_05_HarborCheckpoint.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_06_Pier.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_07_Overlook.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_08_TheDepths.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_09_Christian.unity
+Assets/_Scenes/_DreamScenes/Dream07_iamnotamachine.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_10_CraneControl.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_11_HighwaysCenter.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_12_HighwaysSE.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_13_HighwaysSW.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_14_HighwaysKey.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_15_HighwaysCult.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_16_HighwaysBridge.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_17_HighwaysControl.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_18_BridgeControl.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_19_TheDepthsII.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_20_TheDepthsIII.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_21_TheDepthsIV.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_01_TheDepthsV.unity
+Assets/_Scenes/_DreamScenes/Dream00a_IntroCutsceneSHORT.unity
+Assets/_Scenes/_DreamScenes/Dream01a_DefeatHarbingerSceneSHORT.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_00_DejaVu.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_01_BodyGone.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_02_NoWarmth.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_03_Reflect.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_04_Test00.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_05_Release.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_06_Split.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_07_IToldYou.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_08_Test01.unity
+Assets/_Scenes/_DreamScenes/Dream08_SomethingWrong.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-00.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-01.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-02.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-03.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-04.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-05.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-06.unity
+Assets/_Scenes/SacramentScenes/Sacrament I Scenes/SacramentI-07.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-00.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-01.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-02.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-Battle00.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-03.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-04.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-05.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-06.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-Battle01.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-Battle02.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-Battle03.unity
+Assets/_Scenes/SacramentScenes/Sacrament IV Scenes/SacramentIV-07.unity
+Assets/_Scenes/SacramentScenes/Sacrament VII Scenes/SacramentVII-00.unity
+Assets/_Scenes/SacramentScenes/Sacrament VII Scenes/SacramentVII-01.unity
+Assets/_Scenes/SacramentScenes/Sacrament VII Scenes/SacramentVII-02.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_00.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_01.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_02.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_03.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_end.unity
+Assets/_Scenes/iamnotamachineScenes/iamnotamachine_intro.unity
+Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialIntro.unity
+Assets/_Scenes/EndingScenes/EndingB_00_ColinFarewell.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_09_RunUp.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_10_FinalGate.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_11_FinalTest.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_00_TheLongWalk.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_01_CenterHub.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_02_RadioExterior.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_03_RadioAtrium.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_04_Elevator00.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_05_Platforms00.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_06_Elevator01.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_07_Platforms01.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_08_Stairwell.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_09_FinalRest.unity
+Assets/_Scenes/_IntroductionScenes/DisableTransformMessage.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_10_Elevator02.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_11_TheGate.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_12_PreMessiah.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_13_Messiah.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_14_Cliffside.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_15_CultHangout.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_16_Enclave.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_17_MerchantIII.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_18_Maria.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_19_PostMaria.unity
+Assets/_Scenes/Area07(Radio)Scenes/Area07_20_PreMaria.unity
+Assets/_Scenes/_DreamScenes/Dream09_Transformed.unity
+Assets/_Scenes/_IntroductionScenes/TransformMessage.unity
+Assets/_Scenes/__MenuScenes/AttractMode_00.unity
+Assets/_Scenes/EndingScenes/EndingB_01_NataliesRoom.unity
+Assets/_Scenes/EndingScenes/EndingB_02_Balcony.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_10_HiddenCombat.unity
+Assets/_Scenes/Area04(Desert)Scenes/Area04_11_Hated.unity
+Assets/_Scenes/Area06(Trail)Scenes/Area06_12_HiddenCombat.unity
+Assets/_Scenes/Area05(Highway)Scenes/Area05_22_BottomOfTheLake.unity
+Assets/_Scenes/_DreamScenes/Dream10_EndingA.unity
+Assets/_Scenes/_DreamScenes/Dream11_EndingB.unity
+Assets/_Scenes/_DreamScenes/Dream12_EndingC.unity
+Assets/_Scenes/_DreamScenes/Dream13_Corruption.unity
+Assets/_Scenes/_DreamScenes/Dream14_Purification.unity
+Assets/_Scenes/SacramentScenes/Sacrament III Scenes/SacramentIII-00.unity
+Assets/_Scenes/_DreamScenes/Dream13a_CorruptionIntro.unity
+Assets/_Scenes/_DreamScenes/DreamQQ_Freeway.unity
+Assets/_Scenes/SacramentScenes/Sacrament V Scenes/SacramentV-00.unity
+Assets/_Scenes/__MiscScenes/CreditsScene.unity
+Assets/_Scenes/_DreamScenes/EndingAReward.unity
+Assets/_Scenes/_DreamScenes/EndingBReward.unity
+Assets/_Scenes/_DreamScenes/EndingCReward.unity
+Assets/_Scenes/EndingScenes/PostCreditsColinScene.unity
+Assets/_Scenes/_IntroductionScenes/NewGamePlusMessage.unity
+Assets/_Scenes/_IntroductionScenes/MarkedMessage.unity
+Assets/_Scenes/_IntroductionScenes/RevertMessage.unity
+Assets/_Scenes/EndingScenes/PostCreditsColinLetter.unity
+SceneListEnd?
+5d53f88255f0e8c23302b4949b5d3335 Assembly-CSharp.dll:.MantraSwitchS
+9c17711e3592beff8121fe95b850c1a2 Assembly-CSharp.dll:.AllyFollowS
+c0014cbe3ceadd136a8c06cce3bb818d Assembly-CSharp.dll:.InGameMenuManagerS
+a5371c515e059f361b76a4c13b1f1401 Assembly-CSharp.dll:.ParentToObjectS
+1456583eacb701ed5e1b2a9726eda236 Assembly-CSharp.dll:.AttractModeS
+67178751fde488b8e655ec648876a080 Assembly-CSharp.dll:.VerseDisplayS
+ef8854dc061b89e2e37d845aaf830936 Assembly-CSharp.dll:.InGameCinemaChangeWakeStateS
+3ff6040a68b607fe2743500294f88a06 Assembly-CSharp.dll:.ActivateOnBarrierOffS
+c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
+5850ada3cb99acf581c9b6269a5dc2a9 Assembly-CSharp.dll:.FadeInOnTimerSpriteS
+7901ab44151a3701e5b49e705a85e0ce Assembly-CSharp.dll:.TurnOnChosenCombatS
+7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
+42c6d4740f8c8c5b548f28639031cadc Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.TiltShift
+486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
+9e61f3535f3c55760a1cedfbd114f4af UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
+754551afe4f2531f58476bf14c510657 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
+8bba6ea592b065d5f5255a6e0464cb62 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationTrack
+c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.AudioPlayableAsset
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.AudioTrack
+486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.BasicPlayableBehaviour
+4dce7972849426d063a65ca832e70847 UnityEngine.Timeline.dll:UnityEngine.Timeline.ControlPlayableAsset
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.ControlTrack
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
+64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+c1727954f1a1678fc2ea3e979e824cac Assembly-CSharp.dll:.PlayerDetectS
+ee7d816fad328605f190262b794b28be Assembly-CSharp.dll:.InGameCinemaTextS
+b02e973a942ab02e3700b13882638c98 Assembly-CSharp.dll:.ChangePoiOnStartS
+4e3466b56bf0243b7720fdcd83a0f23e Assembly-CSharp.dll:.DeathCountdownS
+ed98eff95b049bfb6b0b7e2ddd3eb6db Assembly-CSharp.dll:.MatchPlayerColorS
+85bd101516abdde803f0246b837d70e4 Assembly-CSharp.dll:.EquipInventoryItemS
+822dffeeeead889240c67c9292b05efa Assembly-CSharp.dll:.KeypadKeys
+51c7f2da0e648ac14d16777ffbf26e8e Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ImageEffectBase
+1d7f028ceb58e94691124f065015387f Assembly-CSharp.dll:.LockedLevelUpS
+3b0956586947ca2b6747cdf08356b0a9 Assembly-CSharp.dll:.TurnOffItemUseS
+fe904d09048b7a6f036aae49b9706096 Assembly-CSharp.dll:.MapItemS
+d4bb4b82edd6583fb3ed02ce19889d5f Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.BlurOptimized
+3c213d83b62828c3b5b4fc44f5fe675f Assembly-CSharp.dll:.NPCDialogueSet
+192788a143e1cf88799fd8a43e119b5d Assembly-CSharp.dll:.TextInputUIS
+f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
+cd07dcc3671bf74db6686f3da784085b Assembly-CSharp.dll:.MapScreenS
+ec322cc66212ccce6a5923c816b66472 Assembly-CSharp.dll:.EnemySingleAttackBehavior
+c80f94925f2ef231d76485923c019bf5 Assembly-CSharp.dll:.MerchantItemS
+3cafdcba5ecf9a7a57dc801fddc91e1b Assembly-CSharp.dll:.TileGeneratorS
+01002b26ba6608c24aa31e353b57e29e Assembly-CSharp.dll:.CameraPOIS
+4159a0097a8b84beed6acecd1b023861 Assembly-CSharp.dll:.VideotapePlayerS
+276edffe11ddd681ddfbc3d16f21be77 Assembly-CSharp.dll:.EnemyBulletPatternBehavior
+86e16d4aa59f47b0efa3e46dce8629c5 Assembly-CSharp.dll:.ActivateOnExamineS
+b7f8ae9bb07548003ae6c4fb7aa7aafc Assembly-CSharp.dll:.InGameCinemaMoveObjS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.StoryProgressionS
+4bf1340ba51470a4c9452f888ec0595f Assembly-CSharp.dll:.FadeEnvironmentS
+4fc8a889be082bf81fc5b0e0a52896da Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.GlobalFog
+13a61e08d7fa9e0713243fcea331216b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ContrastStretch
+875fd4add741a0d29aef50d8ccf5b0e8 Assembly-CSharp.dll:.SceneManagerS
+589620e946e5dcf965d2a2d7457bebb9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.VignetteAndChromaticAberration
+45ad0287a2faebb0fcada1518ef877c9 Assembly-CSharp.dll:.ChargeAttackS
+b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
+729fa14caf517146b2a4fa3bd7ab351b Assembly-CSharp.dll:.ItemS
+fb1cfd86911eed69b34048493af18cae Assembly-CSharp.dll:.PlayerDashEffectS
+bba4f25bfd692c4bae957840e186e0ff Assembly-CSharp.dll:.PlayerInventoryS
+1c60eccb23c7a894408a76c47f76180d Assembly-CSharp.dll:.SnowHandlerS
+9216107b7a54388d0f4c5b4f971f3e62 Assembly-CSharp.dll:.EnemyShooterS
+adcc50cc94846fd5e2dfb13f8e22f87b Assembly-CSharp.dll:.EnemySpawnEnemyBehavior
+82077a0a87e7ffc79e4e6931fd21fad4 Assembly-CSharp.dll:.SacramentOptionS
+d4e81be6b843f8eed3b994da064350f6 Assembly-CSharp.dll:.TimelineS
+5a3e8131cb54c491c59d537b95b106fe Assembly-CSharp.dll:.EnemyBuddyS
+ad1a1e78f2936b99a0739643e4cfc61e Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ColorCorrectionCurves
+ee78f4703ed826d3e782ce18c413e075 Assembly-CSharp.dll:.SacramentChangeNextStep
+53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
+da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
+4dab454d48292e052b30128ba245af73 UnityEngine.UI.dll:UnityEngine.UI.CanvasScaler
+22cee377d3d7f3ba2f2dd6144b7f0e30 UnityEngine.UI.dll:UnityEngine.UI.ContentSizeFitter
+c5d466bec0f77b2e519c677e4e85de44 UnityEngine.UI.dll:UnityEngine.UI.Dropdown
+7d08cf478d404d19c14d6d629e064dfa UnityEngine.UI.dll:UnityEngine.EventSystems.EventSystem
+e2883a0294de75cc3ceb5344a2976e3e UnityEngine.UI.dll:UnityEngine.EventSystems.EventTrigger
+b7a6160ea680d8533f3b8d2ed15414bb UnityEngine.UI.dll:UnityEngine.UI.GraphicRaycaster
+729ebc4c91d8b282d75010564cd51a77 UnityEngine.UI.dll:UnityEngine.UI.GridLayoutGroup
+16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.HorizontalLayoutGroup
+214d6361c4053676872ea585f619a1ce UnityEngine.UI.dll:UnityEngine.UI.Image
+85dba834ddf9a8802431fa657d1cc353 UnityEngine.UI.dll:UnityEngine.UI.InputField
+38d8869405aa5180392d87b7b66f2bcd UnityEngine.UI.dll:UnityEngine.UI.LayoutElement
+9b4cb9c85516feac62533afb2943d58a UnityEngine.UI.dll:UnityEngine.UI.Mask
+d6709ad0274d85d1fda612b81b4d33de UnityEngine.UI.dll:UnityEngine.UI.Outline
+9470dbfb21b80e7bafa9880d5aec063c UnityEngine.UI.dll:UnityEngine.EventSystems.Physics2DRaycaster
+9470dbfb21b80e7bafa9880d5aec063c UnityEngine.UI.dll:UnityEngine.EventSystems.PhysicsRaycaster
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.UI.PositionAsUV1
+f5d773e96c9835aa3a584724e8acd8bf UnityEngine.UI.dll:UnityEngine.UI.RawImage
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.UI.RectMask2D
+777d368281a924ba927b72edc1c4cf38 UnityEngine.UI.dll:UnityEngine.UI.Scrollbar
+1871bd40a5ee88524e0578a728014498 UnityEngine.UI.dll:UnityEngine.UI.ScrollRect
+2619cd8bd5d715602c17e8435d81abb3 UnityEngine.UI.dll:UnityEngine.UI.Selectable
+d6709ad0274d85d1fda612b81b4d33de UnityEngine.UI.dll:UnityEngine.UI.Shadow
+b3533ae5e702ad1a73afc8bfa811ec72 UnityEngine.UI.dll:UnityEngine.UI.Slider
+a44114bd4fa541174f78b4bb92bacb48 UnityEngine.UI.dll:UnityEngine.EventSystems.StandaloneInputModule
+95aa2fe98fed85f900d17b75383fa652 UnityEngine.UI.dll:UnityEngine.UI.Text
+5a8064ad22f6ec8174ae3a66170df898 UnityEngine.UI.dll:UnityEngine.UI.Toggle
+e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
+2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
+16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+50b0b141074b216c8b53b1bd467f73c9 Unity.TextMeshPro.dll:TMPro.TMP_InputField
+9a2e46cb6b70a358388a50159c5e49ec Assembly-CSharp.dll:.FadeScreenUI
+b827b25f832158fdaa480c476121350e Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
+4eff8572c2c42285bf33486e96241ad9 Assembly-CSharp.dll:.InfinityManagerS
+cfd099ae2a5f9654eb7b6654cbeaee0d Assembly-CSharp.dll:.RandomColorS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ApplicationManager
+b1401a50f33b83d60789c3e53e477d7d Assembly-CSharp.dll:.SacramentCombatActionS
+53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
+da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
+4dab454d48292e052b30128ba245af73 UnityEngine.UI.dll:UnityEngine.UI.CanvasScaler
+22cee377d3d7f3ba2f2dd6144b7f0e30 UnityEngine.UI.dll:UnityEngine.UI.ContentSizeFitter
+c5d466bec0f77b2e519c677e4e85de44 UnityEngine.UI.dll:UnityEngine.UI.Dropdown
+7d08cf478d404d19c14d6d629e064dfa UnityEngine.UI.dll:UnityEngine.EventSystems.EventSystem
+e2883a0294de75cc3ceb5344a2976e3e UnityEngine.UI.dll:UnityEngine.EventSystems.EventTrigger
+b7a6160ea680d8533f3b8d2ed15414bb UnityEngine.UI.dll:UnityEngine.UI.GraphicRaycaster
+729ebc4c91d8b282d75010564cd51a77 UnityEngine.UI.dll:UnityEngine.UI.GridLayoutGroup
+16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.HorizontalLayoutGroup
+214d6361c4053676872ea585f619a1ce UnityEngine.UI.dll:UnityEngine.UI.Image
+85dba834ddf9a8802431fa657d1cc353 UnityEngine.UI.dll:UnityEngine.UI.InputField
+38d8869405aa5180392d87b7b66f2bcd UnityEngine.UI.dll:UnityEngine.UI.LayoutElement
+9b4cb9c85516feac62533afb2943d58a UnityEngine.UI.dll:UnityEngine.UI.Mask
+d6709ad0274d85d1fda612b81b4d33de UnityEngine.UI.dll:UnityEngine.UI.Outline
+9470dbfb21b80e7bafa9880d5aec063c UnityEngine.UI.dll:UnityEngine.EventSystems.Physics2DRaycaster
+9470dbfb21b80e7bafa9880d5aec063c UnityEngine.UI.dll:UnityEngine.EventSystems.PhysicsRaycaster
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.UI.PositionAsUV1
+f5d773e96c9835aa3a584724e8acd8bf UnityEngine.UI.dll:UnityEngine.UI.RawImage
+486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.UI.RectMask2D
+777d368281a924ba927b72edc1c4cf38 UnityEngine.UI.dll:UnityEngine.UI.Scrollbar
+1871bd40a5ee88524e0578a728014498 UnityEngine.UI.dll:UnityEngine.UI.ScrollRect
+2619cd8bd5d715602c17e8435d81abb3 UnityEngine.UI.dll:UnityEngine.UI.Selectable
+d6709ad0274d85d1fda612b81b4d33de UnityEngine.UI.dll:UnityEngine.UI.Shadow
+b3533ae5e702ad1a73afc8bfa811ec72 UnityEngine.UI.dll:UnityEngine.UI.Slider
+a44114bd4fa541174f78b4bb92bacb48 UnityEngine.UI.dll:UnityEngine.EventSystems.StandaloneInputModule
+95aa2fe98fed85f900d17b75383fa652 UnityEngine.UI.dll:UnityEngine.UI.Text
+5a8064ad22f6ec8174ae3a66170df898 UnityEngine.UI.dll:UnityEngine.UI.Toggle
+e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
+2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
+16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+38f3989c1ffd19e51c4683cb1f19795b Assembly-CSharp.dll:.FadeSpriteObjectS
+64bbfad6d05bf1401cb20072070e2912 Assembly-CSharp.dll:.MatchOnCombatActivate
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SelectMenuS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SaveLoadS
+5aea649ad01f982377164fce0ce0fe6b Assembly-CSharp.dll:.EquipBuddyItemS
+85cfcbd230876f582bdfc6fdce235ad3 Assembly-CSharp.dll:.BGColorS
+53823ef4bbb5bb97311de3adcfde1c72 Assembly-CSharp.dll:.ChargeUseUIS
+b4975aec8faa7b28f7641a1428e42210 Assembly-CSharp.dll:.EnemyHealthFeatherColorS
+24a57e6b1bd1739bc8d9cf1cbf67a532 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndScratches
+67bf0830f1b1202606a9a5037974aaf7 Assembly-CSharp.dll:.ColinEffectS
+3572e4392388bb343d5531ebc21e80ce Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Antialiasing
+baba6e05d5f3dc7b05943aee81150bc7 Assembly-CSharp.dll:.ParryEffectS
+758804cacd2fd727e966df9a578cb4d3 Assembly-CSharp.dll:.EnemyProjectileFlashS
+d6173ef12d22d12b62e94861dfee9c80 Assembly-CSharp.dll:.SpriteGlowS
+44f6a8bd24ad973ab62a7a92b7e39058 Assembly-CSharp.dll:.ChangeNextSceneBasedOnCheck
+6d0d3c1f0883ae0a42514c3c5b2c7097 Assembly-CSharp.dll:.StaminaArrowS
+f35a77a000d86301a5f7c4b7f091c3d2 Assembly-CSharp.dll:.CheckpointS
+d2d7fa49fead19bb931322f5d2034362 Assembly-CSharp.dll:.EnemyHealthUIS
+463a8d0b548a087b24d459e92d7b6dfc Assembly-CSharp.dll:.TurnOffDarknessS
+e9f89abc5b6d2270eb6821c7bf332d91 Assembly-CSharp.dll:.LoadoutMasterScriptableObject
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerShadowS
+a5f60c329c2f1d46dd86820ede1249c6 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.BloomAndFlares
+3c1872630d6a56e5c285b12226525361 Assembly-CSharp.dll:.InstantiateOnEnemyHealthS
+43d5472ae9098f0337ff501927a3de6b Assembly-CSharp.dll:.WeaponSwitchFlashS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.MasterUIFaderS
+486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
+9e61f3535f3c55760a1cedfbd114f4af UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
+754551afe4f2531f58476bf14c510657 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
+8bba6ea592b065d5f5255a6e0464cb62 UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationTrack
+c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.AudioPlayableAsset
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.AudioTrack
+486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.BasicPlayableBehaviour
+4dce7972849426d063a65ca832e70847 UnityEngine.Timeline.dll:UnityEngine.Timeline.ControlPlayableAsset
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.ControlTrack
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
+0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
+64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+d46fe0a41ef7287c4e1d9c6a4d0845a1 Assembly-CSharp.dll:.RandomBloodS
+144c45cc31bdc9e9b8ad41409d0911bc Assembly-CSharp.dll:.CinematicBgmS
+5fa0f9a706ca3a4aad9f89cb9dd0476c Assembly-CSharp.dll:.SpriteDistortionBuddyS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TextSource
+fa6179b44c9216680bdcc4b882f28f65 Assembly-CSharp.dll:.InventoryUIS
+2cc60cb54d5fec79d78d055e2309273c Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Blur
+c0ee09bdcbfa3641ba25318cb89d047b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.MotionBlur
+77eec4baf32857909b9a284c44d854b0 Assembly-CSharp.dll:.SacramentCombatActionOptionS
+eed9d9a4735f6369df6ba67a578d78a5 Assembly-CSharp.dll:.ChangeSpriteColorsS
+66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
+2cc9143c9bc2a0a35f2ab216d8f55149 Assembly-CSharp.dll:.SetDirectionStatic
+93dc67bd75cbfeff42040deb03be42e0 Assembly-CSharp.dll:.LevelUpHandlerS
+4a7a70c28656a5af68010982cf480ccf Assembly-CSharp.dll:.AdjustTimeScaleS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.OverrideDemoLoadS
+201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
+486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
+0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
+3dca4e3a0b938c8643652748865d2430 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkIdentity
+42e6590aedbcfee193e9e996047a3462 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkLobbyManager
+c10df78450fe0ac01c75eca3fdd23e32 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkLobbyPlayer
+5922b87075670528a7b0b4f8620d0b07 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkManager
+211268494e68f7d079886e88f3d3c929 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkManagerHUD
+da21fc3f8056b1f91c3dd09c7bf4f90a UnityEngine.Networking.dll:UnityEngine.Networking.NetworkMigrationManager
+6409350deec3028c583d5c216383488d UnityEngine.Networking.dll:UnityEngine.Networking.NetworkProximityChecker
+486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkStartPosition
+529a95e9e8e7686c4816e08fbb37183f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
+fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
+7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+e70adf7d789392656ae13a2ea603dfe0 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Bloom
+ac339f4f26a221b8c184e8d4efc0bbd5 Assembly-CSharp.dll:.RoomSpawner
+7ccbca77378711132f5b7e257c550ee4 Assembly-CSharp.dll:.BuddyProjectileS
+25d94958c286dec4beb144f6a312da9e Assembly-CSharp.dll:.EnemyBehaviorStateS
+78bcc681fb8afc23a38eb40d79a5df8e Assembly-CSharp.dll:.SetTrainStopS
+fd9c3251d3fd74a8ab239947f1ded59f Assembly-CSharp.dll:.EnemyChaseBehavior
+78d1abed34a09b677b3e7eb6c211b365 Assembly-CSharp.dll:.SacramentCombatOptionUndertextS
+12c0a805e523658c27b57d672d1cb2c5 Assembly-CSharp.dll:.EnemyChaseAttackS
+6943f22345270fe98df1781452e9d880 Assembly-CSharp.dll:.SlashEffectS
+e8051bdb5682af63d383593a9369b83b Assembly-CSharp.dll:.SkipSceneS
+b3bebbb5c0a572cf2d0417ec7d954e24 Assembly-CSharp.dll:.LoadFileMenu
+0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+4cf4379c951f44f9bf0bcea0525a87d6 Assembly-CSharp.dll:.EnemyMultiChargeAttackBehavior
+78d1abed34a09b677b3e7eb6c211b365 Assembly-CSharp.dll:.SacramentOptionUndertextS
+c5435640099434cd75cd298be463fc14 Assembly-CSharp.dll:.ActivateOnTimerS
+c6c94dc94b463b4c7b5f79cef063b708 Assembly-CSharp.dll:.EnviroParallaxS
+9941d6e76d7c5d6b616faa4cfb663963 Assembly-CSharp.dll:.InstructionFloatS
+6893169c34f2bd6e21624eac3f65cee9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenSpaceAmbientObscurance
+7185add3ee61a1c2eeb8f75b66f0d95d Assembly-CSharp.dll:.ActivateOnDoorUnlockS
+921b24d0423bcf4329caa6e59b369b78 Assembly-CSharp.dll:.ButtonSpriteSwapperS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ZControllerS
+8786bb98661af1b6c5172ec0c3d01636 Assembly-CSharp.dll:.ElevatorS
+3b98d159f52632bbf21b4d86761d62b0 Assembly-CSharp.dll:.EnemyStatusReferencesS
+99b349868461ac6ebca42060129defb7 Assembly-CSharp.dll:.MerchantUIItemS
+30d8a1bbf301006497990294eeeb2c6e Assembly-CSharp.dll:.LevelUpMenu
+650418290c46ae95369173393a23be17 Assembly-CSharp.dll:.CameraLimitS
+75249b9f512a45d4f68de4a7f3042387 Assembly-CSharp.dll:.CinematicTextS
+e15006db184cb043af16dab23990f3db Assembly-CSharp.dll:.InstructionTrigger
+382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
+d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
+98d9e1b5dcf0dd8432c2ff1eee3e575c Assembly-CSharp.dll:.DodgeLinesS
+af432bfa0eeb2935a5a76a9a5291fa45 Assembly-CSharp.dll:.SacramentCombatTextS
+11472985bad19789ac53282dc2202a4c Assembly-CSharp.dll:.MerchantUIS
+3905e197a54b1962072b41a7572a78c0 Assembly-CSharp.dll:.MainMenuNavigationS
+956fab0d81ac024391879df455178eca Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.BloomOptimized
+74f38a8b0ada38ed38b98e23476109ea Assembly-CSharp.dll:.FlashMatS
+cd1e5a7fbcd43cfb14e02581fcd32131 Assembly-CSharp.dll:.MeleeBuddyS
+d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
+486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
+e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
+98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
+dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+cfea011209fcc91462cbaee950c6c5a1 Assembly-CSharp.dll:.ActivateNewSceneS
+96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
+27716f2c1dff06afd652d1c75adfda09 Assembly-CSharp.dll:.TrainCarS
+7cc55c5e83f6708277b6b1fc84f0438b Assembly-CSharp.dll:.EnemyFadesS
+23fde9dfea190fdd9c4726cb58ce8726 Assembly-CSharp.dll:.CorruptedEffectS
+7fb98d02aeb9ea21a8bc77f7af4397e5 Assembly-CSharp.dll:.PlayerStatDisplayS
+94ed5b7becc30a147a661083ee4b85dd Assembly-CSharp.dll:.BuddyPetEffectS
+9ce10620787e2fa7b886f6611523e9bd Assembly-CSharp.dll:.LookOnTouchS
+fa1c317e7807ba3c9b05056693f277ff Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.Joystick
+27cae86559d74b088567e016eea47e18 Assembly-CSharp.dll:.CameraShakeS
+b5ea684cd9281d2a0e3ce37539989772 Assembly-CSharp.dll:.TrackingEffectS
+7db77e5ca622ea8d1595055d59debca7 Assembly-CSharp.dll:.AddCheckpointSceneS
+4daad3e538d01dba3391c12b63c910d7 Assembly-CSharp.dll:.SetBuddyUnlockS
+c6f2bd5644d8bf2b83138505eee57bc7 Assembly-CSharp.dll:.RefreshDisplayS
+dc5171f9e6cf2a1cd9540ada5004d0b6 Assembly-CSharp.dll:.EnemyS
+d2c40c2316caea0c9184290bf1423def Assembly-CSharp.dll:.EquipMenuS
+8a12dca2292e09c8a35044bdd7026317 Assembly-CSharp.dll:.ProjectileTrailS
+6b9f0e2422222c90dd5767134b59c945 Assembly-CSharp.dll:.CombatGiverUIItemS
+00235e632dd5ec53941630855f863810 Assembly-CSharp.dll:.AnimObjS
+0213f1bd16b5824677ae492f4aa59459 Assembly-CSharp.dll:.EquipWeaponItemS
+c3e49eaf498433c76a28bf96033c43a6 Assembly-CSharp.dll:.InGameCinemaCameraS
+1694832c7e4b46fd55bf4d268448e64f Assembly-CSharp.dll:.BGMLayerS
+777785be45fa7d9d5e006d52d14d8882 Assembly-CSharp.dll:.ForceCurrencyUpdateS
+52a4e41a597dfc9950190b55757007ce Assembly-CSharp.dll:.PlayerDodgeEffect
+ac08e37fed930a584ce6320b51e25010 Assembly-CSharp.dll:.SacramentBackgroundS
+3d2c3d40c52e47eb1af64c35f62bfc13 Assembly-CSharp.dll:.RandomSpriteS
+3ac80889da6627c6ca10085fb121c654 Assembly-CSharp.dll:.MemoS
+33f0a8ad3299259376241d707d4fb697 Assembly-CSharp.dll:.RankUIItemS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.FPSCounter
+60e3a31993bab65e1efb2350a900d178 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.InputAxisScrollbar
+8f8af911d4f8026605698c8c06d78038 Assembly-CSharp.dll:.SacramentCombatantS
+2c7e6666ff54b0db8b35a5d74102118c Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.AxisTouchButton
+7b7964db976491edc3940170d581fd27 Assembly-CSharp.dll:.ChangeTrainDirectionS
+2f6678073c14b7406dec35200da0440e Assembly-CSharp.dll:.BloodS
+f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerSpecialDodgeCollider
+f5c6c8dc1d2620313012c1f25775215c Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.SunShafts
+6ce3e3f686f75d18b90fc889d9677c9c Assembly-CSharp.dll:.MidpointS
+659f40b6e9a1dac5921ea0826f7a7725 Assembly-CSharp.dll:.OneWayDoorS
+e884e14e4968f195d12270a8a990d063 Assembly-CSharp.dll:.EquipTechItemS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EndDeathCountdown
+658c2e48b5f766f4ff6c62a4b1d88c7c Assembly-CSharp.dll:.RoomDataS
+7b688ebd318eb9ac5e045a4990b6ff3f Assembly-CSharp.dll:.EnemyWaitBehavior
+d947b95c171314b81b313a2f4ffd0411 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
+c8d5ed24a3f55ff2250cc78103b50a47 Assembly-CSharp.dll:.AmbientShakingS
+72adc0731f74e6d75de6f580bdd5c246 Assembly-CSharp.dll:.EnemyWanderBehavior
+7d2bd48c8ec91b0dc527cacd5ea67201 Assembly-CSharp.dll:.MerchantS
+4a244ce1bfa1075965525e87b30b3f24 Assembly-CSharp.dll:.GiantEnemySingleAttackBehavior
+a950ac43d3f07f1699a3527d8fae60de Assembly-CSharp.dll:.PlayerSoundS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ShakeOnStartS
+b7346c020b294ba21360c7f9b154bc60 Assembly-CSharp.dll:.DepthsLineS
+2f511afebbd43c268f4c69a4876cd036 Assembly-CSharp.dll:.MapPieceS
+f7b06d50b0d921e059ac515a439710fd Assembly-CSharp.dll:.TransformTutorialHandler
+a20569c2b97f6ab1cccaffc29e35a16a Assembly-CSharp.dll:.SacramentImageS
+0493e348b46270c407751cab05818ef0 Assembly-CSharp.dll:.BusS
+10305f9d74b73066230833c1b2b14812 Assembly-CSharp.dll:.EffectSpawnManagerS
+d0074585a13d4b523064ebb5e0348671 Assembly-CSharp.dll:AlpacaSound.RetroPixel
+e4b21fc88f30d514fa27ce1e76578b9b Assembly-CSharp.dll:.SacramentTextS
+1827d5101bce4e14ce638499f1432513 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenOverlay
+d0e91311ba1c174a02a6f9c2e5b91297 Assembly-CSharp.dll:.CreditsManagerS
+fdeeb0f6b66b14551889865494e7ab79 Assembly-CSharp.dll:.ItemEffectS
+2b4c9b0e6c01519756f5a9d6750a5a39 Assembly-CSharp.dll:.ResetUIS
+486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
+87d4722747fa8151c3a398b9a069b377 Assembly-CSharp.dll:.TurnOnOffAtProgressionS
+70cd629a48abede6b4cba2ecca7eb831 Assembly-CSharp.dll:.RandomAnimS
+051a92473808296c8f7fd6767a116c16 Assembly-CSharp.dll:.RotateEffectS
+1f41bc0951645747bc802a86b5c4db4f Assembly-CSharp.dll:.EndingEffectS
+051ce7260ad1aa40cd3af9fd1a05a372 Assembly-CSharp.dll:.EnemyRandomBehaviorS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.MobileControlRig
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerInteractCheckS
+f33c6e8899dcbbdac6477e32ae3166ec Assembly-CSharp.dll:.BuddyNoChargeEffectS
+ba86673f2a92d5108db578c448acdf29 Assembly-CSharp.dll:.ImageAnimObj
+6c70762ec1e169f8ee3d2e71f6f29090 Assembly-CSharp.dll:.EnemyMultiAttackBehavior
+29c3c371673bd9328a32b7f3ad6519bd Assembly-CSharp.dll:.DelayFadeS
+f3ac2c7f7ec7cd8a040d8acfff6a62dc Assembly-CSharp.dll:.InfiniteBGM
+408b3213eeadfa405ee813bfde3cd7a7 Assembly-CSharp.dll:.LoadFileS
+b68de47fada67ca984ca2bbb9e0e4579 Assembly-CSharp.dll:.EnemyBehaviorS
+98a6852fb2e252525cbb713143ddd380 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.DepthOfField
+600f223acce4027883c794da1c40b877 Assembly-CSharp.dll:.InGameCinemaLerpObjS
+353221a756aca17ec0db07dd31aa4205 Assembly-CSharp.dll:.DialogueManagerS
+c667a517382a734c55d5e23789f107ff Assembly-CSharp.dll:.RankManagerS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerCollectionS
+7318e7ca69010459cd78a4ec7e0cb56b Assembly-CSharp.dll:.ColorSwitchingS
+3d969085972b09b69e3bada6e298e07f Assembly-CSharp.dll:.TextOutline
+2ab2681899617c1a052dccac32d24766 Assembly-CSharp.dll:.PlayerWeaponS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.LoadingTextS
+5ba881e12dd6ce1ffe216e5b30fce884 Assembly-CSharp.dll:.SpriteDistortionPlayerS
+eaf0bcdb10d442a4029d615f41d09957 Unity.TextMeshPro.dll:TMPro.TextContainer
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.DemoResetS
+0ff937fc050ec2bacb96242ff31a7dbf Assembly-CSharp.dll:.ActivateOnTouchS
+448b48529e82c4105ebabe34ce22486d Assembly-CSharp.dll:.FadeInTextObjS
+a5bc35e1df397c1c07f701dbdf066e16 Assembly-CSharp.dll:.BuddySwitchEffectS
+32e0b3b9e2e57f35c9785a555e7a52d1 Assembly-CSharp.dll:.BuddyS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ProjectilePoolS
+84d908fb8e149a73176aa488bd9d86c4 Assembly-CSharp.dll:.EnemyDeathShadowS
+c497692f86644b9e49e35f5ffc3d51a2 Assembly-CSharp.dll:.ChapterTrigger
+e4f3e00b73bcde33150a6b5a330453ef Assembly-CSharp.dll:.DifficultySelectS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TurnOffInGameUIS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerAnimationFaceS
+6149c39f85376efafc0c35db30aa6bb7 Assembly-CSharp.dll:.AutoSetProgressionS
+72940339b4537e082a47f0205cee72af Assembly-CSharp.dll:.EnemyProjectileS
+08dd14544673794d4f2870ad817ecd27 Assembly-CSharp.dll:.FadeInSpriteObjectS
+452885aa8663d84c6ba80b8722010af4 Assembly-CSharp.dll:.SacramentHandlerS
+bce98673e32218a2a241d74fd5e512d4 Assembly-CSharp.dll:.ScrollingEnvironmentS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.PostEffectsHelper
+39238020e5d36749c5a3f9bc979384cf Assembly-CSharp.dll:.ExamineTriggerS
+6b9142ca87690a0c13a5016a31c7cd9c Assembly-CSharp.dll:.DestructibleItemS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.RandomScalingEffectS
+f9cfd8d5300b5bcccc91b7b91391d934 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion
+354fdad551e7bf10c293d806153c8578 Assembly-CSharp.dll:.PlayerAugmentsS
+3fa2b792f286fb21e9cf0ebe0280face Assembly-CSharp.dll:.LookOnTouchEnemiesS
+64d66a1049f76b223e4f47e543038c72 Assembly-CSharp.dll:.RetryFightUI
+27e4a60d8e9e33c7d6a3ae0639cf366c Assembly-CSharp.dll:.OffOnKillFamiliarS
+acefc34e5feb1cfa90464b55dfd08348 Assembly-CSharp.dll:.RoomS
+51fee4385e776dc121a17c7c34073d9f Assembly-CSharp.dll:.ActivateOnCombatS
+3ace5f5c838cba3b8614d1ca3809735e Assembly-CSharp.dll:.NPCS
+31605d7e92c3e4dc8ef9360010d5e673 Assembly-CSharp.dll:.EnemyTeleportBehavior
+201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
+486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
+0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
+3dca4e3a0b938c8643652748865d2430 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkIdentity
+42e6590aedbcfee193e9e996047a3462 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkLobbyManager
+c10df78450fe0ac01c75eca3fdd23e32 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkLobbyPlayer
+5922b87075670528a7b0b4f8620d0b07 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkManager
+211268494e68f7d079886e88f3d3c929 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkManagerHUD
+da21fc3f8056b1f91c3dd09c7bf4f90a UnityEngine.Networking.dll:UnityEngine.Networking.NetworkMigrationManager
+6409350deec3028c583d5c216383488d UnityEngine.Networking.dll:UnityEngine.Networking.NetworkProximityChecker
+486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkStartPosition
+529a95e9e8e7686c4816e08fbb37183f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
+fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
+7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+383f2ffb9026ee8767a7aa1a81b20bb8 Assembly-CSharp.dll:.ProjectileS
+984eee801968207c21945e9208bf2fa3 Assembly-CSharp.dll:.LevelUpItemS
+f963e0fd8a69c0196a00207ed819a128 Assembly-CSharp.dll:.SFXObjS
+4180c5a0e014fdc800fe9aef4d687dfa Assembly-CSharp.dll:.MovePlayerS
+4d6ac7136ad7b41ed7ba2a24dd863e05 Assembly-CSharp.dll:.SpawnOnProjectileS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.RoomClearCheck
+4108120e8116b5c250f5e69b76783b7b Assembly-CSharp.dll:.InstructionTextS
+fd88e6515f8cf718785bde3a1458fea3 Assembly-CSharp.dll:.InfinityDemoS
+1fa7d160876221e1368645d115a17bf2 Assembly-CSharp.dll:.ReflectObjEffectS
+9afabfbdc526309e08725661834031e3 Assembly-CSharp.dll:.TrackRevertProgressScriptableObject
+1e89a0c444395d5578aa4e9d87aac2cb Assembly-CSharp.dll:.ShootBuddyS
+e1e1d85b14d007211fda88cdaee370d1 Assembly-CSharp.dll:.ZoomOnStartS
+b5a99d098bc66cbbdea29876c886f084 Assembly-CSharp.dll:.WarningManagerS
+6e2e283a514458b2d9407ad72ad394f7 Assembly-CSharp.dll:.LevelUpS
+405bbef6b500358d79bcab8abc2a4280 Assembly-CSharp.dll:.SacramentHurtEffectS
+7dd3a0b65163da00f2dec0b5d92b4d93 Assembly-CSharp.dll:.PlayerDestructionS
+142136b2a2233994d725945f8c02a686 Assembly-CSharp.dll:.EnemyReorderBehaviorS
+72a8523b432c0a5317826b7a9e0a0e79 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
+766f473502e576d99e7c338adb63a79d Assembly-CSharp.dll:.EnemyWeightS
+ea33adc62f4b85f0fc8b9964b0616f02 Assembly-CSharp.dll:.CustomizableControlsUIS
+e41506e93e7c445b66bce842f580e797 Assembly-CSharp.dll:.TransformEffectUI
+9595ac4350e79cc90fc637e36e208279 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CreaseShading
+b6473804202bfe0082b1e1c60986d86e Assembly-CSharp.dll:.RoomTeleporterS
+e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
+392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
+7ad369ad570e8c21f588c519caf05bc5 Assembly-CSharp.dll:.SpawnPosManager
+6bd828507cf33da37c899f3aad9f86c5 Assembly-CSharp.dll:.EnemyHealthBarS
+34ab2d7c71959c8462a41b87f2bfa1b0 Assembly-CSharp.dll:.RotateOnAxis
+0e5b66311667fea6014d97063fb4364c Assembly-CSharp.dll:.SacramentTextBGS
+d315386302caddeaaad4961b9b324239 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ContrastEnhance
+28c5ee39bab8819f90740a3cc87326a6 Assembly-CSharp.dll:.KeypadS
+4c5976954e15d243b256573cfb579df5 Assembly-CSharp.dll:.ChargeProjectileS
+f6bdbf5799c64a89f9a16a40359919f4 Assembly-CSharp.dll:.RankUIS
+c8f74fe09401c83fe1fb6db0f0b6b152 Assembly-CSharp.dll:.SacramentBGMS
+b3dda81d4fa5b5f5f88e4dce3cc71a69 Assembly-CSharp.dll:.CombatGiverS
+0651ce8f15ce3c3ddebb3aa877f60c83 Assembly-CSharp.dll:.RandomOnS
+9d8d61257a9ee734ccd65f17143e4cb5 Assembly-CSharp.dll:.CameraEffectsS
+d6173ef12d22d12b62e94861dfee9c80 Assembly-CSharp.dll:.ImageGlowS
+a9e9d0a79be6b9eec0517fa6b75a2e9d Assembly-CSharp.dll:.CinematicHandlerS
+486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
+e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
+9d863b523b577f5c3d915351a74cd338 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Post100SceneSetter
+46bae3097ec5a6f7d133728c72093753 Assembly-CSharp.dll:.ActivateOnPlayerHealthS
+1a90b221dc803408fbafa883c12bcab4 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
+70f7dc248db3379548a88e8d4fa049f8 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
+28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
+28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+aa479d9adc1859fd90887b41c9ccba78 Assembly-CSharp.dll:.InGameCinemaDialogueOptionS
+9584f3887bbdabbff14978124335cb1b Assembly-CSharp.dll:.InGameCinemaWaitS
+87a46fa05b046c06e4f2c56223e4649b Assembly-CSharp.dll:.ConditionUIS
+aeaeccf125e0bc38c03a1a860d8206c0 Assembly-CSharp.dll:.FinalPortalS
+c291d163343cf0685f751c33039ecc1d Assembly-CSharp.dll:.InstaCheckpointS
+afd96b2b508d7d07b139c13b4f92fa1c Assembly-CSharp.dll:.SetEnemyActiveS
+1a90b221dc803408fbafa883c12bcab4 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
+70f7dc248db3379548a88e8d4fa049f8 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
+28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
+28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+8528f9f4e509a8e28adfdb88f004fdf8 Assembly-CSharp.dll:.AddTechS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.FadeEnvironmentTriggerS
+9d71808494e61fa821b14e0bab38437f Assembly-CSharp.dll:.ChargeRiseEffectS
+70787d35502386886b123a98f0adccd8 Assembly-CSharp.dll:.EnemyDetectS
+f6db0f87f7428657e1ace57cf094547b Assembly-CSharp.dll:.MixTriggerS
+af2cc36aed490df83333f80cd1fcb084 Assembly-CSharp.dll:.SimpleEnemyDetectS
+5a06c18b6aa904558ea6e46718fcc738 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndGrain
+a585abb35d6774a85b3d339b84fb4daa Assembly-CSharp.dll:.TauntDialogueS
+d2b4c2cd9f420493982c4e5202ca3c8e Assembly-CSharp.dll:.DamageNumberS
+d4189ae24fdc96badc64fdcc5d6bba9e Assembly-CSharp.dll:.EnemyBreakS
+1afbe72fdf9723d9a54acc5f9f27679d Assembly-CSharp.dll:.EnemyCrowdBehavior
+d310d8e1ca0c0eb35ad7be110590aac7 Assembly-CSharp.dll:.AmbientShaking
+0225c00d8b7b6d3e39a63b8e51ce5320 Assembly-CSharp.dll:.FakeEnemyBuddyS
+09198ef273f18e502ee33a1909944e61 Assembly-CSharp.dll:.BgEffectS
+781e7c8b2f990643658f0fd362eb1048 Assembly-CSharp.dll:.RemoveCombatDataS
+7176a8738b6ecf757168b63a2bc19fe8 Assembly-CSharp.dll:.ActivateOnEnemyDefeatS
+d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
+486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
+e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
+98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
+dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
+e811063bdcd41e129e43a857fd0fb597 Assembly-CSharp.dll:.BorderResizeS
+8cd437fbc2d9b5aec1b040563c95202a Assembly-CSharp.dll:.PlayerStatsS
+f61c2d7628ee4dcf90cb67a9a1d1f32b Assembly-CSharp.dll:.CombatTriggerS
+4817ee0159b37f56ddd51bf19512b6d7 Assembly-CSharp.dll:.EnemyShadowS
+aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
+c3c94a2696ad4abf27ae9a4519b02543 Assembly-CSharp.dll:.PlayerCurrencyDisplayS
+2c47eb9bafef488601a9ba66a75049d4 Assembly-CSharp.dll:.EnemyHealthFeathersS
+6bba622c970b39feadfcdca45018625c Assembly-CSharp.dll:.BlockDisplayS
+6249849002a028315e3663ce808b6720 Assembly-CSharp.dll:.FlashEffectS
+cc505559445c0fb0504a350cb1e3cd0a Assembly-CSharp.dll:.ColorFilterSetter
+ae0fa6aaa5e980f190fd2479500fab1a Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ColorCorrectionRamp
+8e4aa2658cebce35b52581da9e1c2d04 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Grayscale
+51c7f2da0e648ac14d16777ffbf26e8e Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.SepiaTone
+846e13f6b509bedbd77270d9c9d5070d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Twirl
+846e13f6b509bedbd77270d9c9d5070d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
+919a573efe7a156ebe924b94165a1f13 Assembly-CSharp.dll:.NatalieOverrideS
+d117de881dd81e49512374e24843209d Assembly-CSharp.dll:.CameraFollowS
+7988c947fbfdb19aa8428e08ab339d1d Assembly-CSharp.dll:.InGameCinematicS
+5bb4ae1e08c6010c306434f3a366982e Assembly-CSharp.dll:.ReflectColorChange
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.DifficultyS
+e6e0bf01f59e844159f92424abe4f940 Assembly-CSharp.dll:.BarrierS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AnimCurveS
+5463f5f414fc0c2674bcc4f2b681dd22 Assembly-CSharp.dll:.EnemyParryBehavior
+b2e0c9bab6dd7e1dc05cfd857902a445 Assembly-CSharp.dll:.FakeParallaxS
+806055d398aa23f6f7f08f3cf50a6f1b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.CameraMotionBlur
+11d8a16f535f9f5643cc9478cc7d4900 Assembly-CSharp.dll:.PlayerHealEffect
+0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
+896ec44afc4a995a27fa328720abf999 Assembly-CSharp.dll:.ChangeSceneTriggerS
+ab2349728040635ebe90a93c343106c9 Assembly-CSharp.dll:.ZControlTargetS
+7bb26ad183dde6f9d7b2da3d49b122b1 Assembly-CSharp.dll:.CloudS
+dc640635abac5144c6c6814f15899460 Assembly-CSharp.dll:.InGameCinemaActivateS
+728556623898f2d31d7dc81a7753a821 Assembly-CSharp.dll:.EquipVirtueItemS
+dc4a7571c5046551cefaa05df2203eb5 Assembly-CSharp.dll:.ChangeTargetOnTouch
+f6fe6f9a189d9e3dbf9ac76422881df9 Assembly-CSharp.dll:.ControlManagerS
+baafe8d97ef7fbe5aea9d0d8f0e7540a Assembly-CSharp.dll:.ChangeDeathSceneS
+648d43296a9b53368416efc91aa6a7db Assembly-CSharp.dll:.EnemyDashBehavior
+7a41cbc096f35e43463f7a799bc16a16 Assembly-CSharp.dll:.SetMapToUseS
+c01e8294c68b3010d6eaa7526b994112 Assembly-CSharp.dll:.InfinitySpawnS
+0ff6cfa1661dc8061ef137d915f475a6 Assembly-CSharp.dll:.FaceOnStartS
+44cc69f3f4db9113e5097a78c419a0d8 Assembly-CSharp.dll:.VignetteScalingEffectS
+2d5613dfea5ebe89d441816537142920 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
+f97db196a7e414a6be0e755cdf65379a Assembly-CSharp.dll:.MatchFlashColorS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SpecialDashCheckS
+6c7911c5e538d0cbf8293e413fcd4af2 Assembly-CSharp.dll:.DarkBitS
+3d9e0a98a6ba4b48261cb4eba99e0cd0 Assembly-CSharp.dll:.OnOffAtNewGamePlusState
+28c00f5dd2e02d96a26760bd4fc93737 Assembly-CSharp.dll:.SizeWiggleS
+2b5349c32bc1924b054d31a14204a1e8 Assembly-CSharp.dll:.FlashMat3DS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.LockOnS
+6f28728bc8175979df0f1e5756058ad4 Assembly-CSharp.dll:.UIDistortionS
+f7eb69376fb0d58e5de0cf53c5a5c0b1 Assembly-CSharp.dll:.HealBuddyS
+af4a12ee252f8354ee041cce6cf6795d Assembly-CSharp.dll:.KeyItemUIS
+c79d769a426dc9fad4ed329846d398e7 Assembly-CSharp.dll:.EnemyConditionalCommandS
+7e61b0e98d383f1c77eda3adb0c43dbf Assembly-CSharp.dll:.BloodParticleEffect
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ParticleSystemS
+5c33427c98eb5ad77aa074e13c3600e0 Assembly-CSharp.dll:.BlockDisplay3DS
+cafce67bf40c3a07d688616e421ef8bc Assembly-CSharp.dll:.MuzzleFlareS
+5fbc550b66f75d40ef6a2003c6c22edc Assembly-CSharp.dll:.SacramentCombatS
+00734912d7923de713949e319fbede27 Assembly-CSharp.dll:.ForceTrigger
+9023eda2f13eee928f62e64304b09663 Assembly-CSharp.dll:.EnemySpawnerS
+63bee9796cf00e331320520589911259 Assembly-CSharp.dll:.CombatManagerS
+080c0ddc9e1e6dd661d44a894a89ee63 Assembly-CSharp.dll:.PlayerController
+243e0e5a97b658bb1357969ff4a39123 Assembly-CSharp.dll:.TimedShakesS
+9b5079b6a5b979797b1fec2751b21801 Assembly-CSharp.dll:.SacramentStepS
+c18a0b2d67b068dd0b0810c194a5e5c3 Assembly-CSharp.dll:.LevelGenerationS
+4715d9eb6c95ba380676f96ccbfa55e8 Assembly-CSharp.dll:.GrowEffectS
+7a858b5a06e06b6e0150af4d313453a8 Assembly-CSharp.dll:.GameMenuS
+f313986cafea1e8cafdfe90d8df7c7da Assembly-CSharp.dll:.EnemySpawnBehavior
+e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
+f00878f8453ef17799ef5281a84202f7 Assembly-CSharp.dll:.EnemyLaserBuddyS
+030df0f96bb88f9fb6635e2d38ee042f Assembly-CSharp.dll:.TeleportPlayerS
+78cccdec83f950b738d8d128f43bce03 Assembly-CSharp.dll:.SpriteDistortionS
+3beae574be128ff1169a81244c4ed62e Assembly-CSharp.dll:.InventoryManagerS
+dc466f69bfccb0dbd19a7d0981cd3b6e Assembly-CSharp.dll:.TranslateObjectS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AllowRetryS
+ef0f52ab3b3dfb754d555d91683e8c3e Assembly-CSharp.dll:.InstantiateOnCombatRestartS
+bd57674768d88af20344e9f680801c2d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.DepthOfFieldDeprecated
+08d0508b1b70276c9903e3d12a338a41 Assembly-CSharp.dll:.RemoveParentS
+df03e2ffa8b3251f71a6c2235d50c66b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Fisheye
+eb2e76186178b87e66b386e169fc803d Assembly-CSharp.dll:.CombatGiverUIS
+7185add3ee61a1c2eeb8f75b66f0d95d Assembly-CSharp.dll:.ActivateOnSceneTriggerS
+c7de0592cd75274eb1546806f85a4d64 Assembly-CSharp.dll:.DeathCountdownHandlerS
+e4cf3a84c3223b593bf0d120e02ed394 Assembly-CSharp.dll:.SpriteDistortionEnemyS
+4f70ddc395f969c365314712efd2bd0a Assembly-CSharp.dll:.ActivateOnCombatClearedS
+ae9b8874af6d44e59f25bab9e1667ced Assembly-CSharp.dll:.MatchCinemaPositionS
+93606f98db8b35d40c984a3eeb6fd516 Assembly-CSharp.dll:.ProgressionTriggerS
+573dbc4192971cfa3b8cc326642e339b Assembly-CSharp.dll:.ChangeCameraSizeOnTouch
+9aa505fab58326400d3283e58a7bfe44 Assembly-CSharp.dll:.FakeFloorS
+dd89609adadc2a2a0084be26fb71da03 Assembly-CSharp.dll:.EnemyChargeAttackS
+2fbae7941309bfe4808e0183106c01e1 Assembly-CSharp.dll:.RemoveCombatClearDataS
+2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
+9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
+914bd41effadf4697bbf2f1ee4839f3a Assembly-CSharp.dll:.TitleTextEffectS
+df4838a6af08852753470f1f92265b03 Assembly-CSharp.dll:.AnimatorTriggerS
+0d595c436d363703a27e751457095179 Assembly-CSharp.dll:.EnemyDefendBehavior
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.PostEffectsBase
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.BuddyChargeIndicatorS
+4128471154278598e962940dfe02394e Assembly-CSharp.dll:.SnowEffectColliderS
+7321f1830376da84529867742ae5d2c4 Assembly-CSharp.dll:.AddKeysUsed
+cc2a3b86045fb856d8497039da1d38c1 Assembly-CSharp.dll:.PlayerLvDisplayS
+ceb170662ae710062bc04a0cf20e02d4 Assembly-CSharp.dll:.EnemyGiveSpawnCommandS
+76509afe367cae3e2de41d26b899ad8d Assembly-CSharp.dll:.ChangePOIOffsetS
+56efe0cf8e2cd568414f3a9e61540e3b Assembly-CSharp.dll:.GameOverS
+1ea93faee784a05b93bf0db7ee20c422 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.EdgeDetection
+5f69bbcfebb56424a71ed4b6c77a4f26 Assembly-CSharp.dll:.BuddyNPCS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.VignetteEffectS
+ef662bc0631440a8a3cdba0d3dcec589 Assembly-CSharp.dll:.ClearAllLayersS
+93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
+985c690377822f41654d5f68210987d9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ColorCorrectionLookup
+5c1105e93aec2ca7ab642590f5a2adc8 Assembly-CSharp.dll:.TransformStartEffectS
+0fe1713b389773dc42376d9f85234d75 Assembly-CSharp.dll:.EnemySeekBehavior
+bd7ab826af2ed31f398562f237344230 Assembly-CSharp.dll:.EnemyChargeAttackBehavior
+7e00302ea3eb5480d97884ceeaafde0f Assembly-CSharp.dll:.LeverMatchDirectionS
+f59ca19b2477a0f8545617e6a1dec4b4 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Tonemapping
+053f62dca2dc30f483ed4cb9b15ed908 Assembly-CSharp.dll:.ExamineLabelS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.BGMHolderS
+a4362b67d37a31d6654241d25b570d4e Assembly-CSharp.dll:.PlayerSlowTimeS
+ae55ff2fc3796c693376d20b96cca261 Assembly-CSharp.dll:.DarknessS
+8eedee6aef46dc4f41038645337e1fa0 Assembly-CSharp.dll:.BleedingS
+905712b0b072c0d625a724b39f2b8ed4 Assembly-CSharp.dll:.CreditFlower
+9cfaddd537af7164d1fe394f45d7c28b Assembly-CSharp.dll:.EnragedEffectS
+86771630e3f1b2ff655f9e7c4ed5ec6e Assembly-CSharp.dll:.DialogueResponseS
+893a6ea934ecda5b65d766cf70ab6d61 Assembly-CSharp.dll:.EnemyBreakLettersS
+e9c7df211e8766d29221daeff3f85048 Assembly-CSharp.dll:.LockedDoorS
+86561d5d16b8f2ac3478c095245035b9 Assembly-CSharp.dll:.EnemyDodgeBehaviorS
+606f1d86109db29f83407f8015b8aada Assembly-CSharp.dll:.CinematicInsertTextS
+69c0acc1aaba3ac825a78d820eafa7a2 Assembly-CSharp.dll:.DarknessPercentUIS
+adbe5a51e0ae408e34c07c82bb2f4c41 Assembly-CSharp.dll:.NormalizeTimeScaleS
+70d91b2041125e666948562751bc8afc Assembly-CSharp.dll:.SwayEffectS

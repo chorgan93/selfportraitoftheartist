@@ -510,12 +510,12 @@ public class PlayerStatsS : MonoBehaviour {
                     _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f/5f;
                     if (myPlayerController.isTransformed)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 3f/5f;
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f/5f;
                     }
                 }
                 else
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 1.5f;
+                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 3f;
                     if (myPlayerController.isTransformed)
                     {
                         _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f;
@@ -1176,11 +1176,11 @@ public class PlayerStatsS : MonoBehaviour {
                     if (PlayerAugmentsS.MARKED_AUG){
                         if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                         {
-                            _currentDarkness += 0.002f;
+                            _currentDarkness += 0.1f;
                         }
                         else
                         {
-                            _currentDarkness += 0.01f;
+                            _currentDarkness += 0.5f;
                         }
                     }
 					}

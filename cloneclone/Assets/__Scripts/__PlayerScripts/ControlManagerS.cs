@@ -161,11 +161,11 @@ public class ControlManagerS : MonoBehaviour {
 	public int DetermineControllerType(){
 		int numToReturn = 0;
 		string[] joyStickNames = Input.GetJoystickNames();
-		Debug.Log(joyStickNames[0]);
-        if ((joyStickNames[0].Contains("Sony") || joyStickNames[0].Contains("Unknown"))){
+		//Debug.Log(joyStickNames[0]);
+        if ((joyStickNames[0].Contains("Sony") || joyStickNames[0].Contains("Unknown") || joyStickNames[0] == "Wireless Controller")
+            && !joyStickNames[0].Contains("Xbox") && !joyStickNames[0].Contains("XBox") && !joyStickNames[0].Contains("XBOX")){
 			numToReturn = 1;
 			canSelectPS4 = true;
-            Debug.Log(canSelectPS4);
 		}
 		return numToReturn;
 	}
@@ -1138,9 +1138,9 @@ public class ControlManagerS : MonoBehaviour {
 					|| Input.GetButton("SwitchItemButtonUpMac") || Input.GetButton("SwitchItemButtonUpMac"));
 			}else{
 				if (controlProfile == 3){
-					return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPS4")) > 0.1f);
+                    return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPS4PC")) > 0.1f || Mathf.Abs(Input.GetAxis("UseItemAxisPS4PC")) > 0.1f);
 				}else{
-					return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPC")) > 0.1f);
+                    return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPC")) > 0.1f || Mathf.Abs(Input.GetAxis("UseItemAxisPC")) > 0.1f);
 				}
 			}
 		}else{

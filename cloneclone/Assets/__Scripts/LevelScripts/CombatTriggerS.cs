@@ -8,14 +8,21 @@ public class CombatTriggerS : MonoBehaviour {
 	public string verseTitle;
 	public bool preventDeath = false;
 	public InfinityManagerS myInfiniteManager;
+    [Header("ONLY FOR METRO - MAINTENANCE NG+")]
+    public int doNotActivateWhenSpawningAt = -1;
 
 	void Start(){
 		verseTitle = verseTitle.Replace("PLAYERNAME", TextInputUIS.playerName);
 		if (combatReference.combatID > -1){
-			if (PlayerInventoryS.I.dManager.clearedCombatTriggers.Contains(combatReference.combatID)){
+			if (PlayerInventoryS.I.dManager.clearedCombatTriggers.Contains(combatReference.combatID) ||
+                (doNotActivateWhenSpawningAt > -1 && SpawnPosManager.whereToSpawn == doNotActivateWhenSpawningAt)){
 				activated = true;
 				combatReference.TurnOnOnceObjects();
 				combatReference.TurnOffOnceObjects();
+
+                if (doNotActivateWhenSpawningAt > -1 && SpawnPosManager.whereToSpawn == doNotActivateWhenSpawningAt){
+                    PlayerInventoryS.I.dManager.AddClearedCombat(combatReference.combatID, -1, "C");
+                }
 			}
 		}
 	}

@@ -83,7 +83,7 @@ public class ChargeRiseEffectS : MonoBehaviour {
 	void Initialize(){
 
 		if (!_initialized){
-			riserObjs = new GameObject[transform.GetChildCount()];
+			riserObjs = new GameObject[transform.childCount];
 			for (int i = 0; i < riserObjs.Length; i++){
 				riserObjs[i] = transform.GetChild(i).gameObject;
 			}

@@ -2,12 +2,10 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs" Line="10" Column="48" />
-      <File FileName="Assets/__Scripts/NPCScripts/NPCS.cs" Line="179" Column="25" />
-      <File FileName="Assets/__Scripts/CinematicScripts/InGameCinematics/InGameCinematicS.cs" Line="119" Column="27" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs" Line="27" Column="40" />
-      <File FileName="Assets/__Scripts/__PlayerScripts/InventoryManagerS.cs" Line="137" Column="37" />
-      <File FileName="Assets/__Scripts/SystemScripts/DifficultySelectS.cs" Line="321" Column="48" />
+      <File FileName="Assets/__Scripts/TextScripts/ChapterTrigger.cs" Line="93" Column="21" />
+      <File FileName="Assets/__Scripts/UIScripts/DarknessPercentUIS.cs" Line="546" Column="30" />
+      <File FileName="Assets/__Scripts/UIScripts/RankingScripts/RankUIS.cs" Line="421" Column="15" />
+      <File FileName="Assets/__Scripts/UIScripts/MainMenuNavigationS.cs" Line="10" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

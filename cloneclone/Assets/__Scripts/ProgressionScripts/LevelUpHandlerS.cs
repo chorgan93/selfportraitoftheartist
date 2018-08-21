@@ -41,7 +41,7 @@ public class LevelUpHandlerS : MonoBehaviour {
     }
 
 	void SetDefaults(){
-        Debug.Log("setting upgrade resets!");
+        //Debug.Log("setting upgrade resets!");
 		nextLevelUpsReset.Clear();
 		availableLevelUpsReset.Clear();
 		lockedLevelUpsReset.Clear();

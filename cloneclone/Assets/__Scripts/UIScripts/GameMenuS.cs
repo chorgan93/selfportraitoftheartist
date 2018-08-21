@@ -366,11 +366,11 @@ public class GameMenuS : MonoBehaviour {
         quitRightFromOptions = false;
         if (goToOptions != null){
             myControl = goToOptions.controlRef;
-            Debug.Log(myControl);
+            //Debug.Log(myControl);
             quitRightFromOptions = true;
                 selectButtonUp = false;
             inOptionsMenu = true;
-            Debug.Log(inOptionsMenu);
+            //Debug.Log(inOptionsMenu);
             MatchOptionsText();
             SetSelection(0);
             optionsMenuProper.gameObject.SetActive(true);
@@ -608,18 +608,37 @@ public class GameMenuS : MonoBehaviour {
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
         {
             stickReset = false;
-            Screen.fullScreen = !Screen.fullScreen;
+            if (Screen.fullScreen)
+            {
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                Screen.fullScreen = false;
+            }
+            else
+            {
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                Screen.fullScreen = true;
+            }
+            StartCoroutine(UpdateFullscreenSettingCoroutine());
         }
 
         if (selectButtonUp && myControl.GetCustomInput(12))
         {
 
-            Screen.fullScreen = !Screen.fullScreen;
             selectButtonUp = false;
+            if (Screen.fullScreen)
+            {
+                Screen.fullScreen = false;
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+            }
+            else
+            {
+                Screen.fullScreen = true;
+                Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            }
+            StartCoroutine(UpdateFullscreenSettingCoroutine());
 
         }
 
-        StartCoroutine(UpdateFullscreenSettingCoroutine());
     }
 
 	void HandleShakeOption(){
@@ -782,7 +801,7 @@ public class GameMenuS : MonoBehaviour {
         else if (myControl.HorizontalMenu() < -0.1f && stickReset)
         {
             stickReset = false;
-            GetCurrentResolutionIndex();
+            GetCurrentResolutionIndex(true);
             currentResolutionInt--;
             if (currentResolutionInt < 0)
             {
@@ -813,17 +832,49 @@ public class GameMenuS : MonoBehaviour {
 
     }
 
-    void  GetCurrentResolutionIndex(){
+    void GetCurrentResolutionIndex(bool reverse = false)
+    {
         float currentResolutionX = Screen.width;
         float currentResolutionY = Screen.height;
-        for (int i = 0; i < Screen.resolutions.Length; i++){
-            if (Mathf.Approximately(currentResolutionX , Screen.resolutions[i].width) 
-                && Mathf.Approximately(currentResolutionY , Screen.resolutions[i].height))
+        if (reverse)
+        {
+            for (int i = Screen.resolutions.Length - 1; i >= 0; i--)
             {
-                currentResolutionInt = i;
-                //Debug.LogError("Resolutions match at index " + currentResolutionInt);
+                if (ApproximateDimension(currentResolutionX, Screen.resolutions[i].width)
+                    && ApproximateDimension(currentResolutionY, Screen.resolutions[i].height))
+                {
+                    currentResolutionInt = i;
+                    //Debug.Log("Resolutions match at index " + currentResolutionInt + ": " + Screen.resolutions[i].width + "x" + Screen.resolutions[i].height);
 
+                }
             }
+        }
+        else
+        {
+            for (int i = 0; i < Screen.resolutions.Length; i++)
+            {
+                if (ApproximateDimension(currentResolutionX, Screen.resolutions[i].width)
+                    && ApproximateDimension(currentResolutionY, Screen.resolutions[i].height))
+                {
+                    currentResolutionInt = i;
+                    //Debug.Log("Resolutions match at index " + currentResolutionInt + ": " + Screen.resolutions[i].width + "x" + Screen.resolutions[i].height);
+
+                }
+            }
+        }
+
+        //Debug.Log("Currently at possible resolution of " + currentResolutionInt + " of " + Screen.resolutions.Length);
+    }
+
+    private bool ApproximateDimension(float a, float b, float maxDifference = 1f)
+    {
+        if (Mathf.Abs(a - b) <= maxDifference)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -863,11 +914,14 @@ public class GameMenuS : MonoBehaviour {
         StartCoroutine(UpdateResoultionSettingTextCoroutine());
     }
     IEnumerator UpdateResoultionSettingTextCoroutine(){
+
+        //Debug.Log("Possible resolutions: " + Screen.resolutions.Length);
         yield return null;
 
         resolutionText.text = Screen.width.ToString() + " x " + Screen.height.ToString();
     }
     IEnumerator UpdateFullscreenSettingCoroutine(){
+        //Debug.Log("Fullscreen: " + Screen.fullScreen);
         yield return null;
         if (Screen.fullScreen)
         {

@@ -36,7 +36,7 @@ public class MixTriggerS : MonoBehaviour {
 				}
 			}
             activated = true;
-            if (!activateOnStart && GetComponent<Collider>() != null && !dontTurnOffCollider)
+            if (GetComponent<Collider>() != null && !dontTurnOffCollider)
             {
                 GetComponent<Collider>().enabled = false;
             }

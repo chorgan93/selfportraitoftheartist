@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 	private float disconnectedMaxDistance = 15f;
 	private float disconnectedMinDistance = 6f;
 	private float disconnectedNoTargetDistance = 7f;
-	private float disconnectedTeleportDistance = 0.5f;
+	private float disconnectedTeleportDistance = 0.1f;
 	private Vector3 disconnectedTeleportTarget = Vector3.zero;
 	private float disconnectedChargeCost = 1f;
 	private float disconnectedCooldown = 0.4f;

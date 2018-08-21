@@ -15,7 +15,8 @@ public class KeypadKeys : MonoBehaviour {
 	void Start () {
 	
 		selectOutline.enabled = false;
-		startCol = buttonText.color;
+        startCol = new Color(0.75f, 0.75f, 0.75f, 1f);
+        buttonText.color = startCol;
 
 	}
 
@@ -24,9 +25,11 @@ public class KeypadKeys : MonoBehaviour {
 		if (isSelected){
 			buttonText.color = selectedCol;
 			selectOutline.enabled = true;
-		}else{
+        }else{
+            startCol.a = 1f;
 			buttonText.color = startCol;
 			selectOutline.enabled = false;
+            Debug.Log(startCol);
 		}
 	}
 

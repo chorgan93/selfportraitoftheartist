@@ -77,7 +77,8 @@ public class ChapterTrigger : MonoBehaviour {
                 }
 
                 // revert any before that are higher
-                if (!PlayerController.killedFamiliar)
+                // STRIKING more confusing than anything
+                /*if (!PlayerController.killedFamiliar)
                 {
                     for (int i = chapterNum; i > 0; i--)
                     {
@@ -89,7 +90,7 @@ public class ChapterTrigger : MonoBehaviour {
                             }
                         }
                     }
-                }
+                }**/
             }
 		}
 	}

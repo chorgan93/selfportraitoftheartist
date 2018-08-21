@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 1.0.10 —";
+	private const string currentVer = "— v. 1.1.1 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
