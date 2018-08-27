@@ -56,9 +56,9 @@ public class DeathCountdownS : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (countdownActive){
+        if (countdownActive && !fadingIn && !fadingOut){
 			if (deathCountdownTimer > 0){
-				deathCountdownTimer -= Time.unscaledDeltaTime;
+                deathCountdownTimer -= Time.deltaTime;
 				deathCountShow = Mathf.Round(deathCountdownTimer*100f)/100f;
 				myText.text = deathCountShow.ToString();
 			}else{

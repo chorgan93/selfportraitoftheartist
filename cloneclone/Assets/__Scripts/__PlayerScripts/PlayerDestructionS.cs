@@ -190,19 +190,35 @@ public class PlayerDestructionS : MonoBehaviour {
 	}
 
 	public void RemoveCombatData(int cID){
-		if (_combatClearedAtLeastOnce.Contains(cID)){
-			int indexOfCombat = _combatClearedAtLeastOnce.IndexOf(cID);
-			_combatClearedRanks.RemoveAt(indexOfCombat);
-			_combatClearedRankGrades.RemoveAt(indexOfCombat);
-            if (_specialConditionCombatCleared != null)
+        if (_combatClearedAtLeastOnce != null)
+        {
+            if (_combatClearedAtLeastOnce.Contains(cID))
             {
-                if (_specialConditionCombatCleared.Contains(cID))
+                int indexOfCombat = _combatClearedAtLeastOnce.IndexOf(cID);
+                if (_combatClearedRanks != null)
                 {
-                    _specialConditionCombatCleared.Remove(cID);
+                    if (_combatClearedRanks.Count > indexOfCombat)
+                    {
+                        _combatClearedRanks.RemoveAt(indexOfCombat);
+                    }
                 }
+                if (_combatClearedRankGrades != null)
+                {
+                    if (_combatClearedRankGrades.Count > indexOfCombat)
+                    {
+                        _combatClearedRankGrades.RemoveAt(indexOfCombat);
+                    }
+                }
+                if (_specialConditionCombatCleared != null)
+                {
+                    if (_specialConditionCombatCleared.Contains(cID))
+                    {
+                        _specialConditionCombatCleared.Remove(cID);
+                    }
+                }
+                _combatClearedAtLeastOnce.Remove(cID);
             }
-			_combatClearedAtLeastOnce.Remove(cID);
-		}
+        }
 	}
 
 	public void SetBattleBlood(){
@@ -269,26 +285,46 @@ public class PlayerDestructionS : MonoBehaviour {
     public void RevertCombatData(List<int> revertCombatNums){
         OverwriteReversionData();
         int indexOfRevertCombat = -1;
+        //Debug.Log("Going to revert combat!");
         if (_combatClearedAtLeastOnce != null)
         {
+            //Debug.Log("Combat cleared exists!");
         for (int i = 0; i < revertCombatNums.Count; i++){
             
                 if (_combatClearedAtLeastOnce.Contains(revertCombatNums[i]))
                 {
-
+                    //Debug.Log("Reverting combat " + revertCombatNums[i]);
                     indexOfRevertCombat = _combatClearedAtLeastOnce.IndexOf(revertCombatNums[i]);
 
                     _revertedCombatClearedAtLeastOnce.Add(_combatClearedAtLeastOnce[indexOfRevertCombat]);
-                    _revertedCombatClearedRanks.Add(_combatClearedRanks[indexOfRevertCombat]);
-                    _revertedCombatClearedRankGrades.Add(_combatClearedRankGrades[indexOfRevertCombat]);
-                    _revertedSpecialConditionCombatCleared.Add(_specialConditionCombatCleared[indexOfRevertCombat]);
-
+                    if (_combatClearedRanks != null){
+                        if (_combatClearedRanks.Count > indexOfRevertCombat){
+                            _revertedCombatClearedRanks.Add(_combatClearedRanks[indexOfRevertCombat]);
+                            _combatClearedRanks.RemoveAt(indexOfRevertCombat);
+                        }
+                    }
+                    if (_combatClearedRankGrades != null)
+                    {
+                        if (_combatClearedRankGrades.Count > indexOfRevertCombat)
+                        {
+                            _revertedCombatClearedRankGrades.Add(_combatClearedRankGrades[indexOfRevertCombat]);
+                            _combatClearedRankGrades.RemoveAt(indexOfRevertCombat);
+                        }
+                    }
+                    if (_specialConditionCombatCleared != null)
+                    {
+                        if (_specialConditionCombatCleared.Count > indexOfRevertCombat)
+                        {
+                            _revertedSpecialConditionCombatCleared.Add(_specialConditionCombatCleared[indexOfRevertCombat]);
+                            _specialConditionCombatCleared.RemoveAt(indexOfRevertCombat);
+                        }
+                    }
                     _combatClearedAtLeastOnce.RemoveAt(indexOfRevertCombat);
-                    _combatClearedRanks.RemoveAt(indexOfRevertCombat);
-                    _combatClearedRankGrades.RemoveAt(indexOfRevertCombat);
-                    _specialConditionCombatCleared.RemoveAt(indexOfRevertCombat);
+
                 }
             }
+        }else{
+           // Debug.Log("No combat clear exists!");
         }
     }
 

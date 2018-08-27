@@ -64,7 +64,7 @@ public class GameOverS : MonoBehaviour {
 		StoryProgressionS.ResetToSavedProgress();
 		SpawnPosManager.whereToSpawn = revivePosition;
 		SpawnPosManager.spawningFromDeath = true;
-		if (tempReviveScene != ""){
+        if (tempReviveScene != "" && reviveScene != "MenuScene"){
 			CameraEffectsS.E.SetNextScene(tempReviveScene);
 			SpawnPosManager.tempWhereToSpawn = tempRevivePosition;
 		}else{

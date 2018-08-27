@@ -1409,7 +1409,7 @@ public class PlayerInventoryS : MonoBehaviour
 
 
         // manage combat data
-        _dManager.RevertCombatData(trackRevert.revertSceneNums);
+        _dManager.RevertCombatData(trackRevert.revertCombatNums);
 
         // reroll tv num if ch5
         if (trackRevert.trackNum == 4){

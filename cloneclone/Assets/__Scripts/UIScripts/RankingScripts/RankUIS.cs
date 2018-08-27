@@ -405,10 +405,10 @@ public class RankUIS : MonoBehaviour {
                 return -0.5f;
 
             case (2):
-                return -1f;
+                return -1.5f;
 
             case (3):
-                return -2.5f;
+                return -3f;
 
             default:
                 return 0f;
