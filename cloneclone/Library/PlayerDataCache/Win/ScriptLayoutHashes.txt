@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-/Users/colinhorgan/Downloads/sdk/tools/ContentBuilder/content/windows/Lucah Born of a Dream/Lucah: Born of a Dream.exe
+/Users/colinhorgan/Documents/Current Lucah Builds/PC/Lucah Born of a Dream/Lucah Born of a Dream/Lucah: Born of a Dream.exe
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -469,7 +469,7 @@ e15006db184cb043af16dab23990f3db Assembly-CSharp.dll:.InstructionTrigger
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 98d9e1b5dcf0dd8432c2ff1eee3e575c Assembly-CSharp.dll:.DodgeLinesS
 af432bfa0eeb2935a5a76a9a5291fa45 Assembly-CSharp.dll:.SacramentCombatTextS
-11472985bad19789ac53282dc2202a4c Assembly-CSharp.dll:.MerchantUIS
+f35a0dca344126a91eb6dd57b2ef82b0 Assembly-CSharp.dll:.MerchantUIS
 3905e197a54b1962072b41a7572a78c0 Assembly-CSharp.dll:.MainMenuNavigationS
 956fab0d81ac024391879df455178eca Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.BloomOptimized
 74f38a8b0ada38ed38b98e23476109ea Assembly-CSharp.dll:.FlashMatS
@@ -575,7 +575,7 @@ a5bc35e1df397c1c07f701dbdf066e16 Assembly-CSharp.dll:.BuddySwitchEffectS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ProjectilePoolS
 84d908fb8e149a73176aa488bd9d86c4 Assembly-CSharp.dll:.EnemyDeathShadowS
 c497692f86644b9e49e35f5ffc3d51a2 Assembly-CSharp.dll:.ChapterTrigger
-e4f3e00b73bcde33150a6b5a330453ef Assembly-CSharp.dll:.DifficultySelectS
+9a0f80d3945d28ffb4d7c2e988b8b64a Assembly-CSharp.dll:.DifficultySelectS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TurnOffInGameUIS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerAnimationFaceS
 6149c39f85376efafc0c35db30aa6bb7 Assembly-CSharp.dll:.AutoSetProgressionS

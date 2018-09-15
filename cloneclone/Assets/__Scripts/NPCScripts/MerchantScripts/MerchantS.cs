@@ -89,7 +89,7 @@ public class MerchantS : MonoBehaviour {
                                 DialogueManagerS.D.SetDisplayText(introSet.dialogueStrings[currentDialogue], false, false, true);
                             }
 					}
-					else{
+					else if (talking){
 						if (!DialogueManagerS.D.doneScrolling){
 							DialogueManagerS.D.CompleteText();
 						}else{
@@ -211,7 +211,7 @@ public class MerchantS : MonoBehaviour {
 						stickReset = true;
 					}
 
-					if (controlRef.GetCustomInput(13)){
+					if (controlRef.GetCustomInput(1)){
 						if (!cancelButtonDown){
 							merchantUIRef.ExitOption();
 						}
@@ -246,6 +246,7 @@ public class MerchantS : MonoBehaviour {
 			cDisplay.AddCurrency(-itemsForSale[itemToBuy].itemCost);
 			itemsForSale[itemToBuy].Buy();
 			merchantUIRef.DisplayItems();
+            merchantUIRef.UpdateCurrency();
 			BuyMessage();
 		}
 	}

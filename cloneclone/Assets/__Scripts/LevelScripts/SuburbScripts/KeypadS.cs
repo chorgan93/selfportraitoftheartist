@@ -73,11 +73,11 @@ public class KeypadS : MonoBehaviour {
 				stickReset = true;
 			}
 
-			if (!selectButtonDown && myControl.GetCustomInput(12)){
+			if (!selectButtonDown && myControl.GetCustomInput(3)){
 				selectButtonDown = true;
 				SelectKey();
 			}
-			if (selectButtonDown && myControl.MenuSelectUp()){
+            if (selectButtonDown && !myControl.GetCustomInput(3)){
 				selectButtonDown = false;
 			}
 

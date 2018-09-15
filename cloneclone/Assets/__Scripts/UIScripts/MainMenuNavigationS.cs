@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 1.1.2 —";
+	private const string currentVer = "— v. 1.1.4 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -90,7 +90,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
 	private string facebookLink = "http://www.facebook.com/lucahgame/";
 
-	private bool attractEnabled = true;
+	private bool attractEnabled = false;
 	private string attractScene = "AttractMode_00";
 	private float attractCountdownMax = 30f;
 	private float attractCountdown;
@@ -393,7 +393,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                         }
                         if (selectReset)
                         {
-                            if (myController.GetCustomInput(12))
+                            if (myController.GetCustomInput(3))
                             {
                                 if (currentMenuZeroPosition == 0)
                                 {
@@ -410,6 +410,8 @@ public class MainMenuNavigationS : MonoBehaviour {
                     attractCountdown = attractCountdownMax;
                                         saveToLoad = 0;
                                         SaveLoadS.Load(saveToLoad);
+                                        MatchSavedOptions();
+                                        SetAdditionalInstruction(false);
                                         triggerSecondScreen = true;
                                     }
                                 }
@@ -426,6 +428,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                                             GameDataS.current.RemoveCurrent();
                                         }
                                         triggerSecondScreen = true;
+                                        SetAdditionalInstruction(false);
                                     }
                                     else
                                     {
@@ -441,7 +444,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                         }
                         else
                         {
-                            selectReset |= !myController.GetCustomInput(12);
+                            selectReset |= !myController.GetCustomInput(3);
                         }
                     }
                 
@@ -472,13 +475,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 			if (!secondScreenLoop.activeSelf){
 				if (secondScreenIntro == null){
 					secondScreenLoop.SetActive(true);
-					SetSelection();
+                    SetAdditionalInstruction(true);
+                    SetSelection();
 					selectOrb.SetActive(true);
 					credits.SetActive(true);
 				}
 			}else{
 
-                if (!myController.GetCustomInput(12)){
+                if (!myController.GetCustomInput(3)){
 					selectReset = true;
 				}
 
@@ -613,7 +617,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 				}**/
 				
-                    if (selectReset && myController.GetCustomInput(12) 
+                    if (selectReset && myController.GetCustomInput(3) 
 						&& !loading && !quitting){
 						attractCountdown = attractCountdownMax;
                         if (currentSelection == 0)
@@ -858,7 +862,7 @@ public class MainMenuNavigationS : MonoBehaviour {
         }
     }
 
-    void MatchSavedOptions(){
+    public void MatchSavedOptions(){
         if (!loadedOptions)
         {
             if (PlayerInventoryS.inventoryData != null)
@@ -877,6 +881,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                 SFXObjS.volumeSetting = PlayerInventoryS.inventoryData.savedSFXVolume;
                 CameraShakeS.SetTurbo(PlayerInventoryS.inventoryData.turboSetting);
                 DifficultyS.SetDifficultiesFromInt(PlayerInventoryS.inventoryData.sinLevel, PlayerInventoryS.inventoryData.punishLevel);
+
+                ControlManagerS.LoadControls(PlayerInventoryS.inventoryData.savedKeyboardControls,
+                                             PlayerInventoryS.inventoryData.savedGamepadControls,
+                                             PlayerInventoryS.inventoryData.savedMouseControls);
+
                 Debug.Log("Matching inventory manager data!!");
             }
             if (GameDataS.current != null)
@@ -893,6 +902,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                     {
                         CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0;
                     }
+
+                    ControlManagerS.LoadControls(GameDataS.current.playerInventory.savedKeyboardControls,
+                                                    GameDataS.current.playerInventory.savedGamepadControls,
+                                                    GameDataS.current.playerInventory.savedMouseControls);
+
                     BGMHolderS.volumeMult = GameDataS.current.playerInventory.savedMusicVolume;
                     SFXObjS.volumeSetting = GameDataS.current.playerInventory.savedSFXVolume;
                     CameraShakeS.SetTurbo(GameDataS.current.playerInventory.turboSetting);

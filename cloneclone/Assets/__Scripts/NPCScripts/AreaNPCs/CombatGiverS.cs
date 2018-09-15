@@ -71,6 +71,7 @@ public class CombatGiverS : MonoBehaviour {
 					if (!selectButtonDown){
 						selectButtonDown = true;
                         if (!talking && !InGameMenuManagerS.menuInUse){
+                            Debug.Log("Menu in use : " + InGameMenuManagerS.menuInUse);
 						talking = true;
 						playerRef.SetTalking(true);
 						CameraFollowS.F.SetNewPOI(gameObject);
@@ -95,7 +96,7 @@ public class CombatGiverS : MonoBehaviour {
 								DialogueManagerS.D.SetDisplayText(chosenSet.dialogueStrings[currentDialogue], false, true, true);
 							}
 					}
-					else{
+					else if (talking){
 						if (!DialogueManagerS.D.doneScrolling){
 							DialogueManagerS.D.CompleteText();
 						}else{
@@ -223,7 +224,7 @@ public class CombatGiverS : MonoBehaviour {
 						stickReset = true;
 					}
 
-					if (controlRef.GetCustomInput(13)){
+					if (controlRef.GetCustomInput(1)){
 						if (!cancelButtonDown){
 							combatChooseUI.ExitOption();
 						}

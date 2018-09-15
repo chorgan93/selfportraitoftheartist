@@ -89,22 +89,22 @@ public class TextInputUIS : MonoBehaviour {
                     stickReset = true;
                 }
 
-                if (!selectButtonDown && myControl.GetCustomInput(12))
+                if (!selectButtonDown && myControl.GetCustomInput(3))
                 {
                     selectButtonDown = true;
                     SetLetter(true);
                 }
-                if (selectButtonDown && myControl.MenuSelectUp())
+                if (selectButtonDown && !myControl.GetCustomInput(3))
                 {
                     selectButtonDown = false;
                 }
 
-                if (!backButtonDown && myControl.GetCustomInput(13))
+                if (!backButtonDown && myControl.GetCustomInput(1))
                 {
                     backButtonDown = true;
                     PressDel();
                 }
-                if (backButtonDown && myControl.ExitButtonUp())
+                if (backButtonDown && !myControl.GetCustomInput(1))
                 {
                     backButtonDown = false;
                 }

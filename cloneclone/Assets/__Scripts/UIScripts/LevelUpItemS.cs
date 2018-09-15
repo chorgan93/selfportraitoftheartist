@@ -145,18 +145,20 @@ public class LevelUpItemS : MonoBehaviour {
 	}
 
 	public void ShowText(){
-		upgradeNameText.text = upgradeName + " (" + upgradeCost +  " la)";
+        upgradeNameText.text = upgradeName + " ( Cost: " + upgradeCost +  " / " + PlayerCollectionS.currencyCollected + " la )";
 		upgradeDescriptionText.text = upgradeDescription;
         if (revertUpgrade){
             //Debug.Log("Current level: " + statRef.currentLevel + " Current lower revert limit: " + minRevert());
         }
 		if ((upgradeCost > PlayerCollectionS.currencyCollected && !revertUpgrade) || (revertUpgrade && statRef.currentLevel<=minRevert())){
 			SetTextColors(lockedTextColor);
-			upgradeNameText.text = upgradeName + " <color=#ff0000ff>(" + upgradeCost +  " la)</color>";
-		}else{
+			upgradeNameText.text = upgradeName 
+                + " ( Cost: <color=#ff0000ff>" + upgradeCost + "</color> / " + PlayerCollectionS.currencyCollected + " la )";
+        }
+        else{
 			SetTextColors(Color.white);
-			upgradeNameText.text = upgradeName + " (" + upgradeCost +  " la)";
-		}
+            upgradeNameText.text = upgradeName + " ( Cost: " + upgradeCost + " / " + PlayerCollectionS.currencyCollected + " la )";
+        }
 
 		if (!shuffleUpgrade && !revertUpgrade){
 			statDisplayRef.HighlightStat(upgradeNum);

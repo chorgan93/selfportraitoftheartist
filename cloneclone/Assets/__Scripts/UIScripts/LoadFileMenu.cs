@@ -71,8 +71,8 @@ public class LoadFileMenu : MonoBehaviour
 	private void Update()
     {
         stickReset |= (Mathf.Abs(myMenu.controlRef.HorizontalMenu()) < 0.1f && Mathf.Abs(myMenu.controlRef.VerticalMenu()) < 0.1f);
-        selectButtonUp |= !myMenu.controlRef.GetCustomInput(12);
-        backButtonUp |= !myMenu.controlRef.GetCustomInput(13);
+        selectButtonUp |= !myMenu.controlRef.GetCustomInput(3);
+        backButtonUp |= !myMenu.controlRef.GetCustomInput(1);
         if (overwriteActive){
             if (stickReset && Mathf.Abs(myMenu.controlRef.HorizontalMenu()) > 0.1f){
                 if (myMenu.controlRef.HorizontalMenu() < 0){
@@ -91,7 +91,7 @@ public class LoadFileMenu : MonoBehaviour
                 }
                 stickReset = false;
             }
-            if (backButtonUp && myMenu.controlRef.GetCustomInput(13)){
+            if (backButtonUp && myMenu.controlRef.GetCustomInput(1)){
                 if (currentOverwritePos == 0)
                 {
                     // cancel overwrite
@@ -110,7 +110,7 @@ public class LoadFileMenu : MonoBehaviour
                     overwriteCursor.transform.position = overwriteNo.transform.position;
                 }
             }
-            if (selectButtonUp && myMenu.controlRef.GetCustomInput(12)){
+            if (selectButtonUp && myMenu.controlRef.GetCustomInput(3)){
                 if (currentOverwritePos == 0){
                     // cancel overwrite
                     overwriteActive = false;
@@ -148,11 +148,11 @@ public class LoadFileMenu : MonoBehaviour
                 }
                 stickReset = false;
             }
-            if (backButtonUp && myMenu.controlRef.GetCustomInput(13))
+            if (backButtonUp && myMenu.controlRef.GetCustomInput(1))
             {
                 BackToMain();
             }
-            if (selectButtonUp && myMenu.controlRef.GetCustomInput(12))
+            if (selectButtonUp && myMenu.controlRef.GetCustomInput(3))
             {
                 if (willNeedToOverwrite) {
                     TurnOnOverwriteDialogue();
@@ -175,12 +175,13 @@ public class LoadFileMenu : MonoBehaviour
         if (loadComplete){
             SaveLoadS.currentSaveSlot = myMenu.saveToLoad = currentLoadFile;
             myMenu.triggerSecondScreen = true;
-
+            myMenu.SetAdditionalInstruction(false);
             if (!overwrite) {
                 SaveLoadS.Load(SaveLoadS.currentSaveSlot);
             }else if (GameDataS.current != null){
                 GameDataS.current.RemoveCurrent();
             }
+            myMenu.MatchSavedOptions();
         }
     }
 }

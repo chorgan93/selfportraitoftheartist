@@ -187,7 +187,7 @@ public class CheckpointS : MonoBehaviour {
 		}
 
 		if (_examining){
-			if ((_playerDetect.player.myControl.GetCustomInput(13) && _exitButtonUp && _menuManager.levelMenu.canBeExited)
+			if ((_playerDetect.player.myControl.GetCustomInput(1) && _exitButtonUp && _menuManager.levelMenu.canBeExited)
 			    || _menuManager.levelMenu.sendExitMessage){
 				// exit menu
 				_examining = false;
@@ -199,7 +199,7 @@ public class CheckpointS : MonoBehaviour {
 		}
 
 		if (_playerDetect.player != null){
-		if (_playerDetect.player.myControl.ExitButtonUp()){
+            if (!_playerDetect.player.myControl.GetCustomInput(1)){
 			_exitButtonUp = true;
 		}else{
 			_exitButtonUp = false;

@@ -293,10 +293,14 @@ public class PlayerAugmentsS : MonoBehaviour {
         {
             blockVirtues = false;
         }
-		// turn on weapon augs
-		if (_playerReference.EquippedWeaponAug() != null){
-			TurnOnWeaponAugs();
-		}
+        // turn on weapon augs
+        if (!_playerReference.isNatalie)
+        {
+            if (_playerReference.EquippedWeaponAug() != null)
+            {
+                TurnOnWeaponAugs();
+            }
+        }
 
 		// turn on virtues
         if (PlayerController.equippedVirtues.Count > 0){

@@ -51,7 +51,10 @@ public class ActivateOnTimerS : MonoBehaviour {
 			}
 		}
 		foreach (GameObject bleh in turnOffObjects){
-			bleh.SetActive(false);
+            if (bleh != null)
+            {
+                bleh.SetActive(false);
+            }
 		}
 
 		for (int i = 0; i < turnOffEnemies.Count; i++){

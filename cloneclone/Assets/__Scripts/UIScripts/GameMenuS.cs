@@ -103,11 +103,11 @@ public class GameMenuS : MonoBehaviour {
 			debugActive.text = "Menu active? " + myManager.gMenuActive;
 		}
 
-		if (myControl.MenuSelectUp()){
+        if (!myControl.GetCustomInput(3)){
 			selectButtonUp = true;
 		}
 
-		if (myControl.ExitButtonUp()){
+        if (!myControl.GetCustomInput(1)){
 			cancelButtonUp = true;
 		}
 
@@ -132,7 +132,7 @@ public class GameMenuS : MonoBehaviour {
 				SetSelection(currentSelection);
 			}
 
-            if ((cancelButtonUp && myControl.GetCustomInput(13) && !customControlRef.InReplaceMode) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 0)){
+            if ((cancelButtonUp && myControl.GetCustomInput(1) && !customControlRef.InReplaceMode) || (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 0)){
 				TurnOff();
 				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
@@ -140,7 +140,7 @@ public class GameMenuS : MonoBehaviour {
 				myManager.TurnOffFromGameMenu();
 			}
 
-			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 2){
+			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 2){
 				myManager.pRef.ResetTimeMax();
 				selectButtonUp = false;
 				inOptionsMenu = true;
@@ -149,12 +149,12 @@ public class GameMenuS : MonoBehaviour {
 				optionsMenuProper.gameObject.SetActive(true);
 			}
 
-			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
+			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
 				RespawnAtLastCheckpoint();
 				myManager.pRef.ResetTimeMax();
 			}
 
-			if (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
+			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
 				(PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu)){
 				RespawnAtLastCheckpoint(true);
 				myManager.pRef.ResetTimeMax();
@@ -184,7 +184,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 
 			// exit options
-			if ((cancelButtonUp && myControl.GetCustomInput(13)) || (selectButtonUp && myControl.GetCustomInput(12) && currentSelection == 10
+			if ((cancelButtonUp && myControl.GetCustomInput(1)) || (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 10
 			)){
 
 				selectButtonUp = false;
@@ -404,7 +404,7 @@ public class GameMenuS : MonoBehaviour {
 	void HandleControlOption(){
 
 		// moving to its own screen. select to turn on
-        if (selectButtonUp && myControl.GetCustomInput(12)){
+        if (selectButtonUp && myControl.GetCustomInput(3)){
             customControlRef.TurnOn(this);
             inCustomControlMenu = true;
             selectButtonUp = false;
@@ -458,7 +458,7 @@ public class GameMenuS : MonoBehaviour {
 			UpdateSinSettingText();
 		}
 
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetSinInt();
@@ -519,7 +519,7 @@ public class GameMenuS : MonoBehaviour {
 			UpdatePunishSettingText();
 		}
 
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
@@ -562,7 +562,7 @@ public class GameMenuS : MonoBehaviour {
 			}
 		}
 
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
 			if (CameraEffectsS.E){
 				CameraEffectsS.E.MatchAlias();
@@ -586,7 +586,7 @@ public class GameMenuS : MonoBehaviour {
             CameraEffectsS.ChangeEffectSetting(!CameraEffectsS.cameraEffectsEnabled);
         }
 
-        if (selectButtonUp && myControl.GetCustomInput(12))
+        if (selectButtonUp && myControl.GetCustomInput(3))
         {
 
             CameraEffectsS.ChangeEffectSetting(!CameraEffectsS.cameraEffectsEnabled);
@@ -621,7 +621,7 @@ public class GameMenuS : MonoBehaviour {
             StartCoroutine(UpdateFullscreenSettingCoroutine());
         }
 
-        if (selectButtonUp && myControl.GetCustomInput(12))
+        if (selectButtonUp && myControl.GetCustomInput(3))
         {
 
             selectButtonUp = false;
@@ -679,7 +679,7 @@ public class GameMenuS : MonoBehaviour {
         }
 		}
 
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
             if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
@@ -723,7 +723,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(1);
 			}else{
@@ -750,7 +750,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 
 			selectButtonUp = false;
 			SFXObjS.SetVolumeSetting(1);
@@ -774,7 +774,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 		// exit options
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 			selectButtonUp = false;
 			CameraFollowS.ChangeZoomLevel(1);
 			UpdateCameraZoomSettingText();
@@ -813,7 +813,7 @@ public class GameMenuS : MonoBehaviour {
             UpdateResolutionSettingText();
         }
 
-        else if (selectButtonUp && myControl.GetCustomInput(12))
+        else if (selectButtonUp && myControl.GetCustomInput(3))
         {
             selectButtonUp = false;
             GetCurrentResolutionIndex();
@@ -885,7 +885,7 @@ public class GameMenuS : MonoBehaviour {
 		}
 
 
-		if (selectButtonUp && myControl.GetCustomInput(12)){
+		if (selectButtonUp && myControl.GetCustomInput(3)){
 
 			selectButtonUp = false;
 			CameraShakeS.ChangeTurbo(1);

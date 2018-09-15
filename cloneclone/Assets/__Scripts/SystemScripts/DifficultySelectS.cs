@@ -73,6 +73,7 @@ public class DifficultySelectS : MonoBehaviour {
 	public GameObject controllerInstructions;
 	public GameObject keybordInstructions;
 	private bool usingController = false;
+    public GameObject[] turnOnOnStartSelect;
 
 	private float minLoadTime = 3f;
 
@@ -177,8 +178,12 @@ public class DifficultySelectS : MonoBehaviour {
 		punishmentChosenText.enabled = false;
 
 		punishSelectorLeft.enabled = punishSelectorRight.enabled = false;
+        for (int i = 0; i < turnOnOnStartSelect.Length; i++)
+        {
+            turnOnOnStartSelect[i].SetActive(false);
+        }
 
-		Color textCol = sinTitleText.color;
+        Color textCol = sinTitleText.color;
 		textCol.a = 0;
 		sinTitleText.color = sinDescriptionText.color = sinChosenText.color = textCol;
 		
@@ -204,6 +209,10 @@ public class DifficultySelectS : MonoBehaviour {
 		punishmentTitleText.enabled = true;
 		punishmentDescriptionText.enabled = true;
 		punishmentChosenText.enabled = true;
+
+        for (int i = 0; i < turnOnOnStartSelect.Length; i++){
+            turnOnOnStartSelect[i].SetActive(true);
+        }
 		
 		punishSelectorLeft.enabled = punishSelectorRight.enabled = true;
 		difficultyDisclaimer.gameObject.SetActive(true);
@@ -287,10 +296,10 @@ public class DifficultySelectS : MonoBehaviour {
 			difficultyDisclaimer.gameObject.SetActive(true);
 			while (choosingSin || choosingPunishment){
 				
-				if (!controller.GetCustomInput(12)){
+				if (!controller.GetCustomInput(3)){
 					selectButtonUp = true;
 				}
-				if (!controller.GetCustomInput(13)){
+				if (!controller.GetCustomInput(1)){
 					cancelButtonUp = true;
 				}
 
@@ -304,10 +313,10 @@ public class DifficultySelectS : MonoBehaviour {
 				}
 
 				if (choosingSin){
-					if (controller.GetCustomInput(13) && cancelButtonUp){
+					if (controller.GetCustomInput(1) && cancelButtonUp){
 						cancelButtonUp = false;
 					}
-					if (controller.GetCustomInput(12) && selectButtonUp){
+					if (controller.GetCustomInput(3) && selectButtonUp){
 						choosingPunishment = true;
 						choosingSin = false;
 						selectButtonUp = false;
@@ -365,7 +374,7 @@ public class DifficultySelectS : MonoBehaviour {
 					}
 				}
 				else if (choosingPunishment){
-					if (controller.GetCustomInput(13) && cancelButtonUp){
+					if (controller.GetCustomInput(1) && cancelButtonUp){
 						choosingPunishment = false;
 						choosingSin = true;
 						cancelButtonUp = false;
@@ -375,7 +384,7 @@ public class DifficultySelectS : MonoBehaviour {
                             Instantiate(cancelSoundPrefab);
                         }
 					}
-					else if (controller.GetCustomInput(12) && selectButtonUp){
+					else if (controller.GetCustomInput(3) && selectButtonUp){
 						choosingPunishment = false;
 						choosingSin = false;
 						selectButtonUp = false;
@@ -441,8 +450,12 @@ public class DifficultySelectS : MonoBehaviour {
 
 			}
 			SetDifficulties();
-			difficultyDisclaimer.gameObject.SetActive(false);
-			currentState = SelectState.End;
+			difficultyDisclaimer.gameObject.SetActive(false); 
+            for (int i = 0; i < turnOnOnStartSelect.Length; i++)
+            {
+                turnOnOnStartSelect[i].SetActive(false);
+            }
+            currentState = SelectState.End;
 		}
 		if (currentState == SelectState.End){
 			cutToBlack.enabled = true;

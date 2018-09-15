@@ -15,6 +15,7 @@ public class MerchantUIS : MonoBehaviour {
 	public GameObject buyMenu;
 	public List<MerchantUIItemS> merchantItems;
 	public List<RectTransform> merchantItemPositions;
+    public Text currentLa;
 
 	private int currentPos;
 	private bool inShopMenu = false;
@@ -22,6 +23,7 @@ public class MerchantUIS : MonoBehaviour {
 	public void TurnOn(MerchantS newMerchant){
 		merchantRef = newMerchant;
 		currentPos = 0;
+        currentLa.text = PlayerCollectionS.currencyCollected.ToString();
 		inShopMenu = false;
 		SetSelector();
 		buyMenu.SetActive(false);
@@ -143,7 +145,10 @@ public class MerchantUIS : MonoBehaviour {
 		}
 	}
 
+    public void UpdateCurrency(){
 
+        currentLa.text = PlayerCollectionS.currencyCollected.ToString();
+    }
 
 	public string GetCurrentDescription(){
 		return merchantRef.itemsForSale[currentPos].itemDescription;

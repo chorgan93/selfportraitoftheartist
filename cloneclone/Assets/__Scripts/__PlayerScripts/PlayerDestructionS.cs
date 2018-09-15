@@ -258,21 +258,38 @@ public class PlayerDestructionS : MonoBehaviour {
 
     public void MergeRevertedData(){
 
-        if (_revertedCombatClearedAtLeastOnce != null)
+        if (_revertedCombatClearedAtLeastOnce != null && _combatClearedAtLeastOnce != null)
         {
             for (int i = _revertedCombatClearedAtLeastOnce.Count - 1; i > -1; i--)
             {
                 if (!_combatClearedAtLeastOnce.Contains(_revertedCombatClearedAtLeastOnce[i]))
                 {
                     _combatClearedAtLeastOnce.Add(_revertedCombatClearedAtLeastOnce[i]);
-                    _combatClearedRanks.Add(_revertedCombatClearedRanks[i]);
-                    _combatClearedRankGrades.Add(_revertedCombatClearedRankGrades[i]);
-                    _specialConditionCombatCleared.Add(_revertedSpecialConditionCombatCleared[i]);
+                    if (_revertedCombatClearedRanks != null){
+                        if (_revertedCombatClearedRanks.Count > i)
+                        {
+                            _combatClearedRanks.Add(_revertedCombatClearedRanks[i]);
+                            _revertedCombatClearedRanks.RemoveAt(i);
+                        }
+                    }
+                    if (_revertedCombatClearedRankGrades != null)
+                    {
+                        if (_revertedCombatClearedRankGrades.Count > i)
+                        {
+                            _combatClearedRankGrades.Add(_revertedCombatClearedRankGrades[i]);
+                            _revertedCombatClearedRankGrades.RemoveAt(i);
+                        }
+                    }
+                    if (_revertedSpecialConditionCombatCleared != null)
+                    {
+                        if (_revertedSpecialConditionCombatCleared.Count > i)
+                        {
+                            _specialConditionCombatCleared.Add(_revertedSpecialConditionCombatCleared[i]);
+                            _revertedSpecialConditionCombatCleared.RemoveAt(i);
+                        }
+                    }
 
                     _revertedCombatClearedAtLeastOnce.RemoveAt(i);
-                    _revertedCombatClearedRanks.RemoveAt(i);
-                    _revertedCombatClearedRankGrades.RemoveAt(i);
-                    _revertedSpecialConditionCombatCleared.RemoveAt(i);
                 }
             }
             _revertedCombatClearedRanks.Clear();

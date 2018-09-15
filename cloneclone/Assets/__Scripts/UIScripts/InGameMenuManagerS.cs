@@ -93,7 +93,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 			if (gamePaused){
 				if ((_pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown) 
 					|| (_pRef.myControl.GetCustomInput(10) && !equipMenuButtonDown) ||
-					(_pRef.myControl.GetCustomInput(13) && !exitButtonDown)){
+					(_pRef.myControl.GetCustomInput(1) && !exitButtonDown)){
 					_pRef.DelayAttackAllow();
 					gamePaused = false;
 					gameMenuButtonDown = true;
@@ -116,7 +116,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 		if (equipMenuActive){
 
 			if (!equipMenu.canBeQuit){
-				if (_pRef.myControl.GetCustomInput(13)){
+				if (_pRef.myControl.GetCustomInput(1)){
 					exitButtonDown = true;
 					}else{
 						exitButtonDown = false;
@@ -125,13 +125,13 @@ public class InGameMenuManagerS : MonoBehaviour {
 
 
 			if ((_pRef.myControl.GetCustomInput(10) && !equipMenuButtonDown) || 
-					((equipMenu.canBeQuit || equipMenu.inMap) && !exitButtonDown && _pRef.myControl.GetCustomInput(13))){
+					((equipMenu.canBeQuit || equipMenu.inMap) && !exitButtonDown && _pRef.myControl.GetCustomInput(1))){
 				equipMenuActive = false;
 				//equipMenu.gameObject.SetActive(false);
 				equipMenu.TurnOff();
 				_pRef.SetTalking(false);
 					preventMUse=true;
-				if (_pRef.myControl.GetCustomInput(13)){
+				if (_pRef.myControl.GetCustomInput(1)){
 					exitButtonDown = true;
 					_pRef.SetCanSwap(false);
 				}else{
@@ -193,7 +193,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 			}
 		}
 
-		if (levelMenuActive && _pRef.myControl.GetCustomInput(13)){
+		if (levelMenuActive && _pRef.myControl.GetCustomInput(1)){
 			exitButtonDown = true;
 		}
 
@@ -205,7 +205,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 			gameMenuButtonDown = true;
 		}
 	
-		if (_pRef.myControl.ExitButtonUp()){
+        if (!_pRef.myControl.GetCustomInput(1)){
 			exitButtonDown = false;
 			_pRef.SetCanSwap(true);
 		}

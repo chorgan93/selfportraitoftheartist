@@ -89,13 +89,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	}
 
-	void Update(){
-
-		/*if (Input.GetKeyDown(KeyCode.B)){
-			Debug.Log("current control type: " + controlProfile); 
-		}**/
-
-	}
+    public static void LoadControls(List<int> keyboardControls, List<int> gamepadControls, List<int> mouseControls){
+        savedKeyboardControls = keyboardControls;
+        savedGamepadControls = gamepadControls;
+        savedKeyboardandMouseControls = mouseControls;
+    }
 
 	string GetPlatform(){
 

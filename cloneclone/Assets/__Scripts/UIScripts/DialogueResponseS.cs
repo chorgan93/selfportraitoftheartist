@@ -37,7 +37,7 @@ public class DialogueResponseS : MonoBehaviour {
 				selectButtonDown = false;
 			}
 
-			if (myControl.GetCustomInput(13)){
+			if (myControl.GetCustomInput(1)){
 				if (!cancelButtonDown){
 					_choiceMade = 1;
 					TurnOff();

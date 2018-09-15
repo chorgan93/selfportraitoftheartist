@@ -733,6 +733,22 @@ public class PlayerInventoryS : MonoBehaviour
     {
         
         InventorySave newSave = new InventorySave();
+        if (ControlManagerS.savedGamepadControls != null){
+            newSave.savedGamepadControls = ControlManagerS.savedGamepadControls;
+        }
+        if (ControlManagerS.savedKeyboardControls != null)
+        {
+            newSave.savedKeyboardControls = ControlManagerS.savedKeyboardControls;
+        }
+        if (ControlManagerS.savedKeyboardandMouseControls != null)
+        {
+            newSave.savedMouseControls = ControlManagerS.savedKeyboardandMouseControls;
+        }
+        newSave.turboSetting = CameraShakeS.GetTurboInt();
+        newSave.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
+        newSave.savedCamEffect = CameraEffectsS.cameraEffectsEnabled;
+        newSave.savedSFXVolume = SFXObjS.volumeSetting;
+        newSave.savedMusicVolume = BGMHolderS.volumeMult;
         LoadNewInventoryData(newSave);
 
         GameMenuS.unlockedChallenge = false;
@@ -963,6 +979,10 @@ public class PlayerInventoryS : MonoBehaviour
         ControlManagerS.savedKeyboardControls = inventoryData.savedKeyboardControls;
         ControlManagerS.savedGamepadControls = inventoryData.savedGamepadControls;
         ControlManagerS.savedKeyboardandMouseControls = inventoryData.savedMouseControls;
+
+#if UNITY_EDITOR_OSX
+        //Debug.LogError("Controls loaded!");
+#endif
 
         CheckpointS.lastSavePointName = inventoryData.lastSavePointName;
         CheckpointS.totalPlayTimeSeconds = inventoryData.totalPlayTimeSeconds;

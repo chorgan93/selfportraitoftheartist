@@ -37,6 +37,7 @@ public class LevelUpMenu : MonoBehaviour
     public LevelUpItemS[] levelMenuItems;
     public Image[] levelMenuItemOutlines;
     public RectTransform[] levelMenuPositions;
+    //public Text currentLa;
 
     [Header("Travel Menu Selections")]
     public GameObject travelMenuProper;
@@ -183,7 +184,7 @@ public class LevelUpMenu : MonoBehaviour
 
             cursorObj.anchoredPosition = mainMenuSelectPositions[currentPos].anchoredPosition;
 
-            if (!_selectButtonDown && myControl.GetCustomInput(12))
+            if (!_selectButtonDown && myControl.GetCustomInput(3))
             {
                 _selectButtonDown = true;
                 if (currentPos == 0)
@@ -273,7 +274,7 @@ public class LevelUpMenu : MonoBehaviour
 
             cursorObjLvl.anchoredPosition = levelMenuPositions[currentPos].anchoredPosition;
 
-            if (!_selectButtonDown && myControl.GetCustomInput(12))
+            if (!_selectButtonDown && myControl.GetCustomInput(3))
             {
                 _selectButtonDown = true;
                 pRef.ResetTimeMax();
@@ -311,7 +312,7 @@ public class LevelUpMenu : MonoBehaviour
                 }
             }
 
-            if (!_exitButtonDown && myControl.GetCustomInput(13) && !doingEffect)
+            if (!_exitButtonDown && myControl.GetCustomInput(1) && !doingEffect)
             {
                 TurnOffLevelUpMenu();
             }
@@ -352,7 +353,7 @@ public class LevelUpMenu : MonoBehaviour
 
             cursorObjTravel.anchoredPosition = travelMenuPositions[currentPos].anchoredPosition;
 
-            if (!_selectButtonDown && myControl.GetCustomInput(12))
+            if (!_selectButtonDown && myControl.GetCustomInput(3))
             {
                 _selectButtonDown = true;
                 pRef.ResetTimeMax();
@@ -392,7 +393,7 @@ public class LevelUpMenu : MonoBehaviour
 
                 }
             }
-            if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted && !doingEffect)
+            if (!_exitButtonDown && myControl.GetCustomInput(1) && !travelStarted && !doingEffect)
             {
                 _exitButtonDown = true;
                 TurnOffTravelMenu();
@@ -435,7 +436,7 @@ public class LevelUpMenu : MonoBehaviour
 
                 revertMenuConfirmCursor.anchoredPosition = revertConfirmPositions[currentRevertConfirmPos].anchoredPosition;
 
-                if (!_selectButtonDown && myControl.GetCustomInput(12))
+                if (!_selectButtonDown && myControl.GetCustomInput(3))
                 {
                     _selectButtonDown = true;
                     pRef.ResetTimeMax();
@@ -492,7 +493,7 @@ public class LevelUpMenu : MonoBehaviour
                         revertMenuConfirm.SetActive(false);
                     }
                 }
-                if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted)
+                if (!_exitButtonDown && myControl.GetCustomInput(1) && !travelStarted)
                 {
                     if (currentRevertConfirmPos == 1)
                     {
@@ -560,7 +561,7 @@ public class LevelUpMenu : MonoBehaviour
 
                 cursorObjRevert.anchoredPosition = revertMenuPositions[currentPos].anchoredPosition;
 
-                if (!_selectButtonDown && myControl.GetCustomInput(12))
+                if (!_selectButtonDown && myControl.GetCustomInput(3))
                 {
                     _selectButtonDown = true;
                     pRef.ResetTimeMax();
@@ -577,7 +578,7 @@ public class LevelUpMenu : MonoBehaviour
 
                     }
                 }
-                if (!_exitButtonDown && myControl.GetCustomInput(13) && !travelStarted)
+                if (!_exitButtonDown && myControl.GetCustomInput(1) && !travelStarted)
                 {
                     TurnOffRevertMenu();
                     pRef.ResetTimeMax();
@@ -585,11 +586,11 @@ public class LevelUpMenu : MonoBehaviour
             }
         }
 
-        if (myControl.ExitButtonUp())
+        if (!myControl.GetCustomInput(1))
         {
             _exitButtonDown = false;
         }
-        if (myControl.MenuSelectUp())
+        if (!myControl.GetCustomInput(3))
         {
             _selectButtonDown = false;
         }
@@ -636,6 +637,7 @@ public class LevelUpMenu : MonoBehaviour
         mainMenuObj.SetActive(false);
         _canBeExited = false;
         currentPos = 0;
+        //currentLa.text = PlayerCollectionS.currencyCollected.ToString() + " la";
         onLevelMenu = true;
         CameraFollowS.F.SetZoomIn(true);
         _controlStickMoved = true;
@@ -692,6 +694,7 @@ public class LevelUpMenu : MonoBehaviour
             UpdateUpgradeEffect();
         }
 
+        //currentLa.text = PlayerCollectionS.currencyCollected.ToString() + " la";
         StoryProgressionS.SaveProgress();
     }
 

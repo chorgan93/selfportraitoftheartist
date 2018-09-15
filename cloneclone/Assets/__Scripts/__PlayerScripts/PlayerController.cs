@@ -2060,7 +2060,9 @@ public class PlayerController : MonoBehaviour {
 
 
 					}else{
-							if (myControl.GetCustomInput(8)){
+                            if (myControl.GetCustomInput(8) &&
+                                equippedTech.Contains(9))
+                            {
                                 // trigger taunt!
 								currentAttackS = tauntPrefab.GetComponent<ProjectileS>();
 								tauntButtonUp = false;
@@ -2855,6 +2857,8 @@ public class PlayerController : MonoBehaviour {
 
         if (taunt)
         {
+            _myAnimator.ResetTrigger("CounterAttackA");
+            _myAnimator.ResetTrigger("CounterAttackB");
             _myAnimator.SetBool("HeavyAttacking", false);
             _myAnimator.SetInteger("WeaponNumber", 0);
             _myAnimator.SetTrigger("Attack3");

@@ -24,7 +24,10 @@ public class InGameCinemaActivateS : MonoBehaviour {
 		}
 
 		foreach (GameObject off in offObjects){
-			off.SetActive(false);
+            if (off != null)
+            {
+                off.SetActive(false);
+            }
 		}
 
 		if (offEnemies != null){
