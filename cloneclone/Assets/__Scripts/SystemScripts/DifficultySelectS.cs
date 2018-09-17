@@ -334,13 +334,13 @@ public class DifficultySelectS : MonoBehaviour {
                             if (menuSoundPrefab){
                                 Instantiate(menuSoundPrefab);
                             }
-                            if (sinSelect > 2 && !GameMenuS.unlockedChallenge){
+                            if (sinSelect > 2 && !SaveLoadS.challengeUnlocked){
                                 sinSelect = 2;
                             }
 							if (sinSelect > 3){
 								sinSelect = 3;
 							}
-                            if (sinSelect == 3 || (sinSelect == 2 && !GameMenuS.unlockedChallenge)){
+                            if (sinSelect == 3 || (sinSelect == 2 && !SaveLoadS.challengeUnlocked)){
 								sinSelectorRight.enabled = false;
 								sinSelectorLeft.enabled = true;
 							}else{
@@ -404,14 +404,14 @@ public class DifficultySelectS : MonoBehaviour {
                             {
                                 Instantiate(menuSoundPrefab);
                             }
-                            if (punishSelect > 2 && !GameMenuS.unlockedChallenge)
+                            if (punishSelect > 2 && !SaveLoadS.challengeUnlocked)
                             {
                                 punishSelect = 2;
                             }
 							if (punishSelect > 3){
 								punishSelect = 3;
 							}
-                            if (punishSelect == 3 || (punishSelect ==2 && !GameMenuS.unlockedChallenge)){
+                            if (punishSelect == 3 || (punishSelect ==2 && !SaveLoadS.challengeUnlocked)){
 								punishSelectorRight.enabled = false;
 								punishSelectorLeft.enabled = true;
                             }else if (punishSelect == 0){

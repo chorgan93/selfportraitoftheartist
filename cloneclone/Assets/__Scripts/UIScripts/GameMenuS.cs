@@ -438,7 +438,8 @@ public class GameMenuS : MonoBehaviour {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
-            if (difficultySelect > 2 && !unlockedChallenge){
+            if (difficultySelect > 2 && !SaveLoadS.challengeUnlocked)
+            {
                 difficultySelect=2;
             }
 			if (difficultySelect > 3){
@@ -463,7 +464,7 @@ public class GameMenuS : MonoBehaviour {
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
-            if (difficultySelect > 2 && !unlockedChallenge)
+            if (difficultySelect > 2 && !SaveLoadS.challengeUnlocked)
             {
                 difficultySelect = 2;
             }
@@ -498,7 +499,7 @@ public class GameMenuS : MonoBehaviour {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
-            if (difficultySelect > 2 && !unlockedChallenge)
+            if (difficultySelect > 2 && !SaveLoadS.challengeUnlocked)
             {
                 difficultySelect = 2;
             }
@@ -524,7 +525,7 @@ public class GameMenuS : MonoBehaviour {
 			selectButtonUp = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
-            if (difficultySelect > 2 && !unlockedChallenge)
+            if (difficultySelect > 2 && !SaveLoadS.challengeUnlocked)
             {
                 difficultySelect = 2;
             }

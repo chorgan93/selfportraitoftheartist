@@ -8,6 +8,8 @@ public class SaveLoadS : MonoBehaviour {
 
 	public static List<GameDataS> savedGames = new List<GameDataS>();
     public static int currentSaveSlot = 0;
+    public static bool challengeUnlocked = false;
+    public static bool turboUnlocked = false;
 	
 	//it's static so we can call it from anywhere
 	public static void Save() {
@@ -133,6 +135,13 @@ public class SaveLoadS : MonoBehaviour {
             for (int i = 0; i < savedGames.Count; i++){
                 if (savedGames[i].lastLoaded > 0){
                     whichFile = i;
+                }
+                if (savedGames[i].playerInventory.unlockedChallenge){
+                    challengeUnlocked = true;
+                }
+                if (savedGames[i].playerInventory.unlockedTurbo)
+                {
+                    turboUnlocked = true;
                 }
             }
             return whichFile;
