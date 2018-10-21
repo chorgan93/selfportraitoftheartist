@@ -1,6 +1,6 @@
 OSXStandalone
 PlayerPath?
-/Users/colinhorgan/Documents/Current Lucah Builds/MacOS/Lucah Born of a Dream.app
+/Users/colinhorgan/Documents/Current-Lucah-Builds/MacOS/Lucah Born of a Dream.app
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity
@@ -817,3 +817,4 @@ e9c7df211e8766d29221daeff3f85048 Assembly-CSharp.dll:.LockedDoorS
 69c0acc1aaba3ac825a78d820eafa7a2 Assembly-CSharp.dll:.DarknessPercentUIS
 adbe5a51e0ae408e34c07c82bb2f4c41 Assembly-CSharp.dll:.NormalizeTimeScaleS
 70d91b2041125e666948562751bc8afc Assembly-CSharp.dll:.SwayEffectS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SteamManager

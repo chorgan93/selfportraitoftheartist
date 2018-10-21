@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-/Users/colinhorgan/Documents/Current Lucah Builds/PC/Lucah Born of a Dream/Lucah: Born of a Dream.exe
+/Users/colinhorgan/Documents/Current-Lucah-Builds/PC/Lucah Born of a Dream/Lucah: Born of a Dream.exe
 SceneListBegin?
 Assets/_Scenes/_IntroductionScenes/Melessthanthree.unity
 Assets/_Scenes/__MenuScenes/MenuScene.unity

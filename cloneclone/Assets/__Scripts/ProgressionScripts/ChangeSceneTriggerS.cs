@@ -37,8 +37,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 
 	void Start(){
 
-		if (awaitResponseString != "" && requireExamine){
-			requiresResponse = true;
+
+		if (awaitResponseString != "" && requireExamine)
+        {
+            awaitResponseString = awaitResponseString.Replace("NEWLINE", "\n");
+            requiresResponse = true;
 			numResponses = 1;
 		}
 		if (additionalResponseStrings != null){

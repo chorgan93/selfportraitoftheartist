@@ -1134,7 +1134,12 @@ public class ControlManagerS : MonoBehaviour {
 			if (platformType == "Mac"){
 				return (Input.GetButton("SwitchItemButtonLeftMac") || Input.GetButton("SwitchItemButtonRightMac")
 					|| Input.GetButton("SwitchItemButtonUpMac") || Input.GetButton("SwitchItemButtonUpMac"));
-			}else{
+            }else if (platformType == "Linux"){
+                return (Mathf.Abs(Input.GetAxis("SwitchItemAxisLinux")) > 0.1f || Mathf.Abs(Input.GetAxis("UseItemAxisLinux")) > 0.1f
+                        || Input.GetButton("TauntButtonUpLinux") || Input.GetButton("TauntButtonDownLinux")
+                        || Input.GetButton("TauntButtonLeftLinux") || Input.GetButton("TauntButtonRightLinux"));
+            }
+            else{
 				if (controlProfile == 3){
                     return (Mathf.Abs(Input.GetAxis("SwitchItemAxisPS4PC")) > 0.1f || Mathf.Abs(Input.GetAxis("UseItemAxisPS4PC")) > 0.1f);
 				}else{
