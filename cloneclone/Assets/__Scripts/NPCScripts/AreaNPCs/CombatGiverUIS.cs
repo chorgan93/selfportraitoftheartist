@@ -27,7 +27,55 @@ public class CombatGiverUIS : MonoBehaviour {
 	private int currentPos;
 	private bool inShopMenu = false;
 
-	public void TurnOn(CombatGiverS newMerchant){
+    public GameObject giveAchievementObj;
+
+    private void Start()
+    {
+        if (giveAchievementObj != null){
+            int rankCheck = 0;
+            string rankSave = "";
+            if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce != null)
+            {
+                for (int i = 0; i < arenaCombatIDs.Length; i++)
+                {
+                    if (PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.Contains(arenaCombatIDs[i]))
+                    {
+                        if (PlayerInventoryS.I.dManager.combatClearedRankGrades.Count >=
+                            PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i]))
+                        {
+                            rankSave = PlayerInventoryS.I.dManager.combatClearedRankGrades[
+                                PlayerInventoryS.I.dManager.combatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i])];
+                            if (rankSave == "S")
+                            {
+                                rankCheck += 4;
+                            }
+                            else if (rankSave == "A")
+                            {
+                                rankCheck += 3;
+                            }
+                            else if (rankSave == "B")
+                            {
+                                rankCheck += 2;
+                            }
+                            else if (rankSave == "C")
+                            {
+                                rankCheck += 1;
+                            }
+                            else
+                            {
+                                rankCheck += 0;
+                            }
+                        }
+                    }
+                }
+            }
+            if (rankCheck >= 16){
+                giveAchievementObj.SetActive(true);
+            }
+        }
+    }
+
+    public void TurnOn(CombatGiverS newMerchant){
 		giverRef = newMerchant;
 		currentPos = 0;
 		inShopMenu = false;

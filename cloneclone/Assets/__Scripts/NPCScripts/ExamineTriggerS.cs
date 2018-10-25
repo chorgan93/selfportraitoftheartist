@@ -255,7 +255,8 @@ public class ExamineTriggerS : MonoBehaviour {
 							if (buddyToGive){
 									InGameMenuManagerS.allowMenuUse = true;
 								PlayerInventoryS.I.unlockedBuddies.Add(buddyToGive);
-								if (pRef.equippedBuddies.Count < 2){
+                                    PlayerInventoryS.I.CheckFor100PercentCollection();
+                                    if (pRef.equippedBuddies.Count < 2){
 									pRef.equippedBuddies.Add(buddyToGive.gameObject);
 									if (pRef.equippedWeapons.Count < 2){
 										pRef.equippedWeapons.Add(pRef.EquippedWeapon());
@@ -265,6 +266,7 @@ public class ExamineTriggerS : MonoBehaviour {
 							}
 							if (mantraToGive != null){
 								PlayerInventoryS.I.unlockedWeapons.Add(mantraToGive);
+                                    PlayerInventoryS.I.CheckFor100PercentCollection();
 								if (pRef.equippedWeapons.Count < 2){
 									pRef.equippedWeapons.Add(mantraToGive);
 									pRef.subWeapons.Add(mantraToGive);

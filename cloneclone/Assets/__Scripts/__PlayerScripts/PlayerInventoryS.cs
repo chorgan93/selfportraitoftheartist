@@ -444,6 +444,21 @@ public class PlayerInventoryS : MonoBehaviour
         {
             PlayerController.equippedVirtues.Add(i);
         }
+        CheckFor100PercentCollection();
+    }
+
+    void CheckForPastAchievements(){
+        // gonna do a lot of achieving on load. TODO later colin - 10/22/18
+    }
+
+    public void CheckFor100PercentCollection(){
+        if (_earnedVirtues.Count >= 23 && unlockedWeapons.Count >= 12 && unlockedBuddies.Count >= 8){
+            if (GameObject.Find("SteamManager"))
+            {
+                SteamStatsAndAchievements statReference = GameObject.Find("SteamManager").GetComponent<SteamStatsAndAchievements>();
+                statReference.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_100_PERCENT);
+            }
+        }
     }
 
     public void AddEarnedTech(int i, bool autoEquip = true)

@@ -4,9 +4,9 @@ using System.ComponentModel;
 using Steamworks;
 
 // This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
-class SteamStatsAndAchievements : MonoBehaviour
+public class SteamStatsAndAchievements : MonoBehaviour
 {
-    private enum Achievement : int
+    public enum Achievement : int
     {
         ACH_TRACK_00,
         ACH_TRACK_01,
@@ -39,7 +39,7 @@ class SteamStatsAndAchievements : MonoBehaviour
         ACH_HARBINGER
     };
 
-    private Achievement_t[] m_Achievements = new Achievement_t[] {
+    public Achievement_t[] m_Achievements = new Achievement_t[] {
         new Achievement_t(Achievement.ACH_TRACK_00, "Cradle", "Complete Track -1"),
         new Achievement_t(Achievement.ACH_TRACK_01, "Lost in the World", "Complete Track 1"),
         new Achievement_t(Achievement.ACH_TRACK_02, "Flesh Without Blood", "Complete Track 2"),
@@ -143,13 +143,13 @@ class SteamStatsAndAchievements : MonoBehaviour
         // Get info from sources
 
         // Evaluate achievements
-        foreach (Achievement_t achievement in m_Achievements)
+        /*foreach (Achievement_t achievement in m_Achievements)
         {
             if (achievement.m_bAchieved)
                 continue;
 
             // uncomment when we're ready to evaluate LUCAH achievements
-            /*switch (achievement.m_eAchievementID)
+            switch (achievement.m_eAchievementID)
             {
                 case Achievement.ACH_WIN_ONE_GAME:
                     if (m_nTotalNumWins != 0)
@@ -175,8 +175,8 @@ class SteamStatsAndAchievements : MonoBehaviour
                         UnlockAchievement(achievement);
                     }
                     break;
-            }**/
-        }
+            }
+        }**/
 
         //Store stats in the Steam database if necessary
         if (m_bStoreStats)
@@ -256,8 +256,23 @@ class SteamStatsAndAchievements : MonoBehaviour
     //-----------------------------------------------------------------------------
     // Purpose: Unlock this achievement
     //-----------------------------------------------------------------------------
+    public void UnlockAchievementExternal(Achievement a){
+        foreach (Achievement_t achievement in m_Achievements)
+        {
+            if (achievement.m_bAchieved)
+                continue;
+
+            if (achievement.m_eAchievementID == a){
+                UnlockAchievement(achievement);
+            }
+
+        }
+    }
     private void UnlockAchievement(Achievement_t achievement)
     {
+        if (!SteamManager.Initialized)
+            return;
+
         achievement.m_bAchieved = true;
 
         // the icon may change once it's unlocked
@@ -408,7 +423,7 @@ class SteamStatsAndAchievements : MonoBehaviour
         GUILayout.EndArea();
     }
 
-    private class Achievement_t
+    public class Achievement_t
     {
         public Achievement m_eAchievementID;
         public string m_strName;

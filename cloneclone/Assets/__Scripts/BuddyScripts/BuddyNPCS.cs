@@ -54,6 +54,10 @@ public class BuddyNPCS : MonoBehaviour {
 	private bool spawnedEffect = false;
 	private Color effectCol;
 
+    [HideInInspector]
+    public bool hasBeenPet = false;
+    private CheckForPetAchievementS myAchievement;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -208,6 +212,10 @@ public class BuddyNPCS : MonoBehaviour {
 	}
 
 	void EndEmbrace(){
+        hasBeenPet = true;
+        if (myAchievement){
+            myAchievement.CheckRequirements();
+        }
 		myDetect.player.EndEmbrace();
 		embracing = false;
 		CameraFollowS.F.SetZoomIn(false);
@@ -218,6 +226,10 @@ public class BuddyNPCS : MonoBehaviour {
 		endMovePos.z = transform.position.z;
 		FaceMove();
 	}
+
+    public void SetAchievementRefs(CheckForPetAchievementS aaa){
+        myAchievement = aaa;
+    }
 
 	void SetPlayerExamine(bool messageOn){
 		if (myDetect.PlayerInRange()){
