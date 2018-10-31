@@ -116,9 +116,12 @@ public class DarknessPercentUIS : MonoBehaviour {
     public static bool setTo100 = false;
     float cutsceneTargetNum = 0;
 
+    private bool useDescent = false;
+
     [Header("Transform Properties")]
     public GameObject transformEffect;
 
+    // TODO add in descent darkness stuff
 	void Awake(){
 		DPERCENT = this;
 	}
@@ -305,16 +308,39 @@ public class DarknessPercentUIS : MonoBehaviour {
 
                 if (standaloneInScene)
                 {
-                    if (resetToZero)
+                    if (useDescent)
                     {
-                        displayAmt = Mathf.Lerp(savedDarknessNum, 0f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
-                    }else{
-                        displayAmt = Mathf.Lerp(savedDarknessNum, 100f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                        if (resetToZero)
+                        {
+                            displayAmt = Mathf.Lerp(PlayerStatsS._currentDarkness, 0f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                        }
+                        else
+                        {
+                            displayAmt = Mathf.Lerp(PlayerStatsS._descentDarkness, 100f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                        }
+                    }
+                    else
+                    {
+                        if (resetToZero)
+                        {
+                            displayAmt = Mathf.Lerp(savedDarknessNum, 0f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                        }
+                        else
+                        {
+                            displayAmt = Mathf.Lerp(savedDarknessNum, 100f, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                        }
                     }
                 }
                 else
                 {
-                    displayAmt = Mathf.Lerp(saveDeathAmt, pStats.currentDarkness, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                    if (useDescent)
+                    {
+                        displayAmt = Mathf.Lerp(saveDeathAmt, pStats.descentDarkness, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                    }
+                    else
+                    {
+                        displayAmt = Mathf.Lerp(saveDeathAmt, pStats.currentDarkness, adjustT) / PlayerStatsS.DARKNESS_MAX * 100f;
+                    }
                 }
 				if (displayAmt < 10){
 					displayString = "0" + displayAmt.ToString("F2") + "%";
@@ -367,7 +393,14 @@ public class DarknessPercentUIS : MonoBehaviour {
             currentBarSize.x *= savedDarknessNum / PlayerStatsS.DARKNESS_MAX; }
         else
         {
-            currentBarSize.x *= pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX;
+            if (useDescent)
+            {
+                currentBarSize.x *= pStats.descentDarkness / PlayerStatsS.DARKNESS_MAX;
+            }
+            else
+            {
+                currentBarSize.x *= pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX;
+            }
         }
 		mainBarDisplay.rectTransform.sizeDelta = purpleBarDisplay.rectTransform.sizeDelta 
 			= redBarDisplay.rectTransform.sizeDelta = currentBarSize;
@@ -397,7 +430,15 @@ public class DarknessPercentUIS : MonoBehaviour {
         }else if (postCombatSequence){
             displayAmt = saveDeathAmt / PlayerStatsS.DARKNESS_MAX * 100f;
         }else{
-            displayAmt = pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX * 100f;
+            if (useDescent)
+            {
+
+                displayAmt = pStats.descentDarkness / PlayerStatsS.DARKNESS_MAX * 100f;
+            }
+            else
+            {
+                displayAmt = pStats.currentDarkness / PlayerStatsS.DARKNESS_MAX * 100f;
+            }
         }
 		if (displayAmt < 10){
 			displayString = "0" + displayAmt.ToString("F2") + "%";
@@ -489,7 +530,14 @@ public class DarknessPercentUIS : MonoBehaviour {
         }
         else
         {
-            saveDeathAmt = displayAmt = pStats.currentDarkness;
+            if (useDescent)
+            {
+                saveDeathAmt = displayAmt = pStats.descentDarkness;
+            }
+            else
+            {
+                saveDeathAmt = displayAmt = pStats.currentDarkness;
+            }
         }
 		_allowAdvance = false;
         fadeInDeathNumbers = true;
@@ -524,8 +572,27 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 		fadeCount = 0f;
 	}
+    public void ActivateDescentReset()
+    {
+        delayFadeOut = delayFadeInTime;
+        saveDeathAmt = displayAmt = pStats.currentDarkness;
+        pStats.StartDescentDarkness();
+        _allowAdvance = false;
+        fadeInDeathNumbers = true;
 
-	public void SetAdvance(){
+        deathTextDisplay.text = deathRedTextDisplay.text = displayString;
+
+        deathTextDisplay.enabled = true;
+        deathRedTextDisplay.enabled = true;
+        deathSequence = true;
+        fadeOutRegNumbers = true;
+
+        hasReached100 = true;
+        useDescent = true;
+        fadeCount = 0f;
+    }
+
+    public void SetAdvance(){
 		_allowAdvance = true;
 	}
 
@@ -543,21 +610,47 @@ public class DarknessPercentUIS : MonoBehaviour {
 		purpleTextDisplay.enabled = false;
 	}
 
-    public void StartDarknessReduce(float reduceAmt, RankManagerS rankRef){
-        if (PlayerStatsS._currentDarkness < 100f)
+    public void StartDarknessReduce(float reduceAmt, RankManagerS rankRef)
+    {
+        if (useDescent)
         {
-            postCombatSequence = true;
-            saveDeathAmt = pStatRef.currentDarkness;
-            PlayerStatsS._currentDarkness += reduceAmt;
-            if (PlayerStatsS._currentDarkness < 0f)
+            if (PlayerStatsS._descentDarkness < 100f)
             {
-                PlayerStatsS._currentDarkness = 0f;
+                postCombatSequence = true;
+                saveDeathAmt = pStatRef.descentDarkness;
+                PlayerStatsS._descentDarkness += reduceAmt;
+                if (PlayerStatsS._descentDarkness < 0f)
+                {
+                    PlayerStatsS._descentDarkness = 0f;
+                }
+                reduceTextDisplay.text = (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
+                StartCoroutine(CombatDarknessReduce(rankRef));
             }
-            reduceTextDisplay.text = (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
-            StartCoroutine(CombatDarknessReduce(rankRef));
-        }else{
-            postCombatSequence = false;
-            rankRef.delayLoad = false;
+            else
+            {
+                postCombatSequence = false;
+                rankRef.delayLoad = false;
+            }
+        }
+        else
+        {
+            if (PlayerStatsS._currentDarkness < 100f)
+            {
+                postCombatSequence = true;
+                saveDeathAmt = pStatRef.currentDarkness;
+                PlayerStatsS._currentDarkness += reduceAmt;
+                if (PlayerStatsS._currentDarkness < 0f)
+                {
+                    PlayerStatsS._currentDarkness = 0f;
+                }
+                reduceTextDisplay.text = (reduceAmt * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
+                StartCoroutine(CombatDarknessReduce(rankRef));
+            }
+            else
+            {
+                postCombatSequence = false;
+                rankRef.delayLoad = false;
+            }
         }
     }
 
@@ -583,15 +676,36 @@ public class DarknessPercentUIS : MonoBehaviour {
         float startNum = saveDeathAmt;
 
         while (reduceTimeCount < reduceTimeMax){
-            saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+            if (useDescent)
+            {
+                saveDeathAmt = Mathf.Lerp(startNum, pStats.descentDarkness, reduceT);
+            }
+            else
+            {
+                saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+            }
             reduceTimeCount += Time.deltaTime* R.myUI.SpeedUpMultiplier();
             reduceT = reduceTimeCount / reduceTimeMax;
             if (reduceT >= 1f)
             {
                 reduceT = 1f;
-                saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+                if (useDescent)
+                {
+                    saveDeathAmt = Mathf.Lerp(startNum, pStats.descentDarkness, reduceT);
+                }
+                else
+                {
+                    saveDeathAmt = Mathf.Lerp(startNum, pStats.currentDarkness, reduceT);
+                }
             }
-            reduceTextDisplay.text = "- " + (saveDeathAmt-pStats.currentDarkness * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%"; 
+            if (useDescent)
+            {
+                reduceTextDisplay.text = "- " + (saveDeathAmt - pStats.descentDarkness * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
+            }
+            else
+            {
+                reduceTextDisplay.text = "- " + (saveDeathAmt - pStats.currentDarkness * PlayerStatsS.DARKNESS_MAX / 100f).ToString("F2") + "%";
+            }
 
             yield return null;
         }
@@ -611,5 +725,9 @@ public class DarknessPercentUIS : MonoBehaviour {
         }
         postCombatSequence = false;
         R.delayLoad = false;
+    }
+
+    public void SetDescentState(bool newDescent){
+        useDescent = newDescent;
     }
 }

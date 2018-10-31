@@ -9,6 +9,8 @@ public class MixTriggerS : MonoBehaviour {
 	public bool fadeOut = false;
 	public bool instant = false;
 
+    public bool depthsLoopFix = false;
+
 	public bool activateOnce = false;
 	private bool activated = false;
 
@@ -24,8 +26,15 @@ public class MixTriggerS : MonoBehaviour {
 				}else{
 					targetLayer.transform.parent = BGMHolderS.BG.transform;
 					if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
-						targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
-					}
+
+                            targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample();
+
+                    }else if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples < BGMHolderS.BG.GetCurrentTimeSample() && depthsLoopFix){
+                        if (depthsLoopFix)
+                        {
+                            targetLayer.sourceRef.timeSamples = BGMHolderS.BG.GetCurrentTimeSample() - targetLayer.sourceRef.clip.samples;
+                        }
+                    }
 					targetLayer.FadeIn(instant, targetLayer.maxVolume);
 					
 				}

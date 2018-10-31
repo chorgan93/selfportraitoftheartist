@@ -448,7 +448,176 @@ public class PlayerInventoryS : MonoBehaviour
     }
 
     void CheckForPastAchievements(){
-        // gonna do a lot of achieving on load. TODO later colin - 10/22/18
+        // gonna do a lot of achieving on load.
+        if (GameObject.Find("SteamManager"))
+        {
+            SteamStatsAndAchievements steamManager = GameObject.Find("SteamManager").GetComponent<SteamStatsAndAchievements>();
+
+            if (steamManager != null){
+
+                if (inventoryData.killedFamiliar)
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_NO_FAMILIAR);
+                }
+                if (CheckForWeaponNum(11)){
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_CORRUPTION);
+                }
+                if (CheckForWeaponNum(5))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_SAC_05);
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_08);
+                }
+                if (_earnedVirtues.Contains(15))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_NEW_GAME_PLUS);
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_SAC_01);
+                }
+                if (_earnedVirtues.Contains(22)){
+
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_SAC_07);
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_09);
+                }
+                if (CheckAllProgress(53)){
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_THOMAS);
+                }
+
+                if (CheckAllProgress(15))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_00);
+                }
+                if (CheckAllProgress(8)){
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_01);
+                }
+                if (CheckAllProgress(13))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_02);
+                }
+                if (CheckAllProgress(19))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_03);
+                }
+                if (CheckAllProgress(28))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_04);
+                }
+                if (CheckAllProgress(31))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_05);
+                }
+                if (CheckAllProgress(41))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_06);
+                }
+                if (CheckAllProgress(51))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_TRACK_07);
+                }
+                if (CheckAllProgress(28) && CheckAllProgress(27))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_HOLLOW);
+                }
+                if (CheckForSRanks()){
+
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_ARENA);
+                }
+                if (CheckAllProgress(40))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_ARCADE);
+                }
+                if (unlockedWeapons.Count >= 12 && unlockedBuddies.Count >= 8 && _earnedVirtues.Count >= 23){
+
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_100_PERCENT);
+                }
+                if (_earnedVirtues.Contains(17))
+                {
+                    steamManager.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_FINAL_STATION);
+                }
+            }
+           
+        }
+    }
+
+    bool CheckAllProgress(int checkNum){
+        bool containsProgress = StoryProgressionS.CheckForPastProgress(checkNum);
+        if (_revertedProgressNums != null && !containsProgress){
+            if (_revertedProgressNums.Contains(checkNum)){
+                containsProgress = true;
+            }
+        }
+        return containsProgress;
+    }
+
+    bool CheckForSRanks(){
+        // this one is too unweildy to not have its own function to check
+        int rankCheck = 0;
+        string rankSave = "";
+        int[] arenaCombatIDs = new int[4] { 505, 506, 507, 508 };
+        if (dManager.combatClearedAtLeastOnce != null)
+        {
+            for (int i = 0; i < arenaCombatIDs.Length; i++)
+            {
+                if (dManager.combatClearedAtLeastOnce.Contains(arenaCombatIDs[i]))
+                {
+                    if (dManager.combatClearedRankGrades.Count >=
+                        dManager.combatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i]))
+                    {
+                        rankSave = dManager.combatClearedRankGrades[
+                           dManager.combatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i])];
+                        if (rankSave == "S")
+                        {
+                            rankCheck += 4;
+                        }
+                        else if (rankSave == "A")
+                        {
+                            rankCheck += 3;
+                        }
+                        else if (rankSave == "B")
+                        {
+                            rankCheck += 2;
+                        }
+                        else if (rankSave == "C")
+                        {
+                            rankCheck += 1;
+                        }
+                        else
+                        {
+                            rankCheck += 0;
+                        }
+                    }
+                }else if (dManager.revertedCombatClearedAtLeastOnce != null && dManager.revertedCombatClearedRankGrades != null){
+                    if (dManager.revertedCombatClearedAtLeastOnce.Contains(arenaCombatIDs[i]))
+                    {
+                        if (dManager.revertedCombatClearedRankGrades.Count >=
+                            dManager.revertedCombatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i]))
+                        {
+                            rankSave = dManager.revertedCombatClearedRankGrades[
+                               dManager.revertedCombatClearedAtLeastOnce.IndexOf(arenaCombatIDs[i])];
+                            if (rankSave == "S")
+                            {
+                                rankCheck += 4;
+                            }
+                            else if (rankSave == "A")
+                            {
+                                rankCheck += 3;
+                            }
+                            else if (rankSave == "B")
+                            {
+                                rankCheck += 2;
+                            }
+                            else if (rankSave == "C")
+                            {
+                                rankCheck += 1;
+                            }
+                            else
+                            {
+                                rankCheck += 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return (rankCheck >= 16);
     }
 
     public void CheckFor100PercentCollection(){
@@ -1075,6 +1244,8 @@ public class PlayerInventoryS : MonoBehaviour
         {
             _revertedProgressNums = inventoryData.revertedProgressNums;
         }
+
+        CheckForPastAchievements();
     }
 
     public void OverwriteInventoryData(bool erase = false, bool newGamePlus = false)

@@ -79,10 +79,14 @@ public class PlayerStatsS : MonoBehaviour {
 	public float savedHealth { get { return _savedHealth; } }
 
 	public static float _currentDarkness = 0f;
+    public static float _descentDarkness = 0f;
 	public float currentDarkness {get { return _currentDarkness; } }
-	
-	//________________________________MANA
-	private float _baseMana = 3;
+    public float descentDarkness { get { return _descentDarkness; } }
+    private float descentDarknessMultiplier = 2f;
+    private bool _useDescent = false;
+
+    //________________________________MANA
+    private float _baseMana = 3;
 	private float _addedMana = 0; // max 16 (for 20 total)
 	public float addedMana { get { return _addedMana; } }
 	private float _currentMana;
@@ -486,75 +490,158 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________PRIVATE FUNCTIONS
 
 	private void DarknessAdd(){
-		if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && _currentDarkness < 100f){
+        if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && ((_currentDarkness < 100f && !_useDescent) || (_descentDarkness < 100f & _useDescent))){
             if (!_isMarked)
             {
-                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG) { 
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE /5f;
-                    if (myPlayerController.isTransformed)
+                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG) {
+                    if (_useDescent)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE /5f;
+                        _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE / 5f * descentDarknessMultiplier;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE / 5f * descentDarknessMultiplier;
+                        }
+                    }
+                    else
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE / 5f;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE / 5f;
+                        }
                     }
                 }
                 else
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE;
-                    if (myPlayerController.isTransformed)
+                    if (_useDescent)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE;
+                        _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * descentDarknessMultiplier;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * descentDarknessMultiplier;
+                        }
+                    }
+                    else
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE;
+                        }
                     }
                 }
             }else{
                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f/5f;
-                    if (myPlayerController.isTransformed)
+                    if (_useDescent)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f/5f;
+                        _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f / 5f * descentDarknessMultiplier;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f / 5f * descentDarknessMultiplier;
+                        }
+                    }
+                    else
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f / 5f;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f / 5f;
+                        }
                     }
                 }
                 else
                 {
-                    _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f;
-                    if (myPlayerController.isTransformed)
+                    if (_useDescent)
                     {
-                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f;
+                        _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f * descentDarknessMultiplier;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _descentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f * descentDarknessMultiplier;
+                        }
+                    }
+                    else
+                    {
+                        _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * 2.5f;
+                        if (myPlayerController.isTransformed)
+                        {
+                            _currentDarkness += Time.deltaTime * DARKNESS_ADD_RATE * TRANSFORMED_RATE * 1.5f;
+                        }
                     }
                 }
             }
 			if (_currentDarkness > 100f){
 				_currentDarkness = 100f;
 			}
+            if (_descentDarkness > 100f){
+                _descentDarkness = 100f;
+            }
 		}
 	}
 	public void TranformedDarknessAttackAdd(){
-		if (_currentDarkness < 100f){
-            if (_isMarked)
+        if (_useDescent) {
+            if (_descentDarkness < 100f)
             {
-                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                if (_isMarked)
                 {
-                    _currentDarkness += 0.3f;
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                    {
+                        _descentDarkness += 0.3f*descentDarknessMultiplier;
+                    }
+                    else
+                    {
+                        _descentDarkness += 0.75f * descentDarknessMultiplier;
+                    }
                 }
                 else
                 {
-                    _currentDarkness += 0.75f;
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                    {
+                        _descentDarkness += 0.1f * descentDarknessMultiplier;
+                    }
+                    else
+                    {
+                        _descentDarkness += 0.5f * descentDarknessMultiplier;
+                    }
+                }
+                if (_descentDarkness > 100f)
+                {
+                    _descentDarkness = 100f;
                 }
             }
-            else
+        }
+        else
+        {
+            if (_currentDarkness < 100f)
             {
-                if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                if (_isMarked)
                 {
-                    _currentDarkness += 0.1f;
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                    {
+                        _currentDarkness += 0.3f;
+                    }
+                    else
+                    {
+                        _currentDarkness += 0.75f;
+                    }
                 }
                 else
                 {
-                    _currentDarkness += 0.5f;
+                    if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
+                    {
+                        _currentDarkness += 0.1f;
+                    }
+                    else
+                    {
+                        _currentDarkness += 0.5f;
+                    }
+                }
+                if (_currentDarkness > 100f)
+                {
+                    _currentDarkness = 100f;
                 }
             }
-		if (_currentDarkness > 100f){
-			_currentDarkness = 100f;
-		}
-		}
+        }
 	}
 
 	private void ChargeRecovery(){
@@ -721,11 +808,24 @@ public class PlayerStatsS : MonoBehaviour {
 	private void Initialize(){
 
         if (DarknessPercentUIS.setTo100){
-            _currentDarkness = 100f;
+            if (_useDescent)
+            {
+                _descentDarkness = 100f;
+            }else
+            {
+                _currentDarkness = 100f;
+            }
             DarknessPercentUIS.setTo100 = false;
         }
         if (DarknessPercentUIS.resetToZero){
-            _currentDarkness = 0f;
+            if (_useDescent)
+            {
+                _descentDarkness = 0f;
+            }
+            else
+            {
+                _currentDarkness = 0f;
+            }
             DarknessPercentUIS.resetToZero = false;
         }
 
@@ -1093,32 +1193,71 @@ public class PlayerStatsS : MonoBehaviour {
 					//_uiReference.cDisplay.DeathPenalty();
 
 						RankManagerS.R.DieInCombat();
-					if (dontDoCountUp){
-						dontDoCountUp = false;
+                        if (dontDoCountUp)
+                        {
+                            dontDoCountUp = false;
                             CameraEffectsS.E.fadeRef.skipPercentScene = true;
-                        }else if (!SceneManagerS.inInfiniteScene){
+                        }
+                        else if (!SceneManagerS.inInfiniteScene)
+                        {
                             DarknessPercentUIS.DPERCENT.ActivateDeathCountUp();
                             if (_isMarked)
                             {
                                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 4f/5f;
+                                    if (_useDescent)
+                                    {
+                                        _descentDarkness += DARKNESS_ADD_DEATH * 4f / 5f * descentDarknessMultiplier;
+                                    }
+                                    else
+                                    {
+                                        _currentDarkness += DARKNESS_ADD_DEATH * 4f / 5f;
+                                    }
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH * 4f;
+                                    if (_useDescent)
+                                    {
+                                        _descentDarkness += DARKNESS_ADD_DEATH * 4f * descentDarknessMultiplier;
+                                    }
+                                    else
+                                    {
+                                        _currentDarkness += DARKNESS_ADD_DEATH * 4f;
+                                    }
                                 }
                             }
                             else
                             {
                                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                                 {
-                                    _currentDarkness += (DARKNESS_ADD_DEATH-1f)/5f;
+                                    if (_useDescent)
+                                    {
+                                        _descentDarkness += (DARKNESS_ADD_DEATH - 1f) / 5f * descentDarknessMultiplier;
+                                    }
+                                    else
+                                    {
+                                        _currentDarkness += (DARKNESS_ADD_DEATH - 1f) / 5f;
+                                    }
                                 }
                                 else
                                 {
-                                    _currentDarkness += DARKNESS_ADD_DEATH-1f;
+                                    if (_useDescent)
+                                    {
+                                        _descentDarkness += (DARKNESS_ADD_DEATH - 1f) * descentDarknessMultiplier;
+                                    }
+                                    else
+                                    {
+                                        _currentDarkness += DARKNESS_ADD_DEATH - 1f;
+                                    }
                                 }
+                            }
+
+                            if (_currentDarkness > 100f)
+                            {
+                                _currentDarkness = 100f;
+                            }
+                            if (_descentDarkness > 100f){
+                                _descentDarkness = 100f;
                             }
                            
 					}
@@ -1176,11 +1315,25 @@ public class PlayerStatsS : MonoBehaviour {
                     if (PlayerAugmentsS.MARKED_AUG){
                         if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                         {
-                            _currentDarkness += 0.1f;
+                            if (_useDescent)
+                            {
+                                _descentDarkness += 0.1f*descentDarknessMultiplier;
+                            }
+                            else
+                            {
+                                _currentDarkness += 0.1f;
+                            }
                         }
                         else
                         {
-                            _currentDarkness += 0.5f;
+                            if (_useDescent)
+                            {
+                                _descentDarkness += 0.5f*descentDarknessMultiplier;
+                            }
+                            else
+                            {
+                                _currentDarkness += 0.5f;
+                            }
                         }
                     }
 					}
@@ -1238,22 +1391,50 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH-1f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += (DARKNESS_ADD_DEATH - 1f)*descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH - 1f;
+                        }
                     }
                     else
                     {
-                        _currentDarkness += (DARKNESS_ADD_DEATH-1f) * 0.5f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += (DARKNESS_ADD_DEATH - 1f) * 0.5f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += (DARKNESS_ADD_DEATH - 1f) * 0.5f;
+                        }
                     }
                 }
                 else
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += (DARKNESS_ADD_DEATH-1f) / 5f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += (DARKNESS_ADD_DEATH - 1f) / 5f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += (DARKNESS_ADD_DEATH - 1f) / 5f;
+                        }
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH-1f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += (DARKNESS_ADD_DEATH - 1f)*descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH - 1f;
+                        }
                     }
                 }
             }
@@ -1263,22 +1444,50 @@ public class PlayerStatsS : MonoBehaviour {
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 4f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += DARKNESS_ADD_DEATH * 0.1f * 4f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH * 0.1f * 4f;
+                        }
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 4f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += DARKNESS_ADD_DEATH * 0.5f * 4f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH * 0.5f * 4f;
+                        }
                     }
                 }
                 else
                 {
                     if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 4f / 5f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += DARKNESS_ADD_DEATH * 4f / 5f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH * 4f / 5f;
+                        }
                     }
                     else
                     {
-                        _currentDarkness += DARKNESS_ADD_DEATH * 4f;
+                        if (_useDescent)
+                        {
+                            _descentDarkness += DARKNESS_ADD_DEATH * 4f * descentDarknessMultiplier;
+                        }
+                        else
+                        {
+                            _currentDarkness += DARKNESS_ADD_DEATH * 4f;
+                        }
                     }
                 }
             }
@@ -1286,11 +1495,17 @@ public class PlayerStatsS : MonoBehaviour {
 		if (_currentDarkness > 100f){
 			_currentDarkness = 100f;
 		}
+        if (_descentDarkness > 100f){
+            _descentDarkness = 100f;
+        }
 	}
 
 	public void DeathColinReset(){
 		_currentDarkness = DARKNESS_COLIN_HEAL;
 	}
+    public void StartDescentDarkness(){
+        _descentDarkness = 0f;
+    }
 
 	public void DesperateRecover(float amtToRecover){
 		if (pRef.playerAug.desperateAug && _canRecoverHealth > 0 && allowHealthEndCountdown <= 0){
@@ -1453,5 +1668,9 @@ public class PlayerStatsS : MonoBehaviour {
         }else{
             return 0;
         }
+    }
+
+    public void SetDescentState(bool useDescent){
+        _useDescent = useDescent;
     }
 }

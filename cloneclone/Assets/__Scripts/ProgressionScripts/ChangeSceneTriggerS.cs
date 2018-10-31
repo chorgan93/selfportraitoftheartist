@@ -35,7 +35,10 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 	[Header("On/Off Properties")]
 	public ActivateOnSceneTriggerS activateS;
 
-	void Start(){
+    [Header("Descent Properties")]
+    public bool doDescentReset = false;
+
+	void     Start(){
 
 
 		if (awaitResponseString != "" && requireExamine)
@@ -210,7 +213,11 @@ public class ChangeSceneTriggerS : MonoBehaviour {
 			StoryProgressionS.SetStory(setProgressOnActivate);
 		}
 
-		SpawnPosManager.whereToSpawn = whereToSpawn;
+        if (doDescentReset)
+        {
+            DarknessPercentUIS.DPERCENT.ActivateDescentReset();
+        }
+        SpawnPosManager.whereToSpawn = whereToSpawn;
 		CameraEffectsS.E.SetNextScene(nextSceneString);
 		CameraEffectsS.E.FadeIn();
 		loading = true;

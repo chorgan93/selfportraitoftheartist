@@ -44,6 +44,21 @@ public class StoryProgressionS : MonoBehaviour {
 		
 	}
 
+    public static bool CheckForPastProgress(int progNum){
+        bool hasReached = false;
+        if (savedProgress != null){
+            if (savedProgress.Contains(progNum)){
+                hasReached = true;
+            }
+        }
+        if (storyProgress != null){
+            if (storyProgress.Contains(progNum)){
+                hasReached = true;
+            }
+        }
+        return hasReached;
+    }
+
 	public static int ReturnHighestProgress(){
 		int highestProgress = -1;
 		for (int i = 0; i < storyProgress.Count; i++){

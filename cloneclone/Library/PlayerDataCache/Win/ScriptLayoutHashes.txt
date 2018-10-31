@@ -564,6 +564,7 @@ c667a517382a734c55d5e23789f107ff Assembly-CSharp.dll:.RankManagerS
 7318e7ca69010459cd78a4ec7e0cb56b Assembly-CSharp.dll:.ColorSwitchingS
 3d969085972b09b69e3bada6e298e07f Assembly-CSharp.dll:.TextOutline
 2ab2681899617c1a052dccac32d24766 Assembly-CSharp.dll:.PlayerWeaponS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SteamStatsAndAchievements
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.LoadingTextS
 5ba881e12dd6ce1ffe216e5b30fce884 Assembly-CSharp.dll:.SpriteDistortionPlayerS
 eaf0bcdb10d442a4029d615f41d09957 Unity.TextMeshPro.dll:TMPro.TextContainer
@@ -672,7 +673,7 @@ afd96b2b508d7d07b139c13b4f92fa1c Assembly-CSharp.dll:.SetEnemyActiveS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.FadeEnvironmentTriggerS
 9d71808494e61fa821b14e0bab38437f Assembly-CSharp.dll:.ChargeRiseEffectS
 70787d35502386886b123a98f0adccd8 Assembly-CSharp.dll:.EnemyDetectS
-f6db0f87f7428657e1ace57cf094547b Assembly-CSharp.dll:.MixTriggerS
+16c7c053e5d822ba1bb72b1720030a65 Assembly-CSharp.dll:.MixTriggerS
 af2cc36aed490df83333f80cd1fcb084 Assembly-CSharp.dll:.SimpleEnemyDetectS
 5a06c18b6aa904558ea6e46718fcc738 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.NoiseAndGrain
 a585abb35d6774a85b3d339b84fb4daa Assembly-CSharp.dll:.TauntDialogueS
@@ -760,6 +761,7 @@ e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 f00878f8453ef17799ef5281a84202f7 Assembly-CSharp.dll:.EnemyLaserBuddyS
 030df0f96bb88f9fb6635e2d38ee042f Assembly-CSharp.dll:.TeleportPlayerS
 78cccdec83f950b738d8d128f43bce03 Assembly-CSharp.dll:.SpriteDistortionS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.SteamManager
 3beae574be128ff1169a81244c4ed62e Assembly-CSharp.dll:.InventoryManagerS
 dc466f69bfccb0dbd19a7d0981cd3b6e Assembly-CSharp.dll:.TranslateObjectS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AllowRetryS
@@ -767,7 +769,7 @@ ef0f52ab3b3dfb754d555d91683e8c3e Assembly-CSharp.dll:.InstantiateOnCombatRestart
 bd57674768d88af20344e9f680801c2d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.DepthOfFieldDeprecated
 08d0508b1b70276c9903e3d12a338a41 Assembly-CSharp.dll:.RemoveParentS
 df03e2ffa8b3251f71a6c2235d50c66b Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Fisheye
-eb2e76186178b87e66b386e169fc803d Assembly-CSharp.dll:.CombatGiverUIS
+ef90bf1b6becbce2abfe1dc0c0ca5f22 Assembly-CSharp.dll:.CombatGiverUIS
 7185add3ee61a1c2eeb8f75b66f0d95d Assembly-CSharp.dll:.ActivateOnSceneTriggerS
 c7de0592cd75274eb1546806f85a4d64 Assembly-CSharp.dll:.DeathCountdownHandlerS
 e4cf3a84c3223b593bf0d120e02ed394 Assembly-CSharp.dll:.SpriteDistortionEnemyS
@@ -792,12 +794,13 @@ ceb170662ae710062bc04a0cf20e02d4 Assembly-CSharp.dll:.EnemyGiveSpawnCommandS
 76509afe367cae3e2de41d26b899ad8d Assembly-CSharp.dll:.ChangePOIOffsetS
 56efe0cf8e2cd568414f3a9e61540e3b Assembly-CSharp.dll:.GameOverS
 1ea93faee784a05b93bf0db7ee20c422 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.EdgeDetection
-5f69bbcfebb56424a71ed4b6c77a4f26 Assembly-CSharp.dll:.BuddyNPCS
+e7580a58a9c7cdd20ad218bdc9564d08 Assembly-CSharp.dll:.BuddyNPCS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.VignetteEffectS
 ef662bc0631440a8a3cdba0d3dcec589 Assembly-CSharp.dll:.ClearAllLayersS
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 985c690377822f41654d5f68210987d9 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ColorCorrectionLookup
 5c1105e93aec2ca7ab642590f5a2adc8 Assembly-CSharp.dll:.TransformStartEffectS
+b72ce01abac4b7734fd40ff0b42a2195 Assembly-CSharp.dll:.TriggerSteamAchievementS
 0fe1713b389773dc42376d9f85234d75 Assembly-CSharp.dll:.EnemySeekBehavior
 bd7ab826af2ed31f398562f237344230 Assembly-CSharp.dll:.EnemyChargeAttackBehavior
 7e00302ea3eb5480d97884ceeaafde0f Assembly-CSharp.dll:.LeverMatchDirectionS
@@ -814,6 +817,7 @@ ae55ff2fc3796c693376d20b96cca261 Assembly-CSharp.dll:.DarknessS
 e9c7df211e8766d29221daeff3f85048 Assembly-CSharp.dll:.LockedDoorS
 86561d5d16b8f2ac3478c095245035b9 Assembly-CSharp.dll:.EnemyDodgeBehaviorS
 606f1d86109db29f83407f8015b8aada Assembly-CSharp.dll:.CinematicInsertTextS
+c97560dd4559ff36e6c90ca9f866325e Assembly-CSharp.dll:.CheckForPetAchievementS
 69c0acc1aaba3ac825a78d820eafa7a2 Assembly-CSharp.dll:.DarknessPercentUIS
 adbe5a51e0ae408e34c07c82bb2f4c41 Assembly-CSharp.dll:.NormalizeTimeScaleS
 70d91b2041125e666948562751bc8afc Assembly-CSharp.dll:.SwayEffectS
