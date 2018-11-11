@@ -1570,9 +1570,9 @@ public class PlayerController : MonoBehaviour {
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult(), !_playerAug.fosAug);
 
 				if (_chargeAttackUseAll){
-					_myStats.ChargeCheck(9999f);
+                    _myStats.ChargeCheck(9999f, !_playerAug.ktisisAug);
 				}else{
-				_myStats.ChargeCheck(_chargeAttackCost);
+                    _myStats.ChargeCheck(_chargeAttackCost, !_playerAug.ktisisAug);
 				}
 
 				_playerSound.PlayChargeSound();
@@ -2187,7 +2187,8 @@ public class PlayerController : MonoBehaviour {
 				}
 			
 				}else if (ShootInputPressed() && !shootButtonUp && allowChargeAttack){
-					if (_myStats.ManaCheck(1, false) && _myStats.ChargeCheck(1, false) && equippedTech.Contains(6)){
+                    if (_myStats.ManaCheck(1, false) && (_myStats.ChargeCheck(1, false) || _playerAug.ktisisAug) 
+                        && equippedTech.Contains(6)){
 					// charge attack
 
 						if (prevChain < 0){

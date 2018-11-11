@@ -85,6 +85,8 @@ public class LevelUpMenu : MonoBehaviour
 
     public bool lockOnlyTravel = false;
 
+    private bool descentScreen = false;
+
     // Use this for initialization
     void Start()
     {
@@ -929,19 +931,30 @@ public class LevelUpMenu : MonoBehaviour
         }
     }
 
+    void SetUpDescentQuitScreen(){
+        descentScreen = true;
+    }
+
     void TurnOnRevertMenu()
     {
-        inRevertConfirm = false;
-        cursorObj.gameObject.SetActive(false);
-        revertMenuProper.gameObject.SetActive(true);
-        mainMenuObj.SetActive(false);
-        _canBeExited = false;
-        currentPos = 0;
-        cursorObjRevert.anchoredPosition = revertMenuPositions[currentPos].anchoredPosition;
-        onRevertProgressMenu = true;
-        _controlStickMoved = true;
+        if (descentScreen)
+        {
 
-        revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textStartColor;
+        }
+        else
+        {
+            inRevertConfirm = false;
+            cursorObj.gameObject.SetActive(false);
+            revertMenuProper.gameObject.SetActive(true);
+            mainMenuObj.SetActive(false);
+            _canBeExited = false;
+            currentPos = 0;
+            cursorObjRevert.anchoredPosition = revertMenuPositions[currentPos].anchoredPosition;
+            onRevertProgressMenu = true;
+            _controlStickMoved = true;
+
+            revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textStartColor;
+        }
     }
     void TurnOffRevertMenu(bool fullExit = false)
     {
@@ -983,10 +996,15 @@ public class LevelUpMenu : MonoBehaviour
 
     }
 
-    public void LockTravel(){
+    public void LockTravel(bool midDescent = false){
         lockOnlyTravel = true;
         canTravel = false;
         allowRevertProgress = true;
-        SetUpRevertProgressScreen();
+        if (!midDescent)
+        {
+            SetUpRevertProgressScreen();
+        }else{
+            SetUpDescentQuitScreen();
+        }
     }
 }

@@ -43,6 +43,7 @@ public class CheckpointS : MonoBehaviour {
 	public BGMLayerS[] musicAtPoint;
     public int addToProgress = -1;
     public bool preMariaCheckpoint;
+    public bool midDescentCheckpoint;
 
 	void Awake(){
 		if (fullCheckpoint){
@@ -65,7 +66,7 @@ public class CheckpointS : MonoBehaviour {
 			PlayerInventoryS.I.AddCheckpoint(Application.loadedLevel, spawnNum);
 			}
 		}
-        if (preMariaCheckpoint){
+        if (preMariaCheckpoint || midDescentCheckpoint){
             _menuManager.levelMenu.LockTravel();
         }
 		if (addToCompletedFights.Length > 0){

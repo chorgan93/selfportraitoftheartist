@@ -60,6 +60,10 @@ public class PlayerAugmentsS : MonoBehaviour {
 	private bool _aetherAug = false;
 	public bool aetherAug { get { return _aetherAug; } }
 
+
+    private bool _ktisisAug = false;
+    public bool ktisisAug { get { return _ktisisAug; } }
+
 	private bool _doubleMantra = false;
 	public bool doubleMantra { get { return _doubleMantra; } }
 
@@ -247,6 +251,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 		_aquaAug = false;
 		_fosAug = false;
 		_aetherAug = false;
+        _ktisisAug = false;
 
         MARKED_AUG = false;
         ASCENDED_AUG = false;
@@ -364,8 +369,13 @@ public class PlayerAugmentsS : MonoBehaviour {
 			_playerReference.EquippedWeapon().weaponNum == 11){
 			_aetherAug = true;
 		}
+        if (_playerReference.EquippedWeaponAug().weaponNum == 12 ||
+        _playerReference.EquippedWeapon().weaponNum == 12)
+        {
+            _ktisisAug = true;
+        }
 
-		if (_playerReference.EquippedWeapon().weaponNum == _playerReference.EquippedWeaponAug().weaponNum){
+        if (_playerReference.EquippedWeapon().weaponNum == _playerReference.EquippedWeaponAug().weaponNum){
 			_doubleMantra = true;
 		}
 	}
