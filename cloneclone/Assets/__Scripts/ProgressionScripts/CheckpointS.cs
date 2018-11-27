@@ -67,7 +67,7 @@ public class CheckpointS : MonoBehaviour {
 			}
 		}
         if (preMariaCheckpoint || midDescentCheckpoint){
-            _menuManager.levelMenu.LockTravel();
+            _menuManager.levelMenu.LockTravel(midDescentCheckpoint);
         }
 		if (addToCompletedFights.Length > 0){
 			for (int i = 0; i<addToCompletedFights.Length;i++){

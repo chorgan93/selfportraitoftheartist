@@ -13,6 +13,7 @@ public class GameDataS {
 	public bool hasUsedMenu = false;
 
 	public float currentDarkness;
+    public float currentDescentDarkness;
 	public int currentLa;
 
     public int lastLoaded = -1;
@@ -33,6 +34,7 @@ public class GameDataS {
 		hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
 
 		currentDarkness = PlayerStatsS._currentDarkness;
+        currentDescentDarkness = PlayerStatsS._descentDarkness;
 		currentLa = PlayerCollectionS.currencyCollected;
 
 		if (PlayerInventoryS.I != null){
@@ -75,7 +77,15 @@ public class GameDataS {
         }
 		InGameMenuManagerS.hasUsedMenu = hasUsedMenu;
 		InGameMenuManagerS.allowMenuUse = canUseMenu;
-		PlayerStatsS._currentDarkness = currentDarkness;
+        if (currentDarkness > 100)
+        {
+            currentDarkness = 100;
+        }
+        PlayerStatsS._currentDarkness = currentDarkness;
+        if (currentDescentDarkness > 100){
+            currentDescentDarkness = 100;
+        }
+        PlayerStatsS._descentDarkness = currentDescentDarkness;
 		PlayerCollectionS.currencyCollected = currentLa;
 
         lastLoaded = 1;

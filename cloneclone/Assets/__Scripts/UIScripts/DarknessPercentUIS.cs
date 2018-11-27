@@ -103,6 +103,7 @@ public class DarknessPercentUIS : MonoBehaviour {
 	public static bool hasReached100 = false;
 	private string firstTime100Scene = "DarknessReviveScene";
 	private string terribleFateScene = "EndingB_00_ColinFarewell";
+    private string descentFailScene = "EndingD_00_DescentFail";
 
     private bool checkedForNatalie = false;
 
@@ -572,10 +573,17 @@ public class DarknessPercentUIS : MonoBehaviour {
 
 		fadeCount = 0f;
 	}
-    public void ActivateDescentReset()
+    public void ActivateDescentReset(bool resetToNormal = false)
     {
         delayFadeOut = delayFadeInTime;
-        saveDeathAmt = displayAmt = pStats.currentDarkness;
+        if (resetToNormal)
+        {
+            saveDeathAmt = displayAmt = pStats.descentDarkness;
+        }
+        else
+        {
+            saveDeathAmt = displayAmt = pStats.currentDarkness;
+        }
         pStats.StartDescentDarkness();
         _allowAdvance = false;
         fadeInDeathNumbers = true;
@@ -587,8 +595,7 @@ public class DarknessPercentUIS : MonoBehaviour {
         deathSequence = true;
         fadeOutRegNumbers = true;
 
-        hasReached100 = true;
-        useDescent = true;
+        useDescent = !resetToNormal;
         fadeCount = 0f;
     }
 

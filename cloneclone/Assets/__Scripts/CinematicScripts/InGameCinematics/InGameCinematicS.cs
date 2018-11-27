@@ -42,6 +42,7 @@ public class InGameCinematicS : MonoBehaviour {
 
 	[Header("Ending Properties")]
 	public bool healDarknessScene = false;
+    public bool descentFailScene = false;
     public bool skippable = false;
     private bool _skipMode = false;
     public bool skipMode { get { return _skipMode;  } }
@@ -197,12 +198,22 @@ public class InGameCinematicS : MonoBehaviour {
 				if (endCinemaScene != ""){
 
 					if (healDarknessScene){
-						DarknessPercentUIS.DPERCENT.ActivateColinReset();
-						CameraEffectsS.E.SetNextScene(GameOverS.tempReviveScene);
-						SpawnPosManager.whereToSpawn = GameOverS.tempRevivePosition;
-					//	GameOverS.tempReviveScene = "";
-					//	GameOverS.tempRevivePosition = 0;
-						BGMHolderS.BG.FadeInAll();
+                        if (descentFailScene)
+                        {
+
+                            DarknessPercentUIS.DPERCENT.ActivateDescentReset(true);
+                            CameraEffectsS.E.SetNextScene(endCinemaScene);
+                            SpawnPosManager.whereToSpawn = endCinemaSpawn;
+                        }
+                        else
+                        {
+                            DarknessPercentUIS.DPERCENT.ActivateColinReset();
+                            CameraEffectsS.E.SetNextScene(GameOverS.tempReviveScene);
+                            SpawnPosManager.whereToSpawn = GameOverS.tempRevivePosition;
+                            //	GameOverS.tempReviveScene = "";
+                            //	GameOverS.tempRevivePosition = 0;
+                            BGMHolderS.BG.FadeInAll();
+                        }
 					}else{
 
 						CameraEffectsS.E.SetNextScene(endCinemaScene);

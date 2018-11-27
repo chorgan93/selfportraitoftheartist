@@ -10,6 +10,7 @@ public class LevelUpMenu : MonoBehaviour
     public RectTransform cursorObjLvl;
     public RectTransform cursorObjTravel;
     public RectTransform cursorObjRevert;
+    public RectTransform cursorObjDescent;
     private int currentPos = 0;
 
     private PlayerController pRef;
@@ -57,9 +58,14 @@ public class LevelUpMenu : MonoBehaviour
     private bool allowRevertProgress = false;
     private int currentRevertConfirmPos;
     private bool inRevertConfirm = false;
+    private bool inExitDescentConfirm = false;
     public GameObject revertMenuConfirm;
     public RectTransform revertMenuConfirmCursor;
     public RectTransform[] revertConfirmPositions;
+
+    public RectTransform[] descentMenuPositions;
+    public GameObject descentMenuProper;
+    private string descentReturnScene = "theDescent_Intro";
 
     private float timeBetweenImageOn = 0.1f;
     private bool doingEffect = false;
@@ -132,7 +138,7 @@ public class LevelUpMenu : MonoBehaviour
     void Update()
     {
 
-        if (!onLevelMenu && !onTravelMenu && !onRevertProgressMenu)
+        if (!onLevelMenu && !onTravelMenu && !onRevertProgressMenu && !inExitDescentConfirm)
         {
 
             _canBeExited = true;
@@ -399,6 +405,106 @@ public class LevelUpMenu : MonoBehaviour
             {
                 _exitButtonDown = true;
                 TurnOffTravelMenu();
+                pRef.ResetTimeMax();
+            }
+        }
+
+        if (inExitDescentConfirm)
+        {
+            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+            {
+                _controlStickMoved = true;
+
+                pRef.ResetTimeMax();
+
+
+                if (myControl.Horizontal() > 0f ||
+                    myControl.Vertical() < 0f)
+                {
+                    pRef.ResetTimeMax();
+                    currentRevertConfirmPos++;
+                    if (currentRevertConfirmPos > 1)
+                    {
+                        currentRevertConfirmPos = 1;
+                    }
+                }
+                else
+                {
+                    pRef.ResetTimeMax();
+                    currentRevertConfirmPos--;
+                    if (currentRevertConfirmPos < 0)
+                    {
+                        currentRevertConfirmPos = 0;
+                    }
+                }
+            }
+            cursorObjDescent.anchoredPosition = descentMenuPositions[currentRevertConfirmPos].anchoredPosition;
+            if (!_selectButtonDown && myControl.GetCustomInput(3))
+            {
+                _selectButtonDown = true;
+                pRef.ResetTimeMax();
+
+                // if yes, revert to selected chapter
+                if (!travelStarted && currentRevertConfirmPos == 1)
+                {
+
+                    revertMenuProper.gameObject.SetActive(false);
+                    travelStarted = true;
+                    _canBeExited = false;
+                    descentMenuProper.gameObject.SetActive(false);
+                    string nextSceneIndex = descentReturnScene;
+                    int nextSceneSpawn = 0;
+
+                    // the below is to prevent "return to last checkpoint" progression breaks
+                    GameOverS.reviveScene = nextSceneIndex;
+                    GameOverS.revivePosition = 0;
+                    DarknessPercentUIS.DPERCENT.ActivateDescentReset();
+
+                    List<int> saveBuddyList = new List<int>();
+                    saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
+                    if (pRef.ParadigmIIBuddy() != null)
+                    {
+                        saveBuddyList.Add(pRef.ParadigmIIBuddy().buddyNum);
+                    }
+                    if (!pRef.isNatalie)
+                    {
+                        PlayerInventoryS.I.SaveLoadout(pRef.equippedWeapons, pRef.subWeapons, saveBuddyList);
+                    }
+
+                    CameraEffectsS.E.SetNextScene(nextSceneIndex);
+                    CameraEffectsS.E.FadeIn();
+
+                    VerseDisplayS.V.EndVerse();
+
+                    SpawnPosManager.whereToSpawn = nextSceneSpawn;
+
+                    pRef.TriggerResting();
+                    PlayerController.doWakeUp = true;
+                    SpawnPosManager.spawningFromTeleport = true;
+
+
+                }
+                else if (!travelStarted && currentRevertConfirmPos == 0)
+                {
+                    // go back to previous menu
+                    currentRevertConfirmPos = 0;
+                    inExitDescentConfirm = false;
+                    TurnOffRevertMenu(false);
+                }
+            }
+            if (!_exitButtonDown && myControl.GetCustomInput(1) && !travelStarted)
+            {
+                if (currentRevertConfirmPos == 1)
+                {
+                    currentRevertConfirmPos = 0;
+                }
+                else
+                {
+                    inExitDescentConfirm = false;
+                    descentMenuProper.SetActive(false);
+                }
+                _exitButtonDown = true;
                 pRef.ResetTimeMax();
             }
         }
@@ -752,6 +858,7 @@ public class LevelUpMenu : MonoBehaviour
         _exitButtonDown = true;
         _controlStickMoved = true;
 
+        cursorObj.gameObject.SetActive(true);
         cursorObj.anchoredPosition = mainMenuSelectPositions[currentPos].anchoredPosition;
         mainMenuTextObjs[currentPos].fontSize = Mathf.RoundToInt(textStartSize * textSelectSizeMult);
         mainMenuTextObjs[currentPos].color = Color.white;
@@ -933,13 +1040,23 @@ public class LevelUpMenu : MonoBehaviour
 
     void SetUpDescentQuitScreen(){
         descentScreen = true;
+        mainMenuTextObjs[2].text = "End Descent";
     }
 
     void TurnOnRevertMenu()
     {
         if (descentScreen)
         {
-
+            inExitDescentConfirm = true;
+            currentPos = 0;
+            currentRevertConfirmPos = 0;
+            _canBeExited = false;
+            mainMenuObj.SetActive(false);
+            cursorObj.gameObject.SetActive(false);
+            _controlStickMoved = true;
+            cursorObjDescent.anchoredPosition = descentMenuPositions[currentPos].anchoredPosition;
+            descentMenuProper.gameObject.SetActive(true);
+            Debug.Log("In descent screen!");
         }
         else
         {
@@ -965,7 +1082,9 @@ public class LevelUpMenu : MonoBehaviour
         currentPos = 2;
             onRevertProgressMenu = false;
     }
+        descentMenuProper.SetActive(false);
         inRevertConfirm = false;
+        inExitDescentConfirm = false;
         revertMenuProper.gameObject.SetActive(false);
     }
 
