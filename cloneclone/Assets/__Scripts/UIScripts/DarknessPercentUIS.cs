@@ -118,6 +118,7 @@ public class DarknessPercentUIS : MonoBehaviour {
     float cutsceneTargetNum = 0;
 
     private bool useDescent = false;
+    public bool UseDescent { get { return useDescent; }}
 
     [Header("Transform Properties")]
     public GameObject transformEffect;

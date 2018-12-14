@@ -243,6 +243,8 @@ public class PlayerStatsS : MonoBehaviour {
     private bool _isMarked = false;
     public bool isMarked { get { return _isMarked; }}
 
+    private bool dontAddAmbientDarkness = false;
+
 	//_____________________________________UNITY FUNCTIONS
 
 	// Use this for initialization
@@ -490,7 +492,7 @@ public class PlayerStatsS : MonoBehaviour {
 	//________________________________________PRIVATE FUNCTIONS
 
 	private void DarknessAdd(){
-        if (!PlayerIsDead() && !myPlayerController.talking && !arcadeMode && ((_currentDarkness < 100f && !_useDescent) || (_descentDarkness < 100f & _useDescent))){
+        if (!PlayerIsDead() && !myPlayerController.talking && !dontAddAmbientDarkness && !arcadeMode && ((_currentDarkness < 100f && !_useDescent) || (_descentDarkness < 100f & _useDescent))){
             if (!_isMarked)
             {
                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG) {
@@ -1672,5 +1674,9 @@ public class PlayerStatsS : MonoBehaviour {
 
     public void SetDescentState(bool useDescent){
         _useDescent = useDescent;
+    }
+
+    public void TurnOffAmbientDarknessGain(){
+        dontAddAmbientDarkness = true;
     }
 }

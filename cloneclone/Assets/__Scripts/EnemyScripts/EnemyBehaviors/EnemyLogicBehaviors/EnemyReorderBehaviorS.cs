@@ -9,6 +9,8 @@ public class EnemyReorderBehaviorS : EnemyBehaviorS {
 	private List<EnemyBehaviorS> possBehaviors = new List<EnemyBehaviorS>();
 	private int behaviorToExecute;
 
+    public bool debugReorder;
+
 	public override void StartAction(bool setAnimTrigger=false){
 
 		if (possBehaviors.Count <= 0){
@@ -30,7 +32,7 @@ public class EnemyReorderBehaviorS : EnemyBehaviorS {
 		//myEnemyReference.OverrideSpacingRequirement = true;
 			possBehaviors[behaviorToExecute].StartAction();
 
-		// Debug.Log("set current behavior to step " + selectedBehaviorStep);
+        if (debugReorder) { Debug.Log("set current behavior to step " + selectedBehaviorStep, myEnemyReference.gameObject); }
 
 	}
 

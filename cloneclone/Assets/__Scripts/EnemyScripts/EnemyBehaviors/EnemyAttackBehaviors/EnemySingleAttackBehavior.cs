@@ -162,7 +162,7 @@ public class EnemySingleAttackBehavior : EnemyBehaviorS {
 				canContinue = false;
 			}
 		}
-
+        //Debug.Log(behaviorName + " is in range? " + canContinue, myEnemyReference.gameObject);
 		return canContinue;
 
 	}

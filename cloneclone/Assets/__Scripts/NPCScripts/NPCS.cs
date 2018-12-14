@@ -61,6 +61,7 @@ public class NPCS : MonoBehaviour {
 
     [Header("Special Properties")]
     public GameObject activateOnTalkEnd;
+    public int activateOnEndStep = -1;
 
 
 	
@@ -162,7 +163,13 @@ public class NPCS : MonoBehaviour {
 								newMix.SetActive(true);
 							}
                             if (activateOnTalkEnd){
-                                activateOnTalkEnd.SetActive(true);
+                                if (activateOnEndStep > -1 && activateOnEndStep == currentDialogue - 1)
+                                {
+                                    activateOnTalkEnd.SetActive(true);
+                                }else if (activateOnEndStep <= -1)
+                                {
+                                    activateOnTalkEnd.SetActive(true);
+                                }
                             }
 							if (isWaiting){
 								_myAnimator.ResetTrigger(talkKey);

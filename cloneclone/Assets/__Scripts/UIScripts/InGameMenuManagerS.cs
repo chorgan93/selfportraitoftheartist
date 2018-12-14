@@ -43,13 +43,17 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private bool gamePaused = false;
 	public bool isPaused { get { return gamePaused; } }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    private void Awake()
+    {
+        // need this in awake for descent scenes
+        levelUpMenu = GetComponentInChildren<LevelUpMenu>();
+
+    }
+    void Start () {
 
 		gameMenu = GetComponentInChildren<GameMenuS>();
 		equipMenu = GetComponentInChildren<EquipMenuS>();
-		levelUpMenu = GetComponentInChildren<LevelUpMenu>();
-
 		_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
 
 		gameMenu.SetManager(this);

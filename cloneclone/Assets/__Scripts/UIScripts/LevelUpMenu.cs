@@ -445,7 +445,7 @@ public class LevelUpMenu : MonoBehaviour
                 _selectButtonDown = true;
                 pRef.ResetTimeMax();
 
-                // if yes, revert to selected chapter
+                // if yes, end descent
                 if (!travelStarted && currentRevertConfirmPos == 1)
                 {
 
@@ -459,7 +459,7 @@ public class LevelUpMenu : MonoBehaviour
                     // the below is to prevent "return to last checkpoint" progression breaks
                     GameOverS.reviveScene = nextSceneIndex;
                     GameOverS.revivePosition = 0;
-                    DarknessPercentUIS.DPERCENT.ActivateDescentReset();
+                    DarknessPercentUIS.DPERCENT.ActivateDescentReset(true);
 
                     List<int> saveBuddyList = new List<int>();
                     saveBuddyList.Add(pRef.ParadigmIBuddy().buddyNum);
@@ -503,6 +503,7 @@ public class LevelUpMenu : MonoBehaviour
                 {
                     inExitDescentConfirm = false;
                     descentMenuProper.SetActive(false);
+                    TurnOffRevertMenu(false);
                 }
                 _exitButtonDown = true;
                 pRef.ResetTimeMax();
@@ -1124,6 +1125,9 @@ public class LevelUpMenu : MonoBehaviour
             SetUpRevertProgressScreen();
         }else{
             SetUpDescentQuitScreen();
+
+            // also turn off player ambient darkness
+            GameObject.Find("Player").GetComponent<PlayerStatsS>().TurnOffAmbientDarknessGain();
         }
     }
 }

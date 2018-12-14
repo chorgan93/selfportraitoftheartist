@@ -31,6 +31,8 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 	private int currentActingBehavior = 0;
 	public int currentBehaviorStep { get { return currentActingBehavior; } }
+
+    public bool debugBehaviorState = false;
 	
 
 	public bool isActive(){
@@ -88,9 +90,13 @@ public class EnemyBehaviorStateS : MonoBehaviour {
                 behaviorSet[currentActingBehavior].GetComponent<EnemySingleAttackBehavior>().dodgeCheck = overrideDodge;
             }
         }
-		behaviorSet[currentActingBehavior].StartAction();
+		behaviorSet[currentActingBehavior].StartAction(); 
+        if (debugBehaviorState)
+        {
+            Debug.Log("Starting behavior: " + behaviorSet[currentActingBehavior].behaviorName, myEnemy.gameObject);
+        }
 
-	}
+    }
 
 	public void NextBehavior(){
 
@@ -107,6 +113,9 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 
 		if (!_doNotActAgain){
 			behaviorSet[currentActingBehavior].StartAction();
+            if (debugBehaviorState){
+                Debug.Log("Starting behavior: " + behaviorSet[currentActingBehavior].behaviorName, myEnemy.gameObject);
+            }
 		}
 
 	}
@@ -148,8 +157,12 @@ public class EnemyBehaviorStateS : MonoBehaviour {
 		if (newBehavior < behaviorSet.Length){
 			CancelAllActions();
 			SetActingBehaviorNum(newBehavior);
-			behaviorSet[newBehavior].StartAction();
-		}
+			behaviorSet[newBehavior].StartAction(); 
+            if (debugBehaviorState)
+            {
+                Debug.Log("Starting behavior: " + behaviorSet[newBehavior].behaviorName, myEnemy.gameObject);
+            }
+        }
 	}
 
 	public void CancelAllActions(){
