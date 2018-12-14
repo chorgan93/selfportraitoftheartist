@@ -399,20 +399,20 @@ public class RankUIS : MonoBehaviour {
     float GetScoreReduce(int rankNum){
         float descentMult = 1f;
         if (DarknessPercentUIS.DPERCENT.UseDescent) {
-            descentMult = 5f;
+            descentMult = 10f;
         }
         switch(rankNum){
             case(0):
                 return -0.25f*descentMult;
 
             case (1):
-                return -0.5f;
+                return -0.5f * descentMult; ;
 
             case (2):
-                return -1.5f;
+                return -1.5f * descentMult; ;
 
             case (3):
-                return -3f;
+                return -3f * descentMult; ;
 
             default:
                 return 0f;

@@ -33,6 +33,7 @@ public class DestructibleItemS : EnemyS {
 	public int onlyTakeDamageFromWeapon = -1;
 
 	public float destroySleepTime = 0.1f;
+    public bool cantDieDestructible = false;
 
 	// Use this for initialization
 	void Start () {
@@ -111,7 +112,10 @@ public class DestructibleItemS : EnemyS {
 	public void TakeDamage(float dmgAmt, float destructionRotation, Vector3 hitPos, int weaponNum){
 
 		if (onlyTakeDamageFromWeapon <= -1 || (onlyTakeDamageFromWeapon > -1 && onlyTakeDamageFromWeapon == weaponNum)){
-			_currentDestructibleHealth -= dmgAmt;
+            if (!cantDieDestructible)
+            {
+                _currentDestructibleHealth -= dmgAmt;
+            }
 
 				if (_currentDestructibleHealth <= 0){
 				_myDestructibleCollider.enabled = false;
