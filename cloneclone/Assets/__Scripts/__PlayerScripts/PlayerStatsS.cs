@@ -272,7 +272,14 @@ public class PlayerStatsS : MonoBehaviour {
 			godMode = !godMode;
 		}
 		if (Input.GetKey(KeyCode.Alpha5)){
-			_currentDarkness += 10f;
+            if (_useDescent)
+            {
+                _descentDarkness += 10f;
+            }
+            else
+            {
+                _currentDarkness += 10f;
+            }
 		}
 		#endif
 	}

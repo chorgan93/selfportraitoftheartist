@@ -92,6 +92,7 @@ public class TrainCarS : MonoBehaviour {
 
 
 	private bool messageIsUp = false;
+    public bool descentTrain = false;
 
 
 	public Collider[] exitColliders;
@@ -101,7 +102,7 @@ public class TrainCarS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		if (currentStop < -1){
+        if (currentStop < -1 && !descentTrain){
 			SetFakeTrain();
 		}else{
 			onOnFake.SetActive(false);
@@ -193,8 +194,11 @@ public class TrainCarS : MonoBehaviour {
 			HandleRumble();
 			ManageShake();
 			if (!doingFakeTrain){
-			timeToNextStop -= Time.deltaTime;
-			nextStopMessageCountdown -= Time.deltaTime;
+                if (timeToNextStop < 9999)
+                { // easy combat train check
+                    timeToNextStop -= Time.deltaTime;
+                    nextStopMessageCountdown -= Time.deltaTime;
+                }
 			if (nextStopMessageCountdown <= 0 && !nextStopMessageGiven){
 
 				nextStopMessageGiven = true;
@@ -263,6 +267,12 @@ public class TrainCarS : MonoBehaviour {
 		rumbleEnd = true;
 	}
 
+    public void EndTrainExternal(){
+        EndRumble();
+        trainIsMoving = false;
+        CameraShakeS.C.LargeShake();
+    }
+
 	void HandleRumble(){
 		if (rumbleEnd){
 			rumbleAdjustCount -= Time.deltaTime;
@@ -311,7 +321,9 @@ public class TrainCarS : MonoBehaviour {
 	}
 
 	void SetSceneChanges(){
-
+        if (descentTrain){
+            return;
+        }
 		if (currentStop < -1){
 			currentStopString = checkpointStartScene;
 

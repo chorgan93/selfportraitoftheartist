@@ -1,13 +1,11 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/NPCScripts/DestructibleItemS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LevelScripts/ActivateOnCombatS.cs">
     <Files>
-      <File FileName="Assets/__Scripts/GenerationScripts/EnemySpawnerS.cs" Line="1" Column="1" />
-      <File FileName="Assets/__Scripts/NPCScripts/NPCS.cs" Line="171" Column="71" />
-      <File FileName="Assets/__Scripts/UIScripts/LevelUpMenu.cs" Line="504" Column="50" />
-      <File FileName="Assets/__Scripts/UIScripts/DarknessPercentUIS.cs" Line="621" Column="26" />
-      <File FileName="Assets/__Scripts/UIScripts/RankingScripts/RankUIS.cs" Line="400" Column="32" />
-      <File FileName="Assets/__Scripts/NPCScripts/DestructibleItemS.cs" Line="115" Column="37" />
+      <File FileName="Assets/__Scripts/UIScripts/DarknessPercentUIS.cs" Line="9" Column="6" />
+      <File FileName="Assets/__Scripts/UIScripts/FadeScreenUI.cs" Line="241" Column="13" />
+      <File FileName="Assets/__Scripts/__PlayerScripts/PlayerStatsS.cs" Line="277" Column="33" />
+      <File FileName="Assets/__Scripts/LevelScripts/ActivateOnCombatS.cs" Line="34" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

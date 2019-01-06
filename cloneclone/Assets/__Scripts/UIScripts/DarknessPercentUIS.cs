@@ -363,7 +363,10 @@ public class DarknessPercentUIS : MonoBehaviour {
 	}
 
 	public string Return100Scene(){
-		if (!hasReached100){
+        if (useDescent){
+            return descentFailScene;
+        }
+		else if (!hasReached100){
 			return firstTime100Scene;
 		}else{
 			return terribleFateScene;

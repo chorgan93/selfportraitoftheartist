@@ -230,6 +230,15 @@ public class EnemyDetectS : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		
 		if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Destructible"){
+
+            if (other.gameObject.tag == "Destructible"){
+                DestructibleItemS destructibleItem = other.gameObject.GetComponent<DestructibleItemS>();
+                if (destructibleItem != null){
+                    if (destructibleItem.dontAddToCamera){
+                        return;
+                    }
+                }
+            }
 			
 			EnemyS otherEnemy = other.gameObject.GetComponent<EnemyS>();
 			if (!otherEnemy){

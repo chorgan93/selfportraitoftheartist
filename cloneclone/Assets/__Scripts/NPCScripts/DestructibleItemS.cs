@@ -34,6 +34,7 @@ public class DestructibleItemS : EnemyS {
 
 	public float destroySleepTime = 0.1f;
     public bool cantDieDestructible = false;
+    public bool dontAddToCamera;
 
 	// Use this for initialization
 	void Start () {
