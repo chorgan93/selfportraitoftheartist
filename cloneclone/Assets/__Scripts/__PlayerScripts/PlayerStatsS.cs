@@ -82,7 +82,7 @@ public class PlayerStatsS : MonoBehaviour {
     public static float _descentDarkness = 0f;
 	public float currentDarkness {get { return _currentDarkness; } }
     public float descentDarkness { get { return _descentDarkness; } }
-    private float descentDarknessMultiplier = 2f;
+    private float descentDarknessMultiplier = 1.5f;
     private bool _useDescent = false;
 
     //________________________________MANA

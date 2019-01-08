@@ -397,22 +397,34 @@ public class RankUIS : MonoBehaviour {
 	}
 
     float GetScoreReduce(int rankNum){
-        float descentMult = 1f;
-        if (DarknessPercentUIS.DPERCENT.UseDescent) {
-            descentMult = 10f;
-        }
         switch(rankNum){
             case(0):
-                return -0.25f*descentMult;
+                if (DarknessPercentUIS.DPERCENT.UseDescent)
+                {
+                   return -1.5f;
+                }
+                return -0.25f;
 
             case (1):
-                return -0.5f * descentMult; ;
+                if (DarknessPercentUIS.DPERCENT.UseDescent)
+                {
+                    return -3f;
+                }
+                return -0.5f;
 
             case (2):
-                return -1.5f * descentMult; ;
+                if (DarknessPercentUIS.DPERCENT.UseDescent)
+                {
+                    return -7f;
+                }
+                return -1.5f;
 
             case (3):
-                return -3f * descentMult; ;
+                if (DarknessPercentUIS.DPERCENT.UseDescent)
+                {
+                    return -10f;
+                }
+                return -3f;
 
             default:
                 return 0f;

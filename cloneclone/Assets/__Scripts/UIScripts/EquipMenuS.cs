@@ -190,6 +190,10 @@ public class EquipMenuS : MonoBehaviour {
 		onMainScreen = true;
 		mapScreen.gameObject.SetActive(false);
 
+        if (DarknessPercentUIS.DPERCENT.UseDescent){
+            mapToUse = -1;
+        }
+
 		if (openSound){
 			Instantiate(openSound);
 		}

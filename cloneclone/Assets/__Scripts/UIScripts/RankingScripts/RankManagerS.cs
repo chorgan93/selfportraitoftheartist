@@ -143,13 +143,13 @@ public class RankManagerS : MonoBehaviour
 
 			if (currentDmgAdvance > 0){
 			if (currentReductionState < timeForReductionPenalties.Length){
-			timeSinceDealingDmg += Time.deltaTime;
+                    timeSinceDealingDmg += Time.deltaTime*_descentMult;
 			if (timeSinceDealingDmg >= timeForReductionPenalties[currentReductionState] && currentReductionState < timeForReductionPenalties.Length){
 				currentReductionState++;
 			}
 			}
 				if (currentReductionState > 0){
-					currentDmgAdvance-=reductionPenalties[currentReductionState-1]*Time.deltaTime;
+                    currentDmgAdvance-=reductionPenalties[currentReductionState-1]*Time.deltaTime*_descentMult;
 
 					if (currentDmgAdvance <= 0){
 						currentDmgAdvance = 0;
@@ -180,7 +180,9 @@ public class RankManagerS : MonoBehaviour
 			myUI.Initialize(this);
 			_initialized = true;
 		}
-	} 
+	}
+
+    float _descentMult = 2f;
 
 	public void StartCombat(int targetTime, List<int> scores, int combatID, CombatManagerS finalCombat, bool continuation = false, float speedMult = 1f){
 
@@ -236,7 +238,8 @@ public class RankManagerS : MonoBehaviour
 			savedCombatIDs.Add(currentCombatID);
 		}
         myUI.ChangeSpeedMult(speedMult);
-	}
+        _descentMult = DarknessPercentUIS.DPERCENT.UseDescent ? 2f : 1f;
+    }
 
 	public void RestartCombat(){
 		if (rankEnabled){
@@ -323,7 +326,7 @@ public class RankManagerS : MonoBehaviour
 		if (rankEnabled && !stopScoring){
 			_noDamage = false;
 			if (currentDmgAdvance > 0){
-			currentDmgAdvance -= dmgAdvanceReductionPenalties[currentMultiplierStage];
+                currentDmgAdvance -= dmgAdvanceReductionPenalties[currentMultiplierStage]*_descentMult;
 				myUI.UpdateMultBar();
 			if (currentDmgAdvance <= 0){
 				currentDmgAdvance = 0;
@@ -357,13 +360,13 @@ public class RankManagerS : MonoBehaviour
 			if (isCritical){
 				scoreToAdd *= CRIT_SCORE_MULT;
 			}	
-			currentRankAdd += Mathf.RoundToInt(scoreToAdd);
+            currentRankAdd += Mathf.RoundToInt(scoreToAdd/_descentMult);
 
 			if (currentDmgAdvance < 0){
 				currentDmgAdvance = 0;
 			}
 			currentReductionState = 0;
-		currentDmgAdvance += dmgAmount;
+            currentDmgAdvance += dmgAmount/_descentMult;
 			while (currentDmgAdvance > dmgToAdvanceMultipliers[currentMultiplierStage]){
 			if (currentMultiplierStage < multiplierStages.Length-1){
 					currentDmgAdvance -= dmgToAdvanceMultipliers[currentMultiplierStage];

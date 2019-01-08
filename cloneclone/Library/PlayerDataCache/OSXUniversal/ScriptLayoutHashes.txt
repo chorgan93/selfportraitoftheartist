@@ -249,6 +249,15 @@ Assets/_Scenes/TheDescentScenes/theDescent_09.unity
 Assets/_Scenes/TheDescentScenes/theDescent_10.unity
 Assets/_Scenes/TheDescentScenes/theDescent_11.unity
 Assets/_Scenes/TheDescentScenes/theDescent_12.unity
+Assets/_Scenes/TheDescentScenes/theDescent_13.unity
+Assets/_Scenes/TheDescentScenes/theDescent_14.unity
+Assets/_Scenes/TheDescentScenes/theDescent_15.unity
+Assets/_Scenes/TheDescentScenes/theDescent_16.unity
+Assets/_Scenes/TheDescentScenes/theDescent_17.unity
+Assets/_Scenes/TheDescentScenes/theDescent_18.unity
+Assets/_Scenes/TheDescentScenes/theDescent_19.unity
+Assets/_Scenes/TheDescentScenes/theDescent_20.unity
+Assets/_Scenes/EndingScenes/DescentIntroColinScene.unity
 SceneListEnd?
 5d53f88255f0e8c23302b4949b5d3335 Assembly-CSharp.dll:.MantraSwitchS
 9c17711e3592beff8121fe95b850c1a2 Assembly-CSharp.dll:.AllyFollowS
@@ -726,7 +735,7 @@ ae0fa6aaa5e980f190fd2479500fab1a Assembly-CSharp-firstpass.dll:UnityStandardAsse
 846e13f6b509bedbd77270d9c9d5070d Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Vortex
 919a573efe7a156ebe924b94165a1f13 Assembly-CSharp.dll:.NatalieOverrideS
 d117de881dd81e49512374e24843209d Assembly-CSharp.dll:.CameraFollowS
-ef00a490585df304d51e7b792a4f440b Assembly-CSharp.dll:.InGameCinematicS
+339978a51d704e0ae67a3f3ebbe8d8d2 Assembly-CSharp.dll:.InGameCinematicS
 5bb4ae1e08c6010c306434f3a366982e Assembly-CSharp.dll:.ReflectColorChange
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.DifficultyS
 e6e0bf01f59e844159f92424abe4f940 Assembly-CSharp.dll:.BarrierS

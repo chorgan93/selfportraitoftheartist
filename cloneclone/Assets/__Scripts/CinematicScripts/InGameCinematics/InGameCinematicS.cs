@@ -61,6 +61,10 @@ public class InGameCinematicS : MonoBehaviour {
     public bool turnOffAllMusic = false;
     public bool turnOffPlayerSprite = false;
 
+
+    [Header("Descent Properties")]
+    public bool doDescentReset = false;
+
 	// Use this for initialization
 	void Awake () {
 	
@@ -216,7 +220,11 @@ public class InGameCinematicS : MonoBehaviour {
                         }
 					}else{
 
-						CameraEffectsS.E.SetNextScene(endCinemaScene);
+                        if (doDescentReset)
+                        {
+                            DarknessPercentUIS.DPERCENT.ActivateDescentReset();
+                        }
+                        CameraEffectsS.E.SetNextScene(endCinemaScene);
 						SpawnPosManager.whereToSpawn = endCinemaSpawn;
 					}
 				if (resetInventoryStats){
