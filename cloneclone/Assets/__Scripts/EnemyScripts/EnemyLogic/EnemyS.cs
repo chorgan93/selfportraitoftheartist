@@ -51,6 +51,7 @@ public class EnemyS : MonoBehaviour {
 	public float maxHealth;
 	public float maxCritDamage = 9999f;
 	public float maxCritTime = 3f;
+    public float rewindSickness = 1f;
 	private float currentCritTime = 0f;
 	private float currentCritDamage;
 	public float cinematicKillAt = 0f;
@@ -602,7 +603,7 @@ public class EnemyS : MonoBehaviour {
 
 	}
 
-	public void Reinitialize(){
+	public void Reinitialize(bool fromRewind = true){
 
 		_isDead = false;
 		myShadow.GetComponent<EnemyShadowS>().Reinitialize();
@@ -688,6 +689,10 @@ public class EnemyS : MonoBehaviour {
 		_myRigidbody.velocity = Vector3.zero;
 
 		myRenderer.color = startColor;
+
+        if (fromRewind){
+            RewindSickness();
+        }
 
 		/*if (healthBarReference != null){
 			EffectSpawnManagerS.E.SpawnEnemyHealthBar(this);
@@ -838,7 +843,7 @@ public class EnemyS : MonoBehaviour {
 				}
 				_myAnimator.SetLayerWeight(1, 0f);
 			_hitStunned = false;
-		}
+            }
 		}
 
 		if (_currentState == null){
@@ -1250,9 +1255,12 @@ public class EnemyS : MonoBehaviour {
 
 	public void SetStunStatus(bool setStun){
 		_canBeStunned = setStun;
-		_hitStunned = false;
-		currentKnockbackCooldown = 0f;
-		_myAnimator.SetLayerWeight(1,0f);
+        if (!setStun)
+        {
+            _hitStunned = false;
+            currentKnockbackCooldown = 0f;
+            _myAnimator.SetLayerWeight(1, 0f);
+        }
 	}
 
 	public void SetVulnerableTiming(float duration, float delay){
@@ -1284,6 +1292,11 @@ public class EnemyS : MonoBehaviour {
 		myRenderer.material.SetColor("_FlashColor", Color.white);
 		flashFrames = FLASH_FRAME_COUNT;
 	}
+
+    void RewindSickness(){
+        Stun(rewindSickness, true);
+        Debug.Log("Did rewind sickness!");
+    }
 
 	public void AutoCrit(Vector3 knockback, float critTime, int doubleTime = 0){
 		_isVulnerable = true;

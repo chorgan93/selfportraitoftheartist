@@ -257,6 +257,8 @@ Assets/_Scenes/TheDescentScenes/theDescent_17.unity
 Assets/_Scenes/TheDescentScenes/theDescent_18.unity
 Assets/_Scenes/TheDescentScenes/theDescent_19.unity
 Assets/_Scenes/TheDescentScenes/theDescent_20.unity
+Assets/_Scenes/TheDescentScenes/theDescent_21.unity
+Assets/_Scenes/TheDescentScenes/theDescent_22.unity
 Assets/_Scenes/EndingScenes/DescentIntroColinScene.unity
 SceneListEnd?
 5d53f88255f0e8c23302b4949b5d3335 Assembly-CSharp.dll:.MantraSwitchS
@@ -520,7 +522,7 @@ b5ea684cd9281d2a0e3ce37539989772 Assembly-CSharp.dll:.TrackingEffectS
 7db77e5ca622ea8d1595055d59debca7 Assembly-CSharp.dll:.AddCheckpointSceneS
 4daad3e538d01dba3391c12b63c910d7 Assembly-CSharp.dll:.SetBuddyUnlockS
 c6f2bd5644d8bf2b83138505eee57bc7 Assembly-CSharp.dll:.RefreshDisplayS
-dc5171f9e6cf2a1cd9540ada5004d0b6 Assembly-CSharp.dll:.EnemyS
+a0f023d29f8c26fad1b2e5ad66e57f1a Assembly-CSharp.dll:.EnemyS
 d2c40c2316caea0c9184290bf1423def Assembly-CSharp.dll:.EquipMenuS
 8a12dca2292e09c8a35044bdd7026317 Assembly-CSharp.dll:.ProjectileTrailS
 6b9f0e2422222c90dd5767134b59c945 Assembly-CSharp.dll:.CombatGiverUIItemS
@@ -614,7 +616,7 @@ c497692f86644b9e49e35f5ffc3d51a2 Assembly-CSharp.dll:.ChapterTrigger
 bce98673e32218a2a241d74fd5e512d4 Assembly-CSharp.dll:.ScrollingEnvironmentS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.PostEffectsHelper
 39238020e5d36749c5a3f9bc979384cf Assembly-CSharp.dll:.ExamineTriggerS
-fb3bff8cdaf28aefdaa847c2e77b52f7 Assembly-CSharp.dll:.DestructibleItemS
+9c22d3071090f2453af5ebb0039b7669 Assembly-CSharp.dll:.DestructibleItemS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.RandomScalingEffectS
 f9cfd8d5300b5bcccc91b7b91391d934 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.ScreenSpaceAmbientOcclusion
 354fdad551e7bf10c293d806153c8578 Assembly-CSharp.dll:.PlayerAugmentsS
@@ -675,7 +677,7 @@ f6bdbf5799c64a89f9a16a40359919f4 Assembly-CSharp.dll:.RankUIS
 c8f74fe09401c83fe1fb6db0f0b6b152 Assembly-CSharp.dll:.SacramentBGMS
 b3dda81d4fa5b5f5f88e4dce3cc71a69 Assembly-CSharp.dll:.CombatGiverS
 0651ce8f15ce3c3ddebb3aa877f60c83 Assembly-CSharp.dll:.RandomOnS
-9d8d61257a9ee734ccd65f17143e4cb5 Assembly-CSharp.dll:.CameraEffectsS
+d700e236fde0f5c2eae1f7e028b1fd4e Assembly-CSharp.dll:.CameraEffectsS
 d6173ef12d22d12b62e94861dfee9c80 Assembly-CSharp.dll:.ImageGlowS
 a9e9d0a79be6b9eec0517fa6b75a2e9d Assembly-CSharp.dll:.CinematicHandlerS
 486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -849,3 +851,4 @@ c97560dd4559ff36e6c90ca9f866325e Assembly-CSharp.dll:.CheckForPetAchievementS
 69c0acc1aaba3ac825a78d820eafa7a2 Assembly-CSharp.dll:.DarknessPercentUIS
 adbe5a51e0ae408e34c07c82bb2f4c41 Assembly-CSharp.dll:.NormalizeTimeScaleS
 70d91b2041125e666948562751bc8afc Assembly-CSharp.dll:.SwayEffectS
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnemyResetMaskS

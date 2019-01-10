@@ -152,11 +152,11 @@ public class EnemySpawnerS : MonoBehaviour {
 
 	}
 
-	public void RespawnEnemies(bool usedSaveSpawn = true){
+	public void RespawnEnemies(bool usedSaveSpawn = true, bool rewind = true){
 
 		if (!didNotSpawnEnemy && currentEnemyReference != null){
 			currentEnemyReference.gameObject.SetActive(true);
-			currentEnemyReference.Reinitialize();
+			currentEnemyReference.Reinitialize(rewind);
 			if (usedSaveSpawn){
 				currentEnemyReference.transform.position = savedSpawnPt;
 			}else{

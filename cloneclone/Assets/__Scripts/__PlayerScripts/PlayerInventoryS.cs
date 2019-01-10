@@ -872,6 +872,11 @@ public class PlayerInventoryS : MonoBehaviour
         }
         _iManager.RefreshUI();
     }
+    public void RewindHealthEssences(int savedNum){
+        if (savedNum <= chargeNums.Count){
+            _collectedItemCount[_collectedItems.IndexOf(1)] = savedNum;
+        }
+    }
 
     public void SaveLoadout(List<PlayerWeaponS> wepList, List<PlayerWeaponS> subList, List<int> equipBuds)
     {

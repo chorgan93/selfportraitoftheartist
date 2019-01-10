@@ -184,7 +184,7 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 				int numToSpawn = Mathf.RoundToInt(Random.Range(0, availSpawns.Count-1));
 				if (availSpawns[numToSpawn].enemySpawned){
 					if (availSpawns[numToSpawn].currentSpawnedEnemy.isDead || !availSpawns[numToSpawn].currentSpawnedEnemy.gameObject.activeSelf){
-						availSpawns[numToSpawn].RespawnEnemies(false);
+						availSpawns[numToSpawn].RespawnEnemies(false, false);
 						//spawnedEnemy = true;
 					}
 				}else{
@@ -195,7 +195,7 @@ public class EnemySpawnEnemyBehavior : EnemyBehaviorS {
 			}else if (availSpawns.Count <= 1){
 				if (availSpawns[0].enemySpawned){
 				if (availSpawns[0].currentSpawnedEnemy.isDead || !availSpawns[0].currentSpawnedEnemy.gameObject.activeSelf){
-					availSpawns[0].RespawnEnemies(false);
+					availSpawns[0].RespawnEnemies(false, false);
 					//spawnedEnemy = true;
 				}
 				}

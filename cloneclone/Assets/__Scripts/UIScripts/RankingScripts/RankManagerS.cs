@@ -143,7 +143,7 @@ public class RankManagerS : MonoBehaviour
 
 			if (currentDmgAdvance > 0){
 			if (currentReductionState < timeForReductionPenalties.Length){
-                    timeSinceDealingDmg += Time.deltaTime*_descentMult;
+                    timeSinceDealingDmg += Time.deltaTime;
 			if (timeSinceDealingDmg >= timeForReductionPenalties[currentReductionState] && currentReductionState < timeForReductionPenalties.Length){
 				currentReductionState++;
 			}

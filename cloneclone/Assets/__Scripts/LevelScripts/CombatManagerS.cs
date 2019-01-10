@@ -74,6 +74,11 @@ public class CombatManagerS : MonoBehaviour {
     public float rankEndSpeedMult = 1f;
 
     private bool autoComplete = false; // for the ng+ final christian fight
+
+    // new rewind properties
+    float darknessAtStart;
+    float descentAtStart;
+    int healsAtStart;
 	
 	// Update is called once per frame
 	void Update () {
@@ -242,8 +247,8 @@ public class CombatManagerS : MonoBehaviour {
 
 		foreach (EnemySpawnerS e in enemies){
 			e.myManager = this;
-			if (e.gameObject.activeSelf){
-				e.RespawnEnemies();
+			if (e.gameObject.activeSelf){ // spawner has been activated, aka this is a rewound combat
+				e.RespawnEnemies(true);
 			}else{
 				e.gameObject.SetActive(true);
 			}
@@ -277,6 +282,11 @@ public class CombatManagerS : MonoBehaviour {
 				playerRef.myBuddy.transform.position = _resetPos+buddyPos;
 			}
 			playerRef.transform.position = _resetPos;
+            PlayerStatsS._currentDarkness = darknessAtStart;
+            PlayerStatsS._descentDarkness = descentAtStart;
+            if (healsAtStart > 0){
+                PlayerInventoryS.I.RewindHealthEssences(healsAtStart);
+            }
 			RankManagerS.R.RestartCombat();
 
 		}else{
@@ -298,6 +308,9 @@ public class CombatManagerS : MonoBehaviour {
 				PlayerInventoryS.I.dManager.SetBattleBlood();
 			}
 			playerRef.ChangeParryRange(changeParryRange, turnOffSlowing, enemyDetectionMult);
+            darknessAtStart = PlayerStatsS._currentDarkness;
+            descentAtStart = PlayerStatsS._descentDarkness;
+            healsAtStart = PlayerInventoryS.I.GetItemCount(1);
 		}
 
 		if (combatCondition != CombatSpecialCondition.None){

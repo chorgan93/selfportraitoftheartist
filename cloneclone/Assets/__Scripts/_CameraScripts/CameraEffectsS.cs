@@ -34,14 +34,21 @@ public class CameraEffectsS : MonoBehaviour {
 	private bool blurEnabled = true;
 	private float blurSizeMax = 1f;
 
-	private float staticMaxAlpha = 1f;
+    private float enemyResetEffectTimeMax = 1f;
+    private float enemyResetEffectTime;
+    private float enemyResetEffectT;
+    private bool enemyEffectEnabled = true;
+
+    private float staticMaxAlpha = 1f;
 
 	public SpriteRenderer resetStatic;
+    public SpriteRenderer resetStaticEnemyEffect;
 	public Color resetColor;
 	public Color healColor = Color.magenta;
 	public Color endCombatColor;
 	private bool endCombatEffect;
 	Color staticCol;
+    Color enemyStaticCol;
 	public GameObject staticSound;
 	public GameObject healSound;
 	public GameObject endCombatSound;
@@ -130,6 +137,7 @@ public class CameraEffectsS : MonoBehaviour {
 			blurEffect.enabled = false;
 
 			resetStatic.gameObject.SetActive(false);
+            resetStaticEnemyEffect.gameObject.SetActive(false);
 
 			contrastEffect = GetComponent<ContrastStretch>();
 
@@ -172,6 +180,24 @@ public class CameraEffectsS : MonoBehaviour {
 	}
 
 	void HandleBlur(){
+
+        if (enemyEffectEnabled){
+            enemyResetEffectTime += Time.deltaTime;
+            enemyResetEffectT = enemyResetEffectTime / enemyResetEffectTimeMax;
+            enemyResetEffectT = Mathf.Sin(enemyResetEffectT * Mathf.PI * 0.5f);
+            if (enemyResetEffectTime < enemyResetEffectTimeMax)
+            {
+                staticCol = resetStaticEnemyEffect.color;
+                staticCol.a = Mathf.Lerp(staticMaxAlpha, 0f, enemyResetEffectT)*2f;
+                if (staticCol.a > 1f) { staticCol.a = 1f; }
+                resetStaticEnemyEffect.color = staticCol;
+            }
+            else
+            {
+                resetStaticEnemyEffect.gameObject.SetActive(false);
+                enemyEffectEnabled = false;
+            }
+        }
 
 		if (blurEnabled){
 			if (blurEffectTime < blurEffectTimeMax){
@@ -279,15 +305,22 @@ public class CameraEffectsS : MonoBehaviour {
 		if (endCombat){
 			staticCol = endCombatColor;
 		}else if (noColor){
-			staticCol = Color.white;
+			staticCol =
+            enemyStaticCol = Color.white;
 		}else{
-			staticCol = resetColor;
-		}
+			staticCol = 
+            enemyStaticCol = resetColor;
+        }
 
 		endCombatEffect = endCombat;
 		staticCol.a = staticMaxAlpha = 1f;
 		resetStatic.color = staticCol;
 		resetStatic.gameObject.SetActive(true);
+        if (!endCombat){
+            resetStaticEnemyEffect.gameObject.SetActive(true);
+            enemyEffectEnabled = true;
+            enemyResetEffectTime = enemyResetEffectT = 0f;
+        }
 
 		if (staticSound){
 			Instantiate(staticSound);
