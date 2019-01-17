@@ -100,6 +100,7 @@ public class EnemyS : MonoBehaviour {
     [Header("NG+ Properties")]
     public float newGamePlusHealthMult = 1.5f;
     public float newGamePlusSpeedMult = 1.025f;
+    public bool requireTransformForNGMult = false;
 
 	private float currentDifficultyMult;
 
@@ -118,6 +119,7 @@ public class EnemyS : MonoBehaviour {
 	private Rigidbody _myRigidbody;
 	public SpriteRenderer myRenderer;
 	public SpriteRenderer myShadow;
+    private EnemyResetMaskS _mySpriteMask;
 	private Animator _myAnimator;
 	private Collider _myCollider;
 
@@ -342,6 +344,10 @@ public class EnemyS : MonoBehaviour {
 		behaviorSet = true;
 	}
 
+    public void SetMask(EnemyResetMaskS myMask){
+        _mySpriteMask = myMask;
+    }
+
 	public void ForceBehaviorState(EnemyBehaviorStateS newState){
 
 		_currentBehavior.CancelAction();
@@ -493,10 +499,16 @@ public class EnemyS : MonoBehaviour {
 		enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
-        if (PlayerAugmentsS.MARKED_AUG){
-            actingMaxHealth = maxHealth * newGamePlusHealthMult * currentDifficultyMult;
+        if (PlayerAugmentsS.MARKED_AUG)
+        {
             currentDifficultyMult *= newGamePlusSpeedMult;
+            if (!requireTransformForNGMult || (requireTransformForNGMult && PlayerInventoryS.I.earnedTech.Contains(8))) {
+            actingMaxHealth = maxHealth * newGamePlusHealthMult * currentDifficultyMult;
             maxCritDamage *= newGamePlusHealthMult;
+            }else{
+                Debug.Log("Weaker form for transform unlock!");
+                actingMaxHealth = maxHealth * currentDifficultyMult;
+            }
             sinAmt *= 3;
         }else{
             actingMaxHealth = maxHealth * currentDifficultyMult;
@@ -650,6 +662,10 @@ public class EnemyS : MonoBehaviour {
 
 		_myCollider.enabled = true;
 		gameObject.layer = ALIVE_LAYER;
+
+        if (_mySpriteMask){
+            _mySpriteMask.gameObject.SetActive(true);
+        }
 
 		//_myAnimator.Rebind();
 		//_myAnimator.Update(0f);
@@ -1562,6 +1578,9 @@ public class EnemyS : MonoBehaviour {
 			CameraShakeS.C.SloAndPunch(0.3f, 0.8f, 0.2f);
 			
 			currentKnockbackCooldown = knockbackTime;
+            if (_mySpriteMask){
+                _mySpriteMask.gameObject.SetActive(false);
+            }
 		}
 
 		if (healthSpawn){
@@ -1645,6 +1664,9 @@ public class EnemyS : MonoBehaviour {
 		currentKnockbackCooldown = knockbackTime;
 		gameObject.layer = LayerMask.NameToLayer(DEAD_LAYER);
 		_myRigidbody.velocity = Vector3.zero;
+        if (_mySpriteMask){
+            _mySpriteMask.gameObject.SetActive(false);
+        }
         if (!ignoreDeathZ)
         {
             if (zController)
