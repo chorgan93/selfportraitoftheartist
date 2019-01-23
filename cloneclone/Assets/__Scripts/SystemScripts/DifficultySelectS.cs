@@ -90,39 +90,46 @@ public class DifficultySelectS : MonoBehaviour {
     public GameObject cancelSoundPrefab;
     public GameObject turnOffSound;
 
-	// Use this for initialization
-	void Start () {
+    [Header("DESCENT Properties")]
+    public bool onlyDoAirlines = false;
 
-		controller = GetComponent<ControlManagerS>();
-		usingController = controller.ControllerAttached();
+    // Use this for initialization
+    void Start()
+    {
 
-		DifficultyS.SetDifficultiesFromInt(1,1);
+        if (!onlyDoAirlines)
+        {
+            controller = GetComponent<ControlManagerS>();
+            usingController = controller.ControllerAttached();
 
-		loadingText.enabled = false;
+            DifficultyS.SetDifficultiesFromInt(1, 1);
 
-		bgAlpha = difficultyBG.color.a;
-		leftRightCol = punishSelectorLeft.color;
-		turnOffAllText();
-		currentState = SelectState.Intro;
-		StartCoroutine(difficultySelectSequence());
+            loadingText.enabled = false;
 
-		startPos = fallingSprite.transform.position;
-		fallingSprite.transform.position = fallingPos = new Vector3(fallingSprite.transform.position.x,
-		                                               fallingSprite.transform.position.y+fallY,
-		                                               fallingSprite.transform.position.z);
+            bgAlpha = difficultyBG.color.a;
+            leftRightCol = punishSelectorLeft.color;
+            turnOffAllText();
+            currentState = SelectState.Intro;
+            StartCoroutine(difficultySelectSequence());
 
-		cameraShakeTriggerCount = cameraShakeTriggerTime;
+            startPos = fallingSprite.transform.position;
+            fallingSprite.transform.position = fallingPos = new Vector3(fallingSprite.transform.position.x,
+                                                           fallingSprite.transform.position.y + fallY,
+                                                           fallingSprite.transform.position.z);
 
-	//	turnOffAllText();
-	//	setText();
+            cameraShakeTriggerCount = cameraShakeTriggerTime;
 
-		punishSelect = sinSelect = 1;
-		fallTimeCount = 0;
+            //	turnOffAllText();
+            //	setText();
+
+            punishSelect = sinSelect = 1;
+            fallTimeCount = 0;
+        }
 	
 	}
 
 	void Update(){
-		if (currentState != SelectState.End){
+        if (currentState != SelectState.End || onlyDoAirlines){
 			lineActivateCountdown -= Time.deltaTime;
 			if (lineActivateCountdown <= 0){
 				lineActivateCountdown = lineActivateTime;
@@ -138,7 +145,7 @@ public class DifficultySelectS : MonoBehaviour {
 			}
 		}
 
-		if (startedLoading){
+        if (startedLoading && !onlyDoAirlines){
 			if (minLoadTime > 0){
 				minLoadTime -= Time.deltaTime;
 			}else if (async.progress >= 0.9f){

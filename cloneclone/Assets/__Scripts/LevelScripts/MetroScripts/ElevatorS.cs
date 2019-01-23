@@ -84,6 +84,8 @@ public class ElevatorS : MonoBehaviour {
 	private List<ChangeSceneTriggerS> sceneChangeColliders = new List<ChangeSceneTriggerS>();
 	public bool useAltCollider = false;
 
+    public bool elevatorToNowhere = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -155,7 +157,7 @@ public class ElevatorS : MonoBehaviour {
 			HandleRumble();
 			ManageShake();
 
-            if (!checkCombat || (checkCombat && !elevatorCombat.combatIsActive))
+            if ((!checkCombat || (checkCombat && !elevatorCombat.combatIsActive)) && !elevatorToNowhere)
             {
                 timeToNextStop -= Time.deltaTime;
                 nextStopMessageCountdown -= Time.deltaTime;
@@ -269,10 +271,14 @@ public class ElevatorS : MonoBehaviour {
 
 
 	void AssignColliders(){
-		sceneChangeColliders.Clear();
-		for (int i = 0; i < exitColliders.Length; i++){
-			sceneChangeColliders.Add(exitColliders[i].GetComponent<ChangeSceneTriggerS>());
-		}
+        if (!elevatorToNowhere)
+        {
+            sceneChangeColliders.Clear();
+            for (int i = 0; i < exitColliders.Length; i++)
+            {
+                sceneChangeColliders.Add(exitColliders[i].GetComponent<ChangeSceneTriggerS>());
+            }
+        }
 	}
 
 	void SetSceneChanges(){
