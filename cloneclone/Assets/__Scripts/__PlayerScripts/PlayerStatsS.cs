@@ -29,12 +29,12 @@ public class PlayerStatsS : MonoBehaviour {
 	public const float DARKNESS_MAX = 100f;
 
     //__________________________SCORNED MULTS
-    public const float scornedEnemyDmgMult = 1.5f;
-    public const float scornedStaminaUseMult = 1.5f;
-    public const float scornedChargeUseMult = 1.5f;
-    public const float scornedAbsorbMult = 0.66f;
-    public const float scornedRecoveryMult = 0.66f;
-    public const float scornedStrengthMult = 0.66f;
+    public const float scornedEnemyDmgMult = 1.25f;
+    public const float scornedStaminaUseMult = 1.25f;
+    public const float scornedChargeUseMult = 1.25f;
+    public const float scornedAbsorbMult = 0.75f;
+    public const float scornedRecoveryMult = 0.8f;
+    public const float scornedStrengthMult = 0.8f;
 	
 	private const int VIRTUE_ADD_AMT = 5;
 
