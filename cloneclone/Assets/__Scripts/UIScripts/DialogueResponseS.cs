@@ -46,10 +46,19 @@ public class DialogueResponseS : MonoBehaviour {
 			}else{
 				cancelButtonDown = false;
 			}
-
-			if (Mathf.Abs(myControl.HorizontalMenu()) > 0.1f || Mathf.Abs(myControl.VerticalMenu()) > 0.1f){
+#if UNITY_SWITCH
+                if (Mathf.Abs(myControl.HorizontalMenu()) > 0.5f || Mathf.Abs(myControl.VerticalMenu()) > 0.5f)
+#else
+                if (Mathf.Abs(myControl.HorizontalMenu()) > 0.1f || Mathf.Abs(myControl.VerticalMenu()) > 0.1f)
+#endif
+                {
 				if (stickReset){
-					if (myControl.HorizontalMenu() > 0.1f || myControl.VerticalMenu() > 0.1f){
+#if UNITY_SWITCH
+                        if (myControl.HorizontalMenu() > 0.5f || myControl.VerticalMenu() > 0.5f)
+                        {
+#else
+                            if (myControl.HorizontalMenu() > 0.1f || myControl.VerticalMenu() > 0.1f){
+#endif
 						currentPos--;
 					}else{
 						currentPos++;

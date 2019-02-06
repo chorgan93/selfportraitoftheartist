@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Video;
 
 public class MemoS : MonoBehaviour {
 
@@ -21,7 +22,7 @@ public class MemoS : MonoBehaviour {
 	public ActivateOnExamineS activateOnEnd;
 
 	[Header("Instruct Properties")]
-	public MovieTexture instructTexture;
+	public VideoClip instructTexture;
 	public float textureSizeMult = 0.4f;
 	public bool activateOnStart= false;
 

@@ -251,8 +251,15 @@ public class EquipMenuS : MonoBehaviour {
 
 
 			if (!controlStickMoved){
-				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
-					pRef.ResetTimeMax();
+#if UNITY_SWITCH
+                if (pRef.myControl.Horizontal() >= 0.5f || pRef.myControl.Vertical() <= -0.5f)
+
+                // switch needs lower sensitivity
+#else
+                if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f)
+#endif
+                {
+                    pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					if (targetPos > selectorPositions.Length-1){
@@ -261,7 +268,12 @@ public class EquipMenuS : MonoBehaviour {
 					SetSelector(targetPos);
 					controlStickMoved = true;
 				}
-				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+#if UNITY_SWITCH
+               else if (pRef.myControl.Horizontal() <= -0.5f || pRef.myControl.Vertical() >= 0.5f)
+#else
+                if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
@@ -307,7 +319,12 @@ public class EquipMenuS : MonoBehaviour {
 
 		if (inParadigmIMenu){
 			if (!controlStickMoved){
-				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+#if UNITY_SWITCH
+                if (pRef.myControl.Horizontal() >= 0.5f || pRef.myControl.Vertical() <= -0.5f)
+#else
+                if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
@@ -324,7 +341,12 @@ public class EquipMenuS : MonoBehaviour {
 					}
 					controlStickMoved = true;
 				}
-				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+#if UNITY_SWITCH
+                else if (pRef.myControl.Horizontal() <= -0.5f || pRef.myControl.Vertical() >= 0.5f)
+#else
+                if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
@@ -450,7 +472,12 @@ public class EquipMenuS : MonoBehaviour {
 			
 		if (inParadigmIIMenu){
 			if (!controlStickMoved){
-				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+#if UNITY_SWITCH
+                if (pRef.myControl.Horizontal() >= 0.5f || pRef.myControl.Vertical() <= -0.5f)
+#else
+                if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
@@ -467,7 +494,12 @@ public class EquipMenuS : MonoBehaviour {
 					}
 					controlStickMoved = true;
 				}
-				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+#if UNITY_SWITCH
+                else if (pRef.myControl.Horizontal() <= -0.5f || pRef.myControl.Vertical() >= 0.5f)
+#else
+                if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
@@ -595,14 +627,24 @@ public class EquipMenuS : MonoBehaviour {
 		if (inVirtueMenu){
 			changingVirtue = true;
 			if (!controlStickMoved){
-				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+#if UNITY_SWITCH
+                if (pRef.myControl.Horizontal() >= 0.5f || pRef.myControl.Vertical() <= -0.5f)
+#else
+                if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					SetSelectorVirtue(targetPos, 1);
 					controlStickMoved = true;
 				}
-				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+#if UNITY_SWITCH
+                else if (pRef.myControl.Horizontal() <= -0.5f || pRef.myControl.Vertical() >= 0.5f)
+#else
+                if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;
@@ -689,14 +731,24 @@ public class EquipMenuS : MonoBehaviour {
 		//_______________________________________________START INVENTORY SECTION
 		if (inInventoryMenu){
 			if (!controlStickMoved){
-				if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f){
+#if UNITY_SWITCH
+                if (pRef.myControl.Horizontal() >= 0.5f || pRef.myControl.Vertical() <= -0.5f)
+#else
+                if (pRef.myControl.Horizontal() >= 0.1f || pRef.myControl.Vertical() <= -0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos+1;
 					SetSelectorInventory(targetPos, 1);
 					controlStickMoved = true;
 				}
-				if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f){
+#if UNITY_SWITCH
+                else if (pRef.myControl.Horizontal() <= -0.5f || pRef.myControl.Vertical() >= 0.5f)
+#else
+                if (pRef.myControl.Horizontal() <= -0.1f || pRef.myControl.Vertical() >= 0.1f)
+#endif
+                {
 					pRef.ResetTimeMax();
 					controlStickMoved = true;
 					int targetPos = currentPos-1;

@@ -74,7 +74,12 @@ public class LoadFileMenu : MonoBehaviour
         selectButtonUp |= !myMenu.controlRef.GetCustomInput(3);
         backButtonUp |= !myMenu.controlRef.GetCustomInput(1);
         if (overwriteActive){
-            if (stickReset && Mathf.Abs(myMenu.controlRef.HorizontalMenu()) > 0.1f){
+#if UNITY_SWITCH
+            if (stickReset && Mathf.Abs(myMenu.controlRef.HorizontalMenu()) > 0.5f)
+#else
+            if (stickReset && Mathf.Abs(myMenu.controlRef.HorizontalMenu()) > 0.1f)
+#endif
+            {
                 if (myMenu.controlRef.HorizontalMenu() < 0){
                     currentOverwritePos--;
                     if (currentOverwritePos < 0){
@@ -126,7 +131,11 @@ public class LoadFileMenu : MonoBehaviour
                 }
             }
         }else{
+#if UNITY_SWITCH
+            if (stickReset && Mathf.Abs(myMenu.controlRef.VerticalMenu()) > 0.5f)
+#else
             if (stickReset && Mathf.Abs(myMenu.controlRef.VerticalMenu()) > 0.1f)
+#endif
             {
                 if (myMenu.controlRef.VerticalMenu() < 0)
                 {

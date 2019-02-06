@@ -51,7 +51,12 @@ public class CustomizableControlsUIS : MonoBehaviour {
             HandleRestoreDefaults();
         }
         HandleControlSwapping();
+#if UNITY_SWITCH
+        if (Mathf.Abs(myControl.HorizontalMenu()) < 0.5f && Mathf.Abs(myControl.VerticalMenu()) < 0.5f)
+        {
+#else
         if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f){
+#endif
             stickReset = true;
         }
         if (!myControl.GetCustomInput(12)){
@@ -87,7 +92,11 @@ public class CustomizableControlsUIS : MonoBehaviour {
     }
 
 	void HandleControlType(){
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
         if (myControl.HorizontalMenu() > 0.2f && stickReset)
+#endif
         {
             stickReset = false;
             ControlManagerS.controlProfile++;
@@ -104,7 +113,11 @@ public class CustomizableControlsUIS : MonoBehaviour {
             }
             UpdateControlSettingText();
         }
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
         if (myControl.HorizontalMenu() < -0.2f && stickReset)
+#endif
         {
             stickReset = false;
             ControlManagerS.controlProfile--;
@@ -146,12 +159,22 @@ public class CustomizableControlsUIS : MonoBehaviour {
 
     void HandleMovement(){
         if (stickReset && !inReplaceMode){
+#if UNITY_SWITCH
+            if (myControl.VerticalMenu() > 0.5f)
+            {
+#else
             if (myControl.VerticalMenu() > 0.2f){
+#endif
                 currentPos--;
                 SetCursorPos();
                 stickReset = false;
             }
+#if UNITY_SWITCH
+            if (myControl.VerticalMenu() < -0.5f)
+            {
+#else
             if (myControl.VerticalMenu() < -0.2f){
+#endif
                 currentPos++;
                 SetCursorPos();
                 stickReset = false;

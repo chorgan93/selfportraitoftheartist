@@ -182,7 +182,35 @@ public class SacramentHandlerS : MonoBehaviour {
 		}
 	}
 	public float StickMoved(){
-		if ((Mathf.Abs(myControl.HorizontalMenu()) > 0.1f || Mathf.Abs(myControl.VerticalMenu()) > 0.1f)){
+#if UNITY_SWITCH
+        // switch needs to be less sensitive
+        if ((Mathf.Abs(myControl.HorizontalMenu()) > 0.5f || Mathf.Abs(myControl.VerticalMenu()) > 0.5f))
+        {
+            float valueToReturn = 0f;
+            if (myControl.HorizontalMenu() > 0.5f)
+            {
+                valueToReturn = 1f;
+            }
+            else if (myControl.HorizontalMenu() < -0.5f)
+            {
+                valueToReturn = -1f;
+            }
+            else if (myControl.VerticalMenu() > 0.5f)
+            {
+                valueToReturn = -1f;
+            }
+            else
+            {
+                valueToReturn = 1f;
+            }
+            return valueToReturn;
+        }
+        else
+        {
+            return 0f;
+        }
+#else
+        if ((Mathf.Abs(myControl.HorizontalMenu()) > 0.1f || Mathf.Abs(myControl.VerticalMenu()) > 0.1f)){
 			float valueToReturn = 0f;
 			if (myControl.HorizontalMenu() > 0.1f){
 				valueToReturn = 1f;
@@ -197,7 +225,8 @@ public class SacramentHandlerS : MonoBehaviour {
 		}else{
 			return 0f;
 		}
-	}
+#endif
+    }
 
 	public void EndHovering(){
 		for (int i = 0; i < sacramentSteps[currentStep].sacramentOptions.Length; i++){

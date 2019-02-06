@@ -211,9 +211,19 @@ public class CombatGiverS : MonoBehaviour {
 				}
 
 				if (merchantState == 1){
-					if (Mathf.Abs(controlRef.HorizontalMenu()) > 0.1f || Mathf.Abs(controlRef.VerticalMenu()) > 0.1f){
+#if UNITY_SWITCH
+                    if (Mathf.Abs(controlRef.HorizontalMenu()) > 0.5f || Mathf.Abs(controlRef.VerticalMenu()) > 0.5f)
+#else
+                    if (Mathf.Abs(controlRef.HorizontalMenu()) > 0.1f || Mathf.Abs(controlRef.VerticalMenu()) > 0.1f)
+#endif
+                    {
 						if (stickReset){
-							if (controlRef.HorizontalMenu() > 0.1f || controlRef.VerticalMenu() > 0.1f){
+#if UNITY_SWITCH
+                            if (controlRef.HorizontalMenu() > 0.5f || controlRef.VerticalMenu() > 0.5f)
+#else
+                            if (controlRef.HorizontalMenu() > 0.1f || controlRef.VerticalMenu() > 0.1f)
+#endif
+                            {
 								combatChooseUI.MoveSelector(-1);
 							}else{
 								combatChooseUI.MoveSelector(1);

@@ -60,7 +60,11 @@ public class TextInputUIS : MonoBehaviour {
             // gamepad version of input
             if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 3)
             {
+#if UNITY_SWITCH
+                if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.5f)
+#else
                 if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.1f)
+#endif
                 {
                     stickReset = false;
                     if (myControl.HorizontalMenu() < 0)
@@ -72,7 +76,11 @@ public class TextInputUIS : MonoBehaviour {
                         ChangeCurrentLetter(1);
                     }
                 }
+#if UNITY_SWITCH
+                else if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.5f)
+#else
                 if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.1f)
+#endif
                 {
                     stickReset = false;
                     if (myControl.VerticalMenu() < 0)

@@ -37,7 +37,12 @@ public class KeypadS : MonoBehaviour {
 			delayInput -= Time.deltaTime;
 		}
 		else if (keypadOn){
-			if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.1f){
+#if UNITY_SWITCH
+            if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.5f)
+#else
+            if (stickReset && Mathf.Abs(myControl. HorizontalMenu()) > 0.1f)
+#endif
+            {
 				stickReset = false;
 				if (myControl.HorizontalMenu() < 0){
 					currentSelection--;
@@ -53,7 +58,12 @@ public class KeypadS : MonoBehaviour {
 					RefreshKeys();
 				}
 			}
-			if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.1f){
+#if UNITY_SWITCH
+            if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.5f)
+#else
+            if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.1f)
+#endif
+            {
 				stickReset = false;
 				if (myControl.VerticalMenu() < 0){
 					currentSelection+=3;
@@ -69,7 +79,8 @@ public class KeypadS : MonoBehaviour {
 					RefreshKeys();
 				}
 			}
-			if (!stickReset && Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f){
+			if (!stickReset && Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f)
+            {
 				stickReset = true;
 			}
 

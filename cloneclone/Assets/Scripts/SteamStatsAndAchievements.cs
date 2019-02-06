@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.ComponentModel;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 
 // This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
 public class SteamStatsAndAchievements : MonoBehaviour
@@ -71,6 +73,7 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(Achievement.ACH_HARBINGER, "A Sign of What's to Come", "Defeat the Harbinger")
     };
 
+#if !DISABLESTEAMWORKS
     // Our GameID
     private CGameID m_GameID;
 
@@ -422,6 +425,8 @@ public class SteamStatsAndAchievements : MonoBehaviour
         }
         GUILayout.EndArea();
     }
+
+#endif
 
     public class Achievement_t
     {
