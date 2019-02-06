@@ -11,10 +11,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class NintendoSwitchSaveObjS : MonoBehaviour
 {
+#if UNITY_SWITCH
     private Uid userId; // user ID for the user account on the Nintendo Switch
+    private FileHandle fileHandle = new nn.fs.FileHandle();
+#endif
     private const string mountName = "saveData";
     private string saveDataPath = mountName + ":/savedGames.gd";
-    private FileHandle fileHandle = new nn.fs.FileHandle();
 
     // Save journaling memory is used for each time files are created, deleted, or written.
     // The journaling memory is freed after nn::fs::CommitSaveData is called.
