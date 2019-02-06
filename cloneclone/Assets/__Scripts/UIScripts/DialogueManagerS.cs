@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class DialogueManagerS : MonoBehaviour {
 
@@ -31,7 +32,7 @@ public class DialogueManagerS : MonoBehaviour {
 	private bool statsOn;
 
 	public Image memoBG;
-	public RawImage memoMovie;
+	public VideoPlayer memoMovie;
 	public Text memoText;
 
 	public Image itemPopup;
@@ -80,6 +81,7 @@ public class DialogueManagerS : MonoBehaviour {
 		memoTextMoviePos = memoTextStartPos;
 		memoTextMoviePos.y+=85f;
 		memoMovie.enabled = false;
+        memoMovie.gameObject.SetActive(false);
 		_doneScrolling = true;
 
 		itemPopup.enabled = itemPopupBG.enabled = false;
@@ -218,7 +220,7 @@ public class DialogueManagerS : MonoBehaviour {
 	}
 
 	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, 
-		bool endWithResponse = false, MovieTexture movieText = null, float movieSizeMult = 1f){
+		bool endWithResponse = false, VideoClip movieText = null, float movieSizeMult = 1f){
 
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
@@ -280,12 +282,13 @@ public class DialogueManagerS : MonoBehaviour {
 			if (!memoMovie.enabled){
 				memoText.rectTransform.anchoredPosition = memoTextMoviePos;
 				memoMovie.enabled = true;
-				memoMovie.texture = movieText;
-				memoMovie.SetNativeSize();
-					memoMovie.rectTransform.sizeDelta *= movieSizeMult;
-				MovieTexture playMovie = (MovieTexture)memoMovie.mainTexture;
-				playMovie.loop = true;
-				playMovie.Play();
+                    memoMovie.gameObject.SetActive(true);
+				memoMovie.clip = movieText;
+				//memoMovie.SetNativeSize();
+					//memoMovie.rectTransform.sizeDelta *= movieSizeMult;
+				//MovieTexture playMovie = (MovieTexture)memoMovie.mainTexture;
+				//memoMovie.loop = true;
+				memoMovie.Play();
 			}
 			}else{
 
@@ -336,6 +339,7 @@ public class DialogueManagerS : MonoBehaviour {
 		memoText.enabled = false;
 		_textActive = false;
 		memoMovie.enabled = false;
+        memoMovie.gameObject.SetActive(false);
 
 		if (itemPopupBG.gameObject.activeSelf){
 			StartCoroutine(ItemFindDisable());

@@ -7,7 +7,9 @@
 
 using UnityEngine;
 using System.Collections;
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
 
 //
 // The SteamManager provides a base implementation of Steamworks.NET on which you can build upon.
@@ -38,7 +40,8 @@ public class SteamManager : MonoBehaviour {
 		}
 	}
 
-	private SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
+#if !DISABLESTEAMWORKS
+    private SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
 	private static void SteamAPIDebugTextHook(int nSeverity, System.Text.StringBuilder pchDebugText) {
 		Debug.LogWarning(pchDebugText);
 	}
@@ -152,4 +155,5 @@ public class SteamManager : MonoBehaviour {
 		// Run Steam client callbacks
 		SteamAPI.RunCallbacks();
 	}
+#endif
 }

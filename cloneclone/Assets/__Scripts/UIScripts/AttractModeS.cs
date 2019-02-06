@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AttractModeS : MonoBehaviour {
 
-	#if !UNITY_WEBGL
+	#if !UNITY_WEBGL && !UNITY_SWITCH
 	private MovieTexture myMovie;
 
 	private bool isLoading = false;

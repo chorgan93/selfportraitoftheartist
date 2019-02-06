@@ -334,7 +334,12 @@ public class DifficultySelectS : MonoBehaviour {
                         }
 					}
 					if (stickReset){
-						if (controller.HorizontalMenu() >= 0.1f){
+#if UNITY_SWITCH
+                        if (controller.HorizontalMenu() >= 0.5f)
+#else
+                        if (controller.HorizontalMenu() >= 0.1f)
+#endif
+                        {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect++;
@@ -356,8 +361,14 @@ public class DifficultySelectS : MonoBehaviour {
 								sinSelectorRight.color = Color.white;
 							}
 							setText();
-						}else if (controller.HorizontalMenu() <= -0.1f){
-							stickReset = false;
+						}
+#if UNITY_SWITCH
+                        else if (controller.HorizontalMenu() <= -0.5f)
+#else
+                        else if (controller.HorizontalMenu() <= -0.1f)
+#endif
+                        {
+                            stickReset = false;
 							selectTimeCount = selectTimeMax;
 							sinSelect--;
                             if (menuSoundPrefab)
@@ -403,7 +414,12 @@ public class DifficultySelectS : MonoBehaviour {
 					}
 
 					if (stickReset){
-						if (controller.HorizontalMenu() >= 0.1f){
+#if UNITY_SWITCH
+                        if (controller.HorizontalMenu() >= 0.5f)
+#else
+                        if (controller.HorizontalMenu() >= 0.1f)
+#endif
+                        {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect++;
@@ -430,7 +446,13 @@ public class DifficultySelectS : MonoBehaviour {
 								punishSelectorRight.color = Color.white;
 							}
 							setText();
-						}else if (controller.HorizontalMenu() <= -0.1f){
+						}
+#if UNITY_SWITCH
+                        else if (controller.HorizontalMenu() <= -0.5f)
+#else
+                        else if (controller.HorizontalMenu() <= -0.1f)
+#endif
+                        {
 							stickReset = false;
 							selectTimeCount = selectTimeMax;
 							punishSelect--;

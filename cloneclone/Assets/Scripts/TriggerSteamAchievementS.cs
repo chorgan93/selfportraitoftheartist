@@ -11,6 +11,7 @@ public class TriggerSteamAchievementS : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+#if !DISABLESTEAMWORKS
         if (GameObject.Find("SteamManager"))
         {
             statReference = GameObject.Find("SteamManager").GetComponent<SteamStatsAndAchievements>();
@@ -27,6 +28,7 @@ public class TriggerSteamAchievementS : MonoBehaviour {
                 statReference.UnlockAchievementExternal(achievementToGive);
             }
         }
+#endif
     }
 	
 }

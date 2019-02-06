@@ -31,7 +31,9 @@ public class CheckForPetAchievementS : MonoBehaviour {
                 if (!allBuddies[i].hasBeenPet) { giveAchievement = false; }
             }
             if (giveAchievement && statReference != null){
+#if !DISABLESTEAMWORKS
                 statReference.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_GARDEN);
+#endif
             }else{
                 giveAchievement = false;
             }

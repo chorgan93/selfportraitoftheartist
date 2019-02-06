@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
+#if UNITY_SWITCH
+using nn.hid;
+#endif
 
 public class ControlManagerS : MonoBehaviour {
 
@@ -24,11 +27,29 @@ public class ControlManagerS : MonoBehaviour {
     public static List<int> defaultGamepadControls = new List<int>(14){0,1,2,3,4,5,6,7,8,9,10,11,12,13};
     public static List<int> defaultKeyAndMouseControls = new List<int>(14) { 14, 15, 16, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
 
+    bool useSwitch = false;
 
-	// Use this for initialization
-	void Start () {
+#if UNITY_SWITCH
+    const int numberOfControllers = 2; //1 player + handheld
+    NpadState[] npadStates = new NpadState[numberOfControllers];
+    static bool switchInitialized = false;
+    public TextMesh debugControl;
+    private const float analogMax = 32760f;
+#endif
 
-		if (controlProfile < 0){
+    // Use this for initialization
+    void Start () {
+
+#if UNITY_SWITCH
+        useSwitch = true;
+        InitializeSwitchControllers();
+        controlProfile = 0;
+        if (debugControl != null) {
+            debugControl.gameObject.SetActive(true);
+        }
+#endif
+
+        if (controlProfile < 0 && !useSwitch){
 			if (ControllerAttached()){
 				// Debug.Log("Controller attached !! " + Input.GetJoystickNames()[0]);
 				if (DetermineControllerType() == 1){
@@ -89,6 +110,277 @@ public class ControlManagerS : MonoBehaviour {
 
 	}
 
+#if UNITY_SWITCH
+    /*private void Update()
+    {
+        if (debugControl != null && switchInitialized) {
+            debugControl.text = "H: " + SwitchHorizontal() + " V: " + SwitchVertical();
+        }
+    }**/
+    void InitializeSwitchControllers() {
+        if (switchInitialized) {
+            return;
+        }
+        // init the controller states
+        for (int i = 0; i < numberOfControllers; i++)
+        {
+            npadStates[i] = new NpadState();
+        }
+
+        Npad.Initialize();
+
+        // Set supported styles
+        // FullKey = Pro Controller
+        // JoyDual = Two Joy-Con used as one controller
+        // see nn::hid::SetSupportedNpadStyleSet (NpadStyleSet style) in the SDK docs for API details
+        Npad.SetSupportedStyleSet(NpadStyle.FullKey | NpadStyle.JoyDual | NpadStyle.Handheld);
+
+        // NpadJoy.SetHoldType only affects how controllers behave when using a system applet.
+        // NpadJoyHoldType.Vertical is the default setting, but most games would want to use NpadJoyHoldType.Horizontal as it can support all controller styles
+        // If you use NpadJoyHoldType.Vertical,  Npad.SetSupportedStyleSet must only list controller types supported by NpadJoyHoldType.Vertical.
+        // If you don't, the controller applet will fail to load.
+        // Supported types for NpadJoyHoldType.Vertical are: NpadStyle.JoyLeft, NpadStyle.JoyRight
+        NpadJoy.SetHoldType(NpadJoyHoldType.Horizontal);
+
+        NpadJoy.SetHandheldActivationMode(NpadHandheldActivationMode.Dual); //both controllers must be docked for handheld mode.
+
+        //You must call Npad.SetSupportedIdType for all supported controllers.
+        //Your game may run if you don't call this, but not calling this may lead to crashes in some circumstances.
+        NpadId[] npadIds = { NpadId.Handheld, NpadId.No1};
+        Npad.SetSupportedIdType(npadIds);
+
+        callControllerApplet();
+        switchInitialized = true;
+    }
+
+    void callControllerApplet()
+    {
+        #if !UNITY_EDITOR
+        // set the arguments for the applet
+        // see nn::hid::ControllerSupportArg::SetDefault () in the SDK documentation for details
+        ControllerSupportArg controllerSupportArgs = new ControllerSupportArg();
+        controllerSupportArgs.SetDefault();
+            
+        controllerSupportArgs.enableSingleMode = true;
+        
+
+        nn.hid.ControllerSupport.Show(controllerSupportArgs);
+        #endif
+    }
+
+    float HandleSwitchInputAxis(int axis) {
+
+        // axis determines which axis to check, 0 = horizontal, 1 = vertical, 2 = r horizontal, 3 = r vertical
+        float axisValue = 0f;
+        for (int i = 0; i < numberOfControllers; i++) {
+            NpadStyle npadStyle;
+            if (i == 0)
+            {
+                npadStyle = Npad.GetStyleSet(NpadId.Handheld);
+                Npad.GetState(ref npadStates[i], NpadId.Handheld, npadStyle);
+                if (npadStyle != NpadStyle.None)
+                {
+
+
+
+                    // now get appropriate axis reading
+                    switch (axis)
+                    {
+                        case 0:
+                            axisValue = npadStates[i].analogStickL.x;
+                            break;
+                        case 1:
+                            axisValue = npadStates[i].analogStickL.y;
+                            break;
+                        case 3:
+                            axisValue = npadStates[i].analogStickR.x;
+                            break;
+                        case 4:
+                            axisValue = npadStates[i].analogStickR.y;
+                            break;
+                        default:
+                            axisValue = 0f;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                npadStyle = Npad.GetStyleSet(NpadId.No1);
+                Npad.GetState(ref npadStates[i], NpadId.No1, npadStyle);
+                if (npadStyle != NpadStyle.None)
+                {
+
+
+                    // now get appropriate axis reading
+                    switch (axis)
+                    {
+                        case 0:
+                            axisValue = npadStates[i].analogStickL.x;
+                            break;
+                        case 1:
+                            axisValue = npadStates[i].analogStickL.y;
+                            break;
+                        case 3:
+                            axisValue = npadStates[i].analogStickR.x;
+                            break;
+                        case 4:
+                            axisValue = npadStates[i].analogStickR.y;
+                            break;
+                        default:
+                            axisValue = 0f;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return axisValue/analogMax;
+
+    }
+
+    bool HandleSwitchInputButton(int button)
+    {
+
+        // axis determines which button to check, 0 = A, 1 = B, 2 = X, 3 = Y
+        // 4 = +, 5 = -, 6 = Up, 7 = Down, 8 = Left, 9 = Right, 
+        // 10 = R, 11 = ZR, 12 = L, 13 = ZL
+        bool buttonDown = false;
+        for (int i = 0; i < numberOfControllers; i++)
+        {
+            NpadStyle npadStyle;
+            if (i == 0)
+            {
+                npadStyle = Npad.GetStyleSet(NpadId.Handheld);
+                Npad.GetState(ref npadStates[i], NpadId.Handheld, npadStyle);
+                if (npadStyle != NpadStyle.None)
+                {
+
+                    // now get appropriate axis reading
+                    switch (button)
+                    {
+                        case 0:
+                            buttonDown = npadStates[i].GetButton(NpadButton.A);
+                            break;
+                        case 1:
+                            buttonDown = npadStates[i].GetButton(NpadButton.B);
+                            break;
+                        case 2:
+                            buttonDown = npadStates[i].GetButton(NpadButton.X);
+                            break;
+                        case 3:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Y);
+                            break;
+                        case 4:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Plus);
+                            break;
+                        case 5:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Minus);
+                            break;
+                        case 6:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Up);
+                            break;
+                        case 7:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Down);
+                            break;
+
+                        case 8:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Left);
+                            break;
+
+                        case 9:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Right);
+                            break;
+                        case 10:
+                            buttonDown = npadStates[i].GetButton(NpadButton.R);
+                            break;
+                        case 11:
+                            buttonDown = npadStates[i].GetButton(NpadButton.ZR);
+                            break;
+
+                        case 12:
+                            buttonDown = npadStates[i].GetButton(NpadButton.L);
+                            break;
+
+                        case 13:
+                            buttonDown = npadStates[i].GetButton(NpadButton.ZL);
+                            break;
+                        default:
+                            buttonDown = false;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                npadStyle = Npad.GetStyleSet(NpadId.No1);
+                Npad.GetState(ref npadStates[i], NpadId.No1, npadStyle);
+                if (npadStyle != NpadStyle.None)
+                {
+
+
+                    // now get appropriate axis reading
+                    switch (button)
+                    {
+                        case 0:
+                            buttonDown = npadStates[i].GetButton(NpadButton.A);
+                            break;
+                        case 1:
+                            buttonDown = npadStates[i].GetButton(NpadButton.B);
+                            break;
+                        case 2:
+                            buttonDown = npadStates[i].GetButton(NpadButton.X);
+                            break;
+                        case 3:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Y);
+                            break;
+                        case 4:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Plus);
+                            break;
+                        case 5:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Minus);
+                            break;
+                        case 6:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Up);
+                            break;
+                        case 7:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Down);
+                            break;
+
+                        case 8:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Left);
+                            break;
+
+                        case 9:
+                            buttonDown = npadStates[i].GetButton(NpadButton.Right);
+                            break;
+                        case 10:
+                            buttonDown = npadStates[i].GetButton(NpadButton.R);
+                            break;
+                        case 11:
+                            buttonDown = npadStates[i].GetButton(NpadButton.ZR);
+                            break;
+
+                        case 12:
+                            buttonDown = npadStates[i].GetButton(NpadButton.L);
+                            break;
+
+                        case 13:
+                            buttonDown = npadStates[i].GetButton(NpadButton.ZL);
+                            break;
+                        default:
+                            buttonDown = false;
+                            break;
+                    }
+                }
+            }
+        }
+
+        return buttonDown;
+
+    }
+#endif
+
     public static void LoadControls(List<int> keyboardControls, List<int> gamepadControls, List<int> mouseControls){
         savedKeyboardControls = keyboardControls;
         savedGamepadControls = gamepadControls;
@@ -97,8 +389,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	string GetPlatform(){
 
-		// assume pc, check for mac/linux
-		string platform = "PC";
+#if UNITY_SWITCH
+        return "Switch";
+#endif
+
+        // assume pc, check for mac/linux
+        string platform = "PC";
 
 		if (controlProfile == 3){
 			platform = "PS4";
@@ -124,8 +420,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	}
 
-	string GetTruePlatform(){
-		string platform = "PC";
+	string GetTruePlatform()
+    {
+#if UNITY_SWITCH
+        return "Switch";
+#endif
+        string platform = "PC";
 		if (Application.platform == RuntimePlatform.OSXEditor ||
 			Application.platform == RuntimePlatform.OSXPlayer){
 
@@ -142,9 +442,13 @@ public class ControlManagerS : MonoBehaviour {
 
 	//_________________________________________CONTROLLER CHECK
 
-	public bool ControllerAttached(){
+	public bool ControllerAttached()
+    {
+#if UNITY_SWITCH
+        return true;
+#endif
 
-		if (GetPlatform() == "Mobile"){
+        if (GetPlatform() == "Mobile"){
 			return false;
 		}
 		else if (Input.GetJoystickNames().Length > 0){
@@ -173,7 +477,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float Horizontal(){
 
-		if (GetPlatform() == "Mobile"){
+#if UNITY_SWITCH
+        return SwitchHorizontal();
+#endif
+
+        if (GetPlatform() == "Mobile"){
 			float moveHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 			
 			return moveHorizontal;
@@ -191,11 +499,34 @@ public class ControlManagerS : MonoBehaviour {
 			}
 		}
 
-	}
+    }
 
-	public float Vertical(){
+#if UNITY_SWITCH
+    float SwitchHorizontal() {
+        return HandleSwitchInputAxis(0);
+        }
+        float SwitchVertical()
+        {
+            return HandleSwitchInputAxis(1);
+        }
+        float SwitchHorizontalRight()
+        {
+            return HandleSwitchInputAxis(2);
+        }
+        float SwitchVerticalRight()
+        {
+            return HandleSwitchInputAxis(3);
+        }
+#endif
 
-		if (GetPlatform() == "Mobile"){
+        public float Vertical()
+        {
+
+#if UNITY_SWITCH
+            return SwitchVertical();
+#endif
+
+            if (GetPlatform() == "Mobile"){
 			float moveVertical = CrossPlatformInputManager.GetAxis("Vertical");
 			
 			return moveVertical;
@@ -217,9 +548,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float HorizontalMenu(){
 
-		// return all possible input types
+            // return all possible input types
+#if UNITY_SWITCH
+            return SwitchHorizontal();
+#endif
 
-		float horizontal = 0f;
+            float horizontal = 0f;
 
 		if (ControllerAttached()){
 			if(Mathf.Abs(Input.GetAxis("HorizontalController")) > 0){
@@ -238,9 +572,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float VerticalMenu(){
 
-		// return all possible input types
+            // return all possible input types
+#if UNITY_SWITCH
+            return SwitchVertical();
+#endif
 
-		float vertical = 0f;
+            float vertical = 0f;
 
 			if (ControllerAttached()){
 			if(Mathf.Abs(Input.GetAxis("VerticalController")) > 0){
@@ -259,7 +596,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float HorizontalMovement(){
 
-		if (GetPlatform() == "Mobile"){
+
+#if UNITY_SWITCH
+            return SwitchHorizontal();
+#endif
+
+            if (GetPlatform() == "Mobile"){
 			float moveHorizontal = CrossPlatformInputManager.GetAxis("Horizontal");
 
 			return moveHorizontal;
@@ -281,7 +623,12 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float VerticalMovement(){
 
-		if (GetPlatform() == "Mobile"){
+
+#if UNITY_SWITCH
+            return SwitchVertical();
+#endif
+
+            if (GetPlatform() == "Mobile"){
 			float moveVertical = CrossPlatformInputManager.GetAxis("Vertical");
 
 			return moveVertical;
@@ -303,7 +650,10 @@ public class ControlManagerS : MonoBehaviour {
 
 	public float RightHorizontal(){
 
-		if (controlProfile == 3){
+#if UNITY_SWITCH
+            return SwitchHorizontalRight();
+#endif
+            if (controlProfile == 3){
 			if (truePlatform == "PC"){
 				return Input.GetAxis("RightHorizontalController" + platformType + "PC");
 			}else{
@@ -316,7 +666,11 @@ public class ControlManagerS : MonoBehaviour {
 	}
 	
 	public float RightVertical(){
-		if (controlProfile == 3){
+
+#if UNITY_SWITCH
+            return SwitchVerticalRight();
+#endif
+            if (controlProfile == 3){
 			if (truePlatform == "PC"){
 				return Input.GetAxis("RightVerticalController" + platformType + "PC");
 			}else{
@@ -329,7 +683,11 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool TransformButton(){
-		if (controlProfile == 3){
+#if UNITY_SWITCH
+        return Mathf.Abs(HandleSwitchInputAxis(2)) > 0.1f ||
+                    (Mathf.Abs(HandleSwitchInputAxis(3)) > 0.1f);
+#endif
+        if (controlProfile == 3){
 			if (truePlatform == "PC"){
 				return (Mathf.Abs(Input.GetAxis("RightVerticalController" + platformType + "PC")) > 0.1f ||
 					(Mathf.Abs(Input.GetAxis("RightHorizontalController" + platformType + "PC")) > 0.1f));
@@ -406,7 +764,7 @@ public class ControlManagerS : MonoBehaviour {
 
 	private bool GetInputPressed(int inputValue, bool overrideToKey = false){
 		bool inputPressed = false;
-        if ((controlProfile == 0 || controlProfile == 3) && !overrideToKey)
+        if (((controlProfile == 0 || controlProfile == 3) && !overrideToKey) || useSwitch)
         {
             switch (inputValue)
             {
@@ -748,8 +1106,10 @@ public class ControlManagerS : MonoBehaviour {
     }
 
 	public bool FamiliarControl(){
-
-		if (ControllerAttached()){
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(3);
+#endif
+        if (ControllerAttached()){
 			//return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("ShootButton"+platformType));
@@ -811,8 +1171,9 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool ShootTrigger(){
+        
 
-		if (ControllerAttached()){
+        if (ControllerAttached()){
 
 			return (Input.GetAxis("ShootTrigger"+platformType) > triggerSensitivity);
 
@@ -825,8 +1186,12 @@ public class ControlManagerS : MonoBehaviour {
 		
 	}
 	public bool DashTrigger(){
-		
-		if (ControllerAttached()){
+
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(11);
+#endif
+
+        if (ControllerAttached()){
 			
 			//return (Input.GetAxis("DashTrigger"+platformType) > triggerSensitivity);
 			if (controlProfile == 0){
@@ -853,7 +1218,10 @@ public class ControlManagerS : MonoBehaviour {
 	
 	public bool ShootButton(){
 
-		if (ControllerAttached()){
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(2);
+#endif
+        if (ControllerAttached()){
 
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("SwitchButton"+platformType+"Alt"));
@@ -877,8 +1245,12 @@ public class ControlManagerS : MonoBehaviour {
 		
 	}
 	public bool HeavyButton(){
-		
-		if (ControllerAttached()){
+
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(0);
+#endif
+
+        if (ControllerAttached()){
 
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("ReloadButton"+platformType));
@@ -943,7 +1315,11 @@ public class ControlManagerS : MonoBehaviour {
 
 
 	public bool TalkButton(){
-		if (ControllerAttached()){
+
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(1);
+#endif
+        if (ControllerAttached()){
 
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("DashButton"+platformType));
@@ -966,8 +1342,11 @@ public class ControlManagerS : MonoBehaviour {
 	public bool SwitchButton(){
 
 
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(13);
+#endif
 
-		if (ControllerAttached()){
+        if (ControllerAttached()){
 			if (controlProfile == 0 ){
 			return (Input.GetAxis("DashTrigger" + platformType) > triggerSensitivity);
 			}else if (controlProfile == 3){
@@ -1027,8 +1406,12 @@ public class ControlManagerS : MonoBehaviour {
 		}
 	}
 
-	public bool StartButton(){
-		if (ControllerAttached()){
+	public bool StartButton()
+    {
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(4);
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("StartButton"+platformType));
 			}else{
@@ -1038,8 +1421,12 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return));
 		}
 	}
-	public bool BackButton(){
-		if (ControllerAttached()){
+	public bool BackButton()
+    {
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(5);
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("BackButton"+platformType));
 			}else{
@@ -1051,7 +1438,11 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool MenuSelectButton(){
-		if (ControllerAttached()){
+
+#if UNITY_SWITCH
+        return TalkButton();
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
 			return (TalkButton());
 			}else{
@@ -1062,8 +1453,12 @@ public class ControlManagerS : MonoBehaviour {
 		}
 	}
 
-	public bool MenuSelectUp(){
-		if (ControllerAttached()){
+	public bool MenuSelectUp()
+    {
+#if UNITY_SWITCH
+        return !TalkButton();
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
                 return (!TalkButton());
 			}else{
@@ -1074,8 +1469,12 @@ public class ControlManagerS : MonoBehaviour {
 		}
 	}
 
-	public bool ExitButton(){
-		if (ControllerAttached()){
+	public bool ExitButton()
+    {
+#if UNITY_SWITCH
+        return HeavyButton();
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
                 return (HeavyButton());
 			}else{
@@ -1090,8 +1489,12 @@ public class ControlManagerS : MonoBehaviour {
 
 
 
-	public bool ExitButtonUp(){
-		if (ControllerAttached()){
+	public bool ExitButtonUp()
+    {
+#if UNITY_SWITCH
+        return !HeavyButton();
+#endif
+        if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
                 return (!HeavyButton());
 			}else{
@@ -1104,7 +1507,11 @@ public class ControlManagerS : MonoBehaviour {
 
 	public bool UseItemButton(){
 
-		if (ControllerAttached()){
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(10);
+#endif
+
+        if (ControllerAttached()){
 		
 			if (controlProfile == 0 || controlProfile == 3){
 			return (Input.GetButton("SwitchButton"+platformType));
@@ -1115,9 +1522,13 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetKey(KeyCode.R));
 		}
 	}
-	public bool ToggleItemButton(){
+	public bool ToggleItemButton()
+    {
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(12);
+#endif
 
-		if (ControllerAttached()){
+        if (ControllerAttached()){
 
 			if (controlProfile == 0 || controlProfile == 3){
 				return (Input.GetButton("SwitchBuddyButton"+platformType));
@@ -1128,9 +1539,13 @@ public class ControlManagerS : MonoBehaviour {
 			return (Input.GetKey(KeyCode.Tab));
 		}
 	}
-	public bool TauntButton(){
-		//TODO test this please, add rest of dpad and add keyboard default
-		if (ControllerAttached()){
+	public bool TauntButton()
+    {
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(6) || HandleSwitchInputButton(7) || HandleSwitchInputButton(8) || HandleSwitchInputButton(9);
+#endif
+        //TODO test this please, add rest of dpad and add keyboard default
+        if (ControllerAttached()){
 			if (platformType == "Mac"){
 				return (Input.GetButton("SwitchItemButtonLeftMac") || Input.GetButton("SwitchItemButtonRightMac")
 					|| Input.GetButton("SwitchItemButtonUpMac") || Input.GetButton("SwitchItemButtonUpMac"));
@@ -1185,7 +1600,11 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public bool ToggleMapButton(){
-		if (ControllerAttached()){
+
+#if UNITY_SWITCH
+        return HandleSwitchInputButton(10) || HandleSwitchInputButton(12);
+#endif
+        if (ControllerAttached()){
 
 			if (controlProfile == 0 || controlProfile == 3){
 				return (Input.GetButton("SwitchButton"+platformType) || Input.GetButton("SwitchBuddyButton"+platformType));
@@ -1198,7 +1617,11 @@ public class ControlManagerS : MonoBehaviour {
 	}
 
 	public void ChangeControlProfile(int dir){
-		if (dir > 0){
+#if UNITY_SWITCH
+        controlProfile = 0;
+        return;
+#endif
+        if (dir > 0){
 			controlProfile ++;
 			if (controlProfile > 3){
 				controlProfile = 1;

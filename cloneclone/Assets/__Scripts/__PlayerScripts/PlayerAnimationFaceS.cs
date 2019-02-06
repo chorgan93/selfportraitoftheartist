@@ -60,13 +60,25 @@ public class PlayerAnimationFaceS : MonoBehaviour {
 			                                         || myController.myStats.PlayerIsDead() || myController.IsRunning()){
 				// first, do a check to see if player is inputting movement, otherwise face velocity direction
 				if (myController.isDoingMovement){
-					if (myController.myControl.Horizontal() < 0){
+#if UNITY_SWITCH
+                        // switch needs to be less sensitive
+                        if (myController.myControl.Horizontal() < -0.5f)
+#else
+                        if (myController.myControl.Horizontal() < 0)
+#endif
+                        {
 						currentSize = mySize;
 							currentSize.x *= -1f;
 							currentFace = PlayerFaceState.faceLeft;
 					}
-					if (myController.myControl.Horizontal() > 0){
-							currentSize = mySize;
+#if UNITY_SWITCH
+                        // switch needs to be less sensitive
+                        if (myController.myControl.Horizontal() > 0.5f)
+#else
+                        if (myController.myControl.Horizontal() > 0)
+#endif
+                        {
+                            currentSize = mySize;
 							currentFace = PlayerFaceState.faceRight;
 					}
 					}else if (myController.inAttackDelay){

@@ -449,6 +449,7 @@ public class PlayerInventoryS : MonoBehaviour
 
     void CheckForPastAchievements(){
         // gonna do a lot of achieving on load.
+#if !DISABLESTEAMWORKS
         if (GameObject.Find("SteamManager"))
         {
             SteamStatsAndAchievements steamManager = GameObject.Find("SteamManager").GetComponent<SteamStatsAndAchievements>();
@@ -535,6 +536,7 @@ public class PlayerInventoryS : MonoBehaviour
             }
            
         }
+#endif
     }
 
     bool CheckAllProgress(int checkNum){
@@ -622,11 +624,13 @@ public class PlayerInventoryS : MonoBehaviour
 
     public void CheckFor100PercentCollection(){
         if (_earnedVirtues.Count >= 23 && unlockedWeapons.Count >= 12 && unlockedBuddies.Count >= 8){
+#if !DISABLESTEAMWORKS
             if (GameObject.Find("SteamManager"))
             {
                 SteamStatsAndAchievements statReference = GameObject.Find("SteamManager").GetComponent<SteamStatsAndAchievements>();
                 statReference.UnlockAchievementExternal(SteamStatsAndAchievements.Achievement.ACH_100_PERCENT);
             }
+#endif
         }
     }
 

@@ -35,15 +35,26 @@ public class TimelineS : MonoBehaviour {
 	void Update () {
 
 		if (hasMoved){
-			if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f){
+			if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f)
+            {
 				hasMoved = false;
 			}
 		}else{
-			if (myControl.HorizontalMenu() > 0.1f){
+#if UNITY_SWITCH
+            if (myControl.HorizontalMenu() > 0.5f)
+#else
+            if (myControl.HorizontalMenu() > 0.1f)
+#endif
+            {
 				hasMoved = true;
 				SetPosition(currentPos+1);
 			}
-			if (myControl.HorizontalMenu() < -0.1f){
+#if UNITY_SWITCH
+            if (myControl.HorizontalMenu() < -0.5f)
+#else
+            if (myControl.HorizontalMenu() < -0.1f)
+#endif
+            {
 				hasMoved = true;
 				SetPosition(currentPos-1);
 			}

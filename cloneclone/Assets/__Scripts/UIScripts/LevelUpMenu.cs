@@ -142,17 +142,26 @@ public class LevelUpMenu : MonoBehaviour
         {
 
             _canBeExited = true;
-
+#if UNITY_SWITCH
+            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                        Mathf.Abs(myControl.Vertical()) > 0.5f))
+#else
             if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                         Mathf.Abs(myControl.Vertical()) > 0.1f))
+#endif
             {
                 _controlStickMoved = true;
 
                 mainMenuTextObjs[currentPos].fontSize = textStartSize;
                 mainMenuTextObjs[currentPos].color = textStartColor;
 
+#if UNITY_SWITCH
+                if (myControl.Horizontal() > 0.5f ||
+                    myControl.Vertical() < -0.5f)
+#else
                 if (myControl.Horizontal() > 0f ||
                     myControl.Vertical() < 0f)
+#endif
                 {
                     pRef.ResetTimeMax();
                     currentPos++; if (currentPos == 2 && !allowRevertProgress)
@@ -224,16 +233,25 @@ public class LevelUpMenu : MonoBehaviour
 
         if (onLevelMenu)
         {
-
+#if UNITY_SWITCH
+            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                        Mathf.Abs(myControl.Vertical()) > 0.5f))
+#else
             if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                         Mathf.Abs(myControl.Vertical()) > 0.1f))
+#endif
             {
                 _controlStickMoved = true;
 
                 levelMenuItemOutlines[currentPos].color = textStartColor;
 
+#if UNITY_SWITCH
+                if (myControl.Horizontal() > 0.5f ||
+                    myControl.Vertical() < -0.5f)
+#else
                 if (myControl.Horizontal() > 0f ||
                     myControl.Vertical() < 0f)
+#endif
                 {
                     pRef.ResetTimeMax();
                     currentPos++;
@@ -328,17 +346,26 @@ public class LevelUpMenu : MonoBehaviour
 
         if (onTravelMenu)
         {
-
+#if UNITY_SWITCH
+            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                        Mathf.Abs(myControl.Vertical()) > 0.5f) && !travelStarted)
+#else
             if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                         Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+#endif
             {
                 _controlStickMoved = true;
 
                 pRef.ResetTimeMax();
                 travelMenuChoices[currentPos].color = textStartColor;
 
+#if UNITY_SWITCH
+                if (myControl.Horizontal() > 0.5f ||
+                    myControl.Vertical() < -0.5f)
+#else
                 if (myControl.Horizontal() > 0f ||
                     myControl.Vertical() < 0f)
+#endif
                 {
                     pRef.ResetTimeMax();
                     AdvanceTravelPos(1);
@@ -411,16 +438,25 @@ public class LevelUpMenu : MonoBehaviour
 
         if (inExitDescentConfirm)
         {
+#if UNITY_SWITCH
+            if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.5f) && !travelStarted)
+#else
             if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                             Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+#endif
             {
                 _controlStickMoved = true;
 
                 pRef.ResetTimeMax();
 
-
+#if UNITY_SWITCH
+                if (myControl.Horizontal() > 0.5f ||
+                    myControl.Vertical() < -0.5f)
+#else
                 if (myControl.Horizontal() > 0f ||
                     myControl.Vertical() < 0f)
+#endif
                 {
                     pRef.ResetTimeMax();
                     currentRevertConfirmPos++;
@@ -514,16 +550,25 @@ public class LevelUpMenu : MonoBehaviour
         {
             if (inRevertConfirm)
             {
+#if UNITY_SWITCH
+                if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.5f) && !travelStarted)
+#else
                 if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                             Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+#endif
                 {
                     _controlStickMoved = true;
 
                     pRef.ResetTimeMax();
 
-
+#if UNITY_SWITCH
+                    if (myControl.Horizontal() > 0.5f ||
+                        myControl.Vertical() < -0.5f)
+#else
                     if (myControl.Horizontal() > 0f ||
                         myControl.Vertical() < 0f)
+#endif
                     {
                         pRef.ResetTimeMax();
                         currentRevertConfirmPos++;
@@ -618,8 +663,13 @@ public class LevelUpMenu : MonoBehaviour
             }
             else
             {
+#if UNITY_SWITCH
+                if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.5f ||
+                                            Mathf.Abs(myControl.Vertical()) > 0.5f) && !travelStarted)
+#else
                 if (!_controlStickMoved && (Mathf.Abs(myControl.Horizontal()) > 0.1f ||
                                             Mathf.Abs(myControl.Vertical()) > 0.1f) && !travelStarted)
+#endif
                 {
                     _controlStickMoved = true;
 
@@ -633,9 +683,13 @@ public class LevelUpMenu : MonoBehaviour
 
                         revertMenuChoiceNames[currentPos].color = revertMenuCorruptionTexts[currentPos].color = textRevertLockedColor;
                     }
-
+#if UNITY_SWITCH
+                    if (myControl.Horizontal() > 0.5f ||
+                        myControl.Vertical() < -0.5f)
+#else
                     if (myControl.Horizontal() > 0f ||
                         myControl.Vertical() < 0f)
+#endif
                     {
                         pRef.ResetTimeMax();
                         currentPos++;

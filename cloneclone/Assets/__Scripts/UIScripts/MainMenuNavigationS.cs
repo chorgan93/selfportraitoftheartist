@@ -183,8 +183,9 @@ public class MainMenuNavigationS : MonoBehaviour {
             if (myController.ControllerAttached())
             {
                 pressAnyText[i].text = "Press Any Button";
-        
-            }else{
+
+            }
+            else{
                 pressAnyText[i].text = "Press Any Key";
             }
         }
@@ -354,14 +355,22 @@ public class MainMenuNavigationS : MonoBehaviour {
                         // show rpgmaker-type menu
                         if (!stickReset)
                         {
+#if UNITY_SWITCH
+                            if (Mathf.Abs(myController.HorizontalMenu()) < 0.5f && Mathf.Abs(myController.VerticalMenu()) < 0.5f)
+#else
                             if (Mathf.Abs(myController.HorizontalMenu()) < 0.1f && Mathf.Abs(myController.VerticalMenu()) < 0.1f)
+#endif
                             {
                                 stickReset = true;
                             }
                         }
                         else
                         {
+#if UNITY_SWITCH
+                            if (myController.VerticalMenu() < -0.5f)
+#else
                             if (myController.VerticalMenu() < -0.1f)
+#endif
                             {
                                 currentMenuZeroPosition++;
 
@@ -373,7 +382,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
                                 stickReset = false;
                             }
+#if UNITY_SWITCH
+                            else if (myController.VerticalMenu() > 0.5f)
+#else
                             else if (myController.VerticalMenu() > 0.1f)
+#endif
                             {
                                 currentMenuZeroPosition--;
 
@@ -527,8 +540,12 @@ public class MainMenuNavigationS : MonoBehaviour {
 							SetSelection();
 						}
 					}
-						
-					if (myController.HorizontalMenu() > 0.1f && stickReset){
+#if UNITY_SWITCH
+                    if (myController.HorizontalMenu() > 0.5f && stickReset)
+#else
+                    if (myController.HorizontalMenu() > 0.1f && stickReset)
+#endif
+                    {
 						attractCountdown = attractCountdownMax;
 						currentSelection++;
 						if (currentSelection > 1){
@@ -537,7 +554,12 @@ public class MainMenuNavigationS : MonoBehaviour {
 						stickReset = false;
 						SetSelection();
 					}
-					if (myController.HorizontalMenu() < -0.1f && stickReset){
+#if UNITY_SWITCH
+                    if (myController.HorizontalMenu() < -0.5f && stickReset)
+#else
+                    if (myController.HorizontalMenu() < -0.1f && stickReset)
+#endif
+                    {
 						attractCountdown = attractCountdownMax;
 						currentSelection--;
 						if (currentSelection < 0){
@@ -548,8 +570,13 @@ public class MainMenuNavigationS : MonoBehaviour {
 					}
 				}else{
 
-				// go down
-					if (myController.VerticalMenu() < -0.1f && stickReset){
+                    // go down
+#if UNITY_SWITCH
+                    if (myController.VerticalMenu() < -0.5f && stickReset)
+#else
+                    if (myController.VerticalMenu() < -0.1f && stickReset)
+#endif
+                    {
 						attractCountdown = attractCountdownMax;
 					
 					stickReset = false;
@@ -573,9 +600,14 @@ public class MainMenuNavigationS : MonoBehaviour {
 					
 					SetSelection();
 				}
-				
-				// go up
-					if (myController.VerticalMenu() > 0.1f && stickReset){
+
+                    // go up
+#if UNITY_SWITCH
+                    if (myController.VerticalMenu() > 0.5f && stickReset)
+#else
+                    if (myController.VerticalMenu() > 0.1f && stickReset)
+#endif
+                    {
 						attractCountdown = attractCountdownMax;
 						
 					stickReset = false;
