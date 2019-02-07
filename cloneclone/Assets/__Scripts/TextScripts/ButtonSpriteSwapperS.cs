@@ -81,7 +81,7 @@ public class ButtonSpriteSwapperS : MonoBehaviour
                     myRenderer.sprite = nintendoSprites[spriteNumToUse];
                     if (overrideColor)
                     {
-                        myImage.color = colorToOverrideWith;
+                        myRenderer.color = colorToOverrideWith;
                     }
                 }
 #else
