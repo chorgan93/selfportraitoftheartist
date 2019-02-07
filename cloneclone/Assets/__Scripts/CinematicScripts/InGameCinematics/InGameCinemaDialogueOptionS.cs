@@ -53,9 +53,9 @@ public class InGameCinemaDialogueOptionS : MonoBehaviour
     void Start()
     {
 
-#if UNITY_SWITCH
+/*#if UNITY_SWITCH
         buttonSprite.sprite = buttonSpritePS4.sprite = overrideForNintendo;
-#endif
+#endif**/
 
         if (ControlManagerS.controlProfile == 3 && buttonStringPS4 != null){
 			useButtonStringPS4 = true;

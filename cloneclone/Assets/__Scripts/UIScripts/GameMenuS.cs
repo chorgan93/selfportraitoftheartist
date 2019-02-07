@@ -113,7 +113,12 @@ public class GameMenuS : MonoBehaviour {
 
 		if (!inOptionsMenu){
 
-			if (myControl.VerticalMenu() > 0.1f && stickReset){
+#if UNITY_SWITCH
+            if (myControl.VerticalMenu() > 0.5f && stickReset)
+#else
+            if (myControl.VerticalMenu() > 0.1f && stickReset)
+#endif
+            {
 				stickReset = false;
 				currentSelection--;
 				myManager.pRef.ResetTimeMax();
@@ -122,7 +127,12 @@ public class GameMenuS : MonoBehaviour {
 				}
 				SetSelection(currentSelection);
 			}
-			if (myControl.VerticalMenu() < -0.1f && stickReset){
+#if UNITY_SWITCH
+            if (myControl.VerticalMenu() < -0.5f && stickReset)
+#else
+			if (myControl.VerticalMenu() < -0.1f && stickReset)
+#endif
+            {
 				stickReset = false;
 				currentSelection++;
 				myManager.pRef.ResetTimeMax();
@@ -434,7 +444,12 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleSinOption(){
 
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+		if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+            {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect++;
@@ -448,8 +463,13 @@ public class GameMenuS : MonoBehaviour {
 			DifficultyS.SetDifficultiesFromInt(difficultySelect, DifficultyS.GetPunishInt());
 			UpdateSinSettingText();
 		}
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			int difficultySelect = DifficultyS.GetSinInt();
 			difficultySelect--;
 			if (difficultySelect < 0){
@@ -495,7 +515,12 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandlePunishOption(){
 
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
+		#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+		if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+        {
 			stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect++;
@@ -509,8 +534,13 @@ public class GameMenuS : MonoBehaviour {
 			DifficultyS.SetDifficultiesFromInt( DifficultyS.GetSinInt(), difficultySelect);
 			UpdatePunishSettingText();
 		}
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			int difficultySelect = DifficultyS.GetPunishInt();
 			difficultySelect--;
 			if (difficultySelect < 0){
@@ -555,7 +585,12 @@ public class GameMenuS : MonoBehaviour {
 	}
 
 	void HandleAliasOption(){
-		if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset){
+#if UNITY_SWITCH
+        if ((myControl.HorizontalMenu() > 0.5f || myControl.HorizontalMenu() < -0.5f) && stickReset)
+#else
+            if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+#endif
+            {
 			stickReset = false;
 			CameraEffectsS.aliasOn = !CameraEffectsS.aliasOn;
 			if (CameraEffectsS.E){
@@ -581,7 +616,11 @@ public class GameMenuS : MonoBehaviour {
 
     void HandlePostOption()
     {
+#if UNITY_SWITCH
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+#else
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+#endif
         {
             stickReset = false;
             CameraEffectsS.ChangeEffectSetting(!CameraEffectsS.cameraEffectsEnabled);
@@ -606,6 +645,7 @@ public class GameMenuS : MonoBehaviour {
     }
 
     void HandleFullscreenOption(){
+#if !UNITY_SWITCH
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
         {
             stickReset = false;
@@ -639,12 +679,17 @@ public class GameMenuS : MonoBehaviour {
             StartCoroutine(UpdateFullscreenSettingCoroutine());
 
         }
+#endif
 
     }
 
 	void HandleShakeOption(){
 
+#if UNITY_SWITCH
+        if ((myControl.HorizontalMenu() > 0.5f || myControl.HorizontalMenu() < -0.5f) && stickReset)
+#else
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
+#endif
         {
             stickReset = false;
             if (myControl.HorizontalMenu() > 0) { 
@@ -704,17 +749,27 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleMusicOption(){
 
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+		if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(1);
 			}else{
 				BGMHolderS.SetVolumeSetting(1);
 			}
 			musicText.text = BGMHolderS.volumeMult*100f + "%";
-		}
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+        }
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			if (BGMHolderS.BG != null){
 				BGMHolderS.BG.UpdateVolumeSetting(-1);
 			}else{
@@ -739,13 +794,23 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleSfxOption(){
 
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			SFXObjS.SetVolumeSetting(1);
 			sfxText.text = SFXObjS.volumeSetting*100f + "%";
-		}
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+        }
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			SFXObjS.SetVolumeSetting(-1);
 			sfxText.text = SFXObjS.volumeSetting*100f + "%";
 		}
@@ -763,13 +828,23 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandleZoomOption(){
 
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			CameraFollowS.ChangeZoomLevel(1);
 			UpdateCameraZoomSettingText();
-		}
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+        }
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			CameraFollowS.ChangeZoomLevel(-1);
 			UpdateCameraZoomSettingText();
 		}
@@ -786,6 +861,7 @@ public class GameMenuS : MonoBehaviour {
 
     void HandleResolutionOption()
     {
+#if !UNITY_SWITCH
         if (myControl.HorizontalMenu() > 0.1f && stickReset)
         {
             stickReset = false;
@@ -830,6 +906,7 @@ public class GameMenuS : MonoBehaviour {
             
 
         }
+#endif
 
     }
 
@@ -879,9 +956,15 @@ public class GameMenuS : MonoBehaviour {
         }
     }
 
-	void HandleSpeedOption(){
-		if (myControl.HorizontalMenu() > 0.1f && stickReset){
-			stickReset = false;
+	void HandleSpeedOption()
+    {
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			CameraShakeS.ChangeTurbo(1);
 		}
 
@@ -893,8 +976,13 @@ public class GameMenuS : MonoBehaviour {
 
 		}
 
-		if (myControl.HorizontalMenu() < -0.1f && stickReset){
-			stickReset = false;
+#if UNITY_SWITCH
+        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+#else
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
+#endif
+        {
+            stickReset = false;
 			CameraShakeS.ChangeTurbo(-1);
 		}
 

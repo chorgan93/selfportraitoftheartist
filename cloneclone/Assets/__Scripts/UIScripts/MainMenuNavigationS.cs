@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— v. 1.2.0 —";
+	private const string currentVer = "— v. 1.3.0 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -852,8 +852,10 @@ public class MainMenuNavigationS : MonoBehaviour {
 		
 	}
 
-    private void StartNextLoad(bool playSound = true){
-		StartCoroutine(LoadNextScene());
+    private void StartNextLoad(bool playSound = true)
+    {
+        versionText.text = "Loading...";
+        StartCoroutine(LoadNextScene());
 		startedLoading = true;	
         if (newGameSound && playSound){
 			Instantiate(newGameSound);

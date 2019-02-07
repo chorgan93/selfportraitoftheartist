@@ -543,7 +543,7 @@ public class DifficultySelectS : MonoBehaviour {
 	}
 
 	private void StartLoading(){
-		StartCoroutine(LoadNextScene());
+        StartCoroutine(LoadNextScene());
 		startedLoading = true;
 	}
 

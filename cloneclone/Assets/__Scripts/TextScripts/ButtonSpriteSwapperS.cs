@@ -19,6 +19,8 @@ public class ButtonSpriteSwapperS : MonoBehaviour
     [Header("Specialty Case")]
     public bool useDefaults = false;
     public int overrideForKeyboard = -1;
+    public bool overrideColor = false;
+    public Color colorToOverrideWith = Color.blue;
 
     // Use this for initialization
     void OnEnable()
@@ -70,10 +72,17 @@ public class ButtonSpriteSwapperS : MonoBehaviour
                 if (useImage)
                 {
                     myImage.sprite = nintendoSprites[spriteNumToUse];
+                    if (overrideColor) {
+                        myImage.color = colorToOverrideWith;
+                    }
                 }
                 else
                 {
                     myRenderer.sprite = nintendoSprites[spriteNumToUse];
+                    if (overrideColor)
+                    {
+                        myImage.color = colorToOverrideWith;
+                    }
                 }
 #else
                 if (useImage)
