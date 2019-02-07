@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonSpriteSwapperS : MonoBehaviour {
+public class ButtonSpriteSwapperS : MonoBehaviour
+{
 
     public int actionNum = 0;
     private int startActionNum = -1;
     public Sprite[] xboxSprites;
     public Sprite[] ps4Sprites;
     public Sprite[] keySprites;
+    public Sprite[] nintendoSprites;
     private SpriteRenderer myRenderer;
     private Image myImage;
     private bool useImage = false;
 
     [Header("Specialty Case")]
-    public bool useDefaults=false;
+    public bool useDefaults = false;
     public int overrideForKeyboard = -1;
 
-	// Use this for initialization
-	void OnEnable () {
-        if (startActionNum < 0){
+    // Use this for initialization
+    void OnEnable()
+    {
+        if (startActionNum < 0)
+        {
             startActionNum = actionNum;
         }
         if (!myRenderer)
@@ -28,7 +32,9 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
             if (GetComponent<SpriteRenderer>() != null)
             {
                 myRenderer = GetComponent<SpriteRenderer>();
-            }else{
+            }
+            else
+            {
                 myImage = GetComponent<Image>();
                 useImage = true;
             }
@@ -43,7 +49,7 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
         int spriteNumToUse = 0;
         switch (ControlManagerS.controlProfile)
         {
-            
+
             case 0:
                 if (actionNum >= ControlManagerS.savedGamepadControls.Count)
                 {
@@ -60,6 +66,16 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                         spriteNumToUse = ControlManagerS.savedGamepadControls[actionNum];
                     }
                 }
+#if UNITY_SWITCH
+                if (useImage)
+                {
+                    myImage.sprite = nintendoSprites[spriteNumToUse];
+                }
+                else
+                {
+                    myRenderer.sprite = nintendoSprites[spriteNumToUse];
+                }
+#else
                 if (useImage)
                 {
                     myImage.sprite = xboxSprites[spriteNumToUse];
@@ -68,6 +84,7 @@ public class ButtonSpriteSwapperS : MonoBehaviour {
                 {
                     myRenderer.sprite = xboxSprites[spriteNumToUse];
                 }
+#endif
                 break;
             case 3:
                 if (actionNum >= ControlManagerS.savedGamepadControls.Count)

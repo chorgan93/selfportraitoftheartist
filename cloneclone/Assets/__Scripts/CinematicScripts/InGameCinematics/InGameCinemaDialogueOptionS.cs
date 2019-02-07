@@ -1,56 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InGameCinemaDialogueOptionS : MonoBehaviour {
+public class InGameCinemaDialogueOptionS : MonoBehaviour
+{
 
-	[Header("Scene Logic")]
-	private InGameCinemaTextS _myText;
-	public InGameCinemaTextS assignText;
-	public string[] assignLines;
-	public int inputNum = 0;
+    [Header("Scene Logic")]
+    private InGameCinemaTextS _myText;
+    public InGameCinemaTextS assignText;
+    public string[] assignLines;
+    public int inputNum = 0;
 
-	[Header("Display Settings")]
-	public Vector3 InstructionOffset = Vector3.zero;
-	Transform followTransform;
-	Vector3 currentPos;
-	bool isShowing = false;
+    [Header("Display Settings")]
+    public Vector3 InstructionOffset = Vector3.zero;
+    Transform followTransform;
+    Vector3 currentPos;
+    bool isShowing = false;
 
-	public SpriteRenderer buttonSprite;
-	public SpriteRenderer buttonSpritePS4;
-	public SpriteRenderer keySprite;
-	public SpriteRenderer mouseSprite;
-	private Color currentSpriteCol;
-	private Color currentSpritePS4Col;
-	private Color currentKeyCol;
-	public TextMesh examineString;
-	public TextMesh buttonString;
-	public TextMesh buttonStringPS4;
-	private bool useButtonStringPS4;
-	private Color currentTextCol;
+    public SpriteRenderer buttonSprite;
+    public SpriteRenderer buttonSpritePS4;
+    public Sprite overrideForNintendo;
+    public SpriteRenderer keySprite;
+    public SpriteRenderer mouseSprite;
+    private Color currentSpriteCol;
+    private Color currentSpritePS4Col;
+    private Color currentKeyCol;
+    public TextMesh examineString;
+    public TextMesh buttonString;
+    public TextMesh buttonStringPS4;
+    private bool useButtonStringPS4;
+    private Color currentTextCol;
 
-	private bool fadingIn = false;
-	private bool fadingOut = false;
-	private float fadeInRate = 2f;
-	private float fadeOutRate = 3f;
+    private bool fadingIn = false;
+    private bool fadingOut = false;
+    private float fadeInRate = 2f;
+    private float fadeOutRate = 3f;
 
-	Vector3 wanderPos = Vector3.zero;
-	Vector3 currentOffset = Vector3.zero;
-	private float wanderMultX = 0.2f;
-	private float wanderMultY = 0.4f;
-	private float wanderSpeed = 0.25f;
-	private float wanderCount;
-	private float wanderChangeMin = 0.5f;
-	private float wanderChangeMax = 1f;
+    Vector3 wanderPos = Vector3.zero;
+    Vector3 currentOffset = Vector3.zero;
+    private float wanderMultX = 0.2f;
+    private float wanderMultY = 0.4f;
+    private float wanderSpeed = 0.25f;
+    private float wanderCount;
+    private float wanderChangeMin = 0.5f;
+    private float wanderChangeMax = 1f;
 
-	private bool myButtonUp = false;
-	public bool canChoose = true;
+    private bool myButtonUp = false;
+    public bool canChoose = true;
 
-	public GameObject selectEffect;
+    public GameObject selectEffect;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
-		if (ControlManagerS.controlProfile == 3 && buttonStringPS4 != null){
+#if UNITY_SWITCH
+        buttonSprite.sprite = buttonSpritePS4.sprite = overrideForNintendo;
+#endif
+
+        if (ControlManagerS.controlProfile == 3 && buttonStringPS4 != null){
 			useButtonStringPS4 = true;
 			buttonString.gameObject.SetActive(false);
 		}else{

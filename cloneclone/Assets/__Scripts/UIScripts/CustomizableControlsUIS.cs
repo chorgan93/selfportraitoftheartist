@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomizableControlsUIS : MonoBehaviour {
+public class CustomizableControlsUIS : MonoBehaviour
+{
 
     private GameMenuS myParentMenu;
 
@@ -26,28 +27,31 @@ public class CustomizableControlsUIS : MonoBehaviour {
     public Sprite[] xboxButtonIcons;
     public Sprite[] ps4ButtonIcons;
     public Sprite[] keyboardButtonIcons;
+    public Sprite[] nintendoButtonIcons;
 
     private bool inReplaceMode = false;
-    public bool InReplaceMode { get { return inReplaceMode; }}
+    public bool InReplaceMode { get { return inReplaceMode; } }
 
     private int currentPos = 0;
     public RectTransform cursor;
     public Vector2 cursorOffset = new Vector2(-1, 0);
 
-    private bool[] buttonsAreUp= new bool[12];
+    private bool[] buttonsAreUp = new bool[12];
 
     private int checkKeyPress = -1;
     private bool allKeysUp = false;
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         HandleMovement();
         if (currentPos == 0 && !inReplaceMode)
         {
             HandleControlType();
         }
-        if (currentPos == customControlTexts.Length+1){
+        if (currentPos == customControlTexts.Length + 1)
+        {
             HandleRestoreDefaults();
         }
         HandleControlSwapping();
@@ -55,22 +59,25 @@ public class CustomizableControlsUIS : MonoBehaviour {
         if (Mathf.Abs(myControl.HorizontalMenu()) < 0.5f && Mathf.Abs(myControl.VerticalMenu()) < 0.5f)
         {
 #else
-        if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f){
+        if (Mathf.Abs(myControl.HorizontalMenu()) < 0.2f && Mathf.Abs(myControl.VerticalMenu()) < 0.2f)
+        {
 #endif
             stickReset = true;
         }
-        if (!myControl.GetCustomInput(12)){
+        if (!myControl.GetCustomInput(12))
+        {
             selectButtonUp = true;
         }
 
-        if (!myControl.GetCustomInput(13)){
+        if (!myControl.GetCustomInput(13))
+        {
             backButtonUp = true;
         }
-		
-	}
 
-	private void LateUpdate()
-	{
+    }
+
+    private void LateUpdate()
+    {
         if (myControl)
         {
             for (int i = 0; i < buttonsAreUp.Length; i++)
@@ -78,9 +85,10 @@ public class CustomizableControlsUIS : MonoBehaviour {
                 buttonsAreUp[i] = !myControl.GetCustomInput(i);
             }
         }
-	}
+    }
 
-    void HandleRestoreDefaults() { 
+    void HandleRestoreDefaults()
+    {
         if (selectButtonUp && myControl.GetCustomInput(12))
         {
 
@@ -91,7 +99,8 @@ public class CustomizableControlsUIS : MonoBehaviour {
         }
     }
 
-	void HandleControlType(){
+    void HandleControlType()
+    {
 #if UNITY_SWITCH
         if (myControl.HorizontalMenu() > 0.5f && stickReset)
 #else
@@ -157,13 +166,16 @@ public class CustomizableControlsUIS : MonoBehaviour {
         }
     }
 
-    void HandleMovement(){
-        if (stickReset && !inReplaceMode){
+    void HandleMovement()
+    {
+        if (stickReset && !inReplaceMode)
+        {
 #if UNITY_SWITCH
             if (myControl.VerticalMenu() > 0.5f)
             {
 #else
-            if (myControl.VerticalMenu() > 0.2f){
+            if (myControl.VerticalMenu() > 0.2f)
+            {
 #endif
                 currentPos--;
                 SetCursorPos();
@@ -173,7 +185,8 @@ public class CustomizableControlsUIS : MonoBehaviour {
             if (myControl.VerticalMenu() < -0.5f)
             {
 #else
-            if (myControl.VerticalMenu() < -0.2f){
+            if (myControl.VerticalMenu() < -0.2f)
+            {
 #endif
                 currentPos++;
                 SetCursorPos();
@@ -182,8 +195,10 @@ public class CustomizableControlsUIS : MonoBehaviour {
         }
     }
 
-    void HandleControlSwapping(){
-        if (currentPos > 0 && currentPos < customControlTexts.Length+1){
+    void HandleControlSwapping()
+    {
+        if (currentPos > 0 && currentPos < customControlTexts.Length + 1)
+        {
             if (selectButtonUp && !inReplaceMode && myControl.GetCustomInput(12))
             {
                 for (int i = 0; i < buttonsAreUp.Length; i++)
@@ -200,15 +215,20 @@ public class CustomizableControlsUIS : MonoBehaviour {
                 CheckForReplacement();
             }
         }
-        if (backButtonUp && myControl.GetCustomInput(13) && !inReplaceMode){
+        if (backButtonUp && myControl.GetCustomInput(13) && !inReplaceMode)
+        {
             TurnOff(null);
         }
     }
 
-    void SetInstructionText(){
-        if (inReplaceMode){
+    void SetInstructionText()
+    {
+        if (inReplaceMode)
+        {
             instructionText.text = "Press the button you wish to use for the selected action.";
-        }else{
+        }
+        else
+        {
             instructionText.text = "Select the action for which you want to customize control.";
         }
     }
@@ -317,13 +337,16 @@ public class CustomizableControlsUIS : MonoBehaviour {
             }
 
         }
-        else{
+        else
+        {
             checkKeyPress = myControl.CheckForKeyPress();
-            if (!allKeysUp && checkKeyPress < 0){
+            if (!allKeysUp && checkKeyPress < 0)
+            {
                 allKeysUp = true;
             }
-            if (allKeysUp && checkKeyPress > -1 && (ControlManagerS.controlProfile == 1 
-                                                    || (ControlManagerS.controlProfile == 2 && (checkKeyPress < 14 || checkKeyPress > 16)))){
+            if (allKeysUp && checkKeyPress > -1 && (ControlManagerS.controlProfile == 1
+                                                    || (ControlManagerS.controlProfile == 2 && (checkKeyPress < 14 || checkKeyPress > 16))))
+            {
                 myControl.SetCustomInput(currentPos - 1, checkKeyPress);
                 UpdateControlImages();
                 inReplaceMode = false;
@@ -338,17 +361,24 @@ public class CustomizableControlsUIS : MonoBehaviour {
 
     void UpdateControlImages()
     {
-        for (int i = 0; i < currentControlImages.Length; i++){
+        for (int i = 0; i < currentControlImages.Length; i++)
+        {
             if (i == currentControlImages.Length - 1)
             {
                 if (ControlManagerS.controlProfile == 0)
                 {
+#if UNITY_SWITCH
+                    currentControlImages[i].sprite = nintendoButtonIcons[i];
+#else
                     currentControlImages[i].sprite = xboxButtonIcons[i];
+#endif
                 }
                 else if (ControlManagerS.controlProfile == 3)
                 {
                     currentControlImages[i].sprite = ps4ButtonIcons[i];
-                }else{
+                }
+                else
+                {
                     currentControlImages[i].sprite = keyboardButtonIcons[keyboardButtonIcons.Length - 1];
                 }
             }
@@ -356,21 +386,30 @@ public class CustomizableControlsUIS : MonoBehaviour {
             {
                 if (ControlManagerS.controlProfile == 0)
                 {
+#if UNITY_SWITCH
+                    currentControlImages[i].sprite = nintendoButtonIcons[ControlManagerS.savedGamepadControls[i]];
+#else
                     currentControlImages[i].sprite = xboxButtonIcons[ControlManagerS.savedGamepadControls[i]];
+#endif
                 }
                 else if (ControlManagerS.controlProfile == 3)
                 {
                     currentControlImages[i].sprite = ps4ButtonIcons[ControlManagerS.savedGamepadControls[i]];
-                }else if (ControlManagerS.controlProfile == 2){
+                }
+                else if (ControlManagerS.controlProfile == 2)
+                {
                     currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardControls[i]];
-                }else{
+                }
+                else
+                {
                     currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardandMouseControls[i]];
                 }
             }
         }
     }
 
-    void UpdateControlSettingText(){
+    void UpdateControlSettingText()
+    {
         if (ControlManagerS.controlProfile == 0)
         {
             currentControlTypeText.text = "Gamepad";
@@ -394,18 +433,24 @@ public class CustomizableControlsUIS : MonoBehaviour {
         UpdateControlImages();
     }
 
-    public void TurnOn(GameMenuS newM){
+    public void TurnOn(GameMenuS newM)
+    {
 
 
         inReplaceMode = false;
         SetInstructionText();
         currentPos = 0;
+#if UNITY_SWITCH
+        // no control type option, so remove and set default position to first button
+        currentControlTypeText.gameObject.SetActive(false);
+        currentPos = 1;
+#endif
         SetCursorPos();
 
         selectButtonUp = false;
         backButtonUp = false;
         stickReset = false;
-            
+
         UpdateControlSettingText();
         allKeysUp = false;
 
@@ -419,13 +464,22 @@ public class CustomizableControlsUIS : MonoBehaviour {
         gameObject.SetActive(true);
     }
 
-    void SetCursorPos(){
-        if (currentPos > customControlTexts.Length+1){
-            currentPos = customControlTexts.Length+1;
+    void SetCursorPos()
+    {
+        if (currentPos > customControlTexts.Length + 1)
+        {
+            currentPos = customControlTexts.Length + 1;
         }
+#if UNITY_SWITCH
+        // there's no alt control types on switch, so disable 
+        if (currentPos < 1){
+            currentPos = 1;
+        }
+#else
         if (currentPos < 0){
             currentPos = 0;
         }
+#endif
         if (currentPos == 0){
             cursor.anchoredPosition = controlTypeText.rectTransform.anchoredPosition + cursorOffset;
         }else if (currentPos == customControlTexts.Length+1){

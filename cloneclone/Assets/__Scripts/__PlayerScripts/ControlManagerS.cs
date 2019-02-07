@@ -817,11 +817,11 @@ public class ControlManagerS : MonoBehaviour {
                     inputPressed = BackButton();
                     break;
                 case (12):
-                    // return default menu select button
+                    // return default menu select button (on Switch, these will be swapped w/ExitButton)
                     inputPressed = MenuSelectButton();
                     break;
                 case (13):
-                    // return default menu cancel button
+                    // return default menu cancel button (on Switch, these will be swapped w/TalkButton)
                     inputPressed = ExitButton();
                     break;
 
@@ -1440,7 +1440,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectButton(){
 
 #if UNITY_SWITCH
-        return TalkButton();
+        return HeavyButton();
 #endif
         if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
@@ -1456,7 +1456,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool MenuSelectUp()
     {
 #if UNITY_SWITCH
-        return !TalkButton();
+        return !HeavyButton();
 #endif
         if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
@@ -1472,7 +1472,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ExitButton()
     {
 #if UNITY_SWITCH
-        return HeavyButton();
+        return TalkButton();
 #endif
         if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
@@ -1492,7 +1492,7 @@ public class ControlManagerS : MonoBehaviour {
 	public bool ExitButtonUp()
     {
 #if UNITY_SWITCH
-        return !HeavyButton();
+        return !TalkButton();
 #endif
         if (ControllerAttached()){
 			if (controlProfile == 0 || controlProfile == 3){
