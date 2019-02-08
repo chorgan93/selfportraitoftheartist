@@ -2,58 +2,59 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameMenuS : MonoBehaviour {
+public class GameMenuS : MonoBehaviour
+{
 
-	private InGameMenuManagerS myManager;
+    private InGameMenuManagerS myManager;
 
     public static bool unlockedChallenge;
     public static bool unlockedTurbo;
 
     private int currentResolutionInt = 0;
 
-	private Color textDefaultColor;
-	private Color textSelectColor = Color.white;
+    private Color textDefaultColor;
+    private Color textSelectColor = Color.white;
 
-	private int currentSelection = 0;
-	public RectTransform selector;
+    private int currentSelection = 0;
+    public RectTransform selector;
 
-	public Text[] selectTexts;
-	public RectTransform[] selectPositions;
+    public Text[] selectTexts;
+    public RectTransform[] selectPositions;
 
-	private bool inConfirmation = false;
-	public GameObject confirmObject;
-	public Text confirmText;
-	public string confirmCheckpointString;
-	public string confirmMenuString;
+    private bool inConfirmation = false;
+    public GameObject confirmObject;
+    public Text confirmText;
+    public string confirmCheckpointString;
+    public string confirmMenuString;
 
-	private int fontSizeStart = -1;
-	private int fontSizeSelected;
+    private int fontSizeStart = -1;
+    private int fontSizeSelected;
 
-	public Text[] confirmTexts;
-	public RectTransform[] confirmPositions;
+    public Text[] confirmTexts;
+    public RectTransform[] confirmPositions;
 
-	private ControlManagerS myControl;
-    public ControlManagerS MyControl { get { return myControl; }}
+    private ControlManagerS myControl;
+    public ControlManagerS MyControl { get { return myControl; } }
 
-	private bool stickReset = false;
-	private bool selectButtonUp = false;
-	private bool cancelButtonUp = false;
+    private bool stickReset = false;
+    private bool selectButtonUp = false;
+    private bool cancelButtonUp = false;
 
-	private bool inOptionsMenu = false;
-	public GameObject optionsMenuProper;
-	public RectTransform[] optionsPositions;
-	public Text[] optionsTexts;
-	public Text controlText;
-	public Text speedText;
-	public Text sinText;
-	public Text punishText;
-	public Text musicText;
-	public Text sfxText;
-	public Text shakeText;
+    private bool inOptionsMenu = false;
+    public GameObject optionsMenuProper;
+    public RectTransform[] optionsPositions;
+    public Text[] optionsTexts;
+    public Text controlText;
+    public Text speedText;
+    public Text sinText;
+    public Text punishText;
+    public Text musicText;
+    public Text sfxText;
+    public Text shakeText;
     public Text resolutionText;
     public Text fullscreenText;
     public Text postProcessingText;
-	public RectTransform optionsSelector;
+    public RectTransform optionsSelector;
 
     private bool quitRightFromOptions = false;
 
@@ -61,17 +62,17 @@ public class GameMenuS : MonoBehaviour {
     private bool inCustomControlMenu = false;
 
 
-	private int fontSizeOptionStart = -1;
-	private int fontSizeOptionSelected;
+    private int fontSizeOptionStart = -1;
+    private int fontSizeOptionSelected;
 
-	private GameOverS respawnManager;
-	private bool initialized = false;
+    private GameOverS respawnManager;
+    private bool initialized = false;
 
-	[Header("Build Debug")]
-	public Text debugStick;
-	public Text debugActive;
-	private bool showDebug = false;
-	public bool overrideToMenu = true;
+    [Header("Build Debug")]
+    public Text debugStick;
+    public Text debugActive;
+    private bool showDebug = false;
+    public bool overrideToMenu = true;
 
     private MainMenuNavigationS mainMenuRef;
     public bool mainMenuUpdate = false;
@@ -79,39 +80,47 @@ public class GameMenuS : MonoBehaviour {
     private void Start()
     {
         string checkResolution = "";
-        for (int i = 0; i < Screen.resolutions.Length; i++){
+        for (int i = 0; i < Screen.resolutions.Length; i++)
+        {
             checkResolution += Screen.resolutions[i].ToString() + "\n";
         }
-       // Debug.LogError(checkResolution);
+        // Debug.LogError(checkResolution);
     }
 
-	// Update is called once per frame
-	private void Update()
+    // Update is called once per frame
+    private void Update()
     {
-        if (mainMenuUpdate){
+        if (mainMenuUpdate)
+        {
             GameMenuUpdate();
         }
     }
-	public void GameMenuUpdate () {
+    public void GameMenuUpdate()
+    {
 
-		if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f){
-			stickReset = true;
-		}
-		if (showDebug){
-			debugStick.text = "Stick Reset? " + stickReset 
-				+"\nH:" + Mathf.Abs(myControl.HorizontalMenu()) + " V:"+Mathf.Abs(myControl.VerticalMenu());
-			debugActive.text = "Menu active? " + myManager.gMenuActive;
-		}
+        if (Mathf.Abs(myControl.HorizontalMenu()) < 0.1f && Mathf.Abs(myControl.VerticalMenu()) < 0.1f)
+        {
+            stickReset = true;
+        }
+        if (showDebug)
+        {
+            debugStick.text = "Stick Reset? " + stickReset
+                + "\nH:" + Mathf.Abs(myControl.HorizontalMenu()) + " V:" + Mathf.Abs(myControl.VerticalMenu());
+            debugActive.text = "Menu active? " + myManager.gMenuActive;
+        }
 
-        if (!myControl.GetCustomInput(3)){
-			selectButtonUp = true;
-		}
+        if (!myControl.GetCustomInput(3))
+        {
+            selectButtonUp = true;
+        }
 
-        if (!myControl.GetCustomInput(1)){
-			cancelButtonUp = true;
-		}
+        if (!myControl.GetCustomInput(1))
+        {
+            cancelButtonUp = true;
+        }
 
-		if (!inOptionsMenu){
+        if (!inOptionsMenu)
+        {
 
 #if UNITY_SWITCH
             if (myControl.VerticalMenu() > 0.5f && stickReset)
@@ -119,60 +128,76 @@ public class GameMenuS : MonoBehaviour {
             if (myControl.VerticalMenu() > 0.1f && stickReset)
 #endif
             {
-				stickReset = false;
-				currentSelection--;
-				myManager.pRef.ResetTimeMax();
-				if (currentSelection < 0){
-					currentSelection = selectTexts.Length-1;
-				}
-				SetSelection(currentSelection);
-			}
+                stickReset = false;
+                currentSelection--;
+                myManager.pRef.ResetTimeMax();
+                if (currentSelection < 0)
+                {
+                    currentSelection = selectTexts.Length - 1;
+                }
+                SetSelection(currentSelection);
+            }
 #if UNITY_SWITCH
             if (myControl.VerticalMenu() < -0.5f && stickReset)
 #else
-			if (myControl.VerticalMenu() < -0.1f && stickReset)
+            if (myControl.VerticalMenu() < -0.1f && stickReset)
 #endif
             {
-				stickReset = false;
-				currentSelection++;
-				myManager.pRef.ResetTimeMax();
-				if (currentSelection > selectTexts.Length-1){
-					currentSelection = 0;
-				}
-				SetSelection(currentSelection);
-			}
+                stickReset = false;
+                currentSelection++;
+                myManager.pRef.ResetTimeMax();
+                if (currentSelection > selectTexts.Length - 1)
+                {
+                    currentSelection = 0;
+                }
+                SetSelection(currentSelection);
+            }
 
-            if ((cancelButtonUp && myControl.GetCustomInput(1) && !customControlRef.InReplaceMode) || (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 0)){
-				TurnOff();
-				myManager.pRef.ResetTimeMax();
-				selectButtonUp = false;
-				cancelButtonUp = false;
-				myManager.TurnOffFromGameMenu();
-			}
+            if ((cancelButtonUp && myControl.GetCustomInput(1) && !customControlRef.InReplaceMode) || (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 0))
+            {
+                TurnOff();
+                myManager.pRef.ResetTimeMax();
+                selectButtonUp = false;
+                cancelButtonUp = false;
+                myManager.TurnOffFromGameMenu();
+            }
 
-			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 2){
-				myManager.pRef.ResetTimeMax();
-				selectButtonUp = false;
-				inOptionsMenu = true;
-				MatchOptionsText();
-				SetSelection(0);
-				optionsMenuProper.gameObject.SetActive(true);
-			}
+            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 2)
+            {
+                myManager.pRef.ResetTimeMax();
+                selectButtonUp = false;
+                inOptionsMenu = true;
+                MatchOptionsText();
+                SetSelection(0);
+                optionsMenuProper.gameObject.SetActive(true);
+            }
 
-			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0){
-				RespawnAtLastCheckpoint();
-				myManager.pRef.ResetTimeMax();
-			}
+            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 1 && InGameMenuManagerS.allowFastTravel && PlayerInventoryS.I.CheckpointsReached() > 0)
+            {
+                RespawnAtLastCheckpoint();
+                myManager.pRef.ResetTimeMax();
+            }
 
-			if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel && 
-				(PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu)){
-				RespawnAtLastCheckpoint(true);
-				myManager.pRef.ResetTimeMax();
-			}
-        }else if (!inCustomControlMenu){
-			if (myControl.VerticalMenu() > 0.1f && stickReset){
-				stickReset = false;
-                currentSelection--;if (!mainMenuUpdate)
+            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel &&
+                (PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu))
+            {
+                RespawnAtLastCheckpoint(true);
+                myManager.pRef.ResetTimeMax();
+            }
+        }
+        else if (!inCustomControlMenu)
+        {
+            if (myControl.VerticalMenu() > 0.1f && stickReset)
+            {
+                stickReset = false;
+                currentSelection--;
+                // on switch, make sure to skip 6 and 7
+#if UNITY_SWITCH
+                if (currentSelection == 6 || currentSelection == 7){
+                    currentSelection = 5;
+                }
+#endif
+                if (!mainMenuUpdate)
                 {
                     myManager.pRef.ResetTimeMax();
                 }
@@ -183,7 +208,15 @@ public class GameMenuS : MonoBehaviour {
 			}
 			if (myControl.VerticalMenu() < -0.1f && stickReset){
 				stickReset = false;
-                currentSelection++;if (!mainMenuUpdate)
+                currentSelection++;
+                // on switch, make sure to skip 6 and 7
+#if UNITY_SWITCH
+                if (currentSelection == 6 || currentSelection == 7)
+                {
+                    currentSelection = 8;
+                }
+#endif
+                if (!mainMenuUpdate)
                 {
                     myManager.pRef.ResetTimeMax();
                 }
@@ -515,7 +548,7 @@ public class GameMenuS : MonoBehaviour {
 
 	void HandlePunishOption(){
 
-		#if UNITY_SWITCH
+#if UNITY_SWITCH
         if (myControl.HorizontalMenu() > 0.5f && stickReset)
 #else
 		if (myControl.HorizontalMenu() > 0.1f && stickReset)
