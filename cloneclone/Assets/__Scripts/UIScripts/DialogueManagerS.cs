@@ -265,7 +265,7 @@ public class DialogueManagerS : MonoBehaviour {
 			}else{
 				dialogueText.text = currentDisplayString = "";
 			}
-		targetDisplayString = newText;
+            targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText);
 			
 			scrollCountdown = 0f;
 			
@@ -295,8 +295,8 @@ public class DialogueManagerS : MonoBehaviour {
 				memoText.rectTransform.anchoredPosition = memoTextStartPos;
 			}
 
-			memoText.text = newText;
-			_doneScrolling = true;
+			memoText.text = LocalizationManager.instance.GetLocalizedValue(newText);
+            _doneScrolling = true;
 			//Debug.LogError("Done scrolling bc memo!");
 		}
 		advanceIndicator.SetActive(false);

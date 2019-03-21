@@ -104,8 +104,8 @@ public class EquipMenuS : MonoBehaviour {
 	private bool mapButtonDown = false;
 	public Text toggleTextLeft;
 	public Text toggleTextRight;
-	private string toMapString = "MAP";
-	private string toMenuString = "MENU";
+	private string toMapString = "ui_map_label";
+	private string toMenuString = "ui_menu_label";
 	public Sprite[] toggleButtonSpritesLeft;
 	public Sprite[] toggleButtonSpritesRight;
 	public Image toggleButtonSpriteLeft;
@@ -127,7 +127,9 @@ public class EquipMenuS : MonoBehaviour {
 	public void TurnOn(bool goToMap = false){
 
 		if (!_initialized){
-			mapScreen.gameObject.SetActive(false);
+            toMapString = LocalizationManager.instance.GetLocalizedValue(toMapString);
+            toMenuString = LocalizationManager.instance.GetLocalizedValue(toMenuString);
+            mapScreen.gameObject.SetActive(false);
 			playerImage.enabled = false;
 			mantraMainParadigmI.enabled = false;
 			mantraSubParadigmI.enabled = false;
@@ -851,18 +853,18 @@ public class EquipMenuS : MonoBehaviour {
 		selectorElements[newPos].color = changeCols;
 
 		if (newPos == 0){
-			descriptionText.text = paradigmIString;
+            descriptionText.text = LocalizationManager.instance.GetLocalizedValue(paradigmIString);
 		}
 		if (newPos == 1){
-			descriptionText.text = paradigmIIString;
+            descriptionText.text = LocalizationManager.instance.GetLocalizedValue(paradigmIIString);
 		}
 		
 		if (newPos == 2){
-			descriptionText.text = virtueString;
+                descriptionText.text = LocalizationManager.instance.GetLocalizedValue(virtueString);
 		}
 		
 		if (newPos == 3){
-			descriptionText.text = inventoryString;
+            descriptionText.text = LocalizationManager.instance.GetLocalizedValue(inventoryString);
 		}
 
 		if (moveSound){
@@ -901,7 +903,7 @@ public class EquipMenuS : MonoBehaviour {
 				descriptionText.text = "Virtue Slot 0" + (currentPos+1) + ": " +
 					allVirtueItems[currentPos].virtueDescription;
 			}else{**/
-				descriptionText.text = allVirtueItems[currentPos].virtueDescription;
+            descriptionText.text = LocalizationManager.instance.GetLocalizedValue(allVirtueItems[currentPos].virtueDescription);
 			//}
 		}else{
 			descriptionText.text = "";
@@ -935,7 +937,7 @@ public class EquipMenuS : MonoBehaviour {
 		selectorElementsInventory[nextAvailable].color = changeCols;
 		selector.anchoredPosition = selectorPositionsInventory[currentPos].anchoredPosition;
 
-		descriptionText.text = allInventoryItems[currentPos].techDescription;
+        descriptionText.text = LocalizationManager.instance.GetLocalizedValue(allInventoryItems[currentPos].techDescription);
 			
 		if (moveSound){
 			Instantiate(moveSound);
@@ -974,29 +976,39 @@ public class EquipMenuS : MonoBehaviour {
                 }
                 else if (paradigmNum == 0){
                     
-					descriptionText.text = allBuddyItems[pRef.EquippedBuddy().buddyNum].buddyDescription;
+                    descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                        (allBuddyItems[pRef.EquippedBuddy().buddyNum].buddyDescription);
 				}else{
-					descriptionText.text = allBuddyItems[pRef.SubBuddy().buddyNum].buddyDescription;
+					descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                        (allBuddyItems[pRef.SubBuddy().buddyNum].buddyDescription);
 				}
 			}else{
 				paradigmBuddySubscreen.gameObject.SetActive(false);
 				paradigmMantraSubscreen.gameObject.SetActive(true);
 				if (paradigmNum == 0){
 					if (newPos == 0){
-					descriptionText.text = allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain 
-						+ "\n" + allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionSub;
+                        descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain) 
+						+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionSub);
 					}else if (newPos == 1){
-						descriptionText.text = allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionMain 
-							+ "\n" + allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub;
+						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionMain) 
+							+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub);
 					}
 					
 				}else{
 					if (newPos == 0){
-					descriptionText.text = allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain 
-						+ "\n" + allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionSub;
+					descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain) 
+						+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionSub);
 					}else if (newPos == 1){
-						descriptionText.text = allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionMain 
-							+ "\n" + allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub;
+						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionMain) 
+							+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub);
 					}
 				}
 			}
@@ -1023,8 +1035,9 @@ public class EquipMenuS : MonoBehaviour {
 				selector.anchoredPosition = selectorPositionsParadigmI[currentPos].anchoredPosition;
 				if(currentPos > 2){
 
-						descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain + "\n"
-						+ allMantraItems[nextAvailable-3].weaponDescriptionSub;
+						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                        (allMantraItems[nextAvailable-3].weaponDescriptionMain) + "\n"
+                        + LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable-3].weaponDescriptionSub);
 
 
 				}
@@ -1033,8 +1046,9 @@ public class EquipMenuS : MonoBehaviour {
 				selector.anchoredPosition = selectorPositionsParadigmII[currentPos].anchoredPosition;
 				if(currentPos > 2){
 
-					descriptionText.text = allMantraItems[nextAvailable-3].weaponDescriptionMain + "\n"
-						+ allMantraItems[nextAvailable-3].weaponDescriptionSub;;
+					descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                        (allMantraItems[nextAvailable-3].weaponDescriptionMain) + "\n"
+                        + LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable-3].weaponDescriptionSub);
 					
 
 				}
@@ -1048,7 +1062,7 @@ public class EquipMenuS : MonoBehaviour {
             }
             else
             {
-                descriptionText.text = allBuddyItems[nextAvailable - 3].buddyDescription;
+                descriptionText.text = LocalizationManager.instance.GetLocalizedValue(allBuddyItems[nextAvailable - 3].buddyDescription);
             }
 		}
 

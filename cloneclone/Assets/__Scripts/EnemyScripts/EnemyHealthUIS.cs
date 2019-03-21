@@ -156,7 +156,7 @@ public class EnemyHealthUIS : MonoBehaviour {
 			myEnemies.Add(newEnemy);
 		}
 		newEnemy.SetUIReference(this);
-		enemyNameText.text = newEnemy.enemyName;
+        enemyNameText.text = LocalizationManager.instance.GetLocalizedValue(newEnemy.enemyName);
 
 		damageDecreasing = false;
 		currentFade = 0f;

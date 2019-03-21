@@ -29,6 +29,8 @@ public class EquipTechItemS : MonoBehaviour {
 	public VerseDisplayS verseUIRef;
     public KeyItemUIS keyItemUIRef;
 
+    bool _initialized = false;
+
 	public void Initialize(PlayerInventoryS i){
 
 		inventoryRef = i;
@@ -39,15 +41,18 @@ public class EquipTechItemS : MonoBehaviour {
 				turnOn = true;
 			}
 		}
-
-		techName = techText.text;
-
+        if (!_initialized)
+        {
+            techName = LocalizationManager.instance.GetLocalizedValue(techText.text);
+            _initialized = true;
+        }
 		if (!turnOn){
 			_unlocked = false;
 			techBG.enabled = true;
 			techText.color = textLockedColor;
-			techText.text = "— LOCKED —";
-		}else{
+			techText.text = LocalizationManager.instance.GetLocalizedValue("ui_tech_locked");
+        }
+        else{
 			techBG.enabled = true;
 			if (PlayerController.equippedTech.Contains(techNum)){
 				techText.color = textOnColor;

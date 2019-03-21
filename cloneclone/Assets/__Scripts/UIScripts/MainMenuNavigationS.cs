@@ -182,11 +182,12 @@ public class MainMenuNavigationS : MonoBehaviour {
         for (int i = 0; i < pressAnyText.Length; i++){
             if (myController.ControllerAttached())
             {
-                pressAnyText[i].text = "Press Any Button";
+                pressAnyText[i].text = LocalizationManager.instance.GetLocalizedValue("menu_any_button");
 
             }
-            else{
-                pressAnyText[i].text = "Press Any Key";
+            else
+            {
+                pressAnyText[i].text = LocalizationManager.instance.GetLocalizedValue("menu_any_key");
             }
         }
 		SetControlSelection();

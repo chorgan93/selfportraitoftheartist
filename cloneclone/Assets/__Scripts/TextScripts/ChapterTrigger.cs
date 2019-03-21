@@ -20,7 +20,7 @@ public class ChapterTrigger : MonoBehaviour {
 	void Start(){
 
 		chapterRef = GameObject.Find("ChapterText").GetComponent<InstructionTextS>();
-		chapterString = chapterString.Replace("NEWLINE", "\n");
+        chapterString = LocalizationManager.instance.GetLocalizedValue(chapterString).Replace("NEWLINE", "\n");
 
 
 	}

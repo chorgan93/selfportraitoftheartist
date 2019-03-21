@@ -65,7 +65,7 @@ public class ResetUIS : MonoBehaviour {
 				itemIcon.sprite = rewindItemSprite;
 				
 				resetCount.text = PlayerInventoryS.I.GetItemCount(0).ToString();
-                instruction.text = "RW";
+                instruction.text = LocalizationManager.instance.GetLocalizedValue("ui_rewind_display");
 				
 			}else{
 				itemIcon.sprite = healItemSprite;
@@ -73,9 +73,9 @@ public class ResetUIS : MonoBehaviour {
 				resetCount.text = PlayerInventoryS.I.GetItemCount(1).ToString();
 
 
-                instruction.text = "HP";
+                instruction.text = LocalizationManager.instance.GetLocalizedValue("ui_heal_display");
 
-			}
+            }
 		}else{
 			resetCount.enabled = false;
 			itemIcon.enabled = false;

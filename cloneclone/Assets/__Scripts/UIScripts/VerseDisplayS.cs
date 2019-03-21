@@ -23,6 +23,8 @@ public class VerseDisplayS : MonoBehaviour {
 	public static VerseDisplayS V;
 	private bool _isShowing = true;
 
+    private string genericVerseKey = "ui_verse";
+
 	[Header("Special Scene Properties")]
 	public bool arcadeMode = false;
 
@@ -140,7 +142,8 @@ public class VerseDisplayS : MonoBehaviour {
 
 	public void NewVerse(string verseString){
 		if (verseTitle.text == ""){
-		verseTitle.text = verseTitleBg.text = currentVerse = verseString;
+            verseTitle.text = verseTitleBg.text = currentVerse = LocalizationManager.instance.GetLocalizedValue(genericVerseKey)
+                +" "+ LocalizationManager.instance.GetLocalizedValue(verseString);
 		fadingIn = true;
 		fadingOut = false;
 		currentCol = verseBorder.color;

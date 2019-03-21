@@ -30,7 +30,7 @@ public class CameraShakeS : MonoBehaviour {
     private const float slowMode = 0.9f;
 	private const float turboOff = 0.925f;
 	private const float turboOn = 1f;
-	private const float superTurbo = 1.085f;
+	private const float superTurbo = 1.065f;
     private static int turboState = 0;
 
 	private const float debugScale = 1f;
@@ -429,7 +429,7 @@ public class CameraShakeS : MonoBehaviour {
 			turboString = "1.1x";
 		}
         if (turboState == 2){
-			turboString = "1.2x";
+			turboString = "TURBO";
 		}
         if (turboState == 3){
             turboString = "0.9x";

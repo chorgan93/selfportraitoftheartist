@@ -38,9 +38,11 @@ public class InstructionTrigger : MonoBehaviour {
 
 		if(!useInstructionObjs){
 			instructionRef = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
+            instructionString = LocalizationManager.instance.GetLocalizedValue(instructionString);
 			instructionString = instructionString.Replace("NEWLINE", "\n");
 			if (noControllerInstructionString != ""){
-				noControllerInstructionString = noControllerInstructionString.Replace("NEWLINE", "\n");
+                noControllerInstructionString = 
+                    LocalizationManager.instance.GetLocalizedValue(noControllerInstructionString).Replace("NEWLINE", "\n");
 			}
 		}
 

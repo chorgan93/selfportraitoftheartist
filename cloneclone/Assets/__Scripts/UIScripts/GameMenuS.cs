@@ -90,6 +90,12 @@ public class GameMenuS : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Alpha4)){
+            unlockedTurbo = !unlockedTurbo;
+            Debug.Log("Turbo enabled set to " + unlockedTurbo);
+        }
+#endif
         if (mainMenuUpdate)
         {
             GameMenuUpdate();

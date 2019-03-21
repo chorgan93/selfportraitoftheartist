@@ -259,6 +259,16 @@ Assets/_Scenes/TheDescentScenes/theDescent_19.unity
 Assets/_Scenes/TheDescentScenes/theDescent_20.unity
 Assets/_Scenes/TheDescentScenes/theDescent_21.unity
 Assets/_Scenes/TheDescentScenes/theDescent_22.unity
+Assets/_Scenes/TheDescentScenes/theDescent_23.unity
+Assets/_Scenes/TheDescentScenes/theDescent_24.unity
+Assets/_Scenes/TheDescentScenes/theDescent_25.unity
+Assets/_Scenes/TheDescentScenes/theDescent_26.unity
+Assets/_Scenes/TheDescentScenes/theDescent_27.unity
+Assets/_Scenes/TheDescentScenes/theDescent_28.unity
+Assets/_Scenes/TheDescentScenes/theDescent_29.unity
+Assets/_Scenes/TheDescentScenes/theDescent_30.unity
+Assets/_Scenes/TheDescentScenes/theDescent_COLINFIGHT.unity
+Assets/_Scenes/TheDescentScenes/theDescent_Final.unity
 Assets/_Scenes/EndingScenes/DescentIntroColinScene.unity
 SceneListEnd?
 5d53f88255f0e8c23302b4949b5d3335 Assembly-CSharp.dll:.MantraSwitchS
@@ -468,7 +478,7 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 e70adf7d789392656ae13a2ea603dfe0 Assembly-CSharp-firstpass.dll:UnityStandardAssets.ImageEffects.Bloom
 ac339f4f26a221b8c184e8d4efc0bbd5 Assembly-CSharp.dll:.RoomSpawner
 7ccbca77378711132f5b7e257c550ee4 Assembly-CSharp.dll:.BuddyProjectileS
-db1f40929c9ce4bd7075cb9d84f59c11 Assembly-CSharp.dll:.EnemyBehaviorStateS
+8757f65c3031abd8ccb600176a2ff667 Assembly-CSharp.dll:.EnemyBehaviorStateS
 78bcc681fb8afc23a38eb40d79a5df8e Assembly-CSharp.dll:.SetTrainStopS
 fd9c3251d3fd74a8ab239947f1ded59f Assembly-CSharp.dll:.EnemyChaseBehavior
 78d1abed34a09b677b3e7eb6c211b365 Assembly-CSharp.dll:.SacramentCombatOptionUndertextS
@@ -487,7 +497,7 @@ c6c94dc94b463b4c7b5f79cef063b708 Assembly-CSharp.dll:.EnviroParallaxS
 7185add3ee61a1c2eeb8f75b66f0d95d Assembly-CSharp.dll:.ActivateOnDoorUnlockS
 921b24d0423bcf4329caa6e59b369b78 Assembly-CSharp.dll:.ButtonSpriteSwapperS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ZControllerS
-8786bb98661af1b6c5172ec0c3d01636 Assembly-CSharp.dll:.ElevatorS
+c9ebfbf2b610744a17a818df389c6b72 Assembly-CSharp.dll:.ElevatorS
 3b98d159f52632bbf21b4d86761d62b0 Assembly-CSharp.dll:.EnemyStatusReferencesS
 99b349868461ac6ebca42060129defb7 Assembly-CSharp.dll:.MerchantUIItemS
 e0339a058c5209b70e7fb4b652b21a66 Assembly-CSharp.dll:.LevelUpMenu
@@ -606,7 +616,7 @@ a5bc35e1df397c1c07f701dbdf066e16 Assembly-CSharp.dll:.BuddySwitchEffectS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ProjectilePoolS
 84d908fb8e149a73176aa488bd9d86c4 Assembly-CSharp.dll:.EnemyDeathShadowS
 c497692f86644b9e49e35f5ffc3d51a2 Assembly-CSharp.dll:.ChapterTrigger
-9a0f80d3945d28ffb4d7c2e988b8b64a Assembly-CSharp.dll:.DifficultySelectS
+42801fe82e9e3a703bd670387b89f5a8 Assembly-CSharp.dll:.DifficultySelectS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.TurnOffInGameUIS
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.PlayerAnimationFaceS
 6149c39f85376efafc0c35db30aa6bb7 Assembly-CSharp.dll:.AutoSetProgressionS

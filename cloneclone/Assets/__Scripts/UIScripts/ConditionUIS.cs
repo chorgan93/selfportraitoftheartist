@@ -65,7 +65,7 @@ public class ConditionUIS : MonoBehaviour {
 			conditionTexts[i].enabled = false;
 		}
 		bgImage.enabled = false;
-		conditionTexts[0].text = "CONDITION:";
+        conditionTexts[0].text = LocalizationManager.instance.GetLocalizedValue("ui_condition_title");
 		fadeOut = false;
 		fadeOutCount = 0f;
 	}
@@ -77,8 +77,8 @@ public class ConditionUIS : MonoBehaviour {
 		for (int i = 0; i < conditionTexts.Length; i++){
 			conditionTexts[i].color = Color.red;
 		}
-		conditionTexts[0].text = "CONDITION [FAILED]";
-	}
+		conditionTexts[0].text = LocalizationManager.instance.GetLocalizedValue("ui_condition_fail");
+    }
 
 	public void SuccessCondition(){
 		for (int i = 0; i < ConditionBorders.Length; i++){
@@ -87,8 +87,8 @@ public class ConditionUIS : MonoBehaviour {
 		for (int i = 0; i < conditionTexts.Length; i++){
 			conditionTexts[i].color = Color.yellow;
 		}
-		conditionTexts[0].text = "CONDITION SUCCESS";
-		showTimeCount = showTime;
+		conditionTexts[0].text = LocalizationManager.instance.GetLocalizedValue("ui_condition_pass");
+        showTimeCount = showTime;
 		fadeOut = true;
 		fadeOutCount = 0f;
 	} 
@@ -100,18 +100,18 @@ public class ConditionUIS : MonoBehaviour {
 		}
 		for (int i = 0; i < conditionTexts.Length; i++){
 			conditionTexts[i].color = Color.white;
-			conditionTexts[0].text = "CONDITION:";
-			conditionTexts[i].enabled = true;
+			conditionTexts[0].text = LocalizationManager.instance.GetLocalizedValue("ui_condition_title");
+            conditionTexts[i].enabled = true;
 			if (i == 1){
 				if (conditionKind == CombatManagerS.CombatSpecialCondition.NoDamage){
-					conditionTexts[1].text = noDamageString;
+                    conditionTexts[1].text = LocalizationManager.instance.GetLocalizedValue(noDamageString);
 				}
 				if (conditionKind == CombatManagerS.CombatSpecialCondition.TimeLimit){
 					ReplaceTimeString(RankManagerS.R.TimeLeftInSeconds().ToString());
 				}
 				if (conditionKind == CombatManagerS.CombatSpecialCondition.OneCombo){
-					conditionTexts[1].text = oneComboString;
-				}
+                    conditionTexts[1].text = LocalizationManager.instance.GetLocalizedValue(oneComboString);
+                }
 			}
 		}
 
@@ -128,6 +128,6 @@ public class ConditionUIS : MonoBehaviour {
 	}
 
 	public void ReplaceTimeString(string newTime){
-		conditionTexts[1].text = timeLimitString.Replace("{TIME}", newTime);
+        conditionTexts[1].text = LocalizationManager.instance.GetLocalizedValue(timeLimitString).Replace("{TIME}", newTime);
 	}
 }
