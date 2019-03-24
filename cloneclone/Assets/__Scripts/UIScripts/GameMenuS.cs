@@ -77,7 +77,7 @@ public class GameMenuS : MonoBehaviour
     private MainMenuNavigationS mainMenuRef;
     public bool mainMenuUpdate = false;
 
-    private void Start()
+    /*private void Start()
     {
         string checkResolution = "";
         for (int i = 0; i < Screen.resolutions.Length; i++)
@@ -85,7 +85,7 @@ public class GameMenuS : MonoBehaviour
             checkResolution += Screen.resolutions[i].ToString() + "\n";
         }
         // Debug.LogError(checkResolution);
-    }
+    }**/
 
     // Update is called once per frame
     private void Update()
@@ -539,17 +539,20 @@ public class GameMenuS : MonoBehaviour
 
 	void UpdateSinSettingText(){
 		if (DifficultyS.GetSinInt() == 0){
-			sinText.text = "Easy";
+            sinText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_easy");
 		}
-		else if (DifficultyS.GetSinInt() == 1){
-			sinText.text = "Normal";
-		}
-		else if (DifficultyS.GetSinInt() == 2){
-			sinText.text = "Hard";
-		}
-		else if (DifficultyS.GetSinInt() == 3){
-			sinText.text = "Challenge";
-		}
+		else if (DifficultyS.GetSinInt() == 1)
+        {
+            sinText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_normal");
+        }
+		else if (DifficultyS.GetSinInt() == 2)
+        {
+            sinText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_hard");
+        }
+		else if (DifficultyS.GetSinInt() == 3)
+        {
+            sinText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_challenge");
+        }
 	}
 
 	void HandlePunishOption(){
@@ -609,18 +612,22 @@ public class GameMenuS : MonoBehaviour
 	}
 
 	void UpdatePunishSettingText(){
-		if (DifficultyS.GetPunishInt() == 0){
-			punishText.text = "Easy";
-		}
-		else if (DifficultyS.GetPunishInt() == 1){
-			punishText.text = "Normal";
-		}
-		else if (DifficultyS.GetPunishInt() == 2){
-			punishText.text = "Hard";
-		}
-		else if (DifficultyS.GetPunishInt() == 3){
-			punishText.text = "Challenge";
-		}
+		if (DifficultyS.GetPunishInt() == 0)
+        {
+            punishText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_easy");
+        }
+		else if (DifficultyS.GetPunishInt() == 1)
+        {
+            punishText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_normal");
+        }
+		else if (DifficultyS.GetPunishInt() == 2)
+        {
+            punishText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_hard");
+        }
+		else if (DifficultyS.GetPunishInt() == 3)
+        {
+            punishText.text = LocalizationManager.instance.GetLocalizedValue("options_difficulty_challenge");
+        }
 	}
 
 	void HandleAliasOption(){
@@ -647,10 +654,11 @@ public class GameMenuS : MonoBehaviour
 		}
 
 		if (CameraEffectsS.aliasOn){
-			fullscreenText.text = "ON";
-		}else{
-            fullscreenText.text = "OFF";
-		}
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
+		}else
+        {
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
+        }
 	}
 
     void HandlePostOption()
@@ -675,11 +683,11 @@ public class GameMenuS : MonoBehaviour
 
         if (CameraEffectsS.cameraEffectsEnabled)
         {
-            postProcessingText.text = "ON";
+            postProcessingText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
         }
         else
         {
-            postProcessingText.text = "OFF";
+            postProcessingText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
         }
     }
 
@@ -735,31 +743,32 @@ public class GameMenuS : MonoBehaviour
             if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
-                shakeText.text = "OFF";
-                }else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
+                shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
+                }
+                else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
                     CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-                    shakeText.text = "ON";  
+                    shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
                 }
             else
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
-                shakeText.text = "LOW";
-            }
+                    shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_low");
+                }
         }else{
                 if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
                 {
                     CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
-                    shakeText.text = "LOW";
+                    shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_low");
                 }
                 else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0)
                 {
                     CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
-                    shakeText.text = "OFF";
+                    shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
                 }
                 else
                 {
                     CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-                    shakeText.text = "ON";
+                    shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
                 }
         }
 		}
@@ -768,17 +777,17 @@ public class GameMenuS : MonoBehaviour
             if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f)
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0f;
-                shakeText.text = "OFF";
+                shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
             }
             else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0)
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 1f;
-                shakeText.text = "ON";
+                shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
             }
             else
             {
                 CameraShakeS.OPTIONS_SHAKE_MULTIPLIER = 0.5f;
-                shakeText.text = "LOW";
+                shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_low");
             }
 			selectButtonUp = false;
 
@@ -1053,9 +1062,9 @@ public class GameMenuS : MonoBehaviour
         yield return null;
         if (Screen.fullScreen)
         {
-            fullscreenText.text = "ON";
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
         }else{
-            fullscreenText.text = "OFF";
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
         }
     }
 
@@ -1066,24 +1075,28 @@ public class GameMenuS : MonoBehaviour
 		UpdateSinSettingText();
 		UpdatePunishSettingText();
 		if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER >= 1f){
-			shakeText.text = "ON";
-        }else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
-            shakeText.text = "LOW";
-        }else{
-			shakeText.text = "OFF";
-		}
+			shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
+        }
+        else if (CameraShakeS.OPTIONS_SHAKE_MULTIPLIER > 0){
+            shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_low");
+        }
+        else{
+			shakeText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
+        }
         //UpdateCameraZoomSettingText();
         UpdateResolutionSettingText();
         if (Screen.fullScreen)
         {
-            fullscreenText.text = "ON";
-        }else{
-            fullscreenText.text = "OFF";
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
+        }
+        else{
+            fullscreenText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
         }
         if (CameraEffectsS.cameraEffectsEnabled){
-            postProcessingText.text = "ON";
-        }else{
-            postProcessingText.text = "OFF";
+            postProcessingText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_on");
+        }
+        else{
+            postProcessingText.text = LocalizationManager.instance.GetLocalizedValue("options_menu_off");
         }
 		speedText.text = CameraShakeS.GetTurboString();
 		musicText.text = BGMHolderS.volumeMult*100f + "%";

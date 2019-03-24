@@ -531,6 +531,130 @@
     {
       "key": "ui_tech_locked",
       "value": "— LOCKED —"
+    },
+    {
+      "key": "ui_game_checkpoint",
+      "value": "Return to the last checkpoint visited?"
+    },
+    {
+      "key": "ui_game_return",
+      "value": "Exit game and return to the main menu?"
+    },
+    {
+      "key": "ui_game_option_00",
+      "value": "Return to Game"
+    },
+    {
+      "key": "ui_game_option_01",
+      "value": "Return to Last Checkpoint"
+    },
+    {
+      "key": "ui_game_option_02",
+      "value": "Options"
+    },
+    {
+      "key": "ui_game_option_03",
+      "value": "Exit to menu"
+    },
+    {
+      "key": "options_header_game",
+      "value": "// GAME"
+    },
+    {
+      "key": "options_header_control",
+      "value": "Customize Controls >>"
+    },
+    {
+      "key": "options_header_speed",
+      "value": "game speed"
+    },
+    {
+      "key": "options_header_difficulty",
+      "value": "// DIFFICULTY"
+    },
+    {
+      "key": "options_difficulty_sin",
+      "value": "Sin"
+    },
+    {
+      "key": "options_difficulty_punishment",
+      "value": "Punishment"
+    },
+    {
+      "key": "options_difficulty_easy",
+      "value": "Easy"
+    },
+    {
+      "key": "options_difficulty_normal",
+      "value": "Normal"
+    },
+    {
+      "key": "options_difficulty_hard",
+      "value": "Hard"
+    },
+    {
+      "key": "options_difficulty_challenge",
+      "value": "Challenge"
+    },
+    {
+      "key": "options_header_audio",
+      "value": "// AUDIO"
+    },
+    {
+      "key": "options_header_music",
+      "value": "music volume"
+    },
+    {
+      "key": "options_header_sound",
+      "value": "sfx volume"
+    },
+    {
+      "key": "options_header_visual",
+      "value": "// VISUAL"
+    },
+    {
+      "key": "options_header_fullscreen",
+      "value": "fullscreen"
+    },
+    {
+      "key": "options_menu_on",
+      "value": "ON"
+    },
+    {
+      "key": "options_menu_off",
+      "value": "OFF"
+    },
+    {
+      "key": "options_header_resolution",
+      "value": "resolution"
+    },
+    {
+      "key": "options_header_screenshake",
+      "value": "Screenshake"
+    },
+    {
+      "key": "options_header_post",
+      "value": "Post Processing"
+    },
+    {
+      "key": "options_header_exit",
+      "value": "Exit"
+    },
+    {
+      "key": "options_menu_low",
+      "value": "LOW"
+    },
+    {
+      "key": "options_menu_turbo",
+      "value": "TURBO"
+    },
+    {
+      "key": "ui_menu_paused",
+      "value": "— P A U S E D —"
+    },
+    {
+      "key": "options_control_instruction",
+      "value": "Select the control you wish to change"
     }
   ]
   }

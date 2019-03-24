@@ -429,7 +429,7 @@ public class CameraShakeS : MonoBehaviour {
 			turboString = "1.1x";
 		}
         if (turboState == 2){
-			turboString = "TURBO";
+            turboString = LocalizationManager.instance.GetLocalizedValue("options_menu_turbo");
 		}
         if (turboState == 3){
             turboString = "0.9x";
