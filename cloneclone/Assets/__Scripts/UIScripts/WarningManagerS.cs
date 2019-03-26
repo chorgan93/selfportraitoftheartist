@@ -120,7 +120,7 @@ public class WarningManagerS : MonoBehaviour {
 
 	public void NewMessage(string newMessage, Color mainCol, Color subCol, bool lockShow, int shakeInt  = 0){
 				
-		warningText.text = warningTextBg.text = warningTextShake.text = newMessage;
+        warningText.text = warningTextBg.text = warningTextShake.text = LocalizationManager.instance.GetLocalizedValue(newMessage);
 		warningText.color = warningTextShake.color = mainCol;
 		warningTextBg.color = subCol;
 		bg.color = bgCol;
@@ -145,7 +145,7 @@ public class WarningManagerS : MonoBehaviour {
 	}
 
 	public void EndShow(string warningString){
-		if (warningString == warningText.text){
+        if (LocalizationManager.instance.GetLocalizedValue(warningString) == warningText.text){
 			isShaking = false;
 			currentShowTime = 0f;
 			warningTextBg.rectTransform.anchoredPosition = shakePos;

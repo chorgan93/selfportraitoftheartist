@@ -3540,7 +3540,8 @@ public class PlayerController : MonoBehaviour {
 
 	public void SetExamining(bool nEx, Vector3 newExaminePos, string newExString = ""){
 
-		_overrideExamineString = newExString;
+        _overrideExamineString = LocalizationManager.instance.GetLocalizedValue(newExString);
+        //Debug.Log(_overrideExamineString);
 		if (newExaminePos != Vector3.zero){
 		_examineStringPos = newExaminePos;
 		}

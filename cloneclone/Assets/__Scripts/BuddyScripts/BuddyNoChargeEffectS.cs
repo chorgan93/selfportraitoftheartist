@@ -38,7 +38,7 @@ public class BuddyNoChargeEffectS : MonoBehaviour {
 		}
 
 		StopCoroutine(ExclamationEffect());
-		myBuddy.playerRef.myStats.warningRef.NewMessage("— INSUFFICIENT Charge —", Color.white, Color.magenta, false, 0);
+		myBuddy.playerRef.myStats.warningRef.NewMessage("warning_charge_insufficient", Color.white, Color.magenta, false, 0);
 		StartCoroutine(ExclamationEffect());
 	}
 

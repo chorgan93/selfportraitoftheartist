@@ -50,6 +50,8 @@ public class FadeScreenUI : MonoBehaviour {
 
     public bool neverGoToDarkness = false;
 
+    public bool DoSave = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -174,6 +176,10 @@ public class FadeScreenUI : MonoBehaviour {
 							PlayerInventoryS.I.RefreshRechargeables();
 						}
 					}
+                        if (DoSave){
+                            StoryProgressionS.SaveProgress();
+                            DoSave = false;
+                        }
 					InGameCinematicS.inGameCinematic = false;
 					dontAllowReset = false;
 					async.allowSceneActivation = true;

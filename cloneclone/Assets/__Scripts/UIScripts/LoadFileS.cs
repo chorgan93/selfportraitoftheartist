@@ -41,8 +41,9 @@ public class LoadFileS : MonoBehaviour {
             }
 
             currentChapterName.text = myData.playerInventory.lastChapterName + " (" + myData.currentDarkness.ToString("F2") + "%)";
-            lastSceneName.text = "Last Checkpoint: " + myData.playerInventory.lastSavePointName;
-            string timeString = "Total Playtime: ";
+            lastSceneName.text = LocalizationManager.instance.GetLocalizedValue("menu_load_check")+ 
+                ": " + LocalizationManager.instance.GetLocalizedValue(myData.playerInventory.lastSavePointName);
+            string timeString = LocalizationManager.instance.GetLocalizedValue("menu_load_time") + ": ";
             if (myData.playerInventory.totalPlayTimeHours < 10){
                 timeString += "0" + myData.playerInventory.totalPlayTimeHours + "H ";
             }else{

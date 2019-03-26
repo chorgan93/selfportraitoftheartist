@@ -33,7 +33,7 @@ public class ExamineLabelS : MonoBehaviour {
 
 		myRef = GetComponentInParent<PlayerController>();
 		myMesh = GetComponent<TextMesh>();
-		startString = myMesh.text;
+        startString = LocalizationManager.instance.GetLocalizedValue(myMesh.text);
 		myMesh.text = "";
 
         if (myOutline){
@@ -86,13 +86,19 @@ public class ExamineLabelS : MonoBehaviour {
                                 myOutline.text = myMesh.text;
                             }
 					}
-					if (myRef.overrideExamineString.Contains("E Key")){ 
+					else if (myRef.overrideExamineString.Contains("E Key")){ 
 						myMesh.text = myRef.overrideExamineString.Replace("E Key", "");
                             if (myOutline)
                             {
                                 myOutline.text = myMesh.text;
                             }
-					}
+                        }else{
+                            myMesh.text = myRef.overrideExamineString;
+                            if (myOutline)
+                            {
+                                myOutline.text = myMesh.text;
+                            }
+                        }
 				}else{
 					myMesh.text = startString;
                         if (myOutline)

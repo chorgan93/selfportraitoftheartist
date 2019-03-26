@@ -265,7 +265,7 @@ public class DialogueManagerS : MonoBehaviour {
 			}else{
 				dialogueText.text = currentDisplayString = "";
 			}
-            targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText);
+            targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName);
 			
 			scrollCountdown = 0f;
 			

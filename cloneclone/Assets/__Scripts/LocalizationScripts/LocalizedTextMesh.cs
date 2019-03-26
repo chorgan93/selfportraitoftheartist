@@ -11,7 +11,7 @@ public class LocalizedTextMesh : MonoBehaviour
     void Start()
     {
         TextMesh text = GetComponent<TextMesh>();
-        text.text = LocalizationManager.instance.GetLocalizedValue(key).Replace("\n",System.Environment.NewLine);
+        text.text = LocalizationManager.instance.GetLocalizedValue(key).Replace("\\n",System.Environment.NewLine);
     }
 
 }

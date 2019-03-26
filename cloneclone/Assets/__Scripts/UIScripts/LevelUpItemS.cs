@@ -67,8 +67,8 @@ public class LevelUpItemS : MonoBehaviour {
 		_upgradeID = l.upgradeID;
 
 		upgradeNum = upgradeRef.upgradeID;
-		upgradeDescription = upgradeRef.upgradeDescription;
-		upgradeName = upgradeRef.upgradeName;
+            upgradeDescription = LocalizationManager.instance.GetLocalizedValue(upgradeRef.upgradeDescription);
+            upgradeName = LocalizationManager.instance.GetLocalizedValue(upgradeRef.upgradeName);
 		upgradeCost = upgradeRef.upgradeBaseCost+upgradeRef.upgradeCostPerLv*statRef.currentLevel + flatAddPerLevel*(statRef.currentLevel-1);
 
 		
@@ -109,14 +109,14 @@ public class LevelUpItemS : MonoBehaviour {
 			upgradeCost = statRef.currentLevel*10;
 			shuffleUpgrade = true;
 
-			upgradeDescription = shuffleDescription;
-			upgradeName = shuffleName;
+            upgradeDescription = LocalizationManager.instance.GetLocalizedValue(shuffleDescription);
+            upgradeName = LocalizationManager.instance.GetLocalizedValue(shuffleName);
 		}else if (isRevert){
 			upgradeCost = 0;
 			revertUpgrade = true;
 
-			upgradeDescription = revertDescription;
-			upgradeName = revertName;
+            upgradeDescription = LocalizationManager.instance.GetLocalizedValue(revertDescription);
+            upgradeName = LocalizationManager.instance.GetLocalizedValue(revertName);
 		}
 
 		if ((upgradeCost > PlayerCollectionS.currencyCollected && PlayerInventoryS.I.earnedUpgrades.Count <= MAX_LEVEL_UP) 
@@ -145,7 +145,9 @@ public class LevelUpItemS : MonoBehaviour {
 	}
 
 	public void ShowText(){
-        upgradeNameText.text = upgradeName + " ( Cost: " + upgradeCost +  " / " + PlayerCollectionS.currencyCollected + " la )";
+        upgradeNameText.text = upgradeName + " ( "+ LocalizationManager.instance.GetLocalizedValue("menu_upgrade_cost")+
+            ": " + upgradeCost +  " / " + PlayerCollectionS.currencyCollected + " " + 
+            LocalizationManager.instance.GetLocalizedValue("game_la")+ " )";
 		upgradeDescriptionText.text = upgradeDescription;
         if (revertUpgrade){
             //Debug.Log("Current level: " + statRef.currentLevel + " Current lower revert limit: " + minRevert());
@@ -153,11 +155,15 @@ public class LevelUpItemS : MonoBehaviour {
 		if ((upgradeCost > PlayerCollectionS.currencyCollected && !revertUpgrade) || (revertUpgrade && statRef.currentLevel<=minRevert())){
 			SetTextColors(lockedTextColor);
 			upgradeNameText.text = upgradeName 
-                + " ( Cost: <color=#ff0000ff>" + upgradeCost + "</color> / " + PlayerCollectionS.currencyCollected + " la )";
+                + " ( " + LocalizationManager.instance.GetLocalizedValue("menu_upgrade_cost") +
+            ": < color=#ff0000ff>" + upgradeCost + "</color> / " + PlayerCollectionS.currencyCollected + " " +
+            LocalizationManager.instance.GetLocalizedValue("game_la") + " )";
         }
         else{
 			SetTextColors(Color.white);
-            upgradeNameText.text = upgradeName + " ( Cost: " + upgradeCost + " / " + PlayerCollectionS.currencyCollected + " la )";
+            upgradeNameText.text = upgradeName + " ( " + LocalizationManager.instance.GetLocalizedValue("menu_upgrade_cost") +
+            ": " + upgradeCost + " / " + PlayerCollectionS.currencyCollected + " " +
+            LocalizationManager.instance.GetLocalizedValue("game_la") + " )";
         }
 
 		if (!shuffleUpgrade && !revertUpgrade){

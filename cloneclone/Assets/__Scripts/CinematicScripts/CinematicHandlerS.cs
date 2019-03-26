@@ -123,7 +123,8 @@ public class CinematicHandlerS : MonoBehaviour {
                 {
                     PlayerInventoryS.I.unlockedWeapons.Add(weaponToGive);
                     PlayerInventoryS.I.OverwriteInventoryData();
-                    StoryProgressionS.SaveProgress();
+                    //StoryProgressionS.SaveProgress();
+                    CameraEffectsS.E.fadeRef.DoSave = true;
                 }
             }
 
@@ -136,7 +137,8 @@ public class CinematicHandlerS : MonoBehaviour {
                 GameMenuS.unlockedChallenge = true;
             }
             PlayerInventoryS.I.OverwriteInventoryData();
-            StoryProgressionS.SaveProgress();
+            //StoryProgressionS.SaveProgress();
+            CameraEffectsS.E.fadeRef.DoSave = true;
         }
 		
 	}

@@ -318,7 +318,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 						if (_currentMana < maxMana*CAN_USE_MANA*0.5f){
 
-							warningReference.NewMessage("— Stamina LOW —", Color.cyan, Color.grey, true, 1);
+							warningReference.NewMessage("warning_stamina_low", Color.cyan, Color.grey, true, 1);
 							//warningReference.NewMessage("— T H A N K _ Y O U ! ! —", Color.black, Color.cyan, true, 1);
 						}
 
@@ -334,7 +334,7 @@ public class PlayerStatsS : MonoBehaviour {
 				_currentMana = 0;
 						_exhausted = true;
 
-						warningReference.NewMessage("! ! STAMINA OUT ! !", Color.cyan, Color.red, true, 1);
+						warningReference.NewMessage("warning_stamina_out", Color.cyan, Color.red, true, 1);
 						//warningReference.NewMessage("— T H A N K _ Y O U ! ! —", Color.black, Color.magenta, true, 1);
 
 			}
@@ -393,12 +393,12 @@ public class PlayerStatsS : MonoBehaviour {
 			_currentCharge = 0f;
 
 			if (canUse && useCharge){
-				warningReference.NewMessage("! CHARGE OUT !", Color.cyan, Color.magenta, false, 1);
+				warningReference.NewMessage("warning_charge_out", Color.cyan, Color.magenta, false, 1);
 			}
 		}else if (_currentCharge < maxCharge*0.2f){
 
 			if (canUse && useCharge){
-				warningReference.NewMessage("— Charge LOW —", Color.white, Color.magenta, false, 0);
+				warningReference.NewMessage("warning_charge_low", Color.white, Color.magenta, false, 0);
 			}
 		}
 		_uiReference.UpdateFills();
@@ -428,14 +428,14 @@ public class PlayerStatsS : MonoBehaviour {
 		}
 		_uiReference.ChargeAddEffect(amtAdded);
 		_currentCharge += amtAdded;
-		warningReference.EndShow("! Charge OUT !");
-		warningReference.EndShow("— INSUFFICIENT Charge —");
+		warningReference.EndShow("warning_charge_out");
+		warningReference.EndShow("warning_charge_insufficient");
 		if (_currentCharge > maxCharge){
 			_currentCharge = maxCharge;
 		}
 		if (_currentCharge >= maxCharge*0.2f){
 
-			warningReference.EndShow("— Charge LOW —");
+			warningReference.EndShow("warning_charge_low");
 		}
 		if (itemEffect){
 			
@@ -488,7 +488,7 @@ public class PlayerStatsS : MonoBehaviour {
 		_overchargeMana = 0f;
 
 
-		warningReference.EndShow("! ! STAMINA OUT ! !");
+		warningReference.EndShow("warning_stamina_out");
 		_uiReference.UpdateFills();
 	}
 
@@ -723,7 +723,7 @@ public class PlayerStatsS : MonoBehaviour {
 				if (_exhausted){
 
 					if (_currentMana >=  maxMana*CAN_USE_MANA/2f){
-						warningReference.EndShow("! ! STAMINA OUT ! !");
+						warningReference.EndShow("warning_stamina_out");
 					}
 					if (_currentMana >= maxMana*CAN_USE_MANA){
 						_exhausted = false;
@@ -731,7 +731,7 @@ public class PlayerStatsS : MonoBehaviour {
 				}
 
 				if (_currentMana >=  maxMana*CAN_USE_MANA*0.4f){
-					warningReference.EndShow("— Stamina LOW —");
+					warningReference.EndShow("warning_stamina_low");
 				}
 
 				if (_currentMana > maxMana){
@@ -1025,9 +1025,9 @@ public class PlayerStatsS : MonoBehaviour {
 			rechargeEffectRef.TriggerStaminaEffect();
 		}
 
-		warningReference.EndShow("— Stamina LOW —");
+		warningReference.EndShow("warning_stamina_low");
 
-		warningReference.EndShow("! ! STAMINA OUT ! !");
+		warningReference.EndShow("warning_stamina_out");
 		_uiReference.UpdateFills();
 
 	}
@@ -1058,7 +1058,7 @@ public class PlayerStatsS : MonoBehaviour {
 				allowHealthEndCountdown = allowHealthEndTime;
 			}
 		}
-		warningReference.EndShow("! ! HEALTH LOW ! !");
+		warningReference.EndShow("warning_health_low");
 		delayDeath = false;
 		delayDeathCountdown = 0f;
 		_uiReference.UpdateFills();
@@ -1317,7 +1317,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 					if(_currentHealth<maxHealth*0.33f || (arcadeMode && currentArcadeHealth <= 1)){
 
-						warningReference.NewMessage("! ! HEALTH LOW ! !", Color.white, Color.red, false, 2);
+						warningReference.NewMessage("warning_health_low", Color.white, Color.red, false, 2);
 					}
 
                     // if NG+, add a tiiiiiny bit of darkness
@@ -1622,10 +1622,10 @@ public class PlayerStatsS : MonoBehaviour {
 		//_currentMana = _savedMana;
 		warningReference.EndAll();
 		if (PlayerInventoryS.I.GetItemCount(0) == 1){
-			warningReference.NewMessage("— REWINDs LOW —",  warningReference.resetGreen, Color.white, false);
+			warningReference.NewMessage("warning_rewinds_low",  warningReference.resetGreen, Color.white, false);
 		}
 		if (PlayerInventoryS.I.GetItemCount(0) == 0){
-			warningReference.NewMessage("! REWINDS OUT !",  warningReference.resetGreen,Color.red, false, 1);
+			warningReference.NewMessage("warning_rewinds_out",  warningReference.resetGreen,Color.red, false, 1);
 		}
 		_uiReference.UpdateFills();
 	}

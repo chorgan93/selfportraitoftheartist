@@ -10,7 +10,8 @@ public class InstaCheckpointS : MonoBehaviour {
 	void Start () {
 		GameOverS.reviveScene = instaSaveScene;
 		GameOverS.revivePosition = instaSavePos;
-		StoryProgressionS.SaveProgress();
-	}
+        //StoryProgressionS.SaveProgress();
+        CameraEffectsS.E.fadeRef.DoSave = true;
+    }
 
 }

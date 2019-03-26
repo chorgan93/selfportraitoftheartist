@@ -14,7 +14,7 @@ public class LocalizedText : MonoBehaviour
     void Start()
     {
         Text text = GetComponent<Text>();
-        text.text = prefixString + LocalizationManager.instance.GetLocalizedValue(key) + suffixString;
+        text.text = prefixString + LocalizationManager.instance.GetLocalizedValue(key).Replace("\n",System.Environment.NewLine) + suffixString;
     }
 
 }

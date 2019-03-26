@@ -58,7 +58,10 @@ public class CheckpointS : MonoBehaviour {
 
 		DeathCountdownS.DC.TurnOffCountdown(true);
 
-		if (!fullCheckpoint){
+        healMessage = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_00");
+        healMessageWithItem = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_01");
+
+        if (!fullCheckpoint){
 			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
 		}else{	
 			_menuManager = GameObject.Find("Menus").GetComponent<InGameMenuManagerS>();
@@ -96,7 +99,8 @@ public class CheckpointS : MonoBehaviour {
             {
                 StoryProgressionS.SetStory(addToProgress);
             }
-			StoryProgressionS.SaveProgress();
+            //StoryProgressionS.SaveProgress();
+            CameraEffectsS.E.fadeRef.DoSave = true;
 		}
 	
 	}
@@ -171,8 +175,9 @@ public class CheckpointS : MonoBehaviour {
                         GameOverS.reviveScene = Application.loadedLevelName;
                         GameOverS.revivePosition = spawnNum;
                     }
-					StoryProgressionS.SaveProgress();
-				}
+                    //StoryProgressionS.SaveProgress();
+                    CameraEffectsS.E.fadeRef.DoSave = true;
+                }
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
 

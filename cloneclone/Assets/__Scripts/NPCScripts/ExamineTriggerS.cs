@@ -275,8 +275,9 @@ public class ExamineTriggerS : MonoBehaviour {
 									}
 								}
 									if (saveOnPickup){
-										StoryProgressionS.SaveProgress();
-									}
+                                        //StoryProgressionS.SaveProgress();
+                                        CameraEffectsS.E.fadeRef.DoSave = true;
+                                    }
 							}
 
 								if (virtueToGive > 0){
@@ -412,8 +413,9 @@ public class ExamineTriggerS : MonoBehaviour {
 		}
 		
 		if (saveOnPickup){
-			StoryProgressionS.SaveProgress();
-		}
+            //StoryProgressionS.SaveProgress();
+            CameraEffectsS.E.fadeRef.DoSave = true;
+        }
 
 
 	}

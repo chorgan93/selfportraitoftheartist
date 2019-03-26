@@ -8,6 +8,7 @@ public class CinematicTextS : MonoBehaviour {
 	public Text subText;
 	public string targetString;
 	private string displayString;
+    public bool ignoreLocalization = false;
 
 	public float scrollRate;
 	private float scrollCountdown;
@@ -25,7 +26,14 @@ public class CinematicTextS : MonoBehaviour {
 	void Start () {
 
 
-		targetString = targetString.Replace("/n", "\n");
+        if (ignoreLocalization)
+        {
+            targetString = targetString.Replace("/n", "\n");
+        }
+        else
+        {
+            targetString = LocalizationManager.instance.GetLocalizedValue(targetString).Replace("/n", "\n");
+        }
 
         targetString = targetString.Replace("PLAYERNAME", TextInputUIS.playerName);
 		if (scrollRate > 0){

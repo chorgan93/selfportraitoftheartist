@@ -10,7 +10,8 @@ public class AddCheckpointSceneS : MonoBehaviour {
 	void Start () {
 		if (sceneIndex >= 0 && PlayerInventoryS.I != null){
 			PlayerInventoryS.I.AddCheckpoint(sceneIndex, sceneLoadpoint);
-			StoryProgressionS.SaveProgress();
-		}
+            //StoryProgressionS.SaveProgress();
+            CameraEffectsS.E.fadeRef.DoSave = true;
+        }
 	}
 }

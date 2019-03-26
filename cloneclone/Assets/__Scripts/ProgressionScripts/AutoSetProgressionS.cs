@@ -10,8 +10,9 @@ public class AutoSetProgressionS : MonoBehaviour {
 	
 		if (removeProgressNum >= 0){
 			StoryProgressionS.RemoveProgress(removeProgressNum);
-			StoryProgressionS.SaveProgress();
-		}
+            //StoryProgressionS.SaveProgress();
+            CameraEffectsS.E.fadeRef.DoSave = true;
+        }
 	}
 
 }

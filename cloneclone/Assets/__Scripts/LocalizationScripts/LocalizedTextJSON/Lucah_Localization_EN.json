@@ -1,660 +1,1118 @@
-{
-  "items": [
-    {
-      "key": "brave_darkness_00",
-      "value": "You cannot brave the Darkness."
-    },
-    {
-      "key": "brave_darkness_01",
-      "value": "Despite everything, you still can't brave the Darkness."
-    },
-    {
-      "key": "ui_skip_text",
-      "value": "HOLD Menu to skip"
-    },
-    {
-      "key": "ui_loading",
-      "value": "L O A D I N G"
-    },
-    {
-      "key": "title_lucah",
-      "value": "L U C A H"
-    },
-    {
-      "key": "title_subtitle",
-      "value": "b o r n  o f  a  d r e a m"
-    },
-    {
-      "key": "menu_save_overwrite",
-      "value": "This save file will be overwritten. Continue?"
-    },
-    {
-      "key": "menu_load",
-      "value": "Load Game"
-    },
-    {
-      "key": "menu_new",
-      "value": "New Game"
-    },
-    {
-      "key": "menu_no",
-      "value": "No"
-    },
-    {
-      "key": "menu_no_caps",
-      "value": "NO"
-    },
-    {
-      "key": "menu_quit",
-      "value": "Quit"
-    },
-    {
-      "key": "menu_start",
-      "value": "— Start Game —"
-    },
-    {
-      "key": "menu_yes_caps",
-      "value": "YES"
-    },
-    {
-      "key": "menu_credits",
-      "value": "A game by melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, and Ryan]"
-    },
-    {
-      "key": "menu_quit_caps",
-      "value": "— QUIT —"
-    },
-    {
-      "key": "menu_options",
-      "value": "— Options —"
-    },
-    {
-      "key": "menu_back",
-      "value": "— Back —"
-    },
-    {
-      "key": "menu_yes",
-      "value": "Yes"
-    },
-    {
-      "key": "menu_any_button",
-      "value": "Press Any Button"
-    },
-    {
-      "key": "menu_any_key",
-      "value": "Press Any Key"
-    },
-    {
-      "key": "menu_select",
-      "value": "Select"
-    },
-    {
-      "key": "menu_cancel",
-      "value": "Cancel"
-    },
-    {
-      "key": "menu_move",
-      "value": "Move"
-    },
-    {
-      "key": "ui_rewind_display",
-      "value": "RW"
-    },
-    {
-      "key": "ui_heal_display",
-      "value": "HP"
-    },
-    {
-      "key": "ui_bonus_damage",
-      "value": "No Damage +{S}"
-    },
-    {
-      "key": "ui_bonus_time",
-      "value": "Time Bonus +{S}"
-    },
-    {
-      "key": "ui_condition_title",
-      "value": "CONDITION:"
-    },
-    {
-      "key": "ui_condition_fail",
-      "value": "CONDITION [FAILED]"
-    },
-    {
-      "key": "ui_condition_pass",
-      "value": "CONDITION SUCCESS"
-    },
-    {
-      "key": "ui_condition_time",
-      "value": "Complete combat within {TIME} seconds."
-    },
-    {
-      "key": "ui_condition_damage",
-      "value": "Complete combat without taking damage."
-    },
-    {
-      "key": "ui_condition_combo",
-      "value": "Complete combat without breaking your combo."
-    },
-    {
-      "key": "ui_verse",
-      "value": "Verse"
-    },
-    {
-      "key": "ui_map_label",
-      "value": "MAP"
-    },
-    {
-      "key": "ui_menu_label",
-      "value": "MENU"
-    },
-    {
-      "key": "ui_menu_paradigm_i",
-      "value": "Paradigm I"
-    },
-    {
-      "key": "ui_menu_paradigm_ii",
-      "value": "Paradigm II"
-    },
-    {
-      "key": "ui_menu_virtues",
-      "value": "Virtues"
-    },
-    {
-      "key": "ui_menu_tech",
-      "value": "Tech"
-    },
-    {
-      "key": "ui_menu_paradigm_i_desc",
-      "value": "Customize Paradigm I"
-    },
-    {
-      "key": "ui_menu_paradigm_ii_desc",
-      "value": "Customize Paradigm II"
-    },
-    {
-      "key": "ui_menu_virtue_desc",
-      "value": "Equip Virtues"
-    },
-    {
-      "key": "ui_menu_tech_desc",
-      "value": "Enable/Disable Tech"
-    },
-    {
-      "key": "ui_menu_tech_display",
-      "value": "Display"
-    },
-    {
-      "key": "ui_menu_tech_abilities",
-      "value": "Abilities"
-    },
-    {
-      "key": "ui_menu_tech_mods",
-      "value": "Mods"
-    },
-    {
-      "key": "tech_player_ui_name",
-      "value": "Player UI"
-    },
-    {
-      "key": "tech_player_ui_desc",
-      "value": "Player UI: Display player Health, Stamina, Charge, and La (experience)."
-    },
-    {
-      "key": "tech_enemy_ui_name",
-      "value": "Enemy UI"
-    },
-    {
-      "key": "tech_enemy_ui_desc",
-      "value": "Enemy UI: Display damage numbers and boss health values."
-    },
-    {
-      "key": "tech_item_ui_name",
-      "value": "Item UI"
-    },
-    {
-      "key": "tech_item_ui_desc",
-      "value": "Item UI: Display number of Rewinds/Health Essences, as well as unused key items."
-    },
-    {
-      "key": "tech_verse_ui_name",
-      "value": "Verse UI"
-    },
-    {
-      "key": "tech_verse_ui_desc",
-      "value": "Verse UI: Display Verse number and title."
-    },
-    {
-      "key": "tech_hold_action_name",
-      "value": "Hold Action"
-    },
-    {
-      "key": "tech_hold_action_desc",
-      "value": "Hold Action: Hold the light or heavy attack button to execute a powerful magic action at the cost of some Charge."
-    },
-    {
-      "key": "tech_parry_name",
-      "value": "Parry"
-    },
-    {
-      "key": "tech_parry_desc",
-      "value": "Parry: dodge toward an attacking enemy with perfect timing to counter the enemy attack."
-    },
-    {
-      "key": "tech_transform_name",
-      "value": "Transform"
-    },
-    {
-      "key": "tech_transform_desc",
-      "value": "Transform: Hold and release the Transform button to enter a super-powered state. Dramatically increases Corruption during use."
-    },
-    {
-      "key": "tech_taunt_name",
-      "value": "Taunt"
-    },
-    {
-      "key": "tech_taunt_desc",
-      "value": "Taunt: press the Taunt button to enrage all nearby enemies, making them stronger but more vulnerable to attacks."
-    },
-    {
-      "key": "mod_health_name",
-      "value": "Extra Health"
-    },
-    {
-      "key": "mod_health_desc",
-      "value": "Extra Health: Massively increase player health."
-    },
-    {
-      "key": "mod_infinite_health_name",
-      "value": "Infinite Stamina"
-    },
-    {
-      "key": "mod_infinite_health_desc",
-      "value": "Infinite Stamina: Actions that normally reduce Stamina no longer reduce Stamina."
-    },
-    {
-      "key": "mod_infinite_charge_name",
-      "value": "Infinite Charge: "
-    },
-    {
-      "key": "mod_infinite_charge_desc",
-      "value": "Infinite Charge: Actions that normally drain Charge no longer drain Charge."
-    },
-    {
-      "key": "mod_infinite_items_name",
-      "value": "Unlimited Items"
-    },
-    {
-      "key": "mod_infinite_items_desc",
-      "value": "Unlimited Items: Using Rewinds or Health Essences does not reduce the number of uses available for each."
-    },
-    {
-      "key": "mod_weaker_enemies_name",
-      "value": "Weakened Enemies"
-    },
-    {
-      "key": "mod_weaker_enemies_desc",
-      "value": "Weakened Enemies: Massively reduces enemy health and attack power."
-    },
-    {
-      "key": "ui_map_missing",
-      "value": "No Map Data"
-    },
-    {
-      "key": "mantra_00_name",
-      "value": "LUNA: Mid-damage, mid-range. Increased charge absorption."
-    },
-    {
-      "key": "mantra_00_desc",
-      "value": "Hold Action: CHARGE EXPLOSION"
-    },
-    {
-      "key": "mantra_01_name",
-      "value": "SOL: Mid-range, fast. Ignores defense but cannot BREAK. "
-    },
-    {
-      "key": "mantra_01_desc",
-      "value": "Hold Action: CHARGE EXPLOSION"
-    },
-    {
-      "key": "mantra_02_name",
-      "value": "AERO: Low-damage, high-range. Increases attack range."
-    },
-    {
-      "key": "mantra_02_desc",
-      "value": "Hold Action: LINEAR BURST"
-    },
-    {
-      "key": "mantra_03_name",
-      "value": "PYRA: Mid-damage, high-range. Lowers stamina use."
-    },
-    {
-      "key": "mantra_03_desc",
-      "value": "Hold Action: FIERY PUNISHMENT"
-    },
-    {
-      "key": "mantra_04_name",
-      "value": "ANIMA: High-damage, low-range. Increases attack speed."
-    },
-    {
-      "key": "mantra_04_desc",
-      "value": "Hold Action: HEEL STOMP"
-    },
-    {
-      "key": "mantra_05_name",
-      "value": "AQUA: Short-range, multi-attack. Increases BREAK time."
-    },
-    {
-      "key": "mantra_05_desc",
-      "value": "Hold Action: RAINING STRIKE"
-    },
-    {
-      "key": "mantra_06_name",
-      "value": "GAEA: Mid-damage, mixed-range. Higher BREAK chance."
-    },
-    {
-      "key": "mantra_06_desc",
-      "value": "Hold Action: CHARGE PULSE"
-    },
-    {
-      "key": "mantra_07_name",
-      "value": "EREBOS: Low-damage, mid-range. Increases BREAK damage."
-    },
-    {
-      "key": "mantra_07_desc",
-      "value": "Hold Action: BACKSTAB"
-    },
-    {
-      "key": "mantra_08_name",
-      "value": "BIOS: Low-damage, multi-attack. Increases finisher power."
-    },
-    {
-      "key": "mantra_08_desc",
-      "value": "Hold Action: LIFE SURGE"
-    },
-    {
-      "key": "mantra_09_name",
-      "value": "FOS: Technical. Hold Actions do not drain stamina."
-    },
-    {
-      "key": "mantra_09_desc",
-      "value": "Hold Action: SUMMON CHARGE"
-    },
-    {
-      "key": "mantra_10_name",
-      "value": "THANATOS: High-damage, mid-range. Increases strength."
-    },
-    {
-      "key": "mantra_10_desc",
-      "value": "Hold Action: TRIPLE BURST"
-    },
-    {
-      "key": "mantra_11_name",
-      "value": "AETHER: the final Mantra. Adds a shockwave to all attacks."
-    },
-    {
-      "key": "mantra_11_desc",
-      "value": "Hold Action: REALITY TEAR"
-    },
-    {
-      "key": "mantra_12_name",
-      "value": "KTISIS: the entirety of creation flows through you."
-    },
-    {
-      "key": "mantra_12_desc",
-      "value": "Hold Actions do not drain charge."
-    },
-    {
-      "key": "familiar_00",
-      "value": "Burst: Fires long-range projectile on command."
-    },
-    {
-      "key": "familiar_01",
-      "value": "Impulse: Shoots mid-range spread on command."
-    },
-    {
-      "key": "familiar_02",
-      "value": "Shock: Shoots powerful mid-range burst on command."
-    },
-    {
-      "key": "familiar_03",
-      "value": "Pierce: Fires piercing projectile with a high BREAK chance on command."
-    },
-    {
-      "key": "familiar_04",
-      "value": "Rapid: Fires a stream of small projectiles on command."
-    },
-    {
-      "key": "familiar_05",
-      "value": "Aura: Fires a damaging aura on command."
-    },
-    {
-      "key": "familiar_06",
-      "value": "Heal: Heals player at cost of full charge."
-    },
-    {
-      "key": "familiar_07",
-      "value": "Laser: Shoots a powerful laser that bypasses enemy defense on command."
-    },
-    {
-      "key": "virtue_00",
-      "value": "Unstoppable (Cost: 2) [Once per combat, lethal damage does not kill player. Resets at full health or on REWIND]"
-    },
-    {
-      "key": "virtue_01",
-      "value": "Determined (Cost: 5) [Charge Attacks and combo finishers have a higher chance of auto-killing weakened enemies.]"
-    },
-    {
-      "key": "virtue_02",
-      "value": "Empowered [Cost: 4] (greatly reduces attack stamina use at max health)"
-    },
-    {
-      "key": "virtue_03",
-      "value": "Paranoid [Cost: 4] (attack damage increases slightly for each successive attack in a combo)"
-    },
-    {
-      "key": "virtue_04",
-      "value": "Adaptive [Cost: 4] (Paradigm Shift right at the end of an attack or a dodge to recover Stamina)"
-    },
-    {
-      "key": "virtue_05",
-      "value": "Perceptive (Cost: 3) [Turns on enemy health indicators]"
-    },
-    {
-      "key": "virtue_06",
-      "value": "Driven [Cost: 4] (charge fully replenishes on an enemy guard break)"
-    },
-    {
-      "key": "virtue_07",
-      "value": "Repellant [Cost: 2] (Well-timed Mantra attacks reflect enemy projectiles)"
-    },
-    {
-      "key": "virtue_08",
-      "value": "Trusting [Cost: 5] (Familiar attacks have more stopping power.)"
-    },
-    {
-      "key": "virtue_09",
-      "value": "Agile [Cost: 5] (dodge an enemy attack with perfect timing to replenish Stamina)"
-    },
-    {
-      "key": "virtue_10",
-      "value": "Anxious [Cost: 3] (Constant small charge regeneration during combat.)"
-    },
-    {
-      "key": "virtue_11",
-      "value": "Condemned [Cost: 2] (Survive for a short time after health reaches 0)"
-    },
-    {
-      "key": "virtue_12",
-      "value": "Parasitic [Cost: 6] (For a brief time after taking damage, deal damage to recover lost health)"
-    },
-    {
-      "key": "virtue_13",
-      "value": "Hated [Cost: 6] (Increases damage player gives and receives)"
-    },
-    {
-      "key": "virtue_14",
-      "value": "Loved [Cost: 4] (enemy attacks deal less damage)"
-    },
-    {
-      "key": "virtue_15",
-      "value": "Marked [Cost: 0] (Face the corruption with courage and grace; Cannot be unequipped)"
-    },
-    {
-      "key": "virtue_16",
-      "value": "Cautious [Cost: 5] (Slower enemy attacks and projectiles)"
-    },
-    {
-      "key": "virtue_17",
-      "value": "Untethered [Cost: 6] (perfect dodges slow time briefly)"
-    },
-    {
-      "key": "virtue_18",
-      "value": "Disconnected [Cost: 4] (double-tap the dodge button to teleport to target enemy at the cost of some Charge)"
-    },
-    {
-      "key": "virtue_19",
-      "value": "Incensed [Cost: 2] (reduces Dodge and Sprint stamina costs and increases power of Dash and Counter Attacks)"
-    },
-    {
-      "key": "virtue_20",
-      "value": "Enraged [Cost: 3] (Perfect Dodges and Parries increase player strength for a short time)"
-    },
-    {
-      "key": "virtue_21",
-      "value": "Scorned [Cost: 2] (reduces all stats, but increases max VP by 20)"
-    },
-    {
-      "key": "virtue_22",
-      "value": "Ascended [Cost: 2] (drastically reduces Corruption rate)"
-    },
-    {
-      "key": "ui_tech_locked",
-      "value": "— LOCKED —"
-    },
-    {
-      "key": "ui_game_checkpoint",
-      "value": "Return to the last checkpoint visited?"
-    },
-    {
-      "key": "ui_game_return",
-      "value": "Exit game and return to the main menu?"
-    },
-    {
-      "key": "ui_game_option_00",
-      "value": "Return to Game"
-    },
-    {
-      "key": "ui_game_option_01",
-      "value": "Return to Last Checkpoint"
-    },
-    {
-      "key": "ui_game_option_02",
-      "value": "Options"
-    },
-    {
-      "key": "ui_game_option_03",
-      "value": "Exit to menu"
-    },
-    {
-      "key": "options_header_game",
-      "value": "// GAME"
-    },
-    {
-      "key": "options_header_control",
-      "value": "Customize Controls >>"
-    },
-    {
-      "key": "options_header_speed",
-      "value": "game speed"
-    },
-    {
-      "key": "options_header_difficulty",
-      "value": "// DIFFICULTY"
-    },
-    {
-      "key": "options_difficulty_sin",
-      "value": "Sin"
-    },
-    {
-      "key": "options_difficulty_punishment",
-      "value": "Punishment"
-    },
-    {
-      "key": "options_difficulty_easy",
-      "value": "Easy"
-    },
-    {
-      "key": "options_difficulty_normal",
-      "value": "Normal"
-    },
-    {
-      "key": "options_difficulty_hard",
-      "value": "Hard"
-    },
-    {
-      "key": "options_difficulty_challenge",
-      "value": "Challenge"
-    },
-    {
-      "key": "options_header_audio",
-      "value": "// AUDIO"
-    },
-    {
-      "key": "options_header_music",
-      "value": "music volume"
-    },
-    {
-      "key": "options_header_sound",
-      "value": "sfx volume"
-    },
-    {
-      "key": "options_header_visual",
-      "value": "// VISUAL"
-    },
-    {
-      "key": "options_header_fullscreen",
-      "value": "fullscreen"
-    },
-    {
-      "key": "options_menu_on",
-      "value": "ON"
-    },
-    {
-      "key": "options_menu_off",
-      "value": "OFF"
-    },
-    {
-      "key": "options_header_resolution",
-      "value": "resolution"
-    },
-    {
-      "key": "options_header_screenshake",
-      "value": "Screenshake"
-    },
-    {
-      "key": "options_header_post",
-      "value": "Post Processing"
-    },
-    {
-      "key": "options_header_exit",
-      "value": "Exit"
-    },
-    {
-      "key": "options_menu_low",
-      "value": "LOW"
-    },
-    {
-      "key": "options_menu_turbo",
-      "value": "TURBO"
-    },
-    {
-      "key": "ui_menu_paused",
-      "value": "— P A U S E D —"
-    },
-    {
-      "key": "options_control_instruction",
-      "value": "Select the control you wish to change"
-    }
-  ]
+{"items":[
+  {
+    "key": "brave_darkness_00",
+    "value": "You cannot brave the Darkness."
+  },
+  {
+    "key": "brave_darkness_01",
+    "value": "Despite everything, you still can't brave the Darkness."
+  },
+  {
+    "key": "ui_skip_text",
+    "value": "HOLD Menu to skip"
+  },
+  {
+    "key": "ui_loading",
+    "value": "L O A D I N G"
+  },
+  {
+    "key": "title_lucah",
+    "value": "L U C A H"
+  },
+  {
+    "key": "title_subtitle",
+    "value": "b o r n  o f  a  d r e a m"
+  },
+  {
+    "key": "menu_save_overwrite",
+    "value": "This save file will be overwritten. Continue?"
+  },
+  {
+    "key": "menu_load",
+    "value": "Load Game"
+  },
+  {
+    "key": "menu_new",
+    "value": "New Game"
+  },
+  {
+    "key": "menu_no",
+    "value": "No"
+  },
+  {
+    "key": "menu_no_caps",
+    "value": "NO"
+  },
+  {
+    "key": "menu_quit",
+    "value": "Quit"
+  },
+  {
+    "key": "menu_start",
+    "value": "— Start Game —"
+  },
+  {
+    "key": "menu_yes_caps",
+    "value": "YES"
+  },
+  {
+    "key": "menu_credits",
+    "value": "A game by melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, and Ryan]"
+  },
+  {
+    "key": "menu_quit_caps",
+    "value": "— QUIT —"
+  },
+  {
+    "key": "menu_options",
+    "value": "— Options —"
+  },
+  {
+    "key": "menu_back",
+    "value": "— Back —"
+  },
+  {
+    "key": "menu_yes",
+    "value": "Yes"
+  },
+  {
+    "key": "menu_any_button",
+    "value": "Press Any Button"
+  },
+  {
+    "key": "menu_any_key",
+    "value": "Press Any Key"
+  },
+  {
+    "key": "menu_select",
+    "value": "Select"
+  },
+  {
+    "key": "menu_cancel",
+    "value": "Cancel"
+  },
+  {
+    "key": "menu_move",
+    "value": "Move"
+  },
+  {
+    "key": "ui_rewind_display",
+    "value": "RW"
+  },
+  {
+    "key": "ui_heal_display",
+    "value": "HP"
+  },
+  {
+    "key": "ui_bonus_damage",
+    "value": "No Damage +{S}"
+  },
+  {
+    "key": "ui_bonus_time",
+    "value": "Time Bonus +{S}"
+  },
+  {
+    "key": "ui_condition_title",
+    "value": "CONDITION:"
+  },
+  {
+    "key": "ui_condition_fail",
+    "value": "CONDITION [FAILED]"
+  },
+  {
+    "key": "ui_condition_pass",
+    "value": "CONDITION SUCCESS"
+  },
+  {
+    "key": "ui_condition_time",
+    "value": "Complete combat within {TIME} seconds."
+  },
+  {
+    "key": "ui_condition_damage",
+    "value": "Complete combat without taking damage."
+  },
+  {
+    "key": "ui_condition_combo",
+    "value": "Complete combat without breaking your combo."
+  },
+  {
+    "key": "ui_verse",
+    "value": "Verse"
+  },
+  {
+    "key": "ui_map_label",
+    "value": "MAP"
+  },
+  {
+    "key": "ui_menu_label",
+    "value": "MENU"
+  },
+  {
+    "key": "ui_menu_paradigm_i",
+    "value": "Paradigm I"
+  },
+  {
+    "key": "ui_menu_paradigm_ii",
+    "value": "Paradigm II"
+  },
+  {
+    "key": "ui_menu_virtues",
+    "value": "Virtues"
+  },
+  {
+    "key": "ui_menu_tech",
+    "value": "Tech"
+  },
+  {
+    "key": "ui_menu_paradigm_i_desc",
+    "value": "Customize Paradigm I"
+  },
+  {
+    "key": "ui_menu_paradigm_ii_desc",
+    "value": "Customize Paradigm II"
+  },
+  {
+    "key": "ui_menu_virtue_desc",
+    "value": "Equip Virtues"
+  },
+  {
+    "key": "ui_menu_tech_desc",
+    "value": "Enable/Disable Tech"
+  },
+  {
+    "key": "ui_menu_tech_display",
+    "value": "Display"
+  },
+  {
+    "key": "ui_menu_tech_abilities",
+    "value": "Abilities"
+  },
+  {
+    "key": "ui_menu_tech_mods",
+    "value": "Mods"
+  },
+  {
+    "key": "tech_player_ui_name",
+    "value": "Player UI"
+  },
+  {
+    "key": "tech_player_ui_desc",
+    "value": "Player UI: Display player Health, Stamina, Charge, and La (experience)."
+  },
+  {
+    "key": "tech_enemy_ui_name",
+    "value": "Enemy UI"
+  },
+  {
+    "key": "tech_enemy_ui_desc",
+    "value": "Enemy UI: Display damage numbers and boss health values."
+  },
+  {
+    "key": "tech_item_ui_name",
+    "value": "Item UI"
+  },
+  {
+    "key": "tech_item_ui_desc",
+    "value": "Item UI: Display number of Rewinds/Health Essences, as well as unused key items."
+  },
+  {
+    "key": "tech_verse_ui_name",
+    "value": "Verse UI"
+  },
+  {
+    "key": "tech_verse_ui_desc",
+    "value": "Verse UI: Display Verse number and title."
+  },
+  {
+    "key": "tech_hold_action_name",
+    "value": "Hold Action"
+  },
+  {
+    "key": "tech_hold_action_desc",
+    "value": "Hold Action: Hold the light or heavy attack button to execute a powerful magic action at the cost of some Charge."
+  },
+  {
+    "key": "tech_parry_name",
+    "value": "Parry"
+  },
+  {
+    "key": "tech_parry_desc",
+    "value": "Parry: dodge toward an attacking enemy with perfect timing to counter the enemy attack."
+  },
+  {
+    "key": "tech_transform_name",
+    "value": "Transform"
+  },
+  {
+    "key": "tech_transform_desc",
+    "value": "Transform: Hold and release the Transform button to enter a super-powered state. Dramatically increases Corruption during use."
+  },
+  {
+    "key": "tech_taunt_name",
+    "value": "Taunt"
+  },
+  {
+    "key": "tech_taunt_desc",
+    "value": "Taunt: press the Taunt button to enrage all nearby enemies, making them stronger but more vulnerable to attacks."
+  },
+  {
+    "key": "mod_health_name",
+    "value": "Extra Health"
+  },
+  {
+    "key": "mod_health_desc",
+    "value": "Extra Health: Massively increase player health."
+  },
+  {
+    "key": "mod_infinite_health_name",
+    "value": "Infinite Stamina"
+  },
+  {
+    "key": "mod_infinite_health_desc",
+    "value": "Infinite Stamina: Actions that normally reduce Stamina no longer reduce Stamina."
+  },
+  {
+    "key": "mod_infinite_charge_name",
+    "value": "Infinite Charge: "
+  },
+  {
+    "key": "mod_infinite_charge_desc",
+    "value": "Infinite Charge: Actions that normally drain Charge no longer drain Charge."
+  },
+  {
+    "key": "mod_infinite_items_name",
+    "value": "Unlimited Items"
+  },
+  {
+    "key": "mod_infinite_items_desc",
+    "value": "Unlimited Items: Using Rewinds or Health Essences does not reduce the number of uses available for each."
+  },
+  {
+    "key": "mod_weaker_enemies_name",
+    "value": "Weakened Enemies"
+  },
+  {
+    "key": "mod_weaker_enemies_desc",
+    "value": "Weakened Enemies: Massively reduces enemy health and attack power."
+  },
+  {
+    "key": "ui_map_missing",
+    "value": "No Map Data"
+  },
+  {
+    "key": "mantra_00_name",
+    "value": "LUNA: Mid-damage, mid-range. Increased charge absorption."
+  },
+  {
+    "key": "mantra_00_desc",
+    "value": "Hold Action: CHARGE EXPLOSION"
+  },
+  {
+    "key": "mantra_01_name",
+    "value": "SOL: Mid-range, fast. Ignores defense but cannot BREAK. "
+  },
+  {
+    "key": "mantra_01_desc",
+    "value": "Hold Action: CHARGE EXPLOSION"
+  },
+  {
+    "key": "mantra_02_name",
+    "value": "AERO: Low-damage, high-range. Increases attack range."
+  },
+  {
+    "key": "mantra_02_desc",
+    "value": "Hold Action: LINEAR BURST"
+  },
+  {
+    "key": "mantra_03_name",
+    "value": "PYRA: Mid-damage, high-range. Lowers stamina use."
+  },
+  {
+    "key": "mantra_03_desc",
+    "value": "Hold Action: FIERY PUNISHMENT"
+  },
+  {
+    "key": "mantra_04_name",
+    "value": "ANIMA: High-damage, low-range. Increases attack speed."
+  },
+  {
+    "key": "mantra_04_desc",
+    "value": "Hold Action: HEEL STOMP"
+  },
+  {
+    "key": "mantra_05_name",
+    "value": "AQUA: Short-range, multi-attack. Increases BREAK time."
+  },
+  {
+    "key": "mantra_05_desc",
+    "value": "Hold Action: RAINING STRIKE"
+  },
+  {
+    "key": "mantra_06_name",
+    "value": "GAEA: Mid-damage, mixed-range. Higher BREAK chance."
+  },
+  {
+    "key": "mantra_06_desc",
+    "value": "Hold Action: CHARGE PULSE"
+  },
+  {
+    "key": "mantra_07_name",
+    "value": "EREBOS: Low-damage, mid-range. Increases BREAK damage."
+  },
+  {
+    "key": "mantra_07_desc",
+    "value": "Hold Action: BACKSTAB"
+  },
+  {
+    "key": "mantra_08_name",
+    "value": "BIOS: Low-damage, multi-attack. Increases finisher power."
+  },
+  {
+    "key": "mantra_08_desc",
+    "value": "Hold Action: LIFE SURGE"
+  },
+  {
+    "key": "mantra_09_name",
+    "value": "FOS: Technical. Hold Actions do not drain stamina."
+  },
+  {
+    "key": "mantra_09_desc",
+    "value": "Hold Action: SUMMON CHARGE"
+  },
+  {
+    "key": "mantra_10_name",
+    "value": "THANATOS: High-damage, mid-range. Increases strength."
+  },
+  {
+    "key": "mantra_10_desc",
+    "value": "Hold Action: TRIPLE BURST"
+  },
+  {
+    "key": "mantra_11_name",
+    "value": "AETHER: the final Mantra. Adds a shockwave to all attacks."
+  },
+  {
+    "key": "mantra_11_desc",
+    "value": "Hold Action: REALITY TEAR"
+  },
+  {
+    "key": "mantra_12_name",
+    "value": "KTISIS: the entirety of creation flows through you."
+  },
+  {
+    "key": "mantra_12_desc",
+    "value": "Hold Actions do not drain charge."
+  },
+  {
+    "key": "familiar_00",
+    "value": "Burst: Fires long-range projectile on command."
+  },
+  {
+    "key": "familiar_01",
+    "value": "Impulse: Shoots mid-range spread on command."
+  },
+  {
+    "key": "familiar_02",
+    "value": "Shock: Shoots powerful mid-range burst on command."
+  },
+  {
+    "key": "familiar_03",
+    "value": "Pierce: Fires piercing projectile with a high BREAK chance on command."
+  },
+  {
+    "key": "familiar_04",
+    "value": "Rapid: Fires a stream of small projectiles on command."
+  },
+  {
+    "key": "familiar_05",
+    "value": "Aura: Fires a damaging aura on command."
+  },
+  {
+    "key": "familiar_06",
+    "value": "Heal: Heals player at cost of full charge."
+  },
+  {
+    "key": "familiar_07",
+    "value": "Laser: Shoots a powerful laser that bypasses enemy defense on command."
+  },
+  {
+    "key": "virtue_00",
+    "value": "Unstoppable (Cost: 2) [Once per combat, lethal damage does not kill player. Resets at full health or on REWIND]"
+  },
+  {
+    "key": "virtue_01",
+    "value": "Determined (Cost: 5) [Charge Attacks and combo finishers have a higher chance of auto-killing weakened enemies.]"
+  },
+  {
+    "key": "virtue_02",
+    "value": "Empowered [Cost: 4] (greatly reduces attack stamina use at max health)"
+  },
+  {
+    "key": "virtue_03",
+    "value": "Paranoid [Cost: 4] (attack damage increases slightly for each successive attack in a combo)"
+  },
+  {
+    "key": "virtue_04",
+    "value": "Adaptive [Cost: 4] (Paradigm Shift right at the end of an attack or a dodge to recover Stamina)"
+  },
+  {
+    "key": "virtue_05",
+    "value": "Perceptive (Cost: 3) [Turns on enemy health indicators]"
+  },
+  {
+    "key": "virtue_06",
+    "value": "Driven [Cost: 4] (charge fully replenishes on an enemy guard break)"
+  },
+  {
+    "key": "virtue_07",
+    "value": "Repellant [Cost: 2] (Well-timed Mantra attacks reflect enemy projectiles)"
+  },
+  {
+    "key": "virtue_08",
+    "value": "Trusting [Cost: 5] (Familiar attacks have more stopping power.)"
+  },
+  {
+    "key": "virtue_09",
+    "value": "Agile [Cost: 5] (dodge an enemy attack with perfect timing to replenish Stamina)"
+  },
+  {
+    "key": "virtue_10",
+    "value": "Anxious [Cost: 3] (Constant small charge regeneration during combat.)"
+  },
+  {
+    "key": "virtue_11",
+    "value": "Condemned [Cost: 2] (Survive for a short time after health reaches 0)"
+  },
+  {
+    "key": "virtue_12",
+    "value": "Parasitic [Cost: 6] (For a brief time after taking damage, deal damage to recover lost health)"
+  },
+  {
+    "key": "virtue_13",
+    "value": "Hated [Cost: 6] (Increases damage player gives and receives)"
+  },
+  {
+    "key": "virtue_14",
+    "value": "Loved [Cost: 4] (enemy attacks deal less damage)"
+  },
+  {
+    "key": "virtue_15",
+    "value": "Marked [Cost: 0] (Face the corruption with courage and grace; Cannot be unequipped)"
+  },
+  {
+    "key": "virtue_16",
+    "value": "Cautious [Cost: 5] (Slower enemy attacks and projectiles)"
+  },
+  {
+    "key": "virtue_17",
+    "value": "Untethered [Cost: 6] (perfect dodges slow time briefly)"
+  },
+  {
+    "key": "virtue_18",
+    "value": "Disconnected [Cost: 4] (double-tap the dodge button to teleport to target enemy at the cost of some Charge)"
+  },
+  {
+    "key": "virtue_19",
+    "value": "Incensed [Cost: 2] (reduces Dodge and Sprint stamina costs and increases power of Dash and Counter Attacks)"
+  },
+  {
+    "key": "virtue_20",
+    "value": "Enraged [Cost: 3] (Perfect Dodges and Parries increase player strength for a short time)"
+  },
+  {
+    "key": "virtue_21",
+    "value": "Scorned [Cost: 2] (reduces all stats, but increases max VP by 20)"
+  },
+  {
+    "key": "virtue_22",
+    "value": "Ascended [Cost: 2] (drastically reduces Corruption rate)"
+  },
+  {
+    "key": "ui_tech_locked",
+    "value": "— LOCKED —"
+  },
+  {
+    "key": "ui_game_checkpoint",
+    "value": "Return to the last checkpoint visited?"
+  },
+  {
+    "key": "ui_game_return",
+    "value": "Exit game and return to the main menu?"
+  },
+  {
+    "key": "ui_game_option_00",
+    "value": "Return to Game"
+  },
+  {
+    "key": "ui_game_option_01",
+    "value": "Return to Last Checkpoint"
+  },
+  {
+    "key": "ui_game_option_02",
+    "value": "Options"
+  },
+  {
+    "key": "ui_game_option_03",
+    "value": "Exit to menu"
+  },
+  {
+    "key": "options_header_game",
+    "value": "// GAME"
+  },
+  {
+    "key": "options_header_control",
+    "value": "Customize Controls >>"
+  },
+  {
+    "key": "options_header_speed",
+    "value": "game speed"
+  },
+  {
+    "key": "options_header_difficulty",
+    "value": "// DIFFICULTY"
+  },
+  {
+    "key": "options_difficulty_sin",
+    "value": "Sin"
+  },
+  {
+    "key": "options_difficulty_punishment",
+    "value": "Punishment"
+  },
+  {
+    "key": "options_difficulty_easy",
+    "value": "Easy"
+  },
+  {
+    "key": "options_difficulty_normal",
+    "value": "Normal"
+  },
+  {
+    "key": "options_difficulty_hard",
+    "value": "Hard"
+  },
+  {
+    "key": "options_difficulty_challenge",
+    "value": "Challenge"
+  },
+  {
+    "key": "options_header_audio",
+    "value": "// AUDIO"
+  },
+  {
+    "key": "options_header_music",
+    "value": "music volume"
+  },
+  {
+    "key": "options_header_sound",
+    "value": "sfx volume"
+  },
+  {
+    "key": "options_header_visual",
+    "value": "// VISUAL"
+  },
+  {
+    "key": "options_header_fullscreen",
+    "value": "fullscreen"
+  },
+  {
+    "key": "options_menu_on",
+    "value": "ON"
+  },
+  {
+    "key": "options_menu_off",
+    "value": "OFF"
+  },
+  {
+    "key": "options_header_resolution",
+    "value": "resolution"
+  },
+  {
+    "key": "options_header_screenshake",
+    "value": "Screenshake"
+  },
+  {
+    "key": "options_header_post",
+    "value": "Post Processing"
+  },
+  {
+    "key": "options_header_exit",
+    "value": "Exit"
+  },
+  {
+    "key": "options_menu_low",
+    "value": "LOW"
+  },
+  {
+    "key": "options_menu_turbo",
+    "value": "TURBO"
+  },
+  {
+    "key": "ui_menu_paused",
+    "value": "— P A U S E D —"
+  },
+  {
+    "key": "options_control_instruction",
+    "value": "Select the action for which you want to customize control."
+  },
+  {
+    "key": "options_control_type",
+    "value": "control type"
+  },
+  {
+    "key": "options_control_gamepad",
+    "value": "Gamepad"
+  },
+  {
+    "key": "options_control_keyboard",
+    "value": "Keyboard (No Mouse)"
+  },
+  {
+    "key": "options_control_mouse",
+    "value": "Keyboard & Mouse"
+  },
+  {
+    "key": "options_control_ps4",
+    "value": "Gamepad (PS4)"
+  },
+  {
+    "key": "options_control_l_attack",
+    "value": "Light Attack"
+  },
+  {
+    "key": "options_control_h_attack",
+    "value": "Heavy Attack/Exit Menu"
+  },
+  {
+    "key": "options_control_f_attack",
+    "value": "Familiar Attack"
+  },
+  {
+    "key": "options_control_replace",
+    "value": "Press the button you wish to use for the selected action."
+  },
+  {
+    "key": "options_control_talk",
+    "value": "Talk/Examine"
+  },
+  {
+    "key": "options_control_dodge",
+    "value": "Dodge"
+  },
+  {
+    "key": "options_control_shift",
+    "value": "Paradigm Shift"
+  },
+  {
+    "key": "options_control_item",
+    "value": "Use Item"
+  },
+  {
+    "key": "options_control_switch",
+    "value": "Switch Item"
+  },
+  {
+    "key": "options_control_taunt",
+    "value": "Taunt"
+  },
+  {
+    "key": "options_control_transform",
+    "value": "Transform"
+  },
+  {
+    "key": "options_control_equip",
+    "value": "Equip Menu"
+  },
+  {
+    "key": "options_control_game",
+    "value": "Game Menu"
+  },
+  {
+    "key": "options_control_default",
+    "value": "Restore Defaults"
+  },
+  {
+    "key": "menu_level_up",
+    "value": "Level up"
+  },
+  {
+    "key": "menu_level_travel",
+    "value": "Travel"
+  },
+  {
+    "key": "menu_level_revert",
+    "value": "† Revert †"
+  },
+  {
+    "key": "travel_checkpoint_00",
+    "value": "Forest - Camp"
+  },
+  {
+    "key": "travel_checkpoint_01",
+    "value": "Forest - Reprieve"
+  },
+  {
+    "key": "travel_checkpoint_02",
+    "value": "Forest - Cliff"
+  },
+  {
+    "key": "travel_checkpoint_03",
+    "value": "Sanctum - Confessional"
+  },
+  {
+    "key": "travel_checkpoint_04",
+    "value": "Metro - Brooksvale Station"
+  },
+  {
+    "key": "travel_checkpoint_04a",
+    "value": "Metro - Maintenance"
+  },
+  {
+    "key": "travel_checkpoint_05",
+    "value": "Metro - Southvale"
+  },
+  {
+    "key": "travel_checkpoint_06",
+    "value": "Metro - End Station"
+  },
+  {
+    "key": "travel_checkpoint_07",
+    "value": "Suburbs - 110 Crescent St"
+  },
+  {
+    "key": "travel_checkpoint_08",
+    "value": "Arena - Fighters' Quarters"
+  },
+  {
+    "key": "travel_checkpoint_09",
+    "value": "Highways - The Harbor"
+  },
+  {
+    "key": "travel_checkpoint_10",
+    "value": "Highways - Control"
+  },
+  {
+    "key": "travel_checkpoint_11",
+    "value": "Linear Trail"
+  },
+  {
+    "key": "travel_checkpoint_12",
+    "value": "Lethean - Gate II"
+  },
+  {
+    "key": "travel_checkpoint_13",
+    "value": "Radio Tower - Exterior"
+  },
+  {
+    "key": "travel_checkpoint_14",
+    "value": "Radio Tower - Final Rest"
+  },
+  {
+    "key": "travel_checkpoint_15",
+    "value": "The Descent"
+  },
+  {
+    "key": "travel_checkpoint_16",
+    "value": "Familiar Garden"
+  },
+  {
+    "key": "travel_descent_exit",
+    "value": "Exit the Descent?\\nProgress will be lost."
+  },
+  {
+    "key": "revert_track",
+    "value": "Track"
+  },
+  {
+    "key": "revert_corruption",
+    "value": "Corruption"
+  },
+  {
+    "key": "revert_track_n1",
+    "value": "Cradle"
+  },
+  {
+    "key": "revert_track_00",
+    "value": "Sacrament  I."
+  },
+  {
+    "key": "revert_track_01",
+    "value": "Lost In The World"
+  },
+  {
+    "key": "revert_track_02",
+    "value": "Flesh Without Blood"
+  },
+  {
+    "key": "revert_track_03",
+    "value": "Inside"
+  },
+  {
+    "key": "revert_track_04",
+    "value": "When The Sun Hits"
+  },
+  {
+    "key": "revert_track_05",
+    "value": "Stay Here"
+  },
+  {
+    "key": "revert_track_06",
+    "value": "No Stars"
+  },
+  {
+    "key": "revert_track_07",
+    "value": "Lethean"
+  },
+  {
+    "key": "revert_track_08",
+    "value": "One Last Time"
+  },
+  {
+    "key": "revert_track_09",
+    "value": "Run Away With Me"
+  },
+  {
+    "key": "travel_descent_end",
+    "value": "End Descent"
+  },
+  {
+    "key": "revert_track_09_check",
+    "value": "High Rise"
+  },
+  {
+    "key": "menu_load_check",
+    "value": "Last Checkpoint"
+  },
+  {
+    "key": "menu_load_time",
+    "value": "Total Playtime"
+  },
+  {
+    "key": "revert_track_00_check",
+    "value": "Abandoned Faith"
+  },
+  {
+    "key": "revert_track_01_check",
+    "value": "The Shore"
+  },
+  {
+    "key": "revert_track_02_check",
+    "value": "Sanctum - Atrium"
+  },
+  {
+    "key": "revert_track_03_check",
+    "value": "Metro - Brooksvale Station"
+  },
+  {
+    "key": "revert_track_07_check",
+    "value": "The Shore?"
+  },
+  {
+    "key": "menu_revert_confirm",
+    "value": "Progress in current Track will be lost.\\nContinue?"
+  },
+  {
+    "key": "menu_revert_instruct",
+    "value": "Select a track to revert progress"
+  },
+  {
+    "key": "menu_upgrade_cost",
+    "value": "Cost"
+  },
+  {
+    "key": "game_la",
+    "value": "La"
+  },
+  {
+    "key": "warning_stamina_low",
+    "value": "— Stamina LOW —"
+  },
+  {
+    "key": "warning_stamina_out",
+    "value": "! ! STAMINA OUT ! !"
+  },
+  {
+    "key": "warning_charge_low",
+    "value": "— Charge LOW —"
+  },
+  {
+    "key": "warning_charge_out",
+    "value": "! CHARGE OUT !"
+  },
+  {
+    "key": "warning_health_low",
+    "value": "! ! HEALTH LOW ! !"
+  },
+  {
+    "key": "warning_rewinds_low",
+    "value": "— REWINDs LOW —"
+  },
+  {
+    "key": "warning_rewinds_out",
+    "value": "! REWINDS OUT !"
+  },
+  {
+    "key": "menu_retry_restart",
+    "value": "Restart Scene"
+  },
+  {
+    "key": "menu_retry_load",
+    "value": "Load from Checkpoint"
+  },
+  {
+    "key": "ui_cant_skip",
+    "value": "Cannot skip scene!!"
+  },
+  {
+    "key": "dream_00_00",
+    "value": "A dream."
+  },
+  {
+    "key": "dream_00_07",
+    "value": "You feel like screaming./n/nYou feel like crying./n/nBut you can't."
+  },
+  {
+    "key": "dream_00_08",
+    "value": "So, you breathe./n/nIn...out..."
+  },
+  {
+    "key": "dream_00_09",
+    "value": "You muster the courage /nto open your eyes."
+  },
+  {
+    "key": "dream_00_10",
+    "value": "A vast expanse,/nit threatens to consume."
+  },
+  {
+    "key": "dream_00_11",
+    "value": "You can't help but feel /nyou've been here before./n/nYou can't help but feel/nthey only want to hurt you."
+  },
+  {
+    "key": "dream_00_12",
+    "value": "But you know you must move forward./n/nYou must fight."
+  },
+  {
+    "key": "dream_00_13",
+    "value": "It's all you know..."
+  },
+  {
+    "key": "menu_delete",
+    "value": "Delete"
+  },
+  {
+    "key": "colin_intro_00",
+    "value": ". . ."
+  },
+  {
+    "key": "colin_intro_01",
+    "value": ".    .    .    .    ."
+  },
+  {
+    "key": "colin_intro_02",
+    "value": ".      .      .      .      .      .      ."
+  },
+  {
+    "key": "colin_intro_03",
+    "value": "Oh, hi there...are you finally awake?"
+  },
+  {
+    "key": "colin_intro_04",
+    "value": "Okay then, let's see..."
+  },
+  {
+    "key": "colin_intro_05",
+    "value": "Before we begin, I need...uh..."
+  },
+  {
+    "key": "colin_intro_06",
+    "value": "Oh, that's right, I need to know what your name is."
+  },
+  {
+    "key": "colin_intro_07",
+    "value": "So, what's your name?"
+  },
+  {
+    "key": "colin_intro_08",
+    "value": "Thank you PLAYERNAME; my name is Colin. It's so nice to finally meet you."
+  },
+  {
+    "key": "colin_intro_09",
+    "value": "Now, I need you to promise me, that no matter what happens, you will have faith in both me and in yourself"
+  },
+  {
+    "key": "colin_intro_10",
+    "value": "and know that everything will be okay in the end."
+  },
+  {
+    "key": "colin_intro_11",
+    "value": "I know it won't be easy, but...you trust me, right?"
+  },
+  {
+    "key": "colin_intro_12",
+    "value": "Anyways, are you ready, PLAYERNAME? Let's get started."
+  },
+  {
+    "key": "colin_intro_13",
+    "value": "I want to go back to where it began..."
+  },
+  {
+    "key": "chapter_text_n1",
+    "value": "Track -1 ~ Cradle"
+  },
+  {
+    "key": "checkpoint_message_00",
+    "value": "Health restored. Progress saved."
+  },
+  {
+    "key": "checkpoint_message_01",
+    "value": "Health restored. Progress saved.\\nREWINDs restored."
+  },
+  {
+    "key": "menu_loading_ellipses",
+    "value": "\"Loading...\""
+  },
+  {
+    "key": "examine_label_ex",
+    "value": ": Examine"
+  },
+  {
+    "key": "examine_label_rest",
+    "value": ": Rest"
+  },
+  {
+    "key": "examine_label_jump",
+    "value": ": Jump"
+  },
+  {
+    "key": "warning_charge_insufficient",
+    "value": "\"— INSUFFICIENT Charge —"
+  },
+  {
+    "key": "memo_intro",
+    "value": "A voice echoes in your ear:"
+  },
+  {
+    "key": "tutorial_light_attack",
+    "value": "Light\\nAttack"
+  },
+  {
+    "key": "tutorial_light_attack_00",
+    "value": "Light attacks are weak, but fast and consume little stamina."
+  },
+  {
+    "key": "tutorial_light_attack_01",
+    "value": "Chain light attacks together to form combos that end in a powerful Finishing Attack."
+  },
+  {
+    "key": "tutorial_heavy_attack",
+    "value": "Heavy\\nAttack"
+  },
+  {
+    "key": "tutorial_heavy_attack_00",
+    "value": "Heavy attacks are strong and can break an enemy's guard, but consume more stamina."
+  },
+  {
+    "key": "tutorial_heavy_attack_01",
+    "value": "Chain a heavy attack to light attacks to perform more powerful Finishing Attacks."
   }
+]}

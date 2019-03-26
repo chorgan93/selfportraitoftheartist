@@ -858,7 +858,8 @@ public class LevelUpMenu : MonoBehaviour
         }
 
         //currentLa.text = PlayerCollectionS.currencyCollected.ToString() + " la";
-        StoryProgressionS.SaveProgress();
+        //StoryProgressionS.SaveProgress();
+        CameraEffectsS.E.fadeRef.DoSave = true;
     }
 
     private void TurnOffLevelUpMenu()
@@ -1068,25 +1069,27 @@ public class LevelUpMenu : MonoBehaviour
             }
             if (i == 0)
             {
-                revertMenuChoiceNames[i].text = "Track -1 : " + revertMenuDataObjs[i].chapterName;
+                revertMenuChoiceNames[i].text = LocalizationManager.instance.GetLocalizedValue("revert_track")+ " -1 : " + 
+                    LocalizationManager.instance.GetLocalizedValue(revertMenuDataObjs[i].chapterName);
             }
             else{
-                revertMenuChoiceNames[i].text = "Track  " + i + " : " + revertMenuDataObjs[i].chapterName;
+                revertMenuChoiceNames[i].text = LocalizationManager.instance.GetLocalizedValue("revert_track") + " " + i + " : " +
+                    LocalizationManager.instance.GetLocalizedValue(revertMenuDataObjs[i].chapterName);
             }
             if (i < 9 && i < PlayerInventoryS.I.revertDarknessNums.Count){
 
 
                 if (i > 0)
                 {
-                    revertMenuCorruptionTexts[i].text = "Corruption : " + PlayerInventoryS.I.revertDarknessNums[i].ToString("F2") + "%";
+                    revertMenuCorruptionTexts[i].text = LocalizationManager.instance.GetLocalizedValue("revert_corruption") +  " : " + PlayerInventoryS.I.revertDarknessNums[i].ToString("F2") + "%";
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = textStartColor;
                 }else{
-                    revertMenuCorruptionTexts[i].text = "Corruption : ---";
+                    revertMenuCorruptionTexts[i].text = LocalizationManager.instance.GetLocalizedValue("revert_corruption")+ " : ---";
                     revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = Color.white;
                 }
             }else{
 
-                revertMenuCorruptionTexts[i].text = "Corruption : ????";
+                revertMenuCorruptionTexts[i].text = LocalizationManager.instance.GetLocalizedValue("revert_corruption") + " : ????";
                 revertMenuChoiceNames[i].color = revertMenuCorruptionTexts[i].color = textRevertLockedColor;
             }
 
@@ -1095,7 +1098,7 @@ public class LevelUpMenu : MonoBehaviour
 
     void SetUpDescentQuitScreen(){
         descentScreen = true;
-        mainMenuTextObjs[2].text = "End Descent";
+        mainMenuTextObjs[2].text = LocalizationManager.instance.GetLocalizedValue("travel_descent_end");
     }
 
     void TurnOnRevertMenu()

@@ -225,11 +225,11 @@ public class CustomizableControlsUIS : MonoBehaviour
     {
         if (inReplaceMode)
         {
-            instructionText.text = "Press the button you wish to use for the selected action.";
+            instructionText.text = LocalizationManager.instance.GetLocalizedValue("options_control_replace");
         }
         else
         {
-            instructionText.text = "Select the action for which you want to customize control.";
+            instructionText.text = LocalizationManager.instance.GetLocalizedValue("options_control_instruction");
         }
     }
 
@@ -412,22 +412,22 @@ public class CustomizableControlsUIS : MonoBehaviour
     {
         if (ControlManagerS.controlProfile == 0)
         {
-            currentControlTypeText.text = "Gamepad";
+            currentControlTypeText.text = LocalizationManager.instance.GetLocalizedValue("options_control_gamepad");
             Cursor.visible = false;
         }
         else if (ControlManagerS.controlProfile == 3)
         {
-            currentControlTypeText.text = "Gamepad (PS4)";
+            currentControlTypeText.text = LocalizationManager.instance.GetLocalizedValue("options_control_ps4");
             Cursor.visible = false;
         }
         else if (ControlManagerS.controlProfile == 1)
         {
-            currentControlTypeText.text = "Keyboard & Mouse";
+            currentControlTypeText.text = LocalizationManager.instance.GetLocalizedValue("options_control_mouse");
             Cursor.visible = true;
         }
         else if (ControlManagerS.controlProfile == 2)
         {
-            currentControlTypeText.text = "Keyboard (No Mouse)";
+            currentControlTypeText.text = LocalizationManager.instance.GetLocalizedValue("options_control_keyboard");
             Cursor.visible = false;
         }
         UpdateControlImages();
