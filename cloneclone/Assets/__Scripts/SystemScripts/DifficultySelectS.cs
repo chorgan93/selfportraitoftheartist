@@ -248,17 +248,17 @@ public class DifficultySelectS : MonoBehaviour {
 
 	void setText(){
 		
-		sinChosenText.text = sinTitles[sinSelect];
-		punishmentChosenText.text = punishmentTitles[punishSelect];
+        sinChosenText.text = LocalizationManager.instance.GetLocalizedValue(sinTitles[sinSelect]);
+        punishmentChosenText.text = LocalizationManager.instance.GetLocalizedValue(punishmentTitles[punishSelect]);
 
 		selector.gameObject.SetActive(true);
 
 		if (choosingSin){
 			selector.anchoredPosition = selectorPosLeft;
-			sinDescriptionText.text = sinDescriptions[sinSelect];
+            sinDescriptionText.text = LocalizationManager.instance.GetLocalizedValue(sinDescriptions[sinSelect]);
 		}else if (choosingPunishment){
 			selector.anchoredPosition = selectorPosRight;
-			punishmentDescriptionText.text = punishmentDescriptions[punishSelect];
+            punishmentDescriptionText.text = LocalizationManager.instance.GetLocalizedValue(punishmentDescriptions[punishSelect]);
 		}else{
 			punishmentDescriptionText.text = "";
 		}

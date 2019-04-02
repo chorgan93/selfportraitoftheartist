@@ -493,7 +493,13 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.M)){
             AddMarked();
         }
-	}
+
+        // trigger slowdown
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            WitchTime(null);
+        }
+    }
 
 	//_________________________________________PUBLIC METHODS
 
@@ -943,7 +949,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void WitchTime(EnemyS targetEnemy, bool fromParry = false){
-		if (!_allowCounterAttack && !_doingCounterAttack && !counterQueued && !_delayWitchTime){
+        if (!_allowCounterAttack && !_doingCounterAttack && !counterQueued && !heavyCounterQueued && !_delayWitchTime){
 			if (targetEnemy != null){
 				CameraPOIS.POI.JumpToMidpoint(transform.position, targetEnemy.transform.position);
 			}else{
@@ -972,6 +978,7 @@ public class PlayerController : MonoBehaviour {
 			_myStats.WitchStaminaCorrect();
 			_playerAug.EnragedTrigger();
 			_allowCounterAttack = true;
+            counterQueued = heavyCounterQueued = false;
 			counterAttackTime = counterAttackTimeMax;
 			_counterTarget = targetEnemy;
 			_playerSound.PlaySlowSound();
@@ -1952,7 +1959,7 @@ public class PlayerController : MonoBehaviour {
 				if (
                     ((ShootInputPressed() && shootButtonUp && !_tempTauntAllow) || (tauntButtonUp && controller.GetCustomInput(8) &&
 						equippedTech.Contains(9))) 
-					&& !counterQueued && !_delayWitchTime
+                    && !counterQueued && !heavyCounterQueued && !_delayWitchTime
 					&& (StaminaCheck(1f, false))
 					|| ((counterQueued || heavyCounterQueued) && _dodgeEffectRef.AllowAttackTime())
 				){
@@ -2149,6 +2156,8 @@ public class PlayerController : MonoBehaviour {
 							}
 					}
 						attackTriggered = true;
+                            counterQueued = heavyCounterQueued = false;
+                            //Debug.Log("Doing non buffered attack! " + ShootInputPressed() + " " + (heavyCounterQueued||counterQueued));
 						TriggerFosAttack();
 						canDoAdaptive = false;
 
@@ -3061,7 +3070,7 @@ public class PlayerController : MonoBehaviour {
 	private bool CanInputMovement(){
 
 		if (!_isDashing && !_isStunned && attacksRemaining <= 0 && !attackTriggered 
-		    && !_doingCounterAttack && !counterQueued && !_delayWitchTime && !_allowCounterAttack
+            && !_doingCounterAttack && !counterQueued && !heavyCounterQueued && !_delayWitchTime && !_allowCounterAttack
 			&& !doingBlockTrigger && attackDuration <= 0 && !_chargeAttackTriggered 
 			&& (!_isTalking || _allowWalk) && !_usingItem){
 			return true;

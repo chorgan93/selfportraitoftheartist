@@ -156,7 +156,7 @@ public class LevelUpItemS : MonoBehaviour {
 			SetTextColors(lockedTextColor);
 			upgradeNameText.text = upgradeName 
                 + " ( " + LocalizationManager.instance.GetLocalizedValue("menu_upgrade_cost") +
-            ": < color=#ff0000ff>" + upgradeCost + "</color> / " + PlayerCollectionS.currencyCollected + " " +
+            ": <color=#ff0000ff>" + upgradeCost + "</color> / " + PlayerCollectionS.currencyCollected + " " +
             LocalizationManager.instance.GetLocalizedValue("game_la") + " )";
         }
         else{

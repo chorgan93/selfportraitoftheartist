@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/_IntroductionScenes/TutorialLevelScenes/TutorialSceneMainHall.unity
+- path: Assets/_Scenes/EndingScenes/PostCreditsColinScene.unity
   isLoaded: 1
   isActive: 1

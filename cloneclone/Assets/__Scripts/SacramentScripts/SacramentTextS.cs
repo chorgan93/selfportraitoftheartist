@@ -132,7 +132,7 @@ public class SacramentTextS : MonoBehaviour {
 		if (!_initialized){
 			_stepRef = myStep;
 			myText = GetComponent<Text>();
-					fullText = myText.text;
+            fullText = LocalizationManager.instance.GetLocalizedValue(myText.text);
 			myCol = myText.color;
 			maxAlpha = myCol.a;
 			if (autoAdvanceTime > 0){

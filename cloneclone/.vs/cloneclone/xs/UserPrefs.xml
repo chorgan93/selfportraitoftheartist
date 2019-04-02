@@ -1,9 +1,8 @@
 ﻿<Properties StartupConfiguration="{14327DA8-2BAB-9AD4-69E4-D5F87A0E2A20}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LevelScripts/LockedDoorS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/__Scripts/LocalizationScripts/LocalizedTextJSON/Lucah_Localization_EN.json">
     <Files>
-      <File FileName="Assets/__Scripts/__PlayerScripts/ExamineLabelS.cs" Line="96" Column="70" />
-      <File FileName="Assets/__Scripts/LevelScripts/LockedDoorS.cs" Line="274" Column="41" />
+      <File FileName="Assets/__Scripts/LocalizationScripts/LocalizedTextJSON/Lucah_Localization_EN.json" Line="1975" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
