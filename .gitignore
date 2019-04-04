@@ -29,6 +29,9 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+cloneclone/Temp/
+cloneclone/Library/
+
 cloneclone/Temp/UnityTempFile-4d2984ea394b44febb37f0aeff5fcfd2
 
 cloneclone/Temp/UnityLockfile
@@ -44,3 +47,4 @@ cloneclone/Assets/Video/L U C A H ~ Kickstarter Trailer ~.mov.meta
 cloneclone/Assets/Video/Materials/L U C A H ~ Kickstarter Trailer ~.mat
 
 cloneclone/Assets/Video/Materials/L U C A H ~ Kickstarter Trailer ~.mat.meta
+cloneclone/Library/assetDatabase3
