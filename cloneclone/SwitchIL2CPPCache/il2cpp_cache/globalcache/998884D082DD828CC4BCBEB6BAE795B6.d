@@ -1,0 +1,32 @@
+D:\lucahproject\selfportraitoftheartist\cloneclone\SwitchIL2CPPCache\il2cpp_cache\globalcache\998884D082DD828CC4BCBEB6BAE795B6.o: \
+  D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools\il2cpp\external\boehmgc\gc_locks.c \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/gc_locks.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/gc_priv.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/../gc.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include/gc_version.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include/gc_config_macros.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stddef.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\__config \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stddef.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\bits/alltypes.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\nnmusl_alltypes.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stdlib.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stdlib.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\features.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\features_musl.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\alloca.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/../gc_tiny_fl.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/../gc_mark.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\limits.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\limits.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\bits/limits.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/gcconfig.h \
+  D:\Unity\Editor\Data\il2cpp\external\boehmgc\include\private/gc_hdrs.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\time.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\string.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\string.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\string_musl.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\strings.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\setjmp.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\setjmp.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\bits/setjmp.h

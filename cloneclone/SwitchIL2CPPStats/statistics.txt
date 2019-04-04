@@ -1,0 +1,321 @@
+----IL2CPP Arguments----
+--convert-to-cpp --emit-null-checks --enable-array-bounds-check --dotnetprofile=unityaot --compile-cpp --platform=Switch --architecture=ARM64 --configuration=Release --outputpath=D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Native\SwitchPlayer.nss --cachedirectory=D:/lucahproject/selfportraitoftheartist/cloneclone/Assets/../SwitchIL2CPPCache/il2cpp_cache --linker-flags=-lD:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\NativePlugins\NintendoSDKPlugin.a --plugin=D:/Unity/Editor/Data/PlaybackEngines/Switch/Tools\Il2CppPlugin.dll --additional-include-directories=D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools/il2cpp\bdwgc/include --additional-include-directories=D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools/il2cpp\libil2cpp/include --verbose --enable-stats --stats-output-dir=D:/lucahproject/selfportraitoftheartist/cloneclone/Assets/../SwitchIL2CPPStats --libil2cpp-static --additional-defines=DEBUGMODE=0,UNITY_RELEASE=1,IL2CPP_USE_SOCKET_MULTIPLEX_IO=1 --configuration=ReleasePlus --map-file-parser=D:\Unity\Editor\Data\Tools\MapFileParser\MapFileParser.exe --directory=D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed --generatedcppdir=D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\il2cppOutput
+
+----Assemblies Converted-----
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.ParticleSystemModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.PhysicsModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.AnimationModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.UIModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.VRModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.AIModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.AssetBundleModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.AudioModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.DirectorModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.GridModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.IMGUIModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.InputModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.Physics2DModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.SharedInternalsModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.SpriteMaskModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.TerrainModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.TextRenderingModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.TilemapModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.UIElementsModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.UnityWebRequestModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.VFXModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.VideoModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.SwitchModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.CoreModule.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\mscorlib.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.Core.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\Assembly-CSharp-firstpass.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\Assembly-CSharp.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\UnityEngine.UI.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\Mono.Security.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.Xml.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.Configuration.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\netstandard.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.Diagnostics.StackTrace.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.Globalization.Extensions.dll
+	D:\lucahproject\selfportraitoftheartist\cloneclone\Temp\StagingArea\Managed\System.IO.Compression.dll
+
+----- il2cpp Statistics -----
+General:
+	Conversion Time: 127.795 s
+	Files Written: 159
+	String Literals: 5411
+Methods:
+	Total Methods: 33556
+	Non-Generic Methods: 23890
+	Generic Type Methods: 7858
+	Generic Methods: 1808
+	Shared Methods: 9633
+	Methods with Tail Calls : 0
+Metadata:
+	Total: 4,088.13 kb
+	String Literals: 42.27 kb
+	String Literal Data: 131.93 kb
+	Metadata Strings: 524.45 kb
+	Events: 0.42 kb
+	Properties: 94.24 kb
+	Methods: 1,303.55 kb
+	Parameter Default Values: 3.61 kb
+	Field Default Values: 66.87 kb
+	Field and Parameter Default Values Data: 115.91 kb
+	Field Marshaled Sizes: 27.48 kb
+	Parameters: 304.15 kb
+	Fields: 247.92 kb
+	Generic Parameters: 5.66 kb
+	Generic Parameter Constraints: 0.17 kb
+	Generic Containers: 4.44 kb
+	Nested Types: 3.49 kb
+	Interfaces: 6.04 kb
+	VTables: 162.32 kb
+	Interface Offsets: 33.55 kb
+	Type Definitions: 398.14 kb
+	RGCTX Entries: 7.20 kb
+	Images: 1.48 kb
+	Assemblies: 2.52 kb
+	Metadata Usage Lists: 113.85 kb
+	Metadata Usage Pairs: 380.91 kb
+	Field Refs: 1.65 kb
+	Referenced Assemblies: 0.65 kb
+	Attribute Types Ranges: 57.41 kb
+	Attribute Types: 30.78 kb
+	Unresolved Virtual Call Parameter Types: 5.39 kb
+	Unresolved Virtual Call Parameter Ranges: 3.42 kb
+	Windows Runtime type names: 0.00 kb
+	Exported Types: 6.25 kb
+Codegen:
+	NullChecks : 69404
+Hashing:
+	String Literal Hash Collisions : 0
+	Type Hash Collisions : 0
+	Method Hash Collisions : 0
+	Sequence Point Hash Collisions : 0
+Interop:
+	Windows Runtime boxed types : 0
+	Windows Runtime types with names : 0
+	Native to managed interface adapters : 0
+	Array COM callable wrappers : 0
+	COM callable wrappers : 0
+	COM callable wrapper methods that were implemented : 0
+	COM callable wrapper methods that were stripped : 0
+	COM callable wrapper methods that were forwarded to call base class method : 0
+Compilation:
+	Total Files: 622
+	Files Compiled: 47
+	Cache Hits: 575
+	Cache Hit %: 92
+
+
+----Assembly Conversion Times----
+	Convert Assembly-CSharp (14952.9267578125ms)
+	Convert Assembly-CSharp-firstpass (2991.47705078125ms)
+	Convert Mono.Security (584.624816894531ms)
+	Convert mscorlib (16868.87109375ms)
+	Convert netstandard (196.040298461914ms)
+	Convert System (14532.166015625ms)
+	Convert System.Configuration (57.6311645507813ms)
+	Convert System.Core (124.834190368652ms)
+	Convert System.Diagnostics.StackTrace (15.8660888671875ms)
+	Convert System.Globalization.Extensions (16.3722705841064ms)
+	Convert System.IO.Compression (16.4001865386963ms)
+	Convert System.Xml (5313.87353515625ms)
+	Convert UnityEngine (19.9130744934082ms)
+	Convert UnityEngine.AIModule (107.250457763672ms)
+	Convert UnityEngine.AnimationModule (128.254302978516ms)
+	Convert UnityEngine.AssetBundleModule (32.1361389160156ms)
+	Convert UnityEngine.AudioModule (124.050086975098ms)
+	Convert UnityEngine.CoreModule (1464.91857910156ms)
+	Convert UnityEngine.DirectorModule (28.5739860534668ms)
+	Convert UnityEngine.GridModule (22.0034828186035ms)
+	Convert UnityEngine.IMGUIModule (259.707855224609ms)
+	Convert UnityEngine.InputModule (33.9843368530273ms)
+	Convert UnityEngine.ParticleSystemModule (43.1637420654297ms)
+	Convert UnityEngine.Physics2DModule (376.124572753906ms)
+	Convert UnityEngine.PhysicsModule (70.0159759521484ms)
+	Convert UnityEngine.SharedInternalsModule (71.7479934692383ms)
+	Convert UnityEngine.SpriteMaskModule (21.7530612945557ms)
+	Convert UnityEngine.SwitchModule (64.8646697998047ms)
+	Convert UnityEngine.TerrainModule (96.5266418457031ms)
+	Convert UnityEngine.TextRenderingModule (114.41828918457ms)
+	Convert UnityEngine.TilemapModule (46.1605987548828ms)
+	Convert UnityEngine.UI (4773.44140625ms)
+	Convert UnityEngine.UIElementsModule (54.49267578125ms)
+	Convert UnityEngine.UIModule (94.364387512207ms)
+	Convert UnityEngine.UnityWebRequestModule (42.8747291564941ms)
+	Convert UnityEngine.VFXModule (49.5322647094727ms)
+	Convert UnityEngine.VideoModule (47.1684455871582ms)
+	Convert UnityEngine.VRModule (25.6062774658203ms)
+
+----Misc Timing----
+	PreProcessStage: 630.889282226563
+	GenericsCollector.Collect: None
+	WriteGenerics: 25942.181640625
+	AllAssemblyConversion: 63885.4375
+
+----Generated Files----
+Bulk_Assembly-CSharp_0.cpp	3055637
+Bulk_Assembly-CSharp_1.cpp	2808664
+Bulk_Assembly-CSharp_10.cpp	1508819
+Bulk_Assembly-CSharp_2.cpp	2766654
+Bulk_Assembly-CSharp_3.cpp	2981852
+Bulk_Assembly-CSharp_4.cpp	3160534
+Bulk_Assembly-CSharp_5.cpp	4045446
+Bulk_Assembly-CSharp_6.cpp	2807792
+Bulk_Assembly-CSharp_7.cpp	2953137
+Bulk_Assembly-CSharp_8.cpp	3231997
+Bulk_Assembly-CSharp_9.cpp	1698392
+Bulk_Assembly-CSharp-firstpass_0.cpp	1844084
+Bulk_Assembly-CSharp-firstpass_1.cpp	28645
+Bulk_Generics_0.cpp	2203306
+Bulk_Generics_1.cpp	2513058
+Bulk_Generics_10.cpp	1430993
+Bulk_Generics_11.cpp	1434459
+Bulk_Generics_12.cpp	1598167
+Bulk_Generics_13.cpp	1005288
+Bulk_Generics_2.cpp	1366685
+Bulk_Generics_3.cpp	1407556
+Bulk_Generics_4.cpp	1620520
+Bulk_Generics_5.cpp	1401211
+Bulk_Generics_6.cpp	1446556
+Bulk_Generics_7.cpp	1709635
+Bulk_Generics_8.cpp	1379492
+Bulk_Generics_9.cpp	1457254
+Bulk_Mono.Security_0.cpp	1608850
+Bulk_Mono.Security_1.cpp	369670
+Bulk_mscorlib_0.cpp	1910752
+Bulk_mscorlib_1.cpp	2046363
+Bulk_mscorlib_10.cpp	1856629
+Bulk_mscorlib_11.cpp	2131151
+Bulk_mscorlib_12.cpp	2127708
+Bulk_mscorlib_13.cpp	1963881
+Bulk_mscorlib_14.cpp	2061490
+Bulk_mscorlib_15.cpp	1854454
+Bulk_mscorlib_16.cpp	1883440
+Bulk_mscorlib_17.cpp	2458038
+Bulk_mscorlib_18.cpp	1346966
+Bulk_mscorlib_2.cpp	1778286
+Bulk_mscorlib_3.cpp	2485951
+Bulk_mscorlib_4.cpp	2003319
+Bulk_mscorlib_5.cpp	1841643
+Bulk_mscorlib_6.cpp	1991212
+Bulk_mscorlib_7.cpp	2345494
+Bulk_mscorlib_8.cpp	1780829
+Bulk_mscorlib_9.cpp	2346410
+Bulk_netstandard_0.cpp	1746
+Bulk_System.Configuration_0.cpp	48554
+Bulk_System.Core_0.cpp	452025
+Bulk_System.Diagnostics.StackTrace_0.cpp	1746
+Bulk_System.Globalization.Extensions_0.cpp	1746
+Bulk_System.IO.Compression_0.cpp	1746
+Bulk_System.Xml_0.cpp	1985312
+Bulk_System.Xml_1.cpp	1892778
+Bulk_System.Xml_2.cpp	1770732
+Bulk_System.Xml_3.cpp	2171284
+Bulk_System.Xml_4.cpp	1793593
+Bulk_System.Xml_5.cpp	468770
+Bulk_System_0.cpp	2024113
+Bulk_System_1.cpp	1996767
+Bulk_System_2.cpp	2057041
+Bulk_System_3.cpp	2088575
+Bulk_System_4.cpp	2092123
+Bulk_System_5.cpp	1704299
+Bulk_System_6.cpp	1193406
+Bulk_UnityEngine.AIModule_0.cpp	27289
+Bulk_UnityEngine.AnimationModule_0.cpp	289452
+Bulk_UnityEngine.AssetBundleModule_0.cpp	33534
+Bulk_UnityEngine.AudioModule_0.cpp	346279
+Bulk_UnityEngine.CoreModule_0.cpp	1913367
+Bulk_UnityEngine.CoreModule_1.cpp	1651358
+Bulk_UnityEngine.DirectorModule_0.cpp	24598
+Bulk_UnityEngine.GridModule_0.cpp	8822
+Bulk_UnityEngine.IMGUIModule_0.cpp	753818
+Bulk_UnityEngine.InputModule_0.cpp	36977
+Bulk_UnityEngine.ParticleSystemModule_0.cpp	78138
+Bulk_UnityEngine.Physics2DModule_0.cpp	148749
+Bulk_UnityEngine.PhysicsModule_0.cpp	165218
+Bulk_UnityEngine.SharedInternalsModule_0.cpp	124656
+Bulk_UnityEngine.SpriteMaskModule_0.cpp	10055
+Bulk_UnityEngine.SwitchModule_0.cpp	107932
+Bulk_UnityEngine.TerrainModule_0.cpp	248546
+Bulk_UnityEngine.TextRenderingModule_0.cpp	244260
+Bulk_UnityEngine.TilemapModule_0.cpp	87748
+Bulk_UnityEngine.UI_0.cpp	2113112
+Bulk_UnityEngine.UI_1.cpp	1919320
+Bulk_UnityEngine.UI_2.cpp	1933682
+Bulk_UnityEngine.UI_3.cpp	36637
+Bulk_UnityEngine.UIElementsModule_0.cpp	102162
+Bulk_UnityEngine.UIModule_0.cpp	215437
+Bulk_UnityEngine.UnityWebRequestModule_0.cpp	71660
+Bulk_UnityEngine.VFXModule_0.cpp	79419
+Bulk_UnityEngine.VideoModule_0.cpp	117061
+Bulk_UnityEngine.VRModule_0.cpp	20436
+Bulk_UnityEngine_0.cpp	5760
+GenericMethods0.cpp	2658870
+GenericMethods1.cpp	2174290
+GenericMethods2.cpp	2130026
+GenericMethods3.cpp	2171416
+Il2CppAttributes.cpp	4552237
+Il2CppCodeRegistration.cpp	1487
+Il2CppCompilerCalculateTypeValues_0Table.cpp	390110
+Il2CppCompilerCalculateTypeValues_10Table.cpp	499623
+Il2CppCompilerCalculateTypeValues_11Table.cpp	264225
+Il2CppCompilerCalculateTypeValues_12Table.cpp	187937
+Il2CppCompilerCalculateTypeValues_13Table.cpp	132544
+Il2CppCompilerCalculateTypeValues_14Table.cpp	305205
+Il2CppCompilerCalculateTypeValues_15Table.cpp	378635
+Il2CppCompilerCalculateTypeValues_16Table.cpp	364417
+Il2CppCompilerCalculateTypeValues_17Table.cpp	396871
+Il2CppCompilerCalculateTypeValues_18Table.cpp	366230
+Il2CppCompilerCalculateTypeValues_19Table.cpp	360981
+Il2CppCompilerCalculateTypeValues_1Table.cpp	167441
+Il2CppCompilerCalculateTypeValues_20Table.cpp	347756
+Il2CppCompilerCalculateTypeValues_21Table.cpp	336906
+Il2CppCompilerCalculateTypeValues_22Table.cpp	520384
+Il2CppCompilerCalculateTypeValues_23Table.cpp	238551
+Il2CppCompilerCalculateTypeValues_24Table.cpp	173181
+Il2CppCompilerCalculateTypeValues_25Table.cpp	175288
+Il2CppCompilerCalculateTypeValues_26Table.cpp	132234
+Il2CppCompilerCalculateTypeValues_27Table.cpp	198770
+Il2CppCompilerCalculateTypeValues_28Table.cpp	301990
+Il2CppCompilerCalculateTypeValues_29Table.cpp	405599
+Il2CppCompilerCalculateTypeValues_2Table.cpp	266665
+Il2CppCompilerCalculateTypeValues_30Table.cpp	198973
+Il2CppCompilerCalculateTypeValues_31Table.cpp	451006
+Il2CppCompilerCalculateTypeValues_32Table.cpp	477136
+Il2CppCompilerCalculateTypeValues_33Table.cpp	800330
+Il2CppCompilerCalculateTypeValues_34Table.cpp	1212318
+Il2CppCompilerCalculateTypeValues_35Table.cpp	1070882
+Il2CppCompilerCalculateTypeValues_36Table.cpp	934236
+Il2CppCompilerCalculateTypeValues_37Table.cpp	1067540
+Il2CppCompilerCalculateTypeValues_38Table.cpp	553519
+Il2CppCompilerCalculateTypeValues_39Table.cpp	356502
+Il2CppCompilerCalculateTypeValues_3Table.cpp	338228
+Il2CppCompilerCalculateTypeValues_40Table.cpp	237859
+Il2CppCompilerCalculateTypeValues_4Table.cpp	266138
+Il2CppCompilerCalculateTypeValues_5Table.cpp	250662
+Il2CppCompilerCalculateTypeValues_6Table.cpp	528899
+Il2CppCompilerCalculateTypeValues_7Table.cpp	339884
+Il2CppCompilerCalculateTypeValues_8Table.cpp	349133
+Il2CppCompilerCalculateTypeValues_9Table.cpp	333548
+Il2CppCompilerCalculateTypeValuesTable.cpp	592588
+Il2CppGenericClassTable.cpp	1273226
+Il2CppGenericComDefinitions0.cpp	207
+Il2CppGenericInstDefinitions.cpp	717239
+Il2CppGenericMethodDefinitions.cpp	1623498
+Il2CppGenericMethodPointerTable.cpp	2379533
+Il2CppGenericMethodTable.cpp	1610216
+Il2CppInteropDataTable.cpp	181282
+Il2CppInvokerTable.cpp	3714627
+Il2CppMetadataRegistration.cpp	1143
+Il2CppMetadataUsage.cpp	4706193
+Il2CppMethodPointerTable.cpp	3967956
+Il2CppReversePInvokeWrapperTable.cpp	10183
+Il2CppTypeDefinitions.cpp	6253908
+UnlinkedFunctions.cpp	273
+UnresolvedVirtualCallStubs.cpp	349234
+
