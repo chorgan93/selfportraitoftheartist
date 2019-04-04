@@ -34,7 +34,7 @@ public class ControlManagerS : MonoBehaviour {
     NpadState[] npadStates = new NpadState[numberOfControllers];
     static bool switchInitialized = false;
     public TextMesh debugControl;
-    private const float analogMax = 32760f;
+    private const float analogMax = 32750f; // was 32760f, but that felt too high and made movement sluggish
 #endif
 
     // Use this for initialization

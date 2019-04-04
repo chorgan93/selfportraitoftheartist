@@ -13,8 +13,8 @@ public class MerchantUIItemS : MonoBehaviour {
 
 
 	public void SetItem(MerchantItemS newItem){
-		nameText.text = newItem.itemName;
-		costText.text = newItem.itemCost + " la";
+        nameText.text = LocalizationManager.instance.GetLocalizedValue(newItem.itemName);
+        costText.text = newItem.itemCost + " " + LocalizationManager.instance.GetLocalizedValue("game_la");
 		if (newItem.isAvailable()){
 			nameText.color = costText.color = availableColor;
 			if (!newItem.canBeBought()){

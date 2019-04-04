@@ -40,10 +40,10 @@ public class LocalizationManager : MonoBehaviour
             string dataAsJson = masterText_EN.text;
             Debug.Log(dataAsJson);
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
-            Debug.Log(loadedData.items.Length);
 
             for (int i = 0; i < loadedData.items.Length; i++)
             {
+                //Debug.Log("Adding key " + loadedData.items[i].key);
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
 
@@ -60,6 +60,9 @@ public class LocalizationManager : MonoBehaviour
     public string GetLocalizedValue(string key)
     {
         string result = missingTextString;
+        if (key == ""){
+            result = "";
+        }
         if (localizedText.ContainsKey(key))
         {
             result = localizedText[key];

@@ -151,6 +151,6 @@ public class MerchantUIS : MonoBehaviour {
     }
 
 	public string GetCurrentDescription(){
-		return merchantRef.itemsForSale[currentPos].itemDescription;
+        return merchantRef.itemsForSale[currentPos].itemDescription;
 	}
 }

@@ -1,1976 +1,3554 @@
-{
-  "items": [
-    {
-      "key": "brave_darkness_00",
-      "value": "You cannot brave the Darkness."
-    },
-    {
-      "key": "brave_darkness_01",
-      "value": "Despite everything, you still can't brave the Darkness."
-    },
-    {
-      "key": "ui_skip_text",
-      "value": "HOLD Menu to skip"
-    },
-    {
-      "key": "ui_loading",
-      "value": "L O A D I N G"
-    },
-    {
-      "key": "title_lucah",
-      "value": "L U C A H"
-    },
-    {
-      "key": "title_subtitle",
-      "value": "b o r n  o f  a  d r e a m"
-    },
-    {
-      "key": "menu_save_overwrite",
-      "value": "This save file will be overwritten. Continue?"
-    },
-    {
-      "key": "menu_load",
-      "value": "Load Game"
-    },
-    {
-      "key": "menu_new",
-      "value": "New Game"
-    },
-    {
-      "key": "menu_no",
-      "value": "No"
-    },
-    {
-      "key": "menu_no_caps",
-      "value": "NO"
-    },
-    {
-      "key": "menu_quit",
-      "value": "Quit"
-    },
-    {
-      "key": "menu_start",
-      "value": "— Start Game —"
-    },
-    {
-      "key": "menu_yes_caps",
-      "value": "YES"
-    },
-    {
-      "key": "menu_credits",
-      "value": "A game by melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, and Ryan]"
-    },
-    {
-      "key": "menu_quit_caps",
-      "value": "— QUIT —"
-    },
-    {
-      "key": "menu_options",
-      "value": "— Options —"
-    },
-    {
-      "key": "menu_back",
-      "value": "— Back —"
-    },
-    {
-      "key": "menu_yes",
-      "value": "Yes"
-    },
-    {
-      "key": "menu_any_button",
-      "value": "Press Any Button"
-    },
-    {
-      "key": "menu_any_key",
-      "value": "Press Any Key"
-    },
-    {
-      "key": "menu_select",
-      "value": "Select"
-    },
-    {
-      "key": "menu_cancel",
-      "value": "Cancel"
-    },
-    {
-      "key": "menu_move",
-      "value": "Move"
-    },
-    {
-      "key": "ui_rewind_display",
-      "value": "RW"
-    },
-    {
-      "key": "ui_heal_display",
-      "value": "HP"
-    },
-    {
-      "key": "ui_bonus_damage",
-      "value": "No Damage +{S}"
-    },
-    {
-      "key": "ui_bonus_time",
-      "value": "Time Bonus +{S}"
-    },
-    {
-      "key": "ui_condition_title",
-      "value": "CONDITION:"
-    },
-    {
-      "key": "ui_condition_fail",
-      "value": "CONDITION [FAILED]"
-    },
-    {
-      "key": "ui_condition_pass",
-      "value": "CONDITION SUCCESS"
-    },
-    {
-      "key": "ui_condition_time",
-      "value": "Complete combat within {TIME} seconds."
-    },
-    {
-      "key": "ui_condition_damage",
-      "value": "Complete combat without taking damage."
-    },
-    {
-      "key": "ui_condition_combo",
-      "value": "Complete combat without breaking your combo."
-    },
-    {
-      "key": "ui_verse",
-      "value": "Verse"
-    },
-    {
-      "key": "ui_map_label",
-      "value": "MAP"
-    },
-    {
-      "key": "ui_menu_label",
-      "value": "MENU"
-    },
-    {
-      "key": "ui_menu_paradigm_i",
-      "value": "Paradigm I"
-    },
-    {
-      "key": "ui_menu_paradigm_ii",
-      "value": "Paradigm II"
-    },
-    {
-      "key": "ui_menu_virtues",
-      "value": "Virtues"
-    },
-    {
-      "key": "ui_menu_tech",
-      "value": "Tech"
-    },
-    {
-      "key": "ui_menu_paradigm_i_desc",
-      "value": "Customize Paradigm I"
-    },
-    {
-      "key": "ui_menu_paradigm_ii_desc",
-      "value": "Customize Paradigm II"
-    },
-    {
-      "key": "ui_menu_virtue_desc",
-      "value": "Equip Virtues"
-    },
-    {
-      "key": "ui_menu_tech_desc",
-      "value": "Enable/Disable Tech"
-    },
-    {
-      "key": "ui_menu_tech_display",
-      "value": "Display"
-    },
-    {
-      "key": "ui_menu_tech_abilities",
-      "value": "Abilities"
-    },
-    {
-      "key": "ui_menu_tech_mods",
-      "value": "Mods"
-    },
-    {
-      "key": "tech_player_ui_name",
-      "value": "Player UI"
-    },
-    {
-      "key": "tech_player_ui_desc",
-      "value": "Player UI: Display player Health, Stamina, Charge, and La (experience)."
-    },
-    {
-      "key": "tech_enemy_ui_name",
-      "value": "Enemy UI"
-    },
-    {
-      "key": "tech_enemy_ui_desc",
-      "value": "Enemy UI: Display damage numbers and boss health values."
-    },
-    {
-      "key": "tech_item_ui_name",
-      "value": "Item UI"
-    },
-    {
-      "key": "tech_item_ui_desc",
-      "value": "Item UI: Display number of Rewinds/Health Essences, as well as unused key items."
-    },
-    {
-      "key": "tech_verse_ui_name",
-      "value": "Verse UI"
-    },
-    {
-      "key": "tech_verse_ui_desc",
-      "value": "Verse UI: Display Verse number and title."
-    },
-    {
-      "key": "tech_hold_action_name",
-      "value": "Hold Action"
-    },
-    {
-      "key": "tech_hold_action_desc",
-      "value": "Hold Action: Hold the light or heavy attack button to execute a powerful magic action at the cost of some Charge."
-    },
-    {
-      "key": "tech_parry_name",
-      "value": "Parry"
-    },
-    {
-      "key": "tech_parry_desc",
-      "value": "Parry: dodge toward an attacking enemy with perfect timing to counter the enemy attack."
-    },
-    {
-      "key": "tech_transform_name",
-      "value": "Transform"
-    },
-    {
-      "key": "tech_transform_desc",
-      "value": "Transform: Hold and release the Transform button to enter a super-powered state. Dramatically increases Corruption during use."
-    },
-    {
-      "key": "tech_taunt_name",
-      "value": "Taunt"
-    },
-    {
-      "key": "tech_taunt_desc",
-      "value": "Taunt: press the Taunt button to enrage all nearby enemies, making them stronger but more vulnerable to attacks."
-    },
-    {
-      "key": "mod_health_name",
-      "value": "Extra Health"
-    },
-    {
-      "key": "mod_health_desc",
-      "value": "Extra Health: Massively increase player health."
-    },
-    {
-      "key": "mod_infinite_health_name",
-      "value": "Infinite Stamina"
-    },
-    {
-      "key": "mod_infinite_health_desc",
-      "value": "Infinite Stamina: Actions that normally reduce Stamina no longer reduce Stamina."
-    },
-    {
-      "key": "mod_infinite_charge_name",
-      "value": "Infinite Charge: "
-    },
-    {
-      "key": "mod_infinite_charge_desc",
-      "value": "Infinite Charge: Actions that normally drain Charge no longer drain Charge."
-    },
-    {
-      "key": "mod_infinite_items_name",
-      "value": "Unlimited Items"
-    },
-    {
-      "key": "mod_infinite_items_desc",
-      "value": "Unlimited Items: Using Rewinds or Health Essences does not reduce the number of uses available for each."
-    },
-    {
-      "key": "mod_weaker_enemies_name",
-      "value": "Weakened Enemies"
-    },
-    {
-      "key": "mod_weaker_enemies_desc",
-      "value": "Weakened Enemies: Massively reduces enemy health and attack power."
-    },
-    {
-      "key": "ui_map_missing",
-      "value": "No Map Data"
-    },
-    {
-      "key": "mantra_00_name",
-      "value": "LUNA: Mid-damage, mid-range. Increased charge absorption."
-    },
-    {
-      "key": "mantra_00_desc",
-      "value": "Hold Action: CHARGE EXPLOSION"
-    },
-    {
-      "key": "mantra_01_name",
-      "value": "SOL: Mid-range, fast. Ignores defense but cannot BREAK. "
-    },
-    {
-      "key": "mantra_01_desc",
-      "value": "Hold Action: CHARGE EXPLOSION"
-    },
-    {
-      "key": "mantra_02_name",
-      "value": "AERO: Low-damage, high-range. Increases attack range."
-    },
-    {
-      "key": "mantra_02_desc",
-      "value": "Hold Action: LINEAR BURST"
-    },
-    {
-      "key": "mantra_03_name",
-      "value": "PYRA: Mid-damage, high-range. Lowers stamina use."
-    },
-    {
-      "key": "mantra_03_desc",
-      "value": "Hold Action: FIERY PUNISHMENT"
-    },
-    {
-      "key": "mantra_04_name",
-      "value": "ANIMA: High-damage, low-range. Increases attack speed."
-    },
-    {
-      "key": "mantra_04_desc",
-      "value": "Hold Action: HEEL STOMP"
-    },
-    {
-      "key": "mantra_05_name",
-      "value": "AQUA: Short-range, multi-attack. Increases BREAK time."
-    },
-    {
-      "key": "mantra_05_desc",
-      "value": "Hold Action: RAINING STRIKE"
-    },
-    {
-      "key": "mantra_06_name",
-      "value": "GAEA: Mid-damage, mixed-range. Higher BREAK chance."
-    },
-    {
-      "key": "mantra_06_desc",
-      "value": "Hold Action: CHARGE PULSE"
-    },
-    {
-      "key": "mantra_07_name",
-      "value": "EREBOS: Low-damage, mid-range. Increases BREAK damage."
-    },
-    {
-      "key": "mantra_07_desc",
-      "value": "Hold Action: BACKSTAB"
-    },
-    {
-      "key": "mantra_08_name",
-      "value": "BIOS: Low-damage, multi-attack. Increases finisher power."
-    },
-    {
-      "key": "mantra_08_desc",
-      "value": "Hold Action: LIFE SURGE"
-    },
-    {
-      "key": "mantra_09_name",
-      "value": "FOS: Technical. Hold Actions do not drain stamina."
-    },
-    {
-      "key": "mantra_09_desc",
-      "value": "Hold Action: SUMMON CHARGE"
-    },
-    {
-      "key": "mantra_10_name",
-      "value": "THANATOS: High-damage, mid-range. Increases strength."
-    },
-    {
-      "key": "mantra_10_desc",
-      "value": "Hold Action: TRIPLE BURST"
-    },
-    {
-      "key": "mantra_11_name",
-      "value": "AETHER: the final Mantra. Adds a shockwave to all attacks."
-    },
-    {
-      "key": "mantra_11_desc",
-      "value": "Hold Action: REALITY TEAR"
-    },
-    {
-      "key": "mantra_12_name",
-      "value": "KTISIS: the entirety of creation flows through you."
-    },
-    {
-      "key": "mantra_12_desc",
-      "value": "Hold Actions do not drain charge."
-    },
-    {
-      "key": "familiar_00",
-      "value": "Burst: Fires long-range projectile on command."
-    },
-    {
-      "key": "familiar_01",
-      "value": "Impulse: Shoots mid-range spread on command."
-    },
-    {
-      "key": "familiar_02",
-      "value": "Shock: Shoots powerful mid-range burst on command."
-    },
-    {
-      "key": "familiar_03",
-      "value": "Pierce: Fires piercing projectile with a high BREAK chance on command."
-    },
-    {
-      "key": "familiar_04",
-      "value": "Rapid: Fires a stream of small projectiles on command."
-    },
-    {
-      "key": "familiar_05",
-      "value": "Aura: Fires a damaging aura on command."
-    },
-    {
-      "key": "familiar_06",
-      "value": "Heal: Heals player at cost of full charge."
-    },
-    {
-      "key": "familiar_07",
-      "value": "Laser: Shoots a powerful laser that bypasses enemy defense on command."
-    },
-    {
-      "key": "virtue_00",
-      "value": "Unstoppable (Cost: 2) [Once per combat, lethal damage does not kill player. Resets at full health or on REWIND]"
-    },
-    {
-      "key": "virtue_01",
-      "value": "Determined (Cost: 5) [Charge Attacks and combo finishers have a higher chance of auto-killing weakened enemies.]"
-    },
-    {
-      "key": "virtue_02",
-      "value": "Empowered [Cost: 4] (greatly reduces attack stamina use at max health)"
-    },
-    {
-      "key": "virtue_03",
-      "value": "Paranoid [Cost: 4] (attack damage increases slightly for each successive attack in a combo)"
-    },
-    {
-      "key": "virtue_04",
-      "value": "Adaptive [Cost: 4] (Paradigm Shift right at the end of an attack or a dodge to recover Stamina)"
-    },
-    {
-      "key": "virtue_05",
-      "value": "Perceptive (Cost: 3) [Turns on enemy health indicators]"
-    },
-    {
-      "key": "virtue_06",
-      "value": "Driven [Cost: 4] (charge fully replenishes on an enemy guard break)"
-    },
-    {
-      "key": "virtue_07",
-      "value": "Repellant [Cost: 2] (Well-timed Mantra attacks reflect enemy projectiles)"
-    },
-    {
-      "key": "virtue_08",
-      "value": "Trusting [Cost: 5] (Familiar attacks have more stopping power.)"
-    },
-    {
-      "key": "virtue_09",
-      "value": "Agile [Cost: 5] (dodge an enemy attack with perfect timing to replenish Stamina)"
-    },
-    {
-      "key": "virtue_10",
-      "value": "Anxious [Cost: 3] (Constant small charge regeneration during combat.)"
-    },
-    {
-      "key": "virtue_11",
-      "value": "Condemned [Cost: 2] (Survive for a short time after health reaches 0)"
-    },
-    {
-      "key": "virtue_12",
-      "value": "Parasitic [Cost: 6] (For a brief time after taking damage, deal damage to recover lost health)"
-    },
-    {
-      "key": "virtue_13",
-      "value": "Hated [Cost: 6] (Increases damage player gives and receives)"
-    },
-    {
-      "key": "virtue_14",
-      "value": "Loved [Cost: 4] (enemy attacks deal less damage)"
-    },
-    {
-      "key": "virtue_15",
-      "value": "Marked [Cost: 0] (Face the corruption with courage and grace; Cannot be unequipped)"
-    },
-    {
-      "key": "virtue_16",
-      "value": "Cautious [Cost: 5] (Slower enemy attacks and projectiles)"
-    },
-    {
-      "key": "virtue_17",
-      "value": "Untethered [Cost: 6] (perfect dodges slow time briefly)"
-    },
-    {
-      "key": "virtue_18",
-      "value": "Disconnected [Cost: 4] (double-tap the dodge button to teleport to target enemy at the cost of some Charge)"
-    },
-    {
-      "key": "virtue_19",
-      "value": "Incensed [Cost: 2] (reduces Dodge and Sprint stamina costs and increases power of Dash and Counter Attacks)"
-    },
-    {
-      "key": "virtue_20",
-      "value": "Enraged [Cost: 3] (Perfect Dodges and Parries increase player strength for a short time)"
-    },
-    {
-      "key": "virtue_21",
-      "value": "Scorned [Cost: 2] (reduces all stats, but increases max VP by 20)"
-    },
-    {
-      "key": "virtue_22",
-      "value": "Ascended [Cost: 2] (drastically reduces Corruption rate)"
-    },
-    {
-      "key": "ui_tech_locked",
-      "value": "— LOCKED —"
-    },
-    {
-      "key": "ui_game_checkpoint",
-      "value": "Return to the last checkpoint visited?"
-    },
-    {
-      "key": "ui_game_return",
-      "value": "Exit game and return to the main menu?"
-    },
-    {
-      "key": "ui_game_option_00",
-      "value": "Return to Game"
-    },
-    {
-      "key": "ui_game_option_01",
-      "value": "Return to Last Checkpoint"
-    },
-    {
-      "key": "ui_game_option_02",
-      "value": "Options"
-    },
-    {
-      "key": "ui_game_option_03",
-      "value": "Exit to menu"
-    },
-    {
-      "key": "options_header_game",
-      "value": "// GAME"
-    },
-    {
-      "key": "options_header_control",
-      "value": "Customize Controls >>"
-    },
-    {
-      "key": "options_header_speed",
-      "value": "game speed"
-    },
-    {
-      "key": "options_header_difficulty",
-      "value": "// DIFFICULTY"
-    },
-    {
-      "key": "options_difficulty_sin",
-      "value": "Sin"
-    },
-    {
-      "key": "options_difficulty_punishment",
-      "value": "Punishment"
-    },
-    {
-      "key": "options_difficulty_easy",
-      "value": "Easy"
-    },
-    {
-      "key": "options_difficulty_normal",
-      "value": "Normal"
-    },
-    {
-      "key": "options_difficulty_hard",
-      "value": "Hard"
-    },
-    {
-      "key": "options_difficulty_challenge",
-      "value": "Challenge"
-    },
-    {
-      "key": "options_header_audio",
-      "value": "// AUDIO"
-    },
-    {
-      "key": "options_header_music",
-      "value": "music volume"
-    },
-    {
-      "key": "options_header_sound",
-      "value": "sfx volume"
-    },
-    {
-      "key": "options_header_visual",
-      "value": "// VISUAL"
-    },
-    {
-      "key": "options_header_fullscreen",
-      "value": "fullscreen"
-    },
-    {
-      "key": "options_menu_on",
-      "value": "ON"
-    },
-    {
-      "key": "options_menu_off",
-      "value": "OFF"
-    },
-    {
-      "key": "options_header_resolution",
-      "value": "resolution"
-    },
-    {
-      "key": "options_header_screenshake",
-      "value": "Screenshake"
-    },
-    {
-      "key": "options_header_post",
-      "value": "Post Processing"
-    },
-    {
-      "key": "options_header_exit",
-      "value": "Exit"
-    },
-    {
-      "key": "options_menu_low",
-      "value": "LOW"
-    },
-    {
-      "key": "options_menu_turbo",
-      "value": "TURBO"
-    },
-    {
-      "key": "ui_menu_paused",
-      "value": "— P A U S E D —"
-    },
-    {
-      "key": "options_control_instruction",
-      "value": "Select the action for which you want to customize control."
-    },
-    {
-      "key": "options_control_type",
-      "value": "control type"
-    },
-    {
-      "key": "options_control_gamepad",
-      "value": "Gamepad"
-    },
-    {
-      "key": "options_control_keyboard",
-      "value": "Keyboard (No Mouse)"
-    },
-    {
-      "key": "options_control_mouse",
-      "value": "Keyboard & Mouse"
-    },
-    {
-      "key": "options_control_ps4",
-      "value": "Gamepad (PS4)"
-    },
-    {
-      "key": "options_control_l_attack",
-      "value": "Light Attack"
-    },
-    {
-      "key": "options_control_h_attack",
-      "value": "Heavy Attack/Exit Menu"
-    },
-    {
-      "key": "options_control_f_attack",
-      "value": "Familiar Attack"
-    },
-    {
-      "key": "options_control_replace",
-      "value": "Press the button you wish to use for the selected action."
-    },
-    {
-      "key": "options_control_talk",
-      "value": "Talk/Examine"
-    },
-    {
-      "key": "options_control_dodge",
-      "value": "Dodge"
-    },
-    {
-      "key": "options_control_shift",
-      "value": "Paradigm Shift"
-    },
-    {
-      "key": "options_control_item",
-      "value": "Use Item"
-    },
-    {
-      "key": "options_control_switch",
-      "value": "Switch Item"
-    },
-    {
-      "key": "options_control_taunt",
-      "value": "Taunt"
-    },
-    {
-      "key": "options_control_transform",
-      "value": "Transform"
-    },
-    {
-      "key": "options_control_equip",
-      "value": "Equip Menu"
-    },
-    {
-      "key": "options_control_game",
-      "value": "Game Menu"
-    },
-    {
-      "key": "options_control_default",
-      "value": "Restore Defaults"
-    },
-    {
-      "key": "menu_level_up",
-      "value": "Level up"
-    },
-    {
-      "key": "menu_level_travel",
-      "value": "Travel"
-    },
-    {
-      "key": "menu_level_revert",
-      "value": "† Revert †"
-    },
-    {
-      "key": "travel_checkpoint_00",
-      "value": "Forest - Camp"
-    },
-    {
-      "key": "travel_checkpoint_01",
-      "value": "Forest - Reprieve"
-    },
-    {
-      "key": "travel_checkpoint_02",
-      "value": "Forest - Cliff"
-    },
-    {
-      "key": "travel_checkpoint_03",
-      "value": "Sanctum - Confessional"
-    },
-    {
-      "key": "travel_checkpoint_04",
-      "value": "Metro - Brooksvale Station"
-    },
-    {
-      "key": "travel_checkpoint_04a",
-      "value": "Metro - Maintenance"
-    },
-    {
-      "key": "travel_checkpoint_05",
-      "value": "Metro - Southvale"
-    },
-    {
-      "key": "travel_checkpoint_06",
-      "value": "Metro - End Station"
-    },
-    {
-      "key": "travel_checkpoint_07",
-      "value": "Suburbs - 110 Crescent St"
-    },
-    {
-      "key": "travel_checkpoint_08",
-      "value": "Arena - Fighters' Quarters"
-    },
-    {
-      "key": "travel_checkpoint_09",
-      "value": "Highways - The Harbor"
-    },
-    {
-      "key": "travel_checkpoint_10",
-      "value": "Highways - Control"
-    },
-    {
-      "key": "travel_checkpoint_11",
-      "value": "Linear Trail"
-    },
-    {
-      "key": "travel_checkpoint_12",
-      "value": "Lethean - Gate II"
-    },
-    {
-      "key": "travel_checkpoint_13",
-      "value": "Radio Tower - Exterior"
-    },
-    {
-      "key": "travel_checkpoint_14",
-      "value": "Radio Tower - Final Rest"
-    },
-    {
-      "key": "travel_checkpoint_15",
-      "value": "The Descent"
-    },
-    {
-      "key": "travel_checkpoint_16",
-      "value": "Familiar Garden"
-    },
-    {
-      "key": "travel_descent_exit",
-      "value": "Exit the Descent?\\nProgress will be lost."
-    },
-    {
-      "key": "revert_track",
-      "value": "Track"
-    },
-    {
-      "key": "revert_corruption",
-      "value": "Corruption"
-    },
-    {
-      "key": "revert_track_n1",
-      "value": "Cradle"
-    },
-    {
-      "key": "revert_track_00",
-      "value": "Sacrament  I."
-    },
-    {
-      "key": "revert_track_01",
-      "value": "Lost In The World"
-    },
-    {
-      "key": "revert_track_02",
-      "value": "Flesh Without Blood"
-    },
-    {
-      "key": "revert_track_03",
-      "value": "Inside"
-    },
-    {
-      "key": "revert_track_04",
-      "value": "When The Sun Hits"
-    },
-    {
-      "key": "revert_track_05",
-      "value": "Stay Here"
-    },
-    {
-      "key": "revert_track_06",
-      "value": "No Stars"
-    },
-    {
-      "key": "revert_track_07",
-      "value": "Lethean"
-    },
-    {
-      "key": "revert_track_08",
-      "value": "One Last Time"
-    },
-    {
-      "key": "revert_track_09",
-      "value": "Run Away With Me"
-    },
-    {
-      "key": "travel_descent_end",
-      "value": "End Descent"
-    },
-    {
-      "key": "revert_track_09_check",
-      "value": "High Rise"
-    },
-    {
-      "key": "menu_load_check",
-      "value": "Last Checkpoint"
-    },
-    {
-      "key": "menu_load_time",
-      "value": "Total Playtime"
-    },
-    {
-      "key": "revert_track_00_check",
-      "value": "Abandoned Faith"
-    },
-    {
-      "key": "revert_track_01_check",
-      "value": "The Shore"
-    },
-    {
-      "key": "revert_track_02_check",
-      "value": "Sanctum - Atrium"
-    },
-    {
-      "key": "revert_track_03_check",
-      "value": "Metro - Brooksvale Station"
-    },
-    {
-      "key": "revert_track_07_check",
-      "value": "The Shore?"
-    },
-    {
-      "key": "menu_revert_confirm",
-      "value": "Progress in current Track will be lost.\\nContinue?"
-    },
-    {
-      "key": "menu_revert_instruct",
-      "value": "Select a track to revert progress"
-    },
-    {
-      "key": "menu_upgrade_cost",
-      "value": "Cost"
-    },
-    {
-      "key": "game_la",
-      "value": "La"
-    },
-    {
-      "key": "warning_stamina_low",
-      "value": "— Stamina LOW —"
-    },
-    {
-      "key": "warning_stamina_out",
-      "value": "! ! STAMINA OUT ! !"
-    },
-    {
-      "key": "warning_charge_low",
-      "value": "— Charge LOW —"
-    },
-    {
-      "key": "warning_charge_out",
-      "value": "! CHARGE OUT !"
-    },
-    {
-      "key": "warning_health_low",
-      "value": "! ! HEALTH LOW ! !"
-    },
-    {
-      "key": "warning_rewinds_low",
-      "value": "— REWINDs LOW —"
-    },
-    {
-      "key": "warning_rewinds_out",
-      "value": "! REWINDS OUT !"
-    },
-    {
-      "key": "menu_retry_restart",
-      "value": "Restart Scene"
-    },
-    {
-      "key": "menu_retry_load",
-      "value": "Load from Checkpoint"
-    },
-    {
-      "key": "ui_cant_skip",
-      "value": "Cannot skip scene!!"
-    },
-    {
-      "key": "dream_00_00",
-      "value": "A dream."
-    },
-    {
-      "key": "dream_00_07",
-      "value": "You feel like screaming./n/nYou feel like crying./n/nBut you can't."
-    },
-    {
-      "key": "dream_00_08",
-      "value": "So, you breathe./n/nIn...out..."
-    },
-    {
-      "key": "dream_00_09",
-      "value": "You muster the courage /nto open your eyes."
-    },
-    {
-      "key": "dream_00_10",
-      "value": "A vast expanse,/nit threatens to consume."
-    },
-    {
-      "key": "dream_00_11",
-      "value": "You can't help but feel /nyou've been here before./n/nYou can't help but feel/nthey only want to hurt you."
-    },
-    {
-      "key": "dream_00_12",
-      "value": "But you know you must move forward./n/nYou must fight."
-    },
-    {
-      "key": "dream_00_13",
-      "value": "It's all you know..."
-    },
-    {
-      "key": "menu_delete",
-      "value": "Delete"
-    },
-    {
-      "key": "colin_intro_00",
-      "value": ". . ."
-    },
-    {
-      "key": "colin_intro_01",
-      "value": ".    .    .    .    ."
-    },
-    {
-      "key": "colin_intro_02",
-      "value": ".      .      .      .      .      .      ."
-    },
-    {
-      "key": "colin_intro_03",
-      "value": "Oh, hi there...are you finally awake?"
-    },
-    {
-      "key": "colin_intro_04",
-      "value": "Okay then, let's see..."
-    },
-    {
-      "key": "colin_intro_05",
-      "value": "Before we begin, I need...uh..."
-    },
-    {
-      "key": "colin_intro_06",
-      "value": "Oh, that's right, I need to know what your name is."
-    },
-    {
-      "key": "colin_intro_07",
-      "value": "So, what's your name?"
-    },
-    {
-      "key": "colin_intro_08",
-      "value": "Thank you PLAYERNAME; my name is Colin. It's so nice to finally meet you."
-    },
-    {
-      "key": "colin_intro_09",
-      "value": "Now, I need you to promise me, that no matter what happens, you will have faith in both me and in yourself"
-    },
-    {
-      "key": "colin_intro_10",
-      "value": "and know that everything will be okay in the end."
-    },
-    {
-      "key": "colin_intro_11",
-      "value": "I know it won't be easy, but...you trust me, right?"
-    },
-    {
-      "key": "colin_intro_12",
-      "value": "Anyways, are you ready, PLAYERNAME? Let's get started."
-    },
-    {
-      "key": "colin_intro_13",
-      "value": "I want to go back to where it began..."
-    },
-    {
-      "key": "chapter_text_n1",
-      "value": "Track -1 ~ Cradle"
-    },
-    {
-      "key": "checkpoint_message_00",
-      "value": "Health restored. Progress saved."
-    },
-    {
-      "key": "checkpoint_message_01",
-      "value": "Health restored. Progress saved.\\nREWINDs restored."
-    },
-    {
-      "key": "menu_loading_ellipses",
-      "value": "\"Loading...\""
-    },
-    {
-      "key": "examine_label_ex",
-      "value": ": Examine"
-    },
-    {
-      "key": "examine_label_rest",
-      "value": ": Rest"
-    },
-    {
-      "key": "examine_label_jump",
-      "value": ": Jump"
-    },
-    {
-      "key": "warning_charge_insufficient",
-      "value": "\"— INSUFFICIENT Charge —"
-    },
-    {
-      "key": "memo_intro",
-      "value": "A voice echoes in your ear:"
-    },
-    {
-      "key": "tutorial_light_attack",
-      "value": "Light\\nAttack"
-    },
-    {
-      "key": "tutorial_light_attack_00",
-      "value": "Light attacks are weak, but fast and consume little stamina."
-    },
-    {
-      "key": "tutorial_light_attack_01",
-      "value": "Chain light attacks together to form combos that end in a powerful Finishing Attack."
-    },
-    {
-      "key": "tutorial_heavy_attack",
-      "value": "Heavy\\nAttack"
-    },
-    {
-      "key": "tutorial_heavy_attack_00",
-      "value": "Heavy attacks are strong and can break an enemy's guard, but consume more stamina."
-    },
-    {
-      "key": "tutorial_heavy_attack_01",
-      "value": "Chain a heavy attack to light attacks to perform more powerful Finishing Attacks."
-    },
-    {
-      "key": "door_mother_locked",
-      "value": "A statue of a shrouded woman. She seems to be reaching for something."
-    },
-    {
-      "key": "door_mother_unlocked",
-      "value": "Placed Mother's Sword."
-    },
-    {
-      "key": "door_broken",
-      "value": "It won't open."
-    },
-    {
-      "key": "dialogue_ellipses",
-      "value": "..."
-    },
-    {
-      "key": "maria_basement_00",
-      "value": "Natalie..."
-    },
-    {
-      "key": "maria_basement_01",
-      "value": "You're doing the right thing."
-    },
-    {
-      "key": "maria_basement_02",
-      "value": "I hope you can believe me..."
-    },
-    {
-      "key": "lvl_item_hp",
-      "value": "HP"
-    },
-    {
-      "key": "lvl_item_hp_name",
-      "value": "HP Up"
-    },
-    {
-      "key": "lvl_item_hp_desc",
-      "value": "Increase max Health."
-    },
-    {
-      "key": "lvl_item_st",
-      "value": "ST"
-    },
-    {
-      "key": "lvl_item_st_name",
-      "value": "ST Up"
-    },
-    {
-      "key": "lvl_item_st_desc",
-      "value": "Increase max Stamina."
-    },
-    {
-      "key": "lvl_item_ch",
-      "value": "CH"
-    },
-    {
-      "key": "lvl_item_ch_name",
-      "value": "CH Up"
-    },
-    {
-      "key": "lvl_item_ch_desc",
-      "value": "Increase max Charge."
-    },
-    {
-      "key": "lvl_item_ab",
-      "value": "AB"
-    },
-    {
-      "key": "lvl_item_ab_name",
-      "value": "AB Up"
-    },
-    {
-      "key": "lvl_item_ab_desc",
-      "value": "Increase Charge Absorbtion per successful attack."
-    },
-    {
-      "key": "lvl_item_rc",
-      "value": "RC"
-    },
-    {
-      "key": "lvl_item_rc_name",
-      "value": "RC Up"
-    },
-    {
-      "key": "lvl_item_rc_desc",
-      "value": "Increase Stamina Recover rate."
-    },
-    {
-      "key": "lvl_item_pw",
-      "value": "PW"
-    },
-    {
-      "key": "lvl_item_pw_name",
-      "value": "PW Up"
-    },
-    {
-      "key": "lvl_item_pw_desc",
-      "value": "Increase Attack Power."
-    },
-    {
-      "key": "chapter_text_01",
-      "value": "Track 1 ~ Lost in the World"
-    },
-    {
-      "key": "chapter_text_02",
-      "value": "Track 2 ~ Flesh Without Blood"
-    },
-    {
-      "key": "chapter_text_03",
-      "value": "Track 3 ~ Inside"
-    },
-    {
-      "key": "chapter_text_04",
-      "value": "Track 4 ~ When the Sun Hits"
-    },
-    {
-      "key": "chapter_text_05",
-      "value": "Track 5 ~ Stay Here"
-    },
-    {
-      "key": "chapter_text_06",
-      "value": "Track 6 ~ No Stars"
-    },
-    {
-      "key": "chapter_text_07",
-      "value": "Track 7 ~ Lethean"
-    },
-    {
-      "key": "chapter_text_08",
-      "value": "Track 8 ~ One Last Time"
-    },
-    {
-      "key": "chapter_text_09",
-      "value": "Track 9 ~ Run Away With Me"
-    },
-    {
-      "key": "lvl_virtue_perceptive_name",
-      "value": "PERCEPTIVE"
-    },
-    {
-      "key": "lvl_virtue_perceptive_desc",
-      "value": "Grants Virtue: PERCEPTIVE (turns on enemy health indicators) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "lvl_virtue_adaptive_name",
-      "value": "ADAPTIVE"
-    },
-    {
-      "key": "lvl_virtue_adaptive_desc",
-      "value": "Grants Virtue: ADAPTIVE (Paradigm Shift right at the end of an attack or a dodge to recover Stamina) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "lvl_virtue_driven_name",
-      "value": "DRIVEN"
-    },
-    {
-      "key": "lvl_virtue_driven_desc",
-      "value": "Grants Virtue: DRIVEN (charge fully replenishes on enemy BREAK) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "lvl_virtue_agile_name",
-      "value": "AGILE"
-    },
-    {
-      "key": "lvl_virtue_agile_desc",
-      "value": "Grants Virtue: AGILE (dodge an enemy attack with Perfect timing to replenish Stamina) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "lvl_virtue_loved_name",
-      "value": "LOVED"
-    },
-    {
-      "key": "lvl_virtue_loved_desc",
-      "value": "Grants Virtue: LOVED (enemy attacks deal less damage) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "lvl_virtue_empowered_name",
-      "value": "EMPOWERED"
-    },
-    {
-      "key": "lvl_virtue_empowered_desc",
-      "value": "Grants Virtue: EMPOWERED (greatly reduces Stamina use when at full health) [Virtues must be equipped in the EQUIP MENU]."
-    },
-    {
-      "key": "dream_01_00",
-      "value": "It wants you/n/nit needs you/n/n/nIt Hates You."
-    },
-    {
-      "key": "dream_01_01",
-      "value": "Down."
-    },
-    {
-      "key": "dream_01_02",
-      "value": "Rejoice, for we are reborn."
-    },
-    {
-      "key": "dream_01_03",
-      "value": "Rejoice; we will be cleansed."
-    },
-    {
-      "key": "dream_02_00",
-      "value": "eyes to the ground/n/nA Hand/n/n presses your forehead."
-    },
-    {
-      "key": "dream_02_01",
-      "value": "cool to the Touch/n/nOiLy/nand/nBrITtLe"
-    },
-    {
-      "key": "dream_02_02",
-      "value": "your hair parts and you feel"
-    },
-    {
-      "key": "dream_02_03",
-      "value": "./n/nnaked/n/n."
-    },
-    {
-      "key": "dream_02_04",
-      "value": "One, then a thousand at once."
-    },
-    {
-      "key": "dream_02_05",
-      "value": "let THE SPIRIT come in"
-    },
-    {
-      "key": "dream_02_06",
-      "value": "you are dirty"
-    },
-    {
-      "key": "dream_02_07",
-      "value": "let THE SPIRIT come"
-    },
-    {
-      "key": "dream_02_08",
-      "value": "but your heart begins to scream"
-    },
-    {
-      "key": "dream_02_09",
-      "value": "i dont want"
-    },
-    {
-      "key": "dream_02_10",
-      "value": "i don't want"
-    },
-    {
-      "key": "dream_02_11",
-      "value": "I Don't Want This-"
-    },
-    {
-      "key": "tape_dream_00",
-      "value": "The Dream."
-    },
-    {
-      "key": "tape_future_00",
-      "value": "The Future."
-    },
-    {
-      "key": "tape_past_00",
-      "value": "The Past."
-    },
-    {
-      "key": "dream_03_00",
-      "value": "A Vision."
-    },
-    {
-      "key": "dream_03_01",
-      "value": "an ever-present space collapses/nand the air fills with dust/ntiny grains scouring her skin"
-    },
-    {
-      "key": "dream_03_02",
-      "value": "a stare that pierces through time and only sees oblivion/n her heart is swallowed whole"
-    },
-    {
-      "key": "dream_03_03",
-      "value": "everything turns to nought, a reflection of the self"
-    },
-    {
-      "key": "dream_03_04",
-      "value": "on the edge of the world/n staring into the beast’s eye"
-    },
-    {
-      "key": "dream_03_05",
-      "value": "i let myself fall"
-    },
-    {
-      "key": "dream_03_06",
-      "value": ".  /n.  /n.  "
-    },
-    {
-      "key": "dream_03_07",
-      "value": "oh brother, brother/nwhy did they take you away"
-    },
-    {
-      "key": "dream_arcade_00",
-      "value": "i am not a machine."
-    },
-    {
-      "key": "dream_arcade_01",
-      "value": "i cannot run"
-    },
-    {
-      "key": "dream_arcade_02",
-      "value": "from the ghosts inside my head"
-    },
-    {
-      "key": "dream_arcade_03",
-      "value": " "
-    },
-    {
-      "key": "dream_04_00",
-      "value": "What are you doing?"
-    },
-    {
-      "key": "dream_04_01",
-      "value": "What are you doing here?"
-    },
-    {
-      "key": "dream_04_02",
-      "value": "Something is wrong..."
-    },
-    {
-      "key": "dream_05_00",
-      "value": "Lilli looks away, hiding her eyes/nBut you can still feel the guilt,/nthe disappointment"
-    },
-    {
-      "key": "dream_05_01",
-      "value": "pulling you apart"
-    },
-    {
-      "key": "dream_05_02",
-      "value": "Your skin starts to crawl,/nas Lilli shrinks down /nand you see the tears /nand your head wants to burst"
-    },
-    {
-      "key": "dream_05_03",
-      "value": "the heat/n/n.../n/n the pain"
-    },
-    {
-      "key": "dream_05_04",
-      "value": "YOU DESERVE THIS/n/n YOU DID THIS"
-    },
-    {
-      "key": "dream_05_05",
-      "value": "It looks at you/n and you feel DEATH"
-    },
-    {
-      "key": "dream_05_06",
-      "value": "ALL IS PAIN/n BURN IN HELLFIRE"
-    },
-    {
-      "key": "dream_05_07",
-      "value": "WITH SO MUCH HATRED/n UNSPEAKABLE FEELINGS AND MEMORIES/n COLLAPSED INTO NOTHING"
-    },
-    {
-      "key": "dream_05_08",
-      "value": "OBLIVION AS DARK AS THE SUN/n THAT NO LONGER SHINES"
-    },
-    {
-      "key": "dream_05_09",
-      "value": "your chest tightens/nas if breathing your last…"
-    },
-    {
-      "key": "dream_05_10",
-      "value": "your mind clears/nyou can’t control it anymore/nthen you give in"
-    },
-    {
-      "key": "dream_05_11",
-      "value": "the corruption calls to you…"
-    },
-    {
-      "key": "ending_b_00",
-      "value": "They’re gone…"
-    },
-    {
-      "key": "ending_b_01",
-      "value": "They’re finally gone…"
-    },
-    {
-      "key": "ending_b_02",
-      "value": "so why do I still feel this way?"
-    },
-    {
-      "key": "ending_b_03",
-      "value": "I thought the pain would go away/n but instead it’s…nothing"
-    },
-    {
-      "key": "ending_b_04",
-      "value": "it’s nothing"
-    },
-    {
-      "key": "ending_b_05",
-      "value": "I’m nothing"
-    },
-    {
-      "key": "ending_b_06",
-      "value": "THERE’S NOTHING!!!!"
-    },
-    {
-      "key": "ending_b_07",
-      "value": "PLAYERNAME…"
-    },
-    {
-      "key": "ending_b_08",
-      "value": "Why have you forsaken me?"
-    },
-    {
-      "key": "ending_c_00",
-      "value": "I hope I get to see you again."
-    },
-    {
-      "key": "ending_c_01",
-      "value": "Good bye, PLAYERNAME..."
-    },
-    {
-      "key": "ending_c_02",
-      "value": "I love you."
-    },
-    {
-      "key": "dream_06_00",
-      "value": "She awakens."
-    },
-    {
-      "key": "dream_06_01",
-      "value": "As the cultist speaks,/nyou begin to drift away"
-    },
-    {
-      "key": "dream_06_02",
-      "value": "Floating up,/naway from your body,/naway from yourself"
-    },
-    {
-      "key": "dream_06_03",
-      "value": "Rising like vapors,/npurple, blue and black,/nyour skin begins to fade "
-    },
-    {
-      "key": "dream_06_04",
-      "value": "As the hole inside your chest grows,/nand grows,/nAnd swallows all"
-    },
-    {
-      "key": "dream_07_00",
-      "value": "The priest lays a hand on your forehead."
-    },
-    {
-      "key": "dream_07_01",
-      "value": "Under his sway, you kneel/n/nand he prays..."
-    },
-    {
-      "key": "dream_07_02",
-      "value": "The murmurs start, soft,/n/nthen grow,/n/nand grow"
-    },
-    {
-      "key": "dream_07_03",
-      "value": "as if the whole Enclave is joining in BUT/nthere's No One"
-    },
-    {
-      "key": "dream_07_04",
-      "value": "But you/n/nand your Heart"
-    },
-    {
-      "key": "dream_07_05",
-      "value": "and the Darkness"
-    },
-    {
-      "key": "dream_07_06",
-      "value": "And then you can’t breathe"
-    },
-    {
-      "key": "dream_07_07",
-      "value": "You gasp and gasp and try to get the air in,/nbut nothing works"
-    },
-    {
-      "key": "dream_07_08",
-      "value": "It’s empty, stale, bloody"
-    },
-    {
-      "key": "dream_07_09",
-      "value": "And your head pounds and pounds/n You feel Him, squeezing and squeezing/n Your Heart"
-    },
-    {
-      "key": "dream_07_10",
-      "value": "Until you can’t anymore/n/n And it stops"
-    },
-    {
-      "key": "dream_07_11",
-      "value": "And as if they were never there, the voices settle/n Soft, distant…"
-    },
-    {
-      "key": "dream_07_12",
-      "value": "You don’t feel the pain, or anger, or sadness"
-    },
-    {
-      "key": "dream_07_13",
-      "value": "You don’t feel anything."
-    },
-    {
-      "key": "dream_qq_00",
-      "value": "A Memory."
-    },
-    {
-      "key": "dream_qq_01",
-      "value": "There’s this…bridge/nyou pass everyday..."
-    },
-    {
-      "key": "dream_qq_02",
-      "value": "And as you stand there,/nyou see the cars go by"
-    },
-    {
-      "key": "dream_qq_03",
-      "value": "Lights twinkling into the distance/n Swallowed by/nthe mountains and buildings and clouds/nahead"
-    },
-    {
-      "key": "disable_transform",
-      "value": "Tech: TRANSFORM has been disabled."
-    },
-    {
-      "key": "sin_desc_easy",
-      "value": "[SIN]: Dictates Nightmare Strength."
-    },
-    {
-      "key": "punish_desc_easy",
-      "value": "[PUNISHMENT]: Dictates Player Vulnerability."
-    },
-    {
-      "key": "difficulty_select_desc",
-      "value": "( Difficulty can be changed at any time from the OPTIONS menu )"
-    },
-    {
-      "key": "marked_message_00",
-      "value": "A trauma reveals itself/nat the center of the world."
-    },
-    {
-      "key": "marked_message_01",
-      "value": "You have been MARKED."
-    },
-    {
-      "key": "marked_message_02",
-      "value": "Others may see you differently,/nand the world will reject you."
-    },
-    {
-      "key": "marked_message_03",
-      "value": "But maybe, we can finally awaken."
-    },
-    {
-      "key": "marked_message_04",
-      "value": "Maybe..."
-    },
-    {
-      "key": "ng_message_00",
-      "value": "Like a whisper at the end of the world.../n/nit calls to you..."
-    },
-    {
-      "key": "ng_message_01",
-      "value": "This story is done,/nbut there are many still unheard."
-    },
-    {
-      "key": "ng_message_02",
-      "value": "Load your save file marked with the †/nto see the world anew."
-    },
-    {
-      "key": "ng_message_03",
-      "value": "And find a way out of this nightmare"
-    },
-    {
-      "key": "ng_message_04",
-      "value": "so we may never wake again..."
-    },
-    {
-      "key": "corruption_message_00",
-      "value": "REVERT is now available from/nCheckpoints."
-    },
-    {
-      "key": "corruption_message_01",
-      "value": "If the Corruption becomes/ntoo great, REVERT to/na previous Track to/ntry and fight it back."
-    },
-    {
-      "key": "transform_message_00",
-      "value": "Tech: TRANSFORM has been awakened."
-    },
-    {
-      "key": "transform_message_01",
-      "value": "Fear the darkness within/none's heart."
-    },
-    {
-      "key": "ending_a_reward",
-      "value": "Unlocked Mantra: SOL."
-    },
-    {
-      "key": "ending_b_reward",
-      "value": "Unlocked Mantra: AETHER."
-    },
-    {
-      "key": "ending_c_reward_00",
-      "value": "Unlocked Virtue: ASCENDED."
-    },
-    {
-      "key": "ending_c_reward_01",
-      "value": "Unlocked Difficulty: CHALLENGE."
-    },
-    {
-      "key": "darkness_revive_00",
-      "value": "Oh, this isn't good..."
-    },
-    {
-      "key": "darkness_revive_01",
-      "value": "Please, I don't want you to give in."
-    },
-    {
-      "key": "darkness_revive_02",
-      "value": "We can't let Maria have her way."
-    },
-    {
-      "key": "darkness_revive_03",
-      "value": "Maria? Oh, I think you've met her..."
-    },
-    {
-      "key": "darkness_revive_04",
-      "value": "Agh, never mind."
-    },
-    {
-      "key": "darkness_revive_05",
-      "value": "My powers are so weak now, but I think I can help you a bit."
-    },
-    {
-      "key": "darkness_revive_06",
-      "value": "Just this once..."
-    },
-    {
-      "key": "darkness_revive_07",
-      "value": "I can push back the creeping darkness, but it's up to you to do the rest."
-    },
-    {
-      "key": "darkness_revive_08",
-      "value": "I love you PLAYERNAME, so please..."
-    },
-    {
-      "key": "darkness_revive_09",
-      "value": "Don't give in..."
-    },
-    {
-      "key": "darkness_complete_00",
-      "value": "PLAYERNAME! No..."
-    },
-    {
-      "key": "darkness_complete_01",
-      "value": "I'm sorry I can't do more...that I couldn't do more..."
-    },
-    {
-      "key": "darkness_complete_02",
-      "value": "I feel so far away from you."
-    },
-    {
-      "key": "darkness_complete_03",
-      "value": "I..."
-    },
-    {
-      "key": "darkness_complete_04",
-      "value": "..."
-    },
-    {
-      "key": "darkness_complete_05",
-      "value": "Maybe this is for the best."
-    },
-    {
-      "key": "darkness_complete_06",
-      "value": "I mean, this dream...is there any other way?"
-    },
-    {
-      "key": "darkness_complete_07",
-      "value": "Just, I didn't want you to lose yourself."
-    },
-    {
-      "key": "darkness_complete_08",
-      "value": "I love you PLAYERNAME, but things are going to be so different over there."
-    },
-    {
-      "key": "darkness_complete_09",
-      "value": "I don't know what I'll say, or how you'll end up."
-    },
-    {
-      "key": "darkness_complete_10",
-      "value": "Please, be strong for me, even if I couldn't be strong for you."
-    },
-    {
-      "key": "darkness_complete_11",
-      "value": "..."
-    },
-    {
-      "key": "darkness_complete_12",
-      "value": ". . . . ."
-    },
-    {
-      "key": "darkness_complete_13",
-      "value": "Good bye, PLAYERNAME."
-    },
-    {
-      "key": "natalie_room_bed",
-      "value": "My bed. I haven't been able to sleep."
-    },
-    {
-      "key": "natalie_room_tv",
-      "value": "An old TV. Nothing is playing."
-    },
-    {
-      "key": "natalie_room_tvon",
-      "value": "A beautiful figure, tall and assured, dances across the screen. She's so strong, the demons can't even touch her."
-    },
-    {
-      "key": "natalie_room_game",
-      "value": "A game console. I don't really play this anymore..."
-    },
-    {
-      "key": "natalie_room_gameoff",
-      "value": "It's broken."
-    },
-    {
-      "key": "examine_label_exit",
-      "value": ": Exit"
-    },
-    {
-      "key": "examine_label_fall",
-      "value": ": Fall"
-    },
-    {
-      "key": "examine_label_advance",
-      "value": ": Advance"
-    },
-    {
-      "key": "post_colin_00",
-      "value": "A message from the developer:"
-    },
-    {
-      "key": "post_colin_01",
-      "value": "Dear PLAYERNAME,"
-    },
-    {
-      "key": "post_colin_02",
-      "value": "This is probably the last time you’ll hear from me for a while, and for that, I’m sorry."
-    },
-    {
-      "key": "post_colin_03",
-      "value": "Watching you grow and fight and overcome it all has brought me so much joy in the time we’ve been together,NEWLINENEWLINEmore than you may ever know."
-    },
-    {
-      "key": "post_colin_04",
-      "value": "Think of how far you’ve come since your first steps on the sand:NEWLINEthe waves lapping behind you, a whole unknown world ahead."
-    },
-    {
-      "key": "post_colin_05",
-      "value": "You moved forward, even when you were hunted at every turn, even when tragedy struck - when there was nothing you could doNEWLINEand even your heart was working against you."
-    },
-    {
-      "key": "post_colin_06",
-      "value": "Because you knew, there had to be something more;NEWLINEthere HAD to be a way out."
-    },
-    {
-      "key": "post_colin_07",
-      "value": "The thing is, I really don’t know if there can be. Your journey in this world may be no more, but as long as there’s more out there, our doubts and fears will never relent."
-    },
-    {
-      "key": "post_colin_08",
-      "value": "But, seeing you complete this journey, if ANYTHING, has shown me there is a place for hope in our world. "
-    },
-    {
-      "key": "post_colin_09",
-      "value": "The world here, your world, with its challenges and triumphs, will be here if you need it, when you need it. If that’s tomorrow, or next week, or 10 years from now, that’s okay, because it’ll still be here;NEWLINENEWLINEbecause what you accomplished - how much you grew - will never leave you. "
-    },
-    {
-      "key": "post_colin_10",
-      "value": "I promise."
-    },
-    {
-      "key": "post_colin_11",
-      "value": "I promise it’s okay to feel alone, to feel unwanted, to be hurt, because I’ve been there, and you’ve been there, and yet you’re still here,NEWLINENEWLINEand I love you for that."
-    },
-    {
-      "key": "post_colin_12",
-      "value": "While you’re here, there’s hope.NEWLINENEWLINEIf nothing else…"
-    },
-    {
-      "key": "post_colin_13",
-      "value": "..."
-    },
-    {
-      "key": "post_colin_14",
-      "value": "Thank you PLAYERNAME. Thank you for seeing this through. I hope someday I can find the strength to do the same."
-    },
-    {
-      "key": "post_colin_15",
-      "value": "Sincerely."
-    },
-    {
-      "key": "post_colin_16",
-      "value": "Until next time,NEWLINENEWLINE- colin. <3"
-    },
-    {
-      "key": "post_credits_00",
-      "value": "PLAYERNAME..."
-    },
-    {
-      "key": "post_credits_01",
-      "value": "I'm surprised you made it this far."
-    },
-    {
-      "key": "post_credits_02",
-      "value": "Remember how I promised, it'd all be okay in the end?"
-    },
-    {
-      "key": "post_credits_03",
-      "value": "I'm sorry, I was just trying to help..."
-    },
-    {
-      "key": "post_credits_04",
-      "value": "I really don't know if there is a happy ending to this."
-    },
-    {
-      "key": "post_credits_05",
-      "value": "It feels like we've been trapped here for so long, fighting and fighting, night after night."
-    },
-    {
-      "key": "post_credits_06",
-      "value": "And then it all sort of drifts away, like a bad dream."
-    },
-    {
-      "key": "post_credits_07",
-      "value": "Only to start again."
-    },
-    {
-      "key": "post_credits_08",
-      "value": "Maybe this time, something can be different?"
-    },
-    {
-      "key": "post_credits_09",
-      "value": "Do you really want to see what's happening here?"
-    },
-    {
-      "key": "post_credits_10",
-      "value": "I can't even take it, but maybe..."
-    },
-    {
-      "key": "post_credits_11",
-      "value": "Maybe you can be the one to finally break free."
-    },
-    {
-      "key": "post_credits_12",
-      "value": "Paradise...what a joke..."
-    },
-    {
-      "key": "post_credits_13",
-      "value": "Will we be okay, PLAYERNAME? I don't even know."
-    },
-    {
-      "key": "post_credits_14",
-      "value": "I pray...no, I hope...that you can be the one to show us the way."
-    },
-    {
-      "key": "post_credits_15",
-      "value": "PLAYERNAME..."
-    }
-  ]
+{"items":[
+  {
+    "key": "brave_darkness_00",
+    "value": "You cannot brave the Darkness."
+  },
+  {
+    "key": "brave_darkness_01",
+    "value": "Despite everything, you still can't brave the Darkness."
+  },
+  {
+    "key": "ui_skip_text",
+    "value": "HOLD Menu to skip"
+  },
+  {
+    "key": "ui_loading",
+    "value": "L O A D I N G"
+  },
+  {
+    "key": "title_lucah",
+    "value": "L U C A H"
+  },
+  {
+    "key": "title_subtitle",
+    "value": "b o r n  o f  a  d r e a m"
+  },
+  {
+    "key": "menu_save_overwrite",
+    "value": "This save file will be overwritten. Continue?"
+  },
+  {
+    "key": "menu_load",
+    "value": "Load Game"
+  },
+  {
+    "key": "menu_new",
+    "value": "New Game"
+  },
+  {
+    "key": "menu_no",
+    "value": "No"
+  },
+  {
+    "key": "menu_no_caps",
+    "value": "NO"
+  },
+  {
+    "key": "menu_quit",
+    "value": "Quit"
+  },
+  {
+    "key": "menu_start",
+    "value": "— Start Game —"
+  },
+  {
+    "key": "menu_yes_caps",
+    "value": "YES"
+  },
+  {
+    "key": "menu_credits",
+    "value": "A game by melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, and Ryan]"
+  },
+  {
+    "key": "menu_quit_caps",
+    "value": "— QUIT —"
+  },
+  {
+    "key": "menu_options",
+    "value": "— Options —"
+  },
+  {
+    "key": "menu_back",
+    "value": "— Back —"
+  },
+  {
+    "key": "menu_yes",
+    "value": "Yes"
+  },
+  {
+    "key": "menu_any_button",
+    "value": "Press Any Button"
+  },
+  {
+    "key": "menu_any_key",
+    "value": "Press Any Key"
+  },
+  {
+    "key": "menu_select",
+    "value": "Select"
+  },
+  {
+    "key": "menu_cancel",
+    "value": "Cancel"
+  },
+  {
+    "key": "menu_move",
+    "value": "Move"
+  },
+  {
+    "key": "ui_rewind_display",
+    "value": "RW"
+  },
+  {
+    "key": "ui_heal_display",
+    "value": "HP"
+  },
+  {
+    "key": "ui_bonus_damage",
+    "value": "No Damage +{S}"
+  },
+  {
+    "key": "ui_bonus_time",
+    "value": "Time Bonus +{S}"
+  },
+  {
+    "key": "ui_condition_title",
+    "value": "CONDITION:"
+  },
+  {
+    "key": "ui_condition_fail",
+    "value": "CONDITION [FAILED]"
+  },
+  {
+    "key": "ui_condition_pass",
+    "value": "CONDITION SUCCESS"
+  },
+  {
+    "key": "ui_condition_time",
+    "value": "Complete combat within {TIME} seconds."
+  },
+  {
+    "key": "ui_condition_damage",
+    "value": "Complete combat without taking damage."
+  },
+  {
+    "key": "ui_condition_combo",
+    "value": "Complete combat without breaking your combo."
+  },
+  {
+    "key": "ui_verse",
+    "value": "Verse"
+  },
+  {
+    "key": "ui_map_label",
+    "value": "MAP"
+  },
+  {
+    "key": "ui_menu_label",
+    "value": "MENU"
+  },
+  {
+    "key": "ui_menu_paradigm_i",
+    "value": "Paradigm I"
+  },
+  {
+    "key": "ui_menu_paradigm_ii",
+    "value": "Paradigm II"
+  },
+  {
+    "key": "ui_menu_virtues",
+    "value": "Virtues"
+  },
+  {
+    "key": "ui_menu_tech",
+    "value": "Tech"
+  },
+  {
+    "key": "ui_menu_paradigm_i_desc",
+    "value": "Customize Paradigm I"
+  },
+  {
+    "key": "ui_menu_paradigm_ii_desc",
+    "value": "Customize Paradigm II"
+  },
+  {
+    "key": "ui_menu_virtue_desc",
+    "value": "Equip Virtues"
+  },
+  {
+    "key": "ui_menu_tech_desc",
+    "value": "Enable/Disable Tech"
+  },
+  {
+    "key": "ui_menu_tech_display",
+    "value": "Display"
+  },
+  {
+    "key": "ui_menu_tech_abilities",
+    "value": "Abilities"
+  },
+  {
+    "key": "ui_menu_tech_mods",
+    "value": "Mods"
+  },
+  {
+    "key": "tech_player_ui_name",
+    "value": "Player UI"
+  },
+  {
+    "key": "tech_player_ui_desc",
+    "value": "Player UI: Display player Health, Stamina, Charge, and La (experience)."
+  },
+  {
+    "key": "tech_enemy_ui_name",
+    "value": "Enemy UI"
+  },
+  {
+    "key": "tech_enemy_ui_desc",
+    "value": "Enemy UI: Display damage numbers and boss health values."
+  },
+  {
+    "key": "tech_item_ui_name",
+    "value": "Item UI"
+  },
+  {
+    "key": "tech_item_ui_desc",
+    "value": "Item UI: Display number of Rewinds/Health Essences, as well as unused key items."
+  },
+  {
+    "key": "tech_verse_ui_name",
+    "value": "Verse UI"
+  },
+  {
+    "key": "tech_verse_ui_desc",
+    "value": "Verse UI: Display Verse number and title."
+  },
+  {
+    "key": "tech_hold_action_name",
+    "value": "Hold Action"
+  },
+  {
+    "key": "tech_hold_action_desc",
+    "value": "Hold Action: Hold the light or heavy attack button to execute a powerful magic action at the cost of some Charge."
+  },
+  {
+    "key": "tech_parry_name",
+    "value": "Parry"
+  },
+  {
+    "key": "tech_parry_desc",
+    "value": "Parry: dodge toward an attacking enemy with perfect timing to counter the enemy attack."
+  },
+  {
+    "key": "tech_transform_name",
+    "value": "Transform"
+  },
+  {
+    "key": "tech_transform_desc",
+    "value": "Transform: Hold and release the Transform button to enter a super-powered state. Dramatically increases Corruption during use."
+  },
+  {
+    "key": "tech_taunt_name",
+    "value": "Taunt"
+  },
+  {
+    "key": "tech_taunt_desc",
+    "value": "Taunt: press the Taunt button to enrage all nearby enemies, making them stronger but more vulnerable to attacks."
+  },
+  {
+    "key": "mod_health_name",
+    "value": "Extra Health"
+  },
+  {
+    "key": "mod_health_desc",
+    "value": "Extra Health: Massively increase player health."
+  },
+  {
+    "key": "mod_infinite_health_name",
+    "value": "Infinite Stamina"
+  },
+  {
+    "key": "mod_infinite_health_desc",
+    "value": "Infinite Stamina: Actions that normally reduce Stamina no longer reduce Stamina."
+  },
+  {
+    "key": "mod_infinite_charge_name",
+    "value": "Infinite Charge: "
+  },
+  {
+    "key": "mod_infinite_charge_desc",
+    "value": "Infinite Charge: Actions that normally drain Charge no longer drain Charge."
+  },
+  {
+    "key": "mod_infinite_items_name",
+    "value": "Unlimited Items"
+  },
+  {
+    "key": "mod_infinite_items_desc",
+    "value": "Unlimited Items: Using Rewinds or Health Essences does not reduce the number of uses available for each."
+  },
+  {
+    "key": "mod_weaker_enemies_name",
+    "value": "Weakened Enemies"
+  },
+  {
+    "key": "mod_weaker_enemies_desc",
+    "value": "Weakened Enemies: Massively reduces enemy health and attack power."
+  },
+  {
+    "key": "ui_map_missing",
+    "value": "No Map Data"
+  },
+  {
+    "key": "mantra_00_name",
+    "value": "LUNA: Mid-damage, mid-range. Increased charge absorption."
+  },
+  {
+    "key": "mantra_00_desc",
+    "value": "Hold Action: CHARGE EXPLOSION"
+  },
+  {
+    "key": "mantra_01_name",
+    "value": "SOL: Mid-range, fast. Ignores defense but cannot BREAK. "
+  },
+  {
+    "key": "mantra_01_desc",
+    "value": "Hold Action: CHARGE EXPLOSION"
+  },
+  {
+    "key": "mantra_02_name",
+    "value": "AERO: Low-damage, high-range. Increases attack range."
+  },
+  {
+    "key": "mantra_02_desc",
+    "value": "Hold Action: LINEAR BURST"
+  },
+  {
+    "key": "mantra_03_name",
+    "value": "PYRA: Mid-damage, high-range. Lowers stamina use."
+  },
+  {
+    "key": "mantra_03_desc",
+    "value": "Hold Action: FIERY PUNISHMENT"
+  },
+  {
+    "key": "mantra_04_name",
+    "value": "ANIMA: High-damage, low-range. Increases attack speed."
+  },
+  {
+    "key": "mantra_04_desc",
+    "value": "Hold Action: HEEL STOMP"
+  },
+  {
+    "key": "mantra_05_name",
+    "value": "AQUA: Short-range, multi-attack. Increases BREAK time."
+  },
+  {
+    "key": "mantra_05_desc",
+    "value": "Hold Action: RAINING STRIKE"
+  },
+  {
+    "key": "mantra_06_name",
+    "value": "GAEA: Mid-damage, mixed-range. Higher BREAK chance."
+  },
+  {
+    "key": "mantra_06_desc",
+    "value": "Hold Action: CHARGE PULSE"
+  },
+  {
+    "key": "mantra_07_name",
+    "value": "EREBOS: Low-damage, mid-range. Increases BREAK damage."
+  },
+  {
+    "key": "mantra_07_desc",
+    "value": "Hold Action: BACKSTAB"
+  },
+  {
+    "key": "mantra_08_name",
+    "value": "BIOS: Low-damage, multi-attack. Increases finisher power."
+  },
+  {
+    "key": "mantra_08_desc",
+    "value": "Hold Action: LIFE SURGE"
+  },
+  {
+    "key": "mantra_09_name",
+    "value": "FOS: Technical. Hold Actions do not drain stamina."
+  },
+  {
+    "key": "mantra_09_desc",
+    "value": "Hold Action: SUMMON CHARGE"
+  },
+  {
+    "key": "mantra_10_name",
+    "value": "THANATOS: High-damage, mid-range. Increases strength."
+  },
+  {
+    "key": "mantra_10_desc",
+    "value": "Hold Action: TRIPLE BURST"
+  },
+  {
+    "key": "mantra_11_name",
+    "value": "AETHER: the final Mantra. Adds a shockwave to all attacks."
+  },
+  {
+    "key": "mantra_11_desc",
+    "value": "Hold Action: REALITY TEAR"
+  },
+  {
+    "key": "mantra_12_name",
+    "value": "KTISIS: the entirety of creation flows through you."
+  },
+  {
+    "key": "mantra_12_desc",
+    "value": "Hold Actions do not drain charge."
+  },
+  {
+    "key": "familiar_00",
+    "value": "Burst: Fires long-range projectile on command."
+  },
+  {
+    "key": "familiar_01",
+    "value": "Impulse: Shoots mid-range spread on command."
+  },
+  {
+    "key": "familiar_02",
+    "value": "Shock: Shoots powerful mid-range burst on command."
+  },
+  {
+    "key": "familiar_03",
+    "value": "Pierce: Fires piercing projectile with a high BREAK chance on command."
+  },
+  {
+    "key": "familiar_04",
+    "value": "Rapid: Fires a stream of small projectiles on command."
+  },
+  {
+    "key": "familiar_05",
+    "value": "Aura: Fires a damaging aura on command."
+  },
+  {
+    "key": "familiar_06",
+    "value": "Heal: Heals player at cost of full charge."
+  },
+  {
+    "key": "familiar_07",
+    "value": "Laser: Shoots a powerful laser that bypasses enemy defense on command."
+  },
+  {
+    "key": "virtue_00",
+    "value": "Unstoppable (Cost: 2) [Once per combat, lethal damage does not kill player. Resets at full health or on REWIND]"
+  },
+  {
+    "key": "virtue_01",
+    "value": "Determined (Cost: 5) [Charge Attacks and combo finishers have a higher chance of auto-killing weakened enemies.]"
+  },
+  {
+    "key": "virtue_02",
+    "value": "Empowered [Cost: 4] (greatly reduces attack stamina use at max health)"
+  },
+  {
+    "key": "virtue_03",
+    "value": "Paranoid [Cost: 4] (attack damage increases slightly for each successive attack in a combo)"
+  },
+  {
+    "key": "virtue_04",
+    "value": "Adaptive [Cost: 4] (Paradigm Shift right at the end of an attack or a dodge to recover Stamina)"
+  },
+  {
+    "key": "virtue_05",
+    "value": "Perceptive (Cost: 3) [Turns on enemy health indicators]"
+  },
+  {
+    "key": "virtue_06",
+    "value": "Driven [Cost: 4] (charge fully replenishes on an enemy guard break)"
+  },
+  {
+    "key": "virtue_07",
+    "value": "Repellant [Cost: 2] (Well-timed Mantra attacks reflect enemy projectiles)"
+  },
+  {
+    "key": "virtue_08",
+    "value": "Trusting [Cost: 5] (Familiar attacks are more powerful.)"
+  },
+  {
+    "key": "virtue_09",
+    "value": "Agile [Cost: 5] (dodge an enemy attack with perfect timing to replenish Stamina)"
+  },
+  {
+    "key": "virtue_10",
+    "value": "Anxious [Cost: 3] (Constant small charge regeneration during combat.)"
+  },
+  {
+    "key": "virtue_11",
+    "value": "Condemned [Cost: 2] (Survive for a short time after health reaches 0)"
+  },
+  {
+    "key": "virtue_12",
+    "value": "Parasitic [Cost: 6] (For a brief time after taking damage, deal damage to recover lost health)"
+  },
+  {
+    "key": "virtue_13",
+    "value": "Hated [Cost: 6] (Increases damage player gives and receives)"
+  },
+  {
+    "key": "virtue_14",
+    "value": "Loved [Cost: 4] (enemy attacks deal less damage)"
+  },
+  {
+    "key": "virtue_15",
+    "value": "Marked [Cost: 0] (Face the corruption with courage and grace; Cannot be unequipped)"
+  },
+  {
+    "key": "virtue_16",
+    "value": "Cautious [Cost: 5] (Slower enemy attacks and projectiles)"
+  },
+  {
+    "key": "virtue_17",
+    "value": "Untethered [Cost: 6] (perfect dodges slow time briefly)"
+  },
+  {
+    "key": "virtue_18",
+    "value": "Disconnected [Cost: 4] (double-tap the dodge button to teleport to target enemy at the cost of some Charge)"
+  },
+  {
+    "key": "virtue_19",
+    "value": "Incensed [Cost: 2] (reduces Dodge and Sprint stamina costs and increases power of Dash and Counter Attacks)"
+  },
+  {
+    "key": "virtue_20",
+    "value": "Enraged [Cost: 3] (Perfect Dodges and Parries increase player strength for a short time)"
+  },
+  {
+    "key": "virtue_21",
+    "value": "Scorned [Cost: 2] (reduces all stats, but increases max VP by 20)"
+  },
+  {
+    "key": "virtue_22",
+    "value": "Ascended [Cost: 2] (drastically reduces Corruption rate)"
+  },
+  {
+    "key": "ui_tech_locked",
+    "value": "— LOCKED —"
+  },
+  {
+    "key": "ui_game_checkpoint",
+    "value": "Return to the last checkpoint visited?"
+  },
+  {
+    "key": "ui_game_return",
+    "value": "Exit game and return to the main menu?"
+  },
+  {
+    "key": "ui_game_option_00",
+    "value": "Return to Game"
+  },
+  {
+    "key": "ui_game_option_01",
+    "value": "Return to Last Checkpoint"
+  },
+  {
+    "key": "ui_game_option_02",
+    "value": "Options"
+  },
+  {
+    "key": "ui_game_option_03",
+    "value": "Exit to menu"
+  },
+  {
+    "key": "options_header_game",
+    "value": "// GAME"
+  },
+  {
+    "key": "options_header_control",
+    "value": "Customize Controls >>"
+  },
+  {
+    "key": "options_header_speed",
+    "value": "game speed"
+  },
+  {
+    "key": "options_header_difficulty",
+    "value": "// DIFFICULTY"
+  },
+  {
+    "key": "options_difficulty_sin",
+    "value": "Sin"
+  },
+  {
+    "key": "options_difficulty_punishment",
+    "value": "Punishment"
+  },
+  {
+    "key": "options_difficulty_easy",
+    "value": "Easy"
+  },
+  {
+    "key": "options_difficulty_normal",
+    "value": "Normal"
+  },
+  {
+    "key": "options_difficulty_hard",
+    "value": "Hard"
+  },
+  {
+    "key": "options_difficulty_challenge",
+    "value": "Challenge"
+  },
+  {
+    "key": "options_header_audio",
+    "value": "// AUDIO"
+  },
+  {
+    "key": "options_header_music",
+    "value": "music volume"
+  },
+  {
+    "key": "options_header_sound",
+    "value": "sfx volume"
+  },
+  {
+    "key": "options_header_visual",
+    "value": "// VISUAL"
+  },
+  {
+    "key": "options_header_fullscreen",
+    "value": "fullscreen"
+  },
+  {
+    "key": "options_menu_on",
+    "value": "ON"
+  },
+  {
+    "key": "options_menu_off",
+    "value": "OFF"
+  },
+  {
+    "key": "options_header_resolution",
+    "value": "resolution"
+  },
+  {
+    "key": "options_header_screenshake",
+    "value": "Screenshake"
+  },
+  {
+    "key": "options_header_post",
+    "value": "Post Processing"
+  },
+  {
+    "key": "options_header_exit",
+    "value": "Exit"
+  },
+  {
+    "key": "options_menu_low",
+    "value": "LOW"
+  },
+  {
+    "key": "options_menu_turbo",
+    "value": "TURBO"
+  },
+  {
+    "key": "ui_menu_paused",
+    "value": "— P A U S E D —"
+  },
+  {
+    "key": "options_control_instruction",
+    "value": "Select the action for which you want to customize control."
+  },
+  {
+    "key": "options_control_type",
+    "value": "control type"
+  },
+  {
+    "key": "options_control_gamepad",
+    "value": "Gamepad"
+  },
+  {
+    "key": "options_control_keyboard",
+    "value": "Keyboard (No Mouse)"
+  },
+  {
+    "key": "options_control_mouse",
+    "value": "Keyboard & Mouse"
+  },
+  {
+    "key": "options_control_ps4",
+    "value": "Gamepad (PS4)"
+  },
+  {
+    "key": "options_control_l_attack",
+    "value": "Light Attack"
+  },
+  {
+    "key": "options_control_h_attack",
+    "value": "Heavy Attack/Exit Menu"
+  },
+  {
+    "key": "options_control_f_attack",
+    "value": "Familiar Attack"
+  },
+  {
+    "key": "options_control_replace",
+    "value": "Press the button you wish to use for the selected action."
+  },
+  {
+    "key": "options_control_talk",
+    "value": "Talk/Examine"
+  },
+  {
+    "key": "options_control_dodge",
+    "value": "Dodge"
+  },
+  {
+    "key": "options_control_shift",
+    "value": "Paradigm Shift"
+  },
+  {
+    "key": "options_control_item",
+    "value": "Use Item"
+  },
+  {
+    "key": "options_control_switch",
+    "value": "Switch Item"
+  },
+  {
+    "key": "options_control_taunt",
+    "value": "Taunt"
+  },
+  {
+    "key": "options_control_transform",
+    "value": "Transform"
+  },
+  {
+    "key": "options_control_equip",
+    "value": "Equip Menu"
+  },
+  {
+    "key": "options_control_game",
+    "value": "Game Menu"
+  },
+  {
+    "key": "options_control_default",
+    "value": "Restore Defaults"
+  },
+  {
+    "key": "menu_level_up",
+    "value": "Level up"
+  },
+  {
+    "key": "menu_level_travel",
+    "value": "Travel"
+  },
+  {
+    "key": "menu_level_revert",
+    "value": "† Revert †"
+  },
+  {
+    "key": "travel_checkpoint_00",
+    "value": "Forest - Camp"
+  },
+  {
+    "key": "travel_checkpoint_01",
+    "value": "Forest - Reprieve"
+  },
+  {
+    "key": "travel_checkpoint_02",
+    "value": "Forest - Cliff"
+  },
+  {
+    "key": "travel_checkpoint_03",
+    "value": "Sanctum - Confessional"
+  },
+  {
+    "key": "travel_checkpoint_04",
+    "value": "Metro - Brooksvale Station"
+  },
+  {
+    "key": "travel_checkpoint_04a",
+    "value": "Metro - Maintenance"
+  },
+  {
+    "key": "travel_checkpoint_05",
+    "value": "Metro - Southvale"
+  },
+  {
+    "key": "travel_checkpoint_06",
+    "value": "Metro - End Station"
+  },
+  {
+    "key": "travel_checkpoint_07",
+    "value": "Suburbs - 110 Crescent St"
+  },
+  {
+    "key": "travel_checkpoint_08",
+    "value": "Arena - Fighters' Quarters"
+  },
+  {
+    "key": "travel_checkpoint_09",
+    "value": "Highways - The Harbor"
+  },
+  {
+    "key": "travel_checkpoint_10",
+    "value": "Highways - Control"
+  },
+  {
+    "key": "travel_checkpoint_11",
+    "value": "Linear Trail"
+  },
+  {
+    "key": "travel_checkpoint_12",
+    "value": "Lethean - Gate II"
+  },
+  {
+    "key": "travel_checkpoint_13",
+    "value": "Radio Tower - Exterior"
+  },
+  {
+    "key": "travel_checkpoint_14",
+    "value": "Radio Tower - Final Rest"
+  },
+  {
+    "key": "travel_checkpoint_15",
+    "value": "The Descent"
+  },
+  {
+    "key": "travel_checkpoint_16",
+    "value": "Familiar Garden"
+  },
+  {
+    "key": "travel_descent_exit",
+    "value": "Exit the Descent?\\nProgress will be lost."
+  },
+  {
+    "key": "revert_track",
+    "value": "Track"
+  },
+  {
+    "key": "revert_corruption",
+    "value": "Corruption"
+  },
+  {
+    "key": "revert_track_n1",
+    "value": "Cradle"
+  },
+  {
+    "key": "revert_track_00",
+    "value": "Sacrament  I."
+  },
+  {
+    "key": "revert_track_01",
+    "value": "Lost In The World"
+  },
+  {
+    "key": "revert_track_02",
+    "value": "Flesh Without Blood"
+  },
+  {
+    "key": "revert_track_03",
+    "value": "Inside"
+  },
+  {
+    "key": "revert_track_04",
+    "value": "When The Sun Hits"
+  },
+  {
+    "key": "revert_track_05",
+    "value": "Stay Here"
+  },
+  {
+    "key": "revert_track_06",
+    "value": "No Stars"
+  },
+  {
+    "key": "revert_track_07",
+    "value": "Lethean"
+  },
+  {
+    "key": "revert_track_08",
+    "value": "One Last Time"
+  },
+  {
+    "key": "revert_track_09",
+    "value": "Run Away With Me"
+  },
+  {
+    "key": "travel_descent_end",
+    "value": "End Descent"
+  },
+  {
+    "key": "revert_track_09_check",
+    "value": "High Rise"
+  },
+  {
+    "key": "menu_load_check",
+    "value": "Last Checkpoint"
+  },
+  {
+    "key": "menu_load_time",
+    "value": "Total Playtime"
+  },
+  {
+    "key": "revert_track_00_check",
+    "value": "Abandoned Faith"
+  },
+  {
+    "key": "revert_track_01_check",
+    "value": "The Shore"
+  },
+  {
+    "key": "revert_track_02_check",
+    "value": "Sanctum - Atrium"
+  },
+  {
+    "key": "revert_track_03_check",
+    "value": "Metro - Brooksvale Station"
+  },
+  {
+    "key": "revert_track_07_check",
+    "value": "The Shore?"
+  },
+  {
+    "key": "menu_revert_confirm",
+    "value": "Progress in current Track will be lost.\\nContinue?"
+  },
+  {
+    "key": "menu_revert_instruct",
+    "value": "Select a track to revert progress"
+  },
+  {
+    "key": "menu_upgrade_cost",
+    "value": "Cost"
+  },
+  {
+    "key": "game_la",
+    "value": "La"
+  },
+  {
+    "key": "warning_stamina_low",
+    "value": "— Stamina LOW —"
+  },
+  {
+    "key": "warning_stamina_out",
+    "value": "! ! STAMINA OUT ! !"
+  },
+  {
+    "key": "warning_charge_low",
+    "value": "— Charge LOW —"
+  },
+  {
+    "key": "warning_charge_out",
+    "value": "! CHARGE OUT !"
+  },
+  {
+    "key": "warning_health_low",
+    "value": "! ! HEALTH LOW ! !"
+  },
+  {
+    "key": "warning_rewinds_low",
+    "value": "— REWINDs LOW —"
+  },
+  {
+    "key": "warning_rewinds_out",
+    "value": "! REWINDS OUT !"
+  },
+  {
+    "key": "menu_retry_restart",
+    "value": "Restart Scene"
+  },
+  {
+    "key": "menu_retry_load",
+    "value": "Load from Checkpoint"
+  },
+  {
+    "key": "ui_cant_skip",
+    "value": "Cannot skip scene!!"
+  },
+  {
+    "key": "dream_00_00",
+    "value": "A dream."
+  },
+  {
+    "key": "dream_00_07",
+    "value": "You feel like screaming./n/nYou feel like crying./n/nBut you can't."
+  },
+  {
+    "key": "dream_00_08",
+    "value": "So, you breathe./n/nIn...out..."
+  },
+  {
+    "key": "dream_00_09",
+    "value": "You muster the courage /nto open your eyes."
+  },
+  {
+    "key": "dream_00_10",
+    "value": "A vast expanse,/nit threatens to consume."
+  },
+  {
+    "key": "dream_00_11",
+    "value": "You can't help but feel /nyou've been here before./n/nYou can't help but feel/nthey only want to hurt you."
+  },
+  {
+    "key": "dream_00_12",
+    "value": "But you know you must move forward./n/nYou must fight."
+  },
+  {
+    "key": "dream_00_13",
+    "value": "It's all you know..."
+  },
+  {
+    "key": "menu_delete",
+    "value": "Delete"
+  },
+  {
+    "key": "colin_intro_00",
+    "value": ". . ."
+  },
+  {
+    "key": "colin_intro_01",
+    "value": ".    .    .    .    ."
+  },
+  {
+    "key": "colin_intro_02",
+    "value": ".      .      .      .      .      .      ."
+  },
+  {
+    "key": "colin_intro_03",
+    "value": "Oh, hi there...are you finally awake?"
+  },
+  {
+    "key": "colin_intro_04",
+    "value": "Okay then, let's see..."
+  },
+  {
+    "key": "colin_intro_05",
+    "value": "Before we begin, I need...uh..."
+  },
+  {
+    "key": "colin_intro_06",
+    "value": "Oh, that's right, I need to know what your name is."
+  },
+  {
+    "key": "colin_intro_07",
+    "value": "So, what's your name?"
+  },
+  {
+    "key": "colin_intro_08",
+    "value": "Thank you PLAYERNAME; my name is Colin. It's so nice to finally meet you."
+  },
+  {
+    "key": "colin_intro_09",
+    "value": "Now, I need you to promise me, that no matter what happens, you will have faith in both me and in yourself"
+  },
+  {
+    "key": "colin_intro_10",
+    "value": "and know that everything will be okay in the end."
+  },
+  {
+    "key": "colin_intro_11",
+    "value": "I know it won't be easy, but...you trust me, right?"
+  },
+  {
+    "key": "colin_intro_12",
+    "value": "Anyways, are you ready, PLAYERNAME? Let's get started."
+  },
+  {
+    "key": "colin_intro_13",
+    "value": "I want to go back to where it began..."
+  },
+  {
+    "key": "chapter_text_n1",
+    "value": "Track -1 ~ Cradle"
+  },
+  {
+    "key": "checkpoint_message_00",
+    "value": "Health restored. Progress saved."
+  },
+  {
+    "key": "checkpoint_message_01",
+    "value": "Health restored. Progress saved.\\nREWINDs restored."
+  },
+  {
+    "key": "menu_loading_ellipses",
+    "value": "\"Loading...\""
+  },
+  {
+    "key": "examine_label_ex",
+    "value": ": Examine"
+  },
+  {
+    "key": "examine_label_rest",
+    "value": ": Rest"
+  },
+  {
+    "key": "examine_label_jump",
+    "value": ": Jump"
+  },
+  {
+    "key": "warning_charge_insufficient",
+    "value": "\"— INSUFFICIENT Charge —"
+  },
+  {
+    "key": "memo_intro",
+    "value": "A voice echoes in your ear:"
+  },
+  {
+    "key": "tutorial_light_attack",
+    "value": "Light\\nAttack"
+  },
+  {
+    "key": "tutorial_light_attack_00",
+    "value": "Light attacks are weak, but fast and consume little stamina."
+  },
+  {
+    "key": "tutorial_light_attack_01",
+    "value": "Chain light attacks together to form combos that end in a powerful Finishing Attack."
+  },
+  {
+    "key": "tutorial_heavy_attack",
+    "value": "Heavy\\nAttack"
+  },
+  {
+    "key": "tutorial_heavy_attack_00",
+    "value": "Heavy attacks are strong and can break an enemy's guard, but consume more stamina."
+  },
+  {
+    "key": "tutorial_heavy_attack_01",
+    "value": "Chain a heavy attack to light attacks to perform more powerful Finishing Attacks."
+  },
+  {
+    "key": "door_mother_locked",
+    "value": "A statue of a shrouded woman. She seems to be reaching for something."
+  },
+  {
+    "key": "door_mother_unlocked",
+    "value": "Placed Mother's Sword."
+  },
+  {
+    "key": "door_broken",
+    "value": "It won't open."
+  },
+  {
+    "key": "dialogue_ellipses",
+    "value": "..."
+  },
+  {
+    "key": "maria_basement_00",
+    "value": "Natalie..."
+  },
+  {
+    "key": "maria_basement_01",
+    "value": "You're doing the right thing."
+  },
+  {
+    "key": "maria_basement_02",
+    "value": "I hope you can believe me..."
+  },
+  {
+    "key": "lvl_item_hp",
+    "value": "HP"
+  },
+  {
+    "key": "lvl_item_hp_name",
+    "value": "HP Up"
+  },
+  {
+    "key": "lvl_item_hp_desc",
+    "value": "Increase max Health."
+  },
+  {
+    "key": "lvl_item_st",
+    "value": "ST"
+  },
+  {
+    "key": "lvl_item_st_name",
+    "value": "ST Up"
+  },
+  {
+    "key": "lvl_item_st_desc",
+    "value": "Increase max Stamina."
+  },
+  {
+    "key": "lvl_item_ch",
+    "value": "CH"
+  },
+  {
+    "key": "lvl_item_ch_name",
+    "value": "CH Up"
+  },
+  {
+    "key": "lvl_item_ch_desc",
+    "value": "Increase max Charge."
+  },
+  {
+    "key": "lvl_item_ab",
+    "value": "AB"
+  },
+  {
+    "key": "lvl_item_ab_name",
+    "value": "AB Up"
+  },
+  {
+    "key": "lvl_item_ab_desc",
+    "value": "Increase Charge Absorbtion per successful attack."
+  },
+  {
+    "key": "lvl_item_rc",
+    "value": "RC"
+  },
+  {
+    "key": "lvl_item_rc_name",
+    "value": "RC Up"
+  },
+  {
+    "key": "lvl_item_rc_desc",
+    "value": "Increase Stamina Recover rate."
+  },
+  {
+    "key": "lvl_item_pw",
+    "value": "PW"
+  },
+  {
+    "key": "lvl_item_pw_name",
+    "value": "PW Up"
+  },
+  {
+    "key": "lvl_item_pw_desc",
+    "value": "Increase Attack Power."
+  },
+  {
+    "key": "chapter_text_01",
+    "value": "Track 1 ~ Lost in the World"
+  },
+  {
+    "key": "chapter_text_02",
+    "value": "Track 2 ~ Flesh Without Blood"
+  },
+  {
+    "key": "chapter_text_03",
+    "value": "Track 3 ~ Inside"
+  },
+  {
+    "key": "chapter_text_04",
+    "value": "Track 4 ~ When the Sun Hits"
+  },
+  {
+    "key": "chapter_text_05",
+    "value": "Track 5 ~ Stay Here"
+  },
+  {
+    "key": "chapter_text_06",
+    "value": "Track 6 ~ No Stars"
+  },
+  {
+    "key": "chapter_text_07",
+    "value": "Track 7 ~ Lethean"
+  },
+  {
+    "key": "chapter_text_08",
+    "value": "Track 8 ~ One Last Time"
+  },
+  {
+    "key": "chapter_text_09",
+    "value": "Track 9 ~ Run Away With Me"
+  },
+  {
+    "key": "lvl_virtue_perceptive_name",
+    "value": "PERCEPTIVE"
+  },
+  {
+    "key": "lvl_virtue_perceptive_desc",
+    "value": "Grants Virtue: PERCEPTIVE (turns on enemy health indicators) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "lvl_virtue_adaptive_name",
+    "value": "ADAPTIVE"
+  },
+  {
+    "key": "lvl_virtue_adaptive_desc",
+    "value": "Grants Virtue: ADAPTIVE (Paradigm Shift right at the end of an attack or a dodge to recover Stamina) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "lvl_virtue_driven_name",
+    "value": "DRIVEN"
+  },
+  {
+    "key": "lvl_virtue_driven_desc",
+    "value": "Grants Virtue: DRIVEN (charge fully replenishes on enemy BREAK) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "lvl_virtue_agile_name",
+    "value": "AGILE"
+  },
+  {
+    "key": "lvl_virtue_agile_desc",
+    "value": "Grants Virtue: AGILE (dodge an enemy attack with Perfect timing to replenish Stamina) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "lvl_virtue_loved_name",
+    "value": "LOVED"
+  },
+  {
+    "key": "lvl_virtue_loved_desc",
+    "value": "Grants Virtue: LOVED (enemy attacks deal less damage) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "lvl_virtue_empowered_name",
+    "value": "EMPOWERED"
+  },
+  {
+    "key": "lvl_virtue_empowered_desc",
+    "value": "Grants Virtue: EMPOWERED (greatly reduces Stamina use when at full health) [Virtues must be equipped in the EQUIP MENU]."
+  },
+  {
+    "key": "dream_01_00",
+    "value": "It wants you/n/nit needs you/n/n/nIt Hates You."
+  },
+  {
+    "key": "dream_01_01",
+    "value": "Down."
+  },
+  {
+    "key": "dream_01_02",
+    "value": "Rejoice, for we are reborn."
+  },
+  {
+    "key": "dream_01_03",
+    "value": "Rejoice; we will be cleansed."
+  },
+  {
+    "key": "dream_02_00",
+    "value": "eyes to the ground/n/nA Hand/n/n presses your forehead."
+  },
+  {
+    "key": "dream_02_01",
+    "value": "cool to the Touch/n/nOiLy/nand/nBrITtLe"
+  },
+  {
+    "key": "dream_02_02",
+    "value": "your hair parts and you feel"
+  },
+  {
+    "key": "dream_02_03",
+    "value": "./n/nnaked/n/n."
+  },
+  {
+    "key": "dream_02_04",
+    "value": "One, then a thousand at once."
+  },
+  {
+    "key": "dream_02_05",
+    "value": "let THE SPIRIT come in"
+  },
+  {
+    "key": "dream_02_06",
+    "value": "you are dirty"
+  },
+  {
+    "key": "dream_02_07",
+    "value": "let THE SPIRIT come"
+  },
+  {
+    "key": "dream_02_08",
+    "value": "but your heart begins to scream"
+  },
+  {
+    "key": "dream_02_09",
+    "value": "i dont want"
+  },
+  {
+    "key": "dream_02_10",
+    "value": "i don't want"
+  },
+  {
+    "key": "dream_02_11",
+    "value": "I Don't Want This-"
+  },
+  {
+    "key": "tape_dream_00",
+    "value": "The Dream."
+  },
+  {
+    "key": "tape_future_00",
+    "value": "The Future."
+  },
+  {
+    "key": "tape_past_00",
+    "value": "The Past."
+  },
+  {
+    "key": "dream_03_00",
+    "value": "A Vision."
+  },
+  {
+    "key": "dream_03_01",
+    "value": "an ever-present space collapses/nand the air fills with dust/ntiny grains scouring her skin"
+  },
+  {
+    "key": "dream_03_02",
+    "value": "a stare that pierces through time and only sees oblivion/n her heart is swallowed whole"
+  },
+  {
+    "key": "dream_03_03",
+    "value": "everything turns to nought, a reflection of the self"
+  },
+  {
+    "key": "dream_03_04",
+    "value": "on the edge of the world/n staring into the beast’s eye"
+  },
+  {
+    "key": "dream_03_05",
+    "value": "i let myself fall"
+  },
+  {
+    "key": "dream_03_06",
+    "value": ".  /n.  /n.  "
+  },
+  {
+    "key": "dream_03_07",
+    "value": "oh brother, brother/nwhy did they take you away"
+  },
+  {
+    "key": "dream_arcade_00",
+    "value": "i am not a machine."
+  },
+  {
+    "key": "dream_arcade_01",
+    "value": "i cannot run"
+  },
+  {
+    "key": "dream_arcade_02",
+    "value": "from the ghosts inside my head"
+  },
+  {
+    "key": "dream_arcade_03",
+    "value": " "
+  },
+  {
+    "key": "dream_04_00",
+    "value": "What are you doing?"
+  },
+  {
+    "key": "dream_04_01",
+    "value": "What are you doing here?"
+  },
+  {
+    "key": "dream_04_02",
+    "value": "Something is wrong..."
+  },
+  {
+    "key": "dream_05_00",
+    "value": "Lilli looks away, hiding her eyes/nBut you can still feel the guilt,/nthe disappointment"
+  },
+  {
+    "key": "dream_05_01",
+    "value": "pulling you apart"
+  },
+  {
+    "key": "dream_05_02",
+    "value": "Your skin starts to crawl,/nas Lilli shrinks down /nand you see the tears /nand your head wants to burst"
+  },
+  {
+    "key": "dream_05_03",
+    "value": "the heat/n/n.../n/n the pain"
+  },
+  {
+    "key": "dream_05_04",
+    "value": "YOU DESERVE THIS/n/n YOU DID THIS"
+  },
+  {
+    "key": "dream_05_05",
+    "value": "It looks at you/n and you feel DEATH"
+  },
+  {
+    "key": "dream_05_06",
+    "value": "ALL IS PAIN/n BURN IN HELLFIRE"
+  },
+  {
+    "key": "dream_05_07",
+    "value": "WITH SO MUCH HATRED/n UNSPEAKABLE FEELINGS AND MEMORIES/n COLLAPSED INTO NOTHING"
+  },
+  {
+    "key": "dream_05_08",
+    "value": "OBLIVION AS DARK AS THE SUN/n THAT NO LONGER SHINES"
+  },
+  {
+    "key": "dream_05_09",
+    "value": "your chest tightens/nas if breathing your last…"
+  },
+  {
+    "key": "dream_05_10",
+    "value": "your mind clears/nyou can’t control it anymore/nthen you give in"
+  },
+  {
+    "key": "dream_05_11",
+    "value": "the corruption calls to you…"
+  },
+  {
+    "key": "ending_b_00",
+    "value": "They’re gone…"
+  },
+  {
+    "key": "ending_b_01",
+    "value": "They’re finally gone…"
+  },
+  {
+    "key": "ending_b_02",
+    "value": "so why do I still feel this way?"
+  },
+  {
+    "key": "ending_b_03",
+    "value": "I thought the pain would go away/n but instead it’s…nothing"
+  },
+  {
+    "key": "ending_b_04",
+    "value": "it’s nothing"
+  },
+  {
+    "key": "ending_b_05",
+    "value": "I’m nothing"
+  },
+  {
+    "key": "ending_b_06",
+    "value": "THERE’S NOTHING!!!!"
+  },
+  {
+    "key": "ending_b_07",
+    "value": "PLAYERNAME…"
+  },
+  {
+    "key": "ending_b_08",
+    "value": "Why have you forsaken me?"
+  },
+  {
+    "key": "ending_c_00",
+    "value": "I hope I get to see you again."
+  },
+  {
+    "key": "ending_c_01",
+    "value": "Good bye, PLAYERNAME..."
+  },
+  {
+    "key": "ending_c_02",
+    "value": "I love you."
+  },
+  {
+    "key": "dream_06_00",
+    "value": "She awakens."
+  },
+  {
+    "key": "dream_06_01",
+    "value": "As the cultist speaks,/nyou begin to drift away"
+  },
+  {
+    "key": "dream_06_02",
+    "value": "Floating up,/naway from your body,/naway from yourself"
+  },
+  {
+    "key": "dream_06_03",
+    "value": "Rising like vapors,/npurple, blue and black,/nyour skin begins to fade "
+  },
+  {
+    "key": "dream_06_04",
+    "value": "As the hole inside your chest grows,/nand grows,/nAnd swallows all"
+  },
+  {
+    "key": "dream_07_00",
+    "value": "The priest lays a hand on your forehead."
+  },
+  {
+    "key": "dream_07_01",
+    "value": "Under his sway, you kneel/n/nand he prays..."
+  },
+  {
+    "key": "dream_07_02",
+    "value": "The murmurs start, soft,/n/nthen grow,/n/nand grow"
+  },
+  {
+    "key": "dream_07_03",
+    "value": "as if the whole Enclave is joining in BUT/nthere's No One"
+  },
+  {
+    "key": "dream_07_04",
+    "value": "But you/n/nand your Heart"
+  },
+  {
+    "key": "dream_07_05",
+    "value": "and the Darkness"
+  },
+  {
+    "key": "dream_07_06",
+    "value": "And then you can’t breathe"
+  },
+  {
+    "key": "dream_07_07",
+    "value": "You gasp and gasp and try to get the air in,/nbut nothing works"
+  },
+  {
+    "key": "dream_07_08",
+    "value": "It’s empty, stale, bloody"
+  },
+  {
+    "key": "dream_07_09",
+    "value": "And your head pounds and pounds/n You feel Him, squeezing and squeezing/n Your Heart"
+  },
+  {
+    "key": "dream_07_10",
+    "value": "Until you can’t anymore/n/n And it stops"
+  },
+  {
+    "key": "dream_07_11",
+    "value": "And as if they were never there, the voices settle/n Soft, distant…"
+  },
+  {
+    "key": "dream_07_12",
+    "value": "You don’t feel the pain, or anger, or sadness"
+  },
+  {
+    "key": "dream_07_13",
+    "value": "You don’t feel anything."
+  },
+  {
+    "key": "dream_qq_00",
+    "value": "A Memory."
+  },
+  {
+    "key": "dream_qq_01",
+    "value": "There’s this…bridge/nyou pass everyday..."
+  },
+  {
+    "key": "dream_qq_02",
+    "value": "And as you stand there,/nyou see the cars go by"
+  },
+  {
+    "key": "dream_qq_03",
+    "value": "Lights twinkling into the distance/n Swallowed by/nthe mountains and buildings and clouds/nahead"
+  },
+  {
+    "key": "disable_transform",
+    "value": "Tech: TRANSFORM has been disabled."
+  },
+  {
+    "key": "sin_desc_easy",
+    "value": "[SIN]: Dictates Nightmare Strength."
+  },
+  {
+    "key": "punish_desc_easy",
+    "value": "[PUNISHMENT]: Dictates Player Vulnerability."
+  },
+  {
+    "key": "difficulty_select_desc",
+    "value": "( Difficulty can be changed at any time from the OPTIONS menu )"
+  },
+  {
+    "key": "marked_message_00",
+    "value": "A trauma reveals itself/nat the center of the world."
+  },
+  {
+    "key": "marked_message_01",
+    "value": "You have been MARKED."
+  },
+  {
+    "key": "marked_message_02",
+    "value": "Others may see you differently,/nand the world will reject you."
+  },
+  {
+    "key": "marked_message_03",
+    "value": "But maybe, we can finally awaken."
+  },
+  {
+    "key": "marked_message_04",
+    "value": "Maybe..."
+  },
+  {
+    "key": "ng_message_00",
+    "value": "Like a whisper at the end of the world.../n/nit calls to you..."
+  },
+  {
+    "key": "ng_message_01",
+    "value": "This story is done,/nbut there are many still unheard."
+  },
+  {
+    "key": "ng_message_02",
+    "value": "Load your save file marked with the †/nto see the world anew."
+  },
+  {
+    "key": "ng_message_03",
+    "value": "And find a way out of this nightmare"
+  },
+  {
+    "key": "ng_message_04",
+    "value": "so we may never wake again..."
+  },
+  {
+    "key": "corruption_message_00",
+    "value": "REVERT is now available from/nCheckpoints."
+  },
+  {
+    "key": "corruption_message_01",
+    "value": "If the Corruption becomes/ntoo great, REVERT to/na previous Track to/ntry and fight it back."
+  },
+  {
+    "key": "transform_message_00",
+    "value": "Tech: TRANSFORM has been awakened."
+  },
+  {
+    "key": "transform_message_01",
+    "value": "Fear the darkness within/none's heart."
+  },
+  {
+    "key": "ending_a_reward",
+    "value": "Unlocked Mantra: SOL."
+  },
+  {
+    "key": "ending_b_reward",
+    "value": "Unlocked Mantra: AETHER."
+  },
+  {
+    "key": "ending_c_reward_00",
+    "value": "Unlocked Virtue: ASCENDED."
+  },
+  {
+    "key": "ending_c_reward_01",
+    "value": "Unlocked Difficulty: CHALLENGE."
+  },
+  {
+    "key": "darkness_revive_00",
+    "value": "Oh, this isn't good..."
+  },
+  {
+    "key": "darkness_revive_01",
+    "value": "Please, I don't want you to give in."
+  },
+  {
+    "key": "darkness_revive_02",
+    "value": "We can't let Maria have her way."
+  },
+  {
+    "key": "darkness_revive_03",
+    "value": "Maria? Oh, I think you've met her..."
+  },
+  {
+    "key": "darkness_revive_04",
+    "value": "Agh, never mind."
+  },
+  {
+    "key": "darkness_revive_05",
+    "value": "My powers are so weak now, but I think I can help you a bit."
+  },
+  {
+    "key": "darkness_revive_06",
+    "value": "Just this once..."
+  },
+  {
+    "key": "darkness_revive_07",
+    "value": "I can push back the creeping darkness, but it's up to you to do the rest."
+  },
+  {
+    "key": "darkness_revive_08",
+    "value": "I love you PLAYERNAME, so please..."
+  },
+  {
+    "key": "darkness_revive_09",
+    "value": "Don't give in..."
+  },
+  {
+    "key": "darkness_complete_00",
+    "value": "PLAYERNAME! No..."
+  },
+  {
+    "key": "darkness_complete_01",
+    "value": "I'm sorry I can't do more...that I couldn't do more..."
+  },
+  {
+    "key": "darkness_complete_02",
+    "value": "I feel so far away from you."
+  },
+  {
+    "key": "darkness_complete_03",
+    "value": "I..."
+  },
+  {
+    "key": "darkness_complete_04",
+    "value": "..."
+  },
+  {
+    "key": "darkness_complete_05",
+    "value": "Maybe this is for the best."
+  },
+  {
+    "key": "darkness_complete_06",
+    "value": "I mean, this dream...is there any other way?"
+  },
+  {
+    "key": "darkness_complete_07",
+    "value": "Just, I didn't want you to lose yourself."
+  },
+  {
+    "key": "darkness_complete_08",
+    "value": "I love you PLAYERNAME, but things are going to be so different over there."
+  },
+  {
+    "key": "darkness_complete_09",
+    "value": "I don't know what I'll say, or how you'll end up."
+  },
+  {
+    "key": "darkness_complete_10",
+    "value": "Please, be strong for me, even if I couldn't be strong for you."
+  },
+  {
+    "key": "darkness_complete_11",
+    "value": "..."
+  },
+  {
+    "key": "darkness_complete_12",
+    "value": ". . . . ."
+  },
+  {
+    "key": "darkness_complete_13",
+    "value": "Good bye, PLAYERNAME."
+  },
+  {
+    "key": "natalie_room_bed",
+    "value": "My bed. I haven't been able to sleep."
+  },
+  {
+    "key": "natalie_room_tv",
+    "value": "An old TV. Nothing is playing."
+  },
+  {
+    "key": "natalie_room_tvon",
+    "value": "A beautiful figure, tall and assured, dances across the screen. She's so strong, the demons can't even touch her."
+  },
+  {
+    "key": "natalie_room_game",
+    "value": "A game console. I don't really play this anymore..."
+  },
+  {
+    "key": "natalie_room_gameoff",
+    "value": "It's broken."
+  },
+  {
+    "key": "examine_label_exit",
+    "value": ": Exit"
+  },
+  {
+    "key": "examine_label_fall",
+    "value": ": Fall"
+  },
+  {
+    "key": "examine_label_advance",
+    "value": ": Advance"
+  },
+  {
+    "key": "post_colin_00",
+    "value": "A message from the developer:"
+  },
+  {
+    "key": "post_colin_01",
+    "value": "Dear PLAYERNAME,"
+  },
+  {
+    "key": "post_colin_02",
+    "value": "This is probably the last time you’ll hear from me for a while, and for that, I’m sorry."
+  },
+  {
+    "key": "post_colin_03",
+    "value": "Watching you grow and fight and overcome it all has brought me so much joy in the time we’ve been together,\n\nmore than you may ever know."
+  },
+  {
+    "key": "post_colin_04",
+    "value": "Think of how far you’ve come since your first steps on the sand:\nthe waves lapping behind you, a whole unknown world ahead."
+  },
+  {
+    "key": "post_colin_05",
+    "value": "You moved forward, even when you were hunted at every turn, even when tragedy struck - when there was nothing you could do\nand even your heart was working against you."
+  },
+  {
+    "key": "post_colin_06",
+    "value": "Because you knew, there had to be something more;\nthere HAD to be a way out."
+  },
+  {
+    "key": "post_colin_07",
+    "value": "The thing is, I really don’t know if there can be. Your journey in this world may be no more, but as long as there’s more out there, our doubts and fears will never relent."
+  },
+  {
+    "key": "post_colin_08",
+    "value": "But, seeing you complete this journey, if ANYTHING, has shown me there is a place for hope in our world. "
+  },
+  {
+    "key": "post_colin_09",
+    "value": "The world here, your world, with its challenges and triumphs, will be here if you need it, when you need it. If that’s tomorrow, or next week, or 10 years from now, that’s okay, because it’ll still be here;\n\nbecause what you accomplished - how much you grew - will never leave you. "
+  },
+  {
+    "key": "post_colin_10",
+    "value": "I promise."
+  },
+  {
+    "key": "post_colin_11",
+    "value": "I promise it’s okay to feel alone, to feel unwanted, to be hurt, because I’ve been there, and you’ve been there, and yet you’re still here,\n\nand I love you for that."
+  },
+  {
+    "key": "post_colin_12",
+    "value": "While you’re here, there’s hope.\n\nIf nothing else…"
+  },
+  {
+    "key": "post_colin_13",
+    "value": "..."
+  },
+  {
+    "key": "post_colin_14",
+    "value": "Thank you PLAYERNAME. Thank you for seeing this through. I hope someday I can find the strength to do the same."
+  },
+  {
+    "key": "post_colin_15",
+    "value": "Sincerely."
+  },
+  {
+    "key": "post_colin_16",
+    "value": "Until next time,\n\n- colin. <3"
+  },
+  {
+    "key": "post_credits_00",
+    "value": "PLAYERNAME..."
+  },
+  {
+    "key": "post_credits_01",
+    "value": "I'm surprised you made it this far."
+  },
+  {
+    "key": "post_credits_02",
+    "value": "Remember how I promised, it'd all be okay in the end?"
+  },
+  {
+    "key": "post_credits_03",
+    "value": "I'm sorry, I was just trying to help..."
+  },
+  {
+    "key": "post_credits_04",
+    "value": "I really don't know if there is a happy ending to this."
+  },
+  {
+    "key": "post_credits_05",
+    "value": "It feels like we've been trapped here for so long, fighting and fighting, night after night."
+  },
+  {
+    "key": "post_credits_06",
+    "value": "And then it all sort of drifts away, like a bad dream."
+  },
+  {
+    "key": "post_credits_07",
+    "value": "Only to start again."
+  },
+  {
+    "key": "post_credits_08",
+    "value": "Maybe this time, something can be different?"
+  },
+  {
+    "key": "post_credits_09",
+    "value": "Do you really want to see what's happening here?"
+  },
+  {
+    "key": "post_credits_10",
+    "value": "I can't even take it, but maybe..."
+  },
+  {
+    "key": "post_credits_11",
+    "value": "Maybe you can be the one to finally break free."
+  },
+  {
+    "key": "post_credits_12",
+    "value": "Paradise...what a joke..."
+  },
+  {
+    "key": "post_credits_13",
+    "value": "Will we be okay, PLAYERNAME? I don't even know."
+  },
+  {
+    "key": "post_credits_14",
+    "value": "I pray...no, I hope...that you can be the one to show us the way."
+  },
+  {
+    "key": "post_credits_15",
+    "value": "PLAYERNAME..."
+  },
+  {
+    "key": "item_rewind_00",
+    "value": "Found REWIND (x3)."
+  },
+  {
+    "key": "item_rewind_01",
+    "value": "Found REWIND."
+  },
+  {
+    "key": "item_heal_00",
+    "value": "Found HEALTH ESSENCE."
+  },
+  {
+    "key": "found_mantra_anima",
+    "value": "Found Mantra: ANIMA\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_cross_insignia",
+    "value": "Found KEY ITEM: CROSS Insignia."
+  },
+  {
+    "key": "found_virtue_enraged",
+    "value": "Found Virtue: ENRAGED. "
+  },
+  {
+    "key": "found_mantra_pyra",
+    "value": "Found Mantra: PYRA\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_familiar_impulse",
+    "value": "Found Familiar: Impulse\n[Familiars can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_tech_parry",
+    "value": "Found Tech: PARRY\n[Dodge towards an attacking enemy with perfect timing to Counter the enemy attack]."
+  },
+  {
+    "key": "found_rotting_seed",
+    "value": "Found KEY ITEM: Rotting Seed."
+  },
+  {
+    "key": "found_virtue_scorned",
+    "value": "Found Virtue: SCORNED. "
+  },
+  {
+    "key": "found_mantra_thanatos",
+    "value": "Found Mantra: THANATOS\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_travel_pass",
+    "value": "Found KEY ITEM: TravelPass."
+  },
+  {
+    "key": "found_virtue_determined",
+    "value": "Found Virtue: DETERMINED."
+  },
+  {
+    "key": "found_mantra_gaea",
+    "value": "Found Mantra: GAEA\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_key_delimiter",
+    "value": "Found Delimiter."
+  },
+  {
+    "key": "memory_maria_00",
+    "value": "Found Memory of Maria:"
+  },
+  {
+    "key": "memory_maria_01",
+    "value": "\"I pray for the downtrodden; I pray for the weak. I pray for all in need."
+  },
+  {
+    "key": "memory_maria_02",
+    "value": "I pray for those I left behind, and those I can no longer remember."
+  },
+  {
+    "key": "memory_maria_03",
+    "value": "With each passing day, more seem to vanish, as if they were never there."
+  },
+  {
+    "key": "memory_maria_04",
+    "value": "What is happening to me?\""
+  },
+  {
+    "key": "found_virtue_paranoid",
+    "value": "Found Virtue: PARANOID. "
+  },
+  {
+    "key": "found_rail_lever",
+    "value": "Found Rail Lever."
+  },
+  {
+    "key": "found_speed_pass",
+    "value": "Found KEY ITEM: Speed Pass."
+  },
+  {
+    "key": "found_virtue_untethered",
+    "value": "Found Virtue: UNTETHERED. "
+  },
+  {
+    "key": "memory_colin_00",
+    "value": "Found Memory of Colin:"
+  },
+  {
+    "key": "memory_colin_01",
+    "value": "I used to have this dream.\nI would be in an empty room with no doors and no windows. As I stood there, I’d start to become lighter and lighter until I was weightless."
+  },
+  {
+    "key": "memory_colin_02",
+    "value": "I’d float into the air, and my eyelids would drop. Slowly, pieces of me would start to disappear. My legs, my arms, my torso, then my head - all drifting into nothingness, leaving only my shadow behind."
+  },
+  {
+    "key": "memory_colin_03",
+    "value": "I didn't exist, and it made me so, so, happy."
+  },
+  {
+    "key": "memory_colin_04",
+    "value": "I don’t have that dream anymore."
+  },
+  {
+    "key": "found_virtue_incensed",
+    "value": "Found Virtue: INCENSED. "
+  },
+  {
+    "key": "found_virtue_parasitic",
+    "value": "Found Virtue: PARASITIC [for a brief time after taking damage, deal damage to recover lost health]."
+  },
+  {
+    "key": "found_tape_dream",
+    "value": "Found Videotape: \"Dream\". Maybe there's somewhere I can play this..."
+  },
+  {
+    "key": "found_tape_past",
+    "value": "Found Videotape: \"Past\". Maybe there's somewhere I can play this..."
+  },
+  {
+    "key": "found_tape_future",
+    "value": "Found Videotape: \"Future\". Maybe there's somewhere I can play this..."
+  },
+  {
+    "key": "found_prayer_bead",
+    "value": "Found Prayer Bead; max VP increased by 5.\n(VP dictates the number of Virtues that can be equipped)"
+  },
+  {
+    "key": "found_mantra_bios",
+    "value": "Found Mantra: BIOS\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_crane_key",
+    "value": "Found KEY ITEM: Crane Key."
+  },
+  {
+    "key": "memory_father_00",
+    "value": "Found Memory of Father:"
+  },
+  {
+    "key": "memory_father_01",
+    "value": "\"My name, I don't even remember my name."
+  },
+  {
+    "key": "memory_father_02",
+    "value": "I remember those eyes, those lips, the beating of my heart,"
+  },
+  {
+    "key": "memory_father_03",
+    "value": "but not my name."
+  },
+  {
+    "key": "memory_father_04",
+    "value": "That faded when I took this creed, and I was promised salvation."
+  },
+  {
+    "key": "memory_father_05",
+    "value": "If I could go back, I'd do it all so differently...\""
+  },
+  {
+    "key": "found_control_key",
+    "value": "Found KEY ITEM: Control Key."
+  },
+  {
+    "key": "found_virtue_repellant",
+    "value": "Found Virtue: REPELLANT. "
+  },
+  {
+    "key": "memory_julia_00",
+    "value": "Found Memory of Julia:"
+  },
+  {
+    "key": "memory_julia_01",
+    "value": "\"There was water here once. It's gone now."
+  },
+  {
+    "key": "memory_julia_02",
+    "value": "There was life and green and birds and sky."
+  },
+  {
+    "key": "memory_julia_03",
+    "value": "As the days rolled on, the nights got longer, my scars got deeper."
+  },
+  {
+    "key": "memory_julia_04",
+    "value": "And the sun became a husk of what it once was."
+  },
+  {
+    "key": "memory_julia_05",
+    "value": "Only our truths remain.\""
+  },
+  {
+    "key": "found_mantra_aqua",
+    "value": "Found Mantra: AQUA\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_mantra_fos",
+    "value": "Found Mantra: FOS\n[Mantras can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_mantra_aero",
+    "value": "Found Mantra: AERO."
+  },
+  {
+    "key": "found_tech_charge",
+    "value": "Found Tech: HOLD ACTION\n [hold attack button: costs Charge to use]."
+  },
+  {
+    "key": "found_crescent_key",
+    "value": "Found Crescent Key."
+  },
+  {
+    "key": "found_mothers_sword",
+    "value": "Found KEY ITEM: Mother's Sword."
+  },
+  {
+    "key": "found_la_250",
+    "value": "Found 250 la [use la to level up at checkpoints]."
+  },
+  {
+    "key": "track_00_verse_00",
+    "value": "Verse 1 - Hostility"
+  },
+  {
+    "key": "track_00_verse_01",
+    "value": "Verse 2 - Chance"
+  },
+  {
+    "key": "track_00_verse_02",
+    "value": "Verse 3 - Avoidance"
+  },
+  {
+    "key": "track_00_verse_03",
+    "value": "Verse 4 - Distance"
+  },
+  {
+    "key": "track_00_verse_04",
+    "value": "Verse 5 - All-Out"
+  },
+  {
+    "key": "track_00_verse_05",
+    "value": "Verse 6 - Resolve"
+  },
+  {
+    "key": "track_00_verse_06",
+    "value": "Verse 7 - Conflict"
+  },
+  {
+    "key": "track_00_refrain_00",
+    "value": "Refrain I - Harbinger"
+  },
+  {
+    "key": "track_01_verse_00",
+    "value": "Verse 1 - Intro"
+  },
+  {
+    "key": "track_01_verse_01",
+    "value": "Verse 2 - Ignorance"
+  },
+  {
+    "key": "track_01_verse_02",
+    "value": "Verse 3 - Danger"
+  },
+  {
+    "key": "track_01_verse_03",
+    "value": "Verse 4 - Hope"
+  },
+  {
+    "key": "track_01_verse_04",
+    "value": "Verse 5 - Ambush"
+  },
+  {
+    "key": "track_01_bridge_00",
+    "value": "Bridge - Unknown"
+  },
+  {
+    "key": "track_01_verse_05",
+    "value": "Verse 6 - Pursuit"
+  },
+  {
+    "key": "track_01_verse_06",
+    "value": "Verse 7 - Trial"
+  },
+  {
+    "key": "track_01_verse_07",
+    "value": "Verse 8 - Vision"
+  },
+  {
+    "key": "track_01_verse_08",
+    "value": "Verse 9 - Clash I"
+  },
+  {
+    "key": "track_01_verse_09",
+    "value": "Verse 10 - Clash II"
+  },
+  {
+    "key": "track_01_refrain_00",
+    "value": "Refrain II - The Nest"
+  },
+  {
+    "key": "track_02_verse_00",
+    "value": "Verse 1 - Option"
+  },
+  {
+    "key": "track_02_verse_01",
+    "value": "Verse 2 - Sacrament"
+  },
+  {
+    "key": "track_02_verse_02",
+    "value": "Verse 3 - Sin"
+  },
+  {
+    "key": "track_02_verse_03",
+    "value": "Verse 4 - Punishment"
+  },
+  {
+    "key": "track_02_refrain_00",
+    "value": "Refrain III - Messiah"
+  },
+  {
+    "key": "track_02_verse_04",
+    "value": "Verse 5 - Descend"
+  },
+  {
+    "key": "track_03_verse_00",
+    "value": "Verse 1 - Secrets"
+  },
+  {
+    "key": "track_03_verse_01",
+    "value": "Verse 2 - Turn Back"
+  },
+  {
+    "key": "track_03_verse_02",
+    "value": "Verse 3 - Stalker"
+  },
+  {
+    "key": "track_03_verse_03",
+    "value": "Verse 4 - Iterim"
+  },
+  {
+    "key": "track_03_verse_04",
+    "value": "Verse 5 - Dropped"
+  },
+  {
+    "key": "track_03_verse_05",
+    "value": "Verse 6 - Overextended"
+  },
+  {
+    "key": "track_03_verse_06",
+    "value": "Verse 7 - Guardian"
+  },
+  {
+    "key": "track_03_bridge_00",
+    "value": "Bridge - Paranoid"
+  },
+  {
+    "key": "track_03_bridge_01",
+    "value": "Bridge - Upwards"
+  },
+  {
+    "key": "track_03_verse_07",
+    "value": "Verse 8 - Defenders"
+  },
+  {
+    "key": "track_03_bridge_02",
+    "value": "Bridge - Sloth"
+  },
+  {
+    "key": "track_03_refrain_00",
+    "value": "Refrain IV - The Forsaken"
+  },
+  {
+    "key": "track_03_refrain_01",
+    "value": "Refrain V - Christian"
+  },
+  {
+    "key": "track_03_verse_08",
+    "value": "Verse 9 - Falling Down"
+  },
+  {
+    "key": "track_03_verse_09",
+    "value": "Verse 10 - Guardians"
+  },
+  {
+    "key": "track_03_verse_10",
+    "value": "Verse 11 - Lair"
+  },
+  {
+    "key": "track_03_verse_11",
+    "value": "Verse 12 - Shortcuts"
+  },
+  {
+    "key": "track_03_bridge_03",
+    "value": "Bridge - Collapsing"
+  },
+  {
+    "key": "track_03_hidden_00",
+    "value": "Hidden Verse 1 - Post"
+  },
+  {
+    "key": "track_03_bridge_04",
+    "value": "Bridge - The Tape"
+  },
+  {
+    "key": "track_03_bridge_05",
+    "value": "Bridge - Rites"
+  },
+  {
+    "key": "track_03_verse_12",
+    "value": "Verse 13 - Amass"
+  },
+  {
+    "key": "track_04_bridge_00",
+    "value": "Bridge - Prototype"
+  },
+  {
+    "key": "track_04_verse_00",
+    "value": "Verse 1 - Delay"
+  },
+  {
+    "key": "track_04_verse_01",
+    "value": "Verse 2 - Ebb"
+  },
+  {
+    "key": "track_04_verse_02",
+    "value": "Verse 3 - Flow"
+  },
+  {
+    "key": "track_04_verse_03",
+    "value": "Verse 4 - Bloodflow"
+  },
+  {
+    "key": "track_04_verse_04",
+    "value": "Verse 5 - Awareness"
+  },
+  {
+    "key": "track_04_verse_broken",
+    "value": "U#HDS*( _ SHDA* "
+  },
+  {
+    "key": "keypad_enter",
+    "value": "Ent"
+  },
+  {
+    "key": "keypad_del",
+    "value": "Del"
+  },
+  {
+    "key": "track_04_verse_05",
+    "value": "Verse 6 - Shiver"
+  },
+  {
+    "key": "track_04_verse_06",
+    "value": "Verse 7 - Guarded"
+  },
+  {
+    "key": "track_04_verse_07",
+    "value": "Verse 8 - Contained"
+  },
+  {
+    "key": "track_04_verse_08",
+    "value": "Verse 9 - Stress"
+  },
+  {
+    "key": "track_04_verse_09",
+    "value": "Verse 10 - Blinded"
+  },
+  {
+    "key": "track_04_verse_10",
+    "value": "Verse 11 - Resistance"
+  },
+  {
+    "key": "track_04_verse_11",
+    "value": "Verse 12 - Remembrance"
+  },
+  {
+    "key": "track_04_verse_12",
+    "value": "Verse 13 - Revenge"
+  },
+  {
+    "key": "track_04_verse_13",
+    "value": "Verse 14 - Fulfillment"
+  },
+  {
+    "key": "track_04_verse_14",
+    "value": "Verse 15 - Fantasy"
+  },
+  {
+    "key": "track_04_refrain_00",
+    "value": "Refrain VI - The Hollow"
+  },
+  {
+    "key": "track_05_verse_00",
+    "value": "Verse 1 - Purge"
+  },
+  {
+    "key": "track_05_verse_01",
+    "value": "Verse 2 - Empty Threats"
+  },
+  {
+    "key": "track_05_verse_02",
+    "value": "Verse 3 - Brawl"
+  },
+  {
+    "key": "track_05_verse_03",
+    "value": "Verse 4 - Encounter"
+  },
+  {
+    "key": "track_05_verse_04",
+    "value": "Verse 5 - Melee"
+  },
+  {
+    "key": "track_05_verse_05",
+    "value": "Verse 6 - Duel"
+  },
+  {
+    "key": "track_05_verse_06",
+    "value": "Verse 7 - Champion"
+  },
+  {
+    "key": "track_05_verse_07",
+    "value": "Verse 8 - Promise"
+  },
+  {
+    "key": "track_05_verse_08",
+    "value": "Verse 9 - Destruction"
+  },
+  {
+    "key": "track_05_refrain_00",
+    "value": "Refrain VII - Serah"
+  },
+  {
+    "key": "track_05_training_00",
+    "value": "Training 1 - Untouched"
+  },
+  {
+    "key": "track_05_training_01",
+    "value": "Training 2 - Unphased"
+  },
+  {
+    "key": "track_05_training_02",
+    "value": "Training 3 - Unbroken"
+  },
+  {
+    "key": "track_05_verse_09",
+    "value": "Verse 10 - Hated"
+  },
+  {
+    "key": "track_05_verse_10",
+    "value": "Verse 11 - Scorned"
+  },
+  {
+    "key": "track_05_verse_11",
+    "value": "Verse 12 - Disconnected"
+  },
+  {
+    "key": "track_05_verse_12",
+    "value": "Verse 13 - Marked"
+  },
+  {
+    "key": "track_06_refrain_00",
+    "value": "Refrain IX - ???"
+  },
+  {
+    "key": "track_06_refrain_01",
+    "value": "Refrain IX - The Depths"
+  },
+  {
+    "key": "track_06_refrain_02",
+    "value": "Refrain XIII - Christian"
+  },
+  {
+    "key": "track_06_verse_00",
+    "value": "Verse 1 - Wayward"
+  },
+  {
+    "key": "track_06_verse_01",
+    "value": "Verse 2 - Control"
+  },
+  {
+    "key": "track_06_verse_02",
+    "value": "Verse 3 - Seeking"
+  },
+  {
+    "key": "track_06_verse_03",
+    "value": "Verse 4 - Communicate"
+  },
+  {
+    "key": "track_06_bridge_00",
+    "value": "Bridge - Insight"
+  },
+  {
+    "key": "track_06_verse_04",
+    "value": "Verse 5 - Wrong"
+  },
+  {
+    "key": "track_06_verse_05",
+    "value": "Verse 6 - So"
+  },
+  {
+    "key": "track_06_verse_06",
+    "value": "Verse 7 - Tired"
+  },
+  {
+    "key": "track_06_hidden_00",
+    "value": "Hidden Verse 2 - Reflect"
+  },
+  {
+    "key": "track_07_verse_00",
+    "value": "Verse 1 - Support"
+  },
+  {
+    "key": "track_07_verse_01",
+    "value": "Verse 2 - Trial"
+  },
+  {
+    "key": "track_07_verse_02",
+    "value": "Verse 3 - Precursor"
+  },
+  {
+    "key": "track_07_verse_03",
+    "value": "Verse 4 - Insidious"
+  },
+  {
+    "key": "track_07_verse_04",
+    "value": "Verse 5 - Tribulation"
+  },
+  {
+    "key": "track_07_verse_05",
+    "value": "Verse 6 - Run-Up"
+  },
+  {
+    "key": "track_07_verse_06",
+    "value": "Verse 7 - Pride"
+  },
+  {
+    "key": "track_07_refrain_00",
+    "value": "Refrain X - Harbinger"
+  },
+  {
+    "key": "track_07_verse_07",
+    "value": "Verse 8 - Lone"
+  },
+  {
+    "key": "track_08_verse_00",
+    "value": "Verse 1 - Climb"
+  },
+  {
+    "key": "track_08_verse_01",
+    "value": "Verse 2 - Trapped"
+  },
+  {
+    "key": "track_08_verse_02",
+    "value": "Verse 3 - Determination"
+  },
+  {
+    "key": "track_08_verse_03",
+    "value": "Verse 4 - Damnation"
+  },
+  {
+    "key": "track_08_refrain_00",
+    "value": "Refrain XI - Christian"
+  },
+  {
+    "key": "track_08_refrain_01",
+    "value": "Final Refrain - PLAYERNAME"
+  },
+  {
+    "key": "track_08_refrain_02",
+    "value": "Final Refrain - Messiah"
+  },
+  {
+    "key": "track_08_refrain_03",
+    "value": "Hidden Refrain - Thomas"
+  },
+  {
+    "key": "track_08_refrain_04",
+    "value": "Final Refrain - Maria"
+  },
+  {
+    "key": "boss_name_00",
+    "value": "HARBINGER"
+  },
+  {
+    "key": "boss_name_01",
+    "value": "THE HIVE"
+  },
+  {
+    "key": "boss_name_02",
+    "value": "MESSIAH"
+  },
+  {
+    "key": "boss_name_03",
+    "value": "THE FORSAKEN"
+  },
+  {
+    "key": "boss_name_04",
+    "value": "CHRISTIAN"
+  },
+  {
+    "key": "boss_name_05",
+    "value": "???"
+  },
+  {
+    "key": "boss_name_06",
+    "value": "THE HOLLOW"
+  },
+  {
+    "key": "boss_name_07",
+    "value": "PROTOTYPE"
+  },
+  {
+    "key": "boss_name_08",
+    "value": "SERAH"
+  },
+  {
+    "key": "boss_name_09",
+    "value": "THE DEPTHS"
+  },
+  {
+    "key": "boss_name_10",
+    "value": "THOMAS"
+  },
+  {
+    "key": "boss_name_11",
+    "value": "PLAYERNAME"
+  },
+  {
+    "key": "boss_name_12",
+    "value": "MARIA"
+  },
+  {
+    "key": "boss_name_13",
+    "value": "MARIA?"
+  },
+  {
+    "key": "examine_label_rewind",
+    "value": "Rewind"
+  },
+  {
+    "key": "tutorial_rewind_00",
+    "value": "REWINDs give you a second chance at any encounter."
+  },
+  {
+    "key": "tutorial_rewind_01",
+    "value": "When you use a REWIND, your health and charge are restored to the state  they were in when the fight began."
+  },
+  {
+    "key": "tutorial_rewind_02",
+    "value": "Use REWINDs to erase a battle that is going poorly. REWINDs are restored at checkpoints."
+  },
+  {
+    "key": "examine_label_familiar",
+    "value": "Familiar\\nAttack"
+  },
+  {
+    "key": "tutorial_familiar_00",
+    "value": "Familiars can attack with long-range magic at the cost of Charge."
+  },
+  {
+    "key": "tutorial_familiar_01",
+    "value": "Recover Charge by hitting enemies with Light and Heavy Attacks."
+  },
+  {
+    "key": "tutorial_familiar_02",
+    "value": "Use Familiar Attacks to keep up your offensive while recovering Stamina."
+  },
+  {
+    "key": "examine_label_dodge",
+    "value": "Dodge"
+  },
+  {
+    "key": "examine_label_sprint",
+    "value": "Sprint"
+  },
+  {
+    "key": "examine_label_sprint_a",
+    "value": "      :\\n(Hold)"
+  },
+  {
+    "key": "tutorial_dodge_00",
+    "value": "Dodges provide brief invulnerability to enemy attacks."
+  },
+  {
+    "key": "tutorial_dodge_01",
+    "value": "Hold the Dodge button to Sprint at great speed."
+  },
+  {
+    "key": "examine_label_descend",
+    "value": "Descend"
+  },
+  {
+    "key": "checkpoint_name_00",
+    "value": "Abandoned Faith - Basement"
+  },
+  {
+    "key": "examine_label_paradigm",
+    "value": "Switch Mantra"
+  },
+  {
+    "key": "tutorial_mantra_00",
+    "value": "Mantras represent different attack styles you can utilize."
+  },
+  {
+    "key": "tutorial_mantra_01",
+    "value": "Each has different attack properties and combos of Light and Heavy attacks."
+  },
+  {
+    "key": "tutorial_mantra_02",
+    "value": "Switch between two equipped \"Paradigms\" of Mantras at any time to create new combos and play styles."
+  },
+  {
+    "key": "memory_david_00",
+    "value": "Found Memory of David:"
+  },
+  {
+    "key": "memory_david_01",
+    "value": "\"Twelve boys lined all in a row. Paraded to the cellar, we sit on musty yellow chairs. 'Today, you will learn of strength and faith’. "
+  },
+  {
+    "key": "memory_david_02",
+    "value": "\"A screen swivels around and we stare. Animated figures dance in stilted motion."
+  },
+  {
+    "key": "memory_david_03",
+    "value": "\"They fear a monster of great stature, coming to destroy all they hold dear. No hope remains; the colors are distracting."
+  },
+  {
+    "key": "memory_david_04",
+    "value": "“The monster is upon them. He crushes bones and swallows them whole. A comedic sound makes the boys laugh."
+  },
+  {
+    "key": "memory_david_05",
+    "value": "\"A hero appears. We know he is the hero for he radiates gold. Sling in hand, he attacks the monster. The monster’s face crumples into a bloody heap."
+  },
+  {
+    "key": "memory_david_06",
+    "value": "\"My first taste of the nightmare.\""
+  },
+  {
+    "key": "tutorial_charge_00",
+    "value": "Hold the Light or Heavy Attack button to execute a powerful Hold Action."
+  },
+  {
+    "key": "tutorial_charge_01",
+    "value": "Hold Actions use both stamina and charge, but they tear through nightmares."
+  },
+  {
+    "key": "tutorial_charge_02",
+    "value": "Use a Hold Action on a vulnerable enemy to take it out quickly. "
+  },
+  {
+    "key": "examine_label_ascend",
+    "value": ": Ascend"
+  },
+  {
+    "key": "intro_cutscene_00",
+    "value": "Fear not child, for there is salvation to be found,\neven of your kind."
+  },
+  {
+    "key": "intro_cutscene_01",
+    "value": "The Mark...has claimed another."
+  },
+  {
+    "key": "intro_cutscene_02",
+    "value": "Does it always have to be like this?"
+  },
+  {
+    "key": "intro_cutscene_03",
+    "value": "Oh dear fallen, another has given in to this wretched\nplace."
+  },
+  {
+    "key": "intro_cutscene_04",
+    "value": "May the Null Sun have mercy."
+  },
+  {
+    "key": "examine_label_equip",
+    "value": "Open \\nEquip Menu"
+  },
+  {
+    "key": "dead_npc_00",
+    "value": "...he's dead."
+  },
+  {
+    "key": "examine_label_talk",
+    "value": ": Talk"
+  },
+  {
+    "key": "forest_serah_00",
+    "value": "Are you lost like me?"
+  },
+  {
+    "key": "forest_serah_01",
+    "value": "I had someone here, but they went off to try and save us."
+  },
+  {
+    "key": "forest_serah_02",
+    "value": "I don't think they're coming back..."
+  },
+  {
+    "key": "forest_serah_03",
+    "value": "We're incomplete. We can't survive like this."
+  },
+  {
+    "key": "forest_serah_04",
+    "value": "Please, bring them back to me."
+  },
+  {
+    "key": "forest_serah_05",
+    "value": "Help me, please..."
+  },
+  {
+    "key": "forest_serah_06",
+    "value": "beFoRe the DaRk CoMeS"
+  },
+  {
+    "key": "memory_michael_00",
+    "value": "Found Memory of Michael:"
+  },
+  {
+    "key": "memory_michael_01",
+    "value": "\"Acceptance is key. Acceptance is life."
+  },
+  {
+    "key": "memory_michael_02",
+    "value": "\"Work hard for acceptance and all will be forgiven."
+  },
+  {
+    "key": "memory_michael_03",
+    "value": "\"The thoughts, the hair, the clothes..."
+  },
+  {
+    "key": "memory_michael_04",
+    "value": "\"Cut it all away and you will be normal. You will be loved. You will be happy.\""
+  },
+  {
+    "key": "examine_label_item",
+    "value": "Switch Item"
+  },
+  {
+    "key": "tutorial_parry_00",
+    "value": "Press the Dodge button while moving towards an attacking enemy to Parry."
+  },
+  {
+    "key": "tutorial_parry_01",
+    "value": "A Parry will cancel the enemy attack and break their guard, opening them up for massive damage."
+  },
+  {
+    "key": "tutorial_parry_02",
+    "value": "Parry enemy attacks and follow up with powerful Counter Attacks!"
+  },
+  {
+    "key": "examine_label_climb",
+    "value": ": Climb"
+  },
+  {
+    "key": "forest_descend_ex",
+    "value": "It's too dark to descend."
+  },
+  {
+    "key": "door_vine_locked",
+    "value": "A snarl of vines obscures the way forward. If only there was a way to clear them..."
+  },
+  {
+    "key": "door_vine_unlocked",
+    "value": "Placed Rotting Seed."
+  },
+  {
+    "key": "door_sanctum_locked",
+    "value": "ERROR: NO ACCESS WITHOUT REGISTRATION."
+  },
+  {
+    "key": "door_sanctum_unlocked",
+    "value": "Showed INSIGNIA."
+  },
+  {
+    "key": "sanctum_worshipper_00",
+    "value": "Another has come! Rejoice, rejoice!"
+  },
+  {
+    "key": "sanctum_worshipper_01",
+    "value": "Father be kind, Father have mercy!"
+  },
+  {
+    "key": "sanctum_worshipper_02",
+    "value": "salvation...sAlvatiOn..."
+  },
+  {
+    "key": "sanctum_worshipper_03",
+    "value": "The cleansings are always my favorite."
+  },
+  {
+    "key": "sanctum_worshipper_04",
+    "value": "Water, blood, darkness; they flow so beautifully!"
+  },
+  {
+    "key": "sanctum_worshipper_05",
+    "value": "Father be kind, Father have mercy!"
+  },
+  {
+    "key": "sanctum_worshipper_06",
+    "value": "Don't look at me."
+  },
+  {
+    "key": "sanctum_worshipper_07",
+    "value": "Don't look at me!"
+  },
+  {
+    "key": "sanctum_worshipper_08",
+    "value": "STOP LOOKING AT ME!!"
+  },
+  {
+    "key": "sanctum_worshipper_09",
+    "value": "!!"
+  },
+  {
+    "key": "sanctum_worshipper_10",
+    "value": "!!  !!"
+  },
+  {
+    "key": "sanctum_worshipper_11",
+    "value": "Rapture! Rapture!!"
+  },
+  {
+    "key": "sanctum_worshipper_12",
+    "value": "AAAAAHHHHHGHHHHHH~!"
+  },
+  {
+    "key": "sanctum_christian_00",
+    "value": "...why are you back?"
+  },
+  {
+    "key": "sanctum_cutscene_00",
+    "value": "\"Master, quick!\""
+  },
+  {
+    "key": "sanctum_cutscene_01",
+    "value": "\"Ah, child, you have arrived!\""
+  },
+  {
+    "key": "sanctum_cutscene_02",
+    "value": "\"Out in the garden - it's happening!\""
+  },
+  {
+    "key": "sanctum_cutscene_03",
+    "value": "\"Come over to the font, your Cleansing is nigh.\""
+  },
+  {
+    "key": "sanctum_cutscene_04",
+    "value": "Ahahahaha...already?"
+  },
+  {
+    "key": "sanctum_cutscene_05",
+    "value": "How exciting!"
+  },
+  {
+    "key": "sanctum_cutscene_06",
+    "value": "Come, little one. Our salvation is at hand!"
+  },
+  {
+    "key": "sanctum_cutscene_07",
+    "value": "Father, wait!!"
+  },
+  {
+    "key": "sanctum_cutscene_08",
+    "value": "Please, stop. I have a bad feeling about this."
+  },
+  {
+    "key": "sanctum_cutscene_09",
+    "value": "SHUT UP, CHILD!"
+  },
+  {
+    "key": "sanctum_cutscene_10",
+    "value": "This is what we've been praying for! Now, COME!!"
+  },
+  {
+    "key": "sanctum_cutscene_11",
+    "value": "But, Dad..."
+  },
+  {
+    "key": "sanctum_cutscene_12",
+    "value": "Don't..."
+  },
+  {
+    "key": "sanctum_father_00",
+    "value": "\"Close your eyes; let's begin...\""
+  },
+  {
+    "key": "memory_christian_00",
+    "value": "Found Memory of Christian:"
+  },
+  {
+    "key": "memory_christian_01",
+    "value": "\"I loved you. I trusted you."
+  },
+  {
+    "key": "memory_christian_02",
+    "value": "I did all you told me to and I was good."
+  },
+  {
+    "key": "memory_christian_03",
+    "value": "You asked me to confess and I came up with blanks."
+  },
+  {
+    "key": "memory_christian_04",
+    "value": "There was a god who died for us, but it wasn't enough. As we forsake them, the sun forsakes us."
+  },
+  {
+    "key": "memory_christian_05",
+    "value": "Now we have to come up with the sins no one will forgive."
+  },
+  {
+    "key": "memory_christian_06",
+    "value": "Forgive me, for I have sinned.\""
+  },
+  {
+    "key": "sanctum_worshipper_13",
+    "value": "The danger in The Below is exquisite."
+  },
+  {
+    "key": "sanctum_worshipper_14",
+    "value": "Every time I go in the darkness grows. Some time I might be lucky enough to not return!"
+  },
+  {
+    "key": "sanctum_worshipper_15",
+    "value": "Father said we weren't to enter The Below, but I can't help it."
+  },
+  {
+    "key": "sanctum_worshipper_16",
+    "value": "Sometimes only the pain can absolve my guilt..."
+  },
+  {
+    "key": "sanctum_worshipper_17",
+    "value": "If Father discovers I've gone in again, the darkness might overcome me."
+  },
+  {
+    "key": "sanctum_worshipper_18",
+    "value": "How...tempting."
+  },
+  {
+    "key": "found_la_1500",
+    "value": "Found 1500 la [use la to level up at checkpoints]."
+  },
+  {
+    "key": "door_metro_locked",
+    "value": "\"Insert payment\""
+  },
+  {
+    "key": "door_metro_unlocked",
+    "value": "Inserted TravelPass."
+  },
+  {
+    "key": "metro_directory",
+    "value": "— Station Directory —\nBROOKSVALE <-> AVON <-> HIGHLAND <-> SOUTHVALE <- ...\n[The rest of the line is faded]"
+  },
+  {
+    "key": "memory_nikki_00",
+    "value": "Found Memory of Nikki:"
+  },
+  {
+    "key": "memory_nikki_01",
+    "value": "\"Those late summer nights were always the worst."
+  },
+  {
+    "key": "memory_nikki_02",
+    "value": "After you were gone, the place felt so empty, and the walls got so dark."
+  },
+  {
+    "key": "memory_nikki_03",
+    "value": "The figures that moved in the edge of my vision became real, and I would run for my life."
+  },
+  {
+    "key": "memory_nikki_04",
+    "value": "Around and around in my head, until I couldn't take it any longer."
+  },
+  {
+    "key": "memory_nikki_05",
+    "value": "I just had to take the edge, and drive through. Crash..."
+  },
+  {
+    "key": "memory_nikki_06",
+    "value": "I looked up, and saw you again. I had never been happier.\""
+  },
+  {
+    "key": "metro_sign_brooksvale",
+    "value": "— BROOKSVALE STATION —\nAvon Station ->"
+  },
+  {
+    "key": "merchant_00_00",
+    "value": "I hope this helps, friend. Is there anything else?"
+  },
+  {
+    "key": "merchant_00_01",
+    "value": "Take care and safe travels. I will see you again."
+  },
+  {
+    "key": "merchant_00_02",
+    "value": "Two more times if you do good, three more times if you do not."
+  },
+  {
+    "key": "merchant_00_03",
+    "value": "Hello friend. What can I do for you?"
+  },
+  {
+    "key": "merchant_00_04",
+    "value": "Do you feel it as well? The creeping dread inside you?"
+  },
+  {
+    "key": "merchant_00_05",
+    "value": "They say it can be stopped, but I was raised to just accept it."
+  },
+  {
+    "key": "merchant_00_06",
+    "value": "Is this what we have to look forward to?"
+  },
+  {
+    "key": "merchant_item_00",
+    "value": "Virtue: TRUSTING"
+  },
+  {
+    "key": "merchant_item_00_desc",
+    "value": "Grants Virtue: TRUSTING (Familar attacks are more powerful)."
+  },
+  {
+    "key": "merchant_item_01",
+    "value": "Virtue: CONDEMNED"
+  },
+  {
+    "key": "merchant_item_01_desc",
+    "value": "Grants Virtue: CONDEMNED (Survive for a short time after health reaches 0)."
+  },
+  {
+    "key": "merchant_item_02",
+    "value": "Prayer Bead"
+  },
+  {
+    "key": "merchant_item_02_desc",
+    "value": "Increases max VP by 5 (VP dictates the number of Virtues that can be equipped)."
+  },
+  {
+    "key": "merchant_item_03",
+    "value": "Tiny Bell"
+  },
+  {
+    "key": "merchant_item_03_desc",
+    "value": "Allows access to the Familiar Garden from the Travel Menu."
+  },
+  {
+    "key": "door_level_locked",
+    "value": "A mechanism. It appears to be missing something."
+  },
+  {
+    "key": "door_level_unlocked",
+    "value": "Placed Rail Lever."
+  },
+  {
+    "key": "metro_sign_avon",
+    "value": "— AVON STATION —\n<- Brooksvale Station\nHighland Station ->"
+  },
+  {
+    "key": "examine_label_lever",
+    "value": ": Pull Lever"
+  },
+  {
+    "key": "lever_pull_00",
+    "value": "Train now runs EAST."
+  },
+  {
+    "key": "lever_pull_01",
+    "value": "Train now runs WEST."
+  },
+  {
+    "key": "examine_label_train",
+    "value": ": Board Train"
+  },
+  {
+    "key": "metro_sign_highland",
+    "value": "— HIGHLAND STATION —\n<- Avon Station\nSouthvale Station ->"
+  },
+  {
+    "key": "found_la_2000",
+    "value": "Found 2000 la [use la to level up at checkpoints]."
+  },
+  {
+    "key": "metro_sign_southvale",
+    "value": "— SOUTHVALE STATION —\n<- Highland Station\n=+ZxX-)&% ->\n[the letters have been scratched out]"
+  },
+  {
+    "key": "metro_sign_end",
+    "value": "The writing is too faded to read."
+  },
+  {
+    "key": "examine_label_train_leave",
+    "value": ": Leave Train"
+  },
+  {
+    "key": "train_text_00",
+    "value": "Brooksvale Station."
+  },
+  {
+    "key": "train_text_01",
+    "value": "Avon Station."
+  },
+  {
+    "key": "train_text_02",
+    "value": "Highland Station."
+  },
+  {
+    "key": "train_text_03",
+    "value": "Southvale Station."
+  },
+  {
+    "key": "train_text_04",
+    "value": "$%&?&^ Station."
+  },
+  {
+    "key": "train_text_05",
+    "value": "Next Stop: !(#()#(@*&EUSHADJKAHWI!"
+  },
+  {
+    "key": "train_text_06",
+    "value": "#!*(JAHFJKSAJKRGU*(!("
+  },
+  {
+    "key": "train_text_07",
+    "value": "~(*~*(*!*!!!!!!!"
+  },
+  {
+    "key": "train_text_08",
+    "value": "Why are you doing this? Why do you resist?"
+  },
+  {
+    "key": "train_text_09",
+    "value": "You Will Die. Why don't you seek such destruction?"
+  },
+  {
+    "key": "train_text_10",
+    "value": "We can save you. You can save you."
+  },
+  {
+    "key": "train_text_11",
+    "value": "YoU Can SAve YOU"
+  },
+  {
+    "key": "train_text_12",
+    "value": "YOU CAN SAVE YOU CAN SAVE"
+  },
+  {
+    "key": "train_text_13",
+    "value": "embrace Him"
+  },
+  {
+    "key": "train_text_14",
+    "value": "for You Will Die"
+  },
+  {
+    "key": "train_text_15",
+    "value": "Please step back. Doors are closing..."
+  },
+  {
+    "key": "train_text_16",
+    "value": "Next stop:"
+  },
+  {
+    "key": "train_text_17",
+    "value": "Now arriving:"
+  },
+  {
+    "key": "metro_sign_avon_up",
+    "value": "[NW] : TickETiNg\n[NE] : reSPite (under ConsTRucTion)"
+  },
+  {
+    "key": "examine_label_pipe",
+    "value": ": Enter Pipe"
+  },
+  {
+    "key": "metro_worshipper_00",
+    "value": "You're probably wondering why you're here."
+  },
+  {
+    "key": "metro_worshipper_01",
+    "value": "We all do. We all feel it."
+  },
+  {
+    "key": "metro_worshipper_02",
+    "value": "Why can't you let it go?"
+  },
+  {
+    "key": "metro_worshipper_03",
+    "value": "Let the dread consume you - it's a most delicious fate."
+  },
+  {
+    "key": "metro_worshipper_04",
+    "value": "the monsters...the monsters...the monsters...."
+  },
+  {
+    "key": "examine_label_pipe_leave",
+    "value": ": Exit Pipe"
+  },
+  {
+    "key": "metro_christian_00",
+    "value": "So, you made it out again?"
+  },
+  {
+    "key": "metro_christian_01",
+    "value": "So, you made it out too?"
+  },
+  {
+    "key": "metro_christian_02",
+    "value": "God DAMN you!"
+  },
+  {
+    "key": "metro_christian_03",
+    "value": "I'm not letting you stop me here..."
+  },
+  {
+    "key": "metro_christian_04",
+    "value": "Not before you feel the shame I feel."
+  },
+  {
+    "key": "metro_christian_05",
+    "value": "You should have died back there, you know."
+  },
+  {
+    "key": "metro_christian_06",
+    "value": "I wish I had."
+  },
+  {
+    "key": "metro_christian_07",
+    "value": "Father…the acolytes…all of them, they were my family."
+  },
+  {
+    "key": "metro_christian_08",
+    "value": "My home, my family; they're all gone now."
+  },
+  {
+    "key": "metro_christian_09",
+    "value": "Murdered right in front of my eyes."
+  },
+  {
+    "key": "metro_christian_10",
+    "value": "My home, my family; they're all gone."
+  },
+  {
+    "key": "metro_christian_11",
+    "value": "I thought I had them all back, but that's the cruel joke of this \"Paradise\"."
+  },
+  {
+    "key": "metro_christian_12",
+    "value": "Murdered right in front of my eyes, no matter what I do."
+  },
+  {
+    "key": "metro_christian_13",
+    "value": "But you get to keep going, oblivious to it all."
+  },
+  {
+    "key": "metro_christian_14",
+    "value": "Or, do you think you know better? "
+  },
+  {
+    "key": "metro_christian_15",
+    "value": "Trust me, you don't get it."
+  },
+  {
+    "key": "metro_christian_16",
+    "value": "It’s all your fault!"
+  },
+  {
+    "key": "metro_christian_17",
+    "value": "Why did you have to come here? Why did you have to come NOW!??"
+  },
+  {
+    "key": "metro_christian_18",
+    "value": "Why did you have to come here? How can you even EXIST!??"
+  },
+  {
+    "key": "metro_christian_19",
+    "value": "I couldn’t keep hiding what I was, but Father was so kind and patient."
+  },
+  {
+    "key": "metro_christian_20",
+    "value": "He forgave me for my sin. He said I was almost ready to ascend."
+  },
+  {
+    "key": "metro_christian_21",
+    "value": "To become whole again…To finally have peace..."
+  },
+  {
+    "key": "metro_christian_22",
+    "value": "This is...my Damnation."
+  },
+  {
+    "key": "metro_christian_23",
+    "value": "Father was the only one to ever show me kindness. I didn't deserve any of it!"
+  },
+  {
+    "key": "metro_christian_24",
+    "value": "He could forgive me of my sin! I thought this time, I could ascend."
+  },
+  {
+    "key": "metro_christian_25",
+    "value": "And you TOOK THAT AWAY FROM ME!"
+  },
+  {
+    "key": "metro_christian_26",
+    "value": "EVERY! SINGLE! TIME!"
+  },
+  {
+    "key": "metro_christian_27",
+    "value": "WE DON’T BELONG IN THIS WORLD! NEITHER OF US DESERVE TO GO ON!!"
+  },
+  {
+    "key": "metro_christian_28",
+    "value": "IF I’M GOING TO HELL, I’M BRINGING YOU DOWN WITH ME!!"
+  },
+  {
+    "key": "metro_christian_29",
+    "value": "WE DON’T BELONG IN THIS WORLD! NEITHER OF US DESERVE TO LIVE!!"
+  },
+  {
+    "key": "metro_sign_southvale_up",
+    "value": "[NE] : eLecTRONICS\n[WW] : aCCident Preventio-"
+  },
+  {
+    "key": "metro_sign_southvale_down",
+    "value": "[NORTH] : Maintenance Passage\n[SOUTH] : Edge of the world."
+  },
+  {
+    "key": "door_speed_locked",
+    "value": "\"Premium access required.\""
+  },
+  {
+    "key": "door_speed_unlocked",
+    "value": "Tapped Speed Pass."
+  },
+  {
+    "key": "door_limiter_locked",
+    "value": "LIMITER ENGAGED. DO NOT UNLOCK."
+  },
+  {
+    "key": "door_limiter_unlocked",
+    "value": "DANGER !! LIMITER DISENGAGED !! DANGER !!"
+  },
+  {
+    "key": "dead_npc_01",
+    "value": "They're dead."
+  },
+  {
+    "key": "found_familiar_laser",
+    "value": "Found Familiar: Laser\n[Familiars can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_familiar_pierce",
+    "value": "Found Familiar: Pierce\n[Familiars can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_familiar_rapid",
+    "value": "Found Familiar: Rapid\n[Familiars can be equipped in the EQUIP Menu]."
+  },
+  {
+    "key": "found_familiar_shock",
+    "value": "Found Familiar: Shock\n[Familiars can be equipped in the EQUIP Menu]."
   }
+]}

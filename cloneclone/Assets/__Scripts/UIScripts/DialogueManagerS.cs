@@ -220,7 +220,7 @@ public class DialogueManagerS : MonoBehaviour {
 	}
 
 	public void SetDisplayText(string newText, bool isMemo = false, bool doZoom = true, bool fromMerchant = false, 
-		bool endWithResponse = false, VideoClip movieText = null, float movieSizeMult = 1f){
+		bool endWithResponse = false, VideoClip movieText = null, float movieSizeMult = 1f, bool ignoreLoc = false){
 
 		if (hideStats){
 			hideStats.pConRef.ResetTimeMax();
@@ -265,7 +265,12 @@ public class DialogueManagerS : MonoBehaviour {
 			}else{
 				dialogueText.text = currentDisplayString = "";
 			}
-            targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName);
+            if (!ignoreLoc)
+            {
+                targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName);
+            }else{
+                targetDisplayString = newText.Replace("PLAYERNAME", TextInputUIS.playerName);
+            }
 			
 			scrollCountdown = 0f;
 			

@@ -21,7 +21,7 @@ public class TrainCarS : MonoBehaviour {
 	[Header("Timing Properties")]
 	public float timePerStop = 8f;
 	private float currentTimeAtStop;
-	private string doorsClosingString = "Please step back. Doors are closing...";
+	private string doorsClosingString = "train_text_15";
 	private bool doorsClosingMessageGiven = false;
 	private float timeBeforeDoorsMessage = 4f;
 
@@ -29,12 +29,12 @@ public class TrainCarS : MonoBehaviour {
 	private bool trainIsStopped = false;
 
 	private bool nextStopMessageGiven = false;
-	private string nextStopString = "Next stop: ";
+	private string nextStopString = "train_text_16";
 	public float timeToNextStopMessage = 3f;
 	private float nextStopMessageCountdown;
 
 	private bool nowArrivingMessageGiven = false;
-	private string nowArrivingString = "Now arriving: ";
+	private string nowArrivingString = "train_text_17";
 	public float timeBeforeNowArrivingMessage = 4f;
 	public float messageTime = 6f;
 	private float messageTimeOut;
@@ -175,7 +175,7 @@ public class TrainCarS : MonoBehaviour {
 						currentDirection = 1;
 					}
 					currentStopString = trainStops[currentStop];
-					currentStopName = trainStopNames[currentStop];
+                    currentStopName = LocalizationManager.instance.GetLocalizedValue(trainStopNames[currentStop]);
 					timeToNextStop = travelTimes[currentStop];
 				}else{
 					timeToNextStop = 9999f;
@@ -202,7 +202,8 @@ public class TrainCarS : MonoBehaviour {
 			if (nextStopMessageCountdown <= 0 && !nextStopMessageGiven){
 
 				nextStopMessageGiven = true;
-					DialogueManagerS.D.SetDisplayText(nextStopString + currentStopName, false, false);
+					DialogueManagerS.D.SetDisplayText(nextStopString + currentStopName, false, false, false,
+                                                     false, null, 1, true);
 					if (announceSound){
 						Instantiate(announceSound);
 					}
@@ -211,7 +212,8 @@ public class TrainCarS : MonoBehaviour {
 			}
 			if (!nowArrivingMessageGiven && timeToNextStop <= timeBeforeNowArrivingMessage){
 				nowArrivingMessageGiven = true;
-					DialogueManagerS.D.SetDisplayText(nowArrivingString + currentStopName, false, false);
+					DialogueManagerS.D.SetDisplayText(nowArrivingString + currentStopName, false, false,false,
+                                                     false,null,1,true);
 					if (announceSound){
 						Instantiate(announceSound);
 					}
