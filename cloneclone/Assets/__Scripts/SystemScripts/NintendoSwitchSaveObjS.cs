@@ -24,7 +24,7 @@ public class NintendoSwitchSaveObjS : MonoBehaviour
     // Check against the total save data size only when you want to be sure all files don't exceed the limit.
     // The variable journalSaveDataSize is only a value that is checked against in this code. The actual journal size is set in the
     // Unity editor in PlayerSettings > Publishing Settings > User account save data    
-    private const int journalSaveDataSize = 12976128;   // 16 KB. This value should be 32KB less than the journal size
+    private const int journalSaveDataSize = 49152;   // This value should be 32KB less than the journal size
                                                      // entered in PlayerSettings > Publishing Settings
     private const int loadBufferSize = 32768;  // 32 KB
 
