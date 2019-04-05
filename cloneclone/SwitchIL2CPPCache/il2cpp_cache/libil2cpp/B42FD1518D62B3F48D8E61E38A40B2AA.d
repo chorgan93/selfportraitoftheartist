@@ -1,0 +1,36 @@
+D:\ahhhhhh\selfportraitswitch\selfportraitoftheartist\cloneclone\SwitchIL2CPPCache\il2cpp_cache\libil2cpp\B42FD1518D62B3F48D8E61E38A40B2AA.o: \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\vm\Atomic.cpp \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\il2cpp-config.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\assert.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\features.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\features_musl.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stddef.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\__config \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stddef.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\bits/alltypes.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\nnmusl_alltypes.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\__nullptr \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stdlib.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stdlib.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\alloca.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stdio.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stdio.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\string.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\string.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\string_musl.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\strings.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\c++\v1\stdint.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\stdint.h \
+  D:\LucahSDK\NintendoSDK\Compilers\NX\nx\aarch64\include\bits/stdint.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp/os/c-api/il2cpp-config-platforms.h \
+  D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools\il2cpp\libil2cpp\os\il2cpp-config-switch.h \
+  D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools\il2cpp\libil2cpp\os/ConditionVariableImpl.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp/os/c-api/il2cpp-config-api-platforms.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp/il2cpp-config-api.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp/il2cpp-api-types.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\vm/Atomic.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\os/Atomic.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\utils/NonCopyable.h \
+  D:\Unity\Editor\Data\il2cpp\libil2cpp\os/c-api/Atomic-c-api.h \
+  D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools\il2cpp\libil2cpp\os\c-api\AtomicImpl-c-api.h \
+  D:\Unity\Editor\Data\PlaybackEngines\Switch\Tools\il2cpp\libil2cpp\os/AtomicImpl.h

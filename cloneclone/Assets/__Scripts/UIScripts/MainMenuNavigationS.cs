@@ -376,10 +376,17 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 currentMenuZeroPosition++;
 
                     attractCountdown = attractCountdownMax;
+#if UNITY_SWITCH
+                                if (currentMenuZeroPosition > 1)
+                                {
+                                    currentMenuZeroPosition = 1;
+                                }
+#else
                                 if (currentMenuZeroPosition > 2)
                                 {
                                     currentMenuZeroPosition = 2;
                                 }
+#endif
                                 cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
                                 stickReset = false;
                             }
@@ -451,7 +458,9 @@ public class MainMenuNavigationS : MonoBehaviour {
                                 }
                                 else
                                 {
+#if !UNITY_SWITCH
                                     Application.Quit();
+#endif
                                 }
                                 selectReset = false;
                             }
@@ -583,21 +592,21 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection ++;
-						#if UNITY_WEBGL
+#if UNITY_WEBGL
 						if (currentSelection == 1 && !canContinue){
 							currentSelection = 2;
 						}
 						if (currentSelection > menuSelections.Length-2){
 							currentSelection = 0;
 						}
-						#else
+#else
 						
                         // for now, only allow two options (start game), options
 							if (currentSelection > 2){
 								currentSelection = 0;
 							}
 						
-						#endif
+#endif
 					
 					SetSelection();
 				}
@@ -614,20 +623,20 @@ public class MainMenuNavigationS : MonoBehaviour {
 					stickReset = false;
 					
 					currentSelection --;
-						#if UNITY_WEBGL
+#if UNITY_WEBGL
 						if (currentSelection == 1 && !canContinue){
 							currentSelection = 0;
 						}
 						if (currentSelection < 0){
 							currentSelection = menuSelections.Length-2;
 						}
-						#else
+#else
                         // for now, only allow two options (start game), options
                         if (currentSelection < 0)
                         {
                             currentSelection = 2;
                         }
-						#endif
+#endif
 					SetSelection();
 				}
 

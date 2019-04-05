@@ -1277,7 +1277,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 					GetComponent<BleedingS>().StartDeath();
 
-					CameraFollowS.F.RemoveLimits();
+#if UNITY_SWITCH
+                        
+#endif
+
+                        CameraFollowS.F.RemoveLimits();
 					warningReference.EndAll();
 						delayDeath = false;
 						PlayerController.doWakeUp = true;

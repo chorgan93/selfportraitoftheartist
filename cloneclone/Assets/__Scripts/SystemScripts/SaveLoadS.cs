@@ -125,7 +125,7 @@ public class SaveLoadS : MonoBehaviour {
 	}
 
 	public static bool SaveFileExists(){
-#if UNITY_SWITCH
+#if UNITY_SWITCH && !UNITY_EDITOR
         return NintendoSwitchSaveObjS.singleton.load();
 #endif
         if (Application.platform == RuntimePlatform.WebGLPlayer){
