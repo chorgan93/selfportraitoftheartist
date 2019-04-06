@@ -58,8 +58,8 @@ public class CheckpointS : MonoBehaviour {
 
 		DeathCountdownS.DC.TurnOffCountdown(true);
 
-        healMessage = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_00");
-        healMessageWithItem = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_01");
+        healMessage = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_00").Replace("\n", System.Environment.NewLine);
+        healMessageWithItem = LocalizationManager.instance.GetLocalizedValue("checkpoint_message_01").Replace("\n", System.Environment.NewLine);
 
         if (!fullCheckpoint){
 			instructionText = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();

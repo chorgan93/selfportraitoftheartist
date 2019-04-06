@@ -33,6 +33,7 @@ public class DialogueManagerS : MonoBehaviour {
 
 	public Image memoBG;
 	public VideoPlayer memoMovie;
+    public RawImage memoMovieImage;
 	public Text memoText;
 
 	public Image itemPopup;
@@ -82,7 +83,8 @@ public class DialogueManagerS : MonoBehaviour {
 		memoTextMoviePos.y+=85f;
 		memoMovie.enabled = false;
         memoMovie.gameObject.SetActive(false);
-		_doneScrolling = true;
+        memoMovieImage.gameObject.SetActive(false);
+        _doneScrolling = true;
 
 		itemPopup.enabled = itemPopupBG.enabled = false;
 		popMaxHeight = itemPopupBG.rectTransform.sizeDelta.y;
@@ -286,15 +288,13 @@ public class DialogueManagerS : MonoBehaviour {
 			if (movieText){
 			if (!memoMovie.enabled){
 				memoText.rectTransform.anchoredPosition = memoTextMoviePos;
+                    memoMovieImage.enabled = false;
 				memoMovie.enabled = true;
                     memoMovie.gameObject.SetActive(true);
+                    memoMovieImage.gameObject.SetActive(true);
 				memoMovie.clip = movieText;
-				//memoMovie.SetNativeSize();
-					//memoMovie.rectTransform.sizeDelta *= movieSizeMult;
-				//MovieTexture playMovie = (MovieTexture)memoMovie.mainTexture;
-				//memoMovie.loop = true;
-				memoMovie.Play();
-			}
+                    StartCoroutine(PlayTutorialMovie());
+                }
 			}else{
 
 				memoText.rectTransform.anchoredPosition = memoTextStartPos;
@@ -309,6 +309,23 @@ public class DialogueManagerS : MonoBehaviour {
 
 
 	}
+
+    IEnumerator PlayTutorialMovie(){
+        memoMovie.Prepare();
+        while (!memoMovie.isPrepared){
+            yield return null;
+        }
+        //memoMovie.SetNativeSize();
+        //memoMovie.rectTransform.sizeDelta *= movieSizeMult;
+        //MovieTexture playMovie = (MovieTexture)memoMovie.mainTexture;
+        //memoMovie.loop = true;
+        memoMovieImage.texture = memoMovie.texture;
+        memoMovie.Play();
+        memoMovieImage.rectTransform.sizeDelta = new Vector2(425f, memoMovie.texture.height*425f/memoMovie.texture.width);
+        memoMovieImage.enabled = true;
+        //memoMovieImage.SetNativeSize();
+        Debug.Log("Play movie!");
+    }
 
 	public void CompleteText(){
 		if (hideStats){
@@ -345,6 +362,7 @@ public class DialogueManagerS : MonoBehaviour {
 		_textActive = false;
 		memoMovie.enabled = false;
         memoMovie.gameObject.SetActive(false);
+        memoMovieImage.gameObject.SetActive(false);
 
 		if (itemPopupBG.gameObject.activeSelf){
 			StartCoroutine(ItemFindDisable());

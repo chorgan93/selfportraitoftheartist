@@ -132,7 +132,7 @@ public class CombatGiverUIS : MonoBehaviour {
 			}
 			avgCombatRanking = Mathf.RoundToInt(avgCombatRanking/arenaCombatIDs.Length);
 				}
-				rulesText.text = "Current Rank: ";
+                rulesText.text = LocalizationManager.instance.GetLocalizedValue("arena_combat_05") + " ";
 				switch (avgCombatRanking){
 				default:
 					rulesText.text += " [C]";
@@ -148,9 +148,9 @@ public class CombatGiverUIS : MonoBehaviour {
 					break;
 				}
 				if (newText == "A" && avgCombatRanking < 3){
-					rulesText.text += " : Required Rank: <color=red>[" + newText + "]</color>";
+					rulesText.text += " : " + LocalizationManager.instance.GetLocalizedValue("arena_combat_06") + " <color=red>[" + newText + "]</color>";
 				}else{
-					rulesText.text += " : Required Rank: [" + newText + "]";
+					rulesText.text += " : " + LocalizationManager.instance.GetLocalizedValue("arena_combat_06") + " [" + newText + "]";
 				}
 			rulesText.enabled = true;
 			rulesBG.enabled = true;
