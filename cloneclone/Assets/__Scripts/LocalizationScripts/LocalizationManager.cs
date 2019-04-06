@@ -38,7 +38,7 @@ public class LocalizationManager : MonoBehaviour
         if (masterText_EN != null)
         {
             string dataAsJson = masterText_EN.text;
-            Debug.Log(dataAsJson);
+            //Debug.Log(dataAsJson);
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
             for (int i = 0; i < loadedData.items.Length; i++)
