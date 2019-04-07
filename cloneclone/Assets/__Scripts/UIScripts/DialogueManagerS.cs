@@ -84,6 +84,7 @@ public class DialogueManagerS : MonoBehaviour {
 		memoMovie.enabled = false;
         memoMovie.gameObject.SetActive(false);
         memoMovieImage.gameObject.SetActive(false);
+        memoMovieImage.gameObject.SetActive(false);
         _doneScrolling = true;
 
 		itemPopup.enabled = itemPopupBG.enabled = false;
@@ -287,13 +288,18 @@ public class DialogueManagerS : MonoBehaviour {
 
 			if (movieText){
 			if (!memoMovie.enabled){
-				memoText.rectTransform.anchoredPosition = memoTextMoviePos;
+                    // will not work on switch; disable until solution is found
+#if !UNITY_SWITCH
+                    memoText.rectTransform.anchoredPosition = memoTextMoviePos;
                     memoMovieImage.enabled = false;
 				memoMovie.enabled = true;
                     memoMovie.gameObject.SetActive(true);
                     memoMovieImage.gameObject.SetActive(true);
 				memoMovie.clip = movieText;
                     StartCoroutine(PlayTutorialMovie());
+#else
+                    memoText.rectTransform.anchoredPosition = memoTextStartPos;
+#endif
                 }
 			}else{
 

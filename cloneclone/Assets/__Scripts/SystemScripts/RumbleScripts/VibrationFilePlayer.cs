@@ -9,7 +9,7 @@ public class VibrationFilePlayer
 {
     private VibrationFileResource m_vibrationFile; // The file that we're sampling
     private uint m_filePosition = 0;    // Where we are right now in the playback of the file
-    private bool m_isPlaying = false;
+    private bool _isPlaying = false;
 
     /// <summary>
     /// Constructor for VibrationFilePlayer. 
@@ -37,7 +37,7 @@ public class VibrationFilePlayer
         // Note that using the overload of VibrationValue.Make() that takes no arguments would give us the same result
         // as the next line, but the explicit version is used for demonstration purposes. 
         VibrationValue vibrationValue = VibrationValue.Make(0.0f, VibrationValue.FrequencyLowDefault, 0.0f, VibrationValue.FrequencyHighDefault);
-        if (!m_isPlaying)
+        if (!_isPlaying)
         {
             return vibrationValue;
         }
@@ -50,7 +50,7 @@ public class VibrationFilePlayer
         else if (m_filePosition >= fileInfo.sampleLength) // Have we reached the end of the data? 
         {
             SetPlayPositionToFileStart();
-            m_isPlaying = false;    // Reached end of file and there's no loop. If there were a loop, we couldn't have made it past the previous 'if'.
+            _isPlaying = false;    // Reached end of file and there's no loop. If there were a loop, we couldn't have made it past the previous 'if'.
             return vibrationValue;  // Don't want to return the first sample (0) if we're not looping, so return the default.
         }
 
@@ -84,7 +84,7 @@ public class VibrationFilePlayer
     /// </summary>
     public void Play()
     {
-        m_isPlaying = true;
+        _isPlaying = true;
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ public class VibrationFilePlayer
     /// <returns>Whether or not the effect is currently playing.</returns>
     public bool IsPlaying()
     {
-        return m_isPlaying;
+        return _isPlaying;
     }
 
     /// <summary>
