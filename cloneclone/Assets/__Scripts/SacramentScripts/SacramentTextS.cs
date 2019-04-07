@@ -7,6 +7,7 @@ public class SacramentTextS : MonoBehaviour {
 
 	public enum SacramentTextType {Scrolling, FadeIn, Instant};
 	public SacramentTextType textType = SacramentTextType.Scrolling;
+    public bool ignoreLocalization = false;
 
 	private Text myText;
 	private bool _initialized;
@@ -132,7 +133,12 @@ public class SacramentTextS : MonoBehaviour {
 		if (!_initialized){
 			_stepRef = myStep;
 			myText = GetComponent<Text>();
-            fullText = LocalizationManager.instance.GetLocalizedValue(myText.text);
+            if (!ignoreLocalization)
+            {
+                fullText = LocalizationManager.instance.GetLocalizedValue(myText.text);
+            }else{
+                fullText = myText.text;
+            }
 			myCol = myText.color;
 			maxAlpha = myCol.a;
 			if (autoAdvanceTime > 0){

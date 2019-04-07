@@ -1069,7 +1069,7 @@
   },
   {
     "key": "menu_loading_ellipses",
-    "value": "\"Loading...\""
+    "value": "Loading..."
   },
   {
     "key": "examine_label_ex",
@@ -1085,7 +1085,7 @@
   },
   {
     "key": "warning_charge_insufficient",
-    "value": "\"— INSUFFICIENT Charge —"
+    "value": "— INSUFFICIENT Charge —"
   },
   {
     "key": "memo_intro",
@@ -5210,6 +5210,1857 @@
   {
     "key": "merchant_item_13_desc",
     "value": "Unlocks option in Level Up menu to revert previous Upgrade choices."
+  },
+  {
+    "key": "elevator_00",
+    "value": "Going up."
+  },
+  {
+    "key": "elevator_01",
+    "value": "F2."
+  },
+  {
+    "key": "elevator_02",
+    "value": "F5."
+  },
+  {
+    "key": "examine_label_leave",
+    "value": ": Leave"
+  },
+  {
+    "key": "elevator_03",
+    "value": "There is no turning back beyond this point. Do you still wish to continue?"
+  },
+  {
+    "key": "elevator_04",
+    "value": "To pass beyond this point means accepting the consequences of your actions and whatever else may come. Do you still wish to continue?"
+  },
+  {
+    "key": "elevator_05",
+    "value": "Your fate will be sealed and there will be no one but yourself to blame. Do you still wish to continue?"
+  },
+  {
+    "key": "elevator_06",
+    "value": "F12."
+  },
+  {
+    "key": "examine_label_end",
+    "value": ": End"
+  },
+  {
+    "key": "examine_label_embrace",
+    "value": ": Embrace"
+  },
+  {
+    "key": "christian_02_00",
+    "value": "GOD DAMMIT!!"
+  },
+  {
+    "key": "christian_02_01",
+    "value": "IT'S NOT SUPPOSED TO BE LIKE THIS!"
+  },
+  {
+    "key": "christian_02_02",
+    "value": "I'M THE STRONG ONE, ME! IT'S ME!!"
+  },
+  {
+    "key": "christian_02_03",
+    "value": "But I know your tricks, PLAYERNAME...I've figured you out..."
+  },
+  {
+    "key": "christian_02_04",
+    "value": "AGHHHHHHHHHHH!!"
+  },
+  {
+    "key": "christian_02_05",
+    "value": "WHY DOES IT HURT SO MUCH!?"
+  },
+  {
+    "key": "christian_02_06",
+    "value": "I HATE YOU PLAYERNAME!!"
+  },
+  {
+    "key": "christian_02_07",
+    "value": "Hey..."
+  },
+  {
+    "key": "christian_02_08",
+    "value": "PLAYERNAME..."
+  },
+  {
+    "key": "christian_02_09",
+    "value": "I'm so scared."
+  },
+  {
+    "key": "christian_02_10",
+    "value": "I don't want to feel like this..."
+  },
+  {
+    "key": "christian_02_11",
+    "value": "I DON'T WANT TO BE LIKE THIS!!"
+  },
+  {
+    "key": "christian_02_12",
+    "value": "No..."
+  },
+  {
+    "key": "christian_02_13",
+    "value": "BURN IN HELL!!"
+  },
+  {
+    "key": "christian_02_14",
+    "value": "YOU'RE NOT BETTER THAN ME!!"
+  },
+  {
+    "key": "christian_02_15",
+    "value": "It’s all so horrible, so hot, enveloping…"
+  },
+  {
+    "key": "christian_02_16",
+    "value": "…but it’s comforting, in a way."
+  },
+  {
+    "key": "christian_02_17",
+    "value": "We fight and fight and fight, but the nightmares never stop."
+  },
+  {
+    "key": "christian_02_18",
+    "value": "Have you ever thought about why?"
+  },
+  {
+    "key": "christian_02_19",
+    "value": "It’s us!..I mean, it's gotta be, right?"
+  },
+  {
+    "key": "christian_02_20",
+    "value": "We bring it on ourselves."
+  },
+  {
+    "key": "christian_02_21",
+    "value": "I mean, look, there’s nothing!"
+  },
+  {
+    "key": "christian_02_22",
+    "value": "We’ve arrived, this is our “cleansing”, and look!"
+  },
+  {
+    "key": "christian_02_23",
+    "value": "It’s just dusty relics, emptiness, a sun that doesn’t shine."
+  },
+  {
+    "key": "christian_02_24",
+    "value": "It’s…us."
+  },
+  {
+    "key": "christian_02_25",
+    "value": "I’m tired of it. I’m tired of these empty promises, I’m tired of lying to myself."
+  },
+  {
+    "key": "christian_02_26",
+    "value": "I want to fight! I want TO DIE!!"
+  },
+  {
+    "key": "christian_02_27",
+    "value": "This is the end, PLAYERNAME!! This is all we have left!!"
+  },
+  {
+    "key": "christian_02_28",
+    "value": "Show me you’re better than me! Show me you deserve to go on! "
+  },
+  {
+    "key": "christian_02_29",
+    "value": "SHOW ME!!"
+  },
+  {
+    "key": "examine_label_taunt",
+    "value": "Taunt"
+  },
+  {
+    "key": "messiah_00",
+    "value": "IT IS HAPPENING AGAIN"
+  },
+  {
+    "key": "messiah_01",
+    "value": "Natalie..."
+  },
+  {
+    "key": "messiah_02",
+    "value": "...I did everything I could."
+  },
+  {
+    "key": "messiah_03",
+    "value": "I'm sorry it had to be like this."
+  },
+  {
+    "key": "thomas_00",
+    "value": "Oh, hey...I didn't think you'd be here."
+  },
+  {
+    "key": "thomas_01",
+    "value": "You...you..."
+  },
+  {
+    "key": "thomas_02",
+    "value": "...thank you, PLAYERNAME..."
+  },
+  {
+    "key": "thomas_03",
+    "value": "It's...sort of beautiful, isn't it?"
+  },
+  {
+    "key": "thomas_04",
+    "value": "I must have been here too long, because this world..."
+  },
+  {
+    "key": "thomas_05",
+    "value": "...it's horrid, it's dark, and it hurts, but it feels more perfect than the one before."
+  },
+  {
+    "key": "thomas_06",
+    "value": "It's so messed up, what we do to ourselves...but why can't we stop?"
+  },
+  {
+    "key": "thomas_07",
+    "value": "Is this all there is?"
+  },
+  {
+    "key": "thomas_08",
+    "value": "...I've started to think as much, and there's no way out."
+  },
+  {
+    "key": "thomas_09",
+    "value": "It's sad, I guess. I've been here a lot longer than you."
+  },
+  {
+    "key": "thomas_10",
+    "value": "The sun used to shine, and there was life...or, it felt that way."
+  },
+  {
+    "key": "thomas_11",
+    "value": "But slowly, it all hollowed out, to match us - the way we saw it all."
+  },
+  {
+    "key": "thomas_12",
+    "value": "It became -our- paradise."
+  },
+  {
+    "key": "thomas_13",
+    "value": "I don't know what I feel anymore...IF I feel anymore..."
+  },
+  {
+    "key": "thomas_14",
+    "value": "...but I feel...the end..."
+  },
+  {
+    "key": "thomas_15",
+    "value": "I guess I'll see you...around..."
+  },
+  {
+    "key": "thomas_16",
+    "value": "Goodbye, PLAYERNAME..."
+  },
+  {
+    "key": "thomas_17",
+    "value": "I've been waiting for so long to see more, to see someone with HOPE."
+  },
+  {
+    "key": "thomas_18",
+    "value": "Is that why you fight, PLAYERNAME? Is that why you seek DEATH??"
+  },
+  {
+    "key": "thomas_19",
+    "value": "Or are they just the same to you!?"
+  },
+  {
+    "key": "thomas_20",
+    "value": "COME FOR IT! COME FOR ME, PLAYERNAME!"
+  },
+  {
+    "key": "thomas_21",
+    "value": "MAYBE...FINALLY...I CAN BE FREE!!"
+  },
+  {
+    "key": "radio_cultist_00",
+    "value": "Marked one...I can see the struggle under your eyes. Do you want to give in?"
+  },
+  {
+    "key": "radio_cultist_01",
+    "value": "They teach us it's no way out, but there's a freedom in acceptance. Do you agree?"
+  },
+  {
+    "key": "radio_cultist_02",
+    "value": "Then, will you let me help you? Help you reject their teaching?"
+  },
+  {
+    "key": "radio_cultist_03",
+    "value": "There's no going back. Say so now, and you will be free."
+  },
+  {
+    "key": "radio_cultist_04",
+    "value": "ahHhH..."
+  },
+  {
+    "key": "radio_cultist_05",
+    "value": "Not many of us get this far."
+  },
+  {
+    "key": "radio_cultist_06",
+    "value": "Even I can feel my limit."
+  },
+  {
+    "key": "radio_cultist_07",
+    "value": "You've...come back?"
+  },
+  {
+    "key": "radio_cultist_08",
+    "value": "...you really want this, huh."
+  },
+  {
+    "key": "radio_cultist_09",
+    "value": "You're not afraid of what you might find? Ascension wasn't enough?"
+  },
+  {
+    "key": "radio_cultist_10",
+    "value": "Fine, the Descent awaits."
+  },
+  {
+    "key": "radio_cultist_11",
+    "value": "You're...not gone?"
+  },
+  {
+    "key": "radio_cultist_12",
+    "value": "Below us is the Descent."
+  },
+  {
+    "key": "radio_cultist_13",
+    "value": "They say it goes to the center of the world,"
+  },
+  {
+    "key": "radio_cultist_14",
+    "value": "and those who reach it can find...well, we're not sure."
+  },
+  {
+    "key": "radio_cultist_15",
+    "value": "Fulfillment? Happiness? An End? "
+  },
+  {
+    "key": "radio_cultist_16",
+    "value": "Legends and stories, I'm sure..."
+  },
+  {
+    "key": "radio_cultist_17",
+    "value": "Hey..."
+  },
+  {
+    "key": "radio_cultist_18",
+    "value": "I like what Priest is saying, but I don't know."
+  },
+  {
+    "key": "radio_cultist_19",
+    "value": "I'm so scared."
+  },
+  {
+    "key": "radio_cultist_20",
+    "value": "please...stop..."
+  },
+  {
+    "key": "radio_cultist_21",
+    "value": "If my heart is not ready, than neither is yours."
+  },
+  {
+    "key": "radio_cultist_22",
+    "value": "Maybe someday, but not now."
+  },
+  {
+    "key": "radio_cultist_23",
+    "value": "It's safe here."
+  },
+  {
+    "key": "radio_cultist_24",
+    "value": "I don't think it will last, but for now it's safe."
+  },
+  {
+    "key": "radio_cultist_25",
+    "value": "I feel lucky I'm here, but I don't think I can go on."
+  },
+  {
+    "key": "radio_cultist_26",
+    "value": "My luck has to run out, right? "
+  },
+  {
+    "key": "radio_cultist_27",
+    "value": "I don't feel so good."
+  },
+  {
+    "key": "radio_cultist_28",
+    "value": "I'm always so scared."
+  },
+  {
+    "key": "radio_cultist_29",
+    "value": "Maybe I should just give in?"
+  },
+  {
+    "key": "radio_cultist_30",
+    "value": "We've shut away the Descent for fear of the true Darkness within. "
+  },
+  {
+    "key": "radio_cultist_31",
+    "value": "We lost too many, with stronger hearts than mine."
+  },
+  {
+    "key": "radio_cultist_32",
+    "value": "But I won't stop you, if that's what you want."
+  },
+  {
+    "key": "radio_cultist_33",
+    "value": "There's a scar, deep in the heart of this place...what will you do when you find it?"
+  },
+  {
+    "key": "radio_cultist_34",
+    "value": "I can't stop turning at night. It's like someone's there, pushing and clawing."
+  },
+  {
+    "key": "radio_cultist_35",
+    "value": "Squeezing my heart so tight, I can barely breathe."
+  },
+  {
+    "key": "radio_cultist_36",
+    "value": "And then we have to do it all over again."
+  },
+  {
+    "key": "radio_cultist_37",
+    "value": "I used to think the fear comforted me."
+  },
+  {
+    "key": "radio_cultist_38",
+    "value": "I'm not so sure anymore."
+  },
+  {
+    "key": "radio_cultist_39",
+    "value": "...I'm not sure where else we can go."
+  },
+  {
+    "key": "radio_cultist_40",
+    "value": "i just want to wither away...Alone"
+  },
+  {
+    "key": "radio_cultist_41",
+    "value": "please go aWay"
+  },
+  {
+    "key": "radio_cultist_42",
+    "value": "please...stop..."
+  },
+  {
+    "key": "radio_cultist_43",
+    "value": "I don't feel so good."
+  },
+  {
+    "key": "radio_worshipper_00",
+    "value": "Oh, little one, the Corruption is so strong in you...would you like me to help?"
+  },
+  {
+    "key": "radio_worshipper_01",
+    "value": "I cannot cleanse you fully, but I can stem the Corruption's influence. There's no undoing this, understood?"
+  },
+  {
+    "key": "radio_worshipper_02",
+    "value": "You will be sacrificing much, so I ask again, is this what your heart desires?"
+  },
+  {
+    "key": "radio_worshipper_03",
+    "value": "Very well. I shall start if you give me one final word."
+  },
+  {
+    "key": "radio_worshipper_04",
+    "value": "We feel Father's loss, but celebrate nonetheless."
+  },
+  {
+    "key": "radio_worshipper_05",
+    "value": "Priest promised us freedom, and I eagerly await the day it comes."
+  },
+  {
+    "key": "radio_worshipper_06",
+    "value": "Welcome, little one."
+  },
+  {
+    "key": "radio_worshipper_07",
+    "value": "Even though you are unclean, we can make you better."
+  },
+  {
+    "key": "radio_worshipper_08",
+    "value": "Talk to Priest up ahead and be blessed."
+  },
+  {
+    "key": "radio_worshipper_09",
+    "value": "Did you hear what happened to Cardinal!"
+  },
+  {
+    "key": "radio_worshipper_10",
+    "value": "Such light! Such ecstasy!!"
+  },
+  {
+    "key": "radio_worshipper_11",
+    "value": "How I wish that were me!"
+  },
+  {
+    "key": "radio_worshipper_12",
+    "value": "There is salvation to be found, even of your kind."
+  },
+  {
+    "key": "radio_worshipper_13",
+    "value": "If you're willing to sacrifice, that is..."
+  },
+  {
+    "key": "radio_worshipper_14",
+    "value": "I will wait patiently, but until then..."
+  },
+  {
+    "key": "radio_worshipper_15",
+    "value": "Rejoice! Rejoice!!"
+  },
+  {
+    "key": "radio_worshipper_16",
+    "value": "Even when the world weighs on me, I give in, because I know what's to come."
+  },
+  {
+    "key": "radio_worshipper_17",
+    "value": "Why can't you see the world this way? "
+  },
+  {
+    "key": "radio_worshipper_18",
+    "value": "That's what sets us apart."
+  },
+  {
+    "key": "radio_worshipper_19",
+    "value": "There is salvation to be found, even of your kind!"
+  },
+  {
+    "key": "radio_worshipper_20",
+    "value": "Rejoice! How merciful is He!"
+  },
+  {
+    "key": "radio_worshipper_21",
+    "value": "I'd feel sorry for you, little one, but it's what He decrees."
+  },
+  {
+    "key": "radio_worshipper_22",
+    "value": "Accept it, you'll be so much happier."
+  },
+  {
+    "key": "radio_worshipper_23",
+    "value": "I see the ritual worked. I'm...sorry."
+  },
+  {
+    "key": "maria_00",
+    "value": "Ha, you're funny."
+  },
+  {
+    "key": "maria_01",
+    "value": "I was trying to be quick, but if you want to fight, then we'll fight."
+  },
+  {
+    "key": "maria_02",
+    "value": "I've HAD IT!"
+  },
+  {
+    "key": "maria_03",
+    "value": "No more games, no more mercy!"
+  },
+  {
+    "key": "maria_04",
+    "value": "I'm...not surprised you're here."
+  },
+  {
+    "key": "maria_05",
+    "value": "You remind me of someone I knew, long ago..."
+  },
+  {
+    "key": "maria_06",
+    "value": "So rebellious...so free..."
+  },
+  {
+    "key": "maria_07",
+    "value": "So Naive."
+  },
+  {
+    "key": "maria_08",
+    "value": "That innocence...that's what led me here. That's what led me to create all this."
+  },
+  {
+    "key": "maria_09",
+    "value": "This Paradise, doomed from the start."
+  },
+  {
+    "key": "maria_10",
+    "value": "I'm so sorry...PLAYERNAME..."
+  },
+  {
+    "key": "maria_11",
+    "value": "I'm so sorry for what I've become."
+  },
+  {
+    "key": "maria_12",
+    "value": "Please...please forgive me!"
+  },
+  {
+    "key": "maria_13",
+    "value": "Naomi...no, Natalie...no..."
+  },
+  {
+    "key": "maria_14",
+    "value": "PLAYERNAME!"
+  },
+  {
+    "key": "maria_15",
+    "value": "Naomi...I remember..."
+  },
+  {
+    "key": "maria_16",
+    "value": "I am...Anna..."
+  },
+  {
+    "key": "maria_17",
+    "value": "Oh my god...what have I done..."
+  },
+  {
+    "key": "maria_18",
+    "value": "Oh my god...Naomi...NAOMI!!"
+  },
+  {
+    "key": "maria_19",
+    "value": "You wouldn't even BE HERE without me!"
+  },
+  {
+    "key": "maria_20",
+    "value": "Do you really think you can escape!?"
+  },
+  {
+    "key": "maria_21",
+    "value": "There's no way out!! None!!"
+  },
+  {
+    "key": "maria_22",
+    "value": "Accept it and DIE!"
+  },
+  {
+    "key": "maria_23",
+    "value": "LAY DOWN AND DIE!!"
+  },
+  {
+    "key": "maria_24",
+    "value": "Meant to decay...like everything."
+  },
+  {
+    "key": "maria_25",
+    "value": "I don't have that hope anymore."
+  },
+  {
+    "key": "maria_26",
+    "value": "I accepted it, and begged for mercy that never came."
+  },
+  {
+    "key": "maria_27",
+    "value": "So now we're alone."
+  },
+  {
+    "key": "maria_28",
+    "value": "No sun, no God...only an empty Faith."
+  },
+  {
+    "key": "maria_29",
+    "value": "And it's all I have..."
+  },
+  {
+    "key": "maria_30",
+    "value": "There's no point in hiding it now."
+  },
+  {
+    "key": "maria_31",
+    "value": "Come, let me show you...the real me...what our Paradise really is."
+  },
+  {
+    "key": "maria_32",
+    "value": "Do you see, Natalie? Our hearts are one and the same."
+  },
+  {
+    "key": "maria_33",
+    "value": "But you don't fight the corruption; you embrace it."
+  },
+  {
+    "key": "maria_34",
+    "value": "You let PLAYERNAME into your heart, where they have no right to be."
+  },
+  {
+    "key": "maria_35",
+    "value": "And it's changed you, made you...impure."
+  },
+  {
+    "key": "maria_36",
+    "value": "I've given you so many chances Natalie, but it's obvious you're not meant for my world."
+  },
+  {
+    "key": "maria_37",
+    "value": "So, I'll remove you, just like the others."
+  },
+  {
+    "key": "maria_38",
+    "value": "No more chances, PLAYERNAME. This time, you die."
+  },
+  {
+    "key": "christian_final_00",
+    "value": "You’re going to be okay…"
+  },
+  {
+    "key": "christian_final_01",
+    "value": "Just a little more…"
+  },
+  {
+    "key": "christian_final_02",
+    "value": "PLAYERNAME…"
+  },
+  {
+    "key": "christian_final_03",
+    "value": "It’s okay, I’ve got you…"
+  },
+  {
+    "key": "christian_final_04",
+    "value": "I get it now, PLAYERNAME."
+  },
+  {
+    "key": "christian_final_05",
+    "value": "I finally get it."
+  },
+  {
+    "key": "christian_final_06",
+    "value": "We’re not what they told us we were. We’re not who they want us to be."
+  },
+  {
+    "key": "christian_final_07",
+    "value": "Your strength showed me, that it’s okay now. We can be okay."
+  },
+  {
+    "key": "christian_final_08",
+    "value": "We are us, and that’s okay."
+  },
+  {
+    "key": "christian_final_09",
+    "value": "I couldn’t accept it before, and it tore our hearts apart."
+  },
+  {
+    "key": "christian_final_10",
+    "value": "But now, I can accept it. I can accept me."
+  },
+  {
+    "key": "christian_final_11",
+    "value": "I wasn’t okay, and I don’t think I’m okay, but I don’t have to be this way. WE don’t have to be this way. Not anymore."
+  },
+  {
+    "key": "christian_final_12",
+    "value": "Because I know I don’t have to be alone. That we’re not doomed to be like this forever. You showed me that."
+  },
+  {
+    "key": "christian_final_13",
+    "value": "We’re almost there, PLAYERNAME. "
+  },
+  {
+    "key": "christian_final_14",
+    "value": "This world is coming apart, but we don’t need it anymore."
+  },
+  {
+    "key": "christian_final_15",
+    "value": "We can finally be free, we can finally wake up,"
+  },
+  {
+    "key": "christian_final_16",
+    "value": "if we just make it a bit farther."
+  },
+  {
+    "key": "christian_final_17",
+    "value": "There…you got it…you got it…"
+  },
+  {
+    "key": "christian_final_18",
+    "value": "You can do it…you can do it…"
+  },
+  {
+    "key": "pre_maria_00",
+    "value": "Not this time."
+  },
+  {
+    "key": "pre_maria_01",
+    "value": "My bed. I don't need to sleep anymore."
+  },
+  {
+    "key": "pre_maria_02",
+    "value": "An old TV. Nothing is playing."
+  },
+  {
+    "key": "pre_maria_03",
+    "value": "I like this game, but I don't need to play it now."
+  },
+  {
+    "key": "pre_maria_04",
+    "value": "A game console. I'll play another time."
+  },
+  {
+    "key": "pre_maria_05",
+    "value": "It's broken."
+  },
+  {
+    "key": "pre_maria_06",
+    "value": "Born of a Dream"
+  },
+  {
+    "key": "sacrament_i_title",
+    "value": "sacrament    i"
+  },
+  {
+    "key": "sacrament_i_00",
+    "value": "In the Sanctum, they do not allow us to dream."
+  },
+  {
+    "key": "sacrament_i_01",
+    "value": "\"What is your name?\""
+  },
+  {
+    "key": "sacrament_i_02",
+    "value": "So at night, Naomi and I go to our secret place, "
+  },
+  {
+    "key": "sacrament_i_03",
+    "value": "and I dream for the two of us."
+  },
+  {
+    "key": "sacrament_i_04",
+    "value": "After Mother has done the rounds, Naomi waits for the footsteps to fade, and climbs to my bed."
+  },
+  {
+    "key": "sacrament_i_05",
+    "value": "“All clear” she whispers, harsh and dramatic like one of the old stars. I stifle a laugh, and she breaks with a giggle. "
+  },
+  {
+    "key": "sacrament_i_06",
+    "value": "The hairs on my neck prickle at her voice, the air rushing over my ear. I smile, open my eyes, and we go."
+  },
+  {
+    "key": "sacrament_i_07",
+    "value": "Deeper."
+  },
+  {
+    "key": "sacrament_i_08",
+    "value": "Deeper."
+  },
+  {
+    "key": "sacrament_i_09",
+    "value": "\"Insolent!"
+  },
+  {
+    "key": "sacrament_i_10",
+    "value": "I should pluck your feathers for this!\""
+  },
+  {
+    "key": "sacrament_i_11",
+    "value": "I try to stay strong, but my eyes are burning. "
+  },
+  {
+    "key": "sacrament_i_12",
+    "value": "I have to pull through. Naomi would pull through; she’s strong like that."
+  },
+  {
+    "key": "sacrament_i_13",
+    "value": "I don’t want Naomi to see me like this."
+  },
+  {
+    "key": "sacrament_i_14",
+    "value": "What is my name?"
+  },
+  {
+    "key": "sacrament_i_15",
+    "value": "I hold back tears as the title leaves my lips."
+  },
+  {
+    "key": "sacrament_i_16",
+    "value": "“There. You should have said that first.”"
+  },
+  {
+    "key": "sacrament_i_17",
+    "value": "“Maria, if you continue down this path, there will be nothing I can do to help you. "
+  },
+  {
+    "key": "sacrament_i_18",
+    "value": "\"You will be damned, and you know what the worst part will be?"
+  },
+  {
+    "key": "sacrament_i_19",
+    "value": "“It’ll be only your fault. God cannot save those who don’t want to be saved.”"
+  },
+  {
+    "key": "sacrament_i_20",
+    "value": "“You want to be saved, right Maria?”"
+  },
+  {
+    "key": "sacrament_i_21",
+    "value": "As much as I want to speak, my lips stay sealed."
+  },
+  {
+    "key": "sacrament_i_22",
+    "value": "Mother won’t approve either way."
+  },
+  {
+    "key": "sacrament_i_23",
+    "value": "As Mother Olivia stares at me, I’m overcome with a crushing gravity,"
+  },
+  {
+    "key": "sacrament_i_24",
+    "value": "Black as the pupils of her eyes."
+  },
+  {
+    "key": "sacrament_i_25",
+    "value": "“Good, child. We have no need for such foolish games."
+  },
+  {
+    "key": "sacrament_i_26",
+    "value": "“The corruption might be stopped yet.”"
+  },
+  {
+    "key": "sacrament_i_27",
+    "value": "Mother stands and I flinch. No shout comes, but I catch a smirk on her face."
+  },
+  {
+    "key": "sacrament_i_28",
+    "value": "“The world is not made for people like you and I. We are different; we are special."
+  },
+  {
+    "key": "sacrament_i_29",
+    "value": "\"We must take what makes us special -- our blessings, our wings! -- and transcend.”"
+  },
+  {
+    "key": "sacrament_i_30",
+    "value": "“We are more than what we are made of, and for that we must feel pain."
+  },
+  {
+    "key": "sacrament_i_31",
+    "value": "“We forsake ourselves. We must obey. We must show thanks."
+  },
+  {
+    "key": "sacrament_i_32",
+    "value": "Only then can we be joyous"
+  },
+  {
+    "key": "sacrament_i_33",
+    "value": "“You are thankful for this joy, right Maria?”"
+  },
+  {
+    "key": "sacrament_i_34",
+    "value": "Mother Olivia turns. I can’t help but notice the bruise on her left cheek."
+  },
+  {
+    "key": "sacrament_i_35",
+    "value": "In that moment, time freezes. "
+  },
+  {
+    "key": "sacrament_i_36",
+    "value": "I’m unable to avert my gaze before Mother strikes."
+  },
+  {
+    "key": "sacrament_i_37",
+    "value": "My mind blanks, and my chest is hollow."
+  },
+  {
+    "key": "sacrament_i_38",
+    "value": "!!"
+  },
+  {
+    "key": "sacrament_i_39",
+    "value": "I only feel a fear and sadness for where we’ve been, and what’s to come."
+  },
+  {
+    "key": "sacrament_i_40",
+    "value": "\"No!\""
+  },
+  {
+    "key": "sacrament_i_41",
+    "value": "Mother Olivia's voice cracks like a switch."
+  },
+  {
+    "key": "sacrament_i_42",
+    "value": "\"Again, what is your Name!?\""
+  },
+  {
+    "key": "sacrament_i_43",
+    "value": "."
+  },
+  {
+    "key": "sacrament_i_44",
+    "value": "Anna"
+  },
+  {
+    "key": "sacrament_i_45",
+    "value": "Maria"
+  },
+  {
+    "key": "sacrament_i_46",
+    "value": "descend"
+  },
+  {
+    "key": "sacrament_i_47",
+    "value": "Yes Mother, I am thankful"
+  },
+  {
+    "key": "sacrament_i_48",
+    "value": "sharp and fragile"
+  },
+  {
+    "key": "sacrament_i_49",
+    "value": "sinewy and tense"
+  },
+  {
+    "key": "sacrament_i_50",
+    "value": "formless and unknowing"
+  },
+  {
+    "key": "sacrament_i_51",
+    "value": "Are you okay"
+  },
+  {
+    "key": "sacrament_i_52",
+    "value": "Quiet!"
+  },
+  {
+    "key": "sacrament_i_53",
+    "value": "Thump"
+  },
+  {
+    "key": "sacrament_i_54",
+    "value": "The Sanctum’s walls are tall and metallic."
+  },
+  {
+    "key": "sacrament_i_55",
+    "value": "On sunny days, the reflections are so blinding everything becomes a haze."
+  },
+  {
+    "key": "sacrament_i_56",
+    "value": "Massive and lumbering."
+  },
+  {
+    "key": "sacrament_i_57",
+    "value": "It’s okay - the haze is all we’ve ever known."
+  },
+  {
+    "key": "sacrament_i_58",
+    "value": "The walls mark the edges of our lives. Nothing in, nothing out."
+  },
+  {
+    "key": "sacrament_i_59",
+    "value": "Mother says we need the walls to keep the Nightmares out."
+  },
+  {
+    "key": "sacrament_i_60",
+    "value": "Even though we can’t dream, they can still hurt us."
+  },
+  {
+    "key": "sacrament_i_61",
+    "value": "At night, you can hear them walking."
+  },
+  {
+    "key": "sacrament_i_62",
+    "value": "I’ve never seen one, but their faces seem etched in my mind."
+  },
+  {
+    "key": "sacrament_i_63",
+    "value": "Just the thought terrifies me..."
+  },
+  {
+    "key": "sacrament_i_64",
+    "value": "So effortless. So assured. "
+  },
+  {
+    "key": "sacrament_i_65",
+    "value": "“It’s ok, it’s ok, Mother should be in bed by now.”"
+  },
+  {
+    "key": "sacrament_i_66",
+    "value": ".  .  ."
+  },
+  {
+    "key": "sacrament_i_67",
+    "value": "Not that she has to, but I...I don’t want to stop her. "
+  },
+  {
+    "key": "sacrament_i_68",
+    "value": "And when I’m with her, I feel a bit of that warmth."
+  },
+  {
+    "key": "sacrament_i_69",
+    "value": "“Are you ok? I’m sorry I bumped-”"
+  },
+  {
+    "key": "sacrament_i_70",
+    "value": "\"Naomi! Are you okay?\""
+  },
+  {
+    "key": "sacrament_i_71",
+    "value": "Any bit of worry that was in Naomi’s face vanishes."
+  },
+  {
+    "key": "sacrament_i_72",
+    "value": "I hate when I’m like this - instant regret, so afraid Naomi won’t understand "
+  },
+  {
+    "key": "sacrament_i_73",
+    "value": "As we get up, Naomi puts her arm around me, and my fear vanishes."
+  },
+  {
+    "key": "sacrament_i_74",
+    "value": "As we get up, Naomi puts her arm around me, and my pain disappears."
+  },
+  {
+    "key": "sacrament_i_75",
+    "value": "\"Quiet!!\""
+  },
+  {
+    "key": "sacrament_i_76",
+    "value": "Naomi looks at me with her off-center grin and laughs."
+  },
+  {
+    "key": "sacrament_i_77",
+    "value": "I’m the only one Naomi apologizes to, but she does it so much when she’s around me. "
+  },
+  {
+    "key": "sacrament_i_78",
+    "value": "I snap, afraid we’ll be caught. "
+  },
+  {
+    "key": "sacrament_i_79",
+    "value": "It’s...cute?"
+  },
+  {
+    "key": "sacrament_i_80",
+    "value": "Naomi looks up with her crooked grin. Her eyes shine like green marble, beaming right at me."
+  },
+  {
+    "key": "sacrament_i_81",
+    "value": "She still understands. Good."
+  },
+  {
+    "key": "sacrament_i_82",
+    "value": "“Besides, if we get caught, I can protect you!”"
+  },
+  {
+    "key": "sacrament_i_83",
+    "value": "Naomi never lets anything like this phase her."
+  },
+  {
+    "key": "sacrament_i_84",
+    "value": "“No, it’s okay, really!”"
+  },
+  {
+    "key": "sacrament_i_85",
+    "value": "Afraid she’ll push me away."
+  },
+  {
+    "key": "sacrament_i_86",
+    "value": "She makes me feel-"
+  },
+  {
+    "key": "sacrament_i_87",
+    "value": "And my sigh turns to a smile."
+  },
+  {
+    "key": "sacrament_i_88",
+    "value": "I sigh."
+  },
+  {
+    "key": "sacrament_i_89",
+    "value": "“Yeah, I’m good.”"
+  },
+  {
+    "key": "sacrament_i_90",
+    "value": "Unstoppable."
+  },
+  {
+    "key": "sacrament_i_91",
+    "value": "Living as nothing."
+  },
+  {
+    "key": "sacrament_i_92",
+    "value": "“Anna, right here!”"
+  },
+  {
+    "key": "sacrament_i_93",
+    "value": "\"Now, can you tell me another dream?\""
+  },
+  {
+    "key": "sacrament_i_94",
+    "value": "“Wha-!?”"
+  },
+  {
+    "key": "sacrament_i_95",
+    "value": "Before I realize what’s happening, I crash into Naomi."
+  },
+  {
+    "key": "sacrament_i_96",
+    "value": "“Ah!!!”"
+  },
+  {
+    "key": "sacrament_i_97",
+    "value": "We fall."
+  },
+  {
+    "key": "sacrament_i_98",
+    "value": "In our space, nothing can hurt us."
+  },
+  {
+    "key": "sacrament_i_99",
+    "value": "I sit Naomi down before taking my place across from her."
+  },
+  {
+    "key": "sacrament_i_100",
+    "value": "We lock eyes and breathe."
+  },
+  {
+    "key": "sacrament_i_101",
+    "value": ".   .   ."
+  },
+  {
+    "key": "sacrament_i_102",
+    "value": "Deeper"
+  },
+  {
+    "key": "sacrament_i_103",
+    "value": "“Let the water consume…”"
+  },
+  {
+    "key": "sacrament_i_104",
+    "value": "The pen reaches my name. I’ve rehearsed this a thousand times, but my lips still falter."
+  },
+  {
+    "key": "sacrament_i_105",
+    "value": "The Pain gets subtler every time. Maybe that’s the point."
+  },
+  {
+    "key": "sacrament_i_106",
+    "value": "Though somehow, I trust it’ll all be okay..."
+  },
+  {
+    "key": "sacrament_i_107",
+    "value": "Whichever unlucky sister Father has his sights on goes down the list, marking off as we regurgitate our given names and creeds."
+  },
+  {
+    "key": "sacrament_i_108",
+    "value": "I feel that sting again. She’s so much better at this than me."
+  },
+  {
+    "key": "sacrament_i_109",
+    "value": "\"Na-o-...I mean-\""
+  },
+  {
+    "key": "sacrament_i_110",
+    "value": "Or maybe I'm just paranoid..."
+  },
+  {
+    "key": "sacrament_i_111",
+    "value": "The pen reaches Naomi’s title. Per usual, she’s stumbling into line, failing to hide her tardiness. "
+  },
+  {
+    "key": "sacrament_i_112",
+    "value": "She stands erect, patting her shirt to flatten the wrinkles. She's trying so hard to appear -together-."
+  },
+  {
+    "key": "sacrament_i_113",
+    "value": "in the end."
+  },
+  {
+    "key": "sacrament_i_114",
+    "value": "until there's nothing left..."
+  },
+  {
+    "key": "sacrament_i_115",
+    "value": "But, Mother knows what she did."
+  },
+  {
+    "key": "sacrament_i_116",
+    "value": "\"My-mm-m\""
+  },
+  {
+    "key": "sacrament_i_117",
+    "value": "She catches herself."
+  },
+  {
+    "key": "sacrament_i_118",
+    "value": "From her podium, Mother Olivia flashes a stare that sears into my brain."
+  },
+  {
+    "key": "sacrament_i_119",
+    "value": "She’ll call Naomi to one of her “private meetings” - show how dark her feathers have become and berate her about purity, even if punishment only adds to the guilt."
+  },
+  {
+    "key": "sacrament_i_120",
+    "value": "\"Davi. Here\""
+  },
+  {
+    "key": "sacrament_i_121",
+    "value": "That...that sounds like something Naomi would say."
+  },
+  {
+    "key": "sacrament_i_122",
+    "value": "Drifting..."
+  },
+  {
+    "key": "sacrament_i_123",
+    "value": "Falling..."
+  },
+  {
+    "key": "sacrament_i_124",
+    "value": "The days pass in and out like ghosts through the halls."
+  },
+  {
+    "key": "sacrament_i_125",
+    "value": "We meander along, aimless and scared. Only knowing the course set for us."
+  },
+  {
+    "key": "sacrament_i_126",
+    "value": "Father says we’re destined for greatness. Mother keeps us in line."
+  },
+  {
+    "key": "sacrament_i_127",
+    "value": "At morning roll-call, I see my classmates file up."
+  },
+  {
+    "key": "sacrament_i_128",
+    "value": "I make sure to get there early, not because I enjoy Catechism,"
+  },
+  {
+    "key": "sacrament_i_129",
+    "value": "but because I don’t want to be singled out more than I already am."
+  },
+  {
+    "key": "sacrament_i_130",
+    "value": "“Natalie”"
+  },
+  {
+    "key": "sacrament_i_131",
+    "value": "“Christopher”"
+  },
+  {
+    "key": "sacrament_i_132",
+    "value": "“Serah”"
+  },
+  {
+    "key": "sacrament_i_133",
+    "value": "“Ciara”"
+  },
+  {
+    "key": "sacrament_i_134",
+    "value": "“Jonathan”"
+  },
+  {
+    "key": "sacrament_i_135",
+    "value": "“Lilli”"
+  },
+  {
+    "key": "sacrament_i_136",
+    "value": "Down"
+  },
+  {
+    "key": "sacrament_i_137",
+    "value": "go"
+  },
+  {
+    "key": "sacrament_i_138",
+    "value": "Erase and Erase"
+  },
+  {
+    "key": "sacrament_i_139",
+    "value": "Out"
+  },
+  {
+    "key": "sacrament_i_140",
+    "value": "In"
+  },
+  {
+    "key": "sacrament_i_141",
+    "value": "Breathe"
+  },
+  {
+    "key": "sacrament_i_142",
+    "value": "Concentrate"
+  },
+  {
+    "key": "sacrament_i_143",
+    "value": "Dream Together"
+  },
+  {
+    "key": "sacrament_i_144",
+    "value": "Together"
+  },
+  {
+    "key": "sacrament_i_145",
+    "value": "Swim in the water"
+  },
+  {
+    "key": "sacrament_i_146",
+    "value": "Smell the flowers"
+  },
+  {
+    "key": "sacrament_i_147",
+    "value": "Gaze at the sky"
+  },
+  {
+    "key": "sacrament_i_148",
+    "value": "Climb the Trees"
+  },
+  {
+    "key": "sacrament_i_149",
+    "value": "Naomi"
+  },
+  {
+    "key": "sacrament_i_150",
+    "value": "Palpable"
+  },
+  {
+    "key": "sacrament_i_151",
+    "value": "We are dreaming."
+  },
+  {
+    "key": "sacrament_i_152",
+    "value": "I grab her hand and we land, gently. One foot, then the other. The surface is wet and shimmering, on top an endless ocean that glints in the void."
+  },
+  {
+    "key": "sacrament_i_153",
+    "value": "Floating, weightless…"
+  },
+  {
+    "key": "sacrament_i_154",
+    "value": "Slowly, stars appear in the sky, one here, another there. They are faint and flickering, but that they’re shining gives us hope and warmth. One day, we will fly."
+  },
+  {
+    "key": "sacrament_i_155",
+    "value": "I open my eyes, and Naomi is drifting with me."
+  },
+  {
+    "key": "sacrament_i_156",
+    "value": "One day, we will see stars."
+  },
+  {
+    "key": "sacrament_i_157",
+    "value": "Down, down into the darkness..."
+  },
+  {
+    "key": "sacrament_i_158",
+    "value": "Naomi’s eyes twinkle at the sight, her mouth agape in wonder. She reaches to the heavens, hoping to catch a star as it falls."
+  },
+  {
+    "key": "sacrament_i_159",
+    "value": "Now, "
+  },
+  {
+    "key": "sacrament_i_160",
+    "value": "I smile and exclaim, "
+  },
+  {
+    "key": "sacrament_i_161",
+    "value": "I take it, grasp it, bring it to my chest, then sprinkle it onto the light. Glittering dust turns to grains of sand, the sand gathers into a mass, and soon we’re standing on the shore of a magnificent island."
+  },
+  {
+    "key": "sacrament_i_162",
+    "value": "\"And we'll...\""
+  },
+  {
+    "key": "sacrament_i_163",
+    "value": "\"Yes! And we'll...\""
+  },
+  {
+    "key": "sacrament_i_164",
+    "value": "A gasp escapes our lips. Naomi looks at me."
+  },
+  {
+    "key": "sacrament_i_165",
+    "value": "“I want to go here. Will you take me someday?”"
+  },
+  {
+    "key": "sacrament_i_166",
+    "value": "The birds we planted in the sky sway in the wind. Their feathers drop as they fly. Drifting, floating, falling - they envelop us."
+  },
+  {
+    "key": "sacrament_i_167",
+    "value": "Sweet and soft, dotting the land. Poking from the grass to say hello."
+  },
+  {
+    "key": "sacrament_i_168",
+    "value": "No more haze, no more grey. White clouds rolling in the breeze, protecting us and granting shade. A sun so brilliant and warm, so you don’t need your robes, but never overbearing."
+  },
+  {
+    "key": "sacrament_i_169",
+    "value": "Cool, blue, lovely and clear. The fish are our guide, wondrous and free."
+  },
+  {
+    "key": "sacrament_i_170",
+    "value": "Trees of all different kinds, springing from the ground. Some tall, some leafy, all green and beautiful."
+  },
+  {
+    "key": "sacrament_i_171",
+    "value": "Letting our wings out to shine, letting us soar with the birds."
+  },
+  {
+    "key": "sacrament_i_172",
+    "value": "Gentle as snow."
+  },
+  {
+    "key": "sacrament_i_173",
+    "value": "Dancing as if in space, nothing tying us to our mortal flesh."
+  },
+  {
+    "key": "sacrament_i_174",
+    "value": "Picked and nestled into dazzling bouquets; crowns for you and me."
+  },
+  {
+    "key": "sacrament_i_175",
+    "value": "Like the ones we only know from the picture book, fronds sway and rustle. We climb, we see, we gather the fruits and roll in the leaves."
+  },
+  {
+    "key": "sacrament_i_176",
+    "value": "Every color we can imagine, even the ones we’ve never seen."
+  },
+  {
+    "key": "sacrament_i_177",
+    "value": "A dream of our own; no one to stop us."
+  },
+  {
+    "key": "sacrament_i_178",
+    "value": "All sound erased. No more lectures or punishment. No more sin."
+  },
+  {
+    "key": "sacrament_i_179",
+    "value": "We can"
+  },
+  {
+    "key": "sacrament_i_180",
+    "value": "I narrate the feelings going through my body; thousands of senses both real and imaginary, that I breathe life into with my words."
+  },
+  {
+    "key": "sacrament_i_181",
+    "value": "A small light shows beneath the surface. As I whisper, it grows, until it envelopes all the ocean we see. The light rises, the water breaks, and though the waves are tall, they pass over us like a gentle breeze."
+  },
+  {
+    "key": "sacrament_i_182",
+    "value": "The excitement is"
+  },
+  {
+    "key": "sacrament_i_183",
+    "value": "Tears roll, but no voice comes."
+  },
+  {
+    "key": "sacrament_i_184",
+    "value": "“Breathe Naomi! Naomi!!”"
+  },
+  {
+    "key": "sacrament_i_185",
+    "value": "Naomi releases her hand. She's breathing heavily."
+  },
+  {
+    "key": "sacrament_i_186",
+    "value": "“Naomi! Naomi!! Breathe!”"
+  },
+  {
+    "key": "sacrament_i_187",
+    "value": "Gasping for air, she grabs at her chest, eyes wide in terror."
+  },
+  {
+    "key": "sacrament_i_188",
+    "value": "She doubles over, and I cry at her side-"
+  },
+  {
+    "key": "sacrament_i_189",
+    "value": "Because Mother takes it out on us."
+  },
+  {
+    "key": "sacrament_i_190",
+    "value": "Naomi comes back that night, crying like I’ve never seen. She hides her wings as she slinks into bed."
+  },
+  {
+    "key": "sacrament_i_191",
+    "value": "The presence of Father is always felt, even if he’s never seen."
+  },
+  {
+    "key": "sacrament_i_192",
+    "value": "She only does that when something is really wrong."
+  },
+  {
+    "key": "sacrament_i_193",
+    "value": "The sisters scramble, a dark cloud covers the children, and our feathers wilt - even Mother Olivia is on edge."
+  },
+  {
+    "key": "sacrament_i_194",
+    "value": "I want to help, but Naomi just shakes and murmurs."
+  },
+  {
+    "key": "sacrament_i_195",
+    "value": "The shouting never seems to end, and when it does, there’s no relief to come."
+  },
+  {
+    "key": "sacrament_i_196",
+    "value": "I don’t know what’s wrong."
+  },
+  {
+    "key": "sacrament_i_197",
+    "value": "I can’t reach her. "
+  },
+  {
+    "key": "sacrament_i_198",
+    "value": "She didn’t have to say more, but-"
+  },
+  {
+    "key": "sacrament_i_199",
+    "value": "I can only smile when she says"
+  },
+  {
+    "key": "sacrament_i_200",
+    "value": "“I want to have a dream of our own”"
+  },
+  {
+    "key": "sacrament_i_201",
+    "value": "“Anna, I found a way out, but I need your help."
+  },
+  {
+    "key": "sacrament_i_202",
+    "value": "Please, help me. "
+  },
+  {
+    "key": "sacrament_i_203",
+    "value": "I need to get out of here.”"
+  },
+  {
+    "key": "sacrament_i_204",
+    "value": "I seat Naomi down, and take my place across from her. "
+  },
+  {
+    "key": "sacrament_i_205",
+    "value": "Naomi listens for the rounds to end, then crawls to my bed."
+  },
+  {
+    "key": "sacrament_i_206",
+    "value": "The cracks come together to form a picture in my head - a gap, an emptiness, forming through my will."
+  },
+  {
+    "key": "sacrament_i_207",
+    "value": "A lone shadow on a sunny day."
+  },
+  {
+    "key": "sacrament_i_208",
+    "value": "As we enter our sleep, I take us outwards instead of in, to the Sanctum’s hazy walls."
+  },
+  {
+    "key": "sacrament_i_209",
+    "value": "Taking hold, wrapping our bodies."
+  },
+  {
+    "key": "sacrament_i_210",
+    "value": "So I push, I strain, forcing myself harder than I ever have, to drag Naomi and I towards the darkness."
+  },
+  {
+    "key": "sacrament_i_211",
+    "value": "“Come on-”"
+  },
+  {
+    "key": "sacrament_i_212",
+    "value": "I picture them, tall and chrome, with our figures lurking beneath. I search the ground for the tiniest of imperfections, gathering them in my head like doubts and memories."
+  },
+  {
+    "key": "sacrament_i_213",
+    "value": "We’re off, back to our secret place."
+  },
+  {
+    "key": "sacrament_i_214",
+    "value": "I scream a silent scream that cracks the world around us."
+  },
+  {
+    "key": "sacrament_i_215",
+    "value": "We’re looking back on the other side of the wall."
+  },
+  {
+    "key": "sacrament_i_216",
+    "value": "It all shatters, vision by vision, leaving only Naomi, the world, and me."
+  },
+  {
+    "key": "sacrament_i_217",
+    "value": "We’ve escaped."
+  },
+  {
+    "key": "sacrament_i_218",
+    "value": "A weight lifts and we can open our"
+  },
+  {
+    "key": "sacrament_i_219",
+    "value": "I wake to Naomi’s eyes staring at mine. They pierce the darkness, even as they’re hazy with tears."
+  },
+  {
+    "key": "sacrament_i_220",
+    "value": "She grabs me, and struggles to squeeze out her words:"
+  },
+  {
+    "key": "sacrament_i_221",
+    "value": "\"I found a way out.\""
+  },
+  {
+    "key": "sacrament_i_222",
+    "value": "Eyes"
+  },
+  {
+    "key": "sacrament_i_223",
+    "value": "Release"
+  },
+  {
+    "key": "sacrament_i_224",
+    "value": "Out"
+  },
+  {
+    "key": "sacrament_i_225",
+    "value": "In"
+  },
+  {
+    "key": "sacrament_i_226",
+    "value": "Small"
+  },
+  {
+    "key": "sacrament_i_227",
+    "value": "There are trees and flowers and stones and rivers."
+  },
+  {
+    "key": "sacrament_i_228",
+    "value": "We run, jumping around; the grass is so inviting."
+  },
+  {
+    "key": "sacrament_i_229",
+    "value": "Everything was so immediate."
+  },
+  {
+    "key": "sacrament_i_230",
+    "value": "Dirt and sand holding us to the heavens."
+  },
+  {
+    "key": "sacrament_i_231",
+    "value": "Light bounces off every surface, the lunar glow wrapping around us."
+  },
+  {
+    "key": "sacrament_i_232",
+    "value": "Everything was so real."
+  },
+  {
+    "key": "sacrament_i_233",
+    "value": "Our feathers shine, and in our hearts, we can feel the cage being lifted."
+  },
+  {
+    "key": "sacrament_i_234",
+    "value": "As soon as the air hit our face, it was like Naomi transformed, back to who I knew."
+  },
+  {
+    "key": "sacrament_i_235",
+    "value": "I turn to Naomi and look her in the eyes, "
+  },
+  {
+    "key": "sacrament_i_236",
+    "value": "“I’m ready to dream.”"
+  },
+  {
+    "key": "sacrament_i_237",
+    "value": "And we let ourselves get lost in each other."
+  },
+  {
+    "key": "sacrament_i_238",
+    "value": "Gravity"
+  },
+  {
+    "key": "sacrament_i_239",
+    "value": "Too innocent."
+  },
+  {
+    "key": "sacrament_i_240",
+    "value": "Solemnity"
+  },
+  {
+    "key": "sacrament_i_241",
+    "value": "Too naive."
+  },
+  {
+    "key": "sacrament_i_242",
+    "value": "Electricity"
+  },
+  {
+    "key": "sacrament_i_243",
+    "value": "“Anna, wake up! "
+  },
+  {
+    "key": "sacrament_i_244",
+    "value": "what"
+  },
+  {
+    "key": "sacrament_i_245",
+    "value": "Stalking."
+  },
+  {
+    "key": "sacrament_i_246",
+    "value": "She pulls me up and points."
+  },
+  {
+    "key": "sacrament_i_247",
+    "value": "stripped"
+  },
+  {
+    "key": "sacrament_i_248",
+    "value": "Haunting."
+  },
+  {
+    "key": "sacrament_i_249",
+    "value": "THEY FOUND US!!\""
+  },
+  {
+    "key": "sacrament_i_250",
+    "value": "In the distance, three figures."
+  },
+  {
+    "key": "sacrament_i_251",
+    "value": "from"
+  },
+  {
+    "key": "sacrament_i_252",
+    "value": "is"
+  },
+  {
+    "key": "sacrament_i_253",
+    "value": "reverie"
+  },
+  {
+    "key": "sacrament_i_254",
+    "value": "reality"
+  },
+  {
+    "key": "sacrament_i_255",
+    "value": "N...no..."
+  },
+  {
+    "key": "sacrament_i_256",
+    "value": "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+  },
+  {
+    "key": "sacrament_i_257",
+    "value": "NO"
+  },
+  {
+    "key": "sacrament_i_258",
+    "value": "Naomi"
+  },
+  {
+    "key": "sacrament_i_259",
+    "value": "Her wings more brilliant than any I've ever seen."
+  },
+  {
+    "key": "sacrament_i_260",
+    "value": "Shining in the darkness, Naomi brings hope. "
+  },
+  {
+    "key": "sacrament_i_261",
+    "value": "She looks back to me, and time freezes."
   }
-]
- }
+]}

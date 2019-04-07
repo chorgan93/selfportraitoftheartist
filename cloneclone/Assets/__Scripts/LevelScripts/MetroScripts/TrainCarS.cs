@@ -111,7 +111,7 @@ public class TrainCarS : MonoBehaviour {
 
 		AssignColliders();
 		SetColliders(true);
-
+            nextStopString = LocalizationManager.instance.GetLocalizedValue(nextStopString) + " ";
 		SetSmallShake();
 		SetLargeShake();
 		CameraShakeS.C.lockXShake = true;

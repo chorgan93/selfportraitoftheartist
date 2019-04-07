@@ -20,7 +20,7 @@ public class ElevatorS : MonoBehaviour {
 	[Header("Timing Properties")]
 	public float timePerStop = 8f;
 	private float currentTimeAtStop;
-	private string doorsClosingString = "Please step back. Doors are closing...";
+	private string doorsClosingString = "train_text_15";
 	private bool doorsClosingMessageGiven = false;
 	private float timeBeforeDoorsMessage = 4f;
 
@@ -28,12 +28,12 @@ public class ElevatorS : MonoBehaviour {
 	private bool elevatorIsStopped = false;
 
 	private bool nextStopMessageGiven = false;
-	private string nextStopString = "Going up.";
+	private string nextStopString = "elevator_00";
 	public float timeToNextStopMessage = 3f;
 	private float nextStopMessageCountdown;
 
 	private bool nowArrivingMessageGiven = false;
-	private string nowArrivingString = "Now arriving: ";
+	private string nowArrivingString = "train_text_17";
 	public float timeBeforeNowArrivingMessage = 4f;
 	public float messageTime = 6f;
 	private float messageTimeOut;
@@ -174,7 +174,9 @@ public class ElevatorS : MonoBehaviour {
 			}
 			if (!nowArrivingMessageGiven && timeToNextStop <= timeBeforeNowArrivingMessage){
 				nowArrivingMessageGiven = true;
-					DialogueManagerS.D.SetDisplayText(nowArrivingString + currentStopName, false, false);
+                DialogueManagerS.D.SetDisplayText(LocalizationManager.instance.GetLocalizedValue(nowArrivingString) + " "
+                                                  + LocalizationManager.instance.GetLocalizedValue(currentStopName), false, false,
+                                                  false, false, null,1f,true);
 					if (announceSound){
 						Instantiate(announceSound);
 					}
