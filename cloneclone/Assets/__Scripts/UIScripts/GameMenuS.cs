@@ -14,6 +14,7 @@ public class GameMenuS : MonoBehaviour
 
     private Color textDefaultColor;
     private Color textSelectColor = Color.white;
+    public GameObject[] controlInstructions;
 
     private int currentSelection = 0;
     public RectTransform selector;
@@ -425,6 +426,7 @@ public class GameMenuS : MonoBehaviour
             optionsMenuProper.gameObject.SetActive(true);
             mainMenuRef = goToOptions;
         }
+        SetControlInstructions(true);
 		//Debug.Log("game menu turn ON");
 		
 	}
@@ -436,6 +438,7 @@ public class GameMenuS : MonoBehaviour
         customControlRef.TurnOff(this);
         gameObject.SetActive(false);
         inCustomControlMenu = false;
+        SetControlInstructions(false);
         if (mainMenuRef){
             mainMenuRef.TurnOffOptions();
         }
@@ -455,6 +458,7 @@ public class GameMenuS : MonoBehaviour
 		// moving to its own screen. select to turn on
         if (selectButtonUp && myControl.GetCustomInput(3)){
             customControlRef.TurnOn(this);
+            SetControlInstructions(false);
             inCustomControlMenu = true;
             selectButtonUp = false;
         }
@@ -1114,5 +1118,14 @@ public class GameMenuS : MonoBehaviour
     public void BackFromControlMenu(){
         cancelButtonUp = selectButtonUp = false;
         inCustomControlMenu = false;
+        SetControlInstructions(true);
+    }
+
+    void SetControlInstructions(bool isOn)
+    {
+        for (int i = 0; i < controlInstructions.Length; i++)
+        {
+            controlInstructions[i].gameObject.SetActive(isOn);
+        }
     }
 }

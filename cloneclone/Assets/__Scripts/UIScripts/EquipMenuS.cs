@@ -13,6 +13,7 @@ public class EquipMenuS : MonoBehaviour {
 	public Text descriptionText;
 	private PlayerController pRef;
 	public GameObject hideOnMap;
+    public GameObject[] controlInstructions;
 	[Header("Text Properties")]
 	public string paradigmIString;
 	public string paradigmIIString;
@@ -191,6 +192,8 @@ public class EquipMenuS : MonoBehaviour {
 		onMapScreen = false;
 		onMainScreen = true;
 		mapScreen.gameObject.SetActive(false);
+
+        SetControlInstructions(!goToMap);
 
         if (DarknessPercentUIS.DPERCENT.UseDescent){
             mapToUse = -1;
@@ -1096,6 +1099,7 @@ public class EquipMenuS : MonoBehaviour {
 		gameObject.SetActive(false);
 		InGameMenuManagerS.menuInUse = false;
 		onMapScreen = false;
+        SetControlInstructions(false);
 
 		if (closeSound){
 			Instantiate(closeSound);
@@ -1119,6 +1123,7 @@ public class EquipMenuS : MonoBehaviour {
 		exitButtonDown = true;
 		currentPos = 0;
 		onMainScreen = false;
+        SetControlInstructions(false);
 
 		toggleTextLeft.text = toggleTextRight.text = toMenuString;
 		mapScreen.Activate(mapToUse, Application.loadedLevel);
@@ -1543,5 +1548,11 @@ public class EquipMenuS : MonoBehaviour {
             buttonDown = true;
         }
         return buttonDown;
+    }
+
+    void SetControlInstructions(bool isOn){
+        for (int i = 0; i < controlInstructions.Length; i++){
+            controlInstructions[i].gameObject.SetActive(isOn);
+        }
     }
 }
