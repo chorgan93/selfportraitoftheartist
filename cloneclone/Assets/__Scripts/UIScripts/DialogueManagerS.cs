@@ -270,7 +270,8 @@ public class DialogueManagerS : MonoBehaviour {
 			}
             if (!ignoreLoc)
             {
-                targetDisplayString = LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName);
+                targetDisplayString = 
+                    LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName).Replace("\n", System.Environment.NewLine);
             }else{
                 targetDisplayString = newText.Replace("PLAYERNAME", TextInputUIS.playerName);
             }
@@ -306,7 +307,7 @@ public class DialogueManagerS : MonoBehaviour {
 				memoText.rectTransform.anchoredPosition = memoTextStartPos;
 			}
 
-			memoText.text = LocalizationManager.instance.GetLocalizedValue(newText);
+			memoText.text = LocalizationManager.instance.GetLocalizedValue(newText).Replace("\n", System.Environment.NewLine);
             _doneScrolling = true;
 			//Debug.LogError("Done scrolling bc memo!");
 		}

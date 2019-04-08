@@ -1150,7 +1150,7 @@ public class PlayerStatsS : MonoBehaviour {
 				EffectSpawnManagerS.E.SpawnDamangeNum(transform.position, false, true, dmg);
 					
 				if(!godMode){
-					if (myPlayerController.currentCombatManager){
+					if (myPlayerController.currentCombatManager && dmg > 0){
 					myPlayerController.currentCombatManager.SentHurtMessage(true);
 					}
 					if (arcadeMode){
@@ -1188,7 +1188,11 @@ public class PlayerStatsS : MonoBehaviour {
 						myPlayerController.myAnimator.SetBool("IsDead", true);
                         _playerIsDead = true;
 
-					List<int> saveBuddyList = new List<int>();
+#if UNITY_SWITCH
+                        myPlayerController.myControl.ShakeController(3);
+#endif
+
+                        List<int> saveBuddyList = new List<int>();
 					saveBuddyList.Add(myPlayerController.ParadigmIBuddy().buddyNum);
 					if (myPlayerController.ParadigmIIBuddy() != null){
 						saveBuddyList.Add(myPlayerController.ParadigmIIBuddy().buddyNum);
@@ -1323,6 +1327,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 						warningReference.NewMessage("warning_health_low", Color.white, Color.red, false, 2);
 					}
+
+
+#if UNITY_SWITCH
+                    myPlayerController.myControl.ShakeController(0);
+#endif
 
                     // if NG+, add a tiiiiiny bit of darkness
                     if (PlayerAugmentsS.MARKED_AUG){

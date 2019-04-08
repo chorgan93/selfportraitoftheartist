@@ -47,6 +47,9 @@ public class ControlManagerS : MonoBehaviour {
         if (debugControl != null) {
             debugControl.gameObject.SetActive(true);
         }
+        if (allowVibration) {
+            InitializeVibration();
+        }
 #endif
 
         if (controlProfile < 0 && !useSwitch){
@@ -1707,4 +1710,176 @@ public class ControlManagerS : MonoBehaviour {
         }
 
     }
+
+    [Header("Switch Values")]
+    public TextAsset vibrationHitEffect; // This will be played whenever the player charge attacks or dies
+    public TextAsset vibrationBreakEffect; // This will be played whenever the enemy breaks
+    public TextAsset vibrationDeathEffect; // This will be played whenever the enemy dies
+    public TextAsset vibrationPlayerEffect; // This will be played whenever the player gets hit
+    public bool allowVibration = false;
+#if UNITY_SWITCH
+    // VIBRATION!!!
+    #region VibrationSpecificMembers
+
+    public float MaxTextureAmplitude = 0.5f; // This value was arrived at by testing the particular effect with different controllers.
+
+    private const float m_vibrationInterval = 0.005f;   // BNVIB files are sampled at a rate of 200 Hz == every 5 milliseconds == 0.005 seconds
+    private Dictionary<NpadId, BasicVibratingController> m_vibratingControllers = new Dictionary<NpadId, BasicVibratingController>(); // Maps NpadId's to the corresponding vibration functionality
+    private VibrationFileResource m_movementVibrationEffectFile, m_movementVibrationEffectFile01, m_movementVibrationEffectFile02,
+        m_movementVibrationEffectFile03; // BNVIB data for vibrationHitEffect file
+    private VibrationFilePlayer m_movementVibrationEffect, m_movementVibrationEffect01, m_movementVibrationEffect02,
+        m_movementVibrationEffect03; // Manages state for the vibrationHitEffect file
+    // Since BNVIB files are updated at a different rate than Update() occurs, set this value in Update() and then incorporate it in the vibration update
+    private float m_textureRumble = 0.0f;
+    /* Since most controller configurations have a left and right vibration device, a simple 
+     * way to add immersion is to make vibrations stronger in the left or right device based on location. 
+     * We can do this by multiplying the right amplitudes by a value in the range [0.0, 1.0] representing how far to the right the player is,
+     * and by multiplying the left amplitudes by 1.0 minus the right value (e.g., leftPanMultiplier = (1.0 - m_rightPanMultiplier))
+    */
+    int currentVibration = 0;
+    private float m_rightPanMultiplier = 0.0f;
+
+#endregion
+    #region VibrationSpecificFunctions
+
+    /// <summary>
+    /// Does all vibration-related initialization for the scene.
+    /// Assumes Npad initialization has already happened.
+    /// Specifically, it: 
+    /// - Initializes all controllers that will be used
+    /// - Loads the BNVIB file that will be used
+    /// - Kicks off the vibration update function
+    /// </summary>
+    void InitializeVibration()
+    {
+        if (allowVibration)
+        {
+            // Initialize vibration for all controllers we plan to support
+            for (int i = 0; i < numberOfControllers; i++)
+            {
+                if (i == 0)
+                {
+                    m_vibratingControllers.Add(NpadId.Handheld, new BasicVibratingController(NpadId.Handheld));
+                }
+                else
+                {
+                    m_vibratingControllers.Add(NpadId.No1, new BasicVibratingController(NpadId.No1));
+                }
+            }
+
+            // Load binary vibration file and initialize it
+            byte[] fileBuffer = vibrationHitEffect.bytes;
+            m_movementVibrationEffectFile = new VibrationFileResource(fileBuffer);
+            m_movementVibrationEffect = new VibrationFilePlayer(m_movementVibrationEffectFile);
+            fileBuffer = vibrationBreakEffect.bytes;
+            m_movementVibrationEffectFile01 = new VibrationFileResource(fileBuffer);
+            m_movementVibrationEffect01 = new VibrationFilePlayer(m_movementVibrationEffectFile01);
+            fileBuffer = vibrationDeathEffect.bytes;
+            m_movementVibrationEffectFile02 = new VibrationFileResource(fileBuffer);
+            m_movementVibrationEffect02 = new VibrationFilePlayer(m_movementVibrationEffectFile02);
+            fileBuffer = vibrationPlayerEffect.bytes;
+            m_movementVibrationEffectFile03 = new VibrationFileResource(fileBuffer);
+            m_movementVibrationEffect03 = new VibrationFilePlayer(m_movementVibrationEffectFile03);
+
+
+            InvokeRepeating("VibrationUpdate", 0.1f, m_vibrationInterval);    // Invoke every 5ms/at a rate of 200 Hz (as discussed in documentation)
+        }
+    }
+
+    /// <summary>
+    /// This method should be called 200 times per second (200 Hz), which is once every 5 milliseconds.
+    /// This is important when using BNVIB files, since they're sampled at a rate of 200 Hz. 
+    /// If the application isn't using BNVIB files, you can just set vibrations at whatever rate you want (e.g., in Update()). 
+    /// Since we're using a mix of both BNVIB-based playback and procedurally generated vibrations,
+    /// we're just setting both in the function for simplicity.
+    /// 
+    /// To update BNVIB file playback only using Update(), you'd need to process multiple samples per Update call. This can 
+    /// be approached in various ways, such as using an average of the samples used or just throwing out samples. 
+    /// It's better to just do this at the recommended 200 Hz.
+    /// </summary>
+    void VibrationUpdate()
+    {
+        if (allowVibration)
+        {
+            // Begin with getting the current sample (if any) for the file we might be playing back
+            VibrationValue currValue = m_movementVibrationEffect.GetNextSample();
+            if (currentVibration == 1) {
+                currValue = m_movementVibrationEffect01.GetNextSample();
+            }
+            if (currentVibration == 2) {
+                currValue = m_movementVibrationEffect02.GetNextSample();
+            }
+            if (currentVibration == 3) {
+                currValue = m_movementVibrationEffect03.GetNextSample();
+            }
+
+            /* Add in the runtime-generated rumble for the movement over the surface. 
+             * If the amplitude sum goes over 1.0, it will be automatically scaled down.
+             * For this, we're only using amplitudeHigh as a design choice. We could have also used amplitudeLow,
+             * but in testing, using amplitudeHigh was more subtle and amplitudeLow tended to be so forceful 
+             * that the impact effect wasn't enough of a contrast to be noticeable. 
+             * We're leaving the frequencies as whatever they were set to by GetNextSample().
+             * If the sample isn't currently playing, these will be the resonant frequencies by default.
+            */
+            currValue.amplitudeHigh += m_textureRumble;
+
+            // Copy over for both left and right. Note that VibrationValue is a struct, so it's a deep copy.
+            // The only potential difference for left and right vibrations in this demo is how they will be panned based on x-position, 
+            // so everything besides that is the same for both.
+            // You may need to change this if you're using different sources for left and right vibrations.
+            VibrationValue leftVibration = currValue;
+            VibrationValue rightVibration = currValue;
+
+
+            // Apply the effect to the current controller
+            BasicVibratingController controller = m_vibratingControllers[NpadId.Handheld];
+            controller.SetLeftVibration(leftVibration);
+            controller.SetRightVibration(rightVibration);
+            controller = m_vibratingControllers[NpadId.No1];
+            controller.SetLeftVibration(leftVibration);
+            controller.SetRightVibration(rightVibration);
+        }
+    }
+
+    /// <summary>
+    /// Shakes the switch controller
+    /// </summary>
+    public void ShakeController(int shakeToRun = 0)
+    {if (allowVibration)
+        {
+            // Whenever the player runs into a wall, play the impact vibration effect
+            if (shakeToRun == 0)
+            {
+                currentVibration = 0;
+                m_movementVibrationEffect.SetPlayPositionToFileStart();
+                m_movementVibrationEffect.Play();
+            } else if (shakeToRun == 1)
+            {
+                currentVibration = 1;
+                m_movementVibrationEffect01.SetPlayPositionToFileStart();
+                m_movementVibrationEffect01.Play();
+            }
+            else if (shakeToRun == 2)
+            {
+                currentVibration = 2;
+                m_movementVibrationEffect02.SetPlayPositionToFileStart();
+                m_movementVibrationEffect02.Play();
+            }
+            else if (shakeToRun == 3)
+            {
+                currentVibration = 3;
+                m_movementVibrationEffect02.SetPlayPositionToFileStart();
+                m_movementVibrationEffect02.Play();
+            }
+            else
+            {
+                currentVibration = 0;
+                m_movementVibrationEffect.SetPlayPositionToFileStart();
+                m_movementVibrationEffect.Play();
+            }
+        }
+    }
+
+    #endregion
+#endif
 }

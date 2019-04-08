@@ -1369,7 +1369,13 @@ public class EnemyS : MonoBehaviour {
 
 		if (_breakAmt >= _breakThreshold || currentStunLock >= stunLockTarget){
 			_behaviorBroken = true;
-			if (dmg > 0){
+#if UNITY_SWITCH
+            if (GetPlayerReference() != null)
+            {
+                GetPlayerReference().myControl.ShakeController(1);
+            }
+#endif
+            if (dmg > 0){
 				wasParried = false;
 			}
 		}
@@ -1532,7 +1538,13 @@ public class EnemyS : MonoBehaviour {
 			if (deathSound){
 				Instantiate(deathSound);
 			}
-			_currentHealth = 0f;
+#if UNITY_SWITCH
+            if (GetPlayerReference() != null)
+            {
+                GetPlayerReference().myControl.ShakeController(2);
+            }
+#endif
+            _currentHealth = 0f;
 			_killScreen.Flash();
 			_isDead = true;
 			ResetEnraged();

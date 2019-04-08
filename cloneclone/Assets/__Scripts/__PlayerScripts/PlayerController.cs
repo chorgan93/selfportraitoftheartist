@@ -1570,8 +1570,11 @@ public class PlayerController : MonoBehaviour {
 					as GameObject;
 				newCharge.GetComponent<ProjectileS>().Fire(false,
 				                                           ShootDirection(), ShootDirection(), this);
-				
-				SpawnAttackPuff();
+#if UNITY_SWITCH
+                controller.ShakeController();
+#endif
+
+                SpawnAttackPuff();
 				canDoAdaptive = true;
                 _attackBuffered = false;
 				_myStats.ManaCheck(_chargeAttackCost*VirtueStaminaMult(), !_playerAug.fosAug);
