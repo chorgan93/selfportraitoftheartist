@@ -216,7 +216,26 @@ public class FadeScreenUI : MonoBehaviour {
 	
 	}
 
-	public void FadeOut(float newRate = 0){
+#if !UNITY_SWITCH || UNITY_EDITOR
+    private void OnApplicationQuit()
+    {
+        if (DoSave) {
+            Debug.Log("Save is queued, so save before quitting");
+            StoryProgressionS.SaveProgress();
+            DoSave = false;
+        }
+    }
+#endif
+
+    public void AttemptSave() {
+        if (DoSave)
+        {
+            StoryProgressionS.SaveProgress();
+            DoSave = false;
+        }
+    }
+
+    public void FadeOut(float newRate = 0){
 
 		if (_myRenderer == null){
 			_myRenderer = GetComponent<SpriteRenderer>();

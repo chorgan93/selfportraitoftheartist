@@ -16,6 +16,8 @@ public class LevelUpMenu : MonoBehaviour
     private PlayerController pRef;
     private ControlManagerS myControl;
 
+    public GameObject[] instructionObjs;
+
     [Header("Main Menu Selections")]
     public RectTransform[] mainMenuSelectPositions;
     public Text[] mainMenuTextObjs;
@@ -400,6 +402,7 @@ public class LevelUpMenu : MonoBehaviour
                     travelMenuProper.gameObject.SetActive(false);
                     travelStarted = true;
                     _canBeExited = false;
+                    SetInstructionObjs(false);
 
                     int nextSceneIndex = travelMenuSceneNums[currentPos];
                     int nextSceneSpawn = PlayerInventoryS.I.ReturnCheckpointSpawnAtScene(travelMenuSceneNums[currentPos]);
@@ -491,6 +494,7 @@ public class LevelUpMenu : MonoBehaviour
                     descentMenuProper.gameObject.SetActive(false);
                     string nextSceneIndex = descentReturnScene;
                     int nextSceneSpawn = 0;
+                    SetInstructionObjs(false);
 
                     // the below is to prevent "return to last checkpoint" progression breaks
                     GameOverS.reviveScene = nextSceneIndex;
@@ -602,6 +606,8 @@ public class LevelUpMenu : MonoBehaviour
                         revertMenuProper.gameObject.SetActive(false);
                         travelStarted = true;
                         _canBeExited = false;
+
+                        SetInstructionObjs(false);
 
                         RevertToPreviousTrack(currentPos);
 
@@ -919,6 +925,8 @@ public class LevelUpMenu : MonoBehaviour
         mainMenuTextObjs[currentPos].fontSize = Mathf.RoundToInt(textStartSize * textSelectSizeMult);
         mainMenuTextObjs[currentPos].color = Color.white;
 
+        SetInstructionObjs(true);
+
         foreach (Image i in levelMenuItemOutlines)
         {
             i.color = textStartColor;
@@ -942,6 +950,7 @@ public class LevelUpMenu : MonoBehaviour
         levelMenuProper.gameObject.SetActive(false);
         travelMenuProper.gameObject.SetActive(false);
         TurnOffRevertMenu(true);
+        SetInstructionObjs(false);
     }
 
     private void UpdateUpgradeEffect()
@@ -1185,6 +1194,15 @@ public class LevelUpMenu : MonoBehaviour
 
             // also turn off player ambient darkness
             GameObject.Find("Player").GetComponent<PlayerStatsS>().TurnOffAmbientDarknessGain();
+        }
+    }
+    void SetInstructionObjs(bool onOff) {
+        if (instructionObjs != null)
+        {
+            for (int i = 0; i < instructionObjs.Length; i++)
+            {
+                instructionObjs[i].SetActive(onOff);
+            }
         }
     }
 }

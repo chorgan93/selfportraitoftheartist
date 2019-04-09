@@ -57,6 +57,12 @@ public class NintendoSwitchSaveObjS : MonoBehaviour
             Debug.Log("Critical Error: File System could not be mounted.");
             result.abortUnlessSuccess();
         }
+        UnityEngine.Switch.Notification.SetPerformanceModeChangedNotificationEnabled(true);
+        UnityEngine.Switch.Notification.SetResumeNotificationEnabled(true);
+        UnityEngine.Switch.Notification.SetOperationModeChangedNotificationEnabled(true);
+        UnityEngine.Switch.Notification.SetFocusHandlingMode(UnityEngine.Switch.Notification.FocusHandlingMode.SuspendAndNotify);
+        UnityEngine.Switch.Notification.notificationMessageReceived += Notification_notificationMessageReceived;
+        UnityEngine.Switch.Notification.EnterExitRequestHandlingSection();
         singleton = this;
 
 
@@ -64,7 +70,43 @@ public class NintendoSwitchSaveObjS : MonoBehaviour
 
     void OnDestroy()
     {
+        // switch app is quitting; attempt to save once last time if a save is queued
+        // didn't work!!
+        /*if (CameraEffectsS.E != null)
+        {
+            if (CameraEffectsS.E.fadeRef != null)
+            {
+                CameraEffectsS.E.fadeRef.AttemptFinalSave();
+            }
+        }**/
         nn.fs.FileSystem.Unmount(mountName);
+    }
+    private void Notification_notificationMessageReceived(UnityEngine.Switch.Notification.Message obj)
+    {
+        Debug.LogError(obj.ToString());
+        switch (obj)
+        {
+            case UnityEngine.Switch.Notification.Message.FocusStateChanged:
+                break;
+            case UnityEngine.Switch.Notification.Message.Resume:
+                break;
+            case UnityEngine.Switch.Notification.Message.OperationModeChanged:
+                break;
+            case UnityEngine.Switch.Notification.Message.PerformanceModeChanged:
+                break;
+            case UnityEngine.Switch.Notification.Message.ExitRequest:
+                if (CameraEffectsS.E != null)
+                {
+                    if (CameraEffectsS.E.fadeRef != null)
+                    {
+                        CameraEffectsS.E.fadeRef.AttemptSave();
+                    }
+                }
+                UnityEngine.Switch.Notification.LeaveExitRequestHandlingSection();
+                break;
+            default:
+                break;
+        }
     }
 
 
