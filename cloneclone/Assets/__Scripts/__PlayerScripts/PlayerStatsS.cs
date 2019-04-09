@@ -110,9 +110,10 @@ public class PlayerStatsS : MonoBehaviour {
 	private static float _currentCharge = 0f;
 	private float minBuddyChargeUse = 0f;
 
-	public float addedChargeLv {get { return Mathf.Round(_addedCharge/10f); } }
-	
-	public float maxCharge { get { return _baseCharge+_addedCharge;}}
+	//public float addedChargeLv {get { return Mathf.Round(_addedCharge/10f); } }
+    public float addedChargeLv { get { return Mathf.Round(_addedCharge); } }
+
+    public float maxCharge { get { return _baseCharge+_addedCharge;}}
 	public float currentCharge { get { return _currentCharge;}}
 	private float _savedCharge = 50f;
 

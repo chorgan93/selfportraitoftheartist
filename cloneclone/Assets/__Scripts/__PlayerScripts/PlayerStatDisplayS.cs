@@ -162,7 +162,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		playerTransform = playerStats.transform;
 		pController = playerStats.GetComponent<PlayerController>();
 		playerRender = pController.myRenderer;
-       // pController.myStats.SetMinChargeUse(pController.myBuddy.GetComponent<BuddyS>().costPerUse, pController.myBuddy.GetComponent<BuddyS>().useAllCharge);
+       //pController.myStats.SetMinChargeUse(pController.myBuddy.GetComponent<BuddyS>().costPerUse, pController.myBuddy.GetComponent<BuddyS>().useAllCharge);
 
 		followRef = Camera.main;
 		orthoRef = followRef.orthographicSize;
