@@ -7064,7 +7064,387 @@
     "value": "She looks back to me, and time freezes."
   },
   {
-  "key": "examine_label_listen",
-  "value": ": Listen"
+    "key": "examine_label_listen",
+    "value": ": Listen"
+  },
+  {
+    "key": "sacrament_i_262",
+    "value": "BANG"
+  },
+  {
+    "key": "sacrament_i_263",
+    "value": "Mother"
+  },
+  {
+    "key": "sacrament_i_264",
+    "value": "Go"
+  },
+  {
+    "key": "sacrament_i_265",
+    "value": "Faster"
+  },
+  {
+    "key": "sacrament_i_266",
+    "value": "Free"
+  },
+  {
+    "key": "sacrament_i_267",
+    "value": "Have you ever seen an angel die?"
+  },
+  {
+    "key": "sacrament_i_268",
+    "value": "Over the hill."
+  },
+  {
+    "key": "sacrament_i_269",
+    "value": "She sows discord among the Nightmares. They recoil in pain as Naomi’s light hits, blood leaking from every crack, smoke rising from every wound."
+  },
+  {
+    "key": "sacrament_i_270",
+    "value": "She's...beautiful."
+  },
+  {
+    "key": "sacrament_i_271",
+    "value": "And Naomi’s light only grows stronger, and stro…"
+  },
+  {
+    "key": "sacrament_i_272",
+    "value": "My legs hurt "
+  },
+  {
+    "key": "sacrament_i_273",
+    "value": "I want to say something, but a force pushes me back,"
+  },
+  {
+    "key": "sacrament_i_274",
+    "value": "So happy..."
+  },
+  {
+    "key": "sacrament_i_275",
+    "value": "but i cannot falter"
+  },
+  {
+    "key": "sacrament_i_276",
+    "value": "So I"
+  },
+  {
+    "key": "sacrament_i_277",
+    "value": "So..."
+  },
+  {
+    "key": "sacrament_i_278",
+    "value": "My insides turn to stone as Naomi snaps,"
+  },
+  {
+    "key": "sacrament_i_279",
+    "value": "Naomi's words make my heart jump, but I don't want to go."
+  },
+  {
+    "key": "sacrament_i_280",
+    "value": "“Go Anna! I’ve got this!"
+  },
+  {
+    "key": "sacrament_i_281",
+    "value": "And beside them."
+  },
+  {
+    "key": "sacrament_i_282",
+    "value": "Among them."
+  },
+  {
+    "key": "sacrament_i_283",
+    "value": "She motions and points, sealing our doom."
+  },
+  {
+    "key": "sacrament_i_284",
+    "value": "I have to be strong for..."
+  },
+  {
+    "key": "sacrament_i_285",
+    "value": "A flash of light bathes the forest in white."
+  },
+  {
+    "key": "sacrament_i_286",
+    "value": "her."
+  },
+  {
+    "key": "sacrament_i_287",
+    "value": "I look behind me, and there..."
+  },
+  {
+    "key": "sacrament_i_288",
+    "value": "I don't want to leave her."
+  },
+  {
+    "key": "sacrament_i_289",
+    "value": "Within them."
+  },
+  {
+    "key": "sacrament_i_290",
+    "value": "“Run!”"
+  },
+  {
+    "key": "sacrament_i_291",
+    "value": "\"I said I’d protect you, didn’t I?”"
+  },
+  {
+    "key": "sacrament_i_292",
+    "value": "The Nightmare is upon us."
+  },
+  {
+    "key": "sacrament_i_293",
+    "value": "...she did. She promised."
+  },
+  {
+    "key": "sacrament_i_294",
+    "value": "Controlling them."
+  },
+  {
+    "key": "sacrament_i_295",
+    "value": "IT DOESN'T HELP\\n\\nIT DOESN'T HELP\\n\\nIT DOESN'T HELP"
+  },
+  {
+    "key": "sacrament_i_296",
+    "value": "They don’t stop they don’t stop they don’t stop"
+  },
+  {
+    "key": "sacrament_i_297",
+    "value": "It doesn't help."
+  },
+  {
+    "key": "sacrament_i_298",
+    "value": "A slash across her cheek."
+  },
+  {
+    "key": "sacrament_i_299",
+    "value": "Tearing the flesh from her wrists"
+  },
+  {
+    "key": "sacrament_i_300",
+    "value": "Smashing her bones into Nothingness."
+  },
+  {
+    "key": "sacrament_i_301",
+    "value": "She pushes me down further. The ground sinks at my weight. "
+  },
+  {
+    "key": "sacrament_i_302",
+    "value": "the ground takes me"
+  },
+  {
+    "key": "sacrament_i_303",
+    "value": "Kill me."
+  },
+  {
+    "key": "sacrament_i_304",
+    "value": "They crumble to dust as I shred their brittle bodies."
+  },
+  {
+    "key": "sacrament_i_305",
+    "value": "I don’t want to live anymore."
+  },
+  {
+    "key": "sacrament_i_306",
+    "value": "Rage,"
+  },
+  {
+    "key": "sacrament_i_307",
+    "value": "It Doesn't Help."
+  },
+  {
+    "key": "sacrament_i_308",
+    "value": "A palm on my face, Mother is upon me."
+  },
+  {
+    "key": "sacrament_i_309",
+    "value": "Kill me!"
+  },
+  {
+    "key": "sacrament_i_310",
+    "value": "I don’t want to live anymore."
+  },
+  {
+    "key": "sacrament_i_311",
+    "value": "only the Darkness remains"
+  },
+  {
+    "key": "sacrament_i_312",
+    "value": "ONE."
+  },
+  {
+    "key": "sacrament_i_313",
+    "value": "Her final cry, pathetic and meek, floats into the air. Scattered white and black dust."
+  },
+  {
+    "key": "sacrament_i_314",
+    "value": "sorrow,"
+  },
+  {
+    "key": "sacrament_i_315",
+    "value": "The earth is retaking me, returning to ash."
+  },
+  {
+    "key": "sacrament_i_316",
+    "value": "I'll kill everyone!!!!!-"
+  },
+  {
+    "key": "sacrament_i_317",
+    "value": "AAAAAAAAA-"
+  },
+  {
+    "key": "sacrament_i_318",
+    "value": "AFTER."
+  },
+  {
+    "key": "sacrament_i_319",
+    "value": "ANOTHER."
+  },
+  {
+    "key": "sacrament_i_320",
+    "value": "I accept this. "
+  },
+  {
+    "key": "sacrament_i_321",
+    "value": "KILL ME!!"
+  },
+  {
+    "key": "sacrament_i_322",
+    "value": "bloodlust."
+  },
+  {
+    "key": "sacrament_i_323",
+    "value": "Crashing into the ground. My head pounds, my ears ring. I feel blood trickle down my neck. Mother must die."
+  },
+  {
+    "key": "sacrament_i_324",
+    "value": "But not before Mother"
+  },
+  {
+    "key": "sacrament_i_325",
+    "value": "Mother Must Die."
+  },
+  {
+    "key": "sacrament_i_326",
+    "value": "Dies"
+  },
+  {
+    "key": "sacrament_i_327",
+    "value": "Kill"
+  },
+  {
+    "key": "sacrament_i_328",
+    "value": "i  Deserve  this"
+  },
+  {
+    "key": "sacrament_i_329",
+    "value": "Together"
+  },
+  {
+    "key": "sacrament_i_330",
+    "value": "Let the water consume..."
+  },
+  {
+    "key": "sacrament_i_331",
+    "value": "As I sink, I feel cold."
+  },
+  {
+    "key": "sacrament_i_332",
+    "value": "Deep in my body; deep in my self."
+  },
+  {
+    "key": "sacrament_i_333",
+    "value": "Floating, falling."
+  },
+  {
+    "key": "sacrament_i_334",
+    "value": "Is it...Naomi?"
+  },
+  {
+    "key": "sacrament_i_335",
+    "value": "My vision starts to return."
+  },
+  {
+    "key": "sacrament_i_336",
+    "value": "Naomi, I’ve finally done it. For you."
+  },
+  {
+    "key": "sacrament_i_337",
+    "value": "I am here, standing on an endless ocean."
+  },
+  {
+    "key": "sacrament_i_338",
+    "value": "A dream of our own."
+  },
+  {
+    "key": "sacrament_i_339",
+    "value": "I can see the shore ahead of me, and the ethereal sun, half-remembered."
+  },
+  {
+    "key": "sacrament_i_340",
+    "value": "I made it..."
+  },
+  {
+    "key": "sacrament_i_341",
+    "value": "But you are here, in my arms."
+  },
+  {
+    "key": "sacrament_i_342",
+    "value": "come back"
+  },
+  {
+    "key": "sacrament_i_343",
+    "value": "As she takes shape in my mind,"
+  },
+  {
+    "key": "sacrament_i_344",
+    "value": "I focus as hard as I can, picturing her: her eyes, her smile,"
+  },
+  {
+    "key": "sacrament_i_345",
+    "value": "Naomi..."
+  },
+  {
+    "key": "sacrament_i_346",
+    "value": "It made her so insecure, but she never showed it…"
+  },
+  {
+    "key": "sacrament_i_347",
+    "value": "In my arms"
+  },
+  {
+    "key": "sacrament_i_348",
+    "value": "please, come back"
+  },
+  {
+    "key": "sacrament_i_349",
+    "value": "So fearless, self-assured"
+  },
+  {
+    "key": "sacrament_i_350",
+    "value": "That awkward way she walked, legs too long for her body"
+  },
+  {
+    "key": "sacrament_i_351",
+    "value": "and shoulders slightly too broad-"
+  },
+  {
+    "key": "sacrament_i_352",
+    "value": "A weight brings me down, further..."
+  },
+  {
+    "key": "sacrament_i_353",
+    "value": "come back to me"
+  },
+  {
+    "key": "sacrament_i_354",
+    "value": "If only on the outside"
+  },
+  {
+    "key": "sacrament_i_355",
+    "value": "-so perfect to me"
+  },
+  {
+    "key": "sacrament_i_356",
+    "value": "and further..."
   }
 ]}
