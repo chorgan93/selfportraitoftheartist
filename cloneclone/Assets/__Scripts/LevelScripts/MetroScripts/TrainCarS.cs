@@ -112,7 +112,8 @@ public class TrainCarS : MonoBehaviour {
 		AssignColliders();
 		SetColliders(true);
             nextStopString = LocalizationManager.instance.GetLocalizedValue(nextStopString) + " ";
-		SetSmallShake();
+            nowArrivingString = LocalizationManager.instance.GetLocalizedValue(nowArrivingString) + " ";
+            SetSmallShake();
 		SetLargeShake();
 		CameraShakeS.C.lockXShake = true;
 			if (currentStop == trainStops.Length-2 && currentDirection == 1){
