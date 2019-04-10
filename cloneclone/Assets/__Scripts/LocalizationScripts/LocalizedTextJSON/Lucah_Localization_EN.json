@@ -7446,5 +7446,21 @@
   {
     "key": "sacrament_i_356",
     "value": "and further..."
+  },
+  {
+    "key": "upgrade_revert",
+    "value": "Revert Upgrade"
+  },
+  {
+    "key": "upgrade_revert_desc",
+    "value": "Reverts last stat Upgrade and replenishes spent La."
+  },
+  {
+    "key": "upgrade_shuffle",
+    "value": "Shuffle Upgrade"
+  },
+  {
+    "key": "upgrade_shuffle_desc",
+    "value": "Refresh Upgrade options at a small cost."
   }
 ]}

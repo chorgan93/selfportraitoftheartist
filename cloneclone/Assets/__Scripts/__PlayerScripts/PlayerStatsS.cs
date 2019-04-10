@@ -1654,11 +1654,11 @@ public class PlayerStatsS : MonoBehaviour {
 
 	public void SetMinChargeUse(float minUse, bool useAll = false){
 		if (useAll){
-			minBuddyChargeUse = maxCharge;
+            minBuddyChargeUse = MoreAccurateMaxCharge();
 			_uiReference.SetChargeMin(1f);
 		}else{
 			minBuddyChargeUse = minUse;
-			_uiReference.SetChargeMin(minBuddyChargeUse/maxCharge);
+            _uiReference.SetChargeMin(minBuddyChargeUse/MoreAccurateMaxCharge());
 		}
 	}
 
@@ -1699,5 +1699,13 @@ public class PlayerStatsS : MonoBehaviour {
 
     public void TurnOffAmbientDarknessGain(){
         dontAddAmbientDarkness = true;
+    }
+
+    public float MoreAccurateChargeLv(){
+        // for stat display
+        return PlayerInventoryS.I.GetUpgradeCount(2);
+    }
+    public float MoreAccurateMaxCharge(){
+        return PlayerInventoryS.I.GetUpgradeCount(2) + _baseCharge;
     }
 }

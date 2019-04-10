@@ -374,28 +374,34 @@ public class PlayerStatDisplayS : MonoBehaviour {
 			chargeBarMaxSize.x += chargeAddSize;
 			chargeBorderMaxSize.x += chargeAddSize;
             chargeBorder.rectTransform.sizeDelta = chargeBorderBG.rectTransform.sizeDelta = chargeBorderMaxSize;
+            updateChargeFills(true);
 		}
 		if (chargeRefill){
 			updateChargeFills(true);
 		}
-		
 
 
-		//healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
-		//staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
-		//chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
-		// old text ui
-	/*	healthText.text = "[ " + Mathf.RoundToInt(playerStats.currentHealth*10f) + " ]";
-		staminaText.text = "< " + Mathf.RoundToInt(playerStats.currentMana*10f) + " >";
-		chargeText.text = ""+ playerStats.currentCharge/100*1.0f;
-		if (chargeText.text == "1"){
-			chargeText.text = "1.0";
-		}
-		if (chargeText.text == "0"){
-			chargeText.text = "0.0";
-		}**/
+        //healthText.fontSize = Mathf.RoundToInt(startFontSize*ScreenMultiplier());
+        //staminaText.fontSize = Mathf.RoundToInt(startFontSizeSmall*ScreenMultiplier());
+        //chargeText.fontSize = Mathf.RoundToInt(startFontSizeSmallest*ScreenMultiplier());
 
+        // old text ui
+        /*	healthText.text = "[ " + Mathf.RoundToInt(playerStats.currentHealth*10f) + " ]";
+            staminaText.text = "< " + Mathf.RoundToInt(playerStats.currentMana*10f) + " >";
+            chargeText.text = ""+ playerStats.currentCharge/100*1.0f;
+            if (chargeText.text == "1"){
+                chargeText.text = "1.0";
+            }
+            if (chargeText.text == "0"){
+                chargeText.text = "0.0";
+            }**/
+
+        //Debug.Log("charge max size " + chargeBorderMaxSize + " charge lvs " + playerStats.MoreAccurateChargeLv());
+        /*if (playerStats.addedCharge < 1){
+            // throw error
+            Debug.LogError("WOW, NO CHARGE HERE!");
+        }**/
 	}
 
 	private float ScreenMultiplier(){
@@ -605,14 +611,14 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		if (chargeBarMaxSize.x <= 0){
 			chargeMinStartX = minChargeUseBar.rectTransform.anchoredPosition.x;
 			chargeBarMaxSize = chargeBar.rectTransform.sizeDelta;
-			chargeBarMaxSize.x += playerStats.addedCharge*chargeAddSize;
+			chargeBarMaxSize.x += playerStats.MoreAccurateChargeLv()*chargeAddSize;
 
 			//Debug.Log("setting charge bar max size! " + chargeBarMaxSize.x);
 
 			chargeFillMaxHeight = chargeFill.rectTransform.sizeDelta.y;
 			rechargeFillMaxHeight = rechargeRecoveryBar.rectTransform.sizeDelta.y;
 			chargeBorderMaxSize = chargeBorder.rectTransform.sizeDelta;
-			chargeBorderMaxSize.x += playerStats.addedCharge*chargeAddSize;
+			chargeBorderMaxSize.x += playerStats.MoreAccurateChargeLv()*chargeAddSize;
             chargeBorder.rectTransform.sizeDelta = chargeBorderBG.rectTransform.sizeDelta = chargeBorderMaxSize;
             _chargeBarInitialized = true;
 		}
