@@ -122,7 +122,7 @@ public class RankUIItemS : MonoBehaviour {
 		scoreAmt.text = scoreAmount.ToString();
 		}
         }else{
-            scoreAmt.text = scoreAmt.text.Replace("{S}", scoreAmount.ToString());
+            scoreAmt.text = LocalizationManager.instance.GetLocalizedValue(scoreAmt.text).Replace("{S}", scoreAmount.ToString());
         }
 		fadeColor = scoreAmt.color;
 		fadeColor.a = 0f;
