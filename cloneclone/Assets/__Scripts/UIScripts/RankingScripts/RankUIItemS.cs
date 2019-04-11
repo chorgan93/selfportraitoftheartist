@@ -44,6 +44,8 @@ public class RankUIItemS : MonoBehaviour {
 
 	private bool _initialized = false;
 
+    bool bonusLocalized = false;
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -121,8 +123,11 @@ public class RankUIItemS : MonoBehaviour {
 		}else{
 		scoreAmt.text = scoreAmount.ToString();
 		}
-        }else{
-            scoreAmt.text = LocalizationManager.instance.GetLocalizedValue(scoreAmt.text).Replace("{S}", scoreAmount.ToString());
+        }else if (!bonusLocalized)
+            {
+                scoreAmt.text = LocalizationManager.instance.GetLocalizedValue(scoreAmt.text).Replace("{S}", scoreAmount.ToString());
+                bonusLocalized = true;
+            
         }
 		fadeColor = scoreAmt.color;
 		fadeColor.a = 0f;
