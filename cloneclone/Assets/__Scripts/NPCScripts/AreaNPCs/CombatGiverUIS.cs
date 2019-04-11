@@ -95,7 +95,7 @@ public class CombatGiverUIS : MonoBehaviour {
 			rulesBG.enabled = false;
 		}else{
 
-			rulesText.text = newText;
+			rulesText.text = LocalizationManager.instance.GetLocalizedValue(newText);
 				rulesText.enabled = true;
 			rulesBG.enabled = true;
 		}

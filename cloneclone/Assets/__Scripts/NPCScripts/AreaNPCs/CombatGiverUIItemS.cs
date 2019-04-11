@@ -22,7 +22,7 @@ public class CombatGiverUIItemS : MonoBehaviour {
 		if (!mainArenaCombat){
 		if (combatID > -1 && PlayerInventoryS.I.dManager.specialConditionCombatCleared != null){
 			if (PlayerInventoryS.I.dManager.specialConditionCombatCleared.Contains(combatID)){
-				completeText.text = completeString;
+				completeText.text = LocalizationManager.instance.GetLocalizedValue(completeString);
 				nameText.color = completeText.color = completeColor;
 			}else{
 				completeText.text = "";
