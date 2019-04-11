@@ -456,13 +456,13 @@ public class PlayerStatDisplayS : MonoBehaviour {
         {
             if (singleRefill)
             {
-                if (playerStats.currentCharge >= playerStats.maxCharge)
+                if (playerStats.currentCharge >= playerStats.MoreAccurateMaxCharge())
                 {
                     chargeBarCurrentSize.x = chargeBarMaxSize.x;
                 }
                 else
                 {
-                    chargeBarCurrentSize.x = chargeBarMaxSize.x * playerStats.currentCharge / playerStats.maxCharge;
+                    chargeBarCurrentSize.x = chargeBarMaxSize.x * playerStats.currentCharge / playerStats.MoreAccurateMaxCharge();
                 }
                 chargeBarCurrentSize.y = chargeFillMaxHeight;
                 if (!playerStats.EnoughChargeForBuddy())
@@ -477,7 +477,7 @@ public class PlayerStatDisplayS : MonoBehaviour {
                     chargeBarCurrentSize.y *= notEnoughChargeMult;
                 }
                 rechargeRecoveryBar.rectTransform.sizeDelta = chargeBarCurrentSize;
-                chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge / playerStats.maxCharge);
+                chargeFill.color = Color.Lerp(chargeEmptyColor, chargeFullColor, playerStats.currentCharge / playerStats.MoreAccurateMaxCharge());
             }
             else if (startRefill > 0)
             {

@@ -201,7 +201,8 @@ public class CheckpointS : MonoBehaviour {
 				_playerDetect.player.SetTalking(false);
 				_exitButtonUp = false;
 				_menuManager.levelMenu.sendExitMessage = false;
-			}
+                CameraEffectsS.E.fadeRef.DoSave = true;
+            }
 		}
 
 		if (_playerDetect.player != null){

@@ -978,6 +978,7 @@ public class LevelUpMenu : MonoBehaviour
         {
             playerLvl.text = "LV. " + pRef.myStats.currentLevel;
         }
+        CameraEffectsS.E.fadeRef.DoSave = true;
         StartCoroutine(TurnOnUpgrades());
     }
 

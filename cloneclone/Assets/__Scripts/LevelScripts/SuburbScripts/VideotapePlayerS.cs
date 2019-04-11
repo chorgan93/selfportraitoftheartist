@@ -55,7 +55,7 @@ public class VideotapePlayerS : MonoBehaviour {
 
 	void Start(){
 		playerDetect = GetComponentInChildren<PlayerDetectS>();
-		tvAmbient.examineString = tvAmbient.examineString.Replace("[TVNUM]", PlayerInventoryS.I.tvNum.ToString());
+		//tvAmbient.examineString = tvAmbient.examineString.Replace("[TVNUM]", PlayerInventoryS.I.tvNum.ToString());
 		InitializeTVs();
 	}
 
