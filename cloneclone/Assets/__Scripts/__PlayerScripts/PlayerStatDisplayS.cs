@@ -187,7 +187,16 @@ public class PlayerStatDisplayS : MonoBehaviour {
 		}else{
 			usingArcadeIcons = false;
 		}
-	}
+
+#if UNITY_SWITCH
+        StartCoroutine(FixChargeFillOnStartRoutine());
+#endif
+    }
+
+    IEnumerator FixChargeFillOnStartRoutine() {
+        yield return new WaitForSeconds(0.1f);
+        updateChargeFills(true);
+    }
 	
 	// Update is called once per frame
 	void Update () {
