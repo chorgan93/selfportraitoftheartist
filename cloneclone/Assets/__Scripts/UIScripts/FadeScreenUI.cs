@@ -162,8 +162,13 @@ public class FadeScreenUI : MonoBehaviour {
 						// this is reviving from game over, reset inventory
 						PlayerInventoryS.I.RefreshRechargeables();
 					}
-				}
-				InGameCinematicS.inGameCinematic = false;
+                        }
+                        if (DoSave)
+                        {
+                            StoryProgressionS.SaveProgress();
+                            DoSave = false;
+                        }
+                        InGameCinematicS.inGameCinematic = false;
 				dontAllowReset = false;
 				async.allowSceneActivation = true;
 			}
@@ -194,7 +199,13 @@ public class FadeScreenUI : MonoBehaviour {
 							PlayerInventoryS.I.RefreshRechargeables();
 						}
 					}
-					InGameCinematicS.inGameCinematic = false;
+
+                        if (DoSave)
+                        {
+                            StoryProgressionS.SaveProgress();
+                            DoSave = false;
+                        }
+                        InGameCinematicS.inGameCinematic = false;
 					dontAllowReset = false;
 					async.allowSceneActivation = true;
 				}
@@ -206,7 +217,13 @@ public class FadeScreenUI : MonoBehaviour {
 							PlayerInventoryS.I.RefreshRechargeables();
 						}
 					}
-					InGameCinematicS.inGameCinematic = false;
+
+                        if (DoSave)
+                        {
+                            StoryProgressionS.SaveProgress();
+                            DoSave = false;
+                        }
+                        InGameCinematicS.inGameCinematic = false;
 					dontAllowReset = false;
 					async.allowSceneActivation = true;
 				}
@@ -216,7 +233,7 @@ public class FadeScreenUI : MonoBehaviour {
 	
 	}
 
-#if !UNITY_SWITCH || UNITY_EDITOR
+#if !UNITY_SWITCH
     private void OnApplicationQuit()
     {
         if (DoSave) {

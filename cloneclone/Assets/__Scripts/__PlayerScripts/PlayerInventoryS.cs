@@ -990,7 +990,7 @@ public class PlayerInventoryS : MonoBehaviour
         CheckpointS.totalPlayTimeMinutes = 0;
         CheckpointS.totalPlayTimeHours = 0;
 
-        //StoryProgressionS.SaveProgress();
+        StoryProgressionS.SaveProgress();
     }
 
     public void OverwriteReversionData(bool includeDarkness = false){
