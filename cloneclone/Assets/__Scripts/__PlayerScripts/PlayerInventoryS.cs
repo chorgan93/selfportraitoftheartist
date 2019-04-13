@@ -984,13 +984,12 @@ public class PlayerInventoryS : MonoBehaviour
         PlayerController.killedFamiliar = false;
 
        
-            CheckpointS.lastSavePointName = "Abandoned Faith";
+            CheckpointS.lastSavePointName = "revert_track_00_check";
 
         CheckpointS.totalPlayTimeSeconds = 0;
         CheckpointS.totalPlayTimeMinutes = 0;
         CheckpointS.totalPlayTimeHours = 0;
 
-        StoryProgressionS.SaveProgress();
     }
 
     public void OverwriteReversionData(bool includeDarkness = false){

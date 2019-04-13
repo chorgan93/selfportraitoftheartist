@@ -39,10 +39,10 @@ public class InstructionTrigger : MonoBehaviour {
 		if(!useInstructionObjs){
 			instructionRef = GameObject.Find("InstructionText").GetComponent<InstructionTextS>();
             instructionString = LocalizationManager.instance.GetLocalizedValue(instructionString);
-			instructionString = instructionString.Replace("NEWLINE", "\n");
+            instructionString = instructionString.Replace("\\n",System.Environment.NewLine);
 			if (noControllerInstructionString != ""){
                 noControllerInstructionString = 
-                    LocalizationManager.instance.GetLocalizedValue(noControllerInstructionString).Replace("NEWLINE", "\n");
+                    LocalizationManager.instance.GetLocalizedValue(noControllerInstructionString).Replace("\\n", System.Environment.NewLine); 
 			}
 		}
 

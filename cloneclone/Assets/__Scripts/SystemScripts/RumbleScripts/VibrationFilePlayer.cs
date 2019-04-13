@@ -87,6 +87,11 @@ public class VibrationFilePlayer
         _isPlaying = true;
     }
 
+public void Stop(){
+SetPlayPositionToFileStart();
+_isPlaying = false;
+}
+
     /// <summary>
     /// Returns whether or not the effect is currently playing.
     /// </summary>
