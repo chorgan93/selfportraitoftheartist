@@ -2218,11 +2218,11 @@ public class ControlManagerS : MonoBehaviour
                 VibrationValue.Make(0.0f, VibrationValue.FrequencyLowDefault, 0.0f, VibrationValue.FrequencyHighDefault);
 
             BasicVibratingController controller = m_vibratingControllers[NpadId.Handheld];
-            controller.SetLeftVibration(leftVibration);
-            controller.SetRightVibration(rightVibration);
+            controller.SetLeftVibration(vibrationValue);
+            controller.SetRightVibration(vibrationValue);
             controller = m_vibratingControllers[NpadId.No1];
-            controller.SetLeftVibration(leftVibration);
-            controller.SetRightVibration(rightVibration);
+            controller.SetLeftVibration(vibrationValue);
+            controller.SetRightVibration(vibrationValue);
 #endif
         }
 
