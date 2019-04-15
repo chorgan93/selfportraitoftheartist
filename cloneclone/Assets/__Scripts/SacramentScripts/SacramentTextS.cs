@@ -135,7 +135,7 @@ public class SacramentTextS : MonoBehaviour {
 			myText = GetComponent<Text>();
             if (!ignoreLocalization)
             {
-                fullText = LocalizationManager.instance.GetLocalizedValue(myText.text);
+                fullText = LocalizationManager.instance.GetLocalizedValue(myText.text).Replace("\\n", System.Environment.NewLine);
             }else{
                 fullText = myText.text;
             }
