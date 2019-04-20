@@ -239,7 +239,7 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			_currentAction = possibleActions[actionToDo];
 		}else{
 			ResetOverwatchTarget();
-			_myManager.combatText.AddToString(startTurnString[Mathf.FloorToInt(Random.Range(0, startTurnString.Length))],
+            _myManager.combatText.AddToString(LocalizationManager.instance.GetLocalizedValue(startTurnString[Mathf.FloorToInt(Random.Range(0, startTurnString.Length))]),
 				null, true);
 		}
 	}
@@ -327,9 +327,9 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 			currentHealth = 0f;
 
 			if (healthPercent){
-				healthPercent.text = "CRITICAL";
+                healthPercent.text = LocalizationManager.instance.GetLocalizedValue("sacrament_iv_437");
 			}
-			_myManager.combatText.AddToString(criticalStrings[Mathf.FloorToInt(Random.Range(0, criticalStrings.Length))],null);
+            _myManager.combatText.AddToString(LocalizationManager.instance.GetLocalizedValue(criticalStrings[Mathf.FloorToInt(Random.Range(0, criticalStrings.Length))]),null);
 		}else if (healthPercent){
 			if (currentHealth >= 100f){
 				currentHealth = 100f;
@@ -341,9 +341,11 @@ public class SacramentCombatantS : MonoBehaviour, IPointerEnterHandler, IPointer
 
 	void UpdateHealthPercent(){
 		if (healthPercent){
-			if (currentHealth <= 0){
-			healthPercent.text = "CRITICAL";
-			}else{
+			if (currentHealth <= 0)
+            {
+                healthPercent.text = LocalizationManager.instance.GetLocalizedValue("sacrament_iv_437");
+            }
+            else{
 				healthPercent.text = Mathf.RoundToInt(currentHealth/maxHealth*100f) + " %";
 			}
 		}

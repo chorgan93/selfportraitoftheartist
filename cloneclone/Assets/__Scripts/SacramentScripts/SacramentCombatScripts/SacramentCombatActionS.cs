@@ -198,23 +198,23 @@ public class SacramentCombatActionS : MonoBehaviour {
 	}
 
 	string GetActionLine(){
-		string actionLine = actionLines[Mathf.FloorToInt(Random.Range(0, actionLines.Length))];
-		actionLine = actionLine.Replace("TARGET", _currentTarget.combatantName);
+        string actionLine = LocalizationManager.instance.GetLocalizedValue(actionLines[Mathf.FloorToInt(Random.Range(0, actionLines.Length))]);
+        actionLine = actionLine.Replace("TARGET", LocalizationManager.instance.GetLocalizedValue(_currentTarget.combatantName));
 		return actionLine;
 	}
 	string GetReactionLine(){
-		string reactionLine = reactionLines[Mathf.FloorToInt(Random.Range(0, reactionLines.Length))];
-		reactionLine = reactionLine.Replace("TARGET", _currentTarget.combatantName);
+        string reactionLine = LocalizationManager.instance.GetLocalizedValue(reactionLines[Mathf.FloorToInt(Random.Range(0, reactionLines.Length))]);
+        reactionLine = reactionLine.Replace("TARGET", LocalizationManager.instance.GetLocalizedValue(_currentTarget.combatantName));
 		return reactionLine;
 	}
 	string GetMissLine(){
-		string missLine = missLines[Mathf.FloorToInt(Random.Range(0, missLines.Length))];
-		missLine = missLine.Replace("TARGET", _currentTarget.combatantName);
+        string missLine = LocalizationManager.instance.GetLocalizedValue(missLines[Mathf.FloorToInt(Random.Range(0, missLines.Length))]);
+        missLine = missLine.Replace("TARGET", LocalizationManager.instance.GetLocalizedValue(_currentTarget.combatantName));
 		return missLine;
 	}
 	string GetChooseLine(){
-		string missLine = chooseTargetLines[Mathf.FloorToInt(Random.Range(0, chooseTargetLines.Length))];
-		missLine = missLine.Replace("TARGET", _currentTarget.combatantName);
+        string missLine = LocalizationManager.instance.GetLocalizedValue(chooseTargetLines[Mathf.FloorToInt(Random.Range(0, chooseTargetLines.Length))]);
+        missLine = missLine.Replace("TARGET", LocalizationManager.instance.GetLocalizedValue(_currentTarget.combatantName));
 		return missLine;
 	}
 

@@ -140,9 +140,9 @@ public class SacramentCombatS : MonoBehaviour {
 		if (!endTextGiven){
 			endTextGiven = true;
 			if (wonCombat){
-				combatText.AddToString(winLine, null);
+                combatText.AddToString(LocalizationManager.instance.GetLocalizedValue(winLine), null);
 			}else{
-				combatText.AddToString(loseLine, null);
+                combatText.AddToString(LocalizationManager.instance.GetLocalizedValue(loseLine), null);
 			}
 		}else{
 		if (wonCombat){

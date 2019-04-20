@@ -187,7 +187,7 @@ public class SacramentCombatTextS : MonoBehaviour {
 		textActive = true;
 		gameObject.SetActive(true);
 
-		AddToString(startCombatString, null);
+        AddToString(LocalizationManager.instance.GetLocalizedValue(startCombatString), null);
 		beginCombatOnEnd = true;
 		
 	}
