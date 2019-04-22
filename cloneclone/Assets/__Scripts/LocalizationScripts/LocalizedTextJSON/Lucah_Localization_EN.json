@@ -10929,15 +10929,15 @@
   },
   {
     "key": "sacrament_iv_548",
-    "value": "C places suppressing fire."
+    "value": "AA places suppressing fire."
   },
   {
     "key": "sacrament_iv_549",
-    "value": "C exits cover and fires at the nightmare's position."
+    "value": "AA exits cover and fires at the nightmare's position."
   },
   {
     "key": "sacrament_iv_550",
-    "value": "C takes aim at the nightmare's cover."
+    "value": "AA takes aim at the nightmare's cover."
   },
   {
     "key": "sacrament_iv_551",
@@ -10945,11 +10945,11 @@
   },
   {
     "key": "sacrament_iv_552",
-    "value": "C's gunfire seems to pin the nightmare in place."
+    "value": "AA's gunfire seems to pin the nightmare in place."
   },
   {
     "key": "sacrament_iv_553",
-    "value": "C's bullets eclipse the nightmare's sight."
+    "value": "AA's bullets eclipse the nightmare's sight."
   },
   {
     "key": "sacrament_iv_554",
@@ -12178,5 +12178,9 @@
   {
     "key": "sacrament_iv_862",
     "value": "Empty impacts echo in the stairwell."
+  },
+  {
+    "key": "sacrament_i_357",
+    "value": "I am so"
   }
 ]}
