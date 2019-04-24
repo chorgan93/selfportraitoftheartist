@@ -17,7 +17,8 @@ public class InGameMenuManagerS : MonoBehaviour {
 	private bool equipMenuActive = false;
 	private bool levelMenuActive = false;
 
-	private bool gameMenuButtonDown = false;
+    [HideInInspector]
+    public bool gameMenuButtonDown = false;
 	private bool equipMenuButtonDown = false;
 	private bool exitButtonDown = false;
 
@@ -108,7 +109,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 			}
 
 		if (gameMenuActive){
-			if (_pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown){
+                if (_pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown && !gameMenu.inControlMenu){
 				gameMenuActive = false;
 				gameMenuButtonDown = true;
 				gameMenu.TurnOff();

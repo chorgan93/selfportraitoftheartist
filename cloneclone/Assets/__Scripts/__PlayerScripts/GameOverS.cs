@@ -64,7 +64,11 @@ public class GameOverS : MonoBehaviour {
 		StoryProgressionS.ResetToSavedProgress();
 		SpawnPosManager.whereToSpawn = revivePosition;
 		SpawnPosManager.spawningFromDeath = true;
-        if (tempReviveScene != "" && reviveScene != "MenuScene"){
+        if (goToMenuScene)
+        {
+            CameraEffectsS.E.SetNextScene("MenuScene");
+        }
+        else if (tempReviveScene != "" && reviveScene != "MenuScene"){
 			CameraEffectsS.E.SetNextScene(tempReviveScene);
 			SpawnPosManager.tempWhereToSpawn = tempRevivePosition;
 		}else{
@@ -72,16 +76,15 @@ public class GameOverS : MonoBehaviour {
 		}
 		CameraEffectsS.E.FadeIn();
 	}
-
+    bool goToMenuScene = false;
 	public void FakeDeath(bool returnToMain = false){
 		triggerRespawn = true;
 		if( returnToMain){
 			if (BGMHolderS.BG != null){
 			BGMHolderS.BG.EndAllLayers(false,true);
 			}
-			// TODO change back after magfest!!
-			//reviveScene = "MenuScene";
-			reviveScene = "MenuScene";
+            //reviveScene = "MenuScene"; // this is the problem, find a better way
+            goToMenuScene = true; // attempted save error fix (IT SEEMS TO HAVE WORKED!)
 			MainMenuNavigationS.inMain = true;
 		}
 	}

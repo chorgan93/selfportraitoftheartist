@@ -64,12 +64,12 @@ public class CustomizableControlsUIS : MonoBehaviour
 #endif
             stickReset = true;
         }
-        if (!myControl.GetCustomInput(12))
+        if (!myControl.GetCustomInput(3))
         {
             selectButtonUp = true;
         }
 
-        if (!myControl.GetCustomInput(13))
+        if (!myControl.GetCustomInput(1))
         {
             backButtonUp = true;
         }
@@ -89,13 +89,13 @@ public class CustomizableControlsUIS : MonoBehaviour
 
     void HandleRestoreDefaults()
     {
-        if (selectButtonUp && myControl.GetCustomInput(12))
+        if (selectButtonUp && myControl.GetCustomInput(3))
         {
 
             myControl.RestoreDefaults();
+            UpdateControlImages();
             selectButtonUp = false;
 
-            UpdateControlImages();
         }
     }
 
@@ -145,7 +145,7 @@ public class CustomizableControlsUIS : MonoBehaviour
             UpdateControlSettingText();
         }
 
-        if (selectButtonUp && myControl.GetCustomInput(12))
+        if (selectButtonUp && myControl.GetCustomInput(3))
         {
 
             ControlManagerS.controlProfile++;
@@ -199,7 +199,7 @@ public class CustomizableControlsUIS : MonoBehaviour
     {
         if (currentPos > 0 && currentPos < customControlTexts.Length + 1)
         {
-            if (selectButtonUp && !inReplaceMode && myControl.GetCustomInput(12))
+            if (selectButtonUp && !inReplaceMode && myControl.GetCustomInput(3))
             {
                 for (int i = 0; i < buttonsAreUp.Length; i++)
                 {
@@ -215,7 +215,7 @@ public class CustomizableControlsUIS : MonoBehaviour
                 CheckForReplacement();
             }
         }
-        if (backButtonUp && myControl.GetCustomInput(13) && !inReplaceMode)
+        if (backButtonUp && myControl.GetCustomInput(1) && !inReplaceMode)
         {
             TurnOff(null);
         }
@@ -381,6 +381,51 @@ public class CustomizableControlsUIS : MonoBehaviour
                 {
                     currentControlImages[i].sprite = keyboardButtonIcons[keyboardButtonIcons.Length - 1];
                 }
+            }else if (i == 12){
+                // set equal to i = 3
+                if (ControlManagerS.controlProfile == 0)
+                {
+#if UNITY_SWITCH
+                    currentControlImages[i].sprite = nintendoButtonIcons[ControlManagerS.savedGamepadControls[3]];
+#else
+                    currentControlImages[i].sprite = xboxButtonIcons[ControlManagerS.savedGamepadControls[3]];
+#endif
+                }
+                else if (ControlManagerS.controlProfile == 3)
+                {
+                    currentControlImages[i].sprite = ps4ButtonIcons[ControlManagerS.savedGamepadControls[3]];
+                }
+                else if (ControlManagerS.controlProfile == 2)
+                {
+                    currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardControls[3]];
+                }
+                else
+                {
+                    currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardandMouseControls[3]];
+                }
+            }
+            else if (i == 13){
+                // set equal to i == 1
+                if (ControlManagerS.controlProfile == 0)
+                {
+#if UNITY_SWITCH
+                    currentControlImages[i].sprite = nintendoButtonIcons[ControlManagerS.savedGamepadControls[1]];
+#else
+                    currentControlImages[i].sprite = xboxButtonIcons[ControlManagerS.savedGamepadControls[1]];
+#endif
+                }
+                else if (ControlManagerS.controlProfile == 3)
+                {
+                    currentControlImages[i].sprite = ps4ButtonIcons[ControlManagerS.savedGamepadControls[1]];
+                }
+                else if (ControlManagerS.controlProfile == 2)
+                {
+                    currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardControls[1]];
+                }
+                else
+                {
+                    currentControlImages[i].sprite = keyboardButtonIcons[ControlManagerS.savedKeyboardandMouseControls[1]];
+                }
             }
             else
             {
@@ -406,6 +451,8 @@ public class CustomizableControlsUIS : MonoBehaviour
                 }
             }
         }
+
+
     }
 
     void UpdateControlSettingText()

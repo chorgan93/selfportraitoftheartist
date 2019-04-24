@@ -6,6 +6,7 @@ public class GameMenuS : MonoBehaviour
 {
 
     private InGameMenuManagerS myManager;
+    public InGameMenuManagerS MyManager { get { return myManager; }}
 
     public static bool unlockedChallenge;
     public static bool unlockedTurbo;
@@ -61,6 +62,7 @@ public class GameMenuS : MonoBehaviour
 
     public CustomizableControlsUIS customControlRef;
     private bool inCustomControlMenu = false;
+    public bool inControlMenu {get { return inCustomControlMenu; }}
 
 
     private int fontSizeOptionStart = -1;
