@@ -12186,5 +12186,13 @@
   {
     "key": "examine_label_pet",
     "value": ": Pet"
+  },
+  {
+    "key": "examine_label_read",
+    "value": ": Read"
+  },
+  {
+    "key": "npc_the_tape",
+    "value": "DANGER !! DO NOT CROSS !!"
   }
 ]}
