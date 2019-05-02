@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreditsManagerS : MonoBehaviour
 {
 
-    public static int currentEnding = 2;
+    public static int currentEnding = 3;
     public GameObject[] creditArtToUse;
     public float[] timeAfterEnd;
 
@@ -24,6 +24,8 @@ public class CreditsManagerS : MonoBehaviour
     private float fastForwardRate = 10f;
     public float fastForwardMult { get { return fastForwardRate / startScrollRate; } }
     public Vector3 scrollDir = new Vector3(0, 1f, 0);
+
+    private float failsafeTime = 180f;
 
     [HideInInspector]
     public bool fastForwarding = false;
@@ -73,6 +75,16 @@ public class CreditsManagerS : MonoBehaviour
 #endif
             if (!checkForEnd)
             {
+                if (fastForwarding)
+                {
+                    failsafeTime -= Time.deltaTime * fastForwardMult;
+                }
+                else {
+                    failsafeTime -= Time.deltaTime;
+                }
+                if (failsafeTime <= 0) {
+                    checkForEnd = true;
+                }
                 for (int i = numOfFinishedTransforms; i < checkTransforms.Length; i++)
                 {
                     if (checkTransforms[i].position.y >= endCreditMoveY)
