@@ -32,7 +32,7 @@ public class MerchantS : MonoBehaviour {
     private float distortCountdown;
     private float distortOffTime = 0.08f;
 
-    private string[] stopTalkingStrings = new string[4] {". . .", ". . . . . .", "...", " . . . . . . . ."};
+    private string[] stopTalkingStrings = new string[4] { "christian_01_18", "darkness_complete_12", "dialogue_ellipses", "colin_intro_02" };
 
 	[HideInInspector]
 	public int merchantState = 0; // 0 = intro, 1 = menu, 2 = talk, 3 = buy, 4 = leave
