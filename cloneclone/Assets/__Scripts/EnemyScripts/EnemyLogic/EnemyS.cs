@@ -1500,7 +1500,8 @@ public class EnemyS : MonoBehaviour {
 					ResetFaceLock();
 					if (GetPlayerReference()){
 					GetPlayerReference().myStats.DrivenCheck();
-					}
+                        GetPlayerReference().SendCritMessage();
+                    }
 					if (breakSound){
 						Instantiate(breakSound);
 					}
@@ -1512,7 +1513,6 @@ public class EnemyS : MonoBehaviour {
 					currentCritTime = 0f;
 					CameraFollowS.F.AddStunnedEnemy(this);
 					_critScreen.Flash();
-					GetPlayerReference().SendCritMessage();
 				
 					// spawn break object on parry
 					//if (dmg <= 0){
