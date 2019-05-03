@@ -1502,7 +1502,7 @@ public class EnemyS : MonoBehaviour {
 					GetPlayerReference().myStats.DrivenCheck();
                         GetPlayerReference().SendCritMessage();
                     }
-					if (breakSound){
+                    if (breakSound){
 						Instantiate(breakSound);
 					}
 					_isVulnerable = false;
