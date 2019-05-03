@@ -12194,5 +12194,13 @@
   {
     "key": "npc_the_tape",
     "value": "DANGER !! DO NOT CROSS !!"
+  },
+  {
+    "key": "forest_serah_07",
+    "value": "I'm sorry, do I know you?"
+  },
+  {
+    "key": "forest_serah_08",
+    "value": "No, wait, I'm sorry, I think I'm misremembering."
   }
 ]}
