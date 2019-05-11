@@ -22,6 +22,7 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 	public float recenterMax;
 	private Vector3 recenterTarget;
 	private float recenterCountdown;
+    public float recenterDist = 0f;
 
 	[Header("Double Action Properties")]
 	public EnemySpawnBehavior secondarySpawnBehavior;
@@ -95,7 +96,8 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 		}
 
 		if (recenterMin > 0){
-			recenterTarget = myEnemyReference.GetTargetReference().transform.position;
+                recenterTarget = myEnemyReference.GetTargetReference().transform.position + Random.insideUnitSphere.normalized*recenterDist;
+                recenterTarget.z = myEnemyReference.transform.position.z;
 			recenterCountdown = Random.Range(recenterMin,recenterMax);
 		}
 
@@ -158,9 +160,11 @@ public class EnemyChaseAttackS : EnemyBehaviorS {
 			}else{
 			if (recenterMin > 0){
 				recenterCountdown -= Time.deltaTime;
-				if (recenterCountdown <= 0){
-					recenterTarget = myEnemyReference.GetTargetReference().transform.position;
-					recenterCountdown = Random.Range(recenterMin,recenterMax);
+				if (recenterCountdown <= 0)
+                    {
+                        recenterTarget = myEnemyReference.GetTargetReference().transform.position + Random.insideUnitSphere.normalized * recenterDist;
+                        recenterTarget.z = myEnemyReference.transform.position.z;
+                        recenterCountdown = Random.Range(recenterMin,recenterMax);
 					didWallRedirect = false;
 				}
 				myEnemyReference.myRigidbody.AddForce((recenterTarget
