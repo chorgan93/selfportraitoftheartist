@@ -12206,5 +12206,69 @@
   {
     "key": "sacrament_iv_863",
     "value": "crackle."
+  },
+  {
+    "key": "descent_colin_intro_00",
+    "value": "Why are you here?"
+  },
+  {
+    "key": "descent_colin_intro_01",
+    "value": "Sorry, I was just surprised..."
+  },
+  {
+    "key": "descent_colin_intro_02",
+    "value": "I thought you already got your ending?"
+  },
+  {
+    "key": "descent_colin_intro_03",
+    "value": "Or if you hadn't, you definitely shouldn't be here..."
+  },
+  {
+    "key": "descent_colin_intro_04",
+    "value": "What are you hoping to find?"
+  },
+  {
+    "key": "descent_colin_intro_05",
+    "value": "There is a trauma at the center of the world."
+  },
+  {
+    "key": "descent_colin_intro_06",
+    "value": "And I can lead the way."
+  },
+  {
+    "key": "descent_colin_intro_07",
+    "value": "But I don't think you'll be happy to find it."
+  },
+  {
+    "key": "descent_colin_intro_08",
+    "value": "This is My story."
+  },
+  {
+    "key": "descent_colin_intro_09",
+    "value": "Here, the Corruption grows so strong, and you cannot falter."
+  },
+  {
+    "key": "descent_colin_intro_10",
+    "value": "It's the only way."
+  },
+  {
+    "key": "descent_colin_intro_11",
+    "value": "Come, PLAYERNAME...I hope you're ready."
+  },
+  {
+    "key": "sacrament_ii_00",
+    "value": "sacrament    ii"
+  },
+  {
+    "key": "sacrament_ii_01",
+    "value": "There's this...bridge"
+  },
+  {
+    "key": "sacrament_ii_02",
+    "value": "you pass everyday."
+  },
+  {
+    "key": "descent_isolated",
+    "value": "Descent"
   }
 ]}

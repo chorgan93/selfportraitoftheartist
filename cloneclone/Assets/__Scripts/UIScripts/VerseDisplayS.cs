@@ -142,8 +142,11 @@ public class VerseDisplayS : MonoBehaviour {
 
 	public void NewVerse(string verseString){
 		if (verseTitle.text == ""){
-            verseTitle.text = verseTitleBg.text = currentVerse = LocalizationManager.instance.GetLocalizedValue(verseString);
-		fadingIn = true;
+            verseTitle.text = verseString.Contains("{D}")
+                ? (verseTitleBg.text = currentVerse
+                    = verseString.Replace("{D}", LocalizationManager.instance.GetLocalizedValue("descent_isolated")))
+                : (verseTitleBg.text = currentVerse = LocalizationManager.instance.GetLocalizedValue(verseString));
+            fadingIn = true;
 		fadingOut = false;
 		currentCol = verseBorder.color;
 		currentCol.a = 0f;
