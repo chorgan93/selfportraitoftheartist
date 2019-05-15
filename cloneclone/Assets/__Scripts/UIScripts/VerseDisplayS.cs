@@ -145,7 +145,8 @@ public class VerseDisplayS : MonoBehaviour {
             verseTitle.text = verseString.Contains("{D}")
                 ? (verseTitleBg.text = currentVerse
                     = verseString.Replace("{D}", LocalizationManager.instance.GetLocalizedValue("descent_isolated")))
-                : (verseTitleBg.text = currentVerse = LocalizationManager.instance.GetLocalizedValue(verseString));
+                : (verseTitleBg.text = currentVerse = LocalizationManager.instance.GetLocalizedValue(verseString).Replace
+                  ("PLAYERNAME", TextInputUIS.playerName));
             fadingIn = true;
 		fadingOut = false;
 		currentCol = verseBorder.color;

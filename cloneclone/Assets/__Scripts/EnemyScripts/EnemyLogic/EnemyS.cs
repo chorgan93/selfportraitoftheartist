@@ -496,7 +496,7 @@ public class EnemyS : MonoBehaviour {
 
 	private void Initialize(){
 
-		enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
+		//enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
 
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
         if (PlayerAugmentsS.MARKED_AUG)

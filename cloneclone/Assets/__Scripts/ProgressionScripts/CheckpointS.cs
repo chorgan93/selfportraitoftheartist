@@ -101,6 +101,7 @@ public class CheckpointS : MonoBehaviour {
             }
             //StoryProgressionS.SaveProgress();
             CameraEffectsS.E.fadeRef.DoSave = true;
+            Debug.Log("Saved queued!");
 		}
 	
 	}
@@ -177,6 +178,7 @@ public class CheckpointS : MonoBehaviour {
                     }
                     //StoryProgressionS.SaveProgress();
                     CameraEffectsS.E.fadeRef.DoSave = true;
+                    Debug.Log("Save Queued!");
                 }
 			// heal player
 			_playerDetect.player.myStats.FullRecover();
@@ -202,6 +204,7 @@ public class CheckpointS : MonoBehaviour {
 				_exitButtonUp = false;
 				_menuManager.levelMenu.sendExitMessage = false;
                 CameraEffectsS.E.fadeRef.DoSave = true;
+                Debug.Log("Save Queued!");
             }
 		}
 
