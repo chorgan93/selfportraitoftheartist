@@ -308,7 +308,8 @@ public class DialogueManagerS : MonoBehaviour {
 				memoText.rectTransform.anchoredPosition = memoTextStartPos;
 			}
 
-			memoText.text = LocalizationManager.instance.GetLocalizedValue(newText).Replace("\\n", System.Environment.NewLine);
+			memoText.text = LocalizationManager.instance.GetLocalizedValue(newText).Replace("\\n", System.Environment.NewLine)
+                .Replace("PLAYERNAME", TextInputUIS.playerName);
             _doneScrolling = true;
 			//Debug.LogError("Done scrolling bc memo!");
 		}
