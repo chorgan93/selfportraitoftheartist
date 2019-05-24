@@ -871,9 +871,19 @@ public class PlayerController : MonoBehaviour {
 		_attackBuffered = false;
 		attackTriggered = false;
 		_attackingWeapon = equippedWeapon;
-        if (EquippedWeaponAug() != null)
+        if (subWeapons != null)
         {
-            attackingWeaponAug = EquippedWeaponAug();
+            //Debug.Log("Cancelling attack!! " + _currentParadigm + " / " + subWeapons.Count);
+            Debug.Log("WARNING: Subweapon list does not match current paradigm value, do not set weapon aug.");
+            if (_currentParadigm < subWeapons.Count)
+            {
+                if (EquippedWeaponAug() != null)
+                {
+                    attackingWeaponAug = EquippedWeaponAug();
+                }
+            }
+        }else{
+            Debug.Log("WARNING: No subweapon list found, do not set weapon aug.");
         }
 		attackDuration = 0f;
 		if (myTracker){
