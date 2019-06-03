@@ -874,9 +874,9 @@ public class PlayerController : MonoBehaviour {
         if (subWeapons != null)
         {
             //Debug.Log("Cancelling attack!! " + _currentParadigm + " / " + subWeapons.Count);
-            Debug.Log("WARNING: Subweapon list does not match current paradigm value, do not set weapon aug.");
             if (_currentParadigm < subWeapons.Count)
             {
+                Debug.Log("WARNING: Subweapon list does not match current paradigm value, do not set weapon aug.");
                 if (EquippedWeaponAug() != null)
                 {
                     attackingWeaponAug = EquippedWeaponAug();
