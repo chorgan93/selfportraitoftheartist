@@ -1164,7 +1164,7 @@ public class LevelUpMenu : MonoBehaviour
             // overwrite everything, then load new scene
 
         CheckpointS.lastSavePointName = revertMenuDataObjs[trackToReturnTo].lastCheckpointName;
-        ChapterTrigger.lastChapterTriggered = revertMenuDataObjs[trackToReturnTo].chapterName;
+        ChapterTrigger.lastChapterTriggered = LocalizationManager.instance.GetLocalizedValue(revertMenuDataObjs[trackToReturnTo].chapterName);
 
         PlayerController.killedFamiliar = false;
 
