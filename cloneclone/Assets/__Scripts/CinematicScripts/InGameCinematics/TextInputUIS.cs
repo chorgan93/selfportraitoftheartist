@@ -61,7 +61,7 @@ public class TextInputUIS : MonoBehaviour {
             if (ControlManagerS.controlProfile == 0 || ControlManagerS.controlProfile == 3)
             {
 #if UNITY_SWITCH
-                if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.5f)
+                if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.45f)
 #else
                 if (stickReset && Mathf.Abs(myControl.HorizontalMenu()) > 0.1f)
 #endif
@@ -77,7 +77,7 @@ public class TextInputUIS : MonoBehaviour {
                     }
                 }
 #if UNITY_SWITCH
-                else if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.5f)
+                else if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.45f)
 #else
                 if (stickReset && Mathf.Abs(myControl.VerticalMenu()) > 0.1f)
 #endif

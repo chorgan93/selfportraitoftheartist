@@ -289,11 +289,11 @@
   },
   {
     "key": "mod_weaker_enemies_name",
-    "value": "Weakened Enemies"
+    "value": "Weak Enemies"
   },
   {
     "key": "mod_weaker_enemies_desc",
-    "value": "Weakened Enemies: Massively reduces enemy health and attack power."
+    "value": "Weak Enemies: Massively reduces enemy health and attack power."
   },
   {
     "key": "ui_map_missing",

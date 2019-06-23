@@ -6,7 +6,7 @@ public class GameMenuS : MonoBehaviour
 {
 
     private InGameMenuManagerS myManager;
-    public InGameMenuManagerS MyManager { get { return myManager; }}
+    public InGameMenuManagerS MyManager { get { return myManager; } }
 
     public static bool unlockedChallenge;
     public static bool unlockedTurbo;
@@ -62,7 +62,7 @@ public class GameMenuS : MonoBehaviour
 
     public CustomizableControlsUIS customControlRef;
     private bool inCustomControlMenu = false;
-    public bool inControlMenu {get { return inCustomControlMenu; }}
+    public bool inControlMenu { get { return inCustomControlMenu; } }
 
 
     private int fontSizeOptionStart = -1;
@@ -94,7 +94,8 @@ public class GameMenuS : MonoBehaviour
     private void Update()
     {
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Alpha4)){
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
             unlockedTurbo = !unlockedTurbo;
             Debug.Log("Turbo enabled set to " + unlockedTurbo);
         }
@@ -132,7 +133,7 @@ public class GameMenuS : MonoBehaviour
         {
 
 #if UNITY_SWITCH
-            if (myControl.VerticalMenu() > 0.5f && stickReset)
+            if (myControl.VerticalMenu() > 0.45f && stickReset)
 #else
             if (myControl.VerticalMenu() > 0.1f && stickReset)
 #endif
@@ -147,7 +148,7 @@ public class GameMenuS : MonoBehaviour
                 SetSelection(currentSelection);
             }
 #if UNITY_SWITCH
-            if (myControl.VerticalMenu() < -0.5f && stickReset)
+            if (myControl.VerticalMenu() < -0.45f && stickReset)
 #else
             if (myControl.VerticalMenu() < -0.1f && stickReset)
 #endif
@@ -196,8 +197,13 @@ public class GameMenuS : MonoBehaviour
         }
         else if (!inCustomControlMenu)
         {
+#if UNITY_SWITCH
+             if (myControl.VerticalMenu() > 0.45f && stickReset)
+            {
+#else
             if (myControl.VerticalMenu() > 0.1f && stickReset)
             {
+#endif
                 stickReset = false;
                 currentSelection--;
                 // on switch, make sure to skip 6 and 7
@@ -215,8 +221,13 @@ public class GameMenuS : MonoBehaviour
 				}
 				SetSelection(currentSelection);
 			}
-			if (myControl.VerticalMenu() < -0.1f && stickReset){
-				stickReset = false;
+#if UNITY_SWITCH
+             if (myControl.VerticalMenu() < -0.45f && stickReset)
+            {
+#else
+            if (myControl.VerticalMenu() < -0.1f && stickReset){
+#endif
+                stickReset = false;
                 currentSelection++;
                 // on switch, make sure to skip 6 and 7
 #if UNITY_SWITCH
@@ -490,7 +501,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleSinOption(){
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
 		if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -509,7 +520,7 @@ public class GameMenuS : MonoBehaviour
 			UpdateSinSettingText();
 		}
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif
@@ -564,7 +575,7 @@ public class GameMenuS : MonoBehaviour
 	void HandlePunishOption(){
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
 		if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -583,7 +594,7 @@ public class GameMenuS : MonoBehaviour
 			UpdatePunishSettingText();
 		}
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif
@@ -638,7 +649,7 @@ public class GameMenuS : MonoBehaviour
 
 	void HandleAliasOption(){
 #if UNITY_SWITCH
-        if ((myControl.HorizontalMenu() > 0.5f || myControl.HorizontalMenu() < -0.5f) && stickReset)
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
 #else
             if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
 #endif
@@ -739,7 +750,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleShakeOption(){
 
 #if UNITY_SWITCH
-        if ((myControl.HorizontalMenu() > 0.5f || myControl.HorizontalMenu() < -0.5f) && stickReset)
+        if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
 #else
         if ((myControl.HorizontalMenu() > 0.1f || myControl.HorizontalMenu() < -0.1f) && stickReset)
 #endif
@@ -804,7 +815,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleMusicOption(){
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
 		if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -818,7 +829,7 @@ public class GameMenuS : MonoBehaviour
 			musicText.text = BGMHolderS.volumeMult*100f + "%";
         }
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif
@@ -849,7 +860,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleSfxOption(){
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -859,7 +870,7 @@ public class GameMenuS : MonoBehaviour
 			sfxText.text = SFXObjS.volumeSetting*100f + "%";
         }
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif
@@ -883,7 +894,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleZoomOption(){
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -893,7 +904,7 @@ public class GameMenuS : MonoBehaviour
 			UpdateCameraZoomSettingText();
         }
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif
@@ -1013,7 +1024,7 @@ public class GameMenuS : MonoBehaviour
 	void HandleSpeedOption()
     {
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() > 0.5f && stickReset)
+        if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() > 0.1f && stickReset)
 #endif
@@ -1031,7 +1042,7 @@ public class GameMenuS : MonoBehaviour
 		}
 
 #if UNITY_SWITCH
-        if (myControl.HorizontalMenu() < -0.5f && stickReset)
+        if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #else
         if (myControl.HorizontalMenu() < -0.1f && stickReset)
 #endif

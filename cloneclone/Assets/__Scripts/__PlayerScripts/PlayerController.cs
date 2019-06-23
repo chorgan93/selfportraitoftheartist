@@ -1270,9 +1270,11 @@ public class PlayerController : MonoBehaviour {
 		_playerSound.PlayRollSound();
 
 		_allowCounterAttack = false;
+            parryDelayWitchCountdown = 0f;
+            counterAttackTime = 0f;
 
 
-		if (_myStats.speedAmt >= 5f){
+            if (_myStats.speedAmt >= 5f){
 			myRenderer.enabled = false;
 		}
 
@@ -1986,7 +1988,9 @@ public class PlayerController : MonoBehaviour {
 						}
 						counterQueued = true;
 						_allowCounterAttack = false;
-						shootButtonUp = false;
+                        parryDelayWitchCountdown = 0f;
+                        counterAttackTime = 0f;
+                        shootButtonUp = false;
 						_allowDashAttack = false;
 					}
 					else{
@@ -2012,11 +2016,14 @@ public class PlayerController : MonoBehaviour {
 						_allowCounterAttack = false;
 						_allowDashAttack = false;
 
+            parryDelayWitchCountdown = 0f;
+                            counterAttackTime = 0f;
 							_myRigidbody.drag = startDrag;
 						heavyCounterQueued = false;
 						counterQueued = false;
 
 						counterAttackTime = 0f;
+                            parryDelayWitchCountdown = 0f;
 							if (_blockRef.doingParry){
 								_blockRef.DoFlash();
 							}

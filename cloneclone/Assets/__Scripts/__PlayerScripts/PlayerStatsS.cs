@@ -770,7 +770,18 @@ public class PlayerStatsS : MonoBehaviour {
 
 		bool canRecover = true;
 
-		if (_currentMana < maxMana && !PlayerIsDead()){
+#if UNITY_EDITOR_OSX
+        if (Input.GetKeyDown(KeyCode.Alpha3)){
+            // Display reasons for not charging
+            Debug.LogError("Charging attack? " + myPlayerController.chargingAttack
+                           + "\nIn attack? " + myPlayerController.InAttack() + 
+                           "\nIn witch animation? " + myPlayerController.InWitchAnimation() +
+                           "\nsprinting? " + myPlayerController.isSprinting + 
+                           "\ndashing? " + myPlayerController.isDashing);
+        }
+#endif
+
+        if (_currentMana < maxMana && !PlayerIsDead()){
 			if (myPlayerController != null){
 				if (myPlayerController.isDashing || myPlayerController.isSprinting || myPlayerController.InWitchAnimation() 
 					|| myPlayerController.InAttack()
