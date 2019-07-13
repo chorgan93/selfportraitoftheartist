@@ -480,6 +480,7 @@ public class PlayerAugmentsS : MonoBehaviour {
 
             if (PlayerController.equippedVirtues.Contains(15)){
                 MARKED_AUG = true;
+                StoryProgressionS.SetStory(666);
             }
             if (PlayerController.equippedVirtues.Contains(21))
             {

@@ -22,12 +22,12 @@ public class StoryProgressionS : MonoBehaviour {
 	}
 
 	public static void SaveProgress(){
-		savedProgress = storyProgress;
+        savedProgress = new List<int>(storyProgress);
 		SaveLoadS.OverwriteCurrentSave();
 	}
 
 	public static void ResetToSavedProgress(){
-		storyProgress = savedProgress;
+        storyProgress = new List<int>(savedProgress);
 	}
 
 	public static void NewGame(){

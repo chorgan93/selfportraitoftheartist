@@ -29,7 +29,7 @@ public class GameDataS {
 
 		currentReviveScene = GameOverS.reviveScene;
 		currentSpawnPos = GameOverS.revivePosition;
-		storyProgression = StoryProgressionS.storyProgress;
+        storyProgression = new List<int>(StoryProgressionS.storyProgress);
 		canUseMenu = InGameMenuManagerS.allowMenuUse;
 		hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
 
@@ -68,7 +68,7 @@ public class GameDataS {
 
 		GameOverS.reviveScene = currentReviveScene;
 		SpawnPosManager.whereToSpawn = GameOverS.revivePosition = currentSpawnPos;
-		StoryProgressionS.storyProgress = storyProgression;
+        StoryProgressionS.storyProgress = new List<int>(storyProgression);
         if (PlayerInventoryS.I)
         {
             PlayerInventoryS.I.LoadNewInventoryData(playerInventory);
