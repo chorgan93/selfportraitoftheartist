@@ -1247,6 +1247,11 @@ public class EnemyS : MonoBehaviour {
 
 	public Transform GetTargetReference(){
 
+        // find activation detect, if it doesn't exist (edge case)
+        if (!activationDetect){
+            activationDetect = transform.Find("PlayerDetect").GetComponent<PlayerDetectS>();
+        }
+
 		if (activationDetect.currentTarget != null){
 			return activationDetect.currentTarget;
 		}else{
@@ -1261,7 +1266,17 @@ public class EnemyS : MonoBehaviour {
 
 	public PlayerController GetPlayerReference(){
 
-		return activationDetect.player;
+        // find activation detect, if it doesn't exist (edge case)
+        if (!activationDetect){
+            activationDetect = transform.Find("PlayerDetect").GetComponent<PlayerDetectS>();
+        }
+
+        if (activationDetect.player != null)
+        {
+            return activationDetect.player;
+        }else{
+            return null;
+        }
 
 	}
 
