@@ -337,7 +337,7 @@ public class RankUIS : MonoBehaviour {
 		fadingOut = true;
 		endCombatOnFade = true;
 
-        if (PlayerAugmentsS.MARKED_AUG)
+        if (PlayerAugmentsS.MARKED_AUG || DarknessPercentUIS.DPERCENT.UseDescent)
         {
             DarknessPercentUIS.DPERCENT.StartDarknessReduce(GetScoreReduce(myRankManager.GetRankInt()), myRankManager);
         }else{

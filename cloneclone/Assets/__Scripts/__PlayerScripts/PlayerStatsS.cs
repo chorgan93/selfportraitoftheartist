@@ -84,6 +84,7 @@ public class PlayerStatsS : MonoBehaviour {
     public float descentDarkness { get { return _descentDarkness; } }
     private float descentDarknessMultiplier = 1.5f;
     private bool _useDescent = false;
+    public bool useDescent { get { return _useDescent; }}
 
     //________________________________MANA
     private float _baseMana = 3;
@@ -501,7 +502,7 @@ public class PlayerStatsS : MonoBehaviour {
 
 	private void DarknessAdd(){
         if (!PlayerIsDead() && !myPlayerController.talking && !dontAddAmbientDarkness && !arcadeMode && ((_currentDarkness < 100f && !_useDescent) || (_descentDarkness < 100f & _useDescent))){
-            if (!_isMarked)
+            if (!_isMarked && !_useDescent)
             {
                 if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG) {
                     if (_useDescent)
@@ -1096,7 +1097,7 @@ public class PlayerStatsS : MonoBehaviour {
         {
             dmg *= 0.2f;
         }
-        if (PlayerAugmentsS.MARKED_AUG){
+        if (PlayerAugmentsS.MARKED_AUG || _useDescent){
             dmg *= 1.5f;
         }
         if (pRef.playerAug.scornedAug){
@@ -1346,7 +1347,7 @@ public class PlayerStatsS : MonoBehaviour {
 #endif
 
                     // if NG+, add a tiiiiiny bit of darkness
-                    if (PlayerAugmentsS.MARKED_AUG){
+                    if (PlayerAugmentsS.MARKED_AUG || _useDescent){
                         if (PlayerController.killedFamiliar || PlayerAugmentsS.ASCENDED_AUG)
                         {
                             if (_useDescent)
@@ -1419,7 +1420,7 @@ public class PlayerStatsS : MonoBehaviour {
         _uiReference.transform.parent.GetComponentInChildren<DarknessPercentUIS>().ActivateDeathCountUp();
         if (!revert)
         {
-            if (!_isMarked)
+            if (!_isMarked && !_useDescent)
             {
                 if (isReduced)
                 {

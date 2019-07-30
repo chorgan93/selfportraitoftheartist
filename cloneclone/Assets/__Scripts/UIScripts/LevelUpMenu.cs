@@ -94,6 +94,7 @@ public class LevelUpMenu : MonoBehaviour
     public bool lockOnlyTravel = false;
 
     private bool descentScreen = false;
+    private bool earlyRevertDescent = false;
 
     // Use this for initialization
     void Start()
@@ -104,7 +105,11 @@ public class LevelUpMenu : MonoBehaviour
 
         playerName.text = TextInputUIS.playerName;
 
-        allowRevertProgress = (StoryProgressionS.storyProgress.Contains(allowRevertProgressNum) || lockOnlyTravel);
+        if (DarknessPercentUIS.DPERCENT != null){
+            earlyRevertDescent = DarknessPercentUIS.DPERCENT.UseDescent;
+        }
+
+        allowRevertProgress = (StoryProgressionS.storyProgress.Contains(allowRevertProgressNum) || lockOnlyTravel || earlyRevertDescent);
         //allowRevertProgress = true; // TODO colin turn off after build!
         if (!allowRevertProgress)
         {
@@ -217,7 +222,7 @@ public class LevelUpMenu : MonoBehaviour
                     pRef.ResetTimeMax();
                     TurnOnTravelMenu();
                 }
-                else if (currentPos == 2 && allowRevertProgress)
+                else if (currentPos == 2 && (allowRevertProgress || descentScreen))
                 {
                     pRef.ResetTimeMax();
                     TurnOnRevertMenu();
@@ -1108,7 +1113,9 @@ public class LevelUpMenu : MonoBehaviour
 
     void SetUpDescentQuitScreen(){
         descentScreen = true;
+        mainMenuTextObjs[2].GetComponent<LocalizedText>().key = "travel_descent_end";
         mainMenuTextObjs[2].text = LocalizationManager.instance.GetLocalizedValue("travel_descent_end");
+        Debug.Log("Setting up descent text!");
     }
 
     void TurnOnRevertMenu()

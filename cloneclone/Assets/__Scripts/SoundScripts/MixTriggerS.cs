@@ -21,8 +21,8 @@ public class MixTriggerS : MonoBehaviour {
 	void Start(){
 		if (activateOnStart){
 			if (fadeIn){
-				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant, targetLayer.maxVolume);
+                if (BGMHolderS.BG.ContainsChild(targetLayer.mainAudio)){
+                    BGMHolderS.BG.GetLayerWithClip(targetLayer.mainAudio).FadeIn(instant, targetLayer.maxVolume);
 				}else{
 					targetLayer.transform.parent = BGMHolderS.BG.transform;
 					if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
@@ -40,8 +40,8 @@ public class MixTriggerS : MonoBehaviour {
 				}
 			}
 			if (fadeOut){
-				if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-					BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, !dontDestroyOnFadeOut);
+            if (BGMHolderS.BG.ContainsChild(targetLayer.mainAudio)){
+                BGMHolderS.BG.GetLayerWithClip(targetLayer.mainAudio).FadeOut(instant, !dontDestroyOnFadeOut);
 				}
 			}
             activated = true;
@@ -58,8 +58,8 @@ public class MixTriggerS : MonoBehaviour {
 		if (other.gameObject.tag == "Player"){
 			if (((activateOnce && !activated) || !activateOnce) && targetLayer != null){
 				if (fadeIn){
-					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeIn(instant, targetLayer.maxVolume);
+                    if (BGMHolderS.BG.ContainsChild(targetLayer.mainAudio)){
+                        BGMHolderS.BG.GetLayerWithClip(targetLayer.mainAudio).FadeIn(instant, targetLayer.maxVolume);
 					}else{
 						targetLayer.transform.parent = BGMHolderS.BG.transform;
 						if (targetLayer.matchTimeStamp && targetLayer.sourceRef.clip.samples >= BGMHolderS.BG.GetCurrentTimeSample()){
@@ -70,8 +70,8 @@ public class MixTriggerS : MonoBehaviour {
 					}
 				}
 				if (fadeOut){
-					if (BGMHolderS.BG.ContainsChild(targetLayer.sourceRef.clip)){
-						BGMHolderS.BG.GetLayerWithClip(targetLayer.sourceRef.clip).FadeOut(instant, !dontDestroyOnFadeOut);
+                    if (BGMHolderS.BG.ContainsChild(targetLayer.mainAudio)){
+                        BGMHolderS.BG.GetLayerWithClip(targetLayer.mainAudio).FadeOut(instant, !dontDestroyOnFadeOut);
 					}
 				}
 				activated = true;

@@ -48,6 +48,9 @@ TextureImporter:
     21300086: Sacrament-II-00_3
     21300088: Sacrament-II-00_4
     21300090: Sacrament-II-00_5
+    21300092: Sacrament-II-00_6
+    21300094: Sacrament-II-00_7
+    21300096: Sacrament-II-00_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -133,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7047b56614a694ab2bde1936aad5b278
+      spriteID: cc6725fe9c5d5451799495b6c4b3029a
       vertices: []
       indices: 
       edges: []
@@ -153,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb829136c883c4417aad6d526a5b9f8b
+      spriteID: 2ff307439ac654f05b9059f1a8953ac5
       vertices: []
       indices: 
       edges: []
@@ -162,8 +165,8 @@ TextureImporter:
       name: Sacrament-II-00_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 512
+        y: 512
         width: 256
         height: 256
       alignment: 0
@@ -173,7 +176,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0947bb90f238c42fabd5030d464f7d0c
+      spriteID: c8a56246a27d94a22a0faf49151d5f5c
       vertices: []
       indices: 
       edges: []
@@ -182,6 +185,26 @@ TextureImporter:
       name: Sacrament-II-00_3
       rect:
         serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5cb3bc9459904a819527b2976310635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sacrament-II-00_4
+      rect:
+        serializedVersion: 2
         x: 256
         y: 256
         width: 256
@@ -193,13 +216,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0e51e144954b4fbfb7b99a0e0341279
+      spriteID: e76932d81e2d549ca819475abfcc9577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sacrament-II-00_4
+      name: Sacrament-II-00_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 871761843fd2d4627a6c7dc01f53bdb7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sacrament-II-00_6
       rect:
         serializedVersion: 2
         x: 0
@@ -213,13 +256,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33869349ffdbb4743a0298b760531950
+      spriteID: b1a578ebe10aa4e87a4a36e251838fc8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sacrament-II-00_5
+      name: Sacrament-II-00_7
       rect:
         serializedVersion: 2
         x: 256
@@ -233,7 +276,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5af5c266e6eda4b0cb965d39baa7ae0a
+      spriteID: 47dc4363bcd8a45e3a6a48cd8c3f01d3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sacrament-II-00_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ff79e045282e410a95fa681375fe18b
       vertices: []
       indices: 
       edges: []

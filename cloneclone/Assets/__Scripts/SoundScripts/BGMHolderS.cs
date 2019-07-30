@@ -79,8 +79,8 @@ public class BGMHolderS : MonoBehaviour {
 
 		if (transform.childCount > 0){
 			for (int i = 0; i < transform.childCount; i++){
-				if (transform.GetChild(i).gameObject.GetComponent<AudioSource>() != null && !containsChild){
-					containsChild = (transform.GetChild(i).gameObject.GetComponent<AudioSource>().clip == checkClip);
+                if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null && !containsChild){
+                    containsChild = (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().mainAudio == checkClip);
 				}
 			}
 		}
@@ -93,8 +93,8 @@ public class BGMHolderS : MonoBehaviour {
 		
 		if (transform.childCount > 0){
 			for (int i = 0; i < transform.childCount; i++){
-				if (transform.GetChild(i).gameObject.GetComponent<AudioSource>() != null && !containsChild){
-					if (transform.GetChild(i).gameObject.GetComponent<AudioSource>().clip == checkClip){
+                if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null && !containsChild){
+                    if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().mainAudio == checkClip){
 						containsChild = transform.GetChild(i).gameObject.GetComponent<BGMLayerS>();
 					}
 				}
@@ -106,13 +106,13 @@ public class BGMHolderS : MonoBehaviour {
 
 	public void ForceReset(AudioClip resetTarget, int sampleSet){
 
-		AudioSource checkSource;
+        BGMLayerS checkSource;
 		if (transform.childCount > 0){
 			for (int i = 0; i < transform.childCount; i++){
-				if (transform.GetChild(i).gameObject.GetComponent<AudioSource>() != null){
-					checkSource = transform.GetChild(i).gameObject.GetComponent<AudioSource>();
-					if (checkSource.clip == resetTarget){
-						checkSource.timeSamples = sampleSet;
+                if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null){
+                    checkSource = transform.GetChild(i).gameObject.GetComponent<BGMLayerS>();
+                    if (checkSource.mainAudio == resetTarget){
+                        checkSource.sourceRef.timeSamples = sampleSet;
 					}
 				}
 			}
@@ -130,7 +130,7 @@ public class BGMHolderS : MonoBehaviour {
 				if (transform.GetChild(i).gameObject.GetComponent<BGMLayerS>() != null){
 					foundOnList = false;
 					for (int j = 0; j < layers.Length; j++){
-						if (!foundOnList && layers[j].sourceRef.clip == transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().sourceRef.clip){
+						if (!foundOnList && layers[j].mainAudio == transform.GetChild(i).gameObject.GetComponent<BGMLayerS>().mainAudio){
 							foundOnList = true;
 						}
 					}

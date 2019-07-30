@@ -8077,7 +8077,7 @@
   },
   {
     "key": "sacrament_vii_55",
-    "value": "Though there’s no hope to go back too, no home beckons"
+    "value": "Though there’s no hope to go back to, no home beckons"
   },
   {
     "key": "sacrament_vii_56",
@@ -12685,7 +12685,7 @@
   },
   {
     "key": "sacrament_ii_106",
-    "value": "Two paths ahead,        and       "
+    "value": "Two paths ahead,\\n\\n        and       "
   },
   {
     "key": "sacrament_ii_107",
@@ -12749,7 +12749,7 @@
   },
   {
     "key": "sacrament_ii_122",
-    "value": "The second body runs back, starting empty life anew"
+    "value": "The third body runs back, starting empty life anew"
   },
   {
     "key": "sacrament_ii_123",
@@ -12857,7 +12857,7 @@
   },
   {
     "key": "sacrament_ii_149",
-    "value": "Because the third never came"
+    "value": "Because they never came"
   },
   {
     "key": "sacrament_ii_150",
@@ -13057,11 +13057,11 @@
   },
   {
     "key": "sacrament_ii_199",
-    "value": "And I turned away from all I had loved"
+    "value": "And for it, I turned away from all I had loved"
   },
   {
     "key": "sacrament_ii_200",
-    "value": "In search for what?"
+    "value": "In search of what?"
   },
   {
     "key": "sacrament_ii_201",
@@ -13081,11 +13081,11 @@
   },
   {
     "key": "sacrament_ii_205",
-    "value": "Two figures, one eternally chases the other"
+    "value": "You and I, one eternally chases the other"
   },
   {
     "key": "sacrament_ii_206",
-    "value": "As they fade into nothing"
+    "value": "As we fade into nothing"
   },
   {
     "key": "sacrament_ii_207",
@@ -13293,7 +13293,7 @@
   },
   {
     "key": "sacrament_ii_258",
-    "value": "Until Easter even was too much, and despite your family’s pleas, you never could muster the courage to explain"
+    "value": "Until even Easter was too much, and despite your family’s pleas, you never could muster the courage to explain"
   },
   {
     "key": "sacrament_ii_259",
@@ -13309,7 +13309,7 @@
   },
   {
     "key": "sacrament_ii_262",
-    "value": "Over this [bridge], where the cars drive off, into the towers and smog and dirt"
+    "value": "Over this         , where the cars drive off, into the towers and smog and dirt"
   },
   {
     "key": "sacrament_ii_263",
@@ -13341,7 +13341,7 @@
   },
   {
     "key": "sacrament_ii_270",
-    "value": "It is a Holy place"
+    "value": "This is a Holy place"
   },
   {
     "key": "sacrament_ii_271",
@@ -13557,7 +13557,7 @@
   },
   {
     "key": "sacrament_ii_324",
-    "value": "But you saw to that, didn’t you?"
+    "value": "And you saw to that, didn’t you?"
   },
   {
     "key": "sacrament_ii_325",
@@ -13937,7 +13937,7 @@
   },
   {
     "key": "sacrament_ii_419",
-    "value": "I want to live!"
+    "value": "I want to go on!"
   },
   {
     "key": "sacrament_ii_420",
@@ -13952,8 +13952,27 @@
     "value": "…help me!"
   },
   {
-    "key": "radio_cultist_44",
-    "value": "...I'm sorry, there's nothing for you here."
+    "key": "descent_final_refrain",
+    "value": "Final Refrain - Colin"
+  },
+  {
+    "key": "descent_final_boss",
+    "value": "Colin"
+  },
+  {
+    "key": "descend_end_00",
+    "value": "Unlocked Mantra: KTISIS."
+  },
+  {
+    "key": "descend_end_01",
+    "value": "Unlocked Game Speed: TURBO."
+  },
+  {
+    "key": "descend_end_02",
+    "value": "LUCAH, CHRISTIAN\\nand\\nthe MARKED\\nwill return in\\nCHRISTIAN: DEATH OF A WISH."
+  },
+  {
+    "key": "sacrament_ii_423",
+    "value": "bridge"
   }
-]
-  }
+]}

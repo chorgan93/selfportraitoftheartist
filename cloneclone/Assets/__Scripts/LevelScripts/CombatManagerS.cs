@@ -258,14 +258,19 @@ public class CombatManagerS : MonoBehaviour {
 			b.gameObject.SetActive(true);
 		}
 
-        if (PlayerAugmentsS.MARKED_AUG && newGamePlusThresholds.Count >= 3){
+        bool inDescent = false;
+        if (DarknessPercentUIS.DPERCENT != null){
+            inDescent = DarknessPercentUIS.DPERCENT.UseDescent;
+        }
+
+        if ((PlayerAugmentsS.MARKED_AUG || inDescent) && newGamePlusThresholds.Count >= 3){
             rankThresholds = newGamePlusThresholds;
         }
 
-        if (turnOnScoring || (PlayerAugmentsS.MARKED_AUG && !ignoreMarked)){
+        if (turnOnScoring || ((PlayerAugmentsS.MARKED_AUG || inDescent) && !ignoreMarked)){
 			RankManagerS.rankEnabled = true;
 		}
-        if (turnOffScoring && (ignoreMarked || !PlayerAugmentsS.MARKED_AUG)){
+        if (turnOffScoring && (ignoreMarked || (!PlayerAugmentsS.MARKED_AUG && !inDescent))){
 			RankManagerS.rankEnabled = false;
 		}
 

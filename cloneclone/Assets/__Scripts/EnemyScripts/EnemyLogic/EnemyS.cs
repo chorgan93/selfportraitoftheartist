@@ -112,6 +112,8 @@ public class EnemyS : MonoBehaviour {
 	[HideInInspector]
 	public bool ignorePush = false;
 
+    bool fakeMarked = false;
+
 	//____________________________________INSTANCE PROPERTIES
 
 	private int ALIVE_LAYER;
@@ -498,8 +500,12 @@ public class EnemyS : MonoBehaviour {
 
 		//enemyName = enemyName.Replace("PLAYERNAME", TextInputUIS.playerName);
 
+        if (DarknessPercentUIS.DPERCENT != null){
+            fakeMarked = DarknessPercentUIS.DPERCENT.UseDescent;
+        }
+
 		currentDifficultyMult = DifficultyS.GetSinMult(isGold);
-        if (PlayerAugmentsS.MARKED_AUG)
+        if (PlayerAugmentsS.MARKED_AUG || fakeMarked)
         {
             currentDifficultyMult *= newGamePlusSpeedMult;
             if (!requireTransformForNGMult || (requireTransformForNGMult && PlayerInventoryS.I.earnedTech.Contains(8))) {

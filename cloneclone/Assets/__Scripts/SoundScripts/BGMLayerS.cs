@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BGMLayerS : MonoBehaviour {
+public class BGMLayerS : MonoBehaviour
+{
 
-	private const bool NO_MUSIC = false;
+    private const bool NO_MUSIC = false;
 
-	public bool matchTimeStamp = true;
-	public float startVolume;
-	public float maxVolume;
+    public bool matchTimeStamp = true;
+    public float startVolume;
+    public float maxVolume;
 
-	public float fadeInRate;
-	public float fadeOutRate;
+    public float fadeInRate;
+    public float fadeOutRate;
 
-	private bool fadingIn = false;
-	private bool fadingOut = false;
+    private bool fadingIn = false;
+    private bool fadingOut = false;
 
-	private AudioSource mySource;
-	public AudioSource sourceRef { get { return mySource; } }
+    private AudioSource mySource;
+    public AudioSource sourceRef { get { return mySource; } }
+    public AudioClip loopAudio;
+    private AudioClip _mainAudio;
+    public AudioClip mainAudio { get { return _mainAudio; } }
+    private bool playedIntro = false;
+    private bool doIntroCheck = false;
 
 	public AudioClip forceRestartOnLoop;
 	private bool checkForceRestart;
@@ -46,8 +52,16 @@ public class BGMLayerS : MonoBehaviour {
 		mySource.volume = startVolume;
 		startPitch = mySource.pitch;
 		witchTimePitch = startPitch*witchTimePitchMult;
+        _mainAudio = mySource.clip;
 
-		checkForceRestart = (forceRestartOnLoop != null);
+        checkForceRestart = (forceRestartOnLoop != null);
+
+        if (loopAudio != null){
+            mySource.clip = loopAudio;
+            playedIntro = false;
+            mySource.loop = false;
+            doIntroCheck = true;
+        }
 
 		// for recording only, delete after
 		//Debug.Log("ATTN Colin delete the folowing lines:");
@@ -93,6 +107,18 @@ public class BGMLayerS : MonoBehaviour {
 				}
 			}
 		}
+
+        if (doIntroCheck){
+            if (mySource.timeSamples >= loopAudio.samples){
+                // intro is done, switch to main loop
+                mySource.Stop();
+                mySource.clip = _mainAudio;
+                doIntroCheck = false;
+                playedIntro = true;
+                mySource.loop = true;
+                mySource.Play();
+            }
+        }
 
 		if (fadingOut){
 			mySource.volume -= fadeOutRate*Time.unscaledDeltaTime;

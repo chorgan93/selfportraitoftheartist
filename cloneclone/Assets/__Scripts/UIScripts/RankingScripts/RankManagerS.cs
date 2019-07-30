@@ -188,8 +188,12 @@ public class RankManagerS : MonoBehaviour
 
 			currentCombatID = combatID;
 		_finalCombatManager = finalCombat;
+        bool fakeMarked = false;
+        if (DarknessPercentUIS.DPERCENT != null){
+            fakeMarked = DarknessPercentUIS.DPERCENT.UseDescent;
+        }
 		if (!continuation){
-            if (PlayerAugmentsS.MARKED_AUG)
+            if (PlayerAugmentsS.MARKED_AUG || fakeMarked)
             {
                 noDamageBonus = baseDamageBonusNG;
                 timeBonus = baseTimeBonusNG;
@@ -226,7 +230,7 @@ public class RankManagerS : MonoBehaviour
             multiplierAtContinuationStart = currentMultiplierStage;
             timeSinceDealingDmgAtContinuationStart = timeSinceDealingDmg;
 
-            if (PlayerAugmentsS.MARKED_AUG)
+            if (PlayerAugmentsS.MARKED_AUG || fakeMarked)
             {
                 goalTimeInSeconds += targetTime*2;
             }else{

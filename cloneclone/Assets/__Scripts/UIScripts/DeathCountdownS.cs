@@ -98,7 +98,7 @@ public class DeathCountdownS : MonoBehaviour {
 	}
 
 	public void ActivateCountdown(float newTime, bool allowMarked = true){
-        if (PlayerAugmentsS.MARKED_AUG && allowMarked){
+        if ((PlayerAugmentsS.MARKED_AUG || DarknessPercentUIS.DPERCENT.UseDescent) && allowMarked){
             newTime *= 3;
         }
 		deathCountdown = deathCountdownTimer= newTime;
