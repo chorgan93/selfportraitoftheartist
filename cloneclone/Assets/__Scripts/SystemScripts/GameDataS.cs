@@ -25,24 +25,33 @@ public class GameDataS {
 		storyProgression = new List<int>();
 	}
 
-	public void OverwriteCurrent(){
+    public void OverwriteCurrent()
+    {
 
-		currentReviveScene = GameOverS.reviveScene;
-		currentSpawnPos = GameOverS.revivePosition;
-        storyProgression = new List<int>(StoryProgressionS.storyProgress);
-		canUseMenu = InGameMenuManagerS.allowMenuUse;
-		hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
+        currentReviveScene = GameOverS.reviveScene;
+        currentSpawnPos = GameOverS.revivePosition;
+        storyProgression = new List<int>();
+        foreach (int i in StoryProgressionS.savedProgress)
+        {
+            storyProgression.Add(i);
+        }
+        canUseMenu = InGameMenuManagerS.allowMenuUse;
+        hasUsedMenu = InGameMenuManagerS.hasUsedMenu;
 
-		currentDarkness = PlayerStatsS._currentDarkness;
+        currentDarkness = PlayerStatsS._currentDarkness;
         currentDescentDarkness = PlayerStatsS._descentDarkness;
-		currentLa = PlayerCollectionS.currencyCollected;
+        currentLa = PlayerCollectionS.currencyCollected;
 
-		if (PlayerInventoryS.I != null){
-			PlayerInventoryS.I.OverwriteInventoryData();
-			playerInventory = PlayerInventoryS.inventoryData;
-		}
+        if (PlayerInventoryS.I != null)
+        {
+            PlayerInventoryS.I.OverwriteInventoryData();
+            playerInventory = PlayerInventoryS.inventoryData;
+        }
+#if UNITY_EDITOR_OSX
+        //Debug.LogError("Saving current data!!");
+#endif
 
-	}
+    }
 
     public void RemoveCurrent(){
 
@@ -57,18 +66,28 @@ public class GameDataS {
         }
         SpawnPosManager.whereToSpawn = GameOverS.revivePosition = 0;
         StoryProgressionS.storyProgress = new List<int>();
+        StoryProgressionS.savedProgress = new List<int>();
 
         InGameMenuManagerS.hasUsedMenu = false;
         InGameMenuManagerS.allowMenuUse = false;
         PlayerStatsS._currentDarkness = 0;
         PlayerCollectionS.currencyCollected = 0;
+
+#if UNITY_EDITOR_OSX
+        //Debug.LogError("New save data!!");
+#endif
     }
 
-	public void LoadCurrent(){
+    public void LoadCurrent(){
 
 		GameOverS.reviveScene = currentReviveScene;
 		SpawnPosManager.whereToSpawn = GameOverS.revivePosition = currentSpawnPos;
-        StoryProgressionS.storyProgress = new List<int>(storyProgression);
+        StoryProgressionS.storyProgress = new List<int>();
+        StoryProgressionS.savedProgress = new List<int>();
+        foreach (int i in storyProgression){
+            StoryProgressionS.storyProgress.Add(i);
+            StoryProgressionS.savedProgress.Add(i);
+        }
         if (PlayerInventoryS.I)
         {
             PlayerInventoryS.I.LoadNewInventoryData(playerInventory);
@@ -89,7 +108,9 @@ public class GameDataS {
 		PlayerCollectionS.currencyCollected = currentLa;
 
         lastLoaded = 1;
+#if UNITY_EDITOR_OSX
+        Debug.LogError("Loading save data!!");
+#endif
+    }
 
-	}
-	
 }

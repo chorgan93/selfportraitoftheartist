@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class StoryProgressionS : MonoBehaviour {
 
 	public static List<int> storyProgress = new List<int>();
-	private static List<int> savedProgress = new List<int>();
+	public static List<int> savedProgress = new List<int>();
 
 
 	public static void SetStory(int newProgress){
@@ -21,13 +21,24 @@ public class StoryProgressionS : MonoBehaviour {
 		}
 	}
 
-	public static void SaveProgress(){
-        savedProgress = new List<int>(storyProgress);
-		SaveLoadS.OverwriteCurrentSave();
+	public static void SaveProgress(bool doFullSave = true){
+        savedProgress = new List<int>();
+        foreach (int i in storyProgress)
+        {
+            savedProgress.Add(i);
+        }
+        if (doFullSave)
+        {
+            SaveLoadS.OverwriteCurrentSave();
+        }
 	}
 
-	public static void ResetToSavedProgress(){
-        storyProgress = new List<int>(savedProgress);
+	public static void ResetToSavedProgress()
+    {
+        storyProgress = new List<int>();
+        foreach (int i in savedProgress){
+            storyProgress.Add(i);
+        }
 	}
 
 	public static void NewGame(){

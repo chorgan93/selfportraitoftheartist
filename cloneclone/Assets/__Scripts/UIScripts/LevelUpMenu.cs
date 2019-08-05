@@ -650,7 +650,7 @@ public class LevelUpMenu : MonoBehaviour
                             pRef.myStats.DeathCountUp(false, true);
                             PlayerStatsS._currentDarkness = PlayerInventoryS.I.revertDarknessNums[currentPos];
                         }
-
+                        Debug.Log("Reverting progress!");
                     }else if (!travelStarted && currentRevertConfirmPos == 0){
                         // go back to previous menu
                         currentRevertConfirmPos = 0;

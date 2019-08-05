@@ -109,7 +109,7 @@ public class BGMLayerS : MonoBehaviour
 		}
 
         if (doIntroCheck){
-            if (mySource.timeSamples >= loopAudio.samples){
+            if (mySource.timeSamples >= loopAudio.samples-1){
                 // intro is done, switch to main loop
                 mySource.Stop();
                 mySource.clip = _mainAudio;

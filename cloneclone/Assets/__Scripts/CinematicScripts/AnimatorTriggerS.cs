@@ -6,10 +6,19 @@ public class AnimatorTriggerS : MonoBehaviour {
 	public Animator targetAnimator;
 	public string animationTrigger;
 
+    public bool useBool = false;
+    public string animationBool;
 	// Use this for initialization
 	void Start () {
-	
-		targetAnimator.SetTrigger(animationTrigger);
+
+        if (useBool)
+        {
+            targetAnimator.SetBool(animationBool, true);
+        }
+        else
+        {
+            targetAnimator.SetTrigger(animationTrigger);
+        }
 	}
 
 }

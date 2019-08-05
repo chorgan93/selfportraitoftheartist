@@ -109,6 +109,13 @@ public class PlayerInventoryS : MonoBehaviour
             DO_NOT_SAVE = !DO_NOT_SAVE;
             Debug.Log("DO_NOT_SAVE turned to " + DO_NOT_SAVE);
         }
+        if (Input.GetKeyDown(KeyCode.O)){
+            string debugProgress = "";
+            foreach (int i in StoryProgressionS.storyProgress){
+                debugProgress += i.ToString() + ", ";
+            }
+            Debug.Log("Progress: " + debugProgress);
+        }
     }
 #endif
 

@@ -101,6 +101,8 @@ public class CheckpointS : MonoBehaviour {
             }
             //StoryProgressionS.SaveProgress();
             CameraEffectsS.E.fadeRef.DoSave = true;
+            StoryProgressionS.SaveProgress(false);
+
             Debug.Log("Saved queued!");
 		}
 	
@@ -177,6 +179,7 @@ public class CheckpointS : MonoBehaviour {
                         GameOverS.revivePosition = spawnNum;
                     }
                     //StoryProgressionS.SaveProgress();
+                    StoryProgressionS.SaveProgress(false);
                     CameraEffectsS.E.fadeRef.DoSave = true;
                     Debug.Log("Save Queued!");
                 }
