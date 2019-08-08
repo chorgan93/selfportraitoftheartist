@@ -41,8 +41,12 @@ public class SacramentHandlerS : MonoBehaviour {
 
 	AsyncOperation async;
 
-	// Use this for initialization
-	void Awake(){
+    [Header("Ending Reward Properties")]
+    public bool endOfDescent = false;
+    public PlayerWeaponS weaponToGive;
+
+    // Use this for initialization
+    void Awake(){
 		CinematicHandlerS.inCutscene = true;
 		myManager = GetComponent<ControlManagerS>();
 		if (chooseOptionImage){
@@ -67,7 +71,19 @@ public class SacramentHandlerS : MonoBehaviour {
 		_stepsSeen = new List<int>();
 		InitializeSteps();
 		sacramentSteps[currentStep].ActivateStep();
-	}
+
+        if (endOfDescent)
+        {
+            GameMenuS.unlockedTurbo = true;
+            if (!PlayerInventoryS.I.CheckForWeaponNum(weaponToGive.weaponNum))
+            {
+                PlayerInventoryS.I.unlockedWeapons.Add(weaponToGive);
+                PlayerInventoryS.I.OverwriteInventoryData();
+                StoryProgressionS.SaveProgress();
+                //CameraEffectsS.E.fadeRef.DoSave = true;
+            }
+        }
+    }
 
 	void Update(){
         if (startedLoading)

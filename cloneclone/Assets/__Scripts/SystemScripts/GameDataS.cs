@@ -109,7 +109,7 @@ public class GameDataS {
 
         lastLoaded = 1;
 #if UNITY_EDITOR_OSX
-        Debug.LogError("Loading save data!!");
+        //Debug.LogError("Loading save data!!");
 #endif
     }
 

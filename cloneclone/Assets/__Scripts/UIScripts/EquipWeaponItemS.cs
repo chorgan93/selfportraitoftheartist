@@ -18,7 +18,7 @@ public class EquipWeaponItemS : MonoBehaviour {
 
     private Vector2 startPosition;
     bool setPosition = false;
-    private float finalRowXOffset = 19;
+    private float finalRowXOffset = 16;
     private Vector2 offsetPosition;
 
 	public void Initialize(PlayerInventoryS i){

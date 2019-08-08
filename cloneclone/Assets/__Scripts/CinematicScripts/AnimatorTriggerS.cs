@@ -13,12 +13,19 @@ public class AnimatorTriggerS : MonoBehaviour {
 
         if (useBool)
         {
-            targetAnimator.SetBool(animationBool, true);
+            StartCoroutine(TurnOnAnimBool());
         }
         else
         {
             targetAnimator.SetTrigger(animationTrigger);
         }
 	}
+
+    IEnumerator TurnOnAnimBool(){
+        targetAnimator.SetBool(animationBool, true);
+        yield return null;
+
+        targetAnimator.SetBool(animationBool, false);
+    }
 
 }
