@@ -18,7 +18,7 @@ public class EquipWeaponItemS : MonoBehaviour {
 
     private Vector2 startPosition;
     bool setPosition = false;
-    private float finalRowXOffset = 16;
+    private float finalRowXOffset = 16.5f;
     private Vector2 offsetPosition;
 
 	public void Initialize(PlayerInventoryS i){
@@ -29,6 +29,7 @@ public class EquipWeaponItemS : MonoBehaviour {
             startPosition = transform.parent.GetComponent<RectTransform>().anchoredPosition;
             offsetPosition = startPosition;
             offsetPosition.x -= finalRowXOffset;
+            setPosition = true;
         }
 
 		bool turnOn = false;

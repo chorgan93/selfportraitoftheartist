@@ -42,13 +42,30 @@ public class CreditsManagerS : MonoBehaviour
     public string endingCNextScene = "";
     public int skipEndingCSceneAtVirtueNum;
 
+    [Header("Descent Credits")]
+    public bool isDescentCredits = false;
+    public string endingDNextScene = "";
+    public int skipEndingDSceneAtWeaponNum;
+    public string skipEndingDScene = "";
+
     private void Start()
     {
         endCreditMoveY = creditDoneTransform.position.y;
         startScrollRate = scrollRate;
 
-        creditArtToUse[currentEnding].SetActive(true);
-        delayEndCountdown = timeAfterEnd[currentEnding];
+        if (isDescentCredits)
+        {
+            delayEndCountdown = timeAfterEnd[0];
+            for (int i = 0; i < creditArtToUse.Length; i++)
+            {
+                creditArtToUse[i].SetActive(false);
+            }
+        }
+        else
+        {
+            creditArtToUse[currentEnding].SetActive(true);
+            delayEndCountdown = timeAfterEnd[currentEnding];
+        }
     }
 
 
@@ -117,7 +134,15 @@ public class CreditsManagerS : MonoBehaviour
 
     public string GetNextScene(){
         string returnString = "";
-        if (currentEnding == 0){
+        if (isDescentCredits){
+            if (!PlayerInventoryS.I.CheckForWeaponNum(skipEndingDSceneAtWeaponNum))
+            {
+                returnString = endingDNextScene;
+            }else{
+                returnString = skipEndingDScene;
+            }
+        }
+        else if (currentEnding == 0){
             if (!PlayerInventoryS.I.CheckForWeaponNum(skipEndingASceneAtWeaponNum))
             {
                 returnString = endingANextScene;

@@ -23,6 +23,7 @@ public class BGMLayerS : MonoBehaviour
     public AudioClip mainAudio { get { return _mainAudio; } }
     private bool playedIntro = false;
     private bool doIntroCheck = false;
+    private bool introPlaying = false;
 
 	public AudioClip forceRestartOnLoop;
 	private bool checkForceRestart;
@@ -109,7 +110,10 @@ public class BGMLayerS : MonoBehaviour
 		}
 
         if (doIntroCheck){
-            if (mySource.timeSamples >= loopAudio.samples-1){
+            if (mySource.isPlaying && !introPlaying){
+                introPlaying = true;
+            }
+            if (mySource.timeSamples >= loopAudio.samples-1 || (introPlaying && !mySource.isPlaying)){
                 // intro is done, switch to main loop
                 mySource.Stop();
                 mySource.clip = _mainAudio;
