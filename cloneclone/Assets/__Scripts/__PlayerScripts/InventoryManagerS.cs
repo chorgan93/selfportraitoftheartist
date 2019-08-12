@@ -281,7 +281,7 @@ public class InventoryManagerS : MonoBehaviour {
 
 
 	public void LoadInventory(List<int> newInventory, int currentSel = 0){
-		_equippedInventory = newInventory;
+        _equippedInventory = new List<int>(newInventory);
 		_currentSelection = currentSel;
 	}
 

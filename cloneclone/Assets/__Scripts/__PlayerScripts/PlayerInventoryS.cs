@@ -1343,7 +1343,7 @@ public class PlayerInventoryS : MonoBehaviour
                     inventoryData.equippedBuddies.Add(equippedBuddies[i].GetComponent<BuddyS>().buddyNum);
                 }
 
-                inventoryData.equippedInventory = _iManager.equippedInventory;
+                inventoryData.equippedInventory = new List<int>(_iManager.equippedInventory);
                 inventoryData.currentSelection = _iManager.currentSelection;
 
                 LevelUpHandlerS lHandler = GetComponent<LevelUpHandlerS>();
