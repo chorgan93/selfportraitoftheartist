@@ -19,7 +19,15 @@ public class RetryFightUI : MonoBehaviour {
 	public static bool allowRetry = false;
 	public bool retryActive = false;
 
-	void Start(){
+    public static RetryFightUI fightRef;
+    public int addProgressOnRestart = -1;
+
+    private void Awake()
+    {
+        fightRef = this;
+    }
+
+    void Start(){
 		if (!retryActive){
 		    TurnOff();
 		}
@@ -70,6 +78,10 @@ public class RetryFightUI : MonoBehaviour {
 						GameOverS.tempRevivePosition = SpawnPosManager.whereToSpawn;
 						PlayerController.doWakeUp = false;
 						PlayerStatsS.healOnStart = true;
+                        if (addProgressOnRestart > -1){
+                            StoryProgressionS.SetStory(addProgressOnRestart);
+                            addProgressOnRestart = -1;
+                        }
 					}else{
 						GameOverS.tempReviveScene = "";
 						GameOverS.tempRevivePosition = -1;

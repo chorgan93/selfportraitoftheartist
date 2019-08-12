@@ -55,6 +55,7 @@ public class CombatManagerS : MonoBehaviour {
 	public bool turnOnScoring = false;
 	public bool turnOffScoring = false;
 	public bool allowRetry = false;
+    public int retryProgressFix = -1;
     public bool ignoreMarked = false;
 
 	[Header("Infinite Properties")]
@@ -244,6 +245,13 @@ public class CombatManagerS : MonoBehaviour {
         }
 
 		RetryFightUI.allowRetry = allowRetry;
+        if (allowRetry)
+        {
+            if (retryProgressFix > -1 && RetryFightUI.fightRef != null)
+            {
+                RetryFightUI.fightRef.addProgressOnRestart = retryProgressFix;
+            }
+        }
 
 		foreach (EnemySpawnerS e in enemies){
 			e.myManager = this;
