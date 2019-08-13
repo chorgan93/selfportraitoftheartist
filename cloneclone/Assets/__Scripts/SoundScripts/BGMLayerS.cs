@@ -217,13 +217,22 @@ public class BGMLayerS : MonoBehaviour
 		witchingIn = true;
 		witchingOut = false;
 	}
-	public void EndWitch(){
-		//mySource.pitch = startPitch;
-		if (!witchingIn && !witchingOut){
-			currentWitchCount = 0f;
-		}
-		witchingIn = false;
-		witchingOut = true;
+	public void EndWitch(bool doInstant = false){
+        //mySource.pitch = startPitch;
+        if (doInstant)
+        {
+            witchingIn = witchingOut = false;
+            mySource.pitch = startPitch;
+        }
+        else
+        {
+            if (!witchingIn && !witchingOut)
+            {
+                currentWitchCount = 0f;
+            }
+            witchingIn = false;
+            witchingOut = true;
+        }
 	}
 
 	public bool isPlayingAndHeard(){

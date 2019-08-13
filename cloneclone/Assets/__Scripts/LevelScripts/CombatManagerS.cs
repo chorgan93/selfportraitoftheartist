@@ -19,6 +19,7 @@ public class CombatManagerS : MonoBehaviour {
     public bool effectOnStart = false;
     public bool resetEffectOnStart = false;
 	public float delayEndEffect = 0f;
+    public bool endAllBGMWitchOnEnd = false;
 
 	PlayerController playerRef;
 	public PlayerController pRef { get { return playerRef; } }
@@ -178,7 +179,7 @@ public class CombatManagerS : MonoBehaviour {
             }
         }
 		playerRef.SetCombat(false);
-		playerRef.EndWitchTime();
+        playerRef.EndWitchTime(false,false,endAllBGMWitchOnEnd);
 		CameraEffectsS.E.ResetEffect(true);
 		playerRef.DeactivateTransform();
 		if (combatID > -1 && !RankManagerS.rankEnabled){

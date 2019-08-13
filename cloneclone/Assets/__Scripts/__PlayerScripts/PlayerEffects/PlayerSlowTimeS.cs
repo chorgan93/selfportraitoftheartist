@@ -116,11 +116,11 @@ public class PlayerSlowTimeS : MonoBehaviour {
 		}
 		}
 	}
-	public void EndWitchTime(bool fromReset = false){
+    public void EndWitchTime(bool fromReset = false, bool colinFightFix = false){
 		if (witchTimeActive || fromReset){
 
 			if (BGMHolderS.BG != null){
-			BGMHolderS.BG.SetWitch(false);
+                BGMHolderS.BG.SetWitch(false, colinFightFix);
 			}
 		}
 		witchTimeActive = false;
