@@ -36,34 +36,61 @@ public class InventoryManagerS : MonoBehaviour {
 
 		InitializeInventory();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		if (!CinematicHandlerS.inCutscene && !MainMenuNavigationS.inMain){
-			if (!_pRef){
-				_pRef = GameObject.Find("Player").GetComponent<PlayerController>();
-				_interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();
-			}else{
-				if (!_pRef.talking && !_pRef.myStats.PlayerIsDead()){
-					//SwitchControl();
-					UseItemControl();
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (!CinematicHandlerS.inCutscene && !MainMenuNavigationS.inMain)
+        {
+            if (!_pRef)
+            {
+                _pRef = GameObject.Find("Player").GetComponent<PlayerController>();
+                _interactRef = _pRef.GetComponentInChildren<PlayerInteractCheckS>();
+            }
+            else
+            {
+                if (!_pRef.talking && !_pRef.myStats.PlayerIsDead())
+                {
+                    //SwitchControl();
+                    UseItemControl();
                 }
-			}
+            }
         }
 
-		/*if (Input.GetKeyDown(KeyCode.R)){
-			Debug.Log(
-				(equippedInventory.Contains(0) && equippedInventory.Contains(1)) + " / In cutscene? "
-				+ CinematicHandlerS.inCutscene + " / In main? " + MainMenuNavigationS.inMain);
-		}**/
-	
-	}
+#if UNITY_EDITOR_OSX
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log(
+                (equippedInventory.Contains(0) && equippedInventory.Contains(1)) + " / In cutscene? "
+                + CinematicHandlerS.inCutscene + " / In main? " + MainMenuNavigationS.inMain + "/" 
+                + PlayerInventoryS.I.CheckForItem(0) + "/" + PlayerInventoryS.I.CheckForItem(1));
+            if (PlayerInventoryS.I.CheckForItem(0)){
+                Debug.Log("File has " + PlayerInventoryS.I.GetItemCount(0) + " rewinds.");
+            }
+            if (PlayerInventoryS.I.CheckForItem(1))
+            {
+                Debug.Log("File has " + PlayerInventoryS.I.GetItemCount(1) + " heals.");
+            }
+            if (equippedInventory != null){
+                string debugEquippedInventory = "Current equipped inventory:\n";
+                for (int i = 0; i < equippedInventory.Count; i++){
+                    debugEquippedInventory += equippedInventory[i].ToString() + ", ";
+                }
+                Debug.Log(debugEquippedInventory);
+            }
+        }
+#endif
+
+    }
 
 	private void InitializeInventory(){
 
-		// create inventory list
-		_equippedInventory = new List<int>(1){0};
+        // create inventory list
+#if UNITY_EDITOR_OSX
+        Debug.Log("Initializing basic inventory!");
+#endif
+        _equippedInventory = new List<int>(1){0};
 		_currentSelection = 0;
 		// load from save data
 
@@ -280,9 +307,30 @@ public class InventoryManagerS : MonoBehaviour {
 	}
 
 
-	public void LoadInventory(List<int> newInventory, int currentSel = 0){
+    public void LoadInventory(List<int> newInventory, int currentSel = 0)
+    {
         _equippedInventory = new List<int>(newInventory);
-		_currentSelection = currentSel;
-	}
+        _currentSelection = currentSel;
+#if UNITY_EDITOR_OSX
+        Debug.Log("Loading inventory from save!");
+#endif
+        if (_inventoryRef != null && _equippedInventory != null){
+            if (_inventoryRef.CheckForItem(0) && _inventoryRef.CheckForItem(1) && !_equippedInventory.Contains(1)){
+                Debug.Log("Item ID 1 missing from equipped inventory, reparing...");
+                if (_equippedInventory.Count > 1)
+                {
+                    Debug.Log("Inserting item ID 1 at index 1.");
+                    _equippedInventory.Insert(1, 1);
+                }else if (equippedInventory.Count == 1){
+                    Debug.Log("Adding item ID 1 at index 1.");
+                    _equippedInventory.Add(1);
+                }else{
+                    Debug.Log("Setting equipped inventory to {0,1}");
+                    _equippedInventory = new List<int>(2){0,1};
+                }
+                
+            }
+        }
+    }
 
 }

@@ -51,7 +51,7 @@ public class LoadFileS : MonoBehaviour {
             else
             {
                 lastSceneName.text = LocalizationManager.instance.GetLocalizedValue("menu_load_check") +
-                    ": " + LocalizationManager.instance.GetLocalizedValue(myData.playerInventory.lastSavePointName);
+                    ": " + LocalizationManager.instance.GetLocalizedValue(myData.playerInventory.lastSavePointName, true);
             }
             string timeString = LocalizationManager.instance.GetLocalizedValue("menu_load_time") + ": ";
             if (myData.playerInventory.totalPlayTimeHours < 10){

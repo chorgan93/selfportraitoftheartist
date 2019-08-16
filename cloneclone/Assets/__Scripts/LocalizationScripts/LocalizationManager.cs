@@ -57,7 +57,7 @@ public class LocalizationManager : MonoBehaviour
         isReady = true;
     }
 
-    public string GetLocalizedValue(string key)
+    public string GetLocalizedValue(string key, bool displayOnFail = false)
     {
         string result = missingTextString;
         if (key == ""){
@@ -66,6 +66,8 @@ public class LocalizationManager : MonoBehaviour
         if (localizedText.ContainsKey(key))
         {
             result = localizedText[key];
+        }else if (displayOnFail){
+            result = key;
         }else{
             Debug.Log("Could not find key: " + key);
         }
