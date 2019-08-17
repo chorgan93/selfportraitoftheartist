@@ -29,6 +29,7 @@ public class EnemyS : MonoBehaviour {
 	private const float enragedSpeedMult = 1.1f;
 	private const float enragedPowerMult = 2.5f;
 	private const float enragedDefenseMult = 2f;
+    private const float tauntBreakMult = 1.75f; 
 
     private ZControlTargetS zController;
 	
@@ -1368,6 +1369,10 @@ public class EnemyS : MonoBehaviour {
 			_breakAmt += dmg*stunMult*currentStunResistMult;
 		}else{
 			_breakAmt += dmg*stunMult*currentStunResistMult*currentDefenseMult;
+            if (_isEnraged){
+                //enemy is more likely to break when taunted
+                _breakAmt *= tauntBreakMult;
+            }
 		}
 		if (!_isCritical && preventStunLock <= 0f){
 			if (ignoreDefense > 0){
@@ -1377,7 +1382,15 @@ public class EnemyS : MonoBehaviour {
 					currentStunLock += dmg*stunMult*currentStunResistMult;
 				}
 			}else{
-				currentStunLock += dmg*stunMult*currentStunResistMult*currentDefenseMult;
+                if (_isEnraged)
+                {
+                    //enemy is more likely to break when taunted
+                    currentStunLock += dmg * stunMult * currentStunResistMult * currentDefenseMult * tauntBreakMult;
+                }
+                else
+                {
+                    currentStunLock += dmg * stunMult * currentStunResistMult * currentDefenseMult;
+                }
 			}
 			currentStunRecoverDelay = stunRecoverDelay;
 		}
