@@ -13,6 +13,7 @@ public class LocalizationManager : MonoBehaviour
     private string missingTextString = "Localized text not found";
 
     public TextAsset masterText_EN;
+    public TextAsset masterText_ES;
 
     // Use this for initialization
     void Awake()
@@ -20,7 +21,7 @@ public class LocalizationManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            LoadLocalizedText("EN");
+            LoadLocalizedText("EN"); // COLIN DONT PUSH!
         }
         else if (instance != this)
         {
@@ -35,7 +36,7 @@ public class LocalizationManager : MonoBehaviour
         localizedText = new Dictionary<string, string>();
 
         // if english
-        if (masterText_EN != null)
+        if (masterText_EN != null && languageKey == "EN")
         {
             string dataAsJson = masterText_EN.text;
             //Debug.Log(dataAsJson);
@@ -46,8 +47,17 @@ public class LocalizationManager : MonoBehaviour
                 //Debug.Log("Adding key " + loadedData.items[i].key);
                 localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
+        }
+        else if (masterText_ES != null && languageKey == "ES") {
+            string dataAsJson = masterText_ES.text;
+            //Debug.Log(dataAsJson);
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
-            Debug.Log("Data loaded, dictionary contains: " + localizedText.Count + " entries");
+            for (int i = 0; i < loadedData.items.Length; i++)
+            {
+                //Debug.Log("Adding key " + loadedData.items[i].key);
+                localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
+            }
         }
         else
         {
