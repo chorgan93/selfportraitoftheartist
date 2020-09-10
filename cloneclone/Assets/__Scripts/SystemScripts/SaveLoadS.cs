@@ -139,6 +139,60 @@ public class SaveLoadS : MonoBehaviour {
 		}
 	}
 
+    public static int SavedLanguage()
+    {
+        int lastUsedLanguage = -1;
+#if UNITY_SWITCH
+        if (!SaveFileExists())
+        {
+            return lastUsedLanguage;
+        }
+        else {
+            int whichFile = 0;
+            for (int i = 0; i < savedGames.Count; i++)
+            {
+                if (savedGames[i].lastLoaded > 0)
+                {
+                    if (savedGames[i].currentLanguage != null) {
+                        lastUsedLanguage = savedGames[i].currentLanguage;
+                    }
+                }
+            }
+            return lastUsedLanguage;
+        }
+#endif
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            return lastUsedLanguage;
+        }
+        else if (System.IO.File.Exists(Application.persistentDataPath + "/savedGames.gd"))
+        {
+            if (savedGames == null || savedGames.Count <= 0)
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = System.IO.File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
+                savedGames = (List<GameDataS>)bf.Deserialize(file);
+                file.Close();
+            }
+            for (int i = 0; i < savedGames.Count; i++)
+            {
+                if (savedGames[i].lastLoaded > 0)
+                {
+                    if (savedGames[i].currentLanguage != null)
+                    {
+                        lastUsedLanguage = savedGames[i].currentLanguage;
+                    }
+                }
+            }
+            return lastUsedLanguage;
+        }
+        else
+        {
+            Debug.Log("Save does not exist");
+            return lastUsedLanguage;
+        }
+    }
+
     public static int NumSavesOnDisk(){
 #if UNITY_SWITCH
         if (!SaveFileExists())

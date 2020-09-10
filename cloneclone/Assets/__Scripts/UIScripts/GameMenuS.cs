@@ -61,8 +61,9 @@ public class GameMenuS : MonoBehaviour
     private bool quitRightFromOptions = false;
 
     public CustomizableControlsUIS customControlRef;
-    private bool inCustomControlMenu = false;
+    private bool inCustomControlMenu = false, inLanguageMenu = false;
     public bool inControlMenu { get { return inCustomControlMenu; } }
+    public bool InLanguageMenu { get { return inLanguageMenu; } }
 
 
     private int fontSizeOptionStart = -1;
@@ -79,6 +80,8 @@ public class GameMenuS : MonoBehaviour
 
     private MainMenuNavigationS mainMenuRef;
     public bool mainMenuUpdate = false;
+
+    public LocalizationMenu localizationMenu;
 
     /*private void Start()
     {
@@ -129,7 +132,7 @@ public class GameMenuS : MonoBehaviour
             cancelButtonUp = true;
         }
 
-        if (!inOptionsMenu)
+        if (!inOptionsMenu && !inLanguageMenu)
         {
 
 #if UNITY_SWITCH
@@ -188,14 +191,24 @@ public class GameMenuS : MonoBehaviour
                 myManager.pRef.ResetTimeMax();
             }
 
-            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 3 && InGameMenuManagerS.allowFastTravel &&
+            // language menu
+            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 3)
+            {
+                myManager.pRef.ResetTimeMax();
+                selectButtonUp = false;
+                inLanguageMenu = true;
+                localizationMenu.TurnOn();
+            }
+
+            // exit to main menu
+            if (selectButtonUp && myControl.GetCustomInput(3) && currentSelection == 4 && InGameMenuManagerS.allowFastTravel &&
                 (PlayerInventoryS.I.CheckpointsReached() > 0 || overrideToMenu))
             {
                 RespawnAtLastCheckpoint(true);
                 myManager.pRef.ResetTimeMax();
             }
         }
-        else if (!inCustomControlMenu)
+        else if (!inCustomControlMenu && !inLanguageMenu)
         {
 #if UNITY_SWITCH
              if (myControl.VerticalMenu() > 0.45f && stickReset)
@@ -1132,6 +1145,12 @@ public class GameMenuS : MonoBehaviour
         cancelButtonUp = selectButtonUp = false;
         inCustomControlMenu = false;
         SetControlInstructions(true);
+    }
+
+    public void ReturnFromLanguageMenu() {
+        inLanguageMenu = false;
+        cancelButtonUp = selectButtonUp = false;
+        myManager.gameMenuButtonDown = true;
     }
 
     void SetControlInstructions(bool isOn)

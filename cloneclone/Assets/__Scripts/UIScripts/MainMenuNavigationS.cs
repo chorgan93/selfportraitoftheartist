@@ -137,7 +137,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 #endif
 
         // load basic info
-        numSaveFiles = SaveLoadS.NumSavesOnDisk();;
+        numSaveFiles = SaveLoadS.NumSavesOnDisk();
         lastUsedFile = SaveLoadS.LastUsedSave();
         saveToLoad = lastUsedFile;
 	}
