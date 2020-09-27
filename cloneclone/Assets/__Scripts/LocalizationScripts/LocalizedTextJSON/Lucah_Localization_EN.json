@@ -14154,5 +14154,9 @@
   {
     "key": "descent_fail_04",
     "value": "I need you..."
+  },
+  {
+    "key": "examine_label_shop",
+    "value": "Shop"
   }
 ]}

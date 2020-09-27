@@ -1145,7 +1145,7 @@
   },
   {
     "key": "lvl_item_hp",
-    "value": "Salud"
+    "value": "HP"
   },
   {
     "key": "lvl_item_hp_name",
@@ -1157,7 +1157,7 @@
   },
   {
     "key": "lvl_item_st",
-    "value": "Energía"
+    "value": "EN"
   },
   {
     "key": "lvl_item_st_name",
@@ -1169,7 +1169,7 @@
   },
   {
     "key": "lvl_item_ch",
-    "value": "Carga"
+    "value": "CG"
   },
   {
     "key": "lvl_item_ch_name",
@@ -1181,7 +1181,7 @@
   },
   {
     "key": "lvl_item_ab",
-    "value": "Absorción"
+    "value": "AB"
   },
   {
     "key": "lvl_item_ab_name",
@@ -1193,7 +1193,7 @@
   },
   {
     "key": "lvl_item_rc",
-    "value": "Recuperación"
+    "value": "RC"
   },
   {
     "key": "lvl_item_rc_name",
@@ -1205,7 +1205,7 @@
   },
   {
     "key": "lvl_item_pw",
-    "value": "Poder"
+    "value": "PD"
   },
   {
     "key": "lvl_item_pw_name",
@@ -14154,5 +14154,9 @@
   {
     "key": "descent_fail_04",
     "value": "Te necesito."
+  },
+  {
+    "key": "examine_label_shop",
+    "value": "Shop"
   }
 ]}

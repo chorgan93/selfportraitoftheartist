@@ -947,6 +947,7 @@ public class EquipMenuS : MonoBehaviour {
 		}
 	}
 
+    int MANTRA_NEWLINE_MAX = 59;
 	public void SetSelectorParadigmI(int newPos, int paradigmNum, int dir = 0){
 
 		Color changeCols = selectorElementsParadigmI[currentPos].color;
@@ -991,28 +992,60 @@ public class EquipMenuS : MonoBehaviour {
 				if (paradigmNum == 0){
 					if (newPos == 0){
                         descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                            (allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain) 
-						+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionMain);
+                        if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                        {
+                            descriptionText.text += "\n";
+                        }
+                        else
+                        {
+                            descriptionText.text += " ";
+                        }
+                        descriptionText.text += LocalizationManager.instance.GetLocalizedValue
                             (allMantraItems[pRef.EquippedWeapon().displayNum].weaponDescriptionSub);
 					}else if (newPos == 1){
-						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                            (allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionMain) 
-							+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                        descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                            (allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionMain);
+                        if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                        {
+                            descriptionText.text += "\n";
+                        }
+                        else
+                        {
+                            descriptionText.text += " ";
+                        }
+                        descriptionText.text += LocalizationManager.instance.GetLocalizedValue
                             (allMantraItems[pRef.EquippedWeaponAug().displayNum].weaponDescriptionSub);
-					}
+                    }
 					
 				}else{
 					if (newPos == 0){
-					descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                            (allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain) 
-						+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                        descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                                (allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionMain);
+                        if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                        {
+                            descriptionText.text += "\n";
+                        }
+                        else
+                        {
+                            descriptionText.text += " ";
+                        }
+                        descriptionText.text += LocalizationManager.instance.GetLocalizedValue
                             (allMantraItems[pRef.SubWeapon().displayNum].weaponDescriptionSub);
-					}else if (newPos == 1){
-						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                            (allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionMain) 
-							+ "\n" + LocalizationManager.instance.GetLocalizedValue
+                    }
+                    else if (newPos == 1){
+                        descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                               (allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionMain);
+                        if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                        {
+                            descriptionText.text += "\n";
+                        }
+                        else {
+                            descriptionText.text += " ";
+                        }
+                        descriptionText.text += LocalizationManager.instance.GetLocalizedValue
                             (allMantraItems[pRef.SubWeaponAug().displayNum].weaponDescriptionSub);
-					}
+                    }
 				}
 			}
 		}
@@ -1036,11 +1069,19 @@ public class EquipMenuS : MonoBehaviour {
 			if (paradigmNum == 0){
 				selectorElementsParadigmI[nextAvailable].color = changeCols;
 				selector.anchoredPosition = selectorPositionsParadigmI[currentPos].anchoredPosition;
-				if(currentPos > 2){
+                if (currentPos > 2) {
 
-						descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                        (allMantraItems[nextAvailable-3].weaponDescriptionMain) + "\n"
-                        + LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable-3].weaponDescriptionSub);
+                    descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                    (allMantraItems[nextAvailable - 3].weaponDescriptionMain);
+
+                    if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                    {
+                        descriptionText.text += "\n";
+                    }
+                    else {
+                        descriptionText.text += " ";
+                    }
+                    descriptionText.text += LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable-3].weaponDescriptionSub);
 
 
 				}
@@ -1049,12 +1090,21 @@ public class EquipMenuS : MonoBehaviour {
 				selector.anchoredPosition = selectorPositionsParadigmII[currentPos].anchoredPosition;
 				if(currentPos > 2){
 
-					descriptionText.text = LocalizationManager.instance.GetLocalizedValue
-                        (allMantraItems[nextAvailable-3].weaponDescriptionMain) + "\n"
-                        + LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable-3].weaponDescriptionSub);
-					
+                    descriptionText.text = LocalizationManager.instance.GetLocalizedValue
+                    (allMantraItems[nextAvailable - 3].weaponDescriptionMain);
 
-				}
+                    if (descriptionText.text.Length < MANTRA_NEWLINE_MAX)
+                    {
+                        descriptionText.text += "\n";
+                    }
+                    else
+                    {
+                        descriptionText.text += " ";
+                    }
+                    descriptionText.text += LocalizationManager.instance.GetLocalizedValue(allMantraItems[nextAvailable - 3].weaponDescriptionSub);
+
+
+                }
 			}
 		}else{
 			selectorElementsBuddy[nextAvailable-3].color = changeCols;
