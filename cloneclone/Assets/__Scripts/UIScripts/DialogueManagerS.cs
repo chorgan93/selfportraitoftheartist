@@ -270,6 +270,7 @@ public class DialogueManagerS : MonoBehaviour {
 			}
             if (!ignoreLoc)
             {
+                Debug.Log("setting string for key " + newText);
                 targetDisplayString = 
                     LocalizationManager.instance.GetLocalizedValue(newText).Replace("PLAYERNAME", TextInputUIS.playerName).Replace("\\n", System.Environment.NewLine)
                     .Replace("[TVNUM]", PlayerInventoryS.I.tvNum.ToString());
