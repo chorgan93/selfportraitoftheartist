@@ -1349,6 +1349,10 @@ public class EnemyS : MonoBehaviour {
 		float hitStopAmt = 0.1f, float sTime = 0f, bool fromFriendly = false, int doubleStun = 0, 
 		float killAtLess = 0f, bool fromParry = false){
 
+        if (!_initialized) {
+            return 0f;
+        }
+
 		if (GetPlayerReference()){
 			if (GetPlayerReference().playerAug.hatedAug){
 				dmg*=PlayerAugmentsS.HATED_MULT;

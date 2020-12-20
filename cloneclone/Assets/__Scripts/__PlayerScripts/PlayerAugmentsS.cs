@@ -492,9 +492,9 @@ public class PlayerAugmentsS : MonoBehaviour {
             }
         }
 
-	}
+    }
 
-	public void EnragedTrigger(){
+    public void EnragedTrigger(){
 		if (_enragedAug){
 			_enragedActive = true;
 			enragedCountdown = enragedTimeMax;

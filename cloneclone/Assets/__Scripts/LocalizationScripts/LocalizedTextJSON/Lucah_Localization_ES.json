@@ -57,7 +57,7 @@
   },
   {
     "key": "menu_credits",
-    "value": "Un juego por melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, y Ryan]"
+    "value": "Un juego por melessthanthree\\n[Colin, Kevin, Nicolo,\\nBrianna, y Ruby]"
   },
   {
     "key": "menu_quit_caps",
@@ -2757,7 +2757,7 @@
   },
   {
     "key": "examine_label_dodge",
-    "value": "Esquivada"
+    "value": "     Esquivada"
   },
   {
     "key": "examine_label_sprint",
@@ -2785,7 +2785,7 @@
   },
   {
     "key": "examine_label_paradigm",
-    "value": "Cambiar de Mantra"
+    "value": "    Cambiar de Mantra"
   },
   {
     "key": "tutorial_mantra_00",
@@ -2857,7 +2857,7 @@
   },
   {
     "key": "intro_cutscene_03",
-    "value": "Oh, queridos caídos, otro más se ha rendido hacia este maldito\\nlugar."
+    "value": "Oh, queridos caídos, otro más se ha rendido hacia este maldito lugar."
   },
   {
     "key": "intro_cutscene_04",
@@ -2925,7 +2925,7 @@
   },
   {
     "key": "examine_label_item",
-    "value": "Cambiar Objeto"
+    "value": "     Cambiar Objeto"
   },
   {
     "key": "tutorial_parry_00",
@@ -14157,6 +14157,6 @@
   },
   {
     "key": "examine_label_shop",
-    "value": "Shop"
+    "value": "Tienda"
   }
 ]}
