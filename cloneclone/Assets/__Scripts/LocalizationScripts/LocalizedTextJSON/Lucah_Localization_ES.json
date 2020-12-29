@@ -1057,7 +1057,7 @@
   },
   {
     "key": "chapter_text_n1",
-    "value": "Pista 1 ~ Cuna"
+    "value": "Pista -1 ~ Cuna"
   },
   {
     "key": "checkpoint_message_00",
@@ -4821,7 +4821,7 @@
   },
   {
     "key": "lilli_response_01",
-    "value": "Me siento enferma."
+    "value": "   Me siento enferma."
   },
   {
     "key": "lilli_response_02",
@@ -5117,7 +5117,7 @@
   },
   {
     "key": "examine_label_transform",
-    "value": "TRANSFORMACIÓN"
+    "value": "    TRANSFORMACIÓN"
   },
   {
     "key": "trail_lilli_86",
@@ -5185,7 +5185,7 @@
   },
   {
     "key": "merchant_item_10_desc",
-    "value": "Entrega el Familiar \"Aura"
+    "value": "Entrega el Familiar \"Aura\""
   },
   {
     "key": "merchant_item_11",
@@ -6149,7 +6149,7 @@
   },
   {
     "key": "sacrament_i_33",
-    "value": "Estás agradecida por esta felicidad, ¿Cierto María="
+    "value": "Estás agradecida por esta felicidad, ¿Cierto María?"
   },
   {
     "key": "sacrament_i_34",
@@ -10413,7 +10413,7 @@
   },
   {
     "key": "sacrament_iv_419",
-    "value": "Dios\" AA entona."
+    "value": "\"Dios\" AA entona."
   },
   {
     "key": "sacrament_iv_420",
@@ -14158,5 +14158,9 @@
   {
     "key": "examine_label_shop",
     "value": "Tienda"
+  },
+  {
+    "key": "ui_menu_language",
+    "value": "Idioma"
   }
 ]}

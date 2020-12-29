@@ -14158,5 +14158,9 @@
   {
     "key": "examine_label_shop",
     "value": "Shop"
+  },
+  {
+    "key": "ui_menu_language",
+    "value": "Language"
   }
 ]}
