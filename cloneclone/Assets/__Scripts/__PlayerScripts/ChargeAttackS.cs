@@ -20,7 +20,7 @@ public class ChargeAttackS : MonoBehaviour {
 	public Texture startFlash;
 	private Texture startTexture;
 	private int flashFrames = 3;
-	private int colliderFrames = 3;
+	private float colliderFrames = 0.1f;
 	private int flashMax = 3;
 	private int blackFlashFrames = 4;
 
@@ -126,7 +126,9 @@ public class ChargeAttackS : MonoBehaviour {
 		}
 	
 	}
-	
+
+    bool colliderActive = false;
+    float colliderCount = 0f; // fix for high framerate charge attack issues
 	// Update is called once per frame
 	void Update () {
 
@@ -143,15 +145,20 @@ public class ChargeAttackS : MonoBehaviour {
 
 			flashFrames--;
 			if (flashFrames < 0){
-				
-				if (_myCollider.enabled && flashFrames < -colliderFrames && (!isFosCharge || (isFosCharge && currentHit >= maxHits))){
-					_myCollider.enabled = false;
-					if (isFosCharge && fosFired){
-						_myRigid.velocity = Vector3.zero;
-						visibleTime = 0f;
-					}
-					myPlayer.RemoveFosCharge(this);
-				}
+
+                
+                    
+                if (_myCollider.enabled && colliderCount <= 0f && (!isFosCharge || (isFosCharge && currentHit >= maxHits)))
+                {
+                    _myCollider.enabled = colliderActive = false;
+                    if (isFosCharge && fosFired)
+                    {
+                        _myRigid.velocity = Vector3.zero;
+                        visibleTime = 0f;
+                    }
+                    myPlayer.RemoveFosCharge(this);
+                }
+                
 
 				if (_myRenderer.material.GetTexture("_MainTex") == startFlash){
 					if (_myRenderer.material.color == Color.black){
@@ -160,6 +167,8 @@ public class ChargeAttackS : MonoBehaviour {
 					}else{
 					_myRenderer.material.SetTexture("_MainTex", startTexture);
 						_myCollider.enabled = true;
+                        colliderCount = colliderFrames;
+                        colliderActive = true;
 						effectRender.color = fadeColor;
 						if (_firstSpawned){
 							flashEffect.NewColor(fadeColor);
@@ -196,7 +205,13 @@ public class ChargeAttackS : MonoBehaviour {
 	
 	}
 
-	void FosMovement(){
+    private void FixedUpdate()
+    {
+        if (!colliderActive) { return; }
+        colliderCount -= Time.deltaTime;
+    }
+
+    void FosMovement(){
 		if (myPlayer && visibleTime > 0 && visibleTime < 10 && !fosFired){
 							if (currentHit >= maxHits){
 								visibleTime = 0f;
