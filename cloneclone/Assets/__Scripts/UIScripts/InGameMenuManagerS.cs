@@ -109,7 +109,7 @@ public class InGameMenuManagerS : MonoBehaviour {
 			}
 
 		if (gameMenuActive){
-                if (_pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown && !gameMenu.inControlMenu){
+                if (_pRef.myControl.GetCustomInput(11) && !gameMenuButtonDown && !gameMenu.inControlMenu && !gameMenu.InLanguageMenu){
 				gameMenuActive = false;
 				gameMenuButtonDown = true;
 				gameMenu.TurnOff();

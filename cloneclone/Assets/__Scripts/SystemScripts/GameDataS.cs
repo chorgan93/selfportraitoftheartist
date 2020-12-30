@@ -17,12 +17,15 @@ public class GameDataS {
 	public int currentLa;
 
     public int lastLoaded = -1;
+
+    public int currentLanguage = -1;
 	
 	public GameDataS () {
 
 		currentReviveScene = "IntroCutscene";
 		 currentSpawnPos = 0;
 		storyProgression = new List<int>();
+        currentLanguage = -1;
 	}
 
     public void OverwriteCurrent()
@@ -41,6 +44,8 @@ public class GameDataS {
         currentDarkness = PlayerStatsS._currentDarkness;
         currentDescentDarkness = PlayerStatsS._descentDarkness;
         currentLa = PlayerCollectionS.currencyCollected;
+
+        currentLanguage = LocalizationManager.currentLanguage;
 
         if (PlayerInventoryS.I != null)
         {
@@ -106,8 +111,17 @@ public class GameDataS {
         }
         PlayerStatsS._descentDarkness = currentDescentDarkness;
 		PlayerCollectionS.currencyCollected = currentLa;
+        /*if (currentLanguage != null)
+        {
+            if (currentLanguage >= 0) { 
+                LocalizationManager.currentLanguage = currentLanguage;
+            } else
+            {
+                LocalizationManager.currentLanguage = 0;
+            }
+        }*/
 
-        lastLoaded = 1;
+       lastLoaded = 1;
 #if UNITY_EDITOR_OSX
         //Debug.LogError("Loading save data!!");
 #endif

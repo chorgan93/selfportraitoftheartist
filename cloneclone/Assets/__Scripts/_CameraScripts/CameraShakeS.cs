@@ -453,7 +453,7 @@ public class CameraShakeS : MonoBehaviour {
 	public static void ChangeTurbo(int dir){
 		if (dir > 0){
             turboState++;
-            if (turboState == 2 && !GameMenuS.unlockedTurbo){
+            if (turboState == 2 && !(GameMenuS.unlockedTurbo || SaveLoadS.turboUnlocked)){ // allow turbo once unlocked in any save file
                 turboState++;
             }
             if (turboState > 3){
@@ -462,7 +462,7 @@ public class CameraShakeS : MonoBehaviour {
             SetTurbo(turboState);
 		}else{
             turboState--;
-            if (turboState == 2 && !GameMenuS.unlockedTurbo)
+            if (turboState == 2 && !(GameMenuS.unlockedTurbo || SaveLoadS.turboUnlocked)) // allow turbo once unlocked in any save file
             {
                 turboState--;
             }

@@ -31,11 +31,15 @@ public class EquipTechItemS : MonoBehaviour {
 
     bool _initialized = false;
 
+    private int lastTranslatedLanguage = -1;
+    private string localizationKey = "";
+    private bool turnOn = false;
+
 	public void Initialize(PlayerInventoryS i){
 
 		inventoryRef = i;
 
-		bool turnOn = false;
+		turnOn = false;
 		foreach (int w in i.earnedTech){
 			if (w == techNum){
 				turnOn = true;
@@ -43,7 +47,9 @@ public class EquipTechItemS : MonoBehaviour {
 		}
         if (!_initialized)
         {
-            techName = LocalizationManager.instance.GetLocalizedValue(techText.text);
+            localizationKey = techText.text;
+            techName = LocalizationManager.instance.GetLocalizedValue(localizationKey);
+            lastTranslatedLanguage = LocalizationManager.currentLanguage;
             _initialized = true;
         }
 		if (!turnOn){
@@ -111,5 +117,40 @@ public class EquipTechItemS : MonoBehaviour {
 			}
 		}
 	}
+
+    private void OnEnable()
+    {
+        if (_initialized && lastTranslatedLanguage != LocalizationManager.currentLanguage) {
+            lastTranslatedLanguage = LocalizationManager.currentLanguage;
+            techName = LocalizationManager.instance.GetLocalizedValue(localizationKey);
+            lastTranslatedLanguage = LocalizationManager.currentLanguage;
+            _initialized = true;
+            
+            if (!turnOn)
+            {
+                _unlocked = false;
+                techBG.enabled = true;
+                techText.color = textLockedColor;
+                techText.text = LocalizationManager.instance.GetLocalizedValue("ui_tech_locked");
+            }
+            else
+            {
+                techBG.enabled = true;
+                if (PlayerController.equippedTech.Contains(techNum))
+                {
+                    techText.color = textOnColor;
+                    _techEquipped = true;
+                }
+                else
+                {
+                    techText.color = textOffColor;
+                    _techEquipped = false;
+                }
+                techText.text = techName;
+
+                _unlocked = true;
+            }
+        }
+    }
 
 }

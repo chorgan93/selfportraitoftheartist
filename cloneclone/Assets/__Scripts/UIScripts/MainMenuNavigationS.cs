@@ -7,7 +7,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 
 	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— 1.4.2 —";
+	private const string currentVer = "— 1.5.0 —";
 	private static bool hasSeenMainMenu = false;
 
 	[Header("Demo Properties")]
@@ -137,7 +137,7 @@ public class MainMenuNavigationS : MonoBehaviour {
 #endif
 
         // load basic info
-        numSaveFiles = SaveLoadS.NumSavesOnDisk();;
+        numSaveFiles = SaveLoadS.NumSavesOnDisk();
         lastUsedFile = SaveLoadS.LastUsedSave();
         saveToLoad = lastUsedFile;
 	}
