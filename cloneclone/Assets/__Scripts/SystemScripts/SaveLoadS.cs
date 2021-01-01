@@ -148,7 +148,6 @@ public class SaveLoadS : MonoBehaviour {
             return lastUsedLanguage;
         }
         else {
-            int whichFile = 0;
             for (int i = 0; i < savedGames.Count; i++)
             {
                 if (savedGames[i].lastLoaded > 0)

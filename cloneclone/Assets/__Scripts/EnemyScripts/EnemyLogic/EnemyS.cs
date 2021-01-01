@@ -1271,7 +1271,7 @@ public class EnemyS : MonoBehaviour {
 		activationDetect.FindTarget();
 	}
 
-	public PlayerController GetPlayerReference(){
+	public PlayerController GetPlayerReference(bool alwaysReturn = false){
 
         // find activation detect, if it doesn't exist (edge case)
         if (!activationDetect){
@@ -1281,7 +1281,15 @@ public class EnemyS : MonoBehaviour {
         if (activationDetect.player != null)
         {
             return activationDetect.player;
-        }else{
+        }else
+        {
+            if (alwaysReturn)
+            {
+#if UNITY_EDITOR
+                Debug.Log("AVOIDING SWITCH CRASH BECAUSE ALWAYSRETURN = true!!");
+#endif
+                return GameObject.Find("Player").GetComponent<PlayerController>();
+            }
             return null;
         }
 
@@ -1598,7 +1606,7 @@ public class EnemyS : MonoBehaviour {
 			_canBeStunned = true;
 			Stun (0);
 			CancelBehaviors();
-			GetPlayerReference().myStats.uiReference.cDisplay.AddCurrency(sinAmt);
+			GetPlayerReference(true).myStats.uiReference.cDisplay.AddCurrency(sinAmt);
 			_myAnimator.SetLayerWeight(1, 0f);
         _myAnimator.SetBool("Crit", false);
 			_myAnimator.SetBool("Death", true);
@@ -1614,14 +1622,14 @@ public class EnemyS : MonoBehaviour {
             {
                 if (zController) { zController.enabled = false; }
                 transform.position = new Vector3(transform.position.x, transform.position.y,
-                                                 GetPlayerReference().transform.position.z + ENEMY_DEATH_Z);
+                                                 GetPlayerReference(true).transform.position.z + ENEMY_DEATH_Z);
             }
 
 			ResetMaterial();
 
 			GetComponent<BleedingS>().StartDeath();
 
-			CameraPOIS.POI.JumpToMidpoint(transform.position, GetPlayerReference().transform.position);
+			CameraPOIS.POI.JumpToMidpoint(transform.position, GetPlayerReference(true).transform.position);
 			
 			CameraShakeS.C.LargeShake();
 			CameraShakeS.C.BigSleep();
