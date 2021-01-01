@@ -138,6 +138,7 @@ public class LocalizationMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public MainMenuNavigationS titleScreenMenu;
     public void Complete(int newLanguage)
     {
         if (newLanguage != LocalizationManager.currentLanguage)
@@ -148,6 +149,9 @@ public class LocalizationMenu : MonoBehaviour
         for (int i = 0; i < turnOnOnEnd.Length; i++)
         {
             turnOnOnEnd[i].gameObject.SetActive(true);
+        }
+        if (titleScreenMenu) {
+            titleScreenMenu.ReturnFromLanguageMenu();
         }
         if (gameMenu) {
             gameMenu.ReturnFromLanguageMenu();

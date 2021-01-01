@@ -5,114 +5,115 @@ using UnityStandardAssets.ImageEffects;
 
 public class MainMenuNavigationS : MonoBehaviour {
 
-	private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
+    private bool ALLOW_RECORD_MODE = false; // TODO COLIN TURN OFF FOR FINAL BUILDS!!
 
-	private const string currentVer = "— 1.5.0 —";
-	private static bool hasSeenMainMenu = false;
+    private const string currentVer = "— 1.5.0 —";
+    private static bool hasSeenMainMenu = false;
 
-	[Header("Demo Properties")]
-	public bool publicDemoVersion = false;
-	public string demoOneScene;
-	public string demoTwoScene;
-	
-	private ControlManagerS myController;
+    [Header("Demo Properties")]
+    public bool publicDemoVersion = false;
+    public string demoOneScene;
+    public string demoTwoScene;
+
+    private ControlManagerS myController;
     public ControlManagerS controlRef { get { return myController; } }
 
-	[Header("Instance Properties")]
-	public Text versionText;
-	public float allowStartTime = 3f;
-	private bool started = false;
-	private bool quitting = false;
+    [Header("Instance Properties")]
+    public Text versionText;
+    public float allowStartTime = 3f;
+    private bool started = false;
+    private bool quitting = false;
 
     private bool waitingForInput = true;
     [HideInInspector]
     public bool triggerSecondScreen = false;
-	
-	public SpriteRenderer fadeOnZoom;
-	public float fadeTime = 1f;
-	public float zoomInRate = 3f;
-	private float minZoom = 0.3f;
+
+    public SpriteRenderer fadeOnZoom;
+    public float fadeTime = 1f;
+    public float zoomInRate = 3f;
+    private float minZoom = 0.3f;
 
     [Header("MENU ZERO STUFF")]
     public SpriteRenderer cursorForMenuZero;
     public TextMesh[] cursorMenuZeroPositions;
     private int currentMenuZeroPosition = 0;
     public GameObject menuZeroObject;
+    public LocalizationMenu locMenu;
 
     public TextMesh[] pressAnyText;
-	public GameObject[] textTurnOff;
-	public GameObject firstScreenTurnOff;
-	private bool onNewScreen = false;
-	
-	public GameObject secondScreenObject;
+    public GameObject[] textTurnOff;
+    public GameObject firstScreenTurnOff;
+    private bool onNewScreen = false;
 
-	private Blur blurEffect;
-	private float blurEffectTimeMax = 5f;
-	private float blurEffectTime;
-	private float blurT;
-	private bool blurEnabled = true;
-	
-	private Camera myCam;
-	private float startOrtho;
-	
-	public GameObject secondScreenIntro;
-	public GameObject secondScreenLoop;
-	
-	public Transform[] menuSelections;
-	public TextMesh[] menuSelectionsText;
-	public TextMesh[] controlTexts;
-	private int currentSelection = 0;
-	public GameObject selectOrb;
-	public GameObject credits;
-	public Color continueDisableColor;
+    public GameObject secondScreenObject;
 
-	public Transform[] newGameSelections;
-	public TextMesh[] newGameOverrideText;
-	private bool selectingOverride = false;
-	public GameObject showOnOverride;
-	public GameObject hideOnOverride;
-	
-	private Vector3 selectionScale;
-	private Color selectionStartColor;
-	
-	private bool stickReset = false;
-	private bool selectReset = false;
-	
-	public SpriteRenderer loadBlackScreen;
-	private bool loading = false;
+    private Blur blurEffect;
+    private float blurEffectTimeMax = 5f;
+    private float blurEffectTime;
+    private float blurT;
+    private bool blurEnabled = true;
+
+    private Camera myCam;
+    private float startOrtho;
+
+    public GameObject secondScreenIntro;
+    public GameObject secondScreenLoop;
+
+    public Transform[] menuSelections;
+    public TextMesh[] menuSelectionsText;
+    public TextMesh[] controlTexts;
+    private int currentSelection = 0;
+    public GameObject selectOrb;
+    public GameObject credits;
+    public Color continueDisableColor;
+
+    public Transform[] newGameSelections;
+    public TextMesh[] newGameOverrideText;
+    private bool selectingOverride = false;
+    public GameObject showOnOverride;
+    public GameObject hideOnOverride;
+
+    private Vector3 selectionScale;
+    private Color selectionStartColor;
+
+    private bool stickReset = false;
+    private bool selectReset = false;
+
+    public SpriteRenderer loadBlackScreen;
+    private bool loading = false;
 
     private string startNewGameScene = "TutorialIntro";
-	private string newGameScene = "TutorialIntro"; // (put back in when making full version)
-	//private string newGameScene = "Dream00a_IntroCutsceneSHORT";
-	private string webStartScene = "Dream00a_IntroCutsceneSHORT";
-	//private string newGameScene = "InfiniteScene";
-	private string twitterLink = "http://www.twitter.com/melessthanthree";
-	private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
-	private string facebookLink = "http://www.facebook.com/lucahgame/";
+    private string newGameScene = "TutorialIntro"; // (put back in when making full version)
+                                                   //private string newGameScene = "Dream00a_IntroCutsceneSHORT";
+    private string webStartScene = "Dream00a_IntroCutsceneSHORT";
+    //private string newGameScene = "InfiniteScene";
+    private string twitterLink = "http://www.twitter.com/melessthanthree";
+    private string twitterLinkII = "http://twitter.com/NicoloDTelesca";
+    private string facebookLink = "http://www.facebook.com/lucahgame/";
 
-	private bool attractEnabled = false;
-	private string attractScene = "AttractMode_00";
-	private float attractCountdownMax = 30f;
-	private float attractCountdown;
+    private bool attractEnabled = false;
+    private string attractScene = "AttractMode_00";
+    private float attractCountdownMax = 30f;
+    private float attractCountdown;
 
-	private string cheatString = "";
-	private bool allowCheats = false; // COLIN TODO TURN OFF FOR FINAL BUILDS!
+    private string cheatString = "";
+    private bool allowCheats = false; // COLIN TODO TURN OFF FOR FINAL BUILDS!
 
-	public static bool inMain = false;
-	
-	private bool startedLoading;
-	AsyncOperation async;
+    public static bool inMain = false;
 
-	private bool canContinue = false;
-	
-	public InfiniteBGM startMusic;
+    private bool startedLoading;
+    AsyncOperation async;
 
-	[Header("Sound Properties")]
-	public GameObject newGameSound;
+    private bool canContinue = false;
+
+    public InfiniteBGM startMusic;
+
+    [Header("Sound Properties")]
+    public GameObject newGameSound;
 
     private int lastUsedFile = 0;
     private int numSaveFiles = 0;
-    public int NumSaveFiles { get { return numSaveFiles; }}
+    public int NumSaveFiles { get { return numSaveFiles; } }
     [HideInInspector]
     public int saveToLoad;
 
@@ -125,10 +126,11 @@ public class MainMenuNavigationS : MonoBehaviour {
     public GameObject[] additionalInstructions;
 
     private bool loadedOptions = false;
+    private bool inLanguageMenu = false;
 
-	void Awake(){
-		versionText.text = currentVer;
-		inMain = true;
+    void Awake() {
+        versionText.text = currentVer;
+        inMain = true;
 
 #if UNITY_WEBGL
 		attractEnabled = false;
@@ -140,46 +142,46 @@ public class MainMenuNavigationS : MonoBehaviour {
         numSaveFiles = SaveLoadS.NumSavesOnDisk();
         lastUsedFile = SaveLoadS.LastUsedSave();
         saveToLoad = lastUsedFile;
-	}
-	
-	// Use this for initialization
-	void Start () {
+    }
 
-		PlayerStatsS.godMode = false;
-		OverrideDemoLoadS.beenToMainMenu = true;
+    // Use this for initialization
+    void Start() {
 
-		blurEffect = GetComponent<Blur>();
-		
-		fadeOnZoom.gameObject.SetActive(false);
-		firstScreenTurnOff.SetActive(true);
+        PlayerStatsS.godMode = false;
+        OverrideDemoLoadS.beenToMainMenu = true;
 
-		attractCountdown = attractCountdownMax;
-		
-		foreach (GameObject t in textTurnOff){
-			t.SetActive(true);
-		}
-		
-		myController = GetComponent<ControlManagerS>();
-		if (!hasSeenMainMenu){
-			if (myController.ControllerAttached()){
-				if (myController.DetermineControllerType() == 1){
-				ControlManagerS.controlProfile = 3;
-				}else{
-					ControlManagerS.controlProfile = 0;
-				}
-				Cursor.visible = false;
-			}else{
-				ControlManagerS.controlProfile = 1;
-				Cursor.visible = true;
-			}
-		}else{
-			if (ControlManagerS.controlProfile == 1){
-				Cursor.visible = true;
-			}else{
-				Cursor.visible = false;
-			}
+        blurEffect = GetComponent<Blur>();
+
+        fadeOnZoom.gameObject.SetActive(false);
+        firstScreenTurnOff.SetActive(true);
+
+        attractCountdown = attractCountdownMax;
+
+        foreach (GameObject t in textTurnOff) {
+            t.SetActive(true);
         }
-        for (int i = 0; i < pressAnyText.Length; i++){
+
+        myController = GetComponent<ControlManagerS>();
+        if (!hasSeenMainMenu) {
+            if (myController.ControllerAttached()) {
+                if (myController.DetermineControllerType() == 1) {
+                    ControlManagerS.controlProfile = 3;
+                } else {
+                    ControlManagerS.controlProfile = 0;
+                }
+                Cursor.visible = false;
+            } else {
+                ControlManagerS.controlProfile = 1;
+                Cursor.visible = true;
+            }
+        } else {
+            if (ControlManagerS.controlProfile == 1) {
+                Cursor.visible = true;
+            } else {
+                Cursor.visible = false;
+            }
+        }
+        for (int i = 0; i < pressAnyText.Length; i++) {
             if (myController.ControllerAttached())
             {
                 pressAnyText[i].text = LocalizationManager.instance.GetLocalizedValue("menu_any_button");
@@ -190,65 +192,65 @@ public class MainMenuNavigationS : MonoBehaviour {
                 pressAnyText[i].text = LocalizationManager.instance.GetLocalizedValue("menu_any_key");
             }
         }
-		SetControlSelection();
+        SetControlSelection();
 
-		myCam = GetComponent<Camera>();
-		startOrtho = myCam.orthographicSize;
-		
-		secondScreenObject.gameObject.SetActive(false);
-		secondScreenLoop.SetActive(false);
-		loadBlackScreen.gameObject.SetActive(false);
-		selectOrb.SetActive(false);
-		
-		selectionScale = menuSelections[0].localScale;
-		selectionStartColor = menuSelectionsText[0].color;
-		
-		startMusic.FadeIn();
+        myCam = GetComponent<Camera>();
+        startOrtho = myCam.orthographicSize;
 
-            currentSelection = 0;
-		if (SaveLoadS.SaveFileExists()){
+        secondScreenObject.gameObject.SetActive(false);
+        secondScreenLoop.SetActive(false);
+        loadBlackScreen.gameObject.SetActive(false);
+        selectOrb.SetActive(false);
+
+        selectionScale = menuSelections[0].localScale;
+        selectionStartColor = menuSelectionsText[0].color;
+
+        startMusic.FadeIn();
+
+        currentSelection = 0;
+        if (SaveLoadS.SaveFileExists()) {
             //canContinue = true;
             currentMenuZeroPosition = 0;
-		}else{
+        } else {
             currentMenuZeroPosition = 1;
-			continueDisableColor.a = 0f;
+            continueDisableColor.a = 0f;
             cursorMenuZeroPositions[0].color = continueDisableColor;
-		}
+        }
         // force cancontinue true for now
         canContinue = true;
-		hasSeenMainMenu = true;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		CheckCheats();
+        hasSeenMainMenu = true;
 
-		if (!startedLoading){
+    }
 
-            if (attractEnabled && !inOptionsMenu && !inLoadMenu){
-				attractCountdown -= Time.deltaTime;
-				//Debug.Log(attractCountdown);
-				if (attractCountdown <= 0){
-					loading = true;
-					newGameScene = attractScene;
-					startMusic.FadeOut();
-					loadBlackScreen.gameObject.SetActive(true);
-					loading = true;
-					selectOrb.SetActive(false);
-					Cursor.visible = false;
-					hideOnOverride.gameObject.SetActive(false);
-					showOnOverride.gameObject.SetActive(false);
-					StartNextLoad(false);
-				}
+    // Update is called once per frame
+    void Update() {
+        CheckCheats();
+
+        if (!startedLoading) {
+
+            if (attractEnabled && !inOptionsMenu && !inLoadMenu) {
+                attractCountdown -= Time.deltaTime;
+                //Debug.Log(attractCountdown);
+                if (attractCountdown <= 0) {
+                    loading = true;
+                    newGameScene = attractScene;
+                    startMusic.FadeOut();
+                    loadBlackScreen.gameObject.SetActive(true);
+                    loading = true;
+                    selectOrb.SetActive(false);
+                    Cursor.visible = false;
+                    hideOnOverride.gameObject.SetActive(false);
+                    showOnOverride.gameObject.SetActive(false);
+                    StartNextLoad(false);
+                }
             }
-		}
+        }
 
-		if (!started && !loading){
+        if (!started && !loading) {
 
-			allowStartTime -= Time.deltaTime;
+            allowStartTime -= Time.deltaTime;
 
-			HandleBlur();
+            HandleBlur();
 
             if (allowStartTime <= 0)
             {
@@ -288,28 +290,28 @@ public class MainMenuNavigationS : MonoBehaviour {
                             cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
                             SetAdditionalInstruction(true);
 
-                        }else if (myController.CheckForKeyPress(true) > -1)
+                        } else if (myController.CheckForKeyPress(true) > -1)
+                        {
+                            waitingForInput = false;
+                            menuZeroObject.SetActive(true);
+                            ControlManagerS.controlProfile = 1;
+                            stickReset = false;
+                            selectReset = false;
+                            for (int i = 0; i < pressAnyText.Length; i++)
                             {
-                                waitingForInput = false;
-                                menuZeroObject.SetActive(true);
-                                ControlManagerS.controlProfile = 1;
-                                stickReset = false;
-                                selectReset = false;
-                                for (int i = 0; i < pressAnyText.Length; i++)
-                                {
-                                    pressAnyText[i].gameObject.SetActive(false);
-                                }
-                                if (SaveLoadS.SaveFileExists())
-                                {
-                                    currentMenuZeroPosition = 0;
-                                }
-                                else
-                                {
-                                    currentMenuZeroPosition = 1;
-                                }
+                                pressAnyText[i].gameObject.SetActive(false);
+                            }
+                            if (SaveLoadS.SaveFileExists())
+                            {
+                                currentMenuZeroPosition = 0;
+                            }
+                            else
+                            {
+                                currentMenuZeroPosition = 1;
+                            }
                             cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
                             SetAdditionalInstruction(true);
-                            }
+                        }
 
                     }
                     else if (myController.CheckForKeyPress(true) > -1)
@@ -351,6 +353,9 @@ public class MainMenuNavigationS : MonoBehaviour {
                 }
                 else
                 {
+                    if (inLanguageMenu) {
+                        return;
+                    }
                     if (!inLoadMenu)
                     {
                         // show rpgmaker-type menu
@@ -375,16 +380,16 @@ public class MainMenuNavigationS : MonoBehaviour {
                             {
                                 currentMenuZeroPosition++;
 
-                    attractCountdown = attractCountdownMax;
+                                attractCountdown = attractCountdownMax;
 #if UNITY_SWITCH
-                                if (currentMenuZeroPosition > 1)
-                                {
-                                    currentMenuZeroPosition = 1;
-                                }
-#else
                                 if (currentMenuZeroPosition > 2)
                                 {
                                     currentMenuZeroPosition = 2;
+                                }
+#else
+                                if (currentMenuZeroPosition > 3)
+                                {
+                                    currentMenuZeroPosition = 3;
                                 }
 #endif
                                 cursorForMenuZero.transform.position = cursorMenuZeroPositions[currentMenuZeroPosition].transform.position;
@@ -398,7 +403,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                             {
                                 currentMenuZeroPosition--;
 
-                    attractCountdown = attractCountdownMax;
+                                attractCountdown = attractCountdownMax;
                                 if (currentMenuZeroPosition < 1 && numSaveFiles < 1)
                                 {
                                     currentMenuZeroPosition = 1;
@@ -428,7 +433,7 @@ public class MainMenuNavigationS : MonoBehaviour {
                                     else
                                     {
 
-                    attractCountdown = attractCountdownMax;
+                                        attractCountdown = attractCountdownMax;
                                         saveToLoad = 0;
                                         SaveLoadS.Load(saveToLoad);
                                         MatchSavedOptions();
@@ -456,6 +461,13 @@ public class MainMenuNavigationS : MonoBehaviour {
                                         OpenLoadUI(true);
                                     }
                                 }
+                                else if (currentMenuZeroPosition == 2) {
+                                    // open language menu
+                                    inLanguageMenu = true;
+                                    selectReset = false;
+                                    stickReset = false;
+                                    locMenu.TurnOn();
+                                }
                                 else
                                 {
 #if !UNITY_SWITCH
@@ -470,115 +482,115 @@ public class MainMenuNavigationS : MonoBehaviour {
                             selectReset |= !myController.GetCustomInput(3);
                         }
                     }
-                
+
                 }
-			}
-		}else if (!onNewScreen && !loading){
-			if (myCam.orthographicSize > minZoom){
-				myCam.orthographicSize -= Time.deltaTime*zoomInRate;
-			}else{
-				myCam.orthographicSize = minZoom;
-			}
-			if (fadeOnZoom.color.a >= 1f){
-				onNewScreen = true;
-				myCam.orthographicSize = startOrtho;
-				firstScreenTurnOff.SetActive(false);
-                if (GameDataS.current != null){
-                    if (GameDataS.current.storyProgression != null){
-                        if (GameDataS.current.storyProgression.Contains(666)){
+            }
+        } else if (!onNewScreen && !loading) {
+            if (myCam.orthographicSize > minZoom) {
+                myCam.orthographicSize -= Time.deltaTime * zoomInRate;
+            } else {
+                myCam.orthographicSize = minZoom;
+            }
+            if (fadeOnZoom.color.a >= 1f) {
+                onNewScreen = true;
+                myCam.orthographicSize = startOrtho;
+                firstScreenTurnOff.SetActive(false);
+                if (GameDataS.current != null) {
+                    if (GameDataS.current.storyProgression != null) {
+                        if (GameDataS.current.storyProgression.Contains(666)) {
                             menuSelectionsText[0].text = menuSelectionsText[0].text.Insert(0, "† ");
                             menuSelectionsText[0].text += " †";
                         }
                     }
                 }
-				secondScreenObject.SetActive(true);
-				fadeOnZoom.gameObject.SetActive(false);
-			}
-        }else if (!loading && !inOptionsMenu){
-			if (!secondScreenLoop.activeSelf){
-				if (secondScreenIntro == null){
-					secondScreenLoop.SetActive(true);
+                secondScreenObject.SetActive(true);
+                fadeOnZoom.gameObject.SetActive(false);
+            }
+        } else if (!loading && !inOptionsMenu) {
+            if (!secondScreenLoop.activeSelf) {
+                if (secondScreenIntro == null) {
+                    secondScreenLoop.SetActive(true);
                     SetAdditionalInstruction(true);
                     SetSelection();
-					selectOrb.SetActive(true);
-					credits.SetActive(true);
-				}
-			}else{
+                    selectOrb.SetActive(true);
+                    credits.SetActive(true);
+                }
+            } else {
 
-                if (!myController.GetCustomInput(3)){
-					selectReset = true;
-				}
+                if (!myController.GetCustomInput(3)) {
+                    selectReset = true;
+                }
 
-				if (Mathf.Abs(myController.VerticalMenu()) < 0.1f && Mathf.Abs(myController.HorizontalMenu()) < 0.1f){
-					stickReset = true;
-				}
+                if (Mathf.Abs(myController.VerticalMenu()) < 0.1f && Mathf.Abs(myController.HorizontalMenu()) < 0.1f) {
+                    stickReset = true;
+                }
 
-				if (selectingOverride){
+                if (selectingOverride) {
 
-					if (selectReset && ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Backspace)
-						|| Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Escape) || myController.GetCustomInput(1)))){
-						selectReset = false;
-						selectingOverride = false;
-						currentSelection = 0;
-						showOnOverride.gameObject.SetActive(false);
-						hideOnOverride.gameObject.SetActive(true);
-						SetSelection();
-						attractCountdown = attractCountdownMax;
-					}
+                    if (selectReset && ((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Backspace)
+                        || Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Escape) || myController.GetCustomInput(1)))) {
+                        selectReset = false;
+                        selectingOverride = false;
+                        currentSelection = 0;
+                        showOnOverride.gameObject.SetActive(false);
+                        hideOnOverride.gameObject.SetActive(true);
+                        SetSelection();
+                        attractCountdown = attractCountdownMax;
+                    }
 
-					if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.GetCustomInput(3))){
-						attractCountdown = attractCountdownMax;
-						if (currentSelection == 0){
-							startMusic.FadeOut();
-							loadBlackScreen.gameObject.SetActive(true);
-							loading = true;
-							selectOrb.SetActive(false);
-							Cursor.visible = false;
-							hideOnOverride.gameObject.SetActive(false);
-							showOnOverride.gameObject.SetActive(false);
-							selectReset = false;
-							StoryProgressionS.NewGame(); // reset for new game progress
-						
-							PlayerStatsS.healOnStart = true;
-							StartNextLoad();
-						}else{
-							selectReset = false;
-							selectingOverride = false;
-							currentSelection = 0;
-							showOnOverride.gameObject.SetActive(false);
-							hideOnOverride.gameObject.SetActive(true);
-							SetSelection();
-						}
-					}
+                    if (selectReset && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || myController.GetCustomInput(3))) {
+                        attractCountdown = attractCountdownMax;
+                        if (currentSelection == 0) {
+                            startMusic.FadeOut();
+                            loadBlackScreen.gameObject.SetActive(true);
+                            loading = true;
+                            selectOrb.SetActive(false);
+                            Cursor.visible = false;
+                            hideOnOverride.gameObject.SetActive(false);
+                            showOnOverride.gameObject.SetActive(false);
+                            selectReset = false;
+                            StoryProgressionS.NewGame(); // reset for new game progress
+
+                            PlayerStatsS.healOnStart = true;
+                            StartNextLoad();
+                        } else {
+                            selectReset = false;
+                            selectingOverride = false;
+                            currentSelection = 0;
+                            showOnOverride.gameObject.SetActive(false);
+                            hideOnOverride.gameObject.SetActive(true);
+                            SetSelection();
+                        }
+                    }
 #if UNITY_SWITCH
                     if (myController.HorizontalMenu() > 0.5f && stickReset)
 #else
                     if (myController.HorizontalMenu() > 0.1f && stickReset)
 #endif
                     {
-						attractCountdown = attractCountdownMax;
-						currentSelection++;
-						if (currentSelection > 1){
-							currentSelection = 0;
-						}
-						stickReset = false;
-						SetSelection();
-					}
+                        attractCountdown = attractCountdownMax;
+                        currentSelection++;
+                        if (currentSelection > 1) {
+                            currentSelection = 0;
+                        }
+                        stickReset = false;
+                        SetSelection();
+                    }
 #if UNITY_SWITCH
                     if (myController.HorizontalMenu() < -0.5f && stickReset)
 #else
                     if (myController.HorizontalMenu() < -0.1f && stickReset)
 #endif
                     {
-						attractCountdown = attractCountdownMax;
-						currentSelection--;
-						if (currentSelection < 0){
-							currentSelection = 1;
-						}
-						stickReset = false;
-						SetSelection();
-					}
-				}else{
+                        attractCountdown = attractCountdownMax;
+                        currentSelection--;
+                        if (currentSelection < 0) {
+                            currentSelection = 1;
+                        }
+                        stickReset = false;
+                        SetSelection();
+                    }
+                } else {
 
                     // go down
 #if UNITY_SWITCH
@@ -587,11 +599,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                     if (myController.VerticalMenu() < -0.1f && stickReset)
 #endif
                     {
-						attractCountdown = attractCountdownMax;
-					
-					stickReset = false;
-					
-					currentSelection ++;
+                        attractCountdown = attractCountdownMax;
+
+                        stickReset = false;
+
+                        currentSelection++;
 #if UNITY_WEBGL
 						if (currentSelection == 1 && !canContinue){
 							currentSelection = 2;
@@ -600,16 +612,16 @@ public class MainMenuNavigationS : MonoBehaviour {
 							currentSelection = 0;
 						}
 #else
-						
+
                         // for now, only allow two options (start game), options
-							if (currentSelection > 2){
-								currentSelection = 0;
-							}
-						
+                        if (currentSelection > 2) {
+                            currentSelection = 0;
+                        }
+
 #endif
-					
-					SetSelection();
-				}
+
+                        SetSelection();
+                    }
 
                     // go up
 #if UNITY_SWITCH
@@ -618,11 +630,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                     if (myController.VerticalMenu() > 0.1f && stickReset)
 #endif
                     {
-						attractCountdown = attractCountdownMax;
-						
-					stickReset = false;
-					
-					currentSelection --;
+                        attractCountdown = attractCountdownMax;
+
+                        stickReset = false;
+
+                        currentSelection--;
 #if UNITY_WEBGL
 						if (currentSelection == 1 && !canContinue){
 							currentSelection = 0;
@@ -637,11 +649,11 @@ public class MainMenuNavigationS : MonoBehaviour {
                             currentSelection = 2;
                         }
 #endif
-					SetSelection();
-				}
+                        SetSelection();
+                    }
 
-				// control settings
-					/*if (currentSelection == 2){
+                    // control settings
+                    /*if (currentSelection == 2){
 						if ((myController.HorizontalMenu() > 0.1f && stickReset) || 
 							(selectReset && (myController.GetCustomInput(3) || Input.GetKeyDown(KeyCode.KeypadEnter) 
 								|| Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)))){
@@ -658,10 +670,10 @@ public class MainMenuNavigationS : MonoBehaviour {
 						stickReset = false;
 					}
 				}**/
-				
-                    if (selectReset && myController.GetCustomInput(3) 
-						&& !loading && !quitting){
-						attractCountdown = attractCountdownMax;
+
+                    if (selectReset && myController.GetCustomInput(3)
+                        && !loading && !quitting) {
+                        attractCountdown = attractCountdownMax;
                         if (currentSelection == 0)
                         {
                             // start
@@ -703,210 +715,210 @@ public class MainMenuNavigationS : MonoBehaviour {
                         {
                             // reset menu scene
                             attractCountdown = attractCountdownMax;
-                           
-                                // start reset
-                                loadBlackScreen.gameObject.SetActive(true);
+
+                            // start reset
+                            loadBlackScreen.gameObject.SetActive(true);
                             startMusic.FadeOut();
-                                loading = true;
-                                selectReset = false;
-                                selectOrb.SetActive(false);
-                                Cursor.visible = false;
-                                hideOnOverride.gameObject.SetActive(false);
-                                showOnOverride.gameObject.SetActive(false);
-                                newGameScene = Application.loadedLevelName;
+                            loading = true;
+                            selectReset = false;
+                            selectOrb.SetActive(false);
+                            Cursor.visible = false;
+                            hideOnOverride.gameObject.SetActive(false);
+                            showOnOverride.gameObject.SetActive(false);
+                            newGameScene = Application.loadedLevelName;
                             StartNextLoad(false);
                             SetAdditionalInstruction(false);
 
                         }
-					}
-				}
-			}
-		}else if (loading){
-			if (loadBlackScreen.color.a >= 1f){
-				if (async.progress >= 0.9f){
-					//inMain = false;
-					async.allowSceneActivation = true;
-				}
-			}
-		}
-		
-	}
+                    }
+                }
+            }
+        } else if (loading) {
+            if (loadBlackScreen.color.a >= 1f) {
+                if (async.progress >= 0.9f) {
+                    //inMain = false;
+                    async.allowSceneActivation = true;
+                }
+            }
+        }
 
-    void OpenLoadUI(bool forOver = false){
+    }
+
+    void OpenLoadUI(bool forOver = false) {
         loadFileMenu.TurnOn(this, lastUsedFile, forOver);
         inLoadMenu = true;
 
-                attractCountdown = attractCountdownMax;
+        attractCountdown = attractCountdownMax;
     }
 
-    void OpenOptionsScreen(){
+    void OpenOptionsScreen() {
         MatchSavedOptions();
         inOptionsMenu = true;
         optionsMenu.TurnOn(this);
     }
-    public void TurnOffOptions(){
+    public void TurnOffOptions() {
         SaveChangedOptions();
         inOptionsMenu = false;
         selectReset = false;
         SetAdditionalInstruction(true);
     }
-	
-	void SetSelection(){
-		
-		Color correctCol = Color.white;
-		if (selectingOverride){
-			for (int i = 0; i < newGameSelections.Length; i++){
-				if (i == currentSelection){
-					//menuSelections[i].localScale = selectionScale*1.2f;
-					selectOrb.transform.position = newGameSelections[i].position;
-					correctCol = Color.white;
-					correctCol.a = newGameOverrideText[i].color.a;
-					newGameOverrideText[i].color = correctCol;;
-				}else{
-						correctCol = selectionStartColor;
-					correctCol.a = newGameOverrideText[i].color.a;
-					newGameOverrideText[i].color = correctCol;
-				}
-			}
-		}else{
-			for (int i = 0; i < menuSelections.Length; i++){
-				if (i == currentSelection){
-					//menuSelections[i].localScale = selectionScale*1.2f;
-					selectOrb.transform.position = menuSelections[i].position;
-					if (i == 1 && !canContinue){
-						correctCol = continueDisableColor;
-						correctCol.a = menuSelectionsText[i].color.a;
-						menuSelectionsText[i].color = correctCol;
-					}else{
-						correctCol = Color.white;
-						correctCol.a = menuSelectionsText[i].color.a;
-						menuSelectionsText[i].color = correctCol;
-					}
-				}else{
-					//menuSelections[i].localScale = selectionScale;
-					if (i == 1 && !canContinue){
-						correctCol = continueDisableColor;
-						correctCol.a = menuSelectionsText[i].color.a;
-						menuSelectionsText[i].color = correctCol;
-					}else{
-						correctCol = selectionStartColor;
-						correctCol.a = menuSelectionsText[i].color.a;
-						menuSelectionsText[i].color = correctCol;
-					}
-				}
-			}
-		}
-		
-	}
 
-	void SetControlSelection(){
+    void SetSelection() {
 
-		string controlType = "Gamepad";
+        Color correctCol = Color.white;
+        if (selectingOverride) {
+            for (int i = 0; i < newGameSelections.Length; i++) {
+                if (i == currentSelection) {
+                    //menuSelections[i].localScale = selectionScale*1.2f;
+                    selectOrb.transform.position = newGameSelections[i].position;
+                    correctCol = Color.white;
+                    correctCol.a = newGameOverrideText[i].color.a;
+                    newGameOverrideText[i].color = correctCol; ;
+                } else {
+                    correctCol = selectionStartColor;
+                    correctCol.a = newGameOverrideText[i].color.a;
+                    newGameOverrideText[i].color = correctCol;
+                }
+            }
+        } else {
+            for (int i = 0; i < menuSelections.Length; i++) {
+                if (i == currentSelection) {
+                    //menuSelections[i].localScale = selectionScale*1.2f;
+                    selectOrb.transform.position = menuSelections[i].position;
+                    if (i == 1 && !canContinue) {
+                        correctCol = continueDisableColor;
+                        correctCol.a = menuSelectionsText[i].color.a;
+                        menuSelectionsText[i].color = correctCol;
+                    } else {
+                        correctCol = Color.white;
+                        correctCol.a = menuSelectionsText[i].color.a;
+                        menuSelectionsText[i].color = correctCol;
+                    }
+                } else {
+                    //menuSelections[i].localScale = selectionScale;
+                    if (i == 1 && !canContinue) {
+                        correctCol = continueDisableColor;
+                        correctCol.a = menuSelectionsText[i].color.a;
+                        menuSelectionsText[i].color = correctCol;
+                    } else {
+                        correctCol = selectionStartColor;
+                        correctCol.a = menuSelectionsText[i].color.a;
+                        menuSelectionsText[i].color = correctCol;
+                    }
+                }
+            }
+        }
 
-		Cursor.visible = false;
+    }
 
-		if (ControlManagerS.controlProfile == 1){
-			controlType = "Keyboard & Mouse";
+    void SetControlSelection() {
 
-			Cursor.visible = true;
-		}
-		if (ControlManagerS.controlProfile == 2){
-			controlType = "Keyboard (No Mouse)";
+        string controlType = "Gamepad";
 
-			Cursor.visible = false;
-		}
-		if (ControlManagerS.controlProfile == 3){
-			controlType = "Gamepad (PS4)";
+        Cursor.visible = false;
 
-			Cursor.visible = false;
-		}
-		for (int i = 0; i < controlTexts.Length; i++){
-			controlTexts[i].text = controlType;
-		}
+        if (ControlManagerS.controlProfile == 1) {
+            controlType = "Keyboard & Mouse";
 
-	}
-	
-	private void CheckCheats(){
-		
-		/*if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
+            Cursor.visible = true;
+        }
+        if (ControlManagerS.controlProfile == 2) {
+            controlType = "Keyboard (No Mouse)";
+
+            Cursor.visible = false;
+        }
+        if (ControlManagerS.controlProfile == 3) {
+            controlType = "Gamepad (PS4)";
+
+            Cursor.visible = false;
+        }
+        for (int i = 0; i < controlTexts.Length; i++) {
+            controlTexts[i].text = controlType;
+        }
+
+    }
+
+    private void CheckCheats() {
+
+        /*if (Input.GetKeyDown(KeyCode.Escape) && selectReset){
 			//Application.Quit();
 			currentSelection = 3;
 			SetSelection();
 		}**/
-		
-		if (allowCheats){
-			if (Input.GetKeyDown(KeyCode.G)){
-				cheatString += "G";
-				if (cheatString == "GGGG"){
-					PlayerStatsS.godMode = true;
-					cheatString = "";
-					Debug.Log("god mode on");
-					Instantiate(newGameSound);
-				}
-			}
-			if (Input.GetKeyDown(KeyCode.R)){
-				PlayerStatDisplayS.RECORD_MODE = !PlayerStatDisplayS.RECORD_MODE;
-				if (PlayerStatDisplayS.RECORD_MODE){
-					Debug.Log("record mode on");
-					Instantiate(newGameSound);
-				}
-			}
-			
-			if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)){
-				cheatString = "";
-				PlayerStatsS.godMode = false;
-				PlayerStatDisplayS.RECORD_MODE = false;
-				Debug.Log("god mode off");
-			}
-		}
-		
-	}
+
+        if (allowCheats) {
+            if (Input.GetKeyDown(KeyCode.G)) {
+                cheatString += "G";
+                if (cheatString == "GGGG") {
+                    PlayerStatsS.godMode = true;
+                    cheatString = "";
+                    Debug.Log("god mode on");
+                    Instantiate(newGameSound);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.R)) {
+                PlayerStatDisplayS.RECORD_MODE = !PlayerStatDisplayS.RECORD_MODE;
+                if (PlayerStatDisplayS.RECORD_MODE) {
+                    Debug.Log("record mode on");
+                    Instantiate(newGameSound);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace)) {
+                cheatString = "";
+                PlayerStatsS.godMode = false;
+                PlayerStatDisplayS.RECORD_MODE = false;
+                Debug.Log("god mode off");
+            }
+        }
+
+    }
 
     private void StartNextLoad(bool playSound = true)
     {
         versionText.text = LocalizationManager.instance.GetLocalizedValue("menu_loading_ellipses");
         StartCoroutine(LoadNextScene());
-		startedLoading = true;	
-        if (newGameSound && playSound){
-			Instantiate(newGameSound);
-		}
-	}
-	
-	private IEnumerator LoadNextScene(){
-		async = Application.LoadLevelAsync(newGameScene);
-		async.allowSceneActivation = false;
-		yield return async;
-	}
+        startedLoading = true;
+        if (newGameSound && playSound) {
+            Instantiate(newGameSound);
+        }
+    }
 
-	void HandleBlur(){
-		if (blurEffect.enabled){
-			if (blurEffectTime < blurEffectTimeMax){
-				blurEffectTime += Time.deltaTime;
-				blurT = blurEffectTime / blurEffectTimeMax;
-				//blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
-				blurT = 1f - Mathf.Cos(blurT * Mathf.PI * 0.5f);
+    private IEnumerator LoadNextScene() {
+        async = Application.LoadLevelAsync(newGameScene);
+        async.allowSceneActivation = false;
+        yield return async;
+    }
+
+    void HandleBlur() {
+        if (blurEffect.enabled) {
+            if (blurEffectTime < blurEffectTimeMax) {
+                blurEffectTime += Time.deltaTime;
+                blurT = blurEffectTime / blurEffectTimeMax;
+                //blurT = Mathf.Sin(blurT * Mathf.PI * 0.5f);
+                blurT = 1f - Mathf.Cos(blurT * Mathf.PI * 0.5f);
                 blurEffect.blurSpread = Mathf.Lerp(1, 0, blurT);
                 blurEffect.iterations = Mathf.FloorToInt(Mathf.Lerp(10, 0, blurT));
 
 
 
-			}else{
-				blurEffect.enabled = false;
-			}
-		}
-	}
+            } else {
+                blurEffect.enabled = false;
+            }
+        }
+    }
 
-	void CancelBlur(){
-		blurEffect.enabled = false;
-	}
+    void CancelBlur() {
+        blurEffect.enabled = false;
+    }
 
-    public void SetAdditionalInstruction(bool newOn){
-        for (int i = 0; i < additionalInstructions.Length; i++){
+    public void SetAdditionalInstruction(bool newOn) {
+        for (int i = 0; i < additionalInstructions.Length; i++) {
             additionalInstructions[i].SetActive(newOn);
         }
     }
 
-    public void MatchSavedOptions(){
+    public void MatchSavedOptions() {
         if (!loadedOptions)
         {
             if (PlayerInventoryS.inventoryData != null)
@@ -963,12 +975,12 @@ public class MainMenuNavigationS : MonoBehaviour {
     }
     void SaveChangedOptions()
     {
-       
-            if (PlayerInventoryS.inventoryData != null)
-            {
+
+        if (PlayerInventoryS.inventoryData != null)
+        {
             PlayerInventoryS.inventoryData.savedCamEffect = CameraEffectsS.cameraEffectsEnabled;
             PlayerInventoryS.inventoryData.savedCameraShake = CameraShakeS.OPTIONS_SHAKE_MULTIPLIER;
-                
+
 
             PlayerInventoryS.inventoryData.savedMusicVolume = BGMHolderS.volumeMult;
             PlayerInventoryS.inventoryData.savedSFXVolume = SFXObjS.volumeSetting;
@@ -976,7 +988,7 @@ public class MainMenuNavigationS : MonoBehaviour {
             PlayerInventoryS.inventoryData.sinLevel = DifficultyS.GetSinInt();
             PlayerInventoryS.inventoryData.punishLevel = DifficultyS.GetPunishInt();
             Debug.Log("Setting inventory manager data!!");
-            }
+        }
 
         if (GameDataS.current != null)
         {
@@ -994,5 +1006,9 @@ public class MainMenuNavigationS : MonoBehaviour {
                 Debug.Log("Setting currenly loaded save data!!");
             }
         }
+    }
+
+    public void ReturnFromLanguageMenu() {
+        inLanguageMenu = false;
     }
 }
