@@ -68,17 +68,31 @@ public class LocalizationManager : MonoBehaviour
         isReady = true;
 
         if (locMenu) {
-            int savedLanguage = SaveLoadS.SavedLanguage();
+            StartCoroutine(DetectSavedLanguage());
+        }
+    }
+
+    IEnumerator DetectSavedLanguage() {
+        yield return null;
+#if UNITY_SWITCH
+        while (NintendoSwitchSaveObjS.singleton == null) {
 #if UNITY_EDITOR
-            Debug.Log("Detected saved language: " + savedLanguage);
+            Debug.Log("Switch singleton not ready for load.");
 #endif
-            if (SaveLoadS.SavedLanguage() > -1 && !DEBUG_FORCE_MENU)
-            {
-                locMenu.Complete(savedLanguage);
-            }
-            else {
-                locMenu.TurnOn();
-            }
+            yield return null;
+        }
+#endif
+        int savedLanguage = SaveLoadS.SavedLanguage();
+#if UNITY_EDITOR
+        Debug.Log("Detected saved language: " + savedLanguage);
+#endif
+        if (SaveLoadS.SavedLanguage() > -1 && !DEBUG_FORCE_MENU)
+        {
+            locMenu.Complete(savedLanguage);
+        }
+        else
+        {
+            locMenu.TurnOn();
         }
     }
 
