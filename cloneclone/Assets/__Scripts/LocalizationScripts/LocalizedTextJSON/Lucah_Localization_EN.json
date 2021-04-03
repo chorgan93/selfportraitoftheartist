@@ -14162,5 +14162,9 @@
   {
     "key": "ui_menu_language",
     "value": "Language"
+  },
+  {
+    "key": "found_la_500",
+    "value": "Found 500 la [use la to level up at checkpoints]."
   }
 ]}

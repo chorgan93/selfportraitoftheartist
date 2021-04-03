@@ -14162,5 +14162,9 @@
   {
     "key": "ui_menu_language",
     "value": "Idioma"
+  },
+  {
+    "key": "found_la_500",
+    "value": "500 La Recogidos. [usar para subir de nivel en puntos de guardado]."
   }
 ]}

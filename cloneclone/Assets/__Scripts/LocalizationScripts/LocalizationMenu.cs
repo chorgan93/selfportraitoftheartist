@@ -86,11 +86,18 @@ public class LocalizationMenu : MonoBehaviour
     }
 
     bool GetSelectInputs() {
-        return (myControl.GetCustomInput(1) && !gameMenu) || myControl.GetCustomInput(10) || (myControl.GetCustomInput(11) && !gameMenu) || myControl.GetCustomInput(3);
+        return (myControl.GetCustomInput(1) && !gameMenu) || myControl.GetCustomInput(10) || ((myControl.GetCustomInput(11) || keyboardFailsafe()) && !gameMenu) || myControl.GetCustomInput(3);
     }
 
     bool GetCancelInputs() {
         return (myControl.GetCustomInput(1) && gameMenu) || (myControl.GetCustomInput(11) && gameMenu);
+    }
+
+    bool keyboardFailsafe() {
+#if UNITY_SWITCH
+        return false;
+#endif
+        return Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space);
     }
 
     public void TurnOn() {
