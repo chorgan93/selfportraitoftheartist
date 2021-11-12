@@ -405,6 +405,11 @@ public class ControlManagerS : MonoBehaviour
         savedKeyboardandMouseControls = mouseControls;
     }
 
+    public void SetPlatforms() {
+        platformType = GetPlatform();
+        truePlatform = GetTruePlatform();
+    }
+
     string GetPlatform()
     {
 

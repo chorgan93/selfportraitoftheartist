@@ -20,6 +20,10 @@ public class LocalizationMenu : MonoBehaviour
 
     // Update is called once per frame
     bool stickReset = false, selectReset = false, cancelReset = false;
+    private void Start()
+    {
+        myControl.SetPlatforms();
+    }
     void Update()
     {
         if (Mathf.Abs(myControl.VerticalMenu()) < 0.1f)
@@ -148,6 +152,9 @@ public class LocalizationMenu : MonoBehaviour
     public MainMenuNavigationS titleScreenMenu;
     public void Complete(int newLanguage)
     {
+#if UNITY_EDITOR
+        Debug.Log("Setting new language to " + newLanguage);
+#endif
         if (newLanguage != LocalizationManager.currentLanguage)
         {
             LocalizationManager.currentLanguage = newLanguage;
