@@ -876,16 +876,21 @@ public class PlayerController : MonoBehaviour {
             //Debug.Log("Cancelling attack!! " + _currentParadigm + " / " + subWeapons.Count);
             if (_currentParadigm < subWeapons.Count)
             {
+#if UNITY_EDITOR
                 Debug.Log("WARNING: Subweapon list does not match current paradigm value, do not set weapon aug.");
+#endif
                 if (EquippedWeaponAug() != null)
                 {
                     attackingWeaponAug = EquippedWeaponAug();
                 }
             }
-        }else{
+        }else
+        {
+#if UNITY_EDITOR
             Debug.Log("WARNING: No subweapon list found, do not set weapon aug.");
+#endif
         }
-		attackDuration = 0f;
+        attackDuration = 0f;
 		if (myTracker){
 		myTracker.TurnOffEffect();
 		}

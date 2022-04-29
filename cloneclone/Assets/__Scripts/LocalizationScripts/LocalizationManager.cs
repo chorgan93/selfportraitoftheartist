@@ -8,16 +8,17 @@ public class LocalizationManager : MonoBehaviour
 
     public static LocalizationManager instance;
 
-    private Dictionary<string, string> localizedTextEN, localizedTextES;
+    private Dictionary<string, string> localizedTextEN, localizedTextES, localizedTextFR;
     private bool isReady = false;
     private string missingTextString = "Localized text not found";
 
     public TextAsset masterText_EN;
     public TextAsset masterText_ES;
+    public TextAsset masterText_FR;
 
     public LocalizationMenu locMenu;
 
-    public static int currentLanguage = 0; // 0 = English, 1 = Español
+    public static int currentLanguage = 0; // 0 = English, 1 = Español, 2 = Français
 
     // Use this for initialization
     void Awake()
@@ -43,6 +44,7 @@ public class LocalizationManager : MonoBehaviour
 #endif
         localizedTextEN = new Dictionary<string, string>();
         localizedTextES = new Dictionary<string, string>();
+        localizedTextFR = new Dictionary<string, string>();
 
         // if english
         if (masterText_EN != null)
@@ -62,6 +64,16 @@ public class LocalizationManager : MonoBehaviour
             for (int i = 0; i < loadedData.items.Length; i++)
             {
                 localizedTextES.Add(loadedData.items[i].key, loadedData.items[i].value);
+            }
+        }
+        if (masterText_FR != null)
+        {
+            string dataAsJson = masterText_FR.text;
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
+
+            for (int i = 0; i < loadedData.items.Length; i++)
+            {
+                localizedTextFR.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
         }
 
@@ -119,10 +131,28 @@ public class LocalizationManager : MonoBehaviour
 #endif
             }
         }
-        else if (currentLanguage == 1) {
+        else if (currentLanguage == 1)
+        {
             if (localizedTextES.ContainsKey(key))
             {
                 result = localizedTextES[key];
+            }
+            else if (displayOnFail)
+            {
+                result = key;
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log("Could not find key: " + key);
+#endif
+            }
+        }
+        else if (currentLanguage == 2)
+        {
+            if (localizedTextFR.ContainsKey(key))
+            {
+                result = localizedTextFR[key];
             }
             else if (displayOnFail)
             {
