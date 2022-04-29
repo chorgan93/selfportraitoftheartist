@@ -71,7 +71,6 @@ public class CombatGiverS : MonoBehaviour {
 					if (!selectButtonDown){
 						selectButtonDown = true;
                         if (!talking && !InGameMenuManagerS.menuInUse){
-                            Debug.Log("Menu in use : " + InGameMenuManagerS.menuInUse);
 						talking = true;
 						playerRef.SetTalking(true);
 						CameraFollowS.F.SetNewPOI(gameObject);

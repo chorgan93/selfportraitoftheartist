@@ -14166,5 +14166,25 @@
   {
     "key": "found_la_500",
     "value": "Found 500 la [use la to level up at checkpoints]."
+  },
+  {
+    "key": "examine_label_training",
+    "value": "TRAINING"
+  },
+  {
+    "key": "examine_label_fight",
+    "value": "FIGHT"
+  },
+  {
+    "key": "training_combat_00",
+    "value": "Untouched"
+  },
+  {
+    "key": "training_combat_01",
+    "value": "Unphased"
+  },
+  {
+    "key": "training_combat_02",
+    "value": "Unbroken"
   }
 ]}

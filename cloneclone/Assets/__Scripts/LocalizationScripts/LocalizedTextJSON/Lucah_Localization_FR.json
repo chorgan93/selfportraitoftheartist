@@ -4061,7 +4061,7 @@
  },
  {
    "key": "examine_label_bus",
-   "value": "Un Bouton : Attendre le Bus"
+   "value": " : Attendre le Bus"
  },
  {
    "key": "arena_guard_00",
@@ -14166,6 +14166,26 @@
  {
    "key": "found_la_500",
    "value": "500 La trouvé [utilisable aux points de contrôle pour augmenter de niveau]."
- }
+ },
+  {
+    "key": "examine_label_training",
+    "value": "ENTRAÎNEMENT"
+  },
+  {
+    "key": "examine_label_fight",
+    "value": "COMBATTRE"
+  },
+  {
+    "key": "training_combat_00",
+    "value": "Intact"
+  },
+  {
+    "key": "training_combat_01",
+    "value": "Impassible"
+  },
+  {
+    "key": "training_combat_02",
+    "value": "Ininterrompu"
+  }
 ]
 }

@@ -14166,5 +14166,25 @@
   {
     "key": "found_la_500",
     "value": "500 La Recogidos. [usar para subir de nivel en puntos de guardado]."
+  },
+  {
+    "key": "examine_label_training",
+    "value": "TRAINING"
+  },
+  {
+    "key": "examine_label_fight",
+    "value": "FIGHT"
+  },
+  {
+    "key": "training_combat_00",
+    "value": "Untouched"
+  },
+  {
+    "key": "training_combat_01",
+    "value": "Unphased"
+  },
+  {
+    "key": "training_combat_02",
+    "value": "Unbroken"
   }
 ]}
