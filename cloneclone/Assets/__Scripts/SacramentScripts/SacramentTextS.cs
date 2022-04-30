@@ -55,7 +55,12 @@ public class SacramentTextS : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        if (LocalizationManager.currentLanguage == 0) {
+            return;
+        } 
+        RectTransform myrect = GetComponent<RectTransform>();
+        float newXSize = myrect.parent.parent.GetComponent<RectTransform>().sizeDelta.x / 2f - myrect.anchoredPosition.x;
+        myrect.sizeDelta = new Vector2(newXSize, myrect.sizeDelta.y);
 	}
 	
 	// Update is called once per frame
