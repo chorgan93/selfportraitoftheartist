@@ -14186,5 +14186,13 @@
   {
     "key": "training_combat_02",
     "value": "Unbroken"
+  },
+  {
+    "key": "save_menu_overwrite",
+    "value": "File limit reached. Select file to overwrite."
+  },
+  {
+    "key": "save_menu_load",
+    "value": "Select save file to load."
   }
 ]}

@@ -21,7 +21,7 @@
  },
  {
    "key": "title_subtitle",
-   "value": "b o r n  o f  a  d r e a m"
+   "value": "b o r n o f a d r e a m"
  },
  {
    "key": "menu_save_overwrite",
@@ -93,7 +93,7 @@
  },
  {
    "key": "menu_move",
-   "value": "Bouger"
+   "value": "Se déplacer"
  },
  {
    "key": "ui_rewind_display",
@@ -213,7 +213,7 @@
  },
  {
    "key": "tech_item_ui_desc",
-   "value": "Interface Objet : Affiche le nombre de Rembobinage/Essence de Vie ainsi que des objets clefs non utilisés."
+   "value": "Interface Objet : Affiche le nombre de Rembobinages/Essences de Vie ainsi que des objets clefs non utilisés."
  },
  {
    "key": "tech_verse_ui_name",
@@ -273,7 +273,7 @@
  },
  {
    "key": "mod_infinite_charge_name",
-   "value": "Charge Infinie : "
+   "value": "Charge Infinie :"
  },
  {
    "key": "mod_infinite_charge_desc",
@@ -309,7 +309,7 @@
  },
  {
    "key": "mantra_01_name",
-   "value": "SOL : Portée moyenne, rapide. Ignore la défense mais ne peux pas BRISER. "
+   "value": "SOL : Portée moyenne, rapide. Ignore la défense mais ne peux pas BRISER."
  },
  {
    "key": "mantra_01_desc",
@@ -457,7 +457,7 @@
  },
  {
    "key": "virtue_05",
-   "value": "Perspicace (Coût : 3) [Montre la barre de vie des ennemis]"
+   "value": "Perceptif (Coût : 3) [Montre la barre de vie des ennemis]"
  },
  {
    "key": "virtue_06",
@@ -501,7 +501,7 @@
  },
  {
    "key": "virtue_16",
-   "value": "Prudence [Coût : 5] (Ralentit les attaques et les projectiles ennemis)"
+   "value": "Prudent [Coût : 5] (Ralentit les attaques et les projectiles ennemis)"
  },
  {
    "key": "virtue_17",
@@ -525,7 +525,7 @@
  },
  {
    "key": "virtue_22",
-   "value": "Ascensionné [Coût : 2] (réduit drastiquement le taux de corruption)"
+   "value": "Ascension [Coût : 2] (réduit drastiquement le taux de corruption)"
  },
  {
    "key": "ui_tech_locked",
@@ -833,7 +833,7 @@
  },
  {
    "key": "revert_track_00",
-   "value": "Sacrement I."
+   "value": "Sacrement I."
  },
  {
    "key": "revert_track_01",
@@ -873,7 +873,7 @@
  },
  {
    "key": "travel_descent_end",
-   "value": "Descente Finale"
+   "value": "Fin de la Descente"
  },
  {
    "key": "revert_track_09_check",
@@ -921,7 +921,7 @@
  },
  {
    "key": "game_la",
-   "value": "XP"
+   "value": "La"
  },
  {
    "key": "warning_stamina_low",
@@ -977,7 +977,7 @@
  },
  {
    "key": "dream_00_09",
-   "value": "Tu rassemble ton courage /npour ouvrir les yeux."
+   "value": "Tu rassembles ton courage /npour ouvrir les yeux."
  },
  {
    "key": "dream_00_10",
@@ -985,7 +985,7 @@
  },
  {
    "key": "dream_00_11",
-   "value": "Tu ne peux pas t’empêcher d'avoir l'impression /nque tu as déjà été ici./n/nTu ne peux pas t’empêcher d'avoir l'impression/nqu'ils veulent te faire du mal."
+   "value": "Tu ne peux pas t’empêcher d'avoir l'impression /nque tu es déjà venu ici auparavant./n/nTu ne peux pas t’empêcher d'avoir l'impression/nqu'ils veulent te faire du mal."
  },
  {
    "key": "dream_00_12",
@@ -1005,11 +1005,11 @@
  },
  {
    "key": "colin_intro_01",
-   "value": ".    .    .    .    ."
+   "value": ". . . . ."
  },
  {
    "key": "colin_intro_02",
-   "value": ".      .      .      .      .      .      ."
+   "value": ". . . . . . ."
  },
  {
    "key": "colin_intro_03",
@@ -1037,15 +1037,15 @@
  },
  {
    "key": "colin_intro_09",
-   "value": "Maintenant, j'ai besoin que tu me promette que, peut importe ce qu'il se passe, tu auras foi en toi et en moi"
+   "value": "Maintenant, j'ai besoin que tu me promettes, que peu importe ce qu'il se passe, tu auras foi en toi et en moi"
  },
  {
    "key": "colin_intro_10",
-   "value": "et sache que à la fin tout ira bien."
+   "value": "et sache qu'à la fin tout ira bien."
  },
  {
    "key": "colin_intro_11",
-   "value": "Je sais que ça ne va pas être facile, mais... tu as en confiance en moi, hein ?"
+   "value": "Je sais que ça ne va pas être facile, mais... tu as confiance en moi, hein ?"
  },
  {
    "key": "colin_intro_12",
@@ -1061,11 +1061,11 @@
  },
  {
    "key": "checkpoint_message_00",
-   "value": "Vie restauré. Progrès sauvegardé."
+   "value": "Vie restaurée. Progrès sauvegardé."
  },
  {
    "key": "checkpoint_message_01",
-   "value": "Vie restauré. Progrès sauvegardé.\\nREMBOBINAGEs restorés."
+   "value": "Vie restaurée. Progrès sauvegardé.\\nREMBOBINAGEs restaurés."
  },
  {
    "key": "menu_loading_ellipses",
@@ -1089,7 +1089,7 @@
  },
  {
    "key": "memo_intro",
-   "value": "Une voix résonne dans ton oreille :"
+   "value": "Une voix sonne au creux de ton oreille :"
  },
  {
    "key": "tutorial_light_attack",
@@ -1253,11 +1253,11 @@
  },
  {
    "key": "lvl_virtue_perceptive_name",
-   "value": "PERCEPTION"
+   "value": "PERCEPTIF"
  },
  {
    "key": "lvl_virtue_perceptive_desc",
-   "value": "Confère la Vertu : PERCEPTION (affiche les barres de vie des ennemis) [Les Vertus doivent être équipées dans le MENU D'ÉQUIPEMENT]."
+   "value": "Confère la Vertu : PERCEPTIF (affiche les barres de vie des ennemis) [Les Vertus doivent être équipées dans le MENU D'ÉQUIPEMENT]."
  },
  {
    "key": "lvl_virtue_adaptive_name",
@@ -1401,7 +1401,7 @@
  },
  {
    "key": "dream_03_06",
-   "value": ".  /n.  /n.  "
+   "value": ". /n. /n."
  },
  {
    "key": "dream_03_07",
@@ -1421,7 +1421,7 @@
  },
  {
    "key": "dream_arcade_03",
-   "value": " "
+   "value": ""
  },
  {
    "key": "dream_04_00",
@@ -1473,7 +1473,7 @@
  },
  {
    "key": "dream_05_09",
-   "value": "ta poitrine se ressert/ncomme si c'était de ta dernière respiration…"
+   "value": "ta poitrine se ressert/ncomme si c'était ta dernière respiration…"
  },
  {
    "key": "dream_05_10",
@@ -1545,7 +1545,7 @@
  },
  {
    "key": "dream_06_03",
-   "value": "T'élevant comme la vapeur,/nviolette, bleue, et noire,/nta peau commence à disparaître "
+   "value": "T'élevant comme la vapeur,/nviolette, bleue, et noire,/nta peau commence à disparaître"
  },
  {
    "key": "dream_06_04",
@@ -1613,7 +1613,7 @@
  },
  {
    "key": "dream_qq_01",
-   "value": "Il y a ce…pont/nque tu empruntes chaque jour..."
+   "value": "Il y a ce…pont/nque tu empruntes\\nchaque jour..."
  },
  {
    "key": "dream_qq_02",
@@ -1621,11 +1621,11 @@
  },
  {
    "key": "dream_qq_03",
-   "value": "Les lumières scintillant au loin/n Englouties par/nles montagnes et les bâtiments et les nuages/nen face"
+   "value": "Les lumières scintillant au loin/n Englouties par/nles montagnes, les bâtiments et les nuages/nen face"
  },
  {
    "key": "disable_transform",
-   "value": "Tech : TRANSFORMATION & été désactivé."
+   "value": "Tech : TRANSFORMATION a été désactivé."
  },
  {
    "key": "sin_desc_easy",
@@ -1705,7 +1705,7 @@
  },
  {
    "key": "ending_c_reward_00",
-   "value": "Vertu débloquée : ASCENSIONNÉ."
+   "value": "Vertu débloquée : ASCENSION."
  },
  {
    "key": "ending_c_reward_01",
@@ -1873,11 +1873,11 @@
  },
  {
    "key": "post_colin_08",
-   "value": "Mais, s'il y a bien QUELQUE CHOSE qui me montre qu'il y a de la place pour l'espoir dans notre monde, c'est de te voir finir ce voyage. "
+   "value": "Mais, s'il y a bien QUELQUE CHOSE qui me montre qu'il y a de la place pour l'espoir dans notre monde, c'est de te voir finir ce voyage."
  },
  {
    "key": "post_colin_09",
-   "value": "Le monde ici, ton monde, avec ses difficultés et ses victoires, sera là si tu en as besoin, quand tu auras besoin. Que ce soit demain, la semaine prochaine, ou dans 10 ans, ce n'est pas grave, parce que ce sera toujours là ; \\n\\nparce que tu as accomplis, tout ce que tu as appris, ne te quitteras jamais. "
+   "value": "Le monde ici, ton monde, avec ses difficultés et ses victoires, sera là si tu en as besoin, quand tu auras besoin. Que ce soit demain, la semaine prochaine, ou dans 10 ans, ce n'est pas grave, parce que ce sera toujours là ; \\n\\nparce que ce tu as accomplis, tout ce que tu as appris, ne te quitteras jamais."
  },
  {
    "key": "post_colin_10",
@@ -1993,7 +1993,7 @@
  },
  {
    "key": "found_virtue_enraged",
-   "value": "Vertu trouvée : ENRAGÉ. "
+   "value": "Vertu trouvée : ENRAGÉ."
  },
  {
    "key": "found_mantra_pyra",
@@ -2013,7 +2013,7 @@
  },
  {
    "key": "found_virtue_scorned",
-   "value": "Vertu trouvée : MEPRIS. "
+   "value": "Vertu trouvée : BAFOUÉ."
  },
  {
    "key": "found_mantra_thanatos",
@@ -2025,7 +2025,7 @@
  },
  {
    "key": "found_virtue_determined",
-   "value": "Vertu trouvée : DETERMINATION."
+   "value": "Vertu trouvée : DÉTERMINÉ."
  },
  {
    "key": "found_mantra_gaea",
@@ -2037,19 +2037,19 @@
  },
  {
    "key": "memory_maria_00",
-   "value": "Objet trouvé : Souvenirs de Maria :"
+   "value": "Souvenir de Maria trouvé :"
  },
  {
    "key": "memory_maria_01",
-   "value": "\"Je prie pour les oppressés ; Je prie pour les faibles. Je prie pour celles et ceux dans le besoin."
+   "value": "\"Je prie pour les oppressés ; je prie pour les faibles. Je prie pour celles et ceux dans le besoin."
  },
  {
    "key": "memory_maria_02",
-   "value": "Je prie pour les laissés pour compte, et celleux dont je ne me souviens pas."
+   "value": "Je prie pour les laissés pour compte, et ceux dont je ne me souviens plus."
  },
  {
    "key": "memory_maria_03",
-   "value": "A chaque jour qui passe, de plus en plus semblent disparaitre, comme si iels n'avaient jamais été là."
+   "value": "Chaque jour qui passe, de plus en plus semblent disparaitre, comme si iels n'avaient jamais été là."
  },
  {
    "key": "memory_maria_04",
@@ -2057,7 +2057,7 @@
  },
  {
    "key": "found_virtue_paranoid",
-   "value": "Vertu trouvée : PARANOIAQUE. "
+   "value": "Vertu trouvée : PARANOÏAQUE."
  },
  {
    "key": "found_rail_lever",
@@ -2069,11 +2069,11 @@
  },
  {
    "key": "found_virtue_untethered",
-   "value": "Vertu trouvée : DÉLIVRÉ. "
+   "value": "Vertu trouvée : SANS ATTACHE."
  },
  {
    "key": "memory_colin_00",
-   "value": "Objet trouvé : Souvenirs de Colin :"
+   "value": "Souvenir de Colin trouvé :"
  },
  {
    "key": "memory_colin_01",
@@ -2081,7 +2081,7 @@
  },
  {
    "key": "memory_colin_02",
-   "value": "Je flotte dans les airs, et mes paupières se ferment. Petit à petit, des parties de moi commence à disparaitre. Mes jambes, mes bras, mon torse, puis ma tête - le tout disparaissant dans le néant, ne laissant que mon ombre persister."
+   "value": "Je flotte dans les airs, et mes paupières se ferment. Petit à petit, des parties de moi commencent à disparaitre. Mes jambes, mes bras, mon torse, puis ma tête - le tout disparaissant dans le néant, ne laissant que mon ombre persister."
  },
  {
    "key": "memory_colin_03",
@@ -2093,11 +2093,11 @@
  },
  {
    "key": "found_virtue_incensed",
-   "value": "Vertu trouvée : COLERE. "
+   "value": "Vertu trouvée : FURIEUX."
  },
  {
    "key": "found_virtue_parasitic",
-   "value": "Vertu trouvée : PARASITIQUE [pendant un bref instant après avoir subit des dommages, faire des dommages te rend des points de vie]."
+   "value": "Vertu trouvée : PARASITE [pendant un bref instant après avoir subit des dommages, faire des dommages te rend des points de vie]."
  },
  {
    "key": "found_tape_dream",
@@ -2121,11 +2121,11 @@
  },
  {
    "key": "found_crane_key",
-   "value": "OBJET CLEF Trouvé : Clef Crâne."
+   "value": "OBJET CLEF Trouvé : Clef de la Grue."
  },
  {
    "key": "memory_father_00",
-   "value": "Objet trouvé : Souvenirs du père :"
+   "value": "Souvenir du Père trouvé :"
  },
  {
    "key": "memory_father_01",
@@ -2153,11 +2153,11 @@
  },
  {
    "key": "found_virtue_repellant",
-   "value": "Vertu trouvée : REPOUSSANT. "
+   "value": "Vertu trouvée : RÉPULSIF."
  },
  {
    "key": "memory_julia_00",
-   "value": "Objet trouvé : Souvenirs de Julia :"
+   "value": "Souvenir de Julia trouvé :"
  },
  {
    "key": "memory_julia_01",
@@ -2205,7 +2205,7 @@
  },
  {
    "key": "found_la_250",
-   "value": "250 La trouvé [utilisable aux points de contrôle pour augmenter de niveau]."
+   "value": "Tu as trouvé 250 La [utilise les La pour augmenter de niveau aux points de contrôle]."
  },
  {
    "key": "track_00_verse_00",
@@ -2425,7 +2425,7 @@
  },
  {
    "key": "track_04_verse_broken",
-   "value": "U#HDS*( _ SHDA* "
+   "value": "U#HDS*( _ SHDA*"
  },
  {
    "key": "keypad_enter",
@@ -2529,7 +2529,7 @@
  },
  {
    "key": "track_05_training_02",
-   "value": "Entraînement 3 - Sauf"
+   "value": "Entraînement 3 - Ininterrompu"
  },
  {
    "key": "track_05_verse_09",
@@ -2537,7 +2537,7 @@
  },
  {
    "key": "track_05_verse_10",
-   "value": "Verset 11 - Méprisé"
+   "value": "Verset 11 - Bafoué"
  },
  {
    "key": "track_05_verse_11",
@@ -2729,11 +2729,11 @@
  },
  {
    "key": "tutorial_rewind_00",
-   "value": "REMBOBINAGEs te donne une deuxième chance pour n'importe quel combat."
+   "value": "Les REMBOBINAGEs te donnent une deuxième chance pour n'importe quel combat."
  },
  {
    "key": "tutorial_rewind_01",
-   "value": "Quand tu utilises un REMBOBINAGE, ta vie et ta charge sont restaurés dans l'état dans lesquels ils étaient au début du combat."
+   "value": "Quand tu utilises un REMBOBINAGE, ta vie et ta charge sont restaurées dans l'état dans lesquels elles étaient au début du combat."
  },
  {
    "key": "tutorial_rewind_02",
@@ -2765,7 +2765,7 @@
  },
  {
    "key": "examine_label_sprint_a",
-   "value": "      :\\n(Maintenir)"
+   "value": ":\\n(Maintenir)"
  },
  {
    "key": "tutorial_dodge_00",
@@ -2773,7 +2773,7 @@
  },
  {
    "key": "tutorial_dodge_01",
-   "value": "Garder le bouton d'Esquive appuyer pour courir à grande vitesse."
+   "value": "Garder le bouton d'Esquive appuyé pour courir à grande vitesse."
  },
  {
    "key": "examine_label_descend",
@@ -2805,7 +2805,7 @@
  },
  {
    "key": "memory_david_01",
-   "value": "\"Douze garçons alignés en rang. Menés à la cave, on s’assoit sur des chaises jaunes et moisies. 'Aujourd'hui, vous allez apprendre la force et la foi'. "
+   "value": "\"Douze garçons alignés en rang. Menés à la cave, on s’assoit sur des chaises jaunes et moisies. 'Aujourd'hui, vous allez apprendre la force et la foi'."
  },
  {
    "key": "memory_david_02",
@@ -2813,7 +2813,7 @@
  },
  {
    "key": "memory_david_03",
-   "value": "\" Ils craignent un monstre de grande taille, venant détruire tout ce qui leur est cher. Aucun espoir ne subsiste ; les couleurs sont distrayantes."
+   "value": "\"Ils craignent un monstre de grande taille, venant détruire tout ce qui leur est cher. Aucun espoir ne subsiste ; les couleurs sont distrayantes."
  },
  {
    "key": "memory_david_04",
@@ -2837,7 +2837,7 @@
  },
  {
    "key": "tutorial_charge_02",
-   "value": "Utilise une Action Maintenue sur un ennemi vulnérable pour l'éliminer rapidement. "
+   "value": "Utilise une Action Maintenue sur un ennemi vulnérable pour l'éliminer rapidement."
  },
  {
    "key": "examine_label_ascend",
@@ -2945,11 +2945,11 @@
  },
  {
    "key": "forest_descend_ex",
-   "value": "Il fait trop obscur pour descendre."
+   "value": "Il fait trop sombre pour descendre."
  },
  {
    "key": "door_vine_locked",
-   "value": "Un entrelacs de lianes obscurcit le chemin. Si seulement il y avait un moyen de les dégager..."
+   "value": "Un amas de lianes bloque le chemin. Si seulement il y avait un moyen de les dégager..."
  },
  {
    "key": "door_vine_unlocked",
@@ -2997,11 +2997,11 @@
  },
  {
    "key": "sanctum_worshipper_08",
-   "value": "ARRÊTE DE ME REGARDER ! !"
+   "value": "ARRÊTE DE ME REGARDER ! !"
  },
  {
    "key": "sanctum_worshipper_09",
-   "value": "! !"
+   "value": "! !"
  },
  {
    "key": "sanctum_worshipper_10",
@@ -3009,7 +3009,7 @@
  },
  {
    "key": "sanctum_worshipper_11",
-   "value": "Enlèvement ! Enlèvement ! !"
+   "value": "Enlèvement ! Enlèvement ! !"
  },
  {
    "key": "sanctum_worshipper_12",
@@ -3053,7 +3053,7 @@
  },
  {
    "key": "sanctum_cutscene_08",
-   "value": "Pitiez, arrête. J'ai un mauvais pressentiment."
+   "value": "Pitié, arrête. J'ai un mauvais pressentiment."
  },
  {
    "key": "sanctum_cutscene_09",
@@ -3109,7 +3109,7 @@
  },
  {
    "key": "sanctum_worshipper_14",
-   "value": "A chaque fois que j'y vais, l'obscurité grandit. Un jour j'aurai peut-être la chance de ne pas revenir !"
+   "value": "À chaque fois que j'y vais, l'obscurité grandit. Un jour j'aurai peut-être la chance de ne pas revenir !"
  },
  {
    "key": "sanctum_worshipper_15",
@@ -3129,7 +3129,7 @@
  },
  {
    "key": "found_la_1500",
-   "value": "1500 la trouvés (à utiliser pour monter de niveau aux points de contrôle)."
+   "value": "Tu as trouvé 1500 La [utilise les La pour augmenter de niveau aux points de contrôle]."
  },
  {
    "key": "door_metro_locked",
@@ -3205,11 +3205,11 @@
  },
  {
    "key": "merchant_item_00",
-   "value": "Vertu : CONFIANCE"
+   "value": "Vertu : CONFIANT"
  },
  {
    "key": "merchant_item_00_desc",
-   "value": "Accorde la Vertu : CONFIANCE (Les attaques des familiers sont plus puissantes)."
+   "value": "Accorde la Vertu : CONFIANT (Les attaques des familiers sont plus puissantes)."
  },
  {
    "key": "merchant_item_01",
@@ -3445,7 +3445,7 @@
  },
  {
    "key": "metro_christian_14",
-   "value": "Ou alors tu t'imagines au-dessus de tout ça ? "
+   "value": "Ou alors tu t'imagines au-dessus de tout ça ?"
  },
  {
    "key": "metro_christian_15",
@@ -3457,11 +3457,11 @@
  },
  {
    "key": "metro_christian_17",
-   "value": "Pourquoi est-ce qu'il a fallu que tu viennes ? Pourquoi MAINTENANT !??"
+   "value": "Pourquoi est-ce qu'il a fallu que tu viennes ? Pourquoi MAINTENANT !??"
  },
  {
    "key": "metro_christian_18",
-   "value": "Pourquoi est-ce qu'il a fallu que tu viennes ? Comment est-ce que tu peux EXISTER !??"
+   "value": "Pourquoi est-ce qu'il a fallu que tu viennes ? Comment est-ce que tu peux EXISTER !??"
  },
  {
    "key": "metro_christian_19",
@@ -3501,7 +3501,7 @@
  },
  {
    "key": "metro_christian_28",
-   "value": "SI JE VAIS EN ENFER, JE T’EMMÈNE AVEC MOI ! !"
+   "value": "SI JE VAIS EN ENFER, JE T’EMMÈNE AVEC MOI ! !"
  },
  {
    "key": "metro_christian_29",
@@ -3525,31 +3525,31 @@
  },
  {
    "key": "door_limiter_locked",
-   "value": "LIMITEUR LANCÉ. NE PAS DÉVERROUILLER."
+   "value": "LIMITEUR ENGAGÉ. NE PAS DÉVERROUILLER."
  },
  {
    "key": "door_limiter_unlocked",
-   "value": "DANGER ! ! LIMITEUR ANNULE ! ! DANGER ! !"
+   "value": "DANGER ! ! LIMITEUR DÉSENGAGÉ ! ! DANGER ! !"
  },
  {
    "key": "dead_npc_01",
-   "value": "Ils sont morts."
+   "value": "Il est mort."
  },
  {
    "key": "found_familiar_laser",
-   "value": "Trouvé Familier : Laser\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
+   "value": "Familier trouvé : Laser\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
  },
  {
    "key": "found_familiar_pierce",
-   "value": "Trouvé Familier : Pierce\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
+   "value": "Familier trouvé : Pierce\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
  },
  {
    "key": "found_familiar_rapid",
-   "value": "T\\trouvé Familier : Rapid\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
+   "value": "Familier trouvé : Rapid\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
  },
  {
    "key": "found_familiar_shock",
-   "value": "Trouvé Familier : Shock\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
+   "value": "Familier trouvé : Shock\\n[Les familiers peuvent être équipés dans le menu EQUIP]."
  },
  {
    "key": "suburbs_stranger_00",
@@ -3557,7 +3557,7 @@
  },
  {
    "key": "suburbs_stranger_01",
-   "value": "J'avais quelqu'un avec moi avant, mais iel n'a pas aimé ce que je suis devenu."
+   "value": "J'avais quelqu'un avec moi avant, mais il n'a pas aimé ce que je suis devenu."
  },
  {
    "key": "suburbs_stranger_02",
@@ -3577,7 +3577,7 @@
  },
  {
    "key": "suburbs_stranger_06",
-   "value": "Que j'étais spécial en quelque sorte, pas comme les autres."
+   "value": "Que je pouvais être spécial d'une manière ou d'une autre, pas comme les autres."
  },
  {
    "key": "suburbs_stranger_07",
@@ -3613,11 +3613,11 @@
  },
  {
    "key": "suburbs_house_02",
-   "value": "Tu peux entendre des légers murmures à l'intérieur. Tu n'as pas envie d'y allé."
+   "value": "Tu peux entendre des légers murmures à l'intérieur. Tu n'as pas envie d'y aller."
  },
  {
    "key": "examine_label_house",
-   "value": ": Entrer Maison"
+   "value": ": Entrer dans la Maison"
  },
  {
    "key": "examine_label_building",
@@ -3645,7 +3645,7 @@
  },
  {
    "key": "door_keypad_error",
-   "value": "ERREUR ! ! SAISIE REFUSÉE ! ! ERREUR ! ! "
+   "value": "ERREUR ! ! SAISIE REFUSÉE ! ! ERREUR ! !"
  },
  {
    "key": "school_cross_00",
@@ -3693,7 +3693,7 @@
  },
  {
    "key": "suburbs_marked_01",
-   "value": "Pourquoi ont-ils pris la peine de t'envoyer de toute façon ?"
+   "value": "Pourquoi ont-ils pris la peine de t'envoyer de toutes façons ?"
  },
  {
    "key": "suburbs_marked_02",
@@ -3717,7 +3717,7 @@
  },
  {
    "key": "suburbs_marked_07",
-   "value": "De tout façon, les gens comme nous finissent toujours de la même manière."
+   "value": "De toutes façons, les gens comme nous finissent toujours de la même manière."
  },
  {
    "key": "suburbs_marked_08",
@@ -3785,7 +3785,7 @@
  },
  {
    "key": "door_crane_unlocked",
-   "value": "Clé Grue utilisée."
+   "value": "Clé de la Grue utilisée."
  },
  {
    "key": "merchant_01_00",
@@ -3833,7 +3833,7 @@
  },
  {
    "key": "merchant_item_06",
-   "value": "Vertue : ANXIEUX"
+   "value": "Vertu : ANXIEUX"
  },
  {
    "key": "merchant_item_06_desc",
@@ -3841,7 +3841,7 @@
  },
  {
    "key": "merchant_item_07",
-   "value": "Vertue : PRUDENCE"
+   "value": "Vertu : PRUDENT"
  },
  {
    "key": "merchant_item_07_desc",
@@ -3881,7 +3881,7 @@
  },
  {
    "key": "depths_lilli_05",
-   "value": "Mais qu'est-ce que tu attends ! ? BOUGE !"
+   "value": "Mais qu'est-ce que tu attends ! ? BOUGE !"
  },
  {
    "key": "christian_01_00",
@@ -3921,7 +3921,7 @@
  },
  {
    "key": "christian_01_09",
-   "value": " Les miens s'effacent un peu plus chaque nuit."
+   "value": "Les miens s'effacent un peu plus chaque nuit."
  },
  {
    "key": "christian_01_10",
@@ -4005,7 +4005,7 @@
  },
  {
    "key": "highways_control_00",
-   "value": "Tu entends un son de machines et de métal qui claque."
+   "value": "Tu entends des bruits de machines et de métal qui claque."
  },
  {
    "key": "highways_control_01",
@@ -4057,7 +4057,7 @@
  },
  {
    "key": "depths_lilli_10",
-   "value": "Tu vas devoir grimper l'échelle plus loin ! !"
+   "value": "Tu vas devoir grimper l'échelle plus loin ! !"
  },
  {
    "key": "examine_label_bus",
@@ -4269,7 +4269,7 @@
  },
  {
    "key": "arena_giver_05",
-   "value": "Obtiens un rang assez haut pour pouvoir affronter les Champions ; montre au Cardinal ce que tu mérites !"
+   "value": "Obtiens un rang assez haut pour pouvoir affronter les Champions ; montre au Cardinal ce que tu mérites !"
  },
  {
    "key": "arena_giver_06",
@@ -4313,7 +4313,7 @@
  },
  {
    "key": "arena_trainer_04",
-   "value": "Soit courageux, soit beau - même si tu n'y crois pas."
+   "value": "Sois courageux, sois beau - même si tu n'y crois pas."
  },
  {
    "key": "arena_trainer_05",
@@ -4377,7 +4377,7 @@
  },
  {
    "key": "arena_trainer_20",
-   "value": "Ne te laisses juste pas trop emporter... il y a plein de choses derrière ces murs."
+   "value": "Ne te laisse juste pas trop emporter... il y a plein de choses derrière ces murs."
  },
  {
    "key": "arena_trainer_21",
@@ -4401,7 +4401,7 @@
  },
  {
    "key": "arena_trainer_26",
-   "value": "Finis le combat avec une limite de temps. "
+   "value": "Finis le combat avec une limite de temps."
  },
  {
    "key": "arena_trainer_27",
@@ -4465,11 +4465,11 @@
  },
  {
    "key": "arena_marked_13",
-   "value": "Peu importe le nombre de fois que nous disparaissons, il n'y a aucun échappatoire."
+   "value": "Peu importe le nombre de fois que nous disparaissons, il n'y a aucune échappatoire."
  },
  {
    "key": "arena_marked_14",
-   "value": "J'adorai me battre avant... Je m'en foutais même d'être ici."
+   "value": "J'adorais me battre avant... Je m'en foutais même d'être ici."
  },
  {
    "key": "arena_marked_15",
@@ -4685,7 +4685,7 @@
  },
  {
    "key": "arena_main_35",
-   "value": "MICHAAAAAAEEEELLLL ! ! !"
+   "value": "MICHAAAAAAEEEELLLL ! ! !"
  },
  {
    "key": "arena_main_36",
@@ -4725,7 +4725,7 @@
  },
  {
    "key": "found_virtue_hated",
-   "value": "Vertu trouvé : DÉTESTÉ [augmente la puissance des attaques du joueurs et des ennemis]."
+   "value": "Vertu trouvée : DÉTESTÉ [augmente la puissance des attaques du joueurs et des ennemis]."
  },
  {
    "key": "trail_lilli_00",
@@ -4737,7 +4737,7 @@
  },
  {
    "key": "trail_lilli_02",
-   "value": "Tu cherches Léthé, non ? "
+   "value": "Tu cherches Léthé, non ?"
  },
  {
    "key": "trail_lilli_03",
@@ -4969,7 +4969,7 @@
  },
  {
    "key": "trail_lilli_52",
-   "value": "Ha ! Je le savais ! !"
+   "value": "Ha ! Je le savais ! !"
  },
  {
    "key": "trail_lilli_53",
@@ -5081,7 +5081,7 @@
  },
  {
    "key": "trail_lilli_77",
-   "value": "Mon Dieu, pourquoi je me sens si mal ? "
+   "value": "Mon Dieu, pourquoi je me sens si mal ?"
  },
  {
    "key": "trail_lilli_78",
@@ -5137,7 +5137,7 @@
  },
  {
    "key": "trail_lilli_90",
-   "value": "Je suis désolé."
+   "value": "Je suis désolée."
  },
  {
    "key": "merchant_02_00",
@@ -5365,7 +5365,7 @@
  },
  {
    "key": "christian_02_28",
-   "value": "Prouve-moi que tu vaux mieux que moi ! Prouve-moi que tu mérites de continuer ! "
+   "value": "Prouve-moi que tu vaux mieux que moi ! Prouve-moi que tu mérites de continuer !"
  },
  {
    "key": "christian_02_29",
@@ -5541,7 +5541,7 @@
  },
  {
    "key": "radio_cultist_15",
-   "value": "L'épanouissement ? La joie ? Une Fin ? "
+   "value": "L'épanouissement ? La joie ? Une Fin ?"
  },
  {
    "key": "radio_cultist_16",
@@ -5585,7 +5585,7 @@
  },
  {
    "key": "radio_cultist_26",
-   "value": "Ma chance a tourné, hein ? "
+   "value": "Ma chance a tourné, hein ?"
  },
  {
    "key": "radio_cultist_27",
@@ -5601,7 +5601,7 @@
  },
  {
    "key": "radio_cultist_30",
-   "value": "Nous avons fermé le Descente par peur de l'Obscurité qu'elle contient. "
+   "value": "Nous avons fermé le Descente par peur de l'Obscurité qu'elle contient."
  },
  {
    "key": "radio_cultist_31",
@@ -5725,7 +5725,7 @@
  },
  {
    "key": "radio_worshipper_17",
-   "value": "Pourquoi tu ne peux pas voir le monde de notre manière ? "
+   "value": "Pourquoi tu ne peux pas voir le monde de notre manière ?"
  },
  {
    "key": "radio_worshipper_18",
@@ -5769,7 +5769,7 @@
  },
  {
    "key": "maria_04",
-   "value": "Je... ne suis pas surpris que tu sois là."
+   "value": "Je... ne suis pas surprise que tu sois là."
  },
  {
    "key": "maria_05",
@@ -5781,7 +5781,7 @@
  },
  {
    "key": "maria_07",
-   "value": "Si naïf."
+   "value": "Si naïve."
  },
  {
    "key": "maria_08",
@@ -5793,11 +5793,11 @@
  },
  {
    "key": "maria_10",
-   "value": "Je suis désolé... PLAYERNAME..."
+   "value": "Je suis désolée... PLAYERNAME..."
  },
  {
    "key": "maria_11",
-   "value": "Je suis désolé pour ce que je suis devenue."
+   "value": "Je suis désolée pour ce que je suis devenue."
  },
  {
    "key": "maria_12",
@@ -5933,7 +5933,7 @@
  },
  {
    "key": "christian_final_06",
-   "value": "On n'est pas ce qu'ils prétendent qu'on est, ni ce qu'ils voudraient qu'on soit."
+   "value": "Nous ne sommes pas ce qu'ils nous ont dit que nous étions, ni ce qu'ils voudraient qu'on soit."
  },
  {
    "key": "christian_final_07",
@@ -5961,7 +5961,7 @@
  },
  {
    "key": "christian_final_13",
-   "value": "On y est presque, PLAYERNAME. "
+   "value": "On y est presque, PLAYERNAME."
  },
  {
    "key": "christian_final_14",
@@ -6013,7 +6013,7 @@
  },
  {
    "key": "sacrament_i_title",
-   "value": "sacrement    i"
+   "value": "sacrement i"
  },
  {
    "key": "sacrament_i_00",
@@ -6025,7 +6025,7 @@
  },
  {
    "key": "sacrament_i_02",
-   "value": "Donc la nuit, Naomi et moi allons dans notre endroit secret, "
+   "value": "Donc la nuit, Naomi et moi allons dans notre endroit secret,"
  },
  {
    "key": "sacrament_i_03",
@@ -6033,11 +6033,11 @@
  },
  {
    "key": "sacrament_i_04",
-   "value": "Une fois que maman a fait le tour, Naomi attend que les bruits de pas s'estompent, et grimpe sur mon lit."
+   "value": "Une fois que Mère a fait le tour, Naomi attend que les bruits de pas s'estompent, et grimpe dans mon lit."
  },
  {
    "key": "sacrament_i_05",
-   "value": "\"Rien à signaler\", murmure-t-elle, sérieuse et dramatique comme l'une des anciennes stars. J'étouffe un rire, et elle éclate de rire. "
+   "value": "\"Rien à signaler\", murmure-t-elle, sérieuse et dramatique comme l'une des anciennes stars. J'étouffe un rire, et elle éclate de rire."
  },
  {
    "key": "sacrament_i_06",
@@ -6053,7 +6053,7 @@
  },
  {
    "key": "sacrament_i_09",
-   "value": "\"Insolent !"
+   "value": "\"Insolente !"
  },
  {
    "key": "sacrament_i_10",
@@ -6061,7 +6061,7 @@
  },
  {
    "key": "sacrament_i_11",
-   "value": "J'essaie de rester forte, mais mes yeux brûlent. "
+   "value": "J'essaie de rester forte, mais mes yeux brûlent."
  },
  {
    "key": "sacrament_i_12",
@@ -6085,11 +6085,11 @@
  },
  {
    "key": "sacrament_i_17",
-   "value": "\"Maria, si tu continues sur cette voie, je ne pourrai rien faire pour t'aider. "
+   "value": "\"Maria, si tu continues sur cette voie, je ne pourrai rien faire pour t'aider."
  },
  {
    "key": "sacrament_i_18",
-   "value": "\"Tu seras damné, et tu sais ce qui sera le pire ?"
+   "value": "\"Tu seras damnée, et tu sais ce qui sera le pire ?"
  },
  {
    "key": "sacrament_i_19",
@@ -6141,7 +6141,7 @@
  },
  {
    "key": "sacrament_i_31",
-   "value": "\"Nous nous délaissons. Nous devons obéir. Nous devons montrer notre gratitude."
+   "value": "\"Nous nous renions. Nous devons obéir. Nous devons montrer notre gratitude."
  },
  {
    "key": "sacrament_i_32",
@@ -6157,7 +6157,7 @@
  },
  {
    "key": "sacrament_i_35",
-   "value": "Mère Olivia se tourne. Je ne peux m'empêcher de remarquer le bleu sur sa joue gauche. "
+   "value": "A ce moment, le temps s'arrête."
  },
  {
    "key": "sacrament_i_36",
@@ -6205,7 +6205,7 @@
  },
  {
    "key": "sacrament_i_47",
-   "value": "Oui Mère, je suis reconnaissant"
+   "value": "Oui Mère, je suis reconnaissante"
  },
  {
    "key": "sacrament_i_48",
@@ -6229,7 +6229,7 @@
  },
  {
    "key": "sacrament_i_53",
-   "value": "Cogner"
+   "value": "Bam"
  },
  {
    "key": "sacrament_i_54",
@@ -6273,7 +6273,7 @@
  },
  {
    "key": "sacrament_i_64",
-   "value": "Si aisé. Si assuré. "
+   "value": "Si aisé. Si assuré."
  },
  {
    "key": "sacrament_i_65",
@@ -6285,7 +6285,7 @@
  },
  {
    "key": "sacrament_i_67",
-   "value": "Non pas qu'elle le doive mais je... je ne veux pas l'arrêter. "
+   "value": "Non pas qu'elle le doive mais je... je ne veux pas l'arrêter."
  },
  {
    "key": "sacrament_i_68",
@@ -6293,11 +6293,11 @@
  },
  {
    "key": "sacrament_i_69",
-   "value": "\"Tu vas bien ? Je suis désolé, je me suis cogné-\""
+   "value": "\"Tu vas bien ? Je suis désolée, je me suis cognée-\""
  },
  {
    "key": "sacrament_i_70",
-   "value": "\"Naomi ! Tu vas bien ?\""
+   "value": "\"Naomi ! Tu vas bien ?\""
  },
  {
    "key": "sacrament_i_71",
@@ -6305,7 +6305,7 @@
  },
  {
    "key": "sacrament_i_72",
-   "value": "Je déteste quand je suis comme ceci - un regret instantané, si apeuré que Naomi ne comprenne pas "
+   "value": "Je déteste quand je suis comme ceci - un regret instantané, si apeuré que Naomi ne comprenne pas"
  },
  {
    "key": "sacrament_i_73",
@@ -6325,11 +6325,11 @@
  },
  {
    "key": "sacrament_i_77",
-   "value": "Je suis le seul à recevoir des excuses de Naomi, mais elle le fait tellement quand elle est près de moi. "
+   "value": "Je suis la seule à recevoir des excuses de Naomi, mais elle le fait tellement quand elle est près de moi."
  },
  {
    "key": "sacrament_i_78",
-   "value": "Je craque, j'ai peur qu'on se fasse attraper. "
+   "value": "Je craque, j'ai peur qu'on se fasse attraper."
  },
  {
    "key": "sacrament_i_79",
@@ -6361,7 +6361,7 @@
  },
  {
    "key": "sacrament_i_86",
-   "value": "Elle me fait ressentir-"
+   "value": "Elle me fait me sentir-"
  },
  {
    "key": "sacrament_i_87",
@@ -6421,7 +6421,7 @@
  },
  {
    "key": "sacrament_i_101",
-   "value": ".   .   ."
+   "value": ". . ."
  },
  {
    "key": "sacrament_i_102",
@@ -6449,7 +6449,7 @@
  },
  {
    "key": "sacrament_i_108",
-   "value": "Je sens cette piqûre encore. Elle est bien meilleure que moi à ceci."
+   "value": "Je sens cette pique encore. Elle est bien meilleure que moi à ça."
  },
  {
    "key": "sacrament_i_109",
@@ -6461,7 +6461,7 @@
  },
  {
    "key": "sacrament_i_111",
-   "value": "Le stylo atteint le titre de Naomi. Comme d'habitude, elle trébuche sur la ligne, peinant à cacher son retard. "
+   "value": "Le stylo atteint le titre de Naomi. Comme d'habitude, elle trébuche sur la ligne, peinant à cacher son retard."
  },
  {
    "key": "sacrament_i_112",
@@ -6493,7 +6493,7 @@
  },
  {
    "key": "sacrament_i_119",
-   "value": "Elle convoquera Naomi à une de ses \"réunions privées\" - lui montrera comme ses plumes se sont obscurcies et la sermonnera sur sa pureté, même si la punition ne fait qu'ajouter à sa culpabilité."
+   "value": "Elle convoquera Naomi à une de ses \"réunions privées\" - lui montrera comment ses plumes se sont obscurcies et la sermonnera sur sa pureté, même si la punition ne fait qu'ajouter à sa culpabilité."
  },
  {
    "key": "sacrament_i_120",
@@ -6501,7 +6501,7 @@
  },
  {
    "key": "sacrament_i_121",
-   "value": "Ça... Ça ressemble a quelque chose que Naomi dirait."
+   "value": "Ça... Ça ressemble à quelque chose que Naomi dirait."
  },
  {
    "key": "sacrament_i_122",
@@ -6517,11 +6517,11 @@
  },
  {
    "key": "sacrament_i_125",
-   "value": "On serpente en les suivants, sans but et apeurés. En connaissant seulement le chemin qui est tracé pour nous."
+   "value": "On serpente en les suivants, sans but et apeurées. En connaissant seulement le chemin qui est tracé pour nous."
  },
  {
    "key": "sacrament_i_126",
-   "value": "Notre Père dit que nous sommes destinés a un grand futur. Notre Mère nous garde dans le droit chemin."
+   "value": "Notre Père dit que nous sommes destinées a un grand futur. Notre Mère nous garde dans le droit chemin."
  },
  {
    "key": "sacrament_i_127",
@@ -6529,7 +6529,7 @@
  },
  {
    "key": "sacrament_i_128",
-   "value": "Je m'assure d'être la tôt, pas parce que j'aime le catéchisme,"
+   "value": "Je m'assure d'être là tôt, pas parce que j'aime le catéchisme,"
  },
  {
    "key": "sacrament_i_129",
@@ -6565,7 +6565,7 @@
  },
  {
    "key": "sacrament_i_137",
-   "value": "aller"
+   "value": "partir"
  },
  {
    "key": "sacrament_i_138",
@@ -6573,11 +6573,11 @@
  },
  {
    "key": "sacrament_i_139",
-   "value": "Dehors"
+   "value": "Expire"
  },
  {
    "key": "sacrament_i_140",
-   "value": "Dedans"
+   "value": "Inspire"
  },
  {
    "key": "sacrament_i_141",
@@ -6585,7 +6585,7 @@
  },
  {
    "key": "sacrament_i_142",
-   "value": "Se Concentrer"
+   "value": "Concentre-toi"
  },
  {
    "key": "sacrament_i_143",
@@ -6625,7 +6625,7 @@
  },
  {
    "key": "sacrament_i_152",
-   "value": "J'attrape sa main et atterris délicatement. Un pied, puis l'autre. La surface est mouillé et brillante, au-dessus d'un océan infini qui scintille dans le vide."
+   "value": "J'attrape sa main et atterris délicatement. Un pied, puis l'autre. La surface est mouillée et brillante, au-dessus d'un océan infini qui scintille dans le vide."
  },
  {
    "key": "sacrament_i_153",
@@ -6653,11 +6653,11 @@
  },
  {
    "key": "sacrament_i_159",
-   "value": "Maintenant, "
+   "value": "Maintenant,"
  },
  {
    "key": "sacrament_i_160",
-   "value": "Je souris et je m'exclame, "
+   "value": "Je souris et je m'exclame,"
  },
  {
    "key": "sacrament_i_161",
@@ -6717,7 +6717,7 @@
  },
  {
    "key": "sacrament_i_175",
-   "value": "Comme celle que nous ne connaissons que dans le livre illustré, la végétation dance et bruisse. Nous escaladons, nous contemplons, nous cueillons les fruits et nous roulons dans les feuilles."
+   "value": "Comme ceux que nous ne connaissons que dans les livres illustrés, la végétation dance et bruisse. Nous escaladons, nous contemplons, nous cueillons les fruits et nous roulons dans les feuilles."
  },
  {
    "key": "sacrament_i_176",
@@ -6745,11 +6745,11 @@
  },
  {
    "key": "sacrament_i_182",
-   "value": "L'entousiasme est"
+   "value": "L’enthousiasme est"
  },
  {
    "key": "sacrament_i_183",
-   "value": "Les larmes coulent, mais aucune voix ne se fait entendre."
+   "value": "Les larmes coulent, mais aucune voix\\nne se fait entendre."
  },
  {
    "key": "sacrament_i_184",
@@ -6757,11 +6757,11 @@
  },
  {
    "key": "sacrament_i_185",
-   "value": "Naomi lâche sa main. Son souffle est haletant."
+   "value": "Naomi dégage sa main. Son souffle est haletant."
  },
  {
    "key": "sacrament_i_186",
-   "value": "\"Naomi ! Naomi ! ! Respire !\""
+   "value": "\"Naomi ! Naomi ! ! Respire !\""
  },
  {
    "key": "sacrament_i_187",
@@ -6805,7 +6805,7 @@
  },
  {
    "key": "sacrament_i_197",
-   "value": "Je ne peux pas l'atteindre. "
+   "value": "Je ne peux pas l'atteindre."
  },
  {
    "key": "sacrament_i_198",
@@ -6817,7 +6817,7 @@
  },
  {
    "key": "sacrament_i_200",
-   "value": "\"Je veux que nous ayons notre rêve à nous\""
+   "value": "\"Je veux que nous ayons notre rêve\\nà nous\""
  },
  {
    "key": "sacrament_i_201",
@@ -6825,7 +6825,7 @@
  },
  {
    "key": "sacrament_i_202",
-   "value": "S'il te plaît, aide-moi. "
+   "value": "S'il te plaît, aide-moi."
  },
  {
    "key": "sacrament_i_203",
@@ -6833,7 +6833,7 @@
  },
  {
    "key": "sacrament_i_204",
-   "value": "J'assieds Naomi, et je m'installe en face d'elle. "
+   "value": "J'assieds Naomi, et je m'installe en face d'elle."
  },
  {
    "key": "sacrament_i_205",
@@ -6841,7 +6841,7 @@
  },
  {
    "key": "sacrament_i_206",
-   "value": "Les fissures s'additionent pour former une image dans ma tête - un trou, un vide qui se forme dans ma volonté."
+   "value": "Les fissures s'additionent pour former une image dans ma tête - un trou, un vide qui se forme par ma volonté."
  },
  {
    "key": "sacrament_i_207",
@@ -6885,11 +6885,11 @@
  },
  {
    "key": "sacrament_i_217",
-   "value": "Nous nous sommes échappés."
+   "value": "Nous nous sommes échappées."
  },
  {
    "key": "sacrament_i_218",
-   "value": "Nous sommes libérés d'un poids et nous pouvons ouvrir nos"
+   "value": "Nous sommes libérées d'un poids et nos s'ouvrent à nouveau"
  },
  {
    "key": "sacrament_i_219",
@@ -6921,7 +6921,7 @@
  },
  {
    "key": "sacrament_i_226",
-   "value": "Petit"
+   "value": "Petite"
  },
  {
    "key": "sacrament_i_227",
@@ -6929,7 +6929,7 @@
  },
  {
    "key": "sacrament_i_228",
-   "value": "Nous courrons, sautons dans tous les sens ; la nature nous appelle."
+   "value": "Nous courrons, sautons dans tous les sens ; la nature nous appelle."
  },
  {
    "key": "sacrament_i_229",
@@ -6957,31 +6957,31 @@
  },
  {
    "key": "sacrament_i_235",
-   "value": "Je me suis retourné vers Naomi et je l'ai regardé dans les yeux, "
+   "value": "Je me suis retournée vers Naomi et je l'ai regardé dans les yeux,"
  },
  {
    "key": "sacrament_i_236",
-   "value": "\"Je suis prêt à rêver.\""
+   "value": "\"Je suis prête à rêver.\""
  },
  {
    "key": "sacrament_i_237",
-   "value": "Et nous nous sommes perdus l'une dans l'autre."
+   "value": "Et nous nous sommes perdues l'une dans l'autre."
  },
  {
    "key": "sacrament_i_238",
-   "value": "Sérieux"
+   "value": "Gravité"
  },
  {
    "key": "sacrament_i_239",
-   "value": "Trop innocent."
+   "value": "Trop innocente."
  },
  {
    "key": "sacrament_i_240",
-   "value": "Solennité"
+   "value": "Solemnité"
  },
  {
    "key": "sacrament_i_241",
-   "value": "Trop naïf."
+   "value": "Trop naïve."
  },
  {
    "key": "sacrament_i_242",
@@ -6989,11 +6989,11 @@
  },
  {
    "key": "sacrament_i_243",
-   "value": "\"Anna, réveille-toi ! "
+   "value": "\"Anna, réveille-toi !"
  },
  {
    "key": "sacrament_i_244",
-   "value": "quoi"
+   "value": "quel"
  },
  {
    "key": "sacrament_i_245",
@@ -7001,19 +7001,19 @@
  },
  {
    "key": "sacrament_i_246",
-   "value": "Elle me relève et montre du doigt."
+   "value": "Elle me relève et me pointe quelque chose."
  },
  {
    "key": "sacrament_i_247",
-   "value": "dépouillé"
+   "value": "dépouillée"
  },
  {
    "key": "sacrament_i_248",
-   "value": "Terrifiant."
+   "value": "Terrifiantes."
  },
  {
    "key": "sacrament_i_249",
-   "value": "ILS NOUS ONT TROUVÉ!!\""
+   "value": "ILS NOUS ONT TROUVÉS!!\""
  },
  {
    "key": "sacrament_i_250",
@@ -7057,7 +7057,7 @@
  },
  {
    "key": "sacrament_i_260",
-   "value": "Naomi rayonne dans l'obscurité, apportant l'espoir. "
+   "value": "Naomi rayonne dans l'obscurité, apportant l'espoir."
  },
  {
    "key": "sacrament_i_261",
@@ -7093,11 +7093,11 @@
  },
  {
    "key": "sacrament_i_268",
-   "value": "Au-dessus de la colline."
+   "value": "Sur la colline."
  },
  {
    "key": "sacrament_i_269",
-   "value": "Elle sème la discorde parmi les cauchemars. La lumière de Naomi les fait reculer de douleur, le sang s'écoule de toutes les fissures, la fumée s'échappe de toutes les plaies."
+   "value": "Elle sème la discorde parmi les cauchemars. La lumière de Naomi les fait reculer de douleur, du sang s'écoulant de toutes leurs fissures, de la fumée s'échappant de toutes leurs plaies."
  },
  {
    "key": "sacrament_i_270",
@@ -7109,7 +7109,7 @@
  },
  {
    "key": "sacrament_i_272",
-   "value": "Mes jambes me font mal "
+   "value": "Mes jambes me font mal"
  },
  {
    "key": "sacrament_i_273",
@@ -7117,7 +7117,7 @@
  },
  {
    "key": "sacrament_i_274",
-   "value": "Si heureux..."
+   "value": "Si heureuse..."
  },
  {
    "key": "sacrament_i_275",
@@ -7145,7 +7145,7 @@
  },
  {
    "key": "sacrament_i_281",
-   "value": "Et derrière eux."
+   "value": "Et derrière elles."
  },
  {
    "key": "sacrament_i_282",
@@ -7225,7 +7225,7 @@
  },
  {
    "key": "sacrament_i_301",
-   "value": "Elle me repousse plus bas. Le sol s’effondre sous mon poids. "
+   "value": "Elle me repousse plus profondément. Le sol s’effondre sous mon poids."
  },
  {
    "key": "sacrament_i_302",
@@ -7297,15 +7297,15 @@
  },
  {
    "key": "sacrament_i_319",
-   "value": "UN AUTRE."
+   "value": "L'AUTRE."
  },
  {
    "key": "sacrament_i_320",
-   "value": "J'accepte. "
+   "value": "J'accepte."
  },
  {
    "key": "sacrament_i_321",
-   "value": "TUE MOI ! !"
+   "value": "TUE MOI ! !"
  },
  {
    "key": "sacrament_i_322",
@@ -7313,15 +7313,15 @@
  },
  {
    "key": "sacrament_i_323",
-   "value": "Je m'écrase au sol. Mon coeur bat la chamade, mes tympans sonnent. Je sens du sang couler le long de mon cou. Maman doit mourir."
+   "value": "Je m'écrase au sol. Mon coeur bat la chamade, mes tympans sifflent. Je sens du sang couler le long de mon cou. Mère doit mourir."
  },
  {
    "key": "sacrament_i_324",
-   "value": "Mais pas avant Maman"
+   "value": "Mais pas avant Mère"
  },
  {
    "key": "sacrament_i_325",
-   "value": "Maman Doit Mourir."
+   "value": "Mère Doit Mourir."
  },
  {
    "key": "sacrament_i_326",
@@ -7333,7 +7333,7 @@
  },
  {
    "key": "sacrament_i_328",
-   "value": "je  Mérite  ça"
+   "value": "je Mérite ça"
  },
  {
    "key": "sacrament_i_329",
@@ -7349,7 +7349,7 @@
  },
  {
    "key": "sacrament_i_332",
-   "value": "Au plus profond de mon corps ; au tréfonds de mon être."
+   "value": "Au plus profond de mon corps ; au tréfonds de mon être."
  },
  {
    "key": "sacrament_i_333",
@@ -7357,7 +7357,7 @@
  },
  {
    "key": "sacrament_i_334",
-   "value": "Serait-ce... Naomi ?"
+   "value": "Serait-ce... Naomi ?"
  },
  {
    "key": "sacrament_i_335",
@@ -7381,7 +7381,7 @@
  },
  {
    "key": "sacrament_i_340",
-   "value": "J'y suis arrivé..."
+   "value": "J'y suis arrivée..."
  },
  {
    "key": "sacrament_i_341",
@@ -7397,7 +7397,7 @@
  },
  {
    "key": "sacrament_i_344",
-   "value": "Je focalise toute mon attention pour la visualiser : ses yeux, son sourire,"
+   "value": "Je focalise toute mon attention pour la visualiser : ses yeux, son sourire,"
  },
  {
    "key": "sacrament_i_345",
@@ -7441,7 +7441,7 @@
  },
  {
    "key": "sacrament_i_355",
-   "value": "-parfaite à mes yeux"
+   "value": "#NAME?"
  },
  {
    "key": "sacrament_i_356",
@@ -7469,15 +7469,15 @@
  },
  {
    "key": "vcr_00",
-   "value": "Cassette vidéo \"The Dream\" insérée. La télé commence à ronronner."
+   "value": "Cassette vidéo \"Le rêve\" insérée. La télé commence à ronronner."
  },
  {
    "key": "vcr_01",
-   "value": "Cassette vidéo \"The Future\" insérée. La télé commence à ronronner."
+   "value": "Cassette vidéo \"Le Futur\" insérée. La télé commence à ronronner."
  },
  {
    "key": "vcr_02",
-   "value": "Cassette vidéo \"The Past\" insérée. La télé commence à ronronner."
+   "value": "Cassette vidéo \"Le Passé\" insérée. La télé commence à ronronner."
  },
  {
    "key": "vcr_03",
@@ -7505,7 +7505,7 @@
  },
  {
    "key": "sacrament_v_03",
-   "value": "Plus proche, \\n               plus proche ! "
+   "value": "Plus proche, \\n plus proche !"
  },
  {
    "key": "sacrament_v_04",
@@ -7517,7 +7517,7 @@
  },
  {
    "key": "sacrament_v_06",
-   "value": "un souhait "
+   "value": "un désir d'"
  },
  {
    "key": "sacrament_v_07",
@@ -7537,11 +7537,11 @@
  },
  {
    "key": "sacrament_v_11",
-   "value": "Et le voitures crissent en contrebas"
+   "value": "Et les voitures crissent en contrebas"
  },
  {
    "key": "sacrament_v_12",
-   "value": "Un reflet du ciel pollué "
+   "value": "Un reflet du ciel pollué"
  },
  {
    "key": "sacrament_v_13",
@@ -7561,7 +7561,7 @@
  },
  {
    "key": "sacrament_v_17",
-   "value": "Trouver le salut "
+   "value": "Trouver le salut"
  },
  {
    "key": "sacrament_v_18",
@@ -7585,7 +7585,7 @@
  },
  {
    "key": "sacrament_v_23",
-   "value": "Nous échouons pour qu'il puisse s'élever"
+   "value": "Nous échouons pour qu'il puisse\\ns'élever"
  },
  {
    "key": "sacrament_v_24",
@@ -7593,7 +7593,7 @@
  },
  {
    "key": "sacrament_v_25",
-   "value": "que nous puissions ne jamais nous réveiller"
+   "value": "que nous puissions ne jamais nous\\nréveiller"
  },
  {
    "key": "sacrament_v_26",
@@ -7613,7 +7613,7 @@
  },
  {
    "key": "sacrament_v_30",
-   "value": "Qui t'on été promis dans ta jeunesse"
+   "value": "Qu'on t'a promis dans ta jeunesse"
  },
  {
    "key": "sacrament_v_31",
@@ -7633,11 +7633,11 @@
  },
  {
    "key": "sacrament_v_35",
-   "value": "néant"
+   "value": "le néant"
  },
  {
    "key": "sacrament_v_36",
-   "value": "sacrement    V"
+   "value": "sacrement V"
  },
  {
    "key": "sacrament_v_37",
@@ -7645,7 +7645,7 @@
  },
  {
    "key": "sacrament_v_38",
-   "value": "échoue"
+   "value": "tombe"
  },
  {
    "key": "sacrament_iii_00",
@@ -7661,7 +7661,7 @@
  },
  {
    "key": "sacrament_iii_03",
-   "value": "Tu... connais cet endroit, cet endroit ou tu n'a pourtant jamais été"
+   "value": "Tu... connais cet endroit, cet endroit où tu n'a pourtant jamais été"
  },
  {
    "key": "sacrament_iii_04",
@@ -7669,7 +7669,7 @@
  },
  {
    "key": "sacrament_iii_05",
-   "value": "néant perpetuel\\npourtant, il t'appelle"
+   "value": "qui ne revient pas\\npourtant, ça t'appelle"
  },
  {
    "key": "sacrament_iii_06",
@@ -7677,23 +7677,23 @@
  },
  {
    "key": "sacrament_iii_07",
-   "value": "c'est chaleureux et acceuillant\\n et tous ce que tu as à faire c'est marcher"
+   "value": "c'est chaleureux et acceuillant\\n et tous ce que tu as à faire c'est de marcher"
  },
  {
    "key": "sacrament_iii_08",
-   "value": "mais une fois de plus, quelque chose détourne ton attention"
+   "value": "mais une fois de plus, quelque chose t'attire"
  },
  {
    "key": "sacrament_iii_09",
-   "value": "loin des lampes, gravissant les murs de pierre\\n en haut des escaliers"
+   "value": "loin des lampes, gravissant les murs de pierre\\n montant les escaliers"
  },
  {
    "key": "sacrament_iii_10",
-   "value": "la lueur et le cahus de la vieille ville s'estompent "
+   "value": "la lueur et le vacarme de la vieille ville s'estompent"
  },
  {
    "key": "sacrament_iii_11",
-   "value": "alors que le chemin rejoins une autoroute, pavée mais\\nnégligée"
+   "value": "alors que le chemin rejoint une autoroute, pavée mais\\nnégligée"
  },
  {
    "key": "sacrament_iii_12",
@@ -7701,11 +7701,11 @@
  },
  {
    "key": "sacrament_iii_13",
-   "value": "et plus loin, une rangée d'immeubles\\nchacun identique au précédent"
+   "value": "et plus loin, une rangée d'immeubles\\ntous identique au précédent"
  },
  {
    "key": "sacrament_iii_14",
-   "value": "pale et flétri, mais avec un souvenir du scintillmeent\\nbleu"
+   "value": "pâles et flétris, mais avec un souvenir du scintillement\\nbleu"
  },
  {
    "key": "sacrament_iii_15",
@@ -7713,15 +7713,15 @@
  },
  {
    "key": "sacrament_iii_16",
-   "value": "une porte est dévérouillée et s'ouvre à ton passage"
+   "value": "une porte est déverrouillée, et elle s'ouvre quand tu passes"
  },
  {
    "key": "sacrament_iii_17",
-   "value": "le bourdonnement de l'éléctricité te réconforte\\nil te rappelle le foyer que tu n'as jamais eu"
+   "value": "le bourdonnement de l’électricité te réconforte\\nça te rappelle le foyer\\nque tu n'as jamais eu"
  },
  {
    "key": "sacrament_iii_18",
-   "value": "et tu ressens moins"
+   "value": "et tu te sens moins"
  },
  {
    "key": "sacrament_iii_19",
@@ -7737,7 +7737,7 @@
  },
  {
    "key": "sacrament_iii_22",
-   "value": "le câble qui gémit et tremble"
+   "value": "le câble gémit et tremble"
  },
  {
    "key": "sacrament_iii_23",
@@ -7745,11 +7745,11 @@
  },
  {
    "key": "sacrament_iii_24",
-   "value": "tremble, monte, et"
+   "value": "tremblant, montant, et"
  },
  {
    "key": "sacrament_iii_25",
-   "value": "tu trouves l'appartement, comme les autres"
+   "value": "tu trouves l'appartement, similaire à tous les autres"
  },
  {
    "key": "sacrament_iii_26",
@@ -7757,11 +7757,11 @@
  },
  {
    "key": "sacrament_iii_27",
-   "value": "tu le sais, parce qu'il n'y avait personne\\ndans les autres pièces"
+   "value": "tu le sais, parce qu'il n'y avait personne\\ndans aucune des autres pièces"
  },
  {
    "key": "sacrament_iii_28",
-   "value": "tu le sais, parce qu'il n'y avait personne\\ntu sens qu'ils sont partis, des années auparavant"
+   "value": "tu le sais, parce qu'il n'y a personne\\ntu peux sentir qu'ils sont partis, il y a des années"
  },
  {
    "key": "sacrament_iii_29",
@@ -7785,23 +7785,23 @@
  },
  {
    "key": "sacrament_iii_34",
-   "value": "Le Sentiment "
+   "value": "Cette Sensation"
  },
  {
    "key": "sacrament_iii_35",
-   "value": "Le SeNTimEnT"
+   "value": "CeTtE SeNSaTiOn"
  },
  {
    "key": "sacrament_iii_36",
-   "value": "LE SENTIMENT"
+   "value": "CETTE SENSATION"
  },
  {
    "key": "sacrament_iii_37",
-   "value": "silence"
+   "value": "le silence"
  },
  {
    "key": "sacrament_iii_38",
-   "value": "rien"
+   "value": "le vide"
  },
  {
    "key": "sacrament_iii_39",
@@ -7821,15 +7821,15 @@
  },
  {
    "key": "sacrament_iii_43",
-   "value": "l'"
+   "value": "la"
  },
  {
    "key": "sacrament_iii_44",
-   "value": "entrouverte"
+   "value": "ouvre"
  },
  {
    "key": "sacrament_iii_45",
-   "value": "seule"
+   "value": "seul"
  },
  {
    "key": "sacrament_iii_46",
@@ -7837,23 +7837,23 @@
  },
  {
    "key": "sacrament_iii_47",
-   "value": "tu"
+   "value": "toi"
  },
  {
    "key": "sacrament_iii_48",
-   "value": "au lieu de"
+   "value": "à la place"
  },
  {
    "key": "sacrament_iii_49",
-   "value": "au-dessus"
+   "value": "montant"
  },
  {
    "key": "sacrament_iii_50",
-   "value": "néant"
+   "value": "le néant"
  },
  {
    "key": "sacrament_iii_51",
-   "value": "sacrement    iii"
+   "value": "sacrement iii"
  },
  {
    "key": "sacrament_vii_00",
@@ -7869,7 +7869,7 @@
  },
  {
    "key": "sacrament_vii_03",
-   "value": "Nous serons apeurés "
+   "value": "Nous serons apeurés"
  },
  {
    "key": "sacrament_vii_04",
@@ -7925,7 +7925,7 @@
  },
  {
    "key": "sacrament_vii_17",
-   "value": " un pétale dans la brise embrasse ma joue"
+   "value": "un pétale dans la brise embrasse ma joue"
  },
  {
    "key": "sacrament_vii_18",
@@ -7957,7 +7957,7 @@
  },
  {
    "key": "sacrament_vii_25",
-   "value": "sacrement    vii"
+   "value": "sacrement vii"
  },
  {
    "key": "sacrament_vii_26",
@@ -7977,7 +7977,7 @@
  },
  {
    "key": "sacrament_vii_30",
-   "value": "Je suis tellement un lâche"
+   "value": "Je suis tellement lâche"
  },
  {
    "key": "sacrament_vii_31",
@@ -7997,19 +7997,19 @@
  },
  {
    "key": "sacrament_vii_35",
-   "value": "Ton visage s'éloignant du mien, les yeux vers le bas"
+   "value": "Ton visage se détache du mien, tes yeux sont baissés"
  },
  {
    "key": "sacrament_vii_36",
-   "value": "Car j'étais heureux et maintenant il n'y a plus rien"
+   "value": "Car j'étais heureuse et maintenant il n'y a plus"
  },
  {
    "key": "sacrament_vii_37",
-   "value": "Grimper aux arbres et tricoter des couronnes de feuilles"
+   "value": "Grimper aux arbres et se faire des couronnes de feuilles"
  },
  {
    "key": "sacrament_vii_38",
-   "value": "As-tu assemblé chacune d'entre elles pour qu'elle frotte contre ma peau ?"
+   "value": "Est-ce que tu les as construits pour qu'ils grattent ma peau ?"
  },
  {
    "key": "sacrament_vii_39",
@@ -8021,7 +8021,7 @@
  },
  {
    "key": "sacrament_vii_41",
-   "value": "La façon dont tu chuchotais toute chose à mon oreille"
+   "value": "Comment tu me chuchotais à l'oreille toutes sortes de choses"
  },
  {
    "key": "sacrament_vii_42",
@@ -8029,7 +8029,7 @@
  },
  {
    "key": "sacrament_vii_43",
-   "value": "Qu'importe les difficultés, combien nous avons peiné ou lutté."
+   "value": "Peu importe les épreuves, les efforts et les combats."
  },
  {
    "key": "sacrament_vii_44",
@@ -8037,7 +8037,7 @@
  },
  {
    "key": "sacrament_vii_45",
-   "value": "Alors que tu chantais des mélodies remplissant l'air pour créer ces magnifiques escapades"
+   "value": "Alors même que tu chantais des berceuses dans le vent pour créer ces belles échappées"
  },
  {
    "key": "sacrament_vii_46",
@@ -8045,7 +8045,7 @@
  },
  {
    "key": "sacrament_vii_47",
-   "value": "Et nous étions piégés"
+   "value": "Et nous étions piégées"
  },
  {
    "key": "sacrament_vii_48",
@@ -8057,7 +8057,7 @@
  },
  {
    "key": "sacrament_vii_50",
-   "value": "Tes lèvres, la façon dont elle me parlaient"
+   "value": "Tes lèvres, la façon dont elles m'ont parlées"
  },
  {
    "key": "sacrament_vii_51",
@@ -8065,7 +8065,7 @@
  },
  {
    "key": "sacrament_vii_52",
-   "value": "La lumière devenant si obscure devant ta radiance"
+   "value": "La lumière devenant si ténue face à ton éclat"
  },
  {
    "key": "sacrament_vii_53",
@@ -8073,11 +8073,11 @@
  },
  {
    "key": "sacrament_vii_54",
-   "value": "Et lentement, tu les as laissés"
+   "value": "Et lentement, tu les as laissées"
  },
  {
    "key": "sacrament_vii_55",
-   "value": "Quand bien même il n'y a aucun espoir auquel retourner, aucun foyer ne m'attend"
+   "value": "Bien qu'il n'y ait aucun espoir vers lequel rentrer, ni de foyer qui m'attire"
  },
  {
    "key": "sacrament_vii_56",
@@ -8089,11 +8089,11 @@
  },
  {
    "key": "sacrament_vii_58",
-   "value": "M'éveillant dans tes bras, sentant l'eau et l'herbe"
+   "value": "En me réveillant dans tes bras, sentant l'eau et l'herbe"
  },
  {
    "key": "sacrament_vii_59",
-   "value": "Belle et brillante, une étincelle dans mes yeux"
+   "value": "Belles et brillantes, une étincelle dans mes yeux"
  },
  {
    "key": "sacrament_vii_60",
@@ -8105,7 +8105,7 @@
  },
  {
    "key": "sacrament_vii_62",
-   "value": "Je t’aime mais les mots me manquent"
+   "value": "Je t'aime mais les mots me trahissent"
  },
  {
    "key": "sacrament_vii_63",
@@ -8125,7 +8125,7 @@
  },
  {
    "key": "sacrament_vii_67",
-   "value": "Comme je passais mes doigts dans tes cheveux."
+   "value": "Comment je glissais mes doigts dans tes cheveux."
  },
  {
    "key": "sacrament_vii_68",
@@ -8201,7 +8201,7 @@
  },
  {
    "key": "sacrament_vii_86",
-   "value": "et avec ce pensées de toi, je tire"
+   "value": "et en pensant à toi, je tire"
  },
  {
    "key": "sacrament_vii_87",
@@ -8209,11 +8209,11 @@
  },
  {
    "key": "sacrament_vii_88",
-   "value": "mais je ne sais pas comment faire "
+   "value": "mais je ne sais pas comment faire"
  },
  {
    "key": "sacrament_vii_89",
-   "value": "nous n'aurons jamais l'occasion de faire."
+   "value": "que nous n'aurons jamais l'occasion de faire."
  },
  {
    "key": "sacrament_vii_90",
@@ -8221,7 +8221,7 @@
  },
  {
    "key": "sacrament_vii_91",
-   "value": "mais je ne sais pas comment faire "
+   "value": "mais je ne sais pas comment faire"
  },
  {
    "key": "sacrament_vii_92",
@@ -8229,7 +8229,7 @@
  },
  {
    "key": "sacrament_vii_93",
-   "value": "Car le sentiment s'éteint, et je sais que c'est sensé être bon signe"
+   "value": "Parce que le sentiment disparaît, et je sais que c'est censé être bien"
  },
  {
    "key": "sacrament_vii_94",
@@ -8237,7 +8237,7 @@
  },
  {
    "key": "sacrament_vii_95",
-   "value": "Mais une coquille vide et un million de grains de sables"
+   "value": "qu'une coquille vide et un million de grains de sable"
  },
  {
    "key": "sacrament_vii_96",
@@ -8245,19 +8245,19 @@
  },
  {
    "key": "sacrament_vii_97",
-   "value": "tandis que j'échouais"
+   "value": "comme je t'ai fait"
  },
  {
    "key": "sacrament_vii_98",
-   "value": "L'obscurité n'hantant plus"
+   "value": "L'obscurité ne me hantant plus"
  },
  {
    "key": "sacrament_vii_99",
-   "value": "Effrayé de ce qu'il pourrait advenir, et de ce que je pourrais ne jamais obtenir"
+   "value": "Effrayée de ce qu'il pourrait advenir, et de ce que je pourrais ne jamais obtenir"
  },
  {
    "key": "sacrament_vii_100",
-   "value": "il est impossible de partir"
+   "value": "il est impossible de revenir"
  },
  {
    "key": "sacrament_vii_101",
@@ -8265,7 +8265,7 @@
  },
  {
    "key": "sacrament_vii_102",
-   "value": "Pour me rappeler que ce que l'on a n'est qu'éphémère ?"
+   "value": "Pour me rappeler que ce que nous avons est éphémère ?"
  },
  {
    "key": "sacrament_vii_103",
@@ -8273,11 +8273,11 @@
  },
  {
    "key": "sacrament_vii_104",
-   "value": "Sous un ciel où le Soleil s'éteint"
+   "value": "Sous un ciel où le soleil faiblit"
  },
  {
    "key": "sacrament_vii_105",
-   "value": "Tandis que tu me tirais vers toi pour embrasser mon front tremblant"
+   "value": "Pendant que tu me rapprochais pour embrasser ma tête tremblante"
  },
  {
    "key": "sacrament_vii_106",
@@ -8305,7 +8305,7 @@
  },
  {
    "key": "sacrament_vii_112",
-   "value": "La façon dont ils te font te jeter d'un côté et de l'autre, te retourner et hurler"
+   "value": "Comment ils te faisaient te débattre, tourner et hurler"
  },
  {
    "key": "sacrament_vii_113",
@@ -8313,11 +8313,11 @@
  },
  {
    "key": "sacrament_vii_114",
-   "value": "La façon dont c'était si épais que ça cachait tes cornes qui pressaient doucement contre ma peau."
+   "value": "Ils étaient si épais qu'ils cachaient tes cornes qui appuyaient doucement sur ma peau."
  },
  {
    "key": "sacrament_vii_115",
-   "value": "car je ne pouvais pas supporter de te voir"
+   "value": "car je ne pouvais pas supporter de te regarder"
  },
  {
    "key": "sacrament_vii_116",
@@ -8345,11 +8345,11 @@
  },
  {
    "key": "sacrament_vii_122",
-   "value": "Ils ne brillent plus comme avant, mais reflètent encore la lumière de la lune"
+   "value": "Elles ne brillent plus comme avant, mais reflètent encore la lumière de la lune"
  },
  {
    "key": "sacrament_vii_123",
-   "value": "Et je t'ai enlacée, heureux"
+   "value": "Et je t'ai enlacée, heureuse"
  },
  {
    "key": "sacrament_vii_124",
@@ -8369,11 +8369,11 @@
  },
  {
    "key": "sacrament_vii_128",
-   "value": "Paralisé "
+   "value": "Paralysée"
  },
  {
    "key": "sacrament_vii_129",
-   "value": "Un monde de fantômes et de murmures, qu'aucun je ne peux entendre"
+   "value": "Un monde de fantômes et de murmures, dont je ne peux entendre le moindre mot"
  },
  {
    "key": "sacrament_vii_130",
@@ -8385,23 +8385,23 @@
  },
  {
    "key": "sacrament_vii_132",
-   "value": "Ce qui est fait est "
+   "value": "Ce qui est fait est"
  },
  {
    "key": "sacrament_vii_133",
-   "value": "Le rendant d'autant plus douloureux."
+   "value": "La rendant d'autant plus douloureuse."
  },
  {
    "key": "sacrament_vii_134",
-   "value": "Comment quand tu le coupais, l'arrière de ta tête piquait sur ma main"
+   "value": "Comment quand tu les coupaient, l'arrière de ta tête se hérissait contre ma main"
  },
  {
    "key": "sacrament_vii_135",
-   "value": "Je suis si sot et effrayé, mais le mal est fait et je dois me retirer"
+   "value": "Je suis si stupide et effrayée, mais le mal est fait et je dois me retirer"
  },
  {
    "key": "sacrament_vii_136",
-   "value": "et pense à toi :\n"
+   "value": "et pense à toi :"
  },
  {
    "key": "sacrament_vii_137",
@@ -8409,15 +8409,15 @@
  },
  {
    "key": "sacrament_vii_138",
-   "value": "Je me suis senti fondre en toi, heureux enfin et en tout"
+   "value": "Je me suis sentie fondre en toi, heureuse une fois pour toute"
  },
  {
    "key": "sacrament_vii_139",
-   "value": "Mais je ne veux pas l'être"
+   "value": "Mais je ne veux pas être"
  },
  {
    "key": "sacrament_vii_140",
-   "value": "Car ils étaient trop obscures, trop ternes, et ne brillaient pas"
+   "value": "Car elles étaient trop sombres, trop ternes, et ne brillaient pas"
  },
  {
    "key": "sacrament_vii_141",
@@ -8429,19 +8429,19 @@
  },
  {
    "key": "sacrament_vii_143",
-   "value": "rompt\n"
+   "value": "se rompt"
  },
  {
    "key": "sacrament_vii_144",
-   "value": "Il rappellait le premier, notre"
+   "value": "cela me rappelait la première, notre"
  },
  {
    "key": "sacrament_vii_145",
-   "value": "À ce sentiment de rupture"
+   "value": "face à ce sentiment de déchirement"
  },
  {
    "key": "sacrament_vii_146",
-   "value": "Dans tous les sens, pour me montrer le paradis que nous avions créé"
+   "value": "Dans tous les sens, pour me montrer le paradis que nous avions créée"
  },
  {
    "key": "sacrament_vii_147",
@@ -8449,7 +8449,7 @@
  },
  {
    "key": "sacrament_vii_148",
-   "value": "Si seulement j'existe"
+   "value": "Si j'existe vraiment"
  },
  {
    "key": "sacrament_vii_149",
@@ -8457,7 +8457,7 @@
  },
  {
    "key": "sacrament_vii_150",
-   "value": "Quand tu vois cela s'effondrer"
+   "value": "Quand tu vois tout ça s'écrouler"
  },
  {
    "key": "sacrament_vii_151",
@@ -8465,7 +8465,7 @@
  },
  {
    "key": "sacrament_vii_152",
-   "value": "Je place en ton"
+   "value": "Je place dans tes"
  },
  {
    "key": "sacrament_vii_153",
@@ -8489,7 +8489,7 @@
  },
  {
    "key": "sacrament_vii_158",
-   "value": "toi"
+   "value": "trahie"
  },
  {
    "key": "sacrament_vii_159",
@@ -8501,7 +8501,7 @@
  },
  {
    "key": "sacrament_vii_161",
-   "value": "dérouler"
+   "value": "se déployer"
  },
  {
    "key": "sacrament_vii_162",
@@ -8513,7 +8513,7 @@
  },
  {
    "key": "sacrament_vii_164",
-   "value": "retour"
+   "value": "en arrière"
  },
  {
    "key": "sacrament_vii_165",
@@ -8521,7 +8521,7 @@
  },
  {
    "key": "sacrament_vii_166",
-   "value": "cheveu"
+   "value": "cheveux"
  },
  {
    "key": "sacrament_vii_167",
@@ -8529,11 +8529,11 @@
  },
  {
    "key": "sacrament_vii_168",
-   "value": "ok"
+   "value": "bien"
  },
  {
    "key": "sacrament_vii_169",
-   "value": "finis"
+   "value": "fini"
  },
  {
    "key": "sacrament_vii_170",
@@ -8541,23 +8541,23 @@
  },
  {
    "key": "sacrament_vii_171",
-   "value": "aller"
+   "value": "partir"
  },
  {
    "key": "sacrament_vii_172",
-   "value": "pas"
+   "value": "faire un pas"
  },
  {
    "key": "sacrament_vii_173",
-   "value": "cri"
+   "value": "muet"
  },
  {
    "key": "sacrament_vii_174",
-   "value": "Quand c'est devenu de plus en plus difficile de tenir dans ce rêve que tu avais de toi et moi"
+   "value": "Quand il est devenu de plus en plus difficile de vivre dans ce rêve que tu as fait de toi et moi"
  },
  {
    "key": "sacrament_vii_175",
-   "value": "Nous sommes retournés là où les étoiles ont joué pour nous, mais elle ne bougeaient plus"
+   "value": "Nous sommes retournés là où les étoiles jouaient pour nous, mais elles ne volaient plus"
  },
  {
    "key": "sacrament_vii_176",
@@ -8569,11 +8569,11 @@
  },
  {
    "key": "sacrament_vii_178",
-   "value": "Puis la nouvelle que nous avons forgée ensemble, quand les craquelures ont commencé à poindre"
+   "value": "Puis la nouvelle vie que nous avons forgée ensemble, lorsque les fissures ont commencé à se montrer"
  },
  {
    "key": "sacrament_vii_179",
-   "value": "J'avance, plus en avant dans l'eau"
+   "value": "Je marche, toujours plus loin sur l'eau"
  },
  {
    "key": "sacrament_vii_180",
@@ -8585,7 +8585,7 @@
  },
  {
    "key": "sacrament_vii_182",
-   "value": "Et je t'ai sentie pleurer, quand bien même je ne voyais que des miroitements dans l'air"
+   "value": "Et j'ai senti que tu pleurais, même si je ne voyais que des scintillements dans l'air"
  },
  {
    "key": "sacrament_vii_183",
@@ -8593,7 +8593,7 @@
  },
  {
    "key": "sacrament_vii_184",
-   "value": "Je sais que tu étais là, je pouvais t'entendre glisser sur le sable."
+   "value": "Je sais que tu étais là, je pouvais t'entendre bouger sur le sable."
  },
  {
    "key": "sacrament_vii_185",
@@ -8605,7 +8605,7 @@
  },
  {
    "key": "sacrament_vii_187",
-   "value": "Nous marchâmes à travers les champs de fleurs où nous nous cachions naguère, mais elles avaient fâné et étaient devenues fragiles"
+   "value": "Nous nous sommes promenées dans les champs de fleurs où nous nous étions cachés, mais elles étaient fanées et flétries"
  },
  {
    "key": "sacrament_vii_188",
@@ -8617,11 +8617,11 @@
  },
  {
    "key": "sacrament_vii_190",
-   "value": "Et les vagues s'apaisent devant moi"
+   "value": "Et les vagues se calment devant moi"
  },
  {
    "key": "sacrament_vii_191",
-   "value": "Ce n'était pas un de nos rêves, c'était seulement le tien"
+   "value": "Ce n'était pas un rêve à nous, c'était seulement le tien"
  },
  {
    "key": "sacrament_vii_192",
@@ -8637,7 +8637,7 @@
  },
  {
    "key": "sacrament_vii_195",
-   "value": "Je me sens en apesanteur et brisé alors que le sang coule de mon dos."
+   "value": "Je me sens si légère et brisée alors que le sang coule de mon dos."
  },
  {
    "key": "sacrament_vii_196",
@@ -8657,7 +8657,7 @@
  },
  {
    "key": "sacrament_vii_200",
-   "value": "Quand tu m'as tenu dans tes bras et montré le monde"
+   "value": "Quand tu m'as tenu dans tes bras et que tu m'as montré le monde"
  },
  {
    "key": "sacrament_vii_201",
@@ -8677,7 +8677,7 @@
  },
  {
    "key": "sacrament_vii_205",
-   "value": "Et je ne pense pas que tu puisses encore être mon anna"
+   "value": "Et je ne pense pas que tu puisses encore être mon anna à nouveau"
  },
  {
    "key": "sacrament_vii_206",
@@ -8685,15 +8685,15 @@
  },
  {
    "key": "sacrament_vii_207",
-   "value": "Et j'ai pris mon dernier"
+   "value": "Et pour la dernière fois je dois"
  },
  {
    "key": "sacrament_vii_208",
-   "value": "Je te vois devant moi "
+   "value": "Je te vois devant moi"
  },
  {
    "key": "sacrament_vii_209",
-   "value": "Plus tu n'es plus là"
+   "value": "Puis tu n'es plus là"
  },
  {
    "key": "sacrament_vii_210",
@@ -8701,7 +8701,7 @@
  },
  {
    "key": "sacrament_vii_211",
-   "value": "Dénutries et je n'ai pas pu les récupérer"
+   "value": "Souffrantes et je ne pouvais pas les sauver"
  },
  {
    "key": "sacrament_vii_212",
@@ -8713,11 +8713,11 @@
  },
  {
    "key": "sacrament_vii_214",
-   "value": "Mais je tiens"
+   "value": "Mais je tiens bon"
  },
  {
    "key": "sacrament_vii_215",
-   "value": "Des violets et des verts,"
+   "value": "Des violettes et des vertes,"
  },
  {
    "key": "sacrament_vii_216",
@@ -8725,7 +8725,7 @@
  },
  {
    "key": "sacrament_vii_217",
-   "value": "Je joins les mains et je crie en silence"
+   "value": "Mes mains se serrent et je pousse un cri"
  },
  {
    "key": "sacrament_vii_218",
@@ -8737,7 +8737,7 @@
  },
  {
    "key": "sacrament_iv_00",
-   "value": "OBJECTIF : Atteindre Ground Zero et enquêter sur la cause. "
+   "value": "OBJECTIF : Atteindre Ground Zero et enquêter sur la cause."
  },
  {
    "key": "sacrament_iv_01",
@@ -8745,7 +8745,7 @@
  },
  {
    "key": "sacrament_iv_02",
-   "value": "12h01, Centre ville : Le ciel tourne au rouge alors qu'une explosion massive détruise la moitié du centre-ville."
+   "value": "12h01, Centre ville : Le ciel tourne au rouge alors qu'une explosion massive détruit la moitié du centre-ville."
  },
  {
    "key": "sacrament_iv_03",
@@ -8809,11 +8809,11 @@
  },
  {
    "key": "sacrament_iv_18",
-   "value": "TOMBE"
+   "value": "SE PARACHUTER"
  },
  {
    "key": "sacrament_iv_19",
-   "value": "sacrement    iv"
+   "value": "sacrement iv"
  },
  {
    "key": "sacrament_iv_20",
@@ -8829,7 +8829,7 @@
  },
  {
    "key": "sacrament_iv_23",
-   "value": "flottant"
+   "value": "dérivant"
  },
  {
    "key": "sacrament_iv_24",
@@ -8853,7 +8853,7 @@
  },
  {
    "key": "sacrament_iv_29",
-   "value": "L'explosion consomma jusqu'au moindre signe de vie."
+   "value": "L'explosion consuma tout ce qui donnait le moindre signe de vie."
  },
  {
    "key": "sacrament_iv_30",
@@ -8889,7 +8889,7 @@
  },
  {
    "key": "sacrament_iv_38",
-   "value": "Ses yeux révèlent une clarté qu'aucune d'entre nous ne possède."
+   "value": "Ses yeux révèlent une clarté qu'aucun d'entre nous ne possède."
  },
  {
    "key": "sacrament_iv_39",
@@ -8917,7 +8917,7 @@
  },
  {
    "key": "sacrament_iv_45",
-   "value": "“Agent AA-77, au rapport”. "
+   "value": "“Agent AA-77, au rapport”."
  },
  {
    "key": "sacrament_iv_46",
@@ -8937,7 +8937,7 @@
  },
  {
    "key": "sacrament_iv_50",
-   "value": "“Directeur K-201, en attente de votre        ”. "
+   "value": "“Directeur K-201, en attente de votre ”."
  },
  {
    "key": "sacrament_iv_51",
@@ -8945,19 +8945,19 @@
  },
  {
    "key": "sacrament_iv_52",
-   "value": "Nous sommes entourés d'abysse et de totalité ; un champ de décombres et de terre, rougis par les feux qui dévorent le rien."
+   "value": "Nous sommes entourés d'abysse et de totalité ; un champ de décombres et de terre, rougis par les feux qui dévorent le néant."
  },
  {
    "key": "sacrament_iv_53",
-   "value": "Si tu fixes l'espace trop longtemps, tu te sens perdu, "
+   "value": "Si tu fixes l'espace trop longtemps, tu te sens perdu,"
  },
  {
    "key": "sacrament_iv_54",
-   "value": "Et au sommet, une lumière étincelante. Une étoile dans le ciel matinal. "
+   "value": "Et au sommet, une lumière étincelante. Une étoile dans le ciel matinal."
  },
  {
    "key": "sacrament_iv_55",
-   "value": "\"Avec moi!\" et nous "
+   "value": "\"Avec moi!\" et nous"
  },
  {
    "key": "sacrament_iv_56",
@@ -8969,11 +8969,11 @@
  },
  {
    "key": "sacrament_iv_58",
-   "value": "Légèrement en-dessous de la performance moyenne nationale. "
+   "value": "Légèrement en-dessous de la performance moyenne nationale."
  },
  {
    "key": "sacrament_iv_59",
-   "value": "Cible 01 : La Source."
+   "value": "Cible 01 : La Source."
  },
  {
    "key": "sacrament_iv_60",
@@ -9013,7 +9013,7 @@
  },
  {
    "key": "sacrament_iv_69",
-   "value": "Les abris sont rares - les décombres d'une devanture de magasin ; un nouveau stand effondré."
+   "value": "Les abris sont rares - les décombres d'une devanture de magasin ; un nouveau stand effondré."
  },
  {
    "key": "sacrament_iv_70",
@@ -9041,7 +9041,7 @@
  },
  {
    "key": "sacrament_iv_76",
-   "value": "\"Armes au clair ; en avant\""
+   "value": "\"Dégainez vos armes ; en avant\""
  },
  {
    "key": "sacrament_iv_77",
@@ -9181,7 +9181,7 @@
  },
  {
    "key": "sacrament_iv_111",
-   "value": "Etait-ce un gratte-ciel, ou peut-être un hôpital ?"
+   "value": "Etait-ce un gratte-ciel, ou peut-être un hôpital ?"
  },
  {
    "key": "sacrament_iv_112",
@@ -9201,7 +9201,7 @@
  },
  {
    "key": "sacrament_iv_116",
-   "value": "Où-qu- ?"
+   "value": "Où-qu- ?"
  },
  {
    "key": "sacrament_iv_117",
@@ -9237,7 +9237,7 @@
  },
  {
    "key": "sacrament_iv_125",
-   "value": "déorbé"
+   "value": "déorbée"
  },
  {
    "key": "sacrament_iv_126",
@@ -9245,7 +9245,7 @@
  },
  {
    "key": "sacrament_iv_127",
-   "value": "DÉroBÉ"
+   "value": "DÉroBÉe"
  },
  {
    "key": "sacrament_iv_128",
@@ -9273,7 +9273,7 @@
  },
  {
    "key": "sacrament_iv_134",
-   "value": "B o u g e z"
+   "value": "A v a n ç o n s"
  },
  {
    "key": "sacrament_iv_135",
@@ -9329,7 +9329,7 @@
  },
  {
    "key": "sacrament_iv_148",
-   "value": "C ? AA ?"
+   "value": "C ? AA ?"
  },
  {
    "key": "sacrament_iv_149",
@@ -9373,7 +9373,7 @@
  },
  {
    "key": "sacrament_iv_159",
-   "value": "Devant nous, des kilomètres et des kilomètres de plaine ouverte. "
+   "value": "Devant nous, des kilomètres et des kilomètres de plaine ouverte."
  },
  {
    "key": "sacrament_iv_160",
@@ -9381,7 +9381,7 @@
  },
  {
    "key": "sacrament_iv_161",
-   "value": "Qui Est-ce que je Connais ?"
+   "value": "Qui Est-ce que je Connais ?"
  },
  {
    "key": "sacrament_iv_162",
@@ -9437,11 +9437,11 @@
  },
  {
    "key": "sacrament_iv_175",
-   "value": "Tombe..."
+   "value": "Tombons..."
  },
  {
    "key": "sacrament_iv_176",
-   "value": "ça ferait"
+   "value": "que ça nous"
  },
  {
    "key": "sacrament_iv_177",
@@ -9461,7 +9461,7 @@
  },
  {
    "key": "sacrament_iv_181",
-   "value": "oublier"
+   "value": "oublierai"
  },
  {
    "key": "sacrament_iv_182",
@@ -9485,7 +9485,7 @@
  },
  {
    "key": "sacrament_iv_187",
-   "value": "Tout va mal. "
+   "value": "Tout va mal."
  },
  {
    "key": "sacrament_iv_188",
@@ -9501,7 +9501,7 @@
  },
  {
    "key": "sacrament_iv_191",
-   "value": "allons-y\". "
+   "value": "allons-y\"."
  },
  {
    "key": "sacrament_iv_192",
@@ -9529,7 +9529,7 @@
  },
  {
    "key": "sacrament_iv_198",
-   "value": "C et AA commencent à marcher vers l'école. "
+   "value": "C et AA commencent à marcher vers l'école."
  },
  {
    "key": "sacrament_iv_199",
@@ -9597,7 +9597,7 @@
  },
  {
    "key": "sacrament_iv_215",
-   "value": "...comme ceux auquels je suis allé ?"
+   "value": "...comme celles où je suis allé ?"
  },
  {
    "key": "sacrament_iv_216",
@@ -9613,7 +9613,7 @@
  },
  {
    "key": "sacrament_iv_219",
-   "value": "[2/12/2020]\\nAujourd'hui le café était trop chaud. Ma gorge brûle encore. Qu'on me dise quoi faire."
+   "value": "[12/2/2020]\\nAujourd'hui le café était trop chaud. Ma gorge brûle encore. Qu'on me dise quoi faire."
  },
  {
    "key": "sacrament_iv_220",
@@ -9649,11 +9649,11 @@
  },
  {
    "key": "sacrament_iv_228",
-   "value": "[4/12/2048]\\nIlS me racontent les secrets des enfants. Je ne vois que le rouge et le gris. Tues-les, s'il te plaît, s'il te plaît-"
+   "value": "[12/4/2048]\\nIlS me racontent les secrets des enfants. Je ne vois que le rouge et le gris. Tues-les, s'il te plaît, s'il te plaît-"
  },
  {
    "key": "sacrament_iv_229",
-   "value": "[10/30/2036]\\nLes enfants sont trop bruyants. Pourquoi se mettent-ils à faire autant de bruit. Qu'on me dise quoi faire."
+   "value": "[30/10/2036]\\nLes enfants sont trop bruyants. Pourquoi se mettent-ils à faire autant de bruit. Qu'on me dise quoi faire."
  },
  {
    "key": "sacrament_iv_230",
@@ -9689,7 +9689,7 @@
  },
  {
    "key": "sacrament_iv_238",
-   "value": "Aidez-moi "
+   "value": "Aidez-moi"
  },
  {
    "key": "sacrament_iv_239",
@@ -9861,7 +9861,7 @@
  },
  {
    "key": "sacrament_iv_281",
-   "value": "Ce n'étaient pas mes amis, mais je ne me souviens de rien d'autre. "
+   "value": "Ce n'étaient pas mes amis, mais je ne me souviens de rien d'autre."
  },
  {
    "key": "sacrament_iv_282",
@@ -9945,7 +9945,7 @@
  },
  {
    "key": "sacrament_iv_302",
-   "value": "La preuve d'exister. "
+   "value": "La preuve d'exister."
  },
  {
    "key": "sacrament_iv_303",
@@ -10041,7 +10041,7 @@
  },
  {
    "key": "sacrament_iv_326",
-   "value": "aller"
+   "value": "partir"
  },
  {
    "key": "sacrament_iv_327",
@@ -10093,7 +10093,7 @@
  },
  {
    "key": "sacrament_iv_339",
-   "value": "Je prends le spot, levant mon arme alors que nous nous dirigeons vers la cage d'escalier."
+   "value": "Je prends le commandement, levant mon arme alors que nous nous dirigeons vers la cage d'escalier."
  },
  {
    "key": "sacrament_iv_340",
@@ -10109,7 +10109,7 @@
  },
  {
    "key": "sacrament_iv_343",
-   "value": "\"Faisons ce truc !\""
+   "value": "\" Allons-y ! \""
  },
  {
    "key": "sacrament_iv_344",
@@ -10133,7 +10133,7 @@
  },
  {
    "key": "sacrament_iv_349",
-   "value": "Je me précipite vers AA et C qui se tiennent devant la Cage d'Escalier Ouest. "
+   "value": "Je me précipite vers AA et C qui se tiennent devant la Cage d'Escalier Ouest."
  },
  {
    "key": "sacrament_iv_350",
@@ -10169,7 +10169,7 @@
  },
  {
    "key": "sacrament_iv_358",
-   "value": "0.0006134259259"
+   "value": "0.000613426"
  },
  {
    "key": "sacrament_iv_359",
@@ -10181,7 +10181,7 @@
  },
  {
    "key": "sacrament_iv_361",
-   "value": "0.0006018518519"
+   "value": "0.000601852"
  },
  {
    "key": "sacrament_iv_362",
@@ -10221,7 +10221,7 @@
  },
  {
    "key": "sacrament_iv_371",
-   "value": "0.0005902777778"
+   "value": "0.000590278"
  },
  {
    "key": "sacrament_iv_372",
@@ -10237,15 +10237,15 @@
  },
  {
    "key": "sacrament_iv_375",
-   "value": "0.0006828703704"
+   "value": "0.00068287"
  },
  {
    "key": "sacrament_iv_376",
-   "value": "0.0006597222222"
+   "value": "0.000659722"
  },
  {
    "key": "sacrament_iv_377",
-   "value": "0.0006712962963"
+   "value": "0.000671296"
  },
  {
    "key": "sacrament_iv_378",
@@ -10329,7 +10329,7 @@
  },
  {
    "key": "sacrament_iv_398",
-   "value": "Contrôle, vous m'entendez ? "
+   "value": "Contrôle, vous m'entendez ?"
  },
  {
    "key": "sacrament_iv_399",
@@ -10337,7 +10337,7 @@
  },
  {
    "key": "sacrament_iv_400",
-   "value": "Je suis désolé, "
+   "value": "Je suis désolé,"
  },
  {
    "key": "sacrament_iv_401",
@@ -10365,7 +10365,7 @@
  },
  {
    "key": "sacrament_iv_407",
-   "value": "0.0006365740741"
+   "value": "0.000636574"
  },
  {
    "key": "sacrament_iv_408",
@@ -10377,7 +10377,7 @@
  },
  {
    "key": "sacrament_iv_410",
-   "value": "0.0006481481481"
+   "value": "0.000648148"
  },
  {
    "key": "sacrament_iv_411",
@@ -10405,7 +10405,7 @@
  },
  {
    "key": "sacrament_iv_417",
-   "value": "-Colin."
+   "value": "#NAME?"
  },
  {
    "key": "sacrament_iv_418",
@@ -10421,7 +10421,7 @@
  },
  {
    "key": "sacrament_iv_421",
-   "value": "(Recommencer)"
+   "value": "(reprendre)"
  },
  {
    "key": "sacrament_iv_422",
@@ -10429,15 +10429,15 @@
  },
  {
    "key": "sacrament_iv_423",
-   "value": "Mon hésitation est trop grande; C prend exemple :"
+   "value": "Mon hésitation est trop grande; C prend exemple :"
  },
  {
    "key": "sacrament_iv_424",
-   "value": "C'est des griffes - ou ce que je peux appeler griffes uniquement - fouettées par mon visage"
+   "value": "C'est des griffes - ou ce que je peux appeler griffes uniquement - fouettes vers mon visage"
  },
  {
    "key": "sacrament_iv_425",
-   "value": "C'est mort."
+   "value": "Il est mort."
  },
  {
    "key": "sacrament_iv_426",
@@ -10457,7 +10457,7 @@
  },
  {
    "key": "sacrament_iv_430",
-   "value": "L'air se divise comme un atome, fracturation du temps"
+   "value": "L'air se divise comme un atome, fracturant le temps"
  },
  {
    "key": "sacrament_iv_431",
@@ -10497,7 +10497,7 @@
  },
  {
    "key": "sacrament_iv_440",
-   "value": "Le cauchemar disparu."
+   "value": "Le cauchemar disparait."
  },
  {
    "key": "sacrament_iv_441",
@@ -10609,7 +10609,7 @@
  },
  {
    "key": "sacrament_iv_468",
-   "value": "c e n s u r e r"
+   "value": "s u p p r e s s i o n"
  },
  {
    "key": "sacrament_iv_469",
@@ -10621,7 +10621,7 @@
  },
  {
    "key": "sacrament_iv_471",
-   "value": "p r e m i e r  s e c o u r s "
+   "value": "p r e m i e r s e c o u r s"
  },
  {
    "key": "sacrament_iv_472",
@@ -10633,7 +10633,7 @@
  },
  {
    "key": "sacrament_iv_474",
-   "value": "K tire dans l'obscurité."
+   "value": "K tire sur le cauchemar."
  },
  {
    "key": "sacrament_iv_475",
@@ -10665,7 +10665,7 @@
  },
  {
    "key": "sacrament_iv_482",
-   "value": "K s'allonge en réprimant le feu."
+   "value": "K fait des tirs de suppression."
  },
  {
    "key": "sacrament_iv_483",
@@ -10741,15 +10741,15 @@
  },
  {
    "key": "sacrament_iv_501",
-   "value": "K attrape le cauchemar dans son attaque !"
+   "value": "K attrape le cauchemar dans son attaque !"
  },
  {
    "key": "sacrament_iv_502",
-   "value": "K repère le cauchemar et tire !"
+   "value": "K repère le cauchemar et tire !"
  },
  {
    "key": "sacrament_iv_503",
-   "value": "K interromps l'attaque du cauchemar avec feu de couverture !"
+   "value": "K interromps l'attaque du cauchemar avec feu de couverture !"
  },
  {
    "key": "sacrament_iv_504",
@@ -10781,7 +10781,7 @@
  },
  {
    "key": "sacrament_iv_511",
-   "value": "La balle percute; dégâts physique."
+   "value": "La balle percute; impact direct."
  },
  {
    "key": "sacrament_iv_512",
@@ -10793,7 +10793,7 @@
  },
  {
    "key": "sacrament_iv_514",
-   "value": "Les balles ressemblent au feu de l'enfer quand elles touchent les décombres."
+   "value": "Les balles sonnent comme le feu de l'enfer quand elles touchent les décombres."
  },
  {
    "key": "sacrament_iv_515",
@@ -10805,7 +10805,7 @@
  },
  {
    "key": "sacrament_iv_517",
-   "value": "C s'allonge en réprimant le feu."
+   "value": "C fait des tirs de suppression."
  },
  {
    "key": "sacrament_iv_518",
@@ -10885,7 +10885,7 @@
  },
  {
    "key": "sacrament_iv_537",
-   "value": "Elle utilise la chance pour planifier sa prochaine attaque."
+   "value": "Elle utilise cette chance pour planifier sa prochaine attaque."
  },
  {
    "key": "sacrament_iv_538",
@@ -10913,11 +10913,11 @@
  },
  {
    "key": "sacrament_iv_544",
-   "value": "Sang et poussières remplissent l'air comme des balles."
+   "value": "Sang et poussières remplissent l'air quand les balles touchent."
  },
  {
    "key": "sacrament_iv_545",
-   "value": "Il soupire comme ses balles sifflent dans les airs."
+   "value": "Il soupire alors que ses balles sifflent dans les airs."
  },
  {
    "key": "sacrament_iv_546",
@@ -10929,7 +10929,7 @@
  },
  {
    "key": "sacrament_iv_548",
-   "value": "AA arrive à réprimer le feu."
+   "value": "AA fait des tirs de suppression."
  },
  {
    "key": "sacrament_iv_549",
@@ -11017,7 +11017,7 @@
  },
  {
    "key": "sacrament_iv_571",
-   "value": "A T T A Q U E R - L E - C A U C H E M A R"
+   "value": "A T T A Q U E R _ L E _ C A U C H E M A R"
  },
  {
    "key": "sacrament_iv_572",
@@ -11053,7 +11053,7 @@
  },
  {
    "key": "sacrament_iv_580",
-   "value": "C recharge son arme à feu."
+   "value": "C recharge son pistolet."
  },
  {
    "key": "sacrament_iv_581",
@@ -11093,11 +11093,11 @@
  },
  {
    "key": "sacrament_iv_590",
-   "value": "Il tousse du sang et spasme avant de se replier. "
+   "value": "Il tousse du sang et se redresse d'un coup avant de retomber."
  },
  {
    "key": "sacrament_iv_591",
-   "value": "Vas-y K, concentre toi ! !"
+   "value": "Vas-y K, concentre toi ! !"
  },
  {
    "key": "sacrament_iv_592",
@@ -11109,7 +11109,7 @@
  },
  {
    "key": "sacrament_iv_594",
-   "value": "Le cauchemar meurt."
+   "value": "Le cauchemar est mort."
  },
  {
    "key": "sacrament_iv_595",
@@ -11141,7 +11141,7 @@
  },
  {
    "key": "sacrament_iv_602",
-   "value": "“AA !! AA ! AA !!!”"
+   "value": "“AA !! AA ! AA !!!”"
  },
  {
    "key": "sacrament_iv_603",
@@ -11157,7 +11157,7 @@
  },
  {
    "key": "sacrament_iv_606",
-   "value": "Rien"
+   "value": "Le Néant"
  },
  {
    "key": "sacrament_iv_607",
@@ -11165,7 +11165,7 @@
  },
  {
    "key": "sacrament_iv_608",
-   "value": "Quoi... où ont-ils !?"
+   "value": "Quoi... où ont-ils !?"
  },
  {
    "key": "sacrament_iv_609",
@@ -11185,11 +11185,11 @@
  },
  {
    "key": "sacrament_iv_613",
-   "value": "A T T A Q U E"
+   "value": "A T T A Q U O N S"
  },
  {
    "key": "sacrament_iv_614",
-   "value": "M E U R T"
+   "value": "M O U R I R"
  },
  {
    "key": "sacrament_iv_615",
@@ -11209,7 +11209,7 @@
  },
  {
    "key": "sacrament_iv_619",
-   "value": "Le cauchemar cesse de bouger, puis s'efface dans le sol."
+   "value": "Le cauchemar cesse de bouger, puis glisse au sol."
  },
  {
    "key": "sacrament_iv_620",
@@ -11225,7 +11225,7 @@
  },
  {
    "key": "sacrament_iv_623",
-   "value": "K apporte un peu d'aide mineure."
+   "value": "K apporte quelques soins."
  },
  {
    "key": "sacrament_iv_624",
@@ -11285,7 +11285,7 @@
  },
  {
    "key": "sacrament_iv_638",
-   "value": "Le cauchemar hurle et se précipite sur TARGET. "
+   "value": "Le cauchemar hurle et se précipite sur TARGET."
  },
  {
    "key": "sacrament_iv_639",
@@ -11357,11 +11357,11 @@
  },
  {
    "key": "sacrament_iv_656",
-   "value": "aveuglant"
+   "value": "aveuglante"
  },
  {
    "key": "sacrament_iv_657",
-   "value": "SERRE"
+   "value": "SERRER"
  },
  {
    "key": "sacrament_iv_658",
@@ -11421,7 +11421,7 @@
  },
  {
    "key": "sacrament_iv_672",
-   "value": "Devant moi, une forme se détache ;"
+   "value": "Devant moi, une forme se détache ;"
  },
  {
    "key": "sacrament_iv_673",
@@ -11473,7 +11473,7 @@
  },
  {
    "key": "sacrament_iv_685",
-   "value": "ou bien est-ce que les cauchemars ont.. ?"
+   "value": "ou bien est-ce que les cauchemars ont.. ?"
  },
  {
    "key": "sacrament_iv_686",
@@ -11665,7 +11665,7 @@
  },
  {
    "key": "sacrament_iv_733",
-   "value": "POURQUOI SUIS-JE AINSI !????"
+   "value": "POURQUOI SUIS-JE AINSI !????"
  },
  {
    "key": "sacrament_iv_734",
@@ -11689,7 +11689,7 @@
  },
  {
    "key": "sacrament_iv_740",
-   "value": "Il tousse du sang et spasme avant de se replier. "
+   "value": "Il tousse du sang et spasme avant de se replier."
  },
  {
    "key": "sacrament_iv_741",
@@ -11713,7 +11713,7 @@
  },
  {
    "key": "sacrament_iv_746",
-   "value": "C saute ; nous traîner le corps d'AA dans les escaliers. Une marche, puis une autre."
+   "value": "C saute ; nous traînons le corps d'AA dans les escaliers. Une marche, puis une autre."
  },
  {
    "key": "sacrament_iv_747",
@@ -11741,7 +11741,7 @@
  },
  {
    "key": "sacrament_iv_753",
-   "value": "non non  non non non non n"
+   "value": "non non non non non non n"
  },
  {
    "key": "sacrament_iv_754",
@@ -11833,11 +11833,11 @@
  },
  {
    "key": "sacrament_iv_776",
-   "value": "P L U S  H A U T"
+   "value": "P L U S H A U T"
  },
  {
    "key": "sacrament_iv_777",
-   "value": "lâche-le"
+   "value": "le lâcher"
  },
  {
    "key": "sacrament_iv_778",
@@ -11953,7 +11953,7 @@
  },
  {
    "key": "sacrament_iv_806",
-   "value": "l a  r a g e"
+   "value": "l a r a g e"
  },
  {
    "key": "sacrament_iv_807",
@@ -12257,7 +12257,7 @@
  },
  {
    "key": "sacrament_ii_00",
-   "value": "sacrement    ii"
+   "value": "sacrement ii"
  },
  {
    "key": "sacrament_ii_01",
@@ -12273,7 +12273,7 @@
  },
  {
    "key": "sacrament_ii_03",
-   "value": "Je m'arrête, sous moi les voitures foncent à toute vitesse, et j'observe l'horizon, le ciel et les nuages et les tours et le néant"
+   "value": "Je m'arrête, sous moi les voitures foncent à toute vitesse, et j'observe l'horizon, le ciel, les nuages, les tours et le néant"
  },
  {
    "key": "sacrament_ii_04",
@@ -12281,7 +12281,7 @@
  },
  {
    "key": "sacrament_ii_05",
-   "value": "Je vais déchirer le ciel et faire pleuvoir du sang sur nous "
+   "value": "Je vais déchirer le ciel et faire pleuvoir du sang sur nous"
  },
  {
    "key": "sacrament_ii_06",
@@ -12389,7 +12389,7 @@
  },
  {
    "key": "sacrament_ii_32",
-   "value": "Avec une rêverie verdoyante"
+   "value": "Dans la verdure et la rêverie"
  },
  {
    "key": "sacrament_ii_33",
@@ -12397,7 +12397,7 @@
  },
  {
    "key": "sacrament_ii_34",
-   "value": "Loin des professeurs et des coups, et "
+   "value": "Loin des professeurs et des coups, et"
  },
  {
    "key": "sacrament_ii_35",
@@ -12533,7 +12533,7 @@
  },
  {
    "key": "sacrament_ii_68",
-   "value": "Aucune preuve de             mais le trou dans ton cœur"
+   "value": "Aucune preuve de mais le trou dans ton cœur"
  },
  {
    "key": "sacrament_ii_69",
@@ -12565,7 +12565,7 @@
  },
  {
    "key": "sacrament_ii_76",
-   "value": "Comme le touché d'un "
+   "value": "Comme le touché d'un"
  },
  {
    "key": "sacrament_ii_77",
@@ -12573,7 +12573,7 @@
  },
  {
    "key": "sacrament_ii_78",
-   "value": "Parfois je ne savais pas avant d'y être"
+   "value": "Parfois, je ne savais pas jusqu'à ce que je sois là"
  },
  {
    "key": "sacrament_ii_79",
@@ -12581,7 +12581,7 @@
  },
  {
    "key": "sacrament_ii_80",
-   "value": "où je suis"
+   "value": "là où je suis"
  },
  {
    "key": "sacrament_ii_81",
@@ -12597,7 +12597,7 @@
  },
  {
    "key": "sacrament_ii_84",
-   "value": "d'un passé tout entier contenu"
+   "value": "d'un passé révolu"
  },
  {
    "key": "sacrament_ii_85",
@@ -12605,7 +12605,7 @@
  },
  {
    "key": "sacrament_ii_86",
-   "value": "Alors j'ai plongé plus profondément, tandis que le ciel s'obscurcissait"
+   "value": "J'ai donc continué mon voyage, alors que le ciel devenait de plus en plus sombre"
  },
  {
    "key": "sacrament_ii_87",
@@ -12621,23 +12621,23 @@
  },
  {
    "key": "sacrament_ii_90",
-   "value": "Je rêve de héros dans ma tête"
+   "value": "Un rêve avec des héros dans ma tête"
  },
  {
    "key": "sacrament_ii_91",
-   "value": "Des manifestations de confiance et de beauté, à ma portée"
+   "value": "confiants, beaux, à ma portée"
  },
  {
    "key": "sacrament_ii_92",
-   "value": "Qui s’effacent au rythme de mon cœur qui bat"
+   "value": "qui s'estompe avec les battements de mon cœur"
  },
  {
    "key": "sacrament_ii_93",
-   "value": "Et de mon souffle qui s’éteint"
+   "value": "et la perte de mon souffle"
  },
  {
    "key": "sacrament_ii_94",
-   "value": "La première s’effondre à cause de         dans sa tête"
+   "value": "La première s’effondre à cause des \\ndans sa tête"
  },
  {
    "key": "sacrament_ii_95",
@@ -12677,7 +12677,7 @@
  },
  {
    "key": "sacrament_ii_104",
-   "value": "J'ai sombré trop "
+   "value": "J'ai sombré trop"
  },
  {
    "key": "sacrament_ii_105",
@@ -12685,7 +12685,7 @@
  },
  {
    "key": "sacrament_ii_106",
-   "value": "Deux chemins s'offrent à moi, \\n\\n        et       "
+   "value": "Deux chemins s'offrent à moi, \\n\\n et"
  },
  {
    "key": "sacrament_ii_107",
@@ -12761,7 +12761,7 @@
  },
  {
    "key": "sacrament_ii_125",
-   "value": "sans profondeur"
+   "value": "peu profonde"
  },
  {
    "key": "sacrament_ii_126",
@@ -12769,7 +12769,7 @@
  },
  {
    "key": "sacrament_ii_127",
-   "value": "Leur bouche ouverte trop grand"
+   "value": "Leurs bouches ouverte trop grandes"
  },
  {
    "key": "sacrament_ii_128",
@@ -12793,11 +12793,11 @@
  },
  {
    "key": "sacrament_ii_133",
-   "value": "Je ne peux pas oublier Tes yeux, PLAYERNAME"
+   "value": "Je ne peux pas oublier Tes yeux,\\nPLAYERNAME"
  },
  {
    "key": "sacrament_ii_134",
-   "value": "Les cauchemars ne devraient pas avoir de tels yeux"
+   "value": "Les cauchemars ne devraient pas avoir de\\ntels yeux"
  },
  {
    "key": "sacrament_ii_135",
@@ -12861,7 +12861,7 @@
  },
  {
    "key": "sacrament_ii_150",
-   "value": "Tu es finalement        , et il apparait"
+   "value": "Tu es finalement , et il apparait"
  },
  {
    "key": "sacrament_ii_151",
@@ -12869,7 +12869,7 @@
  },
  {
    "key": "sacrament_ii_152",
-   "value": "Le centre du "
+   "value": "Le centre du"
  },
  {
    "key": "sacrament_ii_153",
@@ -12897,11 +12897,11 @@
  },
  {
    "key": "sacrament_ii_159",
-   "value": "C'est       , bien que je ne l'ai jamais été"
+   "value": "C'est , même si je n'y suis jamais allé."
  },
  {
    "key": "sacrament_ii_160",
-   "value": "maison"
+   "value": "chez moi"
  },
  {
    "key": "sacrament_ii_161",
@@ -12909,7 +12909,7 @@
  },
  {
    "key": "sacrament_ii_162",
-   "value": "Entrer dans le"
+   "value": "Marchant dans la"
  },
  {
    "key": "sacrament_ii_163",
@@ -12925,7 +12925,7 @@
  },
  {
    "key": "sacrament_ii_166",
-   "value": "Tombe à ma portée"
+   "value": "Tombe à mon toucher"
  },
  {
    "key": "sacrament_ii_167",
@@ -12953,11 +12953,11 @@
  },
  {
    "key": "sacrament_ii_173",
-   "value": "Marche vers l'infini"
+   "value": "Des marches à l’infini"
  },
  {
    "key": "sacrament_ii_174",
-   "value": "Anéantissement de soi"
+   "value": "L'anéantissement de soi"
  },
  {
    "key": "sacrament_ii_175",
@@ -12965,7 +12965,7 @@
  },
  {
    "key": "sacrament_ii_176",
-   "value": "Le chemin du Paradis, par l'Enfer lui-même"
+   "value": "Le chemin vers le Paradis, en passant par l'Enfer lui-même"
  },
  {
    "key": "sacrament_ii_177",
@@ -13073,15 +13073,15 @@
  },
  {
    "key": "sacrament_ii_203",
-   "value": "Reconnaissance ?"
+   "value": "L'acceptation ?"
  },
  {
    "key": "sacrament_ii_204",
-   "value": "Reconnaissance"
+   "value": "L'acceptation"
  },
  {
    "key": "sacrament_ii_205",
-   "value": "Toi et moi, l'un coure toujours après l'autre"
+   "value": "Toi et moi, l'un poursuit éternellement l'autre"
  },
  {
    "key": "sacrament_ii_206",
@@ -13089,7 +13089,7 @@
  },
  {
    "key": "sacrament_ii_207",
-   "value": "Et le monde devient "
+   "value": "Et le monde devient"
  },
  {
    "key": "sacrament_ii_208",
@@ -13197,11 +13197,11 @@
  },
  {
    "key": "sacrament_ii_234",
-   "value": "Oublié de respirer"
+   "value": "Oubliant de respirer"
  },
  {
    "key": "sacrament_ii_235",
-   "value": "Juste légèrement trop long"
+   "value": "Un peu trop longtemps"
  },
  {
    "key": "sacrament_ii_236",
@@ -13213,7 +13213,7 @@
  },
  {
    "key": "sacrament_ii_238",
-   "value": "D'Eux"
+   "value": "Les fuyant"
  },
  {
    "key": "sacrament_ii_239",
@@ -13237,7 +13237,7 @@
  },
  {
    "key": "sacrament_ii_244",
-   "value": "Tandis que tu tournais la tête"
+   "value": "Tandis que tu tournes la tête"
  },
  {
    "key": "sacrament_ii_245",
@@ -13253,11 +13253,11 @@
  },
  {
    "key": "sacrament_ii_248",
-   "value": "De l'intérieur vers l'extérieur"
+   "value": "De toute part"
  },
  {
    "key": "sacrament_ii_249",
-   "value": "Et te pétrifie ou tu te situes"
+   "value": "Et te pétrifier là où tu te tiens"
  },
  {
    "key": "sacrament_ii_250",
@@ -13273,11 +13273,11 @@
  },
  {
    "key": "sacrament_ii_253",
-   "value": "Au fil des ans, la forêt a été rasé"
+   "value": "Au fil des années, la forêt a été rasée"
  },
  {
    "key": "sacrament_ii_254",
-   "value": "Il arrive juste a temps, bouge et rénove"
+   "value": "Ça arrive avec le temps, les déménagements et les réaménagements"
  },
  {
    "key": "sacrament_ii_255",
@@ -13297,7 +13297,7 @@
  },
  {
    "key": "sacrament_ii_259",
-   "value": "Que tu les aime, mais que c'était trop dur à montrer et à l'accepter, car tu te sentais tellement mal et ça t'a fait te sentir tellement mal pour penser que tu étais digne de tout sauf"
+   "value": "Que tu les aime, mais que c'était trop dur à montrer et à l'accepter, car tu te sentais tellement mal et ça t'a fait te sentir tellement mal de penser que tu étais digne de tout sauf"
  },
  {
    "key": "sacrament_ii_260",
@@ -13309,7 +13309,7 @@
  },
  {
    "key": "sacrament_ii_262",
-   "value": "Par-dessus ce         , où les voitures s'en vont, vers les tours, le smog et la poussière"
+   "value": "Par-dessus ce , où les voitures s'en vont, vers les tours, le smog et la poussière"
  },
  {
    "key": "sacrament_ii_263",
@@ -13317,7 +13317,7 @@
  },
  {
    "key": "sacrament_ii_264",
-   "value": "Dans un jour, quand nous allons tous enfin "
+   "value": "Dans un jour, quand nous allons tous enfin"
  },
  {
    "key": "sacrament_ii_265",
@@ -13361,7 +13361,7 @@
  },
  {
    "key": "sacrament_ii_275",
-   "value": "Je ne peux le dire à personne"
+   "value": "Je n'arrive plus à le savoir"
  },
  {
    "key": "sacrament_ii_276",
@@ -13393,7 +13393,7 @@
  },
  {
    "key": "sacrament_ii_283",
-   "value": "Car Je l'ai Crée, et j'ai Crée"
+   "value": "Car Je l'ai Crée, et je t'ai Crée"
  },
  {
    "key": "sacrament_ii_284",
@@ -13441,15 +13441,15 @@
  },
  {
    "key": "sacrament_ii_295",
-   "value": "PLAYERNAME ?"
+   "value": "PLAYERNAME ?"
  },
  {
    "key": "sacrament_ii_296",
-   "value": "Lucah ?"
+   "value": "Lucah ?"
  },
  {
    "key": "sacrament_ii_297",
-   "value": "Pourquoi tu te bas ?"
+   "value": "Pourquoi tu te bats ?"
  },
  {
    "key": "sacrament_ii_298",
@@ -13477,7 +13477,7 @@
  },
  {
    "key": "sacrament_ii_304",
-   "value": "Chaque ami que j'ai abandonné, chaque amour que j'ai trahi"
+   "value": "Chaque ami que j'ai méprisé, chaque amour que j'ai trahi"
  },
  {
    "key": "sacrament_ii_305",
@@ -13569,7 +13569,7 @@
  },
  {
    "key": "sacrament_ii_327",
-   "value": "Et je me suis laissé "
+   "value": "Et je me suis laissé"
  },
  {
    "key": "sacrament_ii_328",
@@ -13593,7 +13593,7 @@
  },
  {
    "key": "sacrament_ii_333",
-   "value": "J'aimais le"
+   "value": "J'aimais"
  },
  {
    "key": "sacrament_ii_334",
@@ -13605,7 +13605,7 @@
  },
  {
    "key": "sacrament_ii_336",
-   "value": "Alors, alors"
+   "value": "Si, si"
  },
  {
    "key": "sacrament_ii_337",
@@ -13645,7 +13645,7 @@
  },
  {
    "key": "sacrament_ii_346",
-   "value": "Parce que nous n'étions pas censés exister"
+   "value": "Parce que nous n'étions pas censés\\nexister"
  },
  {
    "key": "sacrament_ii_347",
@@ -13661,7 +13661,7 @@
  },
  {
    "key": "sacrament_ii_350",
-   "value": "Paralisés, tandis qu'Ils nous regardent"
+   "value": "Paralysés, tandis qu'Ils nous regardent"
  },
  {
    "key": "sacrament_ii_351",
@@ -13697,7 +13697,7 @@
  },
  {
    "key": "sacrament_ii_359",
-   "value": "Pourquoi tu serais ICI sinon ?"
+   "value": "Pourquoi serais-tu ICI sinon ?"
  },
  {
    "key": "sacrament_ii_360",
@@ -13705,7 +13705,7 @@
  },
  {
    "key": "sacrament_ii_361",
-   "value": "Et je n'en distingue plus la surface"
+   "value": "Et je n'en distingue plus le sol"
  },
  {
    "key": "sacrament_ii_362",
@@ -13821,7 +13821,7 @@
  },
  {
    "key": "sacrament_ii_390",
-   "value": "encore, brisé"
+   "value": "immobiles, brisées"
  },
  {
    "key": "sacrament_ii_391",
@@ -13849,15 +13849,15 @@
  },
  {
    "key": "sacrament_ii_397",
-   "value": "C'EST CE QU'ILS ONT FAIT ! !"
+   "value": "C'EST CE QU'ILS ONT FAIT !!"
  },
  {
    "key": "sacrament_ii_398",
-   "value": "sans rien faire"
+   "value": "sans faire quoi que ce soit"
  },
  {
    "key": "sacrament_ii_399",
-   "value": "ainsi, il nous était impossible d'ARRÊTER"
+   "value": "ainsi, il nous était impossible de les ARRÊTER"
  },
  {
    "key": "sacrament_ii_400",
@@ -13897,7 +13897,7 @@
  },
  {
    "key": "sacrament_ii_409",
-   "value": "Ça n'est plus, je ne le perçois plus."
+   "value": "Il n'est plus là, je ne le vois plus."
  },
  {
    "key": "sacrament_ii_410",
@@ -13969,7 +13969,7 @@
  },
  {
    "key": "descend_end_02",
-   "value": "LUCAH, CHRISTIAN\\net\\nles ÉLUS\\nreviendront dans\\nCHRISTIAN : DEATH OF A WISH."
+   "value": "LUCAH, CHRISTIAN\\net\\nles ÉLUS\\nreviendront dans\\nCHRISTIAN : DEATH OF A WISH."
  },
  {
    "key": "sacrament_ii_423",
@@ -13981,19 +13981,19 @@
  },
  {
    "key": "sacrament_ii_425",
-   "value": "Les aimes-tu ? ? Je les ai faites pour TOI !"
+   "value": "Les aimes-tu ? ? Je les ai faites pour TOI !"
  },
  {
    "key": "sacrament_ii_426",
-   "value": "Pourquoi est-ce que ça fait si mal ! ?"
+   "value": "Pourquoi est-ce que ça fait si mal ! ?"
  },
  {
    "key": "sacrament_ii_427",
-   "value": "Pourquoi je n'arrive pas à m'en détacher ! ! !"
+   "value": "Pourquoi je n'arrive pas à m'en détacher !!!"
  },
  {
    "key": "sacrament_ii_428",
-   "value": "Lucah, PLAYERNAME !"
+   "value": "Lucah, PLAYERNAME !"
  },
  {
    "key": "sacrament_ii_429",
@@ -14001,7 +14001,7 @@
  },
  {
    "key": "sacrament_ii_430",
-   "value": "AIDE-MOI ! !"
+   "value": "AIDE-MOI ! !"
  },
  {
    "key": "sacrament_ii_431",
@@ -14013,7 +14013,7 @@
  },
  {
    "key": "sacrament_ii_433",
-   "value": "Il n'a pas vraiment marché... il représentait une vie et un chemin que je ne pouvais pas supporter de vivre."
+   "value": "Cela n'a pas vraiment bien fonctionné... cela représentait une vie et un chemin que je ne pouvais pas vraiment supporter de prendre."
  },
  {
    "key": "sacrament_ii_434",
@@ -14149,7 +14149,7 @@
  },
  {
    "key": "descent_fail_03",
-   "value": "J'en ai besoin. "
+   "value": "J'en ai besoin."
  },
  {
    "key": "descent_fail_04",
@@ -14167,25 +14167,32 @@
    "key": "found_la_500",
    "value": "500 La trouvé [utilisable aux points de contrôle pour augmenter de niveau]."
  },
-  {
-    "key": "examine_label_training",
-    "value": "ENTRAÎNEMENT"
-  },
-  {
-    "key": "examine_label_fight",
-    "value": "COMBATTRE"
-  },
-  {
-    "key": "training_combat_00",
-    "value": "Intact"
-  },
-  {
-    "key": "training_combat_01",
-    "value": "Impassible"
-  },
-  {
-    "key": "training_combat_02",
-    "value": "Ininterrompu"
-  }
-]
-}
+ {
+   "key": "examine_label_training",
+   "value": "S'ENTRAÎNER"
+ },
+ {
+   "key": "examine_label_fight",
+   "value": "COMBATTRE"
+ },
+ {
+   "key": "training_combat_00",
+   "value": "Intact"
+ },
+ {
+   "key": "training_combat_01",
+   "value": "Impassible"
+ },
+ {
+   "key": "training_combat_02",
+   "value": "Ininterrompu"
+ },
+ {
+   "key": "save_menu_overwrite",
+   "value": "Nombre maximum de sauvegarde atteint.\nChoisissez un fichier à remplacer."
+ },
+ {
+   "key": "save_menu_load",
+   "value": "Select save file to load."
+ }
+]}

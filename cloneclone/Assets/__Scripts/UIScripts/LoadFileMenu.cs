@@ -6,8 +6,8 @@ public class LoadFileMenu : MonoBehaviour
 {
 
     public TextMesh instructionText;
-    private string instructionLoad = "Select save file to load.";
-    private string instructionOverwrite = "File limit reached. Select file to overwrite.";
+    private string instructionLoad = "save_menu_load";
+    private string instructionOverwrite = "save_menu_overwrite";
 
     private bool overwriteActive = false;
     public GameObject overwriteContainer;
@@ -41,9 +41,9 @@ public class LoadFileMenu : MonoBehaviour
 
         willNeedToOverwrite = forOverwrite;
         if (forOverwrite){
-            instructionText.text = instructionOverwrite;
+            instructionText.text = LocalizationManager.instance.GetLocalizedValue(instructionOverwrite);
         }else{
-            instructionText.text = instructionLoad;
+            instructionText.text = LocalizationManager.instance.GetLocalizedValue(instructionLoad);
         }
         selectButtonUp = false;
         backButtonUp = false;
