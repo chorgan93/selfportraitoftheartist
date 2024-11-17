@@ -8,13 +8,14 @@ public class LocalizationManager : MonoBehaviour
 
     public static LocalizationManager instance;
 
-    private Dictionary<string, string> localizedTextEN, localizedTextES, localizedTextFR;
+    private Dictionary<string, string> localizedTextEN, localizedTextES, localizedTextFR, localizedTextZH;
     private bool isReady = false;
     private string missingTextString = "Localized text not found";
 
     public TextAsset masterText_EN;
     public TextAsset masterText_ES;
     public TextAsset masterText_FR;
+    public TextAsset masterText_ZH;
 
     public LocalizationMenu locMenu;
 
@@ -45,6 +46,7 @@ public class LocalizationManager : MonoBehaviour
         localizedTextEN = new Dictionary<string, string>();
         localizedTextES = new Dictionary<string, string>();
         localizedTextFR = new Dictionary<string, string>();
+        localizedTextZH = new Dictionary<string, string>();
 
         // if english
         if (masterText_EN != null)
@@ -74,6 +76,16 @@ public class LocalizationManager : MonoBehaviour
             for (int i = 0; i < loadedData.items.Length; i++)
             {
                 localizedTextFR.Add(loadedData.items[i].key, loadedData.items[i].value);
+            }
+        }
+        if (masterText_ZH != null)
+        {
+            string dataAsJson = masterText_ZH.text;
+            LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
+
+            for (int i = 0; i < loadedData.items.Length; i++)
+            {
+                localizedTextZH.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
         }
 
@@ -153,6 +165,23 @@ public class LocalizationManager : MonoBehaviour
             if (localizedTextFR.ContainsKey(key))
             {
                 result = localizedTextFR[key];
+            }
+            else if (displayOnFail)
+            {
+                result = key;
+            }
+            else
+            {
+#if UNITY_EDITOR
+                Debug.Log("Could not find key: " + key);
+#endif
+            }
+        }
+        else if (currentLanguage == 3)
+        {
+            if (localizedTextZH.ContainsKey(key))
+            {
+                result = localizedTextZH[key];
             }
             else if (displayOnFail)
             {
